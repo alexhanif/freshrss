@@ -77,6 +77,6 @@ class FreshRSS_javascript_Controller extends FreshRSS_ActionController {
 		for ($i = 22; $i > 0; $i--) {
 			$this->view->salt1 .= $alphabet[random_int(0, 63)];
 		}
-		$this->view->nonce = sha1('' . rand());
+		$this->view->nonce = sha1('' . mt_rand());
 	}
 }

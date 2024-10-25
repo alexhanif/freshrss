@@ -279,7 +279,7 @@ final class GReaderAPI {
 		foreach ($categories as $cat) {
 			$tags[] = [
 			'id' => 'user/-/label/' . htmlspecialchars_decode((string)$cat->name(), ENT_QUOTES),
-	   //'sortid' => $cat->name(),
+			//'sortid' => $cat->name(),
 			'type' => 'folder',
 			];
 		}
@@ -289,9 +289,9 @@ final class GReaderAPI {
 		foreach ($labels as $label) {
 			$tags[] = [
 			'id' => 'user/-/label/' . htmlspecialchars_decode((string)$label->name(), ENT_QUOTES),
-	   //'sortid' => $label->name(),
+			//'sortid' => $label->name(),
 			'type' => 'tag',
-	   //Inoreader
+			//Inoreader
 			'unread_count' => $label->nbUnread(),
 			];
 		}

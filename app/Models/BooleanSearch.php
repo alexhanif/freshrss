@@ -10,11 +10,18 @@ class FreshRSS_BooleanSearch implements \Stringable {
 	/** @var array<FreshRSS_BooleanSearch|FreshRSS_Search> */
 	private array $searches = [];
 
-	/** @param 'AND'|'OR'|'AND NOT'|'OR NOT' $operator */
-	public function __construct(string $input, int $level = 0, /**
-  * @phpstan-var 'AND'|'OR'|'AND NOT'|'OR NOT'
-  */
-	private readonly string $operator = 'AND', bool $allowUserQueries = true) {
+	/**
+	 * @param string $input
+	 * @param int $level
+	 * @param 'AND'|'OR'|'AND NOT'|'OR NOT' $operator
+	 * @param bool $allowUserQueries
+	 */
+	public function __construct(
+		string $input,
+		int $level = 0,
+		private readonly string $operator = 'AND',
+		bool $allowUserQueries = true
+	) {
 		$input = trim($input);
 		if ($input === '') {
 			return;

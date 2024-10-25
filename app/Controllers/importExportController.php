@@ -238,7 +238,7 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 			$item = array_filter($item, static fn($v) =>
 				// Filter out empty properties, potentially reported as empty objects
 				(is_string($v) && trim($v) !== '') || !empty($v));
-			$item['updated'] = isset($item['updated']) ? strtotime((string)$item['updated']) : '';
+			$item['updated'] = isset($item['updated']) ? strtotime($item['updated']) : '';
 			$item['published'] = $item['updated'];
 			$item['content'] = ['content' => $item['content'] ?? ''];
 			$item['categories'] = isset($item['tag_cache']) ? [$item['tag_cache']] : [];
