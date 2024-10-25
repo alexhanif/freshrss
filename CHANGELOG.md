@@ -5,7 +5,7 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 ## 2024-1X-XX FreshRSS 1.25.0-dev
 
 * Features
-	* Add support for [regex search (regular expressions)](https://freshrss.github.io/FreshRSS/en/users/10_filter.html#regex) [#6706](https://github.com/FreshRSS/FreshRSS/pull/6706)
+	* Add support for [regex search (regular expressions)](https://freshrss.github.io/FreshRSS/en/users/10_filter.html#regex) [#6706](https://github.com/FreshRSS/FreshRSS/pull/6706), [#6926](https://github.com/FreshRSS/FreshRSS/pull/6926)
 		* ⚠️ Advanced regex syntax for searches depends on the database used (SQLite, PostgreSQL, MariaDB, MySQL),
 		but FreshRSS filter actions such as auto-mark-as-read and auto-favourite always use [PHP PCRE2 syntax](https://php.net/regexp.introduction).
 	* Allow dynamic search operator in user queries, like `search:UserQueryA date:P1d` [#6851](https://github.com/FreshRSS/FreshRSS/pull/6851)
@@ -17,6 +17,7 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Add ability to remove content from articles with CSS selectors, also when not using full content [#6786](https://github.com/FreshRSS/FreshRSS/pull/6786), [#6807](https://github.com/FreshRSS/FreshRSS/pull/6807)
 	* Update `phpgt/cssxpath` library with improved CSS selectors [#6618](https://github.com/FreshRSS/FreshRSS/pull/6618)
 		* Support for `:last-child`, `:first-of-type`, `:last-of-type`, `^=`, `|=`
+	* New UI feature to download a user’ SQLite database or a database SQLite export (to be produced by CLI) [#6931](https://github.com/FreshRSS/FreshRSS/pull/6931)
 	* Better import of Inoreader user labels [#6791](https://github.com/FreshRSS/FreshRSS/pull/6791)
 	* New sharing with Telegram [#6838](https://github.com/FreshRSS/FreshRSS/pull/6838)
 * Bug fixing
