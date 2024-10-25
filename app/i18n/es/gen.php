@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Eliminar fuentes silenciadas',
 		'demote' => 'Degradar',
 		'disable' => 'Desactivar',
+		'download' => 'Download',	// TODO
 		'empty' => 'Vaciar',
 		'enable' => 'Activar',
 		'export' => 'Exportar',
@@ -183,6 +184,7 @@ return array(
 		'display' => 'Visualización',
 		'extensions' => 'Extensiones',
 		'logs' => 'Registros',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => 'Peticiones de usuario',
 		'reading' => 'Lectura',
 		'search' => 'Buscar palabras o #etiquetas',

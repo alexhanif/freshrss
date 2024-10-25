@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => '음소거된 피드 삭제',
 		'demote' => '목록 수준 내리기',
 		'disable' => '비활성화',
+		'download' => 'Download',	// TODO
 		'empty' => '비우기',
 		'enable' => '활성화',
 		'export' => '내보내기',
@@ -183,6 +184,7 @@ return array(
 		'display' => '표시',
 		'extensions' => '확장 기능',
 		'logs' => '로그',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => '사용자 쿼리',
 		'reading' => '읽기',
 		'search' => '단어 또는 #태그 검색',

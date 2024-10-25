@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Vorige',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Profielbeheer',
 		'api' => 'API-beheer',
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Lezen',
 		'after_onread' => 'Na „markeer alles als gelezen”,',
 		'always_show_favorites' => 'Toon alle artikelen standaard in favorieten',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Auteurs en datum',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Categorieën en feeds zonder ongelezen artikelen verbergen (werkt niet met „Toon alle artikelen” configuratie)',
 		'img_with_lazyload' => 'Gebruik <em>lazy load</em> methode om afbeeldingen te laden',
-		'jump_next' => 'Ga naar volgende ongelezen (feed of categorie)',
+		'jump_next' => 'Ga naar volgende ongelezen',
 		'mark_updated_article_unread' => 'Markeer vernieuwd artikel als ongelezen',
 		'number_divided_when_reader' => 'Gedeeld door 2 in de lees modus.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'als het niet langer in de nieuwsfeed staat',
 			'upon_reception' => 'bij ontvangst van het artikel',
 			'when' => 'Markeer artikel als gelezen…',
-			'when_same_title' => 'als een zelfde titel al voorkomt in de top <i>n</i> nieuwste artikelen',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'als een zelfde titel al voorkomt in de top <i>n</i> nieuwste artikelen (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => 'Artikelen om te tonen',

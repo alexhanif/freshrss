@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Supprimer les flux désactivés',
 		'demote' => 'Rétrograder',
 		'disable' => 'Désactiver',
+		'download' => 'Télécharger',
 		'empty' => 'Vider',
 		'enable' => 'Activer',
 		'export' => 'Exporter',
@@ -183,6 +184,7 @@ return array(
 		'display' => 'Affichage',
 		'extensions' => 'Extensions',	// IGNORE
 		'logs' => 'Logs',	// IGNORE
+		'privacy' => 'Vie privée',
 		'queries' => 'Filtres utilisateurs',
 		'reading' => 'Lecture',
 		'search' => 'Rechercher des mots ou des #tags',

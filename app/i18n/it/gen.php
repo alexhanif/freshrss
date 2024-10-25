@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Cancella i feed mutati',
 		'demote' => 'Retrocedi',
 		'disable' => 'Disabilita',
+		'download' => 'Download',	// TODO
 		'empty' => 'Vuoto',
 		'enable' => 'Abilita',
 		'export' => 'Esporta',
@@ -183,6 +184,7 @@ return array(
 		'display' => 'Visualizzazione',
 		'extensions' => 'Estensioni',
 		'logs' => 'Log',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => 'Ricerche personali',
 		'reading' => 'Lettura',
 		'search' => 'Ricerca parole o #tags',

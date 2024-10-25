@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Previous',	// IGNORE
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Profile management',	// IGNORE
 		'api' => 'API management',	// IGNORE
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Reading',	// IGNORE
 		'after_onread' => 'After “mark all as read”,',	// IGNORE
 		'always_show_favorites' => 'Show all articles in favorites by default',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// IGNORE
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Authors and date',	// IGNORE
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Hide categories & feeds with no unread articles (does not work with “Show all articles” configuration)',	// IGNORE
 		'img_with_lazyload' => 'Use <em>lazy load</em> mode to load pictures',	// IGNORE
-		'jump_next' => 'jump to next unread sibling (feed or category)',	// IGNORE
+		'jump_next' => 'jump to next unread sibling',	// IGNORE
 		'mark_updated_article_unread' => 'Mark updated articles as unread',	// IGNORE
 		'number_divided_when_reader' => 'Divide by 2 in the reading view.',	// IGNORE
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'when it is no longer in the upstream news feed',	// IGNORE
 			'upon_reception' => 'upon receiving the article',	// IGNORE
 			'when' => 'Mark an article as read…',	// IGNORE
-			'when_same_title' => 'if an identical title already exists in the top <i>n</i> newest articles',	// IGNORE
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// IGNORE
+			'when_same_title_in_feed' => 'if an identical title already exists in the top <i>n</i> newest articles of the feed',	// IGNORE
 		),
 		'show' => array(
 			'_' => 'Articles to display',	// IGNORE

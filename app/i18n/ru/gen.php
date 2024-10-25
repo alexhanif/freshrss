@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Удалить заглушенные ленты',
 		'demote' => 'Понизить',
 		'disable' => 'Отключить',
+		'download' => 'Download',	// TODO
 		'empty' => 'Опустошить',
 		'enable' => 'Включить',
 		'export' => 'Экспортировать',
@@ -183,6 +184,7 @@ return array(
 		'display' => 'Отображение',
 		'extensions' => 'Расширения',
 		'logs' => 'Журнал',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => 'Пользовательские запросы',
 		'reading' => 'Чтение',
 		'search' => 'Искать слова или #теги',

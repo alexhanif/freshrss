@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Previous',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Profile management',
 		'api' => 'API management',
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Reading',
 		'after_onread' => 'After “mark all as read”,',
 		'always_show_favorites' => 'Show all articles in favourites by default',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Authors and date',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Hide categories & feeds with no unread articles (does not work with “Show all articles” configuration)',
 		'img_with_lazyload' => 'Use <em>lazy load</em> mode to load pictures',
-		'jump_next' => 'jump to next unread sibling (feed or category)',
+		'jump_next' => 'jump to next unread sibling',
 		'mark_updated_article_unread' => 'Mark updated articles as unread',
 		'number_divided_when_reader' => 'Divide by 2 in the reading view.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'when it is no longer in the upstream news feed',
 			'upon_reception' => 'upon receiving the article',
 			'when' => 'Mark an article as read…',
-			'when_same_title' => 'if an identical title already exists in the top <i>n</i> newest articles',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',
+			'when_same_title_in_feed' => 'if an identical title already exists in the top <i>n</i> newest articles of the feed',
 		),
 		'show' => array(
 			'_' => 'Articles to display',

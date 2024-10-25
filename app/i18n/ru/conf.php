@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Предыдущая',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Настройки профиля',
 		'api' => 'Настройки API',
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Чтение',
 		'after_onread' => 'После «отметить всё прочитанным»',
 		'always_show_favorites' => 'Показывать все статьи в избранном по умолчанию',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Авторы и дата',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Скрывать категории и ленты без непрочитанных статей (не работает с «Показывать все статьи»)',
 		'img_with_lazyload' => 'Использовать режим «ленивой загрузки» для загрузки картинок',
-		'jump_next' => 'перейти к следующей ленте или категории',
+		'jump_next' => 'перейти к следующей',
 		'mark_updated_article_unread' => 'Отмечать обновлённые статьи непрочитанными',
 		'number_divided_when_reader' => 'Делится на 2 в виде для чтения.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'когда это больше не в новостной ленте',
 			'upon_reception' => 'по получении статьи',
 			'when' => 'Отмечать статью прочитанной…',
-			'when_same_title' => 'если идентичный заголовок уже существует в верхних <i>n</i> новейших статьях',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'если идентичный заголовок уже существует в верхних <i>n</i> новейших статьях (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => 'Какие статьи отображать',

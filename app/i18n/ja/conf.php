@@ -99,6 +99,10 @@ return array(
 			'previous' => '前へ',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'プロフィール',
 		'api' => 'API管理',
@@ -173,6 +177,7 @@ return array(
 		'_' => 'リーディング',
 		'after_onread' => '“すべてに既読を付ける”を押した後,',
 		'always_show_favorites' => 'デフォルトですべてのお気に入りの記事を表示する',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => '著者と日付',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'カテゴリを非表示 & 未読の記事がないフィード ("すべてに既読を付ける”では適用しません)',
 		'img_with_lazyload' => '<em>lazy load</em>を写真の読み込み時に使う',
-		'jump_next' => '次の未読の姉妹記事へ移る (フィードやカテゴリ)',
+		'jump_next' => '次の未読の姉妹記事へ移る',
 		'mark_updated_article_unread' => '更新された記事を未読とする',
 		'number_divided_when_reader' => 'リーディングビューを2分割する',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'ニュースフィードの提供元がなくなったとき',
 			'upon_reception' => '記事を受け取ったとき',
 			'when' => '記事を既読にする…',
-			'when_same_title' => 'すでに同一タイトルが上位n件の最新記事に存在するとき',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'すでに同一タイトルが上位n件の最新記事に存在するとき (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => '記事を表示する',

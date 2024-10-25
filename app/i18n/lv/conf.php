@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Iepriekšējais',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Profila pārvalde',
 		'api' => 'API pārvalde',
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Lasīšana',
 		'after_onread' => 'Pēc "atzīmēt visus kā izlasītus",',
 		'always_show_favorites' => 'Pēc noklusējuma rādīt visus rakstus mīļāko sadaļā',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Autori un datums',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Paslēpt kategorijas un barotnes, kurās nav nelasītu rakstu (nedarbojas ar konfigurāciju "Rādīt visus rakstus")',
 		'img_with_lazyload' => 'Izmantot <em>slinkās ielādes</em> režīmu, lai ielādētu attēlus',
-		'jump_next' => 'pāriet uz nākamo nelasīto radinieku (barotni vai kategoriju)',
+		'jump_next' => 'pāriet uz nākamo nelasīto radinieku',
 		'mark_updated_article_unread' => 'Atjauninātos rakstus atzīmēt kā nelasītus',
 		'number_divided_when_reader' => 'Dalīt ar 2 lasīšanas skatā.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'kad tas vairs nav augšupējā ziņu barotnē',
 			'upon_reception' => 'pēc raksta saņemšanas',
 			'when' => 'Atzīmēt rakstu kā izlasītu…',
-			'when_same_title' => 'ja identisks virsraksts jau ir jaunākajos <i>n</i> rakstos',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'ja identisks virsraksts jau ir jaunākajos <i>n</i> rakstos (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => 'Rādāmie raksti',

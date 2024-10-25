@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Delete muted feeds',	// TODO
 		'demote' => 'Demote',	// TODO
 		'disable' => 'Disable',	// TODO
+		'download' => 'Download',	// TODO
 		'empty' => 'Empty',	// TODO
 		'enable' => 'Enable',	// TODO
 		'export' => 'ייצוא',
@@ -183,6 +184,7 @@ return array(
 		'display' => 'תצוגה',
 		'extensions' => 'Extensions',	// TODO
 		'logs' => 'לוגים',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => 'שאילתות',
 		'reading' => 'קריאה',
 		'search' => 'חיפוש מילים או #תגים',

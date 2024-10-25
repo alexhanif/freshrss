@@ -5,19 +5,25 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 ## 2024-1X-XX FreshRSS 1.25.0-dev
 
 * Features
-	* Add support for [regex search (regular expressions)](https://freshrss.github.io/FreshRSS/en/users/10_filter.html#regex) [#6706](https://github.com/FreshRSS/FreshRSS/pull/6706)
+	* Add support for [regex search (regular expressions)](https://freshrss.github.io/FreshRSS/en/users/10_filter.html#regex) [#6706](https://github.com/FreshRSS/FreshRSS/pull/6706), [#6926](https://github.com/FreshRSS/FreshRSS/pull/6926)
 		* ⚠️ Advanced regex syntax for searches depends on the database used (SQLite, PostgreSQL, MariaDB, MySQL),
 		but FreshRSS filter actions such as auto-mark-as-read and auto-favourite always use [PHP PCRE2 syntax](https://php.net/regexp.introduction).
+	* Allow dynamic search operator in user queries, like `search:UserQueryA date:P1d` [#6851](https://github.com/FreshRSS/FreshRSS/pull/6851)
+	* New feed mode *HTML+XPath+JSON dot notation* (JSON in HTML) [#6888](https://github.com/FreshRSS/FreshRSS/pull/6888)
 	* Better HTTP compliance with support for HTTP response headers `Cache-Control: max-age` and `Expires` [#6812](https://github.com/FreshRSS/FreshRSS/pull/6812), [FreshRSS/simplepie#26](https://github.com/FreshRSS/simplepie/pull/26)
 	* Support custom HTTP request headers per feed (e.g. for `Authorization`) [#6820](https://github.com/FreshRSS/FreshRSS/pull/6820)
+	* New unicity policies and heuristic for feeds with bad article IDs [#4487](https://github.com/FreshRSS/FreshRSS/pull/4487), [#6900](https://github.com/FreshRSS/FreshRSS/pull/6900)
+	* New option to automatically mark new articles as read if an identical title already exists in the same category [#6922](https://github.com/FreshRSS/FreshRSS/pull/6922)
 	* Add ability to remove content from articles with CSS selectors, also when not using full content [#6786](https://github.com/FreshRSS/FreshRSS/pull/6786), [#6807](https://github.com/FreshRSS/FreshRSS/pull/6807)
 	* Update `phpgt/cssxpath` library with improved CSS selectors [#6618](https://github.com/FreshRSS/FreshRSS/pull/6618)
 		* Support for `:last-child`, `:first-of-type`, `:last-of-type`, `^=`, `|=`
+	* New UI feature to download a user’ SQLite database or a database SQLite export (to be produced by CLI) [#6931](https://github.com/FreshRSS/FreshRSS/pull/6931)
 	* Better import of Inoreader user labels [#6791](https://github.com/FreshRSS/FreshRSS/pull/6791)
 	* New sharing with Telegram [#6838](https://github.com/FreshRSS/FreshRSS/pull/6838)
 * Bug fixing
 	* Fix searches with a parenthesis before an operator like `("a b")` or `(!c)` [#6818](https://github.com/FreshRSS/FreshRSS/pull/6818)
 	* Fix auto-read tags [#6790](https://github.com/FreshRSS/FreshRSS/pull/6790)
+	* Fix favicon error in case of wrong URL [#6899](https://github.com/FreshRSS/FreshRSS/pull/6899)
 	* Use cURL to fetch extensions list (allows e.g. IPv6) [#6767](https://github.com/FreshRSS/FreshRSS/pull/6767)
 	* Fix XML encoding in cURL options [#6821](https://github.com/FreshRSS/FreshRSS/pull/6821)
 	* Fix share menu shortcut [#6825](https://github.com/FreshRSS/FreshRSS/pull/6825)
@@ -38,17 +44,33 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Remove HTTP `Referer` [#6822](https://github.com/FreshRSS/FreshRSS/pull/6822), [FreshRSS/simplepie#27](https://github.com/FreshRSS/simplepie/pull/27)
 		* If some sites require it, add `Referer: https://example.net/` to the custom HTTP headers of the feed [#6820](https://github.com/FreshRSS/FreshRSS/pull/6820)
 	* Upstream fixes [simplepie#878](https://github.com/simplepie/simplepie/pull/878), [simplepie#883](https://github.com/simplepie/simplepie/pull/883)
+	* Sync upstream [#6840](https://github.com/FreshRSS/FreshRSS/pull/6840)
 * Security
+	* Apache protect more non-public folders and files [#6881](https://github.com/FreshRSS/FreshRSS/pull/6881), [#6893](https://github.com/FreshRSS/FreshRSS/pull/6893)
 	* Fix login in unsafe mode when using a password with special XML characters [#6797](https://github.com/FreshRSS/FreshRSS/pull/6797)
+	* Add privacy settings on extension list retrieval [#4603](https://github.com/FreshRSS/FreshRSS/pull/4603)
 * UI
+	* Searchable *My Labels* field [#6753](https://github.com/FreshRSS/FreshRSS/pull/6753)
+	* Move to next unread Label on mark as read [#6886](https://github.com/FreshRSS/FreshRSS/pull/6886)
+	* Improve Web accessibility: fix `aria-hidden` bug, and use HTML5 `hidden` [#6910](https://github.com/FreshRSS/FreshRSS/pull/6910)
 	* Default styles for `<pre>` and `<code>` [#6770](https://github.com/FreshRSS/FreshRSS/pull/6770)
 	* Refactor the sharing menu to use a `<template>` instead of duplicated HTML code [#6751](https://github.com/FreshRSS/FreshRSS/pull/6751)
+	* Refactor the label menu to use a `<template>` [#6864](https://github.com/FreshRSS/FreshRSS/pull/6864)
 	* Improved subscription management page [#6816](https://github.com/FreshRSS/FreshRSS/pull/6816)
+	* Restore JavaScript form validation compatibility with Web browsers using older engines (SeaMonkey) [#6777](https://github.com/FreshRSS/FreshRSS/pull/6777)
+	* Reorganise some options [#6920](https://github.com/FreshRSS/FreshRSS/pull/6920)
+* I18n
+	* Improve German [#6847](https://github.com/FreshRSS/FreshRSS/pull/6847)
+	* Improve Italian [#6872](https://github.com/FreshRSS/FreshRSS/pull/6872)
+	* Improve Spanish [#6894](https://github.com/FreshRSS/FreshRSS/pull/6894), [#6908](https://github.com/FreshRSS/FreshRSS/pull/6908)
 * Misc.
 	* Better cache name for JSON feeds [#6768](https://github.com/FreshRSS/FreshRSS/pull/6768)
 	* Fix inversed encoding logic in `Minz_Request::paramArray()` [#6800](https://github.com/FreshRSS/FreshRSS/pull/6800)
 	* Pass PHPStan `booleansInConditions` [#6793](https://github.com/FreshRSS/FreshRSS/pull/6793)
+	* Rename PHPStan configuration file to `phpstan.dist.neon` to allow custom configuration in `phpstan.neon` [#6892](https://github.com/FreshRSS/FreshRSS/pull/6892)
 	* Code improvements [#6800](https://github.com/FreshRSS/FreshRSS/pull/6800), [#6809](https://github.com/FreshRSS/FreshRSS/pull/6809)
+	* Makefile improvements [#6913](https://github.com/FreshRSS/FreshRSS/pull/6913)
+	* Fix PHPCS `ControlSignature` [#6896](https://github.com/FreshRSS/FreshRSS/pull/6896)
 	* Update dev dependencies [#6780](https://github.com/FreshRSS/FreshRSS/pull/6780)
 
 

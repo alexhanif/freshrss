@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Précédent',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Vie privée',
+		'retrieve_extension_list' => 'Récupération de la liste des extensions',
+	),
 	'profile' => array(
 		'_' => 'Gestion du profil',
 		'api' => 'Gestion de l’API',
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Lecture',
 		'after_onread' => 'Après « Marquer tout comme lu »,',
 		'always_show_favorites' => 'Afficher par défaut tous les articles dans les favoris',
+		'apply_to_individual_feed' => 'S’applique aux flux individuellement',
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Auteurs et date',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Cacher les catégories & flux sans article non-lu (ne fonctionne pas avec la configuration « Afficher tous les articles »)',
 		'img_with_lazyload' => 'Utiliser le mode <em>chargement différé</em> pour les images',
-		'jump_next' => 'sauter au prochain voisin non lu (flux ou catégorie)',
+		'jump_next' => 'sauter au prochain voisin non lu',
 		'mark_updated_article_unread' => 'Marquer les articles mis à jour comme non-lus',
 		'number_divided_when_reader' => 'Divisé par 2 dans la vue de lecture.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'lorsqu’il n’est plus dans le flux d’actualités en amont',
 			'upon_reception' => 'dès la réception du nouvel article',
 			'when' => 'Marquer un article comme lu…',
-			'when_same_title' => 'si un même titre existe déjà dans les <i>n</i> articles plus récents',
+			'when_same_title_in_category' => 'si un même titre existe déjà dans les <i>n</i> articles plus récents de la catégorie',
+			'when_same_title_in_feed' => 'si un même titre existe déjà dans les <i>n</i> articles plus récents du flux',
 		),
 		'show' => array(
 			'_' => 'Articles à afficher',

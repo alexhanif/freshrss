@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Usuń wyciszone kanały',
 		'demote' => 'Zdegraduj',
 		'disable' => 'Wyłącz',
+		'download' => 'Download',	// TODO
 		'empty' => 'Opróżnij',
 		'enable' => 'Włącz',
 		'export' => 'Eksportuj',
@@ -183,6 +184,7 @@ return array(
 		'display' => 'Wyświetlanie',
 		'extensions' => 'Rozszerzenia',
 		'logs' => 'Dziennik',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => 'Zapisane zapytania',
 		'reading' => 'Czytanie',
 		'search' => 'Wyszukaj wyrazy lub #tagi',

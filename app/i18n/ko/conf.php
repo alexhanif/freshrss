@@ -99,6 +99,10 @@ return array(
 			'previous' => '이전',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => '프로필 관리',
 		'api' => 'API 관리',
@@ -173,6 +177,7 @@ return array(
 		'_' => '읽기',
 		'after_onread' => '“모두 읽음으로 표시” 후,',
 		'always_show_favorites' => '기본으로 즐겨찾기에 있는 모든 글을 표시',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => '작성자, 작성일',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => '읽지 않은 글이 없는 카테고리와 피드 감추기 (“모든 글 표시”가 설정된 경우 동작하지 않습니다)',
 		'img_with_lazyload' => '그림을 불러오는 데에 <em>lazy load</em> 모드 사용하기',
-		'jump_next' => '다음 읽지 않은 항목으로 이동 (피드 또는 카테고리)',
+		'jump_next' => '다음 읽지 않은 항목으로 이동',
 		'mark_updated_article_unread' => '갱신 된 글을 읽지 않음으로 표시',
 		'number_divided_when_reader' => '읽기 모드에서는 절반만 표시됩니다.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => '원본 뉴스 피드에서 글 삭제 되었을 때',
 			'upon_reception' => '글을 가져오자마자',
 			'when' => '읽음으로 표시…',
-			'when_same_title' => '상위 <i>n</i>개의 최신 글에 동일한 제목이 이미 있는 경우',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => '상위 <i>n</i>개의 최신 글에 동일한 제목이 이미 있는 경우 (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => '글 표시 방식',

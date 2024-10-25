@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Anterior',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Gerenciamento de perfil',
 		'api' => 'Administração da API',
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Leitura',
 		'after_onread' => 'Depois de “marcar todos como lido”,',
 		'always_show_favorites' => 'Mostrar todos os artivos nos favoritos por padrão',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Autores e Data',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Esconder categorias e feeds com nenhum artigo não lido (não funciona com a configuração “Mostrar todos os artigos”)',
 		'img_with_lazyload' => 'Utilizar o modo <em>lazy load</em> para carregar as imagens',
-		'jump_next' => 'Vá para o próximo irmão não lido (feed ou categoria)',
+		'jump_next' => 'Vá para o próximo irmão não lido',
 		'mark_updated_article_unread' => 'Marcar artigos atualizados como não lidos',
 		'number_divided_when_reader' => 'Dividido por 2 no modo de leitura .',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'Quando não estiver mais no feed de notícias principais',
 			'upon_reception' => 'ao receber um artigo',
 			'when' => 'Marcar artigo como lido…',
-			'when_same_title' => 'Se um título idêntico já existir nos últimos <i>n</i> artigos mais novos',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'Se um título idêntico já existir nos últimos <i>n</i> artigos mais novos (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => 'Artigos para exibir',

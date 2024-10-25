@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Sessize alınmış akışları sil',
 		'demote' => 'Yöneticilikten al',
 		'disable' => 'Pasif',
+		'download' => 'Download',	// TODO
 		'empty' => 'Boş',
 		'enable' => 'Aktif',
 		'export' => 'Dışa Aktar',
@@ -183,6 +184,7 @@ return array(
 		'display' => 'Görünüm',
 		'extensions' => 'Eklentiler',
 		'logs' => 'Log kayıtları',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => 'Kullanıcı sorguları',
 		'reading' => 'Okuma',
 		'search' => 'Kelime veya #etiket ara',

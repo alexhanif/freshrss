@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Předchozí',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Správa profilu',
 		'api' => 'Správa API',
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Čtení',
 		'after_onread' => 'Po „označit vše jako přečtené“',
 		'always_show_favorites' => 'Ve výchozím nastavení zobrazit všechny články v oblíbených',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Autoři a datum',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Skrýt kategorie a kanály bez nepřečtených článků (nefunguje s nastavením „Zobrazit všechny články“)',
 		'img_with_lazyload' => 'Použít režim „líné načítání“ pro načítaní obrázků',
-		'jump_next' => 'skočit na další nepřečtenou položku na stejné úrovni (kanál nebo kategorie)',
+		'jump_next' => 'skočit na další nepřečtenou položku na stejné úrovni',
 		'mark_updated_article_unread' => 'Označit aktualizované články jako nepřečtené',
 		'number_divided_when_reader' => 'Děleno dvěma v zobrazení pro čtení.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'když se již nenachází v upstreamu zpráv.',
 			'upon_reception' => 'po obdržení článku',
 			'when' => 'Označit článek jako přečtený…',
-			'when_same_title' => 'když shodný název již existuje v top <i>n</i> nejnovějších článcích',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'když shodný název již existuje v top <i>n</i> nejnovějších článcích (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => 'Počet zobrazených článků',

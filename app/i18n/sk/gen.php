@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Vymazať stíšené kanály',
 		'demote' => 'Degradovať',
 		'disable' => 'Zakázať',
+		'download' => 'Download',	// TODO
 		'empty' => 'Vyprázdniť',
 		'enable' => 'Povoliť',
 		'export' => 'Exportovať',
@@ -183,6 +184,7 @@ return array(
 		'display' => 'Zobrazenie',
 		'extensions' => 'Rozšírenia',
 		'logs' => 'Záznamy',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => 'Používateľské dopyty',
 		'reading' => 'Čítanie',
 		'search' => 'Hľadajte slová alebo #značky',

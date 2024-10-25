@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Poprzednie',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Zarządzanie profilem',
 		'api' => 'Zarządzanie API',
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Czytanie',
 		'after_onread' => 'Po oznaczeniu wszystkich jako przeczytane,',
 		'always_show_favorites' => 'Pokaż wszystkie wiadomości po wejściu do ulubionych',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Autor i data',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Ukryj kategorie i kanały nie zawierające nieprzeczytanych wiadomości (nie działa gdy włączone jest wyświetlanie wszystkich wiadomości)',
 		'img_with_lazyload' => 'Opóźnij ładowanie obrazów dopóki nie będą widoczne',
-		'jump_next' => 'przejdź do następnego nieprzeczytanego kanału bądź kategorii',
+		'jump_next' => 'przejdź do następnego nieprzeczytanego rodzeństwa',
 		'mark_updated_article_unread' => 'Oznacz zaktualizowane wiadomości jako nieprzeczytane',
 		'number_divided_when_reader' => 'Dzielone przez 2 w widoku czytania.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'gdy nie jest już listowana w źródle kanału',
 			'upon_reception' => 'po otrzymaniu wiadomości',
 			'when' => 'Oznacz wiadomość jako przeczytaną…',
-			'when_same_title' => 'gdy identyczny tytuł już istnieje w <i>n</i> najnowszych wiadomościach',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'gdy identyczny tytuł już istnieje w <i>n</i> najnowszych wiadomościach (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => 'Wiadomości do wyświetlenia',

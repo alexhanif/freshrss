@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Gedempte feeds verwijderen',
 		'demote' => 'Degraderen',
 		'disable' => 'Uitzetten',
+		'download' => 'Download',	// TODO
 		'empty' => 'Leeg',
 		'enable' => 'Aanzetten',
 		'export' => 'Exporteren',
@@ -183,6 +184,7 @@ return array(
 		'display' => 'Opmaak',
 		'extensions' => 'Uitbreidingen',
 		'logs' => 'Log boeken',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => 'Gebruikers informatie',
 		'reading' => 'Lezen',
 		'search' => 'Zoek woorden of #labels',

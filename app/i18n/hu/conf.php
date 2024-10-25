@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Előző',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Profil kezelés',
 		'api' => 'API menedzsment',
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Olvasás',
 		'after_onread' => 'Utána „minden megjelölése olvasottként”,',
 		'always_show_favorites' => 'Minden cikk megjelenítése a kedvencekben alapértelmezetten',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Szerzők és dátum',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Rejtse el a kategóriákat és hírforrásokat ahol nincs olvasatlan cikk (nem működik egyszerre a „Minden cikk megjelenítése” beállítással)',
 		'img_with_lazyload' => 'Használjon <em>lazy load</em> módot a képek betöltésére',
-		'jump_next' => 'ugorjon a következő olvasatlan testvérre (hírforrás vagy kategória)',
+		'jump_next' => 'ugorjon a következő olvasatlan testvérre',
 		'mark_updated_article_unread' => 'Frissített cikkek megjelölése olvasatlanként',
 		'number_divided_when_reader' => 'Olvasó módban 2-vel osztható szám.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'ha már nincs benne a hírforrásban',
 			'upon_reception' => 'a cikk beérkezésekor',
 			'when' => 'Jelöljön meg egy cikket olvasottként…',
-			'when_same_title' => 'ha egy azonos című cikk már létezik a legújabb <i>n</i> számú cikk között',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'ha egy azonos című cikk már létezik a legújabb <i>n</i> számú cikk között (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => 'Megjelenített cikkek',

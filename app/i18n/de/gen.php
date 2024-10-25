@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Lösche stumm gestellte Feeds',
 		'demote' => 'Zurückstufen',
 		'disable' => 'Deaktivieren',
+		'download' => 'Download',	// TODO
 		'empty' => 'Leeren',
 		'enable' => 'Aktivieren',
 		'export' => 'Exportieren',
@@ -183,6 +184,7 @@ return array(
 		'display' => 'Anzeige',
 		'extensions' => 'Erweiterungen',
 		'logs' => 'Protokolle',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => 'Benutzerabfragen',
 		'reading' => 'Lesen',
 		'search' => 'Suche Worte oder #Tags',

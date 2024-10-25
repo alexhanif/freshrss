@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Odstranění ztlumených zdrojů',
 		'demote' => 'Snížit úroveň',
 		'disable' => 'Zakázat',
+		'download' => 'Download',	// TODO
 		'empty' => 'Vyprázdnit',
 		'enable' => 'Povolit',
 		'export' => 'Exportovat',
@@ -183,6 +184,7 @@ return array(
 		'display' => 'Zobrazení',
 		'extensions' => 'Rozšíření',
 		'logs' => 'Protokoly',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => 'Uživatelské dotazy',
 		'reading' => 'Čtení',
 		'search' => 'Hledat slova nebo #štítky',

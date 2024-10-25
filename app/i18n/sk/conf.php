@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Predošlý',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Správca profilu',
 		'api' => 'Správa API',
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Čítanie',
 		'after_onread' => 'Po “Označiť všetko ako prečítané”,',
 		'always_show_favorites' => 'Automaticky zobraziť všetky články v obľúbených',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Authori a dátum',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Skryť kategórie a kanály s nulovým počtom neprečítaných článkov (nefunguje s nastaveným “Zobraziť všetky články”)',
 		'img_with_lazyload' => 'Pre načítanie obrázkov použiť <em>lazy load</em>',
-		'jump_next' => 'skočiť na ďalší neprečítaný (kanál ale kategóriu)',
+		'jump_next' => 'skočiť na ďalší neprečítaný',
 		'mark_updated_article_unread' => 'Označiť aktualizované články ako neprečítané',
 		'number_divided_when_reader' => 'V režime čítania predeliť na dve časti.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'keď už nie je v hlavnom kanály noviniek',
 			'upon_reception' => 'po načítaní článku',
 			'when' => 'Označiť článok ako prečítaný…',
-			'when_same_title' => 'ak rovnaký nadpis už existuje v TOP <i>n</i> najnovších článkoch',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'ak rovnaký nadpis už existuje v TOP <i>n</i> najnovších článkoch (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => 'Článkov na zobrazenie',

@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Precedent',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Gestion del perfil',
 		'api' => 'Gestion API',
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Lectura',
 		'after_onread' => 'Aprèp « marcar coma legit »,',
 		'always_show_favorites' => 'Mostrar totes los articles dels favorits per defaut',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Autors e data',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Rescondre las categorias & fluxes sens articles pas legits (fonciona pas amb la configuracion « Mostrar totes los articles »)',
 		'img_with_lazyload' => 'Utilizar lo mòde “cargament tardiu” pels imatges',
-		'jump_next' => 'sautar al vesin venent pas legit (flux o categoria)',
+		'jump_next' => 'sautar al vesin venent pas legit',
 		'mark_updated_article_unread' => 'Marcar los articles actualizats coma pas legits',
 		'number_divided_when_reader' => 'Devisat per 2 dins la vista de lectura.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'quand es pas mai dins lo flux de novèla font',
 			'upon_reception' => 'en recebre un article novèl',
 			'when' => 'Marcar un article coma legit…',
-			'when_same_title' => 'se un títol identic existís ja demest lo <i>n</i> articles mai recents',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'se un títol identic existís ja demest lo <i>n</i> articles mai recents (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => 'Articles de mostrar',

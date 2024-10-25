@@ -99,6 +99,10 @@ return array(
 			'previous' => ' قبلی',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => ' مدیریت پروفایل',
 		'api' => ' مدیریت API',
@@ -173,6 +177,7 @@ return array(
 		'_' => ' خواندن',
 		'after_onread' => ' بعد از "علامت گذاری همه به عنوان خوانده شده"',
 		'always_show_favorites' => ' نمایش همه مقالات در موارد دلخواه به طور پیش فرض',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => ' نویسندگان و تاریخ',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => ' دسته‌ها و فیدها را بدون مقاله خوانده نشده پنهان کنید (با پیکربندی «نمایش همه مقاله‌ها» کار نمی‌کند)',
 		'img_with_lazyload' => ' از حالت <em>بار تنبل</em> برای بارگیری تصاویر استفاده کنید',
-		'jump_next' => ' پرش به خواهر و برادر خوانده نشده بعدی (فید یا دسته)',
+		'jump_next' => ' پرش به خواهر و برادر خوانده نشده بعدی',
 		'mark_updated_article_unread' => ' مقالات به روز شده را به عنوان خوانده نشده علامت گذاری کنید',
 		'number_divided_when_reader' => ' در نمای خواندن بر 2 تقسیم کنید.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => ' زمانی که دیگر در فید اخبار بالادستی نیست',
 			'upon_reception' => ' پس از دریافت مقاله',
 			'when' => ' علامت گذاری یک مقاله به عنوان خوانده شده…',
-			'when_same_title' => ' اگر عنوان یکسانی از قبل در <i>n</i> جدیدترین مقالات بالا وجود داشته باشد',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => ' اگر عنوان یکسانی از قبل در <i>n</i> جدیدترین مقالات بالا وجود داشته باشد (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => ' مقالات برای نمایش',

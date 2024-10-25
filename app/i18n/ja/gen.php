@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'ミュートにしているフィードを削除する',
 		'demote' => '寄付',
 		'disable' => '無効',
+		'download' => 'Download',	// TODO
 		'empty' => '空',
 		'enable' => '有効',
 		'export' => 'エクスポート',
@@ -183,6 +184,7 @@ return array(
 		'display' => 'ディスプレイ',
 		'extensions' => '拡張機能',
 		'logs' => 'ログ',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => 'ユーザークエリ',
 		'reading' => 'リーディング',
 		'search' => '単語で検索するかハッシュタグで検索する',

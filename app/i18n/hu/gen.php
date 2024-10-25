@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Némított hírforrások törlése',
 		'demote' => 'Lefokoz',
 		'disable' => 'Kikapcsol',
+		'download' => 'Download',	// TODO
 		'empty' => 'Üres',
 		'enable' => 'Bekapcsol',
 		'export' => 'Export',	// IGNORE
@@ -183,6 +184,7 @@ return array(
 		'display' => 'Megjelenítés',
 		'extensions' => 'Kiegészítők',
 		'logs' => 'Log-ok',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => 'Felhasználói lekérdezések',
 		'reading' => 'Olvasás',
 		'search' => 'Szavak vagy #címkék keresése',

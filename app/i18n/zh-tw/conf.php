@@ -99,6 +99,10 @@ return array(
 			'previous' => '上一頁',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => '個人資料管理',
 		'api' => 'API 管理',
@@ -173,6 +177,7 @@ return array(
 		'_' => '閱讀',
 		'after_onread' => '「全部標記為已讀」後',
 		'always_show_favorites' => '預設顯示收藏夾中所有的文章',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => '作者和日期',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => '隱藏沒有未讀文章的分類和訂閱源 (啟用「顯示所有文章」後不生效)',
 		'img_with_lazyload' => '延遲加載圖片',
-		'jump_next' => '跳轉到下一未讀項（訂閱源或分類）',
+		'jump_next' => '跳轉到下一未讀項',
 		'mark_updated_article_unread' => '將更新的文章設為未讀',
 		'number_divided_when_reader' => '閱讀視圖中顯示一半',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => '在被原訂閱源移除後',
 			'upon_reception' => '在接收文章後',
 			'when' => '何時將文章標記為已讀',
-			'when_same_title' => '已存在 n 條相同標題文章',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => '已存在 n 條相同標題文章 (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => '文章顯示',

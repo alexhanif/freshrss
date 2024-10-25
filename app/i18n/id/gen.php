@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Delete muted feeds',	// TODO
 		'demote' => 'Demote',	// TODO
 		'disable' => 'Disable',	// TODO
+		'download' => 'Download',	// TODO
 		'empty' => 'Empty',	// TODO
 		'enable' => 'Enable',	// TODO
 		'export' => 'Export',	// TODO
@@ -183,6 +184,7 @@ return array(
 		'display' => 'Display',	// TODO
 		'extensions' => 'Extensions',	// TODO
 		'logs' => 'Logs',	// TODO
+		'privacy' => 'Privacy',	// TODO
 		'queries' => 'User queries',	// TODO
 		'reading' => 'Reading',	// TODO
 		'search' => 'Search words or #tags',	// TODO

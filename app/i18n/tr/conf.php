@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Önceki',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Profil yönetimi',
 		'api' => 'API yönetimi',
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Okuma',
 		'after_onread' => '“Hepsini okundu say” dedinten sonra,',
 		'always_show_favorites' => 'Öntanımlı olarak favori tüm makaleleri göster',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Yazarlar ve Tarih',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Okunmamış makalesi olmayan kategori veya akışı gizle (“Tüm makaleleri göster” komutunda çalışmaz)',
 		'img_with_lazyload' => 'Resimleri yüklemek için “tembel modu” kullan',
-		'jump_next' => 'Bir sonraki benzer okunmamışa geç (akış veya kategori)',
+		'jump_next' => 'Bir sonraki benzer okunmamışa geç',
 		'mark_updated_article_unread' => 'Güncellenen makaleleri okundu olarak işaretle',
 		'number_divided_when_reader' => 'Okuma modunda ikiye bölünecek.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'Yeni akışta üst sıralarda değilken',
 			'upon_reception' => 'makale üzerinde gelince',
 			'when' => 'Makaleyi okundu olarak işaretle…',
-			'when_same_title' => 'Aynı başlığa sahip daha yeni bir makale en popüler <i>n</i> yeni metinlerdeyse',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'Aynı başlığa sahip daha yeni bir makale en popüler <i>n</i> yeni metinlerdeyse (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => 'Gösterilecek makaleler',

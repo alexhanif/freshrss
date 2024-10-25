@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Anterior',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Administración de perfiles',
 		'api' => 'Administración de API',
@@ -145,7 +149,7 @@ return array(
 		'search' => 'Buscar “%s”',
 		'share' => array(
 			'_' => 'Comparte esta consulta por enlace',
-			'greader' => 'Shareable link to the GReader JSON',	// TODO
+			'greader' => 'Enlace para compartir en GReader',
 			'help' => 'Dale este enlace si quieres compartir esta consulta con alguien',
 			'html' => 'Enlace para compartir a la página HTML',
 			'opml' => 'Enlace para compartir a la lista de fuentes de OPML',
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Lectura',
 		'after_onread' => 'Tras “marcar todo como leído”,',
 		'always_show_favorites' => 'Mostrar todos los artículos en favoritos de forma predeterminada',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Autores y fecha',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Ocultar categorías & fuentes sin artículos no leídos (no funciona con la configuración “Mostrar todos los artículos”)',
 		'img_with_lazyload' => 'Usar el modo de “carga perezosa” para las imágenes',
-		'jump_next' => 'saltar al siguiente archivo sin leer emparentado (fuente o categoría)',
+		'jump_next' => 'saltar al siguiente archivo sin leer emparentado',
 		'mark_updated_article_unread' => 'Marcar artículos actualizados como no leídos',
 		'number_divided_when_reader' => 'Dividido en 2 en la vista de lectura.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'cuando ya no está disponible en la fuente de noticias previa',
 			'upon_reception' => 'al recibir el artículo',
 			'when' => 'Marcar el artículo como leído…',
-			'when_same_title' => 'Si ya existe un título idéntico en la parte superior <i>n</i> artículos más recientes',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'Si ya existe un título idéntico en la parte superior <i>n</i> artículos más recientes (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => 'Artículos a mostrar',
@@ -252,7 +258,7 @@ return array(
 			'older_first' => 'Antiguos primero',
 		),
 		'star' => array(
-			'when' => 'Mark an article as favourite…',	// TODO
+			'when' => 'Marca un árticulo como favorito…',
 		),
 		'sticky_post' => 'Pegar el artículo a la parte superior al abrirlo',
 		'title' => 'Lectura',
@@ -279,7 +285,7 @@ return array(
 		'share_url' => 'Compartir URL a usar',
 		'title' => 'Compartir',
 		'twitter' => 'Twitter',	// IGNORE
-		'wallabag' => 'wallabag',	// IGNORE
+		'wallabag' => 'Wallabag',	// IGNORE
 	),
 	'shortcut' => array(
 		'_' => 'Atajos de teclado',

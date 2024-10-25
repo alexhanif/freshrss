@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Vorherige',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Profil-Verwaltung',
 		'api' => 'API-Verwaltung',
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Lesen',
 		'after_onread' => 'Nach „Alle als gelesen markieren“,',
 		'always_show_favorites' => 'Favoriten immer anzeigen',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Autoren und Datum',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Kategorien & Feeds ohne ungelesene Artikel verstecken (funktioniert nicht mit der Einstellung „Alle Artikel zeigen“)',
 		'img_with_lazyload' => 'Verwende die „träges Laden“-Methode zum Laden von Bildern',
-		'jump_next' => 'springe zum nächsten ungelesenen Geschwisterelement (Feed oder Kategorie)',
+		'jump_next' => 'springe zum nächsten ungelesenen Geschwisterelement',
 		'mark_updated_article_unread' => 'Markieren Sie aktualisierte Artikel als ungelesen',
 		'number_divided_when_reader' => 'Geteilt durch 2 in der Lese-Ansicht.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'wenn der Artikel nicht mehr im Feed enthalten ist',
 			'upon_reception' => 'beim Empfang des Artikels',
 			'when' => 'Artikel als gelesen markieren…',
-			'when_same_title' => 'falls der identische Titel bereit in den <i>n</i> neusten Artikel vorhanden ist.',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'falls der identische Titel bereit in den <i>n</i> neusten Artikel vorhanden ist. (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => 'Artikel zum Anzeigen',

@@ -99,6 +99,10 @@ return array(
 			'previous' => 'הקודם',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Profile management',	// TODO
 		'api' => 'API management',	// TODO
@@ -173,6 +177,7 @@ return array(
 		'_' => 'קריאה',
 		'after_onread' => 'לאחר “סימון הכל כנקרא”,',
 		'always_show_favorites' => 'Show all articles in favourites by default',	// TODO
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Authors and date',	// TODO
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'הסתרת קטגוריות &amp; הזנות ללא מאמרים שלא נקראו (לא עובד יחד עם “הצגת כל המאמרים”)',
 		'img_with_lazyload' => 'שימוש ב "טעינה עצלה" על מנת לטעון תמונות',
-		'jump_next' => 'קפיצה לפריט הבא שלא נקרא (הזנה או קטגוריה)',
+		'jump_next' => 'קפיצה לפריט הבא שלא נקרא',
 		'mark_updated_article_unread' => 'Mark updated articles as unread',	// TODO
 		'number_divided_when_reader' => 'חלוקה ב2 במצב קריאה.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'when it is no longer in the upstream news feed',	// TODO
 			'upon_reception' => 'כאשר המאמר מתקבל',
 			'when' => 'סימון מאמרים כנקראו…',
-			'when_same_title' => 'if an identical title already exists in the top <i>n</i> newest articles',	// TODO
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'if an identical title already exists in the top <i>n</i> newest articles of the feed',	// TODO
 		),
 		'show' => array(
 			'_' => 'מאמרים להצגה',

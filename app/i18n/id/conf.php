@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Sebelumnya',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Manajemen Profil',
 		'api' => 'Manajemen API',
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Membaca',
 		'after_onread' => 'Setelah “tandai semua sebagai telah dibaca”',
 		'always_show_favorites' => 'Selalu tampilkan semua artikel favorit secara default',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Penulis dan tanggal',
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Sembunyikan kategori & feed yang tidak memiliki artikel belum dibaca (tidak berlaku untuk konfigurasi “Tampilkan semua artikel”)',
 		'img_with_lazyload' => 'Gunakan mode “lazy load” untuk memuat gambar',
-		'jump_next' => 'loncat ke saudara yang belum dibaca berikutnya (feed atau kategori)',
+		'jump_next' => 'loncat ke saudara yang belum dibaca berikutnya',
 		'mark_updated_article_unread' => 'Tandai artikel yang diperbarui sebagai belum dibaca',
 		'number_divided_when_reader' => 'Bagi dua dalam tampilan baca.',
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'saat tidak lagi ada di feed berita atas',
 			'upon_reception' => 'saat menerima artikel',
 			'when' => 'Tandai artikel sebagai telah dibaca…',
-			'when_same_title' => 'jika judul identik sudah ada di <i>n</i> artikel terbaru',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'jika judul identik sudah ada di <i>n</i> artikel terbaru (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => 'Artikel untuk ditampilkan',

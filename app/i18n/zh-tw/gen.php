@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => '刪除已暫停的訂閱源',
 		'demote' => '撤銷管理員',
 		'disable' => '禁用',
+		'download' => 'Download',	// TODO
 		'empty' => '清空',
 		'enable' => '啟用',
 		'export' => '導出',
@@ -183,6 +184,7 @@ return array(
 		'display' => '顯示',
 		'extensions' => '擴充功能',
 		'logs' => '日誌',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => '自定義查詢',
 		'reading' => '閱讀',
 		'search' => '搜尋內容或#標簽',

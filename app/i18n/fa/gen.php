@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => ' فیدهای خاموش را حذف کنید',
 		'demote' => ' تنزل دادن',
 		'disable' => ' غیر فعال کردن',
+		'download' => 'Download',	// TODO
 		'empty' => ' خالی',
 		'enable' => ' فعال کنید',
 		'export' => ' صادرات',
@@ -183,6 +184,7 @@ return array(
 		'display' => 'نمایش',
 		'extensions' => ' برنامه های افزودنی',
 		'logs' => ' سیاهههای مربوط',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => ' پرس و جوهای کاربر',
 		'reading' => ' خواندن',
 		'search' => ' کلمات یا #برچسب ها را جستجو کنید',

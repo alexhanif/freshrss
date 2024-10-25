@@ -99,6 +99,10 @@ return array(
 			'previous' => 'Previous',	// TODO
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Profile management',	// TODO
 		'api' => 'API management',	// TODO
@@ -173,6 +177,7 @@ return array(
 		'_' => 'Reading',	// TODO
 		'after_onread' => 'After “mark all as read”,',	// TODO
 		'always_show_favorites' => 'Show all articles in favourites by default',	// TODO
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Authors and date',	// TODO
@@ -220,7 +225,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Hide categories & feeds with no unread articles (does not work with “Show all articles” configuration)',	// TODO
 		'img_with_lazyload' => 'Use <em>lazy load</em> mode to load pictures',	// TODO
-		'jump_next' => 'jump to next unread sibling (feed or category)',	// TODO
+		'jump_next' => 'jump to next unread sibling',	// TODO
 		'mark_updated_article_unread' => 'Mark updated articles as unread',	// TODO
 		'number_divided_when_reader' => 'Divide by 2 in the reading view.',	// TODO
 		'read' => array(
@@ -232,7 +237,8 @@ return array(
 			'upon_gone' => 'when it is no longer in the upstream news feed',	// TODO
 			'upon_reception' => 'upon receiving the article',	// TODO
 			'when' => 'Mark an article as read…',	// TODO
-			'when_same_title' => 'if an identical title already exists in the top <i>n</i> newest articles',	// TODO
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'if an identical title already exists in the top <i>n</i> newest articles of the feed',	// TODO
 		),
 		'show' => array(
 			'_' => 'Articles to display',	// TODO
