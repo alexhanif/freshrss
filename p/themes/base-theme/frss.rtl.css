@@ -2292,6 +2292,7 @@ html.slider-active {
 }
 
 .reader .aside .toggle_aside {
+	padding: 1rem 0px;
 	display: block;
 	width: 100%;
 }
@@ -2304,6 +2305,10 @@ html.slider-active {
 .reader .aside:target {
 	display: table-cell;
 	width: 300px;
+}
+
+.reader .aside_feed .configure-feeds {
+	margin-top: 10px;
 }
 
 .reader .flux {
