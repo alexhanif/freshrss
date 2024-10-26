@@ -2306,10 +2306,6 @@ html.slider-active {
 	width: 300px;
 }
 
-.reader .aside .stick {
-	display: none;
-}
-
 .reader .flux {
 	padding: 1rem 0 2rem;
 }
