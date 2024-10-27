@@ -19,8 +19,8 @@ return array(
 		'http' => 'HTTP (for advanced users with HTTPS)',	// IGNORE
 		'none' => 'None (dangerous)',	// IGNORE
 		'title' => 'Authentication',	// IGNORE
-		'token' => 'Authentication token',	// IGNORE
-		'token_help' => 'Allows access to RSS output of the default user without authentication:',	// IGNORE
+		'token' => 'Master authentication token',	// IGNORE
+		'token_help' => 'Allows access to all RSS outputs of the user as well as refreshing feeds without authentication:',	// IGNORE
 		'type' => 'Authentication method',	// IGNORE
 		'unsafe_autologin' => 'Allow unsafe automatic login using the format: ',	// IGNORE
 	),
@@ -116,6 +116,7 @@ return array(
 		'description' => 'Description',	// IGNORE
 		'disabled' => 'Disabled',	// IGNORE
 		'empty_list' => 'There are no installed extensions',	// IGNORE
+		'empty_list_help' => 'Check the logs to determine the reason behind the empty extension list.',	// TODO
 		'enabled' => 'Enabled',	// IGNORE
 		'latest' => 'Installed',	// IGNORE
 		'name' => 'Name',	// IGNORE
@@ -147,7 +148,7 @@ return array(
 		'main_stream' => 'Main stream',	// IGNORE
 		'no_idle' => 'There are no idle feeds!',	// IGNORE
 		'number_entries' => '%d articles',	// IGNORE
-		'percent_of_total' => '%% of total',	// IGNORE
+		'percent_of_total' => '% of total',	// IGNORE
 		'repartition' => 'Articles repartition',	// IGNORE
 		'status_favorites' => 'Favorites',
 		'status_read' => 'Read',	// IGNORE
@@ -159,6 +160,10 @@ return array(
 	'system' => array(
 		'_' => 'System configuration',	// IGNORE
 		'auto-update-url' => 'Auto-update server URL',	// IGNORE
+		'base-url' => array(
+			'_' => 'Base URL',	// IGNORE
+			'recommendation' => 'Automatic recommendation: <kbd>%s</kbd>',	// IGNORE
+		),
 		'cookie-duration' => array(
 			'help' => 'in seconds',	// IGNORE
 			'number' => 'Duration to keep logged in',	// IGNORE
@@ -183,15 +188,33 @@ return array(
 			),
 			'title' => 'User registration form',	// IGNORE
 		),
+		'sensitive-parameter' => 'Sensitive parameter. Edit manually in <kbd>./data/config.php</kbd>',	// IGNORE
+		'tos' => array(
+			'disabled' => 'is not given',	// IGNORE
+			'enabled' => '<a href="./?a=tos">is enabled</a>',	// IGNORE
+			'help' => 'How to <a href="https://freshrss.github.io/FreshRSS/en/admins/12_User_management.html#enable-terms-of-service-tos" target="_blank">enable the Terms of Service</a>',	// IGNORE
+		),
+		'websub' => array(
+			'help' => 'About <a href="https://freshrss.github.io/FreshRSS/en/users/WebSub.html" target="_blank">WebSub</a>',	// IGNORE
+		),
 	),
 	'update' => array(
 		'_' => 'Update system',	// IGNORE
 		'apply' => 'Apply',	// IGNORE
+		'changelog' => 'Changelog',	// IGNORE
 		'check' => 'Check for new updates',	// IGNORE
-		'current_version' => 'Your current version of FreshRSS is %s.',	// IGNORE
-		'last' => 'Last verification: %s',	// IGNORE
+		'copiedFromURL' => 'update.php copied from %s to ./data',	// IGNORE
+		'current_version' => 'Current installed version',	// IGNORE
+		'last' => 'Last verification',	// IGNORE
+		'loading' => 'Updating…',	// IGNORE
 		'none' => 'No update to apply',	// IGNORE
+		'releaseChannel' => array(
+			'_' => 'Release channel',	// IGNORE
+			'edge' => 'Rolling release (“edge”)',	// IGNORE
+			'latest' => 'Stable release (“latest”)',	// IGNORE
+		),
 		'title' => 'Update system',	// IGNORE
+		'viaGit' => 'Update via git and GitHub.com started',	// IGNORE
 	),
 	'user' => array(
 		'admin' => 'Administrator',	// IGNORE

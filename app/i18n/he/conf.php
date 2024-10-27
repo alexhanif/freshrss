@@ -17,7 +17,7 @@ return array(
 		'help' => 'אפשרויות נוספות זמינות בזרמים ספציפיים',
 		'keep_favourites' => 'Never delete favourites',	// TODO
 		'keep_labels' => 'Never delete labels',	// TODO
-		'keep_max' => 'Maximum number of articles to keep',	// TODO
+		'keep_max' => 'Maximum number of articles to keep per feed',	// TODO
 		'keep_min_by_feed' => 'Minimum number of articles to keep per feed',	// TODO
 		'keep_period' => 'Maximum age of articles to keep',	// TODO
 		'keep_unreads' => 'Never delete unread articles',	// TODO
@@ -32,6 +32,12 @@ return array(
 	),
 	'display' => array(
 		'_' => 'תצוגה',
+		'darkMode' => array(
+			'_' => 'Automatic dark mode',	// TODO
+			'auto' => 'Auto',	// TODO
+			'help' => 'For compatible themes only',	// TODO
+			'no' => 'No',	// TODO
+		),
 		'icon' => array(
 			'bottom_line' => 'שורה תחתונה',
 			'display_authors' => 'Authors',	// TODO
@@ -48,7 +54,13 @@ return array(
 			'timeout' => 'HTML5 התראה פג תוקף',
 		),
 		'show_nav_buttons' => 'Show the navigation buttons',	// TODO
-		'theme' => 'ערכת נושא',
+		'theme' => array(
+			'_' => 'ערכת נושא',
+			'deprecated' => array(
+				'_' => 'Deprecated',	// TODO
+				'description' => 'This theme is no longer supported and will be not available anymore in a <a href="https://freshrss.github.io/FreshRSS/en/users/05_Configuration.html#theme" target="_blank">future release of FreshRSS</a>',	// TODO
+			),
+		),
 		'theme_not_available' => 'The “%s” theme is not available anymore. Please choose another theme.',	// TODO
 		'thumbnail' => array(
 			'label' => 'Thumbnail',	// TODO
@@ -59,6 +71,13 @@ return array(
 		),
 		'timezone' => 'Time zone',	// TODO
 		'title' => 'תצוגה',
+		'website' => array(
+			'full' => 'Icon and name',	// TODO
+			'icon' => 'Icon only',	// TODO
+			'label' => 'Website',	// TODO
+			'name' => 'Name only',	// TODO
+			'none' => 'None',	// TODO
+		),
 		'width' => array(
 			'content' => 'רוחב התוכן',
 			'large' => 'גדול',
@@ -80,6 +99,10 @@ return array(
 			'previous' => 'הקודם',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Profile management',	// TODO
 		'api' => 'API management',	// TODO
@@ -96,26 +119,42 @@ return array(
 	'query' => array(
 		'_' => 'שאילתות',
 		'deprecated' => 'שאילתה זו אינה בתוקף יותר, הפיד או הקטגוריה לייחוס נמחקו.',
+		'description' => 'Description',	// TODO
 		'filter' => array(
 			'_' => 'מסננים בשימוש:',
 			'categories' => 'Display by category',	// TODO
 			'feeds' => 'Display by feed',	// TODO
 			'order' => 'Sort by date',	// TODO
 			'search' => 'Expression',	// TODO
+			'shareOpml' => 'Enable sharing by OPML of corresponding categories and feeds',	// TODO
+			'shareRss' => 'Enable sharing by HTML &amp; RSS',	// TODO
 			'state' => 'State',	// TODO
 			'tags' => 'Display by label',	// TODO
 			'type' => 'Type',	// TODO
 		),
 		'get_all' => 'הצגת כל המאמרים',
+		'get_all_labels' => 'Display articles with any label',	// TODO
 		'get_category' => 'הצגת קטגוריה “%s”',
 		'get_favorite' => 'הצגת מאמרים מועדפים',
 		'get_feed' => 'הצגת הזנה %s',
+		'get_important' => 'Display articles from important feeds',	// TODO
+		'get_label' => 'Display articles with “%s” label',	// TODO
+		'help' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation for user queries and resharing by HTML / RSS / OPML</a>.',	// TODO
+		'image_url' => 'Image URL',	// TODO
 		'name' => 'Name',	// TODO
 		'no_filter' => 'ללא סינון',
 		'number' => 'שאילתה מספר °%d',
 		'order_asc' => 'הצגת מאמרים ישנים בראש',
 		'order_desc' => 'הצגת מאמרים חדשים בראש',
 		'search' => 'חיפוש “%s”',
+		'share' => array(
+			'_' => 'Share this query by link',	// TODO
+			'greader' => 'Shareable link to the GReader JSON',	// TODO
+			'help' => 'Give this link if you want to share this query with anyone',	// TODO
+			'html' => 'Shareable link to the HTML page',	// TODO
+			'opml' => 'Shareable link to the OPML list of feeds',	// TODO
+			'rss' => 'Shareable link to the RSS feed',	// TODO
+		),
 		'state_0' => 'הצגת כל המאמרים',
 		'state_1' => 'הצגת מאמרים שנקראו',
 		'state_2' => 'הצגת מאמרים שלא נקראו',
@@ -138,6 +177,7 @@ return array(
 		'_' => 'קריאה',
 		'after_onread' => 'לאחר “סימון הכל כנקרא”,',
 		'always_show_favorites' => 'Show all articles in favourites by default',	// TODO
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Authors and date',	// TODO
@@ -152,6 +192,11 @@ return array(
 				'with_authors' => 'In authors and date row',	// TODO
 			),
 			'feed_title' => 'Feed title',	// TODO
+			'icons' => array(
+				'_' => 'Article icons position<br /><small>(Reading view only)</small>',	// TODO
+				'above_title' => 'Above title',	// TODO
+				'with_authors' => 'In authors and date row',	// TODO
+			),
 			'tags' => array(
 				'_' => 'Tags',	// TODO
 				'both' => 'In header and footer',	// TODO
@@ -180,18 +225,20 @@ return array(
 		),
 		'hide_read_feeds' => 'הסתרת קטגוריות &amp; הזנות ללא מאמרים שלא נקראו (לא עובד יחד עם “הצגת כל המאמרים”)',
 		'img_with_lazyload' => 'שימוש ב "טעינה עצלה" על מנת לטעון תמונות',
-		'jump_next' => 'קפיצה לפריט הבא שלא נקרא (הזנה או קטגוריה)',
+		'jump_next' => 'קפיצה לפריט הבא שלא נקרא',
 		'mark_updated_article_unread' => 'Mark updated articles as unread',	// TODO
 		'number_divided_when_reader' => 'חלוקה ב2 במצב קריאה.',
 		'read' => array(
 			'article_open_on_website' => 'כאשר מאמר נפתח באתר המקורי',
 			'article_viewed' => 'כאשר מאמר נצפה',
+			'focus' => 'when focused (except for important feeds)',	// TODO
 			'keep_max_n_unread' => 'Max number of articles to keep unread',	// TODO
-			'scroll' => 'כאשר גוללים',
+			'scroll' => '(except for important feeds) כאשר גוללים',	// DIRTY
 			'upon_gone' => 'when it is no longer in the upstream news feed',	// TODO
 			'upon_reception' => 'כאשר המאמר מתקבל',
 			'when' => 'סימון מאמרים כנקראו…',
-			'when_same_title' => 'if an identical title already exists in the top <i>n</i> newest articles',	// TODO
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'if an identical title already exists in the top <i>n</i> newest articles of the feed',	// TODO
 		),
 		'show' => array(
 			'_' => 'מאמרים להצגה',
@@ -210,6 +257,9 @@ return array(
 			'newer_first' => 'חדשים בראש',
 			'older_first' => 'ישנים יותר בראש',
 		),
+		'star' => array(
+			'when' => 'Mark an article as favourite…',	// TODO
+		),
 		'sticky_post' => 'הצמדת המאמר לחלק העליון כאשר הוא פתוח',
 		'title' => 'קריאה',
 		'view' => array(
@@ -222,7 +272,6 @@ return array(
 	'sharing' => array(
 		'_' => 'שיתוף',
 		'add' => 'Add a sharing method',	// TODO
-		'blogotext' => 'Blogotext',	// IGNORE
 		'deprecated' => 'This service is deprecated and will be removed from FreshRSS in a <a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="Open documentation for more information" target="_blank">future release</a>.',	// TODO
 		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => 'דואר אלקטרוני',

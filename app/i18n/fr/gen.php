@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Supprimer les flux désactivés',
 		'demote' => 'Rétrograder',
 		'disable' => 'Désactiver',
+		'download' => 'Télécharger',
 		'empty' => 'Vider',
 		'enable' => 'Activer',
 		'export' => 'Exporter',
@@ -29,6 +30,14 @@ return array(
 		'load_default_shortcuts' => 'Utiliser les raccourcis par défaut',
 		'manage' => 'Gérer',
 		'mark_read' => 'Marquer comme lu',
+		'menu' => array(
+			'open' => 'Ouvrir le menu',
+		),
+		'nav_buttons' => array(
+			'next' => 'Article suivant',
+			'prev' => 'Article précédent',
+			'up' => 'Aller en haut',
+		),
 		'open_url' => 'Ouvrir l’URL',
 		'promote' => 'Promouvoir',
 		'purge' => 'Purger',
@@ -134,22 +143,26 @@ return array(
 			'request_failed' => 'Une requête a échoué, cela peut être dû à des problèmes de connexion à Internet.',
 			'title_new_articles' => 'FreshRSS : nouveaux articles !',
 		),
+		'labels_empty' => 'Pas d’étiquettes',	// DIRTY
 		'new_article' => 'Il y a de nouveaux articles disponibles, cliquez pour rafraîchir la page.',
 		'should_be_activated' => 'Le JavaScript doit être activé.',
 	),
 	'lang' => array(
-		'cz' => 'Čeština',	// IGNORE
+		'cs' => 'Čeština',	// IGNORE
 		'de' => 'Deutsch',	// IGNORE
 		'el' => 'Ελληνικά',	// IGNORE
 		'en' => 'English',	// IGNORE
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
+		'fa' => 'فارسی',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
+		'hu' => 'Magyar',	// IGNORE
 		'id' => 'Bahasa Indonesia',	// IGNORE
 		'it' => 'Italiano',	// IGNORE
 		'ja' => '日本語',	// IGNORE
 		'ko' => '한국어',	// IGNORE
+		'lv' => 'Latviešu',	// IGNORE
 		'nl' => 'Nederlands',	// IGNORE
 		'oc' => 'Occitan',	// IGNORE
 		'pl' => 'Polski',	// IGNORE
@@ -171,9 +184,11 @@ return array(
 		'display' => 'Affichage',
 		'extensions' => 'Extensions',	// IGNORE
 		'logs' => 'Logs',	// IGNORE
+		'privacy' => 'Vie privée',
 		'queries' => 'Filtres utilisateurs',
 		'reading' => 'Lecture',
 		'search' => 'Rechercher des mots ou des #tags',
+		'search_help' => 'Voir <a href="https://freshrss.github.io/FreshRSS/fr/users/03_Main_view.html#gr%C3%A2ce-au-champ-de-recherche" target="_blank">la documentation pour la syntaxe des recherches avancées</a>',
 		'sharing' => 'Partage',
 		'shortcuts' => 'Raccourcis',
 		'stats' => 'Statistiques',
@@ -191,8 +206,10 @@ return array(
 	),
 	'share' => array(
 		'Known' => 'Sites basés sur Known',
+		'archiveIS' => 'archive.is',	// IGNORE
+		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
-		'blogotext' => 'Blogotext',	// IGNORE
+		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'Presse-papier',
 		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => 'Courriel',
@@ -205,6 +222,7 @@ return array(
 		'linkedin' => 'LinkedIn',	// IGNORE
 		'mastodon' => 'Mastodon',	// IGNORE
 		'movim' => 'Movim',	// IGNORE
+		'omnivore' => 'Omnivore',	// IGNORE
 		'pinboard' => 'Pinboard',	// IGNORE
 		'pinterest' => 'Pinterest',	// IGNORE
 		'pocket' => 'Pocket',	// IGNORE
@@ -212,6 +230,7 @@ return array(
 		'raindrop' => 'Raindrop.io',	// IGNORE
 		'reddit' => 'Reddit',	// IGNORE
 		'shaarli' => 'Shaarli',	// IGNORE
+		'telegram' => 'Telegram',	// IGNORE
 		'twitter' => 'Twitter',	// IGNORE
 		'wallabag' => 'wallabag v1',	// IGNORE
 		'wallabagv2' => 'wallabag v2',	// IGNORE

@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => '删除已暂停的订阅源',
 		'demote' => '撤销管理员',
 		'disable' => '禁用',
+		'download' => 'Download',	// TODO
 		'empty' => '清空',
 		'enable' => '启用',
 		'export' => '导出',
@@ -29,6 +30,14 @@ return array(
 		'load_default_shortcuts' => '加载默认快捷键',
 		'manage' => '管理',
 		'mark_read' => '标记已读',
+		'menu' => array(
+			'open' => 'Open menu',	// TODO
+		),
+		'nav_buttons' => array(
+			'next' => 'Next article',	// TODO
+			'prev' => 'Previous article',	// TODO
+			'up' => 'Go up',	// TODO
+		),
 		'open_url' => '打开链接',
 		'promote' => '设为管理员',
 		'purge' => '清理',
@@ -134,22 +143,26 @@ return array(
 			'request_failed' => '请求失败，这可能是因为网络连接问题。',
 			'title_new_articles' => 'FreshRSS: 新文章！',
 		),
+		'labels_empty' => '无标签',
 		'new_article' => '发现新文章，点击刷新页面。',
 		'should_be_activated' => '必须启用 JavaScript',
 	),
 	'lang' => array(
-		'cz' => 'Čeština',	// IGNORE
+		'cs' => 'Čeština',	// IGNORE
 		'de' => 'Deutsch',	// IGNORE
 		'el' => 'Ελληνικά',	// IGNORE
 		'en' => 'English',	// IGNORE
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
+		'fa' => 'فارسی',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
+		'hu' => 'Magyar',	// IGNORE
 		'id' => 'Bahasa Indonesia',	// IGNORE
 		'it' => 'Italiano',	// IGNORE
 		'ja' => '日本語',	// IGNORE
 		'ko' => '한국어',	// IGNORE
+		'lv' => 'Latviešu',	// IGNORE
 		'nl' => 'Nederlands',	// IGNORE
 		'oc' => 'Occitan',	// IGNORE
 		'pl' => 'Polski',	// IGNORE
@@ -171,9 +184,11 @@ return array(
 		'display' => '显示',
 		'extensions' => '扩展',
 		'logs' => '日志',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => '自定义查询',
 		'reading' => '阅读',
-		'search' => '搜索内容或#标签',
+		'search' => '搜索内容或#文章标签',
+		'search_help' => '查阅文档获取支持的 <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">搜索参数</a>',
 		'sharing' => '分享',
 		'shortcuts' => '快捷键',
 		'stats' => '统计',
@@ -191,8 +206,10 @@ return array(
 	),
 	'share' => array(
 		'Known' => '基于 Known 的站点',
+		'archiveIS' => 'archive.is',	// IGNORE
+		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
-		'blogotext' => 'Blogotext',	// IGNORE
+		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => '剪贴板',
 		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => 'Email',	// IGNORE
@@ -205,6 +222,7 @@ return array(
 		'linkedin' => 'LinkedIn',	// IGNORE
 		'mastodon' => 'Mastodon',	// IGNORE
 		'movim' => 'Movim',	// IGNORE
+		'omnivore' => 'Omnivore',	// IGNORE
 		'pinboard' => 'Pinboard',	// IGNORE
 		'pinterest' => 'Pinterest',	// IGNORE
 		'pocket' => 'Pocket',	// IGNORE
@@ -212,6 +230,7 @@ return array(
 		'raindrop' => 'Raindrop.io',	// IGNORE
 		'reddit' => 'Reddit',	// IGNORE
 		'shaarli' => 'Shaarli',	// IGNORE
+		'telegram' => 'Telegram',	// IGNORE
 		'twitter' => 'Twitter',	// IGNORE
 		'wallabag' => 'Wallabag v1',	// IGNORE
 		'wallabagv2' => 'Wallabag v2',	// IGNORE

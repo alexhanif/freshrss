@@ -21,8 +21,6 @@ endif
 
 ifeq ($(findstring alpine,$(TAG)),alpine)
 	DOCKERFILE=Dockerfile-Alpine
-else ifeq ($(findstring arm,$(TAG)),arm)
-	DOCKERFILE=Dockerfile-QEMU-ARM
 else
 	DOCKERFILE=Dockerfile
 endif
@@ -42,6 +40,7 @@ start: ## Start the development environment (use Docker)
 	docker network create --driver bridge $(NETWORK) || true
 	$(foreach extension,$(extensions),$(eval volumes=$(volumes) --volume $(extension):/var/www/FreshRSS/extensions/$(notdir $(extension)):z))
 	docker run \
+		-it \
 		--rm \
 		--volume $(shell pwd):/var/www/FreshRSS:z \
 		$(volumes) \
@@ -61,39 +60,33 @@ stop: ## Stop FreshRSS container if any
 ######################
 .PHONY: test
 test: bin/phpunit ## Run the test suite
-	$(PHP) ./bin/phpunit --bootstrap ./tests/bootstrap.php ./tests
+	$(PHP) bin/phpunit --bootstrap ./tests/bootstrap.php ./tests
 
 .PHONY: lint
 lint: bin/phpcs ## Run the linter on the PHP files
-	$(PHP) ./bin/phpcs . -p -s
+	$(PHP) bin/phpcs . -p -s
 
 .PHONY: lint-fix
 lint-fix: bin/phpcbf ## Fix the errors detected by the linter
-	$(PHP) ./bin/phpcbf . -p -s
+	$(PHP) bin/phpcbf . -p -s
 
 bin/composer:
 	mkdir -p bin/
-	wget 'https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer' -O - -q | php -- --quiet --install-dir='./bin/' --filename='composer'
+	wget 'https://raw.githubusercontent.com/composer/getcomposer.org/1a26c0dcb361332cb504e4861ed0f758281575aa/web/installer' -O - -q | php -- --quiet --install-dir='./bin/' --filename='composer'
 
-bin/phpunit:
-	mkdir -p bin/
-	wget -O bin/phpunit 'https://phar.phpunit.de/phpunit-9.5.20.phar'
-	echo '6becad2da5c37f5ad101cc665ef05a2f1a6a45d2427c8edcc74f72c92fb1e05a bin/phpunit' | sha256sum -c - || rm bin/phpunit
+# building any of these builds them all
+vendor/bin/phpunit vendor/bin/phpcs vendor/bin/phpcbf vendor/bin/phpstan &: bin/composer
+	bin/composer install --prefer-dist --no-progress
 
-bin/phpcs:
-	mkdir -p bin/
-	wget -O bin/phpcs 'https://github.com/squizlabs/PHP_CodeSniffer/releases/download/3.7.1/phpcs.phar'
-	echo '7a14323a14af9f58302d15442492ee1076a8cd72c018a816cb44965bf3a9b015 bin/phpcs' | sha256sum -c - || rm bin/phpcs
-
-bin/phpcbf:
-	mkdir -p bin/
-	wget -O bin/phpcbf 'https://github.com/squizlabs/PHP_CodeSniffer/releases/download/3.7.1/phpcbf.phar'
-	echo 'c93c0e83cbda21c21f849ccf0f4b42979d20004a5a6172ed0ea270eca7ae6fa8 bin/phpcbf' | sha256sum -c - || rm bin/phpcbf
+# Any of these depend on the vendor/ target, and then symlink the vendor/bin/ to the bin/.
+# use -sf so if the symlink already exists it won't error out. Running this from a container often won't properly detect it already exists
+bin/phpunit bin/phpcs bin/phpcbf bin/phpstan : % : vendor/%
+	ln -sf $< $@
 
 bin/typos:
 	mkdir -p bin/
 	cd bin ; \
-	wget -q 'https://github.com/crate-ci/typos/releases/download/v1.10.1/typos-v1.10.1-x86_64-unknown-linux-musl.tar.gz' && \
+	wget -q 'https://github.com/crate-ci/typos/releases/download/v1.23.1/typos-v1.23.1-x86_64-unknown-linux-musl.tar.gz' && \
 	tar -xvf *.tar.gz './typos' && \
 	chmod +x typos && \
 	rm *.tar.gz ; \
@@ -102,8 +95,8 @@ bin/typos:
 node_modules/.bin/eslint:
 	npm install
 
-vendor/bin/phpstan: bin/composer
-	bin/composer install --prefer-dist --no-progress
+node_modules/.bin/rtlcss:
+	npm install
 
 ##########
 ## I18N ##
@@ -181,8 +174,8 @@ endif
 ## TOOLS ##
 ###########
 .PHONY: rtl
-rtl: ## Generate RTL CSS files
-	rtlcss -d p/themes/ && find p/themes/ -type f -name '*.rtl.rtl.css' -delete
+rtl: node_modules/.bin/rtlcss ## Generate RTL CSS files
+	npm run-script rtlcss
 
 .PHONY: pot
 pot: ## Generate POT templates for docs
@@ -199,11 +192,11 @@ refresh: ## Refresh feeds by fetching new messages
 
 # TODO: Add composer install
 .PHONY: composer-test
-composer-test: vendor/bin/phpstan
+composer-test: bin/phpstan bin/composer
 	bin/composer run-script test
 
 .PHONY: composer-fix
-composer-fix:
+composer-fix: bin/composer
 	bin/composer run-script fix
 
 .PHONY: npm-test

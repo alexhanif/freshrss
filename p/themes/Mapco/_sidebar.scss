@@ -18,13 +18,29 @@
 		border-bottom: 1px solid variables.$sid-sep;
 
 		.tree-folder-title {
-			padding: 1rem;
+			padding: 0.75rem 1rem;
 			background: variables.$sid-bg;
 			position: relative;
 			font-size: 0.85rem;
 			letter-spacing: 1px;
 			font-weight: 700;
 			text-transform: uppercase;
+
+			button.dropdown-toggle {
+				margin: -0.75rem 0.25rem -0.75rem -1rem;
+				padding: 0.75rem 0 0.75rem 1rem;
+
+				&:hover {
+					.icon {
+						filter: brightness(2) !important;
+						transition: 0.1s linear;
+					}
+				}
+			}
+
+			.icon {
+				margin-right: 0.5rem;
+			}
 
 			.title {
 				background: inherit;
@@ -47,8 +63,6 @@
 			background: variables.$sid-bg-alt;
 
 			.item {
-				padding: 0 1rem;
-				line-height: 2.5rem;
 				font-size: 1rem;
 				font-weight: 400;
 
@@ -77,6 +91,12 @@
 				a {
 					text-decoration: none;
 					color: variables.$sid-font-color;
+
+					&.dropdown-toggle {
+						.icon {
+							margin-right: 0.25rem;
+						}
+					}
 				}
 			}
 		}
@@ -84,7 +104,8 @@
 }
 
 /*=== Buttons */
-.stick {
+.stick,
+.group {
 	input, .btn {
 		border-radius: 0;
 	}
@@ -93,7 +114,7 @@
 		border-radius: 5px 0 0 5px;
 	}
 
-	.btn:last-child, input:last-child, .btn + .dropdown > .btn {
+	.btn:last-child, input:last-child, .dropdown:last-child > .btn {
 		border-radius: 0 5px 5px 0;
 	}
 
@@ -118,10 +139,21 @@
 		padding: 10px 0;
 		text-align: center;
 		background: variables.$sid-bg;
+
+		.tree-folder-title:hover button.dropdown-toggle .icon {
+			filter: none;
+		}
 	}
 
 	&.aside_feed .tree {
 		margin: 10px 0 50px;
+	}
+
+	a:hover {
+		.icon {
+			filter: brightness(2);
+			transition: 0.1s linear;
+		}
 	}
 
 }
@@ -133,16 +165,24 @@
 
 /*=== Navigation */
 .nav-list {
-	.nav-header,
+	font-size: 1rem;
+
+	.item.nav-header,
 	.item {
-		height: 2.5em;
+		min-height: 2.5em;
 		line-height: 2.5em;
-		font-size: 1rem;
 	}
 
 	.item {
 		background: variables.$sid-bg;
 		color: variables.$white;
+		min-height: 2.5em;
+		line-height: 2.5em;
+
+		&.nav-header {
+			min-height: 2.5em;
+			line-height: 2.5em;
+		}
 
 		a {
 			padding: 0 1rem;
@@ -151,11 +191,9 @@
 			@include mixins.transition(all, 0.15s, ease-in-out);
 		}
 
-		&:hover {
-			a {
-				background: variables.$sid-bg-dark;
-				text-decoration: none;
-			}
+		a:hover {
+			background: variables.$sid-bg-dark;
+			text-decoration: none;
 		}
 
 		&.active {
@@ -171,12 +209,11 @@
 	}
 
 	.nav-header {
-		padding: 0 10px;
+		padding: 0 1rem;
 		font-weight: bold;
 		color: variables.$grey-dark;
 		text-transform: uppercase;
 		letter-spacing: 1px;
-		margin-top: 1rem;
 	}
 
 	.nav-form {
@@ -191,7 +228,7 @@
 }
 
 .aside.aside_feed .category .title:not([data-unread="0"])::after {
-	margin: 1rem 0 0 0;
+	margin: 0.75rem 0 0 0;
 	background-color: variables.$sid-pills;
 }
 

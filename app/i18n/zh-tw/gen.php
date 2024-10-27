@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => '刪除已暫停的訂閱源',
 		'demote' => '撤銷管理員',
 		'disable' => '禁用',
+		'download' => 'Download',	// TODO
 		'empty' => '清空',
 		'enable' => '啟用',
 		'export' => '導出',
@@ -29,6 +30,14 @@ return array(
 		'load_default_shortcuts' => '重置快捷鍵',
 		'manage' => '管理',
 		'mark_read' => '標記已讀',
+		'menu' => array(
+			'open' => '開啟選單',
+		),
+		'nav_buttons' => array(
+			'next' => '下一篇文章',
+			'prev' => '預覽文章',
+			'up' => '回上一篇',
+		),
 		'open_url' => '打開連結',
 		'promote' => '設為管理員',
 		'purge' => '清理',
@@ -134,22 +143,26 @@ return array(
 			'request_failed' => '請求失敗，這可能是因為網絡連接問題。',
 			'title_new_articles' => 'FreshRSS: 新文章！',
 		),
+		'labels_empty' => '沒有標籤',
 		'new_article' => '發現新文章，點擊刷新頁面。',
 		'should_be_activated' => '必須啟用 JavaScript',
 	),
 	'lang' => array(
-		'cz' => 'Čeština',	// IGNORE
+		'cs' => 'Čeština',	// IGNORE
 		'de' => 'Deutsch',	// IGNORE
 		'el' => 'Ελληνικά',	// IGNORE
 		'en' => 'English',	// IGNORE
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
+		'fa' => 'فارسی',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
+		'hu' => 'Magyar',	// IGNORE
 		'id' => 'Bahasa Indonesia',	// IGNORE
 		'it' => 'Italiano',	// IGNORE
 		'ja' => '日本語',	// IGNORE
 		'ko' => '한국어',	// IGNORE
+		'lv' => 'Latviešu',	// IGNORE
 		'nl' => 'Nederlands',	// IGNORE
 		'oc' => 'Occitan',	// IGNORE
 		'pl' => 'Polski',	// IGNORE
@@ -171,9 +184,11 @@ return array(
 		'display' => '顯示',
 		'extensions' => '擴充功能',
 		'logs' => '日誌',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => '自定義查詢',
 		'reading' => '閱讀',
 		'search' => '搜尋內容或#標簽',
+		'search_help' => '請見文檔內的進階的<a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">搜尋參數</a>',
 		'sharing' => '分享',
 		'shortcuts' => '快捷鍵',
 		'stats' => '統計',
@@ -191,12 +206,14 @@ return array(
 	),
 	'share' => array(
 		'Known' => '基於 Known 的站點',
+		'archiveIS' => 'archive.is',	// IGNORE
+		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
-		'blogotext' => 'Blogotext',	// IGNORE
+		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => '剪貼板',
 		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => '郵箱',	// IGNORE
-		'email-webmail-firefox-fix' => 'Email (webmail - fix for Firefox)',	// TODO
+		'email-webmail-firefox-fix' => 'Email (webmail - Firefox專用修正)',
 		'facebook' => '臉書',	// IGNORE
 		'gnusocial' => 'GNU social',	// IGNORE
 		'jdh' => 'Journal du hacker',	// IGNORE
@@ -205,6 +222,7 @@ return array(
 		'linkedin' => 'LinkedIn',	// IGNORE
 		'mastodon' => 'Mastodon',	// IGNORE
 		'movim' => 'Movim',	// IGNORE
+		'omnivore' => 'Omnivore',	// IGNORE
 		'pinboard' => 'Pinboard',	// IGNORE
 		'pinterest' => 'Pinterest',	// IGNORE
 		'pocket' => 'Pocket',	// IGNORE
@@ -212,6 +230,7 @@ return array(
 		'raindrop' => 'Raindrop.io',	// IGNORE
 		'reddit' => 'Reddit',	// IGNORE
 		'shaarli' => 'Shaarli',	// IGNORE
+		'telegram' => 'Telegram',	// IGNORE
 		'twitter' => '推特',	// IGNORE
 		'wallabag' => 'Wallabag v1',	// IGNORE
 		'wallabagv2' => 'Wallabag v2',	// IGNORE
