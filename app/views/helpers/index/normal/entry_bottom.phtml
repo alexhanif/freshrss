@@ -53,6 +53,7 @@
 				<?= _i('tag') ?><?= _t('index.tag.related') ?>
 			</a>
 			<ul class="dropdown-menu">
+				<li class="dropdown-header"><?= _t('index.tag.related') ?></li>
 				<?php
 				foreach ($tags as $tag) {
 					?><li class="item"><a href="<?= _url('index', 'index', 'search', '#' . str_replace(' ', '+', htmlspecialchars_decode($tag, ENT_QUOTES))) ?>"><?= $tag ?></a></li><?php

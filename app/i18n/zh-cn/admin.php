@@ -206,7 +206,7 @@ return array(
 		'copiedFromURL' => '从 %s 复制 update.php 到 ./data',
 		'current_version' => '当前 版本为',
 		'last' => '上次检查',
-		'loading' => '更新中...',
+		'loading' => '更新中…',
 		'none' => '没有可用更新',
 		'releaseChannel' => array(
 			'_' => '发布通道',

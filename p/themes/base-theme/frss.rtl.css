@@ -355,11 +355,17 @@ input[type="checkbox"] {
 
 .dropdown-menu input[type="checkbox"] {
 	margin-right: 1em;
-	margin-left: .5em;
+	margin-left: 0.5rem;
+	width: 1rem;
 }
 
 .dropdown-menu .item .checkboxNewTag {
 	display: none;
+}
+
+.dropdown-menu .item label:not(.noHover):has(input[type="checkbox"]) {
+	padding-right: 2.5rem;
+	text-indent: -2.5rem;
 }
 
 .dropdown-menu .item.addItem {
@@ -728,6 +734,11 @@ input[type="checkbox"]:focus-visible {
 	scroll-margin-bottom: 2rem;
 }
 
+.horizontal-list.bottom .dropdown-menu {
+	right: 0.5rem;
+	left: auto;
+}
+
 .dropdown-menu::after {
 	background-color: inherit;
 	width: 10px;
@@ -741,6 +752,11 @@ input[type="checkbox"]:focus-visible {
 	left: 13px;
 	z-index: -10;
 	transform: rotate(-45deg);
+}
+
+.horizontal-list.bottom .dropdown-menu::after {
+	right: 0.5rem;
+	left: auto;
 }
 
 .dropdown-menu-scrollable {
@@ -2292,6 +2308,7 @@ html.slider-active {
 }
 
 .reader .aside .toggle_aside {
+	padding: 1rem 0px;
 	display: block;
 	width: 100%;
 }
@@ -2306,8 +2323,8 @@ html.slider-active {
 	width: 300px;
 }
 
-.reader .aside .stick {
-	display: none;
+.reader .aside_feed .configure-feeds {
+	margin-top: 10px;
 }
 
 .reader .flux {
@@ -2420,10 +2437,8 @@ html.slider-active {
 	}
 
 	.dropdown .dropdown-menu {
-		width: 94%;
-		border-radius: 0;
-		right: 3%;
-		left: 3%;
+		right: 0.5rem !important;
+		left: 0.5rem !important;
 		position: absolute;
 	}
 
@@ -2469,6 +2484,11 @@ html.slider-active {
 		transform: rotate(-45deg);
 		z-index: 9999;
 		cursor: default;
+	}
+
+	.horizontal-list.bottom .dropdown-target:target ~ .dropdown-toggle::after {
+		top: 31px;
+		right: 10px;
 	}
 
 	.dropdown-target:target ~ .dropdown-toggle:not(.btn) ~ .dropdown-menu {

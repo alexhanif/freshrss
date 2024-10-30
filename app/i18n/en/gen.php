@@ -155,6 +155,7 @@ return array(
 		'en-us' => 'English (United States)',
 		'es' => 'Español',
 		'fa' => 'فارسی',
+		'fi' => 'Suomi',
 		'fr' => 'Français',
 		'he' => 'עברית',
 		'hu' => 'Magyar',

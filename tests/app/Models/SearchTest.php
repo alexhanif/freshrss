@@ -525,6 +525,11 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 				'(NOT e.title ~ ? AND NOT e.content ~ ? )',
 				['^ab$', '^ab$']
 			],
+			[
+				'#/^a(b|c)$/im',
+				"(REPLACE(REPLACE(e.tags, ' #', '#'), '#', '\n') ~* ? )",
+				['(?m)^a(b|c)$']
+			],
 			[	// Not a regex
 				'inurl:https://example.net/test/',
 				'(e.link LIKE ? )',

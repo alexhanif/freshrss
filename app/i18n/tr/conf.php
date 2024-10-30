@@ -22,12 +22,12 @@ return array(
 		'keep_period' => 'Bellekte tutulacak en eski makale tarihi',
 		'keep_unreads' => 'Okunmamaış makaleleri asla silme',
 		'maintenance' => 'Bakım',
-		'optimize' => 'Veritabanı optimize et',
+		'optimize' => 'Veritabanını optimize et',
 		'optimize_help' => 'Bu işlem bazen veritabanı boyutunu düşürmeye yardımcı olur',
 		'policy' => 'Teimzleme politikası',
 		'policy_warning' => 'Eğer temizleme politikası seçilmezse her makale bellekte tutulacaktır.',
 		'purge_now' => 'Şimdi temizle',
-		'title' => 'Arşiv',
+		'title' => 'Arşivleme',
 		'ttl' => 'Şu süreden sık otomatik yenileme yapma',
 	),
 	'display' => array(
@@ -35,7 +35,7 @@ return array(
 		'darkMode' => array(
 			'_' => 'Otomatik karanlık mod',
 			'auto' => 'Otomatik',
-			'help' => 'For compatible themes only',	// TODO
+			'help' => 'Yalnızca uyumlu temalar için',
 			'no' => 'Kapalı',
 		),
 		'icon' => array(
@@ -100,8 +100,8 @@ return array(
 		),
 	),
 	'privacy' => array(
-		'_' => 'Privacy',	// TODO
-		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+		'_' => 'Gizlilik',
+		'retrieve_extension_list' => 'Uzantı listesini al',
 	),
 	'profile' => array(
 		'_' => 'Profil yönetimi',
@@ -119,7 +119,7 @@ return array(
 	'query' => array(
 		'_' => 'Kullanıcı sorguları',
 		'deprecated' => 'Bu sorgu artık geçerli değil. İlgili akış veya kategori silinmiş.',
-		'description' => 'Description',	// TODO
+		'description' => 'Açıklama',
 		'filter' => array(
 			'_' => 'Filtre uygulandı:',
 			'categories' => 'Kategoriye göre göster',
@@ -140,7 +140,7 @@ return array(
 		'get_important' => 'Önemli akışındaki makaleleri göster',
 		'get_label' => '“%s” etiketine sahip makaleleri göster',
 		'help' => '<a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">Kullanıcı aramaları ve HTML / RSS / OPML ile paylaşım hakkında dökümantasyonu</a> görüntüleyin.',
-		'image_url' => 'Image URL',	// TODO
+		'image_url' => 'Resim Bağlantısı (URL)',
 		'name' => 'İsim',
 		'no_filter' => 'Filtre yok',
 		'number' => 'Sorgu n°%d',
@@ -149,7 +149,7 @@ return array(
 		'search' => '“%s” için arama',
 		'share' => array(
 			'_' => 'Bu aramayı linkle paylaşın',
-			'greader' => 'Shareable link to the GReader JSON',	// TODO
+			'greader' => 'GReader JSON için paylaşılabilir bağlantı',
 			'help' => 'Bu aramayı herhangi biriyle paylaşmak istiyorsanız bu bağlantıyı verin',
 			'html' => 'HTML sayfasına paylaşılabilir bağlantı',
 			'opml' => 'OMPL listesine paylaşılabilir bağlantı',
@@ -177,7 +177,7 @@ return array(
 		'_' => 'Okuma',
 		'after_onread' => '“Hepsini okundu say” dedinten sonra,',
 		'always_show_favorites' => 'Öntanımlı olarak favori tüm makaleleri göster',
-		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
+		'apply_to_individual_feed' => 'Tek tek akışlara uygulanır',
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Yazarlar ve Tarih',
@@ -193,9 +193,9 @@ return array(
 			),
 			'feed_title' => 'Akış Başlığı',
 			'icons' => array(
-				'_' => 'Article icons position<br /><small>(Reading view only)</small>',	// TODO
-				'above_title' => 'Above title',	// TODO
-				'with_authors' => 'In authors and date row',	// TODO
+				'_' => 'Makale simgeleri konumu<br /><small>(Yalnızca okuma görünümü)</small>',
+				'above_title' => 'Başlığın üstünde',
+				'with_authors' => 'Yazarlar ve tarih satırında',
 			),
 			'tags' => array(
 				'_' => 'Etiketler',
@@ -237,8 +237,8 @@ return array(
 			'upon_gone' => 'Yeni akışta üst sıralarda değilken',
 			'upon_reception' => 'makale üzerinde gelince',
 			'when' => 'Makaleyi okundu olarak işaretle…',
-			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
-			'when_same_title_in_feed' => 'Aynı başlığa sahip daha yeni bir makale en popüler <i>n</i> yeni metinlerdeyse (of the feed)',	// DIRTY
+			'when_same_title_in_category' => 'Eğer kategorinin en yeni <i>n</i> makalesinde aynı başlık zaten mevcutsa',
+			'when_same_title_in_feed' => 'Eğer aynı başlık akışın en yeni <i>n</i> makalesinde zaten mevcutsa',
 		),
 		'show' => array(
 			'_' => 'Gösterilecek makaleler',
@@ -258,7 +258,7 @@ return array(
 			'older_first' => 'Önce eskiler',
 		),
 		'star' => array(
-			'when' => 'Mark an article as favourite…',	// TODO
+			'when' => 'Bir makaleyi favori olarak işaretle…',
 		),
 		'sticky_post' => 'Makale açıldığında yukarı getir',
 		'title' => 'Okuma',
@@ -313,7 +313,7 @@ return array(
 		'other_action' => 'Diğer eylemler',
 		'previous_article' => 'Önceki makaleye geç',
 		'reading_view' => 'Okuma görünümüne geç',
-		'rss_view' => 'RSS beslemesi olarak aç',
+		'rss_view' => 'RSS akışı olarak aç',
 		'see_on_website' => 'Orijinal sitede göster',
 		'shift_for_all_read' => 'Önceki makaleyi okundu olarak işaretlemek için + <kbd>Alt ⎇</kbd> kısayolu<br />Tüm makaleleri okundu işaretlemek için + <kbd>⇧ Shift</kbd>kısayolu',
 		'skip_next_article' => 'Açmadan bir sonraki makaleye geç',
