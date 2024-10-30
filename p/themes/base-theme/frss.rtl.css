@@ -2430,10 +2430,8 @@ html.slider-active {
 	}
 
 	.dropdown .dropdown-menu {
-		width: 94%;
-		border-radius: 0;
-		right: 3%;
-		left: 3%;
+		right: 0.5rem !important;
+		left: 0.5rem !important;
 		position: absolute;
 	}
 
