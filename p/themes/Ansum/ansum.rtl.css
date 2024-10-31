@@ -208,7 +208,7 @@ th {
 .horizontal-list {
 	padding: 0.1rem 0;
 }
-.horizontal-list .item:first-child {
+.horizontal-list > .item:first-child {
 	padding-right: 0.5rem;
 }
 
@@ -1281,9 +1281,6 @@ main.prompt {
 		border-right: 1px solid #f5f0ec;
 		left: 21px;
 		bottom: -14px;
-	}
-	.dropdown-target:target ~ a.dropdown-toggle:not(.btn) ~ .dropdown-menu {
-		margin-top: 0;
 	}
 	.dropdown-target:target ~ a.dropdown-toggle:not(.btn)::after {
 		bottom: -17px;
