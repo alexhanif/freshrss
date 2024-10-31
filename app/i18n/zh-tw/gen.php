@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => '刪除已暫停的訂閱源',
 		'demote' => '撤銷管理員',
 		'disable' => '禁用',
+		'download' => 'Download',	// TODO
 		'empty' => '清空',
 		'enable' => '啟用',
 		'export' => '導出',
@@ -154,6 +155,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE

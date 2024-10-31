@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Lösche stumm gestellte Feeds',
 		'demote' => 'Zurückstufen',
 		'disable' => 'Deaktivieren',
+		'download' => 'Download',	// TODO
 		'empty' => 'Leeren',
 		'enable' => 'Aktivieren',
 		'export' => 'Exportieren',
@@ -154,6 +155,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE

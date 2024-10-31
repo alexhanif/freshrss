@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Izdzēst izslēgtās barotnes',
 		'demote' => 'Pazemināt amatu',
 		'disable' => 'Izslēgt',
+		'download' => 'Download',	// TODO
 		'empty' => 'Iztukšot',
 		'enable' => 'Ieslēgt',
 		'export' => 'Eksportēt',
@@ -154,6 +155,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE

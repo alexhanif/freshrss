@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Sessize alınmış akışları sil',
 		'demote' => 'Yöneticilikten al',
 		'disable' => 'Pasif',
+		'download' => 'Download',	// TODO
 		'empty' => 'Boş',
 		'enable' => 'Aktif',
 		'export' => 'Dışa Aktar',
@@ -154,6 +155,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE

@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Odstranění ztlumených zdrojů',
 		'demote' => 'Snížit úroveň',
 		'disable' => 'Zakázat',
+		'download' => 'Download',	// TODO
 		'empty' => 'Vyprázdnit',
 		'enable' => 'Povolit',
 		'export' => 'Exportovat',
@@ -154,6 +155,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE

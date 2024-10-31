@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Suprimir los flux muts',
 		'demote' => 'Retrogradar',
 		'disable' => 'Desactivar',
+		'download' => 'Download',	// TODO
 		'empty' => 'Voidar',
 		'enable' => 'Activar',
 		'export' => 'Exportar',
@@ -154,6 +155,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE

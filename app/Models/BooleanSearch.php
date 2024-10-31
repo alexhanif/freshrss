@@ -35,9 +35,9 @@ class FreshRSS_BooleanSearch {
 		$this->raw_input = $input;
 
 		if ($level === 0) {
+			$input = self::escapeRegexParentheses($input);
 			$input = $this->parseUserQueryNames($input, $allowUserQueries);
 			$input = $this->parseUserQueryIds($input, $allowUserQueries);
-			$input = self::escapeRegexParentheses($input);
 			$input = trim($input);
 		}
 
@@ -79,7 +79,7 @@ class FreshRSS_BooleanSearch {
 					if (!empty($queries[$name])) {
 						$fromS[] = $matches[0][$i];
 						if ($allowUserQueries) {
-							$toS[] = '(' . $queries[$name] . ')';
+							$toS[] = '(' . self::escapeRegexParentheses($queries[$name]) . ')';
 						} else {
 							$toS[] = '';
 						}
@@ -120,7 +120,7 @@ class FreshRSS_BooleanSearch {
 					if (!empty($queries[$id])) {
 						$fromS[] = $matches[0][$i];
 						if ($allowUserQueries) {
-							$toS[] = '(' . $queries[$id] . ')';
+							$toS[] = '(' . self::escapeRegexParentheses($queries[$id]) . ')';
 						} else {
 							$toS[] = '';
 						}
@@ -137,7 +137,7 @@ class FreshRSS_BooleanSearch {
 	 * Temporarily escape parentheses used in regex expressions.
 	 */
 	public static function escapeRegexParentheses(string $input): string {
-		return preg_replace_callback('#(?<=[\\s(:!-]|^)(?<![\\\\])/.*?(?<!\\\\)/[im]*#',
+		return preg_replace_callback('#(?<=[\\s(:!-]|^)(?<![\\\\])/.+?(?<!\\\\)/[im]*#',
 			fn(array $matches): string => str_replace(['(', ')'], ['\\u0028', '\\u0029'], $matches[0]),
 			$input
 		) ?? '';

@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Usuń wyciszone kanały',
 		'demote' => 'Zdegraduj',
 		'disable' => 'Wyłącz',
+		'download' => 'Download',	// TODO
 		'empty' => 'Opróżnij',
 		'enable' => 'Włącz',
 		'export' => 'Eksportuj',
@@ -154,6 +155,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE

@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'ミュートにしているフィードを削除する',
 		'demote' => '寄付',
 		'disable' => '無効',
+		'download' => 'Download',	// TODO
 		'empty' => '空',
 		'enable' => '有効',
 		'export' => 'エクスポート',
@@ -154,6 +155,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE

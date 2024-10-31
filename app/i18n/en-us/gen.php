@@ -21,6 +21,7 @@ return array(
 		'delete_muted_feeds' => 'Delete muted feeds',	// IGNORE
 		'demote' => 'Demote',	// IGNORE
 		'disable' => 'Disable',	// IGNORE
+		'download' => 'Download',	// IGNORE
 		'empty' => 'Empty',	// IGNORE
 		'enable' => 'Enable',	// IGNORE
 		'export' => 'Export',	// IGNORE
@@ -154,6 +155,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE
