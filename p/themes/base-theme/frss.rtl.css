@@ -355,11 +355,17 @@ input[type="checkbox"] {
 
 .dropdown-menu input[type="checkbox"] {
 	margin-right: 1em;
-	margin-left: .5em;
+	margin-left: 0.5rem;
+	width: 1rem;
 }
 
 .dropdown-menu .item .checkboxNewTag {
 	display: none;
+}
+
+.dropdown-menu .item label:not(.noHover):has(input[type="checkbox"]) {
+	padding-right: 2.5rem;
+	text-indent: -2.5rem;
 }
 
 .dropdown-menu .item.addItem {
