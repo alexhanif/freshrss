@@ -32,7 +32,7 @@ class FreshRSS_Factory {
 			case 'pgsql':
 				return new FreshRSS_FeedDAOPGSQL($username);
 			default:
-				return new FreshRSS_FeedDAO($username);
+				return new FreshRSS_FeedDAOMySQL($username);
 		}
 	}
 

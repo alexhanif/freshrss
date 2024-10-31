@@ -14,7 +14,7 @@ class FreshRSS_FeedDAOPGSQL extends FreshRSS_FeedDAO {
 			SQL;
 			$sql .= ' WHERE id IN (' . str_repeat('?,', count($feedIds) - 1) . '?)';
 		} else {
-			// GROUP BY approach is a bit slower for small databases but much faster for large databases
+			// Faster when no `WHERE` clause
 			$sql = <<<'SQL'
 				UPDATE `_feed`
 				SET `cache_nbEntries` = e.total_entries,
