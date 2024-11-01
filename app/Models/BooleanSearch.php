@@ -137,7 +137,7 @@ class FreshRSS_BooleanSearch {
 	 * Temporarily escape parentheses used in regex expressions.
 	 */
 	public static function escapeRegexParentheses(string $input): string {
-		return preg_replace_callback('#(?<=[\\s(:!-]|^)(?<![\\\\])/.+?(?<!\\\\)/[im]*#',
+		return preg_replace_callback('%(?<=[\\s(:#!-]|^)(?<![\\\\])/.+?(?<!\\\\)/[im]*%',
 			fn(array $matches): string => str_replace(['(', ')'], ['\\u0028', '\\u0029'], $matches[0]),
 			$input
 		) ?? '';
