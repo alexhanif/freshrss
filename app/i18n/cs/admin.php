@@ -206,7 +206,7 @@ return array(
 		'copiedFromURL' => 'update.php zkopírováno z %s do ./data',
 		'current_version' => 'Vaše aktuální verze',
 		'last' => 'Poslední kontrola',
-		'loading' => 'Aktualizuje se...',
+		'loading' => 'Aktualizuje se…',
 		'none' => 'Žádné nové aktualizace',
 		'releaseChannel' => array(
 			'_' => 'Kanál pro vydání',
