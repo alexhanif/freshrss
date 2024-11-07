@@ -40,7 +40,7 @@ class FreshRSS_api_Controller extends FreshRSS_ActionController {
 	 */
 	public function updatePasswordAction(): void {
 		if (!FreshRSS_Auth::hasAccess()) {
-			Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_403_FORBIDDEN);
+			Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_403_FORBIDDEN->value);
 		}
 
 		$return_url = ['c' => 'user', 'a' => 'profile'];
