@@ -316,7 +316,7 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 			}
 			if (!empty($item['origin']['feedUrl'])) {
 				$feedUrl = $item['origin']['feedUrl'];
-			} elseif (!empty($item['origin']['streamId']) && str_starts_with((string)$item['origin']['streamId'], 'feed/')) {
+			} elseif (!empty($item['origin']['streamId']) && str_starts_with($item['origin']['streamId'], 'feed/')) {
 				$feedUrl = substr((string)$item['origin']['streamId'], 5);	//Google Reader
 				$item['origin']['feedUrl'] = $feedUrl;
 			} elseif (!empty($item['origin']['htmlUrl'])) {

@@ -69,9 +69,9 @@ final class FeverDAO extends Minz_ModelPdo
 	 */
 	private function bindParamArray(string $prefix, array $values, array &$bindArray): string {
 		$str = '';
-		foreach ($values as $i => $iValue) {
+		for ($i = 0; $i < count($values); $i++) {
 			$str .= ':' . $prefix . $i . ',';
-			$bindArray[$prefix . $i] = $iValue;
+			$bindArray[$prefix . $i] = $values[$i];
 		}
 		return rtrim($str, ',');
 	}

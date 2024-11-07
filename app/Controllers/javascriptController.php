@@ -61,7 +61,7 @@ class FreshRSS_javascript_Controller extends FreshRSS_ActionController {
 				if (strlen($s) >= 60) {
 					//CRYPT_BLOWFISH Salt: "$2a$", a two digit cost parameter, "$", and 22 characters from the alphabet "./0-9A-Za-z".
 					$this->view->salt1 = substr($s, 0, 29);
-					$this->view->nonce = sha1($salt . uniqid('' . rand(), true));
+					$this->view->nonce = sha1($salt . uniqid('' . mt_rand(), true));
 					Minz_Session::_param('nonce', $this->view->nonce);
 					return;	//Success
 				}
