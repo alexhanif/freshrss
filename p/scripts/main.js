@@ -1324,8 +1324,25 @@ function init_stream(stream) {
 				req.onloadend = function (e) {
 					checkboxTag.disabled = false;
 					if (tagId == 0) {
+						// new tag is added
 						forceReloadLabelsList = true;
 						loadDynamicTags(checkboxTag.closest('div.dropdown'));
+					} else {
+						// a tag was (un)checked
+						const dropdownmenu_current = ev.target.closest('.dropdown-menu');
+						const flux = ev.target.closest('.flux');
+						const dropdownmenu_all = flux.querySelectorAll('.dynamictags .dropdown-menu');
+						if (dropdownmenu_all.length > 1) {
+							// delete all other tag dropdown menus exept the current one
+							dropdownmenu_all.forEach(
+								function (currentValue) {
+									if (currentValue !== dropdownmenu_current) {
+										currentValue.nextElementSibling.remove();
+										currentValue.parentNode.removeChild(currentValue);
+									}
+								}
+							);
+						}
 					}
 				};
 				req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
