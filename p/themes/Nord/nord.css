@@ -799,7 +799,7 @@ li.item.active {
 	padding: 0.25rem;
 }
 
-.flux .tags .icon {
+.flux .content .tags .icon {
 	padding: 0.25rem;
 }
 
@@ -1331,10 +1331,6 @@ optgroup::before {
 
 	.dropdown-menu {
 		margin: 0;
-	}
-
-	.dropdown-target:target ~ .dropdown-toggle:not(.btn) ~ .dropdown-menu {
-		margin-top: 7px;
 	}
 
 	.dropdown .dropdown-menu {
