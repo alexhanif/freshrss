@@ -1333,7 +1333,7 @@ function init_stream(stream) {
 						const flux = ev.target.closest('.flux');
 						const dropdownmenu_all = flux.querySelectorAll('.dynamictags .dropdown-menu');
 						if (dropdownmenu_all.length > 1) {
-							// delete all other tag dropdown menus exept the current one
+							// delete all other tag dropdown menus except the current one
 							dropdownmenu_all.forEach(
 								function (currentValue) {
 									if (currentValue !== dropdownmenu_current) {
