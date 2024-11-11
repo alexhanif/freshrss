@@ -74,7 +74,7 @@ function headerVariable(string $headerName, string $varName): string {
 function multiplePosts(string $name): array {
 	//https://bugs.php.net/bug.php?id=51633
 	global $ORIGINAL_INPUT;
-	$inputs = explode('&', (string)$ORIGINAL_INPUT);
+	$inputs = explode('&', $ORIGINAL_INPUT);
 	$result = [];
 	$prefix = $name . '=';
 	$prefixLength = strlen($prefix);
@@ -278,7 +278,7 @@ final class GReaderAPI {
 		$categories = $categoryDAO->listCategories(true, false) ?: [];
 		foreach ($categories as $cat) {
 			$tags[] = [
-			'id' => 'user/-/label/' . htmlspecialchars_decode((string)$cat->name(), ENT_QUOTES),
+			'id' => 'user/-/label/' . htmlspecialchars_decode($cat->name(), ENT_QUOTES),
 			//'sortid' => $cat->name(),
 			'type' => 'folder',
 			];
@@ -341,8 +341,8 @@ final class GReaderAPI {
 					'title' => escapeToUnicodeAlternative($feed->name(), true),
 					'categories' => [
 						[
-							'id' => 'user/-/label/' . htmlspecialchars_decode((string)$cat->name(), ENT_QUOTES),
-							'label' => htmlspecialchars_decode((string)$cat->name(), ENT_QUOTES),
+							'id' => 'user/-/label/' . htmlspecialchars_decode($cat->name(), ENT_QUOTES),
+							'label' => htmlspecialchars_decode($cat->name(), ENT_QUOTES),
 						],
 					],
 					//'sortid' => $feed->name(),

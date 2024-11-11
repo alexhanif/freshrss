@@ -226,7 +226,7 @@ final class FeverAPI
 		if (isset($_REQUEST['mark'], $_REQUEST['as'], $_REQUEST['id']) && ctype_digit($_REQUEST['id'])) {
 			$id = (string)$_REQUEST['id'];
 			$before = (int)($_REQUEST['before'] ?? '0');
-			switch (strtolower((string)$_REQUEST['mark'])) {
+			switch (strtolower($_REQUEST['mark'])) {
 				case 'item':
 					switch ($_REQUEST['as']) {
 						case 'read':
@@ -461,7 +461,7 @@ final class FeverAPI
 
 		if (isset($_REQUEST['feed_ids']) || isset($_REQUEST['group_ids'])) {
 			if (isset($_REQUEST['feed_ids'])) {
-				$feed_ids = explode(',', (string)$_REQUEST['feed_ids']);
+				$feed_ids = explode(',', $_REQUEST['feed_ids']);
 			}
 
 			if (isset($_REQUEST['group_ids'])) {
@@ -488,7 +488,7 @@ final class FeverAPI
 				$max_id = '';
 			}
 		} elseif (isset($_REQUEST['with_ids'])) {
-			$entry_ids = explode(',', (string)$_REQUEST['with_ids']);
+			$entry_ids = explode(',', $_REQUEST['with_ids']);
 		} elseif (isset($_REQUEST['since_id'])) {
 			// use the since_id argument to request the next $item_limit items
 			$since_id = '' . $_REQUEST['since_id'];
