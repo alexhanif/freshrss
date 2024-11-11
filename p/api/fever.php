@@ -151,7 +151,7 @@ final class FeverAPI
 	private function authenticate(): bool {
 		FreshRSS_Context::clearUserConf();
 		Minz_User::change();
-		$feverKey = empty($_POST['api_key']) ? '' : substr(trim((string)$_POST['api_key']), 0, 128);
+		$feverKey = empty($_POST['api_key']) ? '' : substr(trim($_POST['api_key']), 0, 128);
 		if (ctype_xdigit($feverKey)) {
 			$feverKey = strtolower($feverKey);
 			$username = @file_get_contents(DATA_PATH . '/fever/.key-' . sha1(FreshRSS_Context::systemConf()->salt) . '-' . $feverKey . '.txt', false);
@@ -223,7 +223,7 @@ final class FeverAPI
 			$response_arr['saved_item_ids'] = $this->getSavedItemIds();
 		}
 
-		if (isset($_REQUEST['mark'], $_REQUEST['as'], $_REQUEST['id']) && ctype_digit((string)$_REQUEST['id'])) {
+		if (isset($_REQUEST['mark'], $_REQUEST['as'], $_REQUEST['id']) && ctype_digit($_REQUEST['id'])) {
 			$id = (string)$_REQUEST['id'];
 			$before = (int)($_REQUEST['before'] ?? '0');
 			switch (strtolower((string)$_REQUEST['mark'])) {
@@ -317,8 +317,8 @@ final class FeverAPI
 				'id' => $feed->id(),
 				'favicon_id' => $feed->id(),
 				'title' => escapeToUnicodeAlternative($feed->name(), true),
-				'url' => htmlspecialchars_decode((string)$feed->url(), ENT_QUOTES),
-				'site_url' => htmlspecialchars_decode((string)$feed->website(), ENT_QUOTES),
+				'url' => htmlspecialchars_decode($feed->url(), ENT_QUOTES),
+				'site_url' => htmlspecialchars_decode($feed->website(), ENT_QUOTES),
 				'is_spark' => 0,
 				// unsupported
 				'last_updated_on_time' => $feed->lastUpdate(),
@@ -466,7 +466,7 @@ final class FeverAPI
 
 			if (isset($_REQUEST['group_ids'])) {
 				$categoryDAO = FreshRSS_Factory::createCategoryDao();
-				$group_ids = explode(',', (string)$_REQUEST['group_ids']);
+				$group_ids = explode(',', $_REQUEST['group_ids']);
 				$feeds = [];
 				foreach ($group_ids as $id) {
 					$category = $categoryDAO->searchById((int)$id);	//TODO: Transform to SQL query without loop! Consider FreshRSS_CategoryDAO::listCategories(true)
@@ -515,8 +515,8 @@ final class FeverAPI
 				'id' => $entry->id(),
 				'feed_id' => $entry->feedId(),
 				'title' => escapeToUnicodeAlternative($entry->title(), false),
-				'author' => escapeToUnicodeAlternative(trim((string)$entry->authors(true), '; '), false),
-				'html' => $entry->content(), 'url' => htmlspecialchars_decode((string)$entry->link(), ENT_QUOTES),
+				'author' => escapeToUnicodeAlternative(trim($entry->authors(true), '; '), false),
+				'html' => $entry->content(), 'url' => htmlspecialchars_decode($entry->link(), ENT_QUOTES),
 				'is_saved' => $entry->isFavorite() ? 1 : 0,
 				'is_read' => $entry->isRead() ? 1 : 0,
 				'created_on_time' => $entry->date(true),

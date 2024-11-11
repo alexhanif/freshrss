@@ -1076,7 +1076,7 @@ class FreshRSS_Feed extends Minz_Model {
 			$hubFilename = $path . '/!hub.json';
 			if (($hubFile = @file_get_contents($hubFilename)) != false) {
 				$hubJson = json_decode($hubFile, true);
-				if (!is_array($hubJson) || empty($hubJson['key']) || !ctype_xdigit((string)$hubJson['key'])) {
+				if (!is_array($hubJson) || empty($hubJson['key']) || !ctype_xdigit($hubJson['key'])) {
 					$text = 'Invalid JSON for WebSub: ' . $this->url;
 					Minz_Log::warning($text);
 					Minz_Log::warning($text, PSHB_LOG);

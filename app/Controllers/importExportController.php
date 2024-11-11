@@ -249,11 +249,11 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 				$item['categories'][] = 'user/-/state/com.google/broadcast';
 			}
 			if (!empty($item['label_cache'])) {
-				$labels_cache = json_decode((string)$item['label_cache'], true);
+				$labels_cache = json_decode($item['label_cache'], true);
 				if (is_array($labels_cache)) {
 					foreach ($labels_cache as $label_cache) {
-						if (!empty($label_cache[1])) {
-							$item['categories'][] = 'user/-/label/' . trim((string)$label_cache[1]);
+						if (!empty($label_cache[1]) && is_string($label_cache[1])) {
+							$item['categories'][] = 'user/-/label/' . trim($label_cache[1]);
 						}
 					}
 				}
@@ -311,13 +311,13 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 			if (empty($item['origin'])) {
 				$item['origin'] = [];
 			}
-			if (empty($item['origin']['title']) || trim((string)$item['origin']['title']) === '') {
+			if (empty($item['origin']['title']) || trim($item['origin']['title']) === '') {
 				$item['origin']['title'] = 'Import';
 			}
 			if (!empty($item['origin']['feedUrl'])) {
 				$feedUrl = $item['origin']['feedUrl'];
 			} elseif (!empty($item['origin']['streamId']) && str_starts_with($item['origin']['streamId'], 'feed/')) {
-				$feedUrl = substr((string)$item['origin']['streamId'], 5);	//Google Reader
+				$feedUrl = substr($item['origin']['streamId'], 5);	//Google Reader
 				$item['origin']['feedUrl'] = $feedUrl;
 			} elseif (!empty($item['origin']['htmlUrl'])) {
 				$feedUrl = $item['origin']['htmlUrl'];
