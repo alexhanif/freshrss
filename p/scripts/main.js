@@ -1452,7 +1452,7 @@ function loadDynamicTags(div) {
 			label.appendChild(div_stick);
 			li_item0.appendChild(label);
 
-			div.querySelector('.dropdown-menu').appendChild(li_item0);
+			div.querySelector('.dropdown-menu-scrollable').appendChild(li_item0);
 		}
 
 		let html = '';
@@ -1479,7 +1479,7 @@ function loadDynamicTags(div) {
 				html += '<li class="item"><span class="emptyLabels">' + context.i18n.labels_empty + '</span></li>';
 			}
 		}
-		div.querySelector('.dropdown-menu').insertAdjacentHTML('beforeend', html);
+		div.querySelector('.dropdown-menu-scrollable').insertAdjacentHTML('beforeend', html);
 		const datalistLabels = document.getElementById('datalist-labels');
 		datalistLabels.innerHTML = ''; // clear before add the (updated) labels list
 		datalistLabels.insertAdjacentHTML('beforeend', datalist);
