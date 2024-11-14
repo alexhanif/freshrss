@@ -18,7 +18,7 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 	#[\Override]
 	public function firstAction(): void {
 		if (!FreshRSS_Auth::hasAccess()) {
-			Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_403_FORBIDDEN->value);
+			Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_403_FORBIDDEN);
 		}
 
 		$this->entryDAO = FreshRSS_Factory::createEntryDao();
@@ -721,12 +721,12 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 		}
 		$sqlite = Minz_Request::paramString('sqlite');
 		if (!preg_match(self::REGEX_SQLITE_FILENAME, $sqlite)) {
-			Minz_Error::error(404);
+			Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_404_NOT_FOUND);
 			return;
 		}
 		$path = USERS_PATH . '/' . Minz_User::name() . '/' . $sqlite;
 		if (!file_exists($path) || @filesize($path) == false || @filemtime($path) == false) {
-			Minz_Error::error(404);
+			Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_404_NOT_FOUND);
 			return;
 		}
 		$this->view->sqlitePath = $path;
