@@ -973,8 +973,7 @@ function init_shortcuts() {
 	});
 
 	document.addEventListener('keydown', ev => {
-		if (ev.target.closest('input, textarea') ||
-				ev.ctrlKey || ev.metaKey || (ev.altKey && ev.shiftKey)) {
+		if (ev.ctrlKey || ev.metaKey || (ev.altKey && ev.shiftKey) || ev.target.closest('input, select, textarea')) {
 			return;
 		}
 
@@ -1078,6 +1077,10 @@ function init_shortcuts() {
 				}
 			}
 			ev.preventDefault();
+			return;
+		}
+		if (ev.key === '?') {
+			window.location.href = context.urls.shortcuts.replace(/&amp;/g, '&');
 			return;
 		}
 
