@@ -3,6 +3,7 @@
 	/** @var FreshRSS_View $this */
 	$topline_read = FreshRSS_Context::userConf()->topline_read;
 	$topline_favorite = FreshRSS_Context::userConf()->topline_favorite;
+	$topline_myLabels = FreshRSS_Context::userConf()->topline_myLabels;
 	$topline_sharing = FreshRSS_Context::userConf()->topline_sharing;
 	$topline_website = FreshRSS_Context::userConf()->topline_website;
 	$topline_thumbnail = FreshRSS_Context::userConf()->topline_thumbnail;
@@ -76,6 +77,17 @@
 	endif; ?>
 	<?php if ($topline_date) { ?><span class="item-element date"><time datetime="<?= $this->entry->machineReadableDate() ?>"><?= $this->entry->date() ?></time>&nbsp;</span><?php } ?>
 	</li>
+	<?php if ($topline_myLabels) { ?>
+		<li class="item labels">
+			<div class="item-element dropdown dynamictags">
+				<div id="dropdown-labels2-<?= $this->entry->id() ?>" class="dropdown-target"></div>
+				<a class="dropdown-toggle" href="#dropdown-labels2-<?= $this->entry->id() ?>" title="<?= _t('index.menu.tags') ?>">
+					<?= _i('label') ?>
+				</a>
+				<?php /* labels_article_template */ ?>
+			</div>
+		</li>
+	<?php } ?>
 	<?php if ($topline_sharing) { ?>
 		<li class="item share">
 			<div class="item-element dropdown">
@@ -83,7 +95,7 @@
 				<a class="dropdown-toggle" href="#dropdown-share2-<?= $this->entry->id() ?>" title="<?= _t('index.share') ?>">
 					<?= _i('share') ?>
 				</a>
-				<?php /* entry_share_menu */ ?>
+				<?php /* share_article_template */ ?>
 			</div>
 		</li>
 	<?php } ?>
