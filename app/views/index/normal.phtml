@@ -24,15 +24,17 @@ $today = @strtotime('today');
 </template>
 
 <template id="labels_article_template">
-	<ul class="dropdown-menu dropdown-menu-scrollable scrollbar-thin">
-		<li class="dropdown-header">
-			<?= _t('index.menu.tags') ?>
-			<?php if (FreshRSS_Auth::hasAccess()) { ?>
-				<a href="<?= _url('tag', 'index') ?>"><?= _i('configure') ?></a>
-			<?php } ?>
-		</li>
-		<!-- Ajax -->
-	</ul>
+	<div class="dropdown-menu">
+		<ul class="dropdown-menu-scrollable scrollbar-thin">
+			<li class="dropdown-header">
+				<?= _t('index.menu.tags') ?>
+				<?php if (FreshRSS_Auth::hasAccess()) { ?>
+					<a href="<?= _url('tag', 'index') ?>"><?= _i('configure') ?></a>
+				<?php } ?>
+			</li>
+			<!-- Ajax -->
+		</ul>
+	</div>
 	<a class="dropdown-close" href="#close">❌</a>
 </template>
 

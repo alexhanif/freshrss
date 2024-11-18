@@ -796,6 +796,10 @@ input[type="checkbox"]:focus-visible {
 	max-width: 95%;
 }
 
+.dynamictags .dropdown-menu label {
+	white-space: initial;
+}
+
 .dropdown-target:target ~ .dropdown-menu {
 	display: block;
 	z-index: 1000;
@@ -1316,7 +1320,7 @@ input[type="search"] {
 	position: relative;
 }
 
-.flux .flux_header .item {
+.flux .flux_header > .item {
 	white-space: nowrap;
 }
 
@@ -1334,6 +1338,7 @@ input[type="search"] {
 }
 
 .flux .item.manage,
+.flux .flux_header > .item.labels,
 .flux .flux_header > .item.share,
 .flux .item.link {
 	width: calc(1rem + 2 * var(--frss-padding-flux-items));
