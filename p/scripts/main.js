@@ -1327,8 +1327,25 @@ function init_stream(stream) {
 				req.onloadend = function (e) {
 					checkboxTag.disabled = false;
 					if (tagId == 0) {
+						// new tag is added
 						forceReloadLabelsList = true;
 						loadDynamicTags(checkboxTag.closest('div.dropdown'));
+					} else {
+						// a tag was (un)checked
+						const dropdownmenu_current = ev.target.closest('.dropdown-menu');
+						const flux = ev.target.closest('.flux');
+						const dropdownmenu_all = flux.querySelectorAll('.dynamictags .dropdown-menu');
+						if (dropdownmenu_all.length > 1) {
+							// delete all other tag dropdown menus except the current one
+							dropdownmenu_all.forEach(
+								function (currentValue) {
+									if (currentValue !== dropdownmenu_current) {
+										currentValue.nextElementSibling.remove();
+										currentValue.parentNode.removeChild(currentValue);
+									}
+								}
+							);
+						}
 					}
 				};
 				req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
@@ -1438,7 +1455,7 @@ function loadDynamicTags(div) {
 			label.appendChild(div_stick);
 			li_item0.appendChild(label);
 
-			div.querySelector('.dropdown-menu').appendChild(li_item0);
+			div.querySelector('.dropdown-menu-scrollable').appendChild(li_item0);
 		}
 
 		let html = '';
@@ -1465,7 +1482,7 @@ function loadDynamicTags(div) {
 				html += '<li class="item"><span class="emptyLabels">' + context.i18n.labels_empty + '</span></li>';
 			}
 		}
-		div.querySelector('.dropdown-menu').insertAdjacentHTML('beforeend', html);
+		div.querySelector('.dropdown-menu-scrollable').insertAdjacentHTML('beforeend', html);
 		const datalistLabels = document.getElementById('datalist-labels');
 		datalistLabels.innerHTML = ''; // clear before add the (updated) labels list
 		datalistLabels.insertAdjacentHTML('beforeend', datalist);
