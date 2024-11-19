@@ -181,6 +181,8 @@ The following events are available:
 * `simplepie_after_init` (`function(\SimplePie\SimplePie $simplePie, FreshRSS_Feed $feed, bool $result) -> none`): Triggered after fetching an RSS/Atom feed with SimplePie. Useful for instance to get the HTTP response headers (e.g. `$simplePie->get_headers();`).
 * `simplepie_before_init` (`function(\SimplePie\SimplePie $simplePie, FreshRSS_Feed $feed) -> none`): Triggered before fetching an RSS/Atom feed with SimplePie.
 
+> ℹ️ Note: the `simplepie_*` hooks are only fired for feeds using SimplePie via pull, i.e. normal RSS/Atom feeds. This excludes WebSub (push), and the various HTML or JSON Web scraping methods.
+
 ### Injecting CDN content
 
 When using the `init` method, it is possible to inject scripts from CDN using the `Minz_View::appendScript` directive.
