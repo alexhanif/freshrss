@@ -178,7 +178,8 @@ The following events are available:
 * `nav_menu` (`function() -> string`): will be executed if the navigation was built.
 * `nav_reading_modes` (`function($reading_modes) -> array | null`): **TODO** add documentation.
 * `post_update` (`function(none) -> none`): **TODO** add documentation.
-* `simplepie_before_init` (`function($simplePie, $feed) -> none`): **TODO** add documentation.
+* `simplepie_after_init` (`function(\SimplePie\SimplePie $simplePie, FreshRSS_Feed $feed, bool $result) -> none`): Triggered after fetching an RSS/Atom feed with SimplePie. Useful for instance to get the HTTP response headers (e.g. `$simplePie->get_headers();`).
+* `simplepie_before_init` (`function(\SimplePie\SimplePie $simplePie, FreshRSS_Feed $feed) -> none`): Triggered before fetching an RSS/Atom feed with SimplePie.
 
 ### Injecting CDN content
 
