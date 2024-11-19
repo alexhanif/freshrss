@@ -1,7 +1,12 @@
 # Copy this file to `.htaccess` for additional root-level protection
 # if you cannot set Apache `DocumentRoot` to `./p/` as recommended.
 
-# Deny files starting with a dot, or without extension (except some), or not in a whitelist of extensions
-<FilesMatch "^\.|^(?!oidc)[^.]+$|\.(?!css|gif|html|ico|js|php|png|svg|txt|woff|woff2)[^.]*$">
+# Deny files from the current folder, except some
+<FilesMatch "^(?!index\.(html|php)$)[^/]+$">
 	Require all denied
 </FilesMatch>
+
+# Deny some sub-folders
+<If "%{REQUEST_URI} =~ m#/(bin|data|node_modules|vendor|\..+)(/|$)#">
+	Require all denied
+</If>
