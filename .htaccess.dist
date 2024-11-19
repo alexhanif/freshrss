@@ -1,10 +1,10 @@
 # Copy this file to `.htaccess` for additional root-level protection
 # if you cannot set Apache `DocumentRoot` to `./p/` as recommended.
 
-# Deny files from the current folder, except some
-<FilesMatch "^(?!index\.(html|php)$)[^/]+$">
+# Allow only index files and public sub-folder `./p/`
+<If "%{REQUEST_URI} !~ m#/(p/|index\.(html|php)$)#">
 	Require all denied
-</FilesMatch>
+</If>
 
 # Deny some sub-folders
 <If "%{REQUEST_URI} =~ m#/(bin|data|node_modules|vendor|\..+)(/|$)#">
