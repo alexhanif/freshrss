@@ -81,7 +81,7 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 						' ; Remote IP address=' . connectionRemoteAddress() . ']'
 					]
 				], false),
-			'none' => Minz_Error::error(404),
+			'none' => Minz_Error::error(404), // It should not happen!
 			default => Minz_Error::error(404),
 			// TODO load plugin instead
 		};

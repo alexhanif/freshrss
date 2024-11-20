@@ -175,7 +175,7 @@ class SearchTest extends TestCase {
 			['pubdate:2007-03-01/2008-05-11', strtotime('2007-03-01'), strtotime('2008-05-12') - 1],
 			['pubdate:2007-03-01/', strtotime('2007-03-01'), null],
 			['pubdate:/2008-05-11', null, strtotime('2008-05-12') - 1],
-			];
+		];
 	}
 
 	/**
@@ -232,7 +232,8 @@ class SearchTest extends TestCase {
 	/** @return array<array<mixed>> */
 	public static function provideMultipleSearch(): array {
 		return [
-			['author:word1 date:2007-03-01/2008-05-11 intitle:word2 inurl:word3 pubdate:2007-03-01/2008-05-11 #word4 #word5',
+			[
+				'author:word1 date:2007-03-01/2008-05-11 intitle:word2 inurl:word3 pubdate:2007-03-01/2008-05-11 #word4 #word5',
 				['word1'],
 				strtotime('2007-03-01'),
 				strtotime('2008-05-12') - 1,
@@ -240,19 +241,21 @@ class SearchTest extends TestCase {
 				['word3'],
 				strtotime('2007-03-01'),
 				strtotime('2008-05-12') - 1,
-				['word4', 'word5'], null
+				['word4', 'word5'],
+				null
 			],
-				[
-					'word6 intitle:word2 inurl:word3 pubdate:2007-03-01/2008-05-11 #word4 author:word1 #word5 date:2007-03-01/2008-05-11',
+			[
+				'word6 intitle:word2 inurl:word3 pubdate:2007-03-01/2008-05-11 #word4 author:word1 #word5 date:2007-03-01/2008-05-11',
 				['word1'],
-					strtotime('2007-03-01'),
-					strtotime('2008-05-12') - 1,
-					['word2'],
-					['word3'],
-					strtotime('2007-03-01'),
-					strtotime('2008-05-12') - 1,
-					['word4', 'word5'],
-					['word6']],
+				strtotime('2007-03-01'),
+				strtotime('2008-05-12') - 1,
+				['word2'],
+				['word3'],
+				strtotime('2007-03-01'),
+				strtotime('2008-05-12') - 1,
+				['word4', 'word5'],
+				['word6']
+			],
 			[
 				'word6 intitle:word2 inurl:word3 pubdate:2007-03-01/2008-05-11 #word4 author:word1 #word5 word7 date:2007-03-01/2008-05-11',
 				['word1'],
@@ -263,13 +266,15 @@ class SearchTest extends TestCase {
 				strtotime('2007-03-01'),
 				strtotime('2008-05-12') - 1,
 				['word4', 'word5'],
-				['word6', 'word7']],
+				['word6', 'word7']
+			],
 			[
 				'word6 intitle:word2 inurl:word3 pubdate:2007-03-01/2008-05-11 #word4 author:word1 #word5 "word7 word8" date:2007-03-01/2008-05-11',
 				['word1'],
 				strtotime('2007-03-01'),
 				strtotime('2008-05-12') - 1,
-				['word2'], ['word3'],
+				['word2'],
+				['word3'],
 				strtotime('2007-03-01'),
 				strtotime('2008-05-12') - 1,
 				['word4', 'word5'],
@@ -346,7 +351,7 @@ class SearchTest extends TestCase {
 				'#tag Hello OR (author:Alice inurl:example) OR (f:3 intitle:World) OR L:12',
 				" ((TRIM(e.tags) || ' #' LIKE ? AND (e.title LIKE ? OR e.content LIKE ?) )) OR ((e.author LIKE ? AND e.link LIKE ? )) OR" .
 					' ((e.id_feed IN (?) AND e.title LIKE ? )) OR ((e.id IN (SELECT et.id_entry FROM `_entrytag` et WHERE et.id_tag IN (?)) )) ',
-				['%tag #%','%Hello%', '%Hello%', '%Alice%', '%example%', '3', '%World%', '12']
+				['%tag #%', '%Hello%', '%Hello%', '%Alice%', '%example%', '3', '%World%', '12']
 			],
 			[
 				'#tag Hello (author:Alice inurl:example) (f:3 intitle:World) label:Bleu',
@@ -409,13 +414,13 @@ class SearchTest extends TestCase {
 			[
 				'(ab) cd OR ef OR (gh)',
 				'(((e.title LIKE ? OR e.content LIKE ?) )) AND (((e.title LIKE ? OR e.content LIKE ?) )) ' .
-				'OR (((e.title LIKE ? OR e.content LIKE ?) )) OR (((e.title LIKE ? OR e.content LIKE ?) ))',
+					'OR (((e.title LIKE ? OR e.content LIKE ?) )) OR (((e.title LIKE ? OR e.content LIKE ?) ))',
 				['%ab%', '%ab%', '%cd%', '%cd%', '%ef%', '%ef%', '%gh%', '%gh%'],
 			],
 			[
 				'(ab) OR cd OR ef OR (gh)',
 				'(((e.title LIKE ? OR e.content LIKE ?) )) OR (((e.title LIKE ? OR e.content LIKE ?) )) ' .
-				'OR (((e.title LIKE ? OR e.content LIKE ?) )) OR (((e.title LIKE ? OR e.content LIKE ?) ))',
+					'OR (((e.title LIKE ? OR e.content LIKE ?) )) OR (((e.title LIKE ? OR e.content LIKE ?) ))',
 				['%ab%', '%ab%', '%cd%', '%cd%', '%ef%', '%ef%', '%gh%', '%gh%'],
 			],
 			[
@@ -436,19 +441,19 @@ class SearchTest extends TestCase {
 			[
 				'(ab (!cd OR ef OR (gh))) OR !(ij OR kl)',
 				'((((e.title LIKE ? OR e.content LIKE ?) )) AND (((e.title NOT LIKE ? AND e.content NOT LIKE ? )) OR (((e.title LIKE ? OR e.content LIKE ?) )) ' .
-				'OR (((e.title LIKE ? OR e.content LIKE ?) )))) OR NOT (((e.title LIKE ? OR e.content LIKE ?) ) OR ((e.title LIKE ? OR e.content LIKE ?) ))',
+					'OR (((e.title LIKE ? OR e.content LIKE ?) )))) OR NOT (((e.title LIKE ? OR e.content LIKE ?) ) OR ((e.title LIKE ? OR e.content LIKE ?) ))',
 				['%ab%', '%ab%', '%cd%', '%cd%', '%ef%', '%ef%', '%gh%', '%gh%', '%ij%', '%ij%', '%kl%', '%kl%'],
 			],
 			[
 				'"ab" "cd" ("ef") intitle:"gh" !"ij" -"kl"',
 				'(((e.title LIKE ? OR e.content LIKE ?) AND (e.title LIKE ? OR e.content LIKE ?) )) AND (((e.title LIKE ? OR e.content LIKE ?) )) ' .
-				'AND ((e.title LIKE ? AND e.title NOT LIKE ? AND e.content NOT LIKE ? AND e.title NOT LIKE ? AND e.content NOT LIKE ? ))',
+					'AND ((e.title LIKE ? AND e.title NOT LIKE ? AND e.content NOT LIKE ? AND e.title NOT LIKE ? AND e.content NOT LIKE ? ))',
 				['%ab%', '%ab%', '%cd%', '%cd%', '%ef%', '%ef%', '%gh%', '%ij%', '%ij%', '%kl%', '%kl%']
 			],
 			[
 				'&quot;ab&quot; &quot;cd&quot; (&quot;ef&quot;) intitle:&quot;gh&quot; !&quot;ij&quot; -&quot;kl&quot;',
 				'(((e.title LIKE ? OR e.content LIKE ?) AND (e.title LIKE ? OR e.content LIKE ?) )) AND (((e.title LIKE ? OR e.content LIKE ?) )) ' .
-				'AND ((e.title LIKE ? AND e.title NOT LIKE ? AND e.content NOT LIKE ? AND e.title NOT LIKE ? AND e.content NOT LIKE ? ))',
+					'AND ((e.title LIKE ? AND e.title NOT LIKE ? AND e.content NOT LIKE ? AND e.title NOT LIKE ? AND e.content NOT LIKE ? ))',
 				['%ab%', '%ab%', '%cd%', '%cd%', '%ef%', '%ef%', '%gh%', '%ij%', '%ij%', '%kl%', '%kl%']
 			],
 			[

@@ -266,21 +266,26 @@ final class GReaderAPI {
 			self::unauthorized();
 		}
 		$user = Minz_User::name();
-		exit(json_encode(['userId' => $user, 'userName' => $user, 'userProfileId' => $user, 'userEmail' => FreshRSS_Context::userConf()->mail_login], JSON_OPTIONS));
+		exit(json_encode([
+			'userId' => $user,
+			'userName' => $user,
+			'userProfileId' => $user,
+			'userEmail' => FreshRSS_Context::userConf()->mail_login,
+		], JSON_OPTIONS));
 	}
 
 	private static function tagList(): never {
 		header('Content-Type: application/json; charset=UTF-8');
 
 		$tags = [['id' => 'user/-/state/com.google/starred']];
-
+		//['id' => 'user/-/state/com.google/broadcast', 'sortid' => '2'],
 		$categoryDAO = FreshRSS_Factory::createCategoryDao();
 		$categories = $categoryDAO->listCategories(true, false) ?: [];
 		foreach ($categories as $cat) {
 			$tags[] = [
-			'id' => 'user/-/label/' . htmlspecialchars_decode($cat->name(), ENT_QUOTES),
-			//'sortid' => $cat->name(),
-			'type' => 'folder',
+				'id' => 'user/-/label/' . htmlspecialchars_decode($cat->name(), ENT_QUOTES),
+				//'sortid' => $cat->name(),
+				'type' => 'folder',	//Inoreader
 			];
 		}
 
@@ -288,11 +293,10 @@ final class GReaderAPI {
 		$labels = $tagDAO->listTags(true) ?: [];
 		foreach ($labels as $label) {
 			$tags[] = [
-			'id' => 'user/-/label/' . htmlspecialchars_decode((string)$label->name(), ENT_QUOTES),
-			//'sortid' => $label->name(),
-			'type' => 'tag',
-			//Inoreader
-			'unread_count' => $label->nbUnread(),
+				'id' => 'user/-/label/' . htmlspecialchars_decode($label->name(), ENT_QUOTES),
+				//'sortid' => $label->name(),
+				'type' => 'tag', //Inoreader
+				'unread_count' => $label->nbUnread(), //Inoreader
 			];
 		}
 
@@ -347,8 +351,8 @@ final class GReaderAPI {
 					],
 					//'sortid' => $feed->name(),
 					//'firstitemmsec' => 0,
-					'url' => htmlspecialchars_decode((string)$feed->url(), ENT_QUOTES),
-					'htmlUrl' => htmlspecialchars_decode((string)$feed->website(), ENT_QUOTES),
+					'url' => htmlspecialchars_decode($feed->url(), ENT_QUOTES),
+					'htmlUrl' => htmlspecialchars_decode($feed->website(), ENT_QUOTES),
 					'iconUrl' => $faviconsUrl . hash('crc32b', $salt . $feed->url()),
 				];
 			}
@@ -463,14 +467,14 @@ final class GReaderAPI {
 					'query' => $feed->url(),
 					'streamId' => 'feed/' . $feed->id(),
 					'streamName' => $feed->name(),
-					], JSON_OPTIONS));
+				], JSON_OPTIONS));
 		} catch (Exception $e) {
 			Minz_Log::error('quickadd error: ' . $e->getMessage(), API_LOG);
 			die(json_encode(
 				[
 					'numResults' => 0,
 					'error' => $e->getMessage(),
-					], JSON_OPTIONS));
+				], JSON_OPTIONS));
 		}
 	}
 
@@ -493,16 +497,16 @@ final class GReaderAPI {
 					'id' => 'feed/' . $feed->id(),
 					'count' => $feed->nbNotRead(),
 					'newestItemTimestampUsec' => '' . $lastUpdate,
-					];
+				];
 				if ($catLastUpdate < $lastUpdate) {
 					$catLastUpdate = $lastUpdate;
 				}
 			}
 			$unreadcounts[] = [
-				'id' => 'user/-/label/' . htmlspecialchars_decode((string)$cat->name(), ENT_QUOTES),
+				'id' => 'user/-/label/' . htmlspecialchars_decode($cat->name(), ENT_QUOTES),
 				'count' => $cat->nbNotRead(),
 				'newestItemTimestampUsec' => '' . $catLastUpdate,
-				];
+			];
 			$totalUnreads += $cat->nbNotRead();
 			if ($totalLastUpdate < $catLastUpdate) {
 				$totalLastUpdate = $catLastUpdate;
@@ -514,7 +518,7 @@ final class GReaderAPI {
 		foreach ($tagDAO->listTags(true) ?: [] as $label) {
 			$lastUpdate = $tagsNewestItemUsec['t_' . $label->id()] ?? 0;
 			$unreadcounts[] = [
-				'id' => 'user/-/label/' . htmlspecialchars_decode((string)$label->name(), ENT_QUOTES),
+				'id' => 'user/-/label/' . htmlspecialchars_decode($label->name(), ENT_QUOTES),
 				'count' => $label->nbUnread(),
 				'newestItemTimestampUsec' => '' . $lastUpdate,
 				];
@@ -524,12 +528,12 @@ final class GReaderAPI {
 			'id' => 'user/-/state/com.google/reading-list',
 			'count' => $totalUnreads,
 			'newestItemTimestampUsec' => '' . $totalLastUpdate,
-			];
+		];
 
 		echo json_encode([
 			'max' => $totalUnreads,
 			'unreadcounts' => $unreadcounts,
-			], JSON_OPTIONS), "\n";
+		], JSON_OPTIONS), "\n";
 		exit();
 	}
 
@@ -668,7 +672,11 @@ final class GReaderAPI {
 			$count--;
 		}
 
-		$response = ['id' => 'user/-/state/com.google/reading-list', 'updated' => time(), 'items' => $items];
+		$response = [
+			'id' => 'user/-/state/com.google/reading-list',
+			'updated' => time(),
+			'items' => $items,
+		];
 		if (count($entries) >= $count) {
 			$entry = end($entries);
 			if ($entry != false) {
@@ -756,7 +764,11 @@ final class GReaderAPI {
 
 		$items = self::entriesToArray($entries);
 
-		$response = ['id' => 'user/-/state/com.google/reading-list', 'updated' => time(), 'items' => $items];
+		$response = [
+			'id' => 'user/-/state/com.google/reading-list',
+			'updated' => time(),
+			'items' => $items,
+		];
 		unset($entries, $entryDAO, $items);
 		gc_collect_cycles();
 		echoJson($response, 2);	// $optimisationDepth=2 as we are interested in being memory efficient for {"items":[...]}
@@ -948,7 +960,7 @@ final class GReaderAPI {
 		} else {
 			$pathInfo = $_SERVER['PATH_INFO'];
 		}
-		$pathInfo = urldecode((string)$pathInfo);
+		$pathInfo = urldecode($pathInfo);
 		$pathInfo = '' . preg_replace('%^(/api)?(/greader\.php)?%', '', $pathInfo);	//Discard common errors
 		if ($pathInfo == '' && empty($_SERVER['QUERY_STRING'])) {
 			exit('OK');
@@ -1026,7 +1038,7 @@ final class GReaderAPI {
 					if (isset($pathInfos[5]) && $pathInfos[5] === 'contents') {
 						if (!isset($pathInfos[6]) && isset($_GET['s'])) {
 							// Compatibility BazQux API https://github.com/bazqux/bazqux-api#fetching-streams
-							$streamIdInfos = explode('/', (string)$_GET['s']);
+							$streamIdInfos = explode('/', $_GET['s']);
 							foreach ($streamIdInfos as $streamIdInfo) {
 								$pathInfos[] = $streamIdInfo;
 							}
@@ -1036,7 +1048,7 @@ final class GReaderAPI {
 								$include_target = $pathInfos[7];
 								if ($include_target != '' && !is_numeric($include_target)) {
 									$include_target = empty($_SERVER['REQUEST_URI']) ? '' : $_SERVER['REQUEST_URI'];
-									if (preg_match('#/reader/api/0/stream/contents/feed/([A-Za-z0-9\'!*()%$_.~+-]+)#', (string)$include_target, $matches) === 1) {
+									if (preg_match('#/reader/api/0/stream/contents/feed/([A-Za-z0-9\'!*()%$_.~+-]+)#', $include_target, $matches) === 1) {
 										$include_target = urldecode($matches[1]);
 									} else {
 										$include_target = '';
@@ -1128,7 +1140,7 @@ final class GReaderAPI {
 					self::unreadCount();
 					// Always exits
 				case 'edit-tag':	//http://blog.martindoms.com/2010/01/20/using-the-google-reader-api-part-3/
-					$token = isset($_POST['T']) ? trim((string)$_POST['T']) : '';
+					$token = isset($_POST['T']) ? trim($_POST['T']) : '';
 					self::checkToken(FreshRSS_Context::userConf(), $token);
 					$a = $_POST['a'] ?? '';	//Add:	user/-/state/com.google/read	user/-/state/com.google/starred
 					$r = $_POST['r'] ?? '';	//Remove:	user/-/state/com.google/read	user/-/state/com.google/starred
@@ -1136,14 +1148,14 @@ final class GReaderAPI {
 					self::editTag($e_ids, $a, $r);
 					// Always exits
 				case 'rename-tag':	//https://github.com/theoldreader/api
-					$token = isset($_POST['T']) ? trim((string)$_POST['T']) : '';
+					$token = isset($_POST['T']) ? trim($_POST['T']) : '';
 					self::checkToken(FreshRSS_Context::userConf(), $token);
 					$s = $_POST['s'] ?? '';	//user/-/label/Folder
 					$dest = $_POST['dest'] ?? '';	//user/-/label/NewFolder
 					self::renameTag($s, $dest);
 					// Always exits
 				case 'disable-tag':	//https://github.com/theoldreader/api
-					$token = isset($_POST['T']) ? trim((string)$_POST['T']) : '';
+					$token = isset($_POST['T']) ? trim($_POST['T']) : '';
 					self::checkToken(FreshRSS_Context::userConf(), $token);
 					$s_s = multiplePosts('s');
 					foreach ($s_s as $s) {
@@ -1151,7 +1163,7 @@ final class GReaderAPI {
 					}
 					// Always exits
 				case 'mark-all-as-read':
-					$token = isset($_POST['T']) ? trim((string)$_POST['T']) : '';
+					$token = isset($_POST['T']) ? trim($_POST['T']) : '';
 					self::checkToken(FreshRSS_Context::userConf(), $token);
 					$streamId = trim($_POST['s'] ?? '');
 					$ts = trim($_POST['ts'] ?? '0');	//Older than timestamp in nanoseconds

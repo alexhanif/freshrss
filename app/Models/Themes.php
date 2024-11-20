@@ -168,6 +168,7 @@ class FreshRSS_Themes extends Minz_Model {
 		return match ($type) {
 			self::ICON_URL => Minz_Url::display($url),
 			self::ICON_IMG => '<img class="icon" src="' . Minz_Url::display($url) . '" loading="lazy" alt="' . $alt . '"' . $title . ' />',
+			self::ICON_EMOJI, =>  '<span class="icon"' . $title . '>' . $alt . '</span>',
 			default => '<span class="icon"' . $title . '>' . $alt . '</span>',
 		};
 	}

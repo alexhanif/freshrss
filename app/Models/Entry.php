@@ -226,7 +226,7 @@ HTML;
 			$description = nl2br($enclosure['description'] ?? '', true);
 			$length = $enclosure['length'] ?? 0;
 			$medium = $enclosure['medium'] ?? '';
-			$mime = ($enclosure['type'] ?? '');
+			$mime = $enclosure['type'] ?? '';
 			$thumbnails = $enclosure['thumbnails'] ?? null;
 			if (!is_array($thumbnails)) {
 				$thumbnails = [];
@@ -569,10 +569,10 @@ HTML;
 			if ($filter instanceof FreshRSS_BooleanSearch) {
 				// BooleanSearches are combined by AND (default) or OR or AND NOT (special cases) operators and are recursive
 				match ($filter->operator()) {
+					'AND' => $ok &= $this->matches($filter),
 					'OR' => $ok |= $this->matches($filter),
 					'OR NOT' => $ok |= !$this->matches($filter),
 					'AND NOT' => $ok &= !$this->matches($filter),
-					default => $ok &= $this->matches($filter),
 				};
 			} elseif ($filter instanceof FreshRSS_Search) {
 				// Searches are combined by OR and are not recursive
