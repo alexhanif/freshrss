@@ -90,10 +90,14 @@ final class Minz_ExtensionManager {
 			'list' => array(),
 			'signature' => 'NoneToNone',
 		),
-		'simplepie_before_init' => array(	// function($simplePie, $feed) -> none
-			'list' => array(),
+		'simplepie_after_init' => [	// function(\SimplePie\SimplePie $simplePie, FreshRSS_Feed $feed, bool $result): void
+			'list' => [],
 			'signature' => 'PassArguments',
-		),
+		],
+		'simplepie_before_init' => [	// function(\SimplePie\SimplePie $simplePie, FreshRSS_Feed $feed): void
+			'list' => [],
+			'signature' => 'PassArguments',
+		],
 	];
 
 	/** Remove extensions and hooks from a previous initialisation */
