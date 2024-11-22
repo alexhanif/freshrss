@@ -370,7 +370,7 @@ final class GReaderAPI {
 	 * @param array<string> $titles Title(s) to use for the subscription(s). Each title is associated with the corresponding streamName
 	 * @param 'subscribe'|'unsubscribe'|'edit' $action
 	 * @param string $add StreamId to add the subscription(s) to (generally a category)
-	 * @param string $add StreamId to remove the subscription(s) from (generally a category)
+	 * @param string $remove StreamId to remove the subscription(s) from (generally a category)
 	 */
 	private static function subscriptionEdit(array $streamNames, array $titles, string $action, string $add = '', string $remove = ''): never {
 		// https://github.com/mihaip/google-reader-api/blob/master/wiki/ApiSubscriptionEdit.wiki
