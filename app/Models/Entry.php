@@ -573,6 +573,7 @@ HTML;
 					'OR' => $ok |= $this->matches($filter),
 					'OR NOT' => $ok |= !$this->matches($filter),
 					'AND NOT' => $ok &= !$this->matches($filter),
+					default => $ok &= $this->matches($filter),
 				};
 			} elseif ($filter instanceof FreshRSS_Search) {
 				// Searches are combined by OR and are not recursive
