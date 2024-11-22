@@ -225,7 +225,7 @@ class FreshRSS_Feed extends Minz_Model {
 		return $this->nbNotRead;
 	}
 
-	public function faviconPrepare(): void {
+	public function faviconPrepare(bool $force = false): void {
 		require_once(LIB_PATH . '/favicons.php');
 		$url = $this->website;
 		if ($url == '') {
@@ -235,7 +235,7 @@ class FreshRSS_Feed extends Minz_Model {
 		if (@file_get_contents($txt) !== $url) {
 			file_put_contents($txt, $url);
 		}
-		if (FreshRSS_Context::$isCli) {
+		if (FreshRSS_Context::$isCli || $force) {
 			$ico = FAVICONS_DIR . $this->hash() . '.ico';
 			$ico_mtime = @filemtime($ico);
 			$txt_mtime = @filemtime($txt);
@@ -372,6 +372,7 @@ class FreshRSS_Feed extends Minz_Model {
 				}
 				Minz_ExtensionManager::callHook('simplepie_before_init', $simplePie, $this);
 				$simplePieResult = $simplePie->init();
+				Minz_ExtensionManager::callHook('simplepie_after_init', $simplePie, $this, $simplePieResult);
 
 				if ($simplePieResult === false || $simplePie->get_hash() === '' || !empty($simplePie->error())) {
 					$errorMessage = $simplePie->error();
@@ -1006,7 +1007,13 @@ class FreshRSS_Feed extends Minz_Model {
 		}
 	}
 
+	private function faviconRebuild(): void {
+		FreshRSS_Feed::faviconDelete($this->hash());
+		$this->faviconPrepare(true);
+	}
+
 	public function clearCache(): bool {
+		$this->faviconRebuild();
 		return @unlink($this->cacheFilename());
 	}
 

@@ -355,11 +355,17 @@ input[type="checkbox"] {
 
 .dropdown-menu input[type="checkbox"] {
 	margin-left: 1em;
-	margin-right: .5em;
+	margin-right: 0.5rem;
+	width: 1rem;
 }
 
 .dropdown-menu .item .checkboxNewTag {
 	display: none;
+}
+
+.dropdown-menu .item label:not(.noHover):has(input[type="checkbox"]) {
+	padding-left: 2.5rem;
+	text-indent: -2.5rem;
 }
 
 .dropdown-menu .item.addItem {
@@ -728,6 +734,11 @@ input[type="checkbox"]:focus-visible {
 	scroll-margin-bottom: 2rem;
 }
 
+.horizontal-list.bottom .dropdown-menu {
+	left: 0.5rem;
+	right: auto;
+}
+
 .dropdown-menu::after {
 	background-color: inherit;
 	width: 10px;
@@ -741,6 +752,11 @@ input[type="checkbox"]:focus-visible {
 	right: 13px;
 	z-index: -10;
 	transform: rotate(45deg);
+}
+
+.horizontal-list.bottom .dropdown-menu::after {
+	left: 0.5rem;
+	right: auto;
 }
 
 .dropdown-menu-scrollable {
@@ -778,6 +794,10 @@ input[type="checkbox"]:focus-visible {
 .dropdown-menu .input input {
 	display: block;
 	max-width: 95%;
+}
+
+.dynamictags .dropdown-menu label {
+	white-space: initial;
 }
 
 .dropdown-target:target ~ .dropdown-menu {
@@ -1300,7 +1320,7 @@ input[type="search"] {
 	position: relative;
 }
 
-.flux .flux_header .item {
+.flux .flux_header > .item {
 	white-space: nowrap;
 }
 
@@ -1318,6 +1338,7 @@ input[type="search"] {
 }
 
 .flux .item.manage,
+.flux .flux_header > .item.labels,
 .flux .flux_header > .item.share,
 .flux .item.link {
 	width: calc(1rem + 2 * var(--frss-padding-flux-items));
@@ -2421,10 +2442,8 @@ html.slider-active {
 	}
 
 	.dropdown .dropdown-menu {
-		width: 94%;
-		border-radius: 0;
-		left: 3%;
-		right: 3%;
+		left: 0.5rem !important;
+		right: 0.5rem !important;
 		position: absolute;
 	}
 
@@ -2470,6 +2489,11 @@ html.slider-active {
 		transform: rotate(45deg);
 		z-index: 9999;
 		cursor: default;
+	}
+
+	.horizontal-list.bottom .dropdown-target:target ~ .dropdown-toggle::after {
+		top: 31px;
+		left: 10px;
 	}
 
 	.dropdown-target:target ~ .dropdown-toggle:not(.btn) ~ .dropdown-menu {

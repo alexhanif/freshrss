@@ -19,6 +19,7 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 		* Support for `:last-child`, `:first-of-type`, `:last-of-type`, `^=`, `|=`
 	* New UI feature to download a user’ SQLite database or a database SQLite export (to be produced by CLI) [#6931](https://github.com/FreshRSS/FreshRSS/pull/6931)
 	* Better import of Inoreader user labels [#6791](https://github.com/FreshRSS/FreshRSS/pull/6791)
+	* Rebuild feed favicon on cache clear [#6961](https://github.com/FreshRSS/FreshRSS/pull/6961)
 	* New sharing with Telegram [#6838](https://github.com/FreshRSS/FreshRSS/pull/6838)
 * Bug fixing
 	* Fix searches with a parenthesis before an operator like `("a b")` or `(!c)` [#6818](https://github.com/FreshRSS/FreshRSS/pull/6818)
@@ -51,6 +52,7 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Add privacy settings on extension list retrieval [#4603](https://github.com/FreshRSS/FreshRSS/pull/4603)
 * UI
 	* Searchable *My Labels* field [#6753](https://github.com/FreshRSS/FreshRSS/pull/6753)
+	* Add subscription management button to reading view [#6946](https://github.com/FreshRSS/FreshRSS/pull/6946)
 	* Move to next unread Label on mark as read [#6886](https://github.com/FreshRSS/FreshRSS/pull/6886)
 	* Improve Web accessibility: fix `aria-hidden` bug, and use HTML5 `hidden` [#6910](https://github.com/FreshRSS/FreshRSS/pull/6910)
 	* Default styles for `<pre>` and `<code>` [#6770](https://github.com/FreshRSS/FreshRSS/pull/6770)
@@ -59,10 +61,13 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Improved subscription management page [#6816](https://github.com/FreshRSS/FreshRSS/pull/6816)
 	* Restore JavaScript form validation compatibility with Web browsers using older engines (SeaMonkey) [#6777](https://github.com/FreshRSS/FreshRSS/pull/6777)
 	* Reorganise some options [#6920](https://github.com/FreshRSS/FreshRSS/pull/6920)
+	* Various UI and style improvements [#6959](https://github.com/FreshRSS/FreshRSS/pull/6959)
 * I18n
+	* Add Finnish [#6954](https://github.com/FreshRSS/FreshRSS/pull/6954)
 	* Improve German [#6847](https://github.com/FreshRSS/FreshRSS/pull/6847)
 	* Improve Italian [#6872](https://github.com/FreshRSS/FreshRSS/pull/6872)
 	* Improve Spanish [#6894](https://github.com/FreshRSS/FreshRSS/pull/6894), [#6908](https://github.com/FreshRSS/FreshRSS/pull/6908)
+	* Improve Turkish [#6960](https://github.com/FreshRSS/FreshRSS/pull/6960)
 * Misc.
 	* Better cache name for JSON feeds [#6768](https://github.com/FreshRSS/FreshRSS/pull/6768)
 	* Fix inversed encoding logic in `Minz_Request::paramArray()` [#6800](https://github.com/FreshRSS/FreshRSS/pull/6800)
@@ -71,7 +76,9 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Code improvements [#6800](https://github.com/FreshRSS/FreshRSS/pull/6800), [#6809](https://github.com/FreshRSS/FreshRSS/pull/6809)
 	* Makefile improvements [#6913](https://github.com/FreshRSS/FreshRSS/pull/6913)
 	* Fix PHPCS `ControlSignature` [#6896](https://github.com/FreshRSS/FreshRSS/pull/6896)
-	* Update dev dependencies [#6780](https://github.com/FreshRSS/FreshRSS/pull/6780)
+	* Update *PHPMailer* [#6968](https://github.com/FreshRSS/FreshRSS/pull/6968)
+	* Update dev dependencies [#6780](https://github.com/FreshRSS/FreshRSS/pull/6780), [#6964](https://github.com/FreshRSS/FreshRSS/pull/6964), , [#6965](https://github.com/FreshRSS/FreshRSS/pull/6965),
+		[#6966](https://github.com/FreshRSS/FreshRSS/pull/6966), [#6967](https://github.com/FreshRSS/FreshRSS/pull/6967), [#6970](https://github.com/FreshRSS/FreshRSS/pull/6970)
 
 
 ## 2024-09-06 FreshRSS 1.24.3

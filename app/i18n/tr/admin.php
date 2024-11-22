@@ -116,7 +116,7 @@ return array(
 		'description' => 'Açıklama',
 		'disabled' => 'Pasif',
 		'empty_list' => 'Yüklenmiş eklenti bulunmamaktadır',
-		'empty_list_help' => 'Check the logs to determine the reason behind the empty extension list.',	// TODO
+		'empty_list_help' => 'Boş uzantı listesinin arkasındaki nedeni belirlemek için günlükleri kontrol edin.',
 		'enabled' => 'Aktif',
 		'latest' => 'Kuruldu',
 		'name' => 'İsim',
@@ -210,7 +210,7 @@ return array(
 		'none' => 'Yeni güncelleme yok',
 		'releaseChannel' => array(
 			'_' => 'Sürüm kanalı',
-			'edge' => 'Rolling release (“edge”)',	// IGNORE
+			'edge' => 'Sürekli güncellenen sürüm (“edge”)',
 			'latest' => 'Stabil sürüm (“latest”)',
 		),
 		'title' => 'Sistem güncelleme',
