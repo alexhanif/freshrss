@@ -432,7 +432,7 @@ final class GReaderAPI {
 						if ($feedId <= 0) {
 							$http_auth = '';
 							try {
-								$feed = FreshRSS_feed_Controller::addFeed($streamUrl, $title, $addCatId, '', $http_auth);
+								FreshRSS_feed_Controller::addFeed($streamUrl, $title, $addCatId, '', $http_auth);
 								continue 2;
 							} catch (Exception $e) {
 								Minz_Log::error('subscriptionEdit error subscribe: ' . $e->getMessage(), API_LOG);
