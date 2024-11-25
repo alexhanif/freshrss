@@ -22,7 +22,7 @@
 	<?php if (!empty($remainingTags)): // more than 7 tags: show dropdown menu ?>
 		<li class="item tag">
 			<div class="dropdown">
-				<?php $dropId = 'dropdown-tags2-' . $this->entry->id() . '-' . hrtime(true); ?>
+				<?php $dropId = 'dropdown-tags-' . hrtime(true); ?>
 				<div id="<?= $dropId ?>" class="dropdown-target"></div>
 				<a class="dropdown-toggle" href="#<?= $dropId ?>"><?= _i('down') ?></a>
 				<ul class="dropdown-menu">
