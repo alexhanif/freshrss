@@ -372,6 +372,7 @@ class FreshRSS_Feed extends Minz_Model {
 				}
 				Minz_ExtensionManager::callHook('simplepie_before_init', $simplePie, $this);
 				$simplePieResult = $simplePie->init();
+				Minz_ExtensionManager::callHook('simplepie_after_init', $simplePie, $this, $simplePieResult);
 
 				if ($simplePieResult === false || $simplePie->get_hash() === '' || !empty($simplePie->error())) {
 					$errorMessage = $simplePie->error();
