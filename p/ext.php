@@ -93,10 +93,7 @@ function sendNotFoundResponse(): never {
 	die();
 }
 
-if (!isset($_GET['f'], $_GET['t']) ||
-	!is_string($_GET['f']) ||
-	!is_string($_GET['t'])
-) {
+if (!isset($_GET['f'], $_GET['t']) || !is_string($_GET['f']) || !is_string($_GET['t'])) {
 	sendBadRequestResponse('Query string is incomplete.');
 }
 

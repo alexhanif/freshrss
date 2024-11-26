@@ -104,7 +104,7 @@ class UserQueryTest extends TestCase {
 			'order' => 'some order',
 			'search' => 'some search',
 			'state' => FreshRSS_Entry::STATE_ALL,
-			'url' => 'some url'
+			'url' => 'some url',
 		];
 		$user_query = new FreshRSS_UserQuery($query, [], []);
 		self::assertCount(6, $user_query->toArray());
@@ -112,9 +112,7 @@ class UserQueryTest extends TestCase {
 	}
 
 	public static function testHasSearch_whenSearch_returnsTrue(): void {
-		$query = [
-			'search' => 'some search',
-		];
+		$query = ['search' => 'some search'];
 		$user_query = new FreshRSS_UserQuery($query, [], []);
 		self::assertTrue($user_query->hasSearch());
 	}
@@ -125,9 +123,7 @@ class UserQueryTest extends TestCase {
 	}
 
 	public static function testHasParameters_whenAllQuery_returnsFalse(): void {
-		$query = [
-			'get' => 'a',
-		];
+		$query = ['get' => 'a'];
 		$user_query = new FreshRSS_UserQuery($query, [], []);
 		self::assertFalse($user_query->hasParameters());
 	}

@@ -515,7 +515,7 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 			FreshRSS_Context::userConf()->save();
 			invalidateHttpCache();
 
-			Minz_Request::good(_t('feedback.conf.updated'), array('c' => 'configure', 'a' => 'privacy'));
+			Minz_Request::good(_t('feedback.conf.updated'), ['c' => 'configure', 'a' => 'privacy']);
 		}
 
 		FreshRSS_View::prependTitle(_t('conf.privacy') . ' · ');

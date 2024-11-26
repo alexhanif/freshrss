@@ -12,7 +12,7 @@ class FreshRSS_error_Controller extends FreshRSS_ActionController {
 	 *
 	 * Parameters are passed by Minz_Session to have a proper url:
 	 *   - error_code (default: 404)
-	 *   - error_logs (default: array())
+	 *   - error_logs (default: [])
 	 */
 	public function indexAction(): void {
 		$code_int = Minz_Session::paramInt('error_code') ?: 404;

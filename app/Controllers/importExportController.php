@@ -582,7 +582,7 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 	 *   - export_opml (default: false)
 	 *   - export_starred (default: false)
 	 *   - export_labelled (default: false)
-	 *   - export_feeds (default: array()) a list of feed ids
+	 *   - export_feeds (default: []) a list of feed ids
 	 */
 	public function exportAction(): void {
 		if (!Minz_Request::isPost()) {
