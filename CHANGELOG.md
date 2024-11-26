@@ -33,6 +33,7 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Fix HTML regex pattern during install for compatibility with `v` mode [#7009](https://github.com/FreshRSS/FreshRSS/pull/7009)
 	* More robust creation of user data folder [#7000](https://github.com/FreshRSS/FreshRSS/pull/7000)
 * API
+	* Supported by [Capy Reader](https://github.com/jocmp/capyreader) (Android, open source) [capyreader#492](https://github.com/jocmp/capyreader/discussions/492)
 	* Allow adding multiple feeds to a category via API [#7017](https://github.com/FreshRSS/FreshRSS/pull/7017)
 * Compatibility
 	* Require PHP 8.1+ (drop PHP 7.4) [#6711](https://github.com/FreshRSS/FreshRSS/pull/6711)
