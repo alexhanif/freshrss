@@ -277,8 +277,10 @@ final class GReaderAPI {
 	private static function tagList(): never {
 		header('Content-Type: application/json; charset=UTF-8');
 
-		$tags = [['id' => 'user/-/state/com.google/starred']];
-		//['id' => 'user/-/state/com.google/broadcast', 'sortid' => '2'],
+		$tags = [
+			['id' => 'user/-/state/com.google/starred'],
+			// ['id' => 'user/-/state/com.google/broadcast', 'sortid' => '2']
+		];
 		$categoryDAO = FreshRSS_Factory::createCategoryDao();
 		$categories = $categoryDAO->listCategories(true, false) ?: [];
 		foreach ($categories as $cat) {
@@ -295,8 +297,8 @@ final class GReaderAPI {
 			$tags[] = [
 				'id' => 'user/-/label/' . htmlspecialchars_decode($label->name(), ENT_QUOTES),
 				//'sortid' => $label->name(),
-				'type' => 'tag', //Inoreader
-				'unread_count' => $label->nbUnread(), //Inoreader
+				'type' => 'tag',	//Inoreader
+				'unread_count' => $label->nbUnread(),	//Inoreader
 			];
 		}
 
@@ -467,8 +469,7 @@ final class GReaderAPI {
 				$url = substr($url, 5);
 			}
 			$feed = FreshRSS_feed_Controller::addFeed($url);
-			exit(json_encode(
-				[
+			exit(json_encode([
 					'numResults' => 1,
 					'query' => $feed->url(),
 					'streamId' => 'feed/' . $feed->id(),
@@ -476,8 +477,7 @@ final class GReaderAPI {
 				], JSON_OPTIONS));
 		} catch (Exception $e) {
 			Minz_Log::error('quickadd error: ' . $e->getMessage(), API_LOG);
-			die(json_encode(
-				[
+			die(json_encode([
 					'numResults' => 0,
 					'error' => $e->getMessage(),
 				], JSON_OPTIONS));
@@ -527,7 +527,7 @@ final class GReaderAPI {
 				'id' => 'user/-/label/' . htmlspecialchars_decode($label->name(), ENT_QUOTES),
 				'count' => $label->nbUnread(),
 				'newestItemTimestampUsec' => '' . $lastUpdate,
-				];
+			];
 		}
 
 		$unreadcounts[] = [
@@ -633,12 +633,12 @@ final class GReaderAPI {
 		}
 
 		$searches = new FreshRSS_BooleanSearch('');
-		if ($start_time != 0) {
+		if ($start_time !== 0) {
 			$search = new FreshRSS_Search('');
 			$search->setMinDate($start_time);
 			$searches->add($search);
 		}
-		if ($stop_time != 0) {
+		if ($stop_time !== 0) {
 			$search = new FreshRSS_Search('');
 			$search->setMaxDate($stop_time);
 			$searches->add($search);
@@ -735,10 +735,14 @@ final class GReaderAPI {
 		}
 		$itemRefs = [];
 		foreach ($ids as $entryId) {
-			$itemRefs[] = ['id' => '' . $entryId];
+			$itemRefs[] = [
+				'id' => '' . $entryId,	//64-bit decimal
+			];
 		}
 
-		$response = ['itemRefs' => $itemRefs];
+		$response = [
+			'itemRefs' => $itemRefs,
+		];
 		if (count($ids) >= $count) {
 			$entryId = end($ids);
 			if ($entryId != false) {
@@ -859,8 +863,7 @@ final class GReaderAPI {
 	}
 
 	private static function renameTag(string $s, string $dest): never {
-		if ($s != '' && str_starts_with($s, 'user/-/label/') &&
-			$dest != '' && str_starts_with($dest, 'user/-/label/')) {
+		if (str_starts_with($s, 'user/-/label/') && str_starts_with($dest, 'user/-/label/')) {
 			$s = substr($s, 13);
 			$s = htmlspecialchars($s, ENT_COMPAT, 'UTF-8');
 			$dest = substr($dest, 13);
@@ -886,7 +889,7 @@ final class GReaderAPI {
 	}
 
 	private static function disableTag(string $s): never {
-		if ($s != '' && str_starts_with($s, 'user/-/label/')) {
+		if (str_starts_with($s, 'user/-/label/')) {
 			$s = substr($s, 13);
 			$s = htmlspecialchars($s, ENT_COMPAT, 'UTF-8');
 			$categoryDAO = FreshRSS_Factory::createCategoryDao();
@@ -1012,12 +1015,12 @@ final class GReaderAPI {
 			switch ($pathInfos[4]) {
 				case 'stream':
 					/**
-					* xt=[exclude target] : Used to exclude certain items from the feed.
-					* For example, using xt=user/-/state/com.google/read will exclude items
-					* that the current user has marked as read, or xt=feed/[feedurl] will
-					* exclude items from a particular feed (obviously not useful in this
-					* request, but xt appears in other listing requests).
-					*/
+					 * xt=[exclude target]: Used to exclude certain items from the feed.
+					 * For example, using xt=user/-/state/com.google/read will exclude items
+					 * that the current user has marked as read, or xt=feed/[feedurl] will
+					 * exclude items from a particular feed (obviously not useful in this request,
+					 * but xt appears in other listing requests).
+					 */
 					$exclude_target = $_GET['xt'] ?? '';
 					$filter_target = $_GET['it'] ?? '';
 					//n=[integer] : The maximum number of results to return.
@@ -1025,10 +1028,9 @@ final class GReaderAPI {
 					//r=[d|n|o] : Sort order of item results. d or n gives items in descending date order, o in ascending order.
 					$order = $_GET['r'] ?? 'd';
 					/**
-					 * ot=[unix timestamp] : The time from which you want to retrieve
-					* items. Only items that have been crawled by Google Reader after
-					* this time will be returned.
-					*/
+					 * ot=[unix timestamp] : The time from which you want to retrieve items.
+					 * Only items that have been crawled by Google Reader after this time will be returned.
+					 */
 					$start_time = isset($_GET['ot']) ? (int)$_GET['ot'] : 0;
 					$stop_time = isset($_GET['nt']) ? (int)$_GET['nt'] : 0;
 					/**
@@ -1121,11 +1123,11 @@ final class GReaderAPI {
 							case 'edit':
 								if (isset($_REQUEST['s'], $_REQUEST['ac'])) {
 									// StreamId to operate on. The parameter may be repeated to edit multiple subscriptions at once
-									$streamNames = empty($_POST['s']) && isset($_GET['s']) ? array($_GET['s']) : multiplePosts('s');
+									$streamNames = empty($_POST['s']) && isset($_GET['s']) ? [$_GET['s']] : multiplePosts('s');
 									/* Title to use for the subscription. For the `subscribe` action,
 									* if not specified then the feed’s current title will be used. Can
 									* be used with the `edit` action to rename a subscription */
-									$titles = empty($_POST['t']) && isset($_GET['t']) ? array($_GET['t']) : multiplePosts('t');
+									$titles = empty($_POST['t']) && isset($_GET['t']) ? [$_GET['t']] : multiplePosts('t');
 									// Action to perform on the given StreamId. Possible values are `subscribe`, `unsubscribe` and `edit`
 									$action = $_REQUEST['ac'];
 									// StreamId to add the subscription to (generally a user label)

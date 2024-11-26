@@ -571,8 +571,8 @@ HTML;
 				match ($filter->operator()) {
 					'AND' => $ok &= $this->matches($filter),
 					'OR' => $ok |= $this->matches($filter),
-					'OR NOT' => $ok |= !$this->matches($filter),
 					'AND NOT' => $ok &= !$this->matches($filter),
+					'OR NOT' => $ok |= !$this->matches($filter),
 					default => $ok &= $this->matches($filter),
 				};
 			} elseif ($filter instanceof FreshRSS_Search) {
