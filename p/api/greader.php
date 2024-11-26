@@ -657,6 +657,7 @@ final class GReaderAPI {
 			'starred' => 's',
 			'feed' => 'f',
 			'label' => 'c',
+			'reading-list' => 'A',
 			default => 'A',
 		};
 
