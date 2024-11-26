@@ -24,10 +24,16 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 * Bug fixing
 	* Fix searches with a parenthesis before an operator like `("a b")` or `(!c)` [#6818](https://github.com/FreshRSS/FreshRSS/pull/6818)
 	* Fix auto-read tags [#6790](https://github.com/FreshRSS/FreshRSS/pull/6790)
+	* Fix redirection error after creating a new user [#6995](https://github.com/FreshRSS/FreshRSS/pull/6995)
 	* Fix favicon error in case of wrong URL [#6899](https://github.com/FreshRSS/FreshRSS/pull/6899)
 	* Use cURL to fetch extensions list (allows e.g. IPv6) [#6767](https://github.com/FreshRSS/FreshRSS/pull/6767)
 	* Fix XML encoding in cURL options [#6821](https://github.com/FreshRSS/FreshRSS/pull/6821)
+	* Fix menu for article tags in some cases [#6990](https://github.com/FreshRSS/FreshRSS/pull/6990)
 	* Fix share menu shortcut [#6825](https://github.com/FreshRSS/FreshRSS/pull/6825)
+	* Fix HTML regex pattern during install for compatibility with `v` mode [#7009](https://github.com/FreshRSS/FreshRSS/pull/7009)
+	* More robust creation of user data folder [#7000](https://github.com/FreshRSS/FreshRSS/pull/7000)
+* API
+	* Allow adding multiple feeds to a category via API [#7017](https://github.com/FreshRSS/FreshRSS/pull/7017)
 * Compatibility
 	* Require PHP 8.1+ (drop PHP 7.4) [#6711](https://github.com/FreshRSS/FreshRSS/pull/6711)
 	* Improved support of PHP 8.4+ [#6618](https://github.com/FreshRSS/FreshRSS/pull/6618), [PhpGt/CssXPath#227](https://github.com/PhpGt/CssXPath/pull/227),
@@ -47,13 +53,14 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Upstream fixes [simplepie#878](https://github.com/simplepie/simplepie/pull/878), [simplepie#883](https://github.com/simplepie/simplepie/pull/883)
 	* Sync upstream [#6840](https://github.com/FreshRSS/FreshRSS/pull/6840)
 * Security
-	* Apache protect more non-public folders and files [#6881](https://github.com/FreshRSS/FreshRSS/pull/6881), [#6893](https://github.com/FreshRSS/FreshRSS/pull/6893)
+	* Apache protect more non-public folders and files [#6881](https://github.com/FreshRSS/FreshRSS/pull/6881), [#6893](https://github.com/FreshRSS/FreshRSS/pull/6893), [#7008](https://github.com/FreshRSS/FreshRSS/pull/7008)
 	* Fix login in unsafe mode when using a password with special XML characters [#6797](https://github.com/FreshRSS/FreshRSS/pull/6797)
 	* Add privacy settings on extension list retrieval [#4603](https://github.com/FreshRSS/FreshRSS/pull/4603)
 * UI
 	* Searchable *My Labels* field [#6753](https://github.com/FreshRSS/FreshRSS/pull/6753)
 	* Add subscription management button to reading view [#6946](https://github.com/FreshRSS/FreshRSS/pull/6946)
-	* Move to next unread Label on mark as read [#6886](https://github.com/FreshRSS/FreshRSS/pull/6886)
+	* New option for showing label menu in article row [#6984](https://github.com/FreshRSS/FreshRSS/pull/6984)
+	* Move to next unread label on mark as read [#6886](https://github.com/FreshRSS/FreshRSS/pull/6886)
 	* Improve Web accessibility: fix `aria-hidden` bug, and use HTML5 `hidden` [#6910](https://github.com/FreshRSS/FreshRSS/pull/6910)
 	* Default styles for `<pre>` and `<code>` [#6770](https://github.com/FreshRSS/FreshRSS/pull/6770)
 	* Refactor the sharing menu to use a `<template>` instead of duplicated HTML code [#6751](https://github.com/FreshRSS/FreshRSS/pull/6751)
@@ -61,7 +68,10 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Improved subscription management page [#6816](https://github.com/FreshRSS/FreshRSS/pull/6816)
 	* Restore JavaScript form validation compatibility with Web browsers using older engines (SeaMonkey) [#6777](https://github.com/FreshRSS/FreshRSS/pull/6777)
 	* Reorganise some options [#6920](https://github.com/FreshRSS/FreshRSS/pull/6920)
+	* New shortcut `?` to show shortcut page and help [#6981](https://github.com/FreshRSS/FreshRSS/pull/6981)
 	* Various UI and style improvements [#6959](https://github.com/FreshRSS/FreshRSS/pull/6959)
+* Extensions
+	* New extension hook `simplepie_after_init` [#7007](https://github.com/FreshRSS/FreshRSS/pull/7007)
 * I18n
 	* Add Finnish [#6954](https://github.com/FreshRSS/FreshRSS/pull/6954)
 	* Improve German [#6847](https://github.com/FreshRSS/FreshRSS/pull/6847)

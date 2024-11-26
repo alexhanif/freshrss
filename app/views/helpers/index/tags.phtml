@@ -22,8 +22,9 @@
 	<?php if (!empty($remainingTags)): // more than 7 tags: show dropdown menu ?>
 		<li class="item tag">
 			<div class="dropdown">
-				<div id="dropdown-tags2-<?= $this->entry->id() ?>" class="dropdown-target"></div>
-				<a class="dropdown-toggle" href="#dropdown-tags2-<?= $this->entry->id() ?>"><?= _i('down') ?></a>
+				<?php $dropId = 'dropdown-tags-' . hrtime(true); ?>
+				<div id="<?= $dropId ?>" class="dropdown-target"></div>
+				<a class="dropdown-toggle" href="#<?= $dropId ?>"><?= _i('down') ?></a>
 				<ul class="dropdown-menu">
 					<li class="dropdown-header"><?= _t('index.tag.related') ?></li>
 					<?php if (Minz_Request::controllerName() === 'index'): ?>
