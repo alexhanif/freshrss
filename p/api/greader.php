@@ -366,11 +366,17 @@ final class GReaderAPI {
 	}
 
 	/**
-	 * @param array<string> $streamNames
-	 * @param array<string> $titles
+	 * @param array<string> $streamNames StreamId(s) to operate on. The parameter may be repeated to edit multiple subscriptions at once
+	 * @param array<string> $titles Title(s) to use for the subscription(s). Each title is associated with the corresponding streamName
+	 * @param 'subscribe'|'unsubscribe'|'edit' $action
+	 * @param string $add StreamId to add the subscription(s) to (generally a category)
+	 * @param string $remove StreamId to remove the subscription(s) from (generally a category)
 	 */
 	private static function subscriptionEdit(array $streamNames, array $titles, string $action, string $add = '', string $remove = ''): never {
-		//https://github.com/mihaip/google-reader-api/blob/master/wiki/ApiSubscriptionEdit.wiki
+		// https://github.com/mihaip/google-reader-api/blob/master/wiki/ApiSubscriptionEdit.wiki
+		if (count($streamNames) < 1) {
+			self::badRequest();
+		}
 		switch ($action) {
 			case 'subscribe':
 			case 'unsubscribe':
@@ -379,15 +385,14 @@ final class GReaderAPI {
 			default:
 				self::badRequest();
 		}
+
 		$addCatId = 0;
-		$c_name = '';
-		if ($add != '' && strpos($add, 'user/') === 0) {	//user/-/label/Example ; user/username/label/Example
-			if (strpos($add, 'user/-/label/') === 0) {
+		if (str_starts_with($add, 'user/')) {	// user/-/label/Example ; user/username/label/Example
+			if (str_starts_with($add, 'user/-/label/')) {
 				$c_name = substr($add, 13);
 			} else {
-				$user = Minz_User::name();
-				$prefix = 'user/' . $user . '/label/';
-				if (strpos($add, $prefix) === 0) {
+				$prefix = 'user/' . Minz_User::name() . '/label/';
+				if (str_starts_with($add, $prefix)) {
 					$c_name = substr($add, strlen($prefix));
 				} else {
 					$c_name = '';
@@ -396,14 +401,15 @@ final class GReaderAPI {
 			$c_name = htmlspecialchars($c_name, ENT_COMPAT, 'UTF-8');
 			$categoryDAO = FreshRSS_Factory::createCategoryDao();
 			$cat = $categoryDAO->searchByName($c_name);
-			$addCatId = $cat == null ? 0 : $cat->id();
-		} elseif ($remove != '' && strpos($remove, 'user/-/label/') === 0) {
-			$addCatId = 1;	//Default category
+			$addCatId = $cat === null ? 0 : $cat->id();
+			if ($addCatId === 0) {
+				$addCatId = $categoryDAO->addCategory(['name' => $c_name]) ?: FreshRSS_CategoryDAO::DEFAULTCATEGORYID;
+			}
+		} elseif (str_starts_with($remove, 'user/-/label/')) {
+			$addCatId = FreshRSS_CategoryDAO::DEFAULTCATEGORYID;
 		}
+
 		$feedDAO = FreshRSS_Factory::createFeedDao();
-		if (count($streamNames) < 1) {
-			self::badRequest();
-		}
 		for ($i = count($streamNames) - 1; $i >= 0; $i--) {
 			$streamUrl = $streamNames[$i];	//feed/http://example.net/sample.xml	;	feed/338
 			if (strpos($streamUrl, 'feed/') === 0) {
@@ -426,7 +432,7 @@ final class GReaderAPI {
 						if ($feedId <= 0) {
 							$http_auth = '';
 							try {
-								$feed = FreshRSS_feed_Controller::addFeed($streamUrl, $title, $addCatId, $c_name, $http_auth);
+								FreshRSS_feed_Controller::addFeed($streamUrl, $title, $addCatId, '', $http_auth);
 								continue 2;
 							} catch (Exception $e) {
 								Minz_Log::error('subscriptionEdit error subscribe: ' . $e->getMessage(), API_LOG);
@@ -441,8 +447,8 @@ final class GReaderAPI {
 						break;
 					case 'edit':
 						if ($feedId > 0) {
-							if ($addCatId > 0 || $c_name != '') {
-								FreshRSS_feed_Controller::moveFeed($feedId, $addCatId, $c_name);
+							if ($addCatId > 0) {
+								FreshRSS_feed_Controller::moveFeed($feedId, $addCatId);
 							}
 							if ($title != '') {
 								FreshRSS_feed_Controller::renameFeed($feedId, $title);
@@ -1130,15 +1136,19 @@ final class GReaderAPI {
 								// Always exits
 							case 'edit':
 								if (isset($_REQUEST['s'], $_REQUEST['ac'])) {
-									//StreamId to operate on. The parameter may be repeated to edit multiple subscriptions at once
+									// StreamId to operate on. The parameter may be repeated to edit multiple subscriptions at once
 									$streamNames = empty($_POST['s']) && isset($_GET['s']) ? array($_GET['s']) : multiplePosts('s');
 									/* Title to use for the subscription. For the `subscribe` action,
 									* if not specified then the feed’s current title will be used. Can
 									* be used with the `edit` action to rename a subscription */
 									$titles = empty($_POST['t']) && isset($_GET['t']) ? array($_GET['t']) : multiplePosts('t');
-									$action = $_REQUEST['ac'];	//Action to perform on the given StreamId. Possible values are `subscribe`, `unsubscribe` and `edit`
-									$add = $_REQUEST['a'] ?? '';	//StreamId to add the subscription to (generally a user label)
-									$remove = $_REQUEST['r'] ?? '';	//StreamId to remove the subscription from (generally a user label)
+									// Action to perform on the given StreamId. Possible values are `subscribe`, `unsubscribe` and `edit`
+									$action = $_REQUEST['ac'];
+									// StreamId to add the subscription to (generally a user label)
+									// (in FreshRSS, we do not support repeated values since a feed can only be in one category)
+									$add = $_REQUEST['a'] ?? '';
+									// StreamId to remove the subscription from (generally a user label) (in FreshRSS, we do not support repeated values)
+									$remove = $_REQUEST['r'] ?? '';
 									self::subscriptionEdit($streamNames, $titles, $action, $add, $remove);
 								}
 								break;
