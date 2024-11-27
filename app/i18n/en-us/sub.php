@@ -193,7 +193,7 @@ return array(
 		),
 		'method_help' => 'The POST payload has automatic support for <code>application/x-www-form-urlencoded</code> and <code>application/json</code>',	// IGNORE
 		'method_postparams' => 'Payload for POST',	// IGNORE
-		'moved_category_deleted' => 'When you delete a category, its feeds are automatically classified under <em>%s</em>.',	// IGNORE
+		'moved_category_deleted' => 'When you remove a category, its feeds are automatically classified under <em>%s</em>.',	// IGNORE
 		'mute' => array(
 			'_' => 'mute',	// IGNORE
 			'state_is_muted' => 'This feed is muted',	// IGNORE
