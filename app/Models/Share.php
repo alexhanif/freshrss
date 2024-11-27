@@ -103,7 +103,6 @@ class FreshRSS_Share {
 		private readonly string $help_url,
 		string $method,
 		private ?string $field,
-		/** @phpstan-var 'button'|null */
 		private readonly ?string $HTMLtag,
 		private readonly bool $isDeprecated = false
 	) {
