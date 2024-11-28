@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-class FreshRSS_FeedDAO extends Minz_ModelPdo {
+abstract class FreshRSS_FeedDAO extends Minz_ModelPdo {
 
 	protected function addColumn(string $name): bool {
 		if ($this->pdo->inTransaction()) {
@@ -446,25 +446,7 @@ SQL;
 	/**
 	 * Update cached values for selected feeds, or all feeds if no feed ID is provided.
 	 */
-	public function updateCachedValues(int ...$feedIds): int|false {
-		//2 sub-requests with FOREIGN KEY(e.id_feed), INDEX(e.is_read) faster than 1 request with GROUP BY or CASE
-		$sql = <<<SQL
-UPDATE `_feed`
-SET `cache_nbEntries`=(SELECT COUNT(e1.id) FROM `_entry` e1 WHERE e1.id_feed=`_feed`.id),
-	`cache_nbUnreads`=(SELECT COUNT(e2.id) FROM `_entry` e2 WHERE e2.id_feed=`_feed`.id AND e2.is_read=0)
-SQL;
-		if (count($feedIds) > 0) {
-			$sql .= ' WHERE id IN (' . str_repeat('?,', count($feedIds) - 1) . '?)';
-		}
-		$stm = $this->pdo->prepare($sql);
-		if ($stm !== false && $stm->execute($feedIds)) {
-			return $stm->rowCount();
-		} else {
-			$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
-			Minz_Log::error('SQL error ' . __METHOD__ . json_encode($info));
-			return false;
-		}
-	}
+	abstract public function updateCachedValues(int ...$feedIds): int|false;
 
 	/**
 	 * Remember to call updateCachedValues() after calling this function

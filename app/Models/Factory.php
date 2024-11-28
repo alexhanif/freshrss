@@ -29,8 +29,10 @@ class FreshRSS_Factory {
 		switch (FreshRSS_Context::systemConf()->db['type'] ?? '') {
 			case 'sqlite':
 				return new FreshRSS_FeedDAOSQLite($username);
+			case 'pgsql':
+				return new FreshRSS_FeedDAOPGSQL($username);
 			default:
-				return new FreshRSS_FeedDAO($username);
+				return new FreshRSS_FeedDAOMySQL($username);
 		}
 	}
 
