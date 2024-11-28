@@ -19,7 +19,7 @@ return array(
 		'cancel' => 'Mégsem',
 		'create' => 'Létrehoz',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
-		'delete_errored_feeds' => 'Delete feeds in error',	// TODO
+		'delete_errored_feeds' => 'Delete feeds in error state',	// TODO
 		'delete_muted_feeds' => 'Némított hírforrások törlése',
 		'demote' => 'Lefokoz',
 		'disable' => 'Kikapcsol',

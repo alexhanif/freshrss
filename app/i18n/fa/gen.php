@@ -19,7 +19,7 @@ return array(
 		'cancel' => ' لغو',
 		'create' => ' ایجاد کنید',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
-		'delete_errored_feeds' => 'Delete feeds in error',	// TODO
+		'delete_errored_feeds' => 'Delete feeds in error state',	// TODO
 		'delete_muted_feeds' => ' فیدهای خاموش را حذف کنید',
 		'demote' => ' تنزل دادن',
 		'disable' => ' غیر فعال کردن',

@@ -19,7 +19,7 @@ return array(
 		'cancel' => 'Peruuta',
 		'create' => 'Luo',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
-		'delete_errored_feeds' => 'Delete feeds in error',	// TODO
+		'delete_errored_feeds' => 'Delete feeds in error state',	// TODO
 		'delete_muted_feeds' => 'Poista vaimennetut syötteet',
 		'demote' => 'Laske tärkeyttä',
 		'disable' => 'Poista käytöstä',

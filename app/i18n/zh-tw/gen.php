@@ -19,7 +19,7 @@ return array(
 		'cancel' => '取消',
 		'create' => '創建',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
-		'delete_errored_feeds' => 'Delete feeds in error',	// TODO
+		'delete_errored_feeds' => 'Delete feeds in error state',	// TODO
 		'delete_muted_feeds' => '刪除已暫停的訂閱源',
 		'demote' => '撤銷管理員',
 		'disable' => '禁用',

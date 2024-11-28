@@ -19,7 +19,7 @@ return array(
 		'cancel' => '취소',
 		'create' => '생성',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
-		'delete_errored_feeds' => 'Delete feeds in error',	// TODO
+		'delete_errored_feeds' => 'Delete feeds in error state',	// TODO
 		'delete_muted_feeds' => '음소거된 피드 삭제',
 		'demote' => '목록 수준 내리기',
 		'disable' => '비활성화',
