@@ -168,7 +168,7 @@ class FreshRSS_Entry extends Minz_Model {
 		$medium = $enclosure['medium'] ?? '';
 		$mime = $enclosure['type'] ?? '';
 
-		return ($elink != '' && $medium === 'image') || strpos($mime, 'image') === 0 ||
+		return ($elink != '' && $medium === 'image') || str_starts_with($mime, 'image') ||
 			($mime == '' && $length == 0 && preg_match('/[.](avif|gif|jpe?g|png|svg|webp)([?#]|$)/i', $elink));
 	}
 
@@ -242,12 +242,12 @@ HTML;
 
 			if (self::enclosureIsImage($enclosure)) {
 				$content .= '<p class="enclosure-content"><img src="' . $elink . '" alt="" title="' . $etitle . '" /></p>';
-			} elseif ($medium === 'audio' || strpos($mime, 'audio') === 0) {
+			} elseif ($medium === 'audio' || str_starts_with($mime, 'audio')) {
 				$content .= '<p class="enclosure-content"><audio preload="none" src="' . $elink
 					. ($length == null ? '' : '" data-length="' . (int)$length)
 					. ($mime == '' ? '' : '" data-type="' . htmlspecialchars($mime, ENT_COMPAT, 'UTF-8'))
 					. '" controls="controls" title="' . $etitle . '"></audio> <a download="" href="' . $elink . '">💾</a></p>';
-			} elseif ($medium === 'video' || strpos($mime, 'video') === 0) {
+			} elseif ($medium === 'video' || str_starts_with($mime, 'video')) {
 				$content .= '<p class="enclosure-content"><video preload="none" src="' . $elink
 					. ($length == null ? '' : '" data-length="' . (int)$length)
 					. ($mime == '' ? '' : '" data-type="' . htmlspecialchars($mime, ENT_COMPAT, 'UTF-8'))
@@ -285,7 +285,7 @@ HTML;
 			yield from $attributeEnclosures;
 		}
 		try {
-			$searchEnclosures = !is_iterable($attributeEnclosures) && (strpos($this->content, '<p class="enclosure-content') !== false);
+			$searchEnclosures = !is_iterable($attributeEnclosures) && (str_contains($this->content, '<p class="enclosure-content'));
 			$searchBodyImages &= (stripos($this->content, '<img') !== false);
 			$xpath = null;
 			if ($searchEnclosures || $searchBodyImages) {
@@ -498,7 +498,7 @@ HTML;
 	public function _authors($value): void {
 		$this->hash = '';
 		if (!is_array($value)) {
-			if (strpos($value, ';') !== false) {
+			if (str_contains($value, ';')) {
 				$value = htmlspecialchars_decode($value, ENT_QUOTES);
 				$value = preg_split('/\s*[;]\s*/', $value, -1, PREG_SPLIT_NO_EMPTY) ?: [];
 				$value = Minz_Helper::htmlspecialchars_utf8($value);
@@ -568,21 +568,13 @@ HTML;
 		foreach ($booleanSearch->searches() as $filter) {
 			if ($filter instanceof FreshRSS_BooleanSearch) {
 				// BooleanSearches are combined by AND (default) or OR or AND NOT (special cases) operators and are recursive
-				switch ($filter->operator()) {
-					case 'OR':
-						$ok |= $this->matches($filter);
-						break;
-					case 'OR NOT':
-						$ok |= !$this->matches($filter);
-						break;
-					case 'AND NOT':
-						$ok &= !$this->matches($filter);
-						break;
-					case 'AND':
-					default:
-						$ok &= $this->matches($filter);
-						break;
-				}
+				match ($filter->operator()) {
+					'AND' => $ok &= $this->matches($filter),
+					'OR' => $ok |= $this->matches($filter),
+					'AND NOT' => $ok &= !$this->matches($filter),
+					'OR NOT' => $ok |= !$this->matches($filter),
+					default => $ok &= $this->matches($filter),
+				};
 			} elseif ($filter instanceof FreshRSS_Search) {
 				// Searches are combined by OR and are not recursive
 				$ok = true;
@@ -836,7 +828,7 @@ HTML;
 			$base = $xpath->evaluate('normalize-space(//base/@href)');
 			if ($base == false || !is_string($base)) {
 				$base = $url;
-			} elseif (substr($base, 0, 2) === '//') {
+			} elseif (str_starts_with($base, '//')) {
 				//Protocol-relative URLs "//www.example.net"
 				$base = (parse_url($url, PHP_URL_SCHEME) ?? 'https') . ':' . $base;
 			}

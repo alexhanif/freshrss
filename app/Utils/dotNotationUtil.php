@@ -31,7 +31,7 @@ final class FreshRSS_dotNotation_Util
 		if (static::exists($array, $key)) {
 			return $array[$key];
 		}
-		if (strpos($key, '.') === false) {
+		if (str_contains($key, '.') === false) {
 			return $array[$key] ?? static::value($default);
 		}
 		foreach (explode('.', $key) as $segment) {
