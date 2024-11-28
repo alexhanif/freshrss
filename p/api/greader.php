@@ -596,7 +596,6 @@ final class GReaderAPI {
 				$streamId = htmlspecialchars((string)$streamId, ENT_COMPAT, 'UTF-8');
 				$cat = $categoryDAO->searchByName($streamId);
 				if ($cat != null) {
-					$type = 'c';
 					$streamId = $cat->id();
 				} else {
 					$tagDAO = FreshRSS_Factory::createTagDao();
@@ -605,7 +604,6 @@ final class GReaderAPI {
 						$type = 't';
 						$streamId = $tag->id();
 					} else {
-						$type = 'A';
 						$streamId = -1;
 					}
 				}
@@ -970,7 +968,7 @@ final class GReaderAPI {
 		} else {
 			$pathInfo = $_SERVER['PATH_INFO'];
 		}
-		$pathInfo = urldecode($pathInfo);
+		$pathInfo = rawurldecode($pathInfo);
 		$pathInfo = '' . preg_replace('%^(/api)?(/greader\.php)?%', '', $pathInfo);	//Discard common errors
 		if ($pathInfo == '' && empty($_SERVER['QUERY_STRING'])) {
 			exit('OK');
