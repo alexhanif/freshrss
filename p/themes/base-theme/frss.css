@@ -962,6 +962,7 @@ input[type="checkbox"]:focus-visible {
 	top: 0;
 	right: 0;
 	line-height: 1;
+	font-weight: initial;
 }
 
 .box .box-title form {
