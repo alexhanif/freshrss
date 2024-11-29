@@ -103,7 +103,7 @@ function searchFavicon(string &$url): string {
 		}
 
 		$iri = $href->get_iri();
-		$favicon = downloadHttp($iri, array(CURLOPT_REFERER => $url));
+		$favicon = downloadHttp($iri, [CURLOPT_REFERER => $url]);
 		if (isImgMime($favicon)) {
 			return $favicon;
 		}
@@ -122,9 +122,7 @@ function download_favicon(string $url, string $dest): bool {
 		}
 		if ($favicon == '') {
 			$link = $rootUrl . 'favicon.ico';
-			$favicon = downloadHttp($link, array(
-					CURLOPT_REFERER => $url,
-				));
+			$favicon = downloadHttp($link, [CURLOPT_REFERER => $url]);
 			if (!isImgMime($favicon)) {
 				$favicon = '';
 			}

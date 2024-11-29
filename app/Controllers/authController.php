@@ -72,27 +72,18 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 
 		$auth_type = FreshRSS_Context::systemConf()->auth_type;
 		FreshRSS_Context::initUser(Minz_User::INTERNAL_USER, false);
-		switch ($auth_type) {
-			case 'form':
-				Minz_Request::forward(['c' => 'auth', 'a' => 'formLogin']);
-				break;
-			case 'http_auth':
-				Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_403_FORBIDDEN, [
+		match ($auth_type) {
+			'form' => Minz_Request::forward(['c' => 'auth', 'a' => 'formLogin']),
+			'http_auth' => Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_403_FORBIDDEN, [
 					'error' => [
 						_t('feedback.access.denied'),
 						' [HTTP Remote-User=' . htmlspecialchars(httpAuthUser(false), ENT_NOQUOTES, 'UTF-8') .
 						' ; Remote IP address=' . connectionRemoteAddress() . ']'
 					]
-				], false);
-				break;
-			case 'none':
-				// It should not happen!
-				Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_404_NOT_FOUND);
-				break;
-			default:
-				// TODO load plugin instead
-				Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_404_NOT_FOUND);
-		}
+				], false),
+			'none' => Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_404_NOT_FOUND),	// It should not happen!
+			default => Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_404_NOT_FOUND),	// TODO load plugin instead
+		};
 	}
 
 	/**

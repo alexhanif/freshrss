@@ -118,7 +118,7 @@ try {
 	FreshRSS_Context::updateUsingRequest(false);
 	Minz_Request::_param('search', $userSearch->getRawInput());	// Restore user search
 	$view->entries = FreshRSS_index_Controller::listEntriesByContext();
-} catch (Minz_Exception $e) {
+} catch (Minz_Exception) {
 	Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_400_BAD_REQUEST, 'Bad user query!');
 	die();
 }
