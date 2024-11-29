@@ -145,14 +145,14 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	 * @return array<array<mixed>>
 	 */
 	public static function provideDateSearch(): array {
-		return array(
-			array('date:2007-03-01T13:00:00Z/2008-05-11T15:30:00Z', 1172754000, 1210519800),
-			array('date:2007-03-01T13:00:00Z/P1Y2M10DT2H30M', 1172754000, 1210519799),
-			array('date:P1Y2M10DT2H30M/2008-05-11T15:30:00Z', 1172754001, 1210519800),
-			array('date:2007-03-01/2008-05-11', strtotime('2007-03-01'), strtotime('2008-05-12') - 1),
-			array('date:2007-03-01/', strtotime('2007-03-01'), null),
-			array('date:/2008-05-11', null, strtotime('2008-05-12') - 1),
-		);
+		return [
+			['date:2007-03-01T13:00:00Z/2008-05-11T15:30:00Z', 1172754000, 1210519800],
+			['date:2007-03-01T13:00:00Z/P1Y2M10DT2H30M', 1172754000, 1210519799],
+			['date:P1Y2M10DT2H30M/2008-05-11T15:30:00Z', 1172754001, 1210519800],
+			['date:2007-03-01/2008-05-11', strtotime('2007-03-01'), strtotime('2008-05-12') - 1],
+			['date:2007-03-01/', strtotime('2007-03-01'), null],
+			['date:/2008-05-11', null, strtotime('2008-05-12') - 1],
+		];
 	}
 
 	#[DataProvider('providePubdateSearch')]
@@ -166,14 +166,14 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	 * @return array<array<mixed>>
 	 */
 	public static function providePubdateSearch(): array {
-		return array(
-			array('pubdate:2007-03-01T13:00:00Z/2008-05-11T15:30:00Z', 1172754000, 1210519800),
-			array('pubdate:2007-03-01T13:00:00Z/P1Y2M10DT2H30M', 1172754000, 1210519799),
-			array('pubdate:P1Y2M10DT2H30M/2008-05-11T15:30:00Z', 1172754001, 1210519800),
-			array('pubdate:2007-03-01/2008-05-11', strtotime('2007-03-01'), strtotime('2008-05-12') - 1),
-			array('pubdate:2007-03-01/', strtotime('2007-03-01'), null),
-			array('pubdate:/2008-05-11', null, strtotime('2008-05-12') - 1),
-		);
+		return [
+			['pubdate:2007-03-01T13:00:00Z/2008-05-11T15:30:00Z', 1172754000, 1210519800],
+			['pubdate:2007-03-01T13:00:00Z/P1Y2M10DT2H30M', 1172754000, 1210519799],
+			['pubdate:P1Y2M10DT2H30M/2008-05-11T15:30:00Z', 1172754001, 1210519800],
+			['pubdate:2007-03-01/2008-05-11', strtotime('2007-03-01'), strtotime('2008-05-12') - 1],
+			['pubdate:2007-03-01/', strtotime('2007-03-01'), null],
+			['pubdate:/2008-05-11', null, strtotime('2008-05-12') - 1],
+		];
 	}
 
 	/**
@@ -229,56 +229,56 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 
 	/** @return array<array<mixed>> */
 	public static function provideMultipleSearch(): array {
-		return array(
-			array(
+		return [
+			[
 				'author:word1 date:2007-03-01/2008-05-11 intitle:word2 inurl:word3 pubdate:2007-03-01/2008-05-11 #word4 #word5',
-				array('word1'),
+				['word1'],
 				strtotime('2007-03-01'),
 				strtotime('2008-05-12') - 1,
-				array('word2'),
-				array('word3'),
+				['word2'],
+				['word3'],
 				strtotime('2007-03-01'),
 				strtotime('2008-05-12') - 1,
-				array('word4', 'word5'),
-				null,
-			),
-			array(
+				['word4', 'word5'],
+				null
+			],
+			[
 				'word6 intitle:word2 inurl:word3 pubdate:2007-03-01/2008-05-11 #word4 author:word1 #word5 date:2007-03-01/2008-05-11',
-				array('word1'),
+				['word1'],
 				strtotime('2007-03-01'),
 				strtotime('2008-05-12') - 1,
-				array('word2'),
-				array('word3'),
+				['word2'],
+				['word3'],
 				strtotime('2007-03-01'),
 				strtotime('2008-05-12') - 1,
-				array('word4', 'word5'),
-				array('word6'),
-			),
-			array(
+				['word4', 'word5'],
+				['word6']
+			],
+			[
 				'word6 intitle:word2 inurl:word3 pubdate:2007-03-01/2008-05-11 #word4 author:word1 #word5 word7 date:2007-03-01/2008-05-11',
-				array('word1'),
+				['word1'],
 				strtotime('2007-03-01'),
 				strtotime('2008-05-12') - 1,
-				array('word2'),
-				array('word3'),
+				['word2'],
+				['word3'],
 				strtotime('2007-03-01'),
 				strtotime('2008-05-12') - 1,
-				array('word4', 'word5'),
-				array('word6', 'word7'),
-			),
-			array(
+				['word4', 'word5'],
+				['word6', 'word7']
+			],
+			[
 				'word6 intitle:word2 inurl:word3 pubdate:2007-03-01/2008-05-11 #word4 author:word1 #word5 "word7 word8" date:2007-03-01/2008-05-11',
-				array('word1'),
+				['word1'],
 				strtotime('2007-03-01'),
 				strtotime('2008-05-12') - 1,
-				array('word2'),
-				array('word3'),
+				['word2'],
+				['word3'],
 				strtotime('2007-03-01'),
 				strtotime('2008-05-12') - 1,
-				array('word4', 'word5'),
-				array('word7 word8', 'word6'),
-			),
-		);
+				['word4', 'word5'],
+				['word7 word8', 'word6']
+			]
+		];
 	}
 
 	#[DataProvider('provideAddOrParentheses')]
@@ -349,7 +349,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 				'#tag Hello OR (author:Alice inurl:example) OR (f:3 intitle:World) OR L:12',
 				" ((TRIM(e.tags) || ' #' LIKE ? AND (e.title LIKE ? OR e.content LIKE ?) )) OR ((e.author LIKE ? AND e.link LIKE ? )) OR" .
 					' ((e.id_feed IN (?) AND e.title LIKE ? )) OR ((e.id IN (SELECT et.id_entry FROM `_entrytag` et WHERE et.id_tag IN (?)) )) ',
-				['%tag #%','%Hello%', '%Hello%', '%Alice%', '%example%', '3', '%World%', '12']
+				['%tag #%', '%Hello%', '%Hello%', '%Alice%', '%example%', '3', '%World%', '12']
 			],
 			[
 				'#tag Hello (author:Alice inurl:example) (f:3 intitle:World) label:Bleu',
@@ -412,13 +412,13 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 			[
 				'(ab) cd OR ef OR (gh)',
 				'(((e.title LIKE ? OR e.content LIKE ?) )) AND (((e.title LIKE ? OR e.content LIKE ?) )) ' .
-				'OR (((e.title LIKE ? OR e.content LIKE ?) )) OR (((e.title LIKE ? OR e.content LIKE ?) ))',
+					'OR (((e.title LIKE ? OR e.content LIKE ?) )) OR (((e.title LIKE ? OR e.content LIKE ?) ))',
 				['%ab%', '%ab%', '%cd%', '%cd%', '%ef%', '%ef%', '%gh%', '%gh%'],
 			],
 			[
 				'(ab) OR cd OR ef OR (gh)',
 				'(((e.title LIKE ? OR e.content LIKE ?) )) OR (((e.title LIKE ? OR e.content LIKE ?) )) ' .
-				'OR (((e.title LIKE ? OR e.content LIKE ?) )) OR (((e.title LIKE ? OR e.content LIKE ?) ))',
+					'OR (((e.title LIKE ? OR e.content LIKE ?) )) OR (((e.title LIKE ? OR e.content LIKE ?) ))',
 				['%ab%', '%ab%', '%cd%', '%cd%', '%ef%', '%ef%', '%gh%', '%gh%'],
 			],
 			[
@@ -439,19 +439,19 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 			[
 				'(ab (!cd OR ef OR (gh))) OR !(ij OR kl)',
 				'((((e.title LIKE ? OR e.content LIKE ?) )) AND (((e.title NOT LIKE ? AND e.content NOT LIKE ? )) OR (((e.title LIKE ? OR e.content LIKE ?) )) ' .
-				'OR (((e.title LIKE ? OR e.content LIKE ?) )))) OR NOT (((e.title LIKE ? OR e.content LIKE ?) ) OR ((e.title LIKE ? OR e.content LIKE ?) ))',
+					'OR (((e.title LIKE ? OR e.content LIKE ?) )))) OR NOT (((e.title LIKE ? OR e.content LIKE ?) ) OR ((e.title LIKE ? OR e.content LIKE ?) ))',
 				['%ab%', '%ab%', '%cd%', '%cd%', '%ef%', '%ef%', '%gh%', '%gh%', '%ij%', '%ij%', '%kl%', '%kl%'],
 			],
 			[
 				'"ab" "cd" ("ef") intitle:"gh" !"ij" -"kl"',
 				'(((e.title LIKE ? OR e.content LIKE ?) AND (e.title LIKE ? OR e.content LIKE ?) )) AND (((e.title LIKE ? OR e.content LIKE ?) )) ' .
-				'AND ((e.title LIKE ? AND e.title NOT LIKE ? AND e.content NOT LIKE ? AND e.title NOT LIKE ? AND e.content NOT LIKE ? ))',
+					'AND ((e.title LIKE ? AND e.title NOT LIKE ? AND e.content NOT LIKE ? AND e.title NOT LIKE ? AND e.content NOT LIKE ? ))',
 				['%ab%', '%ab%', '%cd%', '%cd%', '%ef%', '%ef%', '%gh%', '%ij%', '%ij%', '%kl%', '%kl%']
 			],
 			[
 				'&quot;ab&quot; &quot;cd&quot; (&quot;ef&quot;) intitle:&quot;gh&quot; !&quot;ij&quot; -&quot;kl&quot;',
 				'(((e.title LIKE ? OR e.content LIKE ?) AND (e.title LIKE ? OR e.content LIKE ?) )) AND (((e.title LIKE ? OR e.content LIKE ?) )) ' .
-				'AND ((e.title LIKE ? AND e.title NOT LIKE ? AND e.content NOT LIKE ? AND e.title NOT LIKE ? AND e.content NOT LIKE ? ))',
+					'AND ((e.title LIKE ? AND e.title NOT LIKE ? AND e.content NOT LIKE ? AND e.title NOT LIKE ? AND e.content NOT LIKE ? ))',
 				['%ab%', '%ab%', '%cd%', '%cd%', '%ef%', '%ef%', '%gh%', '%ij%', '%ij%', '%kl%', '%kl%']
 			],
 			[

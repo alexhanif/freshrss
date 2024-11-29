@@ -178,14 +178,14 @@ function escapeToUnicodeAlternative(string $text, bool $extended = true): string
 	$text = htmlspecialchars_decode($text, ENT_QUOTES);
 
 	//Problematic characters
-	$problem = array('&', '<', '>');
+	$problem = ['&', '<', '>'];
 	//Use their fullwidth Unicode form instead:
-	$replace = array('＆', '＜', '＞');
+	$replace = ['＆', '＜', '＞'];
 
 	// https://raw.githubusercontent.com/mihaip/google-reader-api/master/wiki/StreamId.wiki
 	if ($extended) {
-		$problem += array("'", '"', '^', '?', '\\', '/', ',', ';');
-		$replace += array("’", '＂', '＾', '？', '＼', '／', '，', '；');
+		$problem += ["'", '"', '^', '?', '\\', '/', ',', ';'];
+		$replace += ["’", '＂', '＾', '？', '＼', '／', '，', '；'];
 	}
 
 	return trim(str_replace($problem, $replace, $text));
@@ -202,10 +202,10 @@ function format_number($n, int $precision = 0): string {
 function format_bytes(int $bytes, int $precision = 2, string $system = 'IEC'): string {
 	if ($system === 'IEC') {
 		$base = 1024;
-		$units = array('B', 'KiB', 'MiB', 'GiB', 'TiB');
+		$units = ['B', 'KiB', 'MiB', 'GiB', 'TiB'];
 	} elseif ($system === 'SI') {
 		$base = 1000;
-		$units = array('B', 'KB', 'MB', 'GB', 'TB');
+		$units = ['B', 'KB', 'MB', 'GB', 'TB'];
 	} else {
 		return format_number($bytes, $precision);
 	}
@@ -506,7 +506,7 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 	$ch = curl_init();
 	curl_setopt_array($ch, [
 		CURLOPT_URL => $url,
-		CURLOPT_HTTPHEADER => array('Accept: ' . $accept),
+		CURLOPT_HTTPHEADER => ['Accept: ' . $accept],
 		CURLOPT_USERAGENT => FRESHRSS_USERAGENT,
 		CURLOPT_CONNECTTIMEOUT => $feed_timeout > 0 ? $feed_timeout : $limits['timeout'],
 		CURLOPT_TIMEOUT => $feed_timeout > 0 ? $feed_timeout : $limits['timeout'],
@@ -609,7 +609,7 @@ function invalidateHttpCache(string $username = ''): bool {
  * @return array<string>
  */
 function listUsers(): array {
-	$final_list = array();
+	$final_list = [];
 	$base_path = join_path(DATA_PATH, 'users');
 	$dir_list = array_values(array_diff(
 		scandir($base_path) ?: [],
@@ -784,7 +784,7 @@ function check_install_php(): array {
 	$pdo_mysql = extension_loaded('pdo_mysql');
 	$pdo_pgsql = extension_loaded('pdo_pgsql');
 	$pdo_sqlite = extension_loaded('pdo_sqlite');
-	return array(
+	return [
 		'php' => version_compare(PHP_VERSION, FRESHRSS_MIN_PHP_VERSION) >= 0,
 		'curl' => extension_loaded('curl'),
 		'pdo' => $pdo_mysql || $pdo_sqlite || $pdo_pgsql,
@@ -795,7 +795,7 @@ function check_install_php(): array {
 		'json' => extension_loaded('json'),
 		'mbstring' => extension_loaded('mbstring'),
 		'zip' => extension_loaded('zip'),
-	);
+	];
 }
 
 /**
@@ -818,7 +818,7 @@ function check_install_files(): array {
  * @return array<string,bool> of tested values.
  */
 function check_install_database(): array {
-	$status = array(
+	$status = [
 		'connection' => true,
 		'tables' => false,
 		'categories' => false,
@@ -827,7 +827,7 @@ function check_install_database(): array {
 		'entrytmp' => false,
 		'tag' => false,
 		'entrytag' => false,
-	);
+	];
 
 	try {
 		$dbDAO = FreshRSS_Factory::createDatabaseDAO();
@@ -876,7 +876,7 @@ function recursive_unlink(string $dir): bool {
  * @return array<int,array<string,string|int>> without queries where $get is appearing.
  */
 function remove_query_by_get(string $get, array $queries): array {
-	$final_queries = array();
+	$final_queries = [];
 	foreach ($queries as $key => $query) {
 		if (empty($query['get']) || $query['get'] !== $get) {
 			$final_queries[$key] = $query;
