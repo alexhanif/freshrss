@@ -191,12 +191,8 @@ function escapeToUnicodeAlternative(string $text, bool $extended = true): string
 	return trim(str_replace($problem, $replace, $text));
 }
 
-/** @param int|float $n */
-function format_number($n, int $precision = 0): string {
-	// number_format does not seem to be Unicode-compatible
-	return str_replace(' ', ' ',	// Thin non-breaking space
-		number_format((float)$n, $precision, '.', ' ')
-	);
+function format_number(int|float $n, int $precision = 0): string {
+	return number_format((float)$n, $precision, '.', ' ');	// Thin non-breaking space
 }
 
 function format_bytes(int $bytes, int $precision = 2, string $system = 'IEC'): string {

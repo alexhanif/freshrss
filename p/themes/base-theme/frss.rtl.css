@@ -948,6 +948,21 @@ input[type="checkbox"]:focus-visible {
 	display: inline;
 	font-size: 1.2rem;
 	font-weight: bold;
+	line-height: 1;
+	margin-left: 0;
+}
+
+.box .box-title h2:not([data-nb-feeds="0"])::after {
+	content: " " attr(data-nb-feeds) " ";
+	display: block;
+	font-size: 0.9rem;
+	padding: 0.25rem 0.5rem;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border: 1px solid var(--frss-border-color);
+	border-radius: 0.75rem;
+	margin: 0.2rem 0 0 0.2rem;
 }
 
 .box .box-title form {
