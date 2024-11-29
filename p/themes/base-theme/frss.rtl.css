@@ -948,12 +948,10 @@ input[type="checkbox"]:focus-visible {
 	display: inline;
 	font-size: 1.2rem;
 	font-weight: bold;
-	line-height: 1;
-	margin-left: 0;
 }
 
 .box .box-title h2:not([data-nb-feeds="0"])::after {
-	margin: 0.2rem 0 0 0.2rem;
+	margin: var(--frss-padding-top-bottom) 0 0 0.2rem;
 	padding: 0.25rem 0.5rem;
 	display: block;
 	font-size: 0.9rem;
@@ -963,6 +961,7 @@ input[type="checkbox"]:focus-visible {
 	position: absolute;
 	top: 0;
 	left: 0;
+	line-height: 1;
 }
 
 .box .box-title form {
