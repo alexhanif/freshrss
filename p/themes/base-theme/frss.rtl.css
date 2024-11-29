@@ -953,16 +953,16 @@ input[type="checkbox"]:focus-visible {
 }
 
 .box .box-title h2:not([data-nb-feeds="0"])::after {
-	content: " " attr(data-nb-feeds) " ";
+	margin: 0.2rem 0 0 0.2rem;
+	padding: 0.25rem 0.5rem;
 	display: block;
 	font-size: 0.9rem;
-	padding: 0.25rem 0.5rem;
+	border: 1px solid var(--frss-border-color);
+	border-radius: 0.75rem;
+	content: " " attr(data-nb-feeds) " ";
 	position: absolute;
 	top: 0;
 	left: 0;
-	border: 1px solid var(--frss-border-color);
-	border-radius: 0.75rem;
-	margin: 0.2rem 0 0 0.2rem;
 }
 
 .box .box-title form {
