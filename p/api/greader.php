@@ -282,7 +282,7 @@ final class GReaderAPI {
 			// ['id' => 'user/-/state/com.google/broadcast', 'sortid' => '2']
 		];
 		$categoryDAO = FreshRSS_Factory::createCategoryDao();
-		$categories = $categoryDAO->listCategories(true, false) ?: [];
+		$categories = $categoryDAO->listCategories(prePopulateFeeds: false, details: false) ?: [];
 		foreach ($categories as $cat) {
 			$tags[] = [
 				'id' => 'user/-/label/' . htmlspecialchars_decode($cat->name(), ENT_QUOTES),
