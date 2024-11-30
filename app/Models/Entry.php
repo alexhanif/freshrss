@@ -842,8 +842,11 @@ HTML;
 				$path_entries_filter = trim($path_entries_filter, ', ');
 				foreach ($nodes as $node) {
 					if ($path_entries_filter !== '') {
-						$filterednodes = $xpath->query((new Gt\CssXPath\Translator($path_entries_filter))->asXPath(), $node) ?: [];
+						$filterednodes = $xpath->query((new Gt\CssXPath\Translator($path_entries_filter, 'descendant-or-self::'))->asXPath(), $node) ?: [];
 						foreach ($filterednodes as $filterednode) {
+							if ($filterednode === $node) {
+								continue 2;
+							}
 							if (!($filterednode instanceof DOMElement) || $filterednode->parentNode === null) {
 								continue;
 							}
