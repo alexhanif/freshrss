@@ -105,7 +105,10 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'プロフィール',
-		'api' => 'API管理',
+		'api' => array(
+			'_' => 'API管理',
+			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'アカウント消去',
 			'warn' => 'あなたのアカウントとそれに関連したデータが消去されます。',

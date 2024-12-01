@@ -105,7 +105,10 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'Profile management',
-		'api' => 'API management',
+		'api' => array(
+			'_' => 'External access via API',
+			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'Account deletion',
 			'warn' => 'Your account and all related data will be deleted.',

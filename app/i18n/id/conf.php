@@ -105,7 +105,10 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'Manajemen Profil',
-		'api' => 'Manajemen API',
+		'api' => array(
+			'_' => 'Manajemen API',
+			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'Hapus Akun',
 			'warn' => 'Akun Anda dan semua data terkait akan dihapus.',

@@ -105,7 +105,10 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'Profil yönetimi',
-		'api' => 'API yönetimi',
+		'api' => array(
+			'_' => 'API yönetimi',
+			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'Hesap silme',
 			'warn' => 'Hesabınız ve tüm verileriniz silinecek.',

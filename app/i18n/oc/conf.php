@@ -105,7 +105,10 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'Gestion del perfil',
-		'api' => 'Gestion API',
+		'api' => array(
+			'_' => 'Gestion API',
+			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'Supression del compte',
 			'warn' => 'Lo compte e totas las donadas ligadas seràn suprimits.',

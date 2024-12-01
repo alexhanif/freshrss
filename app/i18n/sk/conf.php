@@ -105,7 +105,10 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'Správca profilu',
-		'api' => 'Správa API',
+		'api' => array(
+			'_' => 'Správa API',
+			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'Vymazanie účtu',
 			'warn' => 'Váš účet a všetky údaje v ňom budú vymazané.',

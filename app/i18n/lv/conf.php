@@ -105,7 +105,10 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'Profila pārvalde',
-		'api' => 'API pārvalde',
+		'api' => array(
+			'_' => 'API pārvalde',
+			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'Konta dzēšana',
 			'warn' => 'Jūsu konts un visi saistītie dati tiks dzēsti..',

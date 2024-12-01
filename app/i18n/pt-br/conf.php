@@ -105,7 +105,10 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'Gerenciamento de perfil',
-		'api' => 'Administração da API',
+		'api' => array(
+			'_' => 'Administração da API',
+			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'Remover conta',
 			'warn' => 'Sua conta e todos os dados relacionados serão removidos.',

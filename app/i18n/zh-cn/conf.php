@@ -105,7 +105,10 @@ return array(
 	),
 	'profile' => array(
 		'_' => '账户管理',
-		'api' => 'API 管理',
+		'api' => array(
+			'_' => 'API 管理',
+			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+		),
 		'delete' => array(
 			'_' => '账户删除',
 			'warn' => '你的帐户以及所有相关数据将被删除。',

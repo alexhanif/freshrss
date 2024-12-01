@@ -105,7 +105,10 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'Profiilien hallinta',
-		'api' => 'API-hallinta',
+		'api' => array(
+			'_' => 'API-hallinta',
+			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'Tilin poisto',
 			'warn' => 'Tilisi ja kaikki siihen kuuluvat tiedot poistetaan.',

@@ -88,7 +88,7 @@
 							pattern=".{7,}" <?= cryptAvailable() ? '' : 'disabled="disabled" ' ?>/>
 						<button type="button" class="btn toggle-password" data-toggle="apiPasswordPlain"><?= _i('key') ?></button>
 					</div>
-					<p class="help"><?= _i('help') ?> <kbd><a href="../api/"><?= Minz_Url::display('/api/', 'html', true) ?></a></kbd></p>
+					<p class="help"><?= _i('help') ?> <?= _t('conf.profile.api.check_link', Minz_Url::display('/api/', 'html', true)) ?></p>
 				</div>
 			</div>
 

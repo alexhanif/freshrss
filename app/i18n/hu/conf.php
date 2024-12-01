@@ -105,7 +105,10 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'Profil kezelés',
-		'api' => 'API menedzsment',
+		'api' => array(
+			'_' => 'API menedzsment',
+			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'Profil törlése',
 			'warn' => 'A profilod és minden hozzá tartozó adat törölve lesz.',

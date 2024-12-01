@@ -105,7 +105,10 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'Profile management',	// IGNORE
-		'api' => 'API management',	// IGNORE
+		'api' => array(
+			'_' => 'API management',	// IGNORE
+			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'Account deletion',	// IGNORE
 			'warn' => 'Your account and all related data will be deleted.',	// IGNORE

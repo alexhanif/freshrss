@@ -105,7 +105,10 @@ return array(
 	),
 	'profile' => array(
 		'_' => ' مدیریت پروفایل',
-		'api' => ' مدیریت API',
+		'api' => array(
+			'_' => ' مدیریت API',
+			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+		),
 		'delete' => array(
 			'_' => ' حذف اکانت',
 			'warn' => ' حساب شما و تمام داده های مرتبط حذف خواهد شد.',
