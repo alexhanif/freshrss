@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => '描述',
 		'empty' => '此源為空。請確認它是否正常更新。',
-		'error' => '此源遇到一些問題。請在確認是否能正常訪問後重試。',
+		'error' => '此源遇到一些問題。請在確認是否能正常訪問後重試。',	// DIRTY
 		'export-as-opml' => array(
 			'download' => '下載',
 			'help' => 'XML file (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// TODO

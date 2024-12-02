@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Leírás',
 		'empty' => 'Ez a hírforrás üres. Ellenőrizd hogy van e tartalom rajta.',
-		'error' => 'Ez a hírforrás nem működik. Ellenőrizd az elérhetőségét és frissítsd.',
+		'error' => 'Ez a hírforrás nem működik. Ellenőrizd az elérhetőségét.',	// DIRTY
 		'export-as-opml' => array(
 			'download' => 'Letöltés',
 			'help' => 'XML fájl (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// DIRTY
