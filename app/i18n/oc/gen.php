@@ -19,7 +19,7 @@ return array(
 		'cancel' => 'Anullar',
 		'create' => 'Crear',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
-		'delete_errored_feeds' => 'Delete feeds in error state',	// TODO
+		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO
 		'delete_muted_feeds' => 'Suprimir los flux muts',
 		'demote' => 'Retrogradar',
 		'disable' => 'Desactivar',

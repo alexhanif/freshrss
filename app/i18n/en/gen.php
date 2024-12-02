@@ -19,7 +19,7 @@ return array(
 		'cancel' => 'Cancel',
 		'create' => 'Create',
 		'delete_all_feeds' => 'Delete all feeds',
-		'delete_errored_feeds' => 'Delete feeds in error state',
+		'delete_errored_feeds' => 'Delete feeds with errors',
 		'delete_muted_feeds' => 'Delete muted feeds',
 		'demote' => 'Demote',
 		'disable' => 'Disable',
