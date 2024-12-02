@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Description',	// IGNORE
 		'empty' => 'Ce flux est vide. Veuillez vérifier qu’il est encore maintenu.',
-		'error' => 'Ce flux a rencontré un problème. Si le problème persiste, vérifiez qu’il est encore accessible.',
+		'error' => 'Ce flux a rencontré un problème. Si la situation persiste, vérifiez qu’il est encore accessible.',
 		'export-as-opml' => array(
 			'download' => 'Télécharger',
 			'help' => 'Fichier XML (données partielles. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">Voir documentation</a>)',

@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Description',	// TODO
 		'empty' => 'This feed is empty. Please verify that it is still maintained.',	// TODO
-		'error' => 'This feed has encountered a problem. If this problem persists, please verify that it is still reachable.',	// TODO
+		'error' => 'This feed has encountered a problem. If this situation persists, please verify that it is still reachable.',	// TODO
 		'export-as-opml' => array(
 			'download' => 'Download',	// TODO
 			'help' => 'XML file (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// TODO

@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Description',	// IGNORE
 		'empty' => 'This feed is empty. Please verify that it is still maintained.',	// IGNORE
-		'error' => 'This feed has encountered a problem. If this problem persists, please verify that it is still reachable.',	// IGNORE
+		'error' => 'This feed has encountered a problem. If this situation persists, please verify that it is still reachable.',	// IGNORE
 		'export-as-opml' => array(
 			'download' => 'Download',	// IGNORE
 			'help' => 'XML file (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// IGNORE
