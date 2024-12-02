@@ -35,18 +35,12 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 	}
 
 	private static function megabytes(string $size_str): float|int|string {
-		switch (substr($size_str, -1)) {
-			case 'M':
-			case 'm':
-				return (int)$size_str;
-			case 'K':
-			case 'k':
-				return (int)$size_str / 1024;
-			case 'G':
-			case 'g':
-				return (int)$size_str * 1024;
-		}
-		return $size_str;
+		return match (substr($size_str, -1)) {
+			'M', 'm' => (int)$size_str,
+			'K', 'k' => (int)$size_str / 1024,
+			'G', 'g' => (int)$size_str * 1024,
+			default => $size_str,
+		};
 	}
 
 	private static function minimumMemory(int|string $mb): void {
@@ -190,7 +184,7 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 		$error = false;
 		try {
 			$error = !$this->importFile($file['name'], $file['tmp_name']);
-		} catch (FreshRSS_ZipMissing_Exception $zme) {
+		} catch (FreshRSS_ZipMissing_Exception) {
 			Minz_Request::bad(
 				_t('feedback.import_export.no_zip_extension'),
 				['c' => 'importExport', 'a' => 'index']
@@ -215,17 +209,17 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 	 * That could be improved but should be enough for what we have to do.
 	 */
 	private static function guessFileType(string $filename): string {
-		if (substr_compare($filename, '.zip', -4) === 0) {
+		if (str_ends_with($filename, '.zip')) {
 			return 'zip';
 		} elseif (stripos($filename, 'opml') !== false) {
 			return 'opml';
-		} elseif (substr_compare($filename, '.json', -5) === 0) {
-			if (strpos($filename, 'starred') !== false) {
+		} elseif (str_ends_with($filename, '.json')) {
+			if (str_contains($filename, 'starred')) {
 				return 'json_starred';
 			} else {
 				return 'json_feed';
 			}
-		} elseif (substr_compare($filename, '.xml', -4) === 0) {
+		} elseif (str_ends_with($filename, '.xml')) {
 			if (preg_match('/Tiny|tt-?rss/i', $filename)) {
 				return 'ttrss_starred';
 			} else {
@@ -258,7 +252,7 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 				$labels_cache = json_decode($item['label_cache'], true);
 				if (is_array($labels_cache)) {
 					foreach ($labels_cache as $label_cache) {
-						if (!empty($label_cache[1])) {
+						if (!empty($label_cache[1]) && is_string($label_cache[1])) {
 							$item['categories'][] = 'user/-/label/' . trim($label_cache[1]);
 						}
 					}
@@ -322,7 +316,7 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 			}
 			if (!empty($item['origin']['feedUrl'])) {
 				$feedUrl = $item['origin']['feedUrl'];
-			} elseif (!empty($item['origin']['streamId']) && strpos($item['origin']['streamId'], 'feed/') === 0) {
+			} elseif (!empty($item['origin']['streamId']) && str_starts_with($item['origin']['streamId'], 'feed/')) {
 				$feedUrl = substr($item['origin']['streamId'], 5);	//Google Reader
 				$item['origin']['feedUrl'] = $feedUrl;
 			} elseif (!empty($item['origin']['htmlUrl'])) {
@@ -588,7 +582,7 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 	 *   - export_opml (default: false)
 	 *   - export_starred (default: false)
 	 *   - export_labelled (default: false)
-	 *   - export_feeds (default: array()) a list of feed ids
+	 *   - export_feeds (default: []) a list of feed ids
 	 */
 	public function exportAction(): void {
 		if (!Minz_Request::isPost()) {
@@ -683,17 +677,12 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 	 */
 	private static function filenameToContentType(string $filename): string {
 		$filetype = self::guessFileType($filename);
-		switch ($filetype) {
-			case 'zip':
-				return 'application/zip';
-			case 'opml':
-				return 'application/xml; charset=utf-8';
-			case 'json_starred':
-			case 'json_feed':
-				return 'application/json; charset=utf-8';
-			default:
-				return 'application/octet-stream';
-		}
+		return match ($filetype) {
+			'zip' => 'application/zip',
+			'opml' => 'application/xml; charset=utf-8',
+			'json_starred', 'json_feed' => 'application/json; charset=utf-8',
+			default => 'application/octet-stream',
+		};
 	}
 
 	private const REGEX_SQLITE_FILENAME = '/^(?![.-])[0-9a-zA-Z_.@ #&()~\-]{1,128}\.sqlite$/';

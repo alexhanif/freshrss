@@ -2,7 +2,7 @@
 
 See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 
-## 2024-1X-XX FreshRSS 1.25.0-dev
+## 2024-12-XX FreshRSS 1.25.0-dev
 
 * Features
 	* Add support for [regex search (regular expressions)](https://freshrss.github.io/FreshRSS/en/users/10_filter.html#regex) [#6706](https://github.com/FreshRSS/FreshRSS/pull/6706), [#6926](https://github.com/FreshRSS/FreshRSS/pull/6926)
@@ -33,6 +33,8 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Fix HTML regex pattern during install for compatibility with `v` mode [#7009](https://github.com/FreshRSS/FreshRSS/pull/7009)
 	* More robust creation of user data folder [#7000](https://github.com/FreshRSS/FreshRSS/pull/7000)
 * API
+	* Fix API for categories and labels containing a `+` [#7033](https://github.com/FreshRSS/FreshRSS/pull/7033)
+		* Compatibility with FocusReader
 	* Supported by [Capy Reader](https://github.com/jocmp/capyreader) (Android, open source) [capyreader#492](https://github.com/jocmp/capyreader/discussions/492)
 	* Allow adding multiple feeds to a category via API [#7017](https://github.com/FreshRSS/FreshRSS/pull/7017)
 * Compatibility
@@ -55,8 +57,9 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Sync upstream [#6840](https://github.com/FreshRSS/FreshRSS/pull/6840)
 * Security
 	* Apache protect more non-public folders and files [#6881](https://github.com/FreshRSS/FreshRSS/pull/6881), [#6893](https://github.com/FreshRSS/FreshRSS/pull/6893), [#7008](https://github.com/FreshRSS/FreshRSS/pull/7008)
-	* Fix login in unsafe mode when using a password with special XML characters [#6797](https://github.com/FreshRSS/FreshRSS/pull/6797)
 	* Add privacy settings on extension list retrieval [#4603](https://github.com/FreshRSS/FreshRSS/pull/4603)
+	* Fix login in unsafe mode when using a password with special XML characters [#6797](https://github.com/FreshRSS/FreshRSS/pull/6797)
+	* Fix login in e.g. Brave browser by avoiding synchronous XHR [#7023](https://github.com/FreshRSS/FreshRSS/pull/7023)
 * UI
 	* Searchable *My Labels* field [#6753](https://github.com/FreshRSS/FreshRSS/pull/6753)
 	* Add subscription management button to reading view [#6946](https://github.com/FreshRSS/FreshRSS/pull/6946)
@@ -88,6 +91,7 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Makefile improvements [#6913](https://github.com/FreshRSS/FreshRSS/pull/6913)
 	* Fix PHPCS `ControlSignature` [#6896](https://github.com/FreshRSS/FreshRSS/pull/6896)
 	* Update *PHPMailer* [#6968](https://github.com/FreshRSS/FreshRSS/pull/6968)
+	* Code updates to PHP 8.1 syntax [#6748](https://github.com/FreshRSS/FreshRSS/pull/6748)
 	* Update dev dependencies [#6780](https://github.com/FreshRSS/FreshRSS/pull/6780), [#6964](https://github.com/FreshRSS/FreshRSS/pull/6964), , [#6965](https://github.com/FreshRSS/FreshRSS/pull/6965),
 		[#6966](https://github.com/FreshRSS/FreshRSS/pull/6966), [#6967](https://github.com/FreshRSS/FreshRSS/pull/6967), [#6970](https://github.com/FreshRSS/FreshRSS/pull/6970)
 
