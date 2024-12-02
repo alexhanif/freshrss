@@ -107,7 +107,9 @@ return array(
 		'_' => 'プロフィール',
 		'api' => array(
 			'_' => 'API管理',
-			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+			'check_link' => 'Check API status via: <kbd><a href="../api" target="_blank">%s</a></kbd>',	// TODO
+			'disabled' => 'The API access is disabled.',	// TODO
+			'help' => 'see <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
 		),
 		'delete' => array(
 			'_' => 'アカウント消去',
@@ -152,6 +154,10 @@ return array(
 		'search' => '“%s”で検索する',
 		'share' => array(
 			'_' => 'このクエリをリンクで共有する',
+			'disabled' => array(
+				'_' => 'disabled',	// TODO
+				'title' => 'Sharing',	// TODO
+			),
 			'greader' => 'Shareable link to the GReader JSON',	// TODO
 			'help' => 'このクエリを誰かと共有したい場合は、このリンクを提供してください',
 			'html' => 'HTMLページへの共有リンク',

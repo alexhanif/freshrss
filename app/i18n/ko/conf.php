@@ -107,7 +107,9 @@ return array(
 		'_' => '프로필 관리',
 		'api' => array(
 			'_' => 'API 관리',
-			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+			'check_link' => 'Check API status via: <kbd><a href="../api" target="_blank">%s</a></kbd>',	// TODO
+			'disabled' => 'The API access is disabled.',	// TODO
+			'help' => 'see <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
 		),
 		'delete' => array(
 			'_' => '계정 삭제',
@@ -152,6 +154,10 @@ return array(
 		'search' => '“%s”의 검색 결과',
 		'share' => array(
 			'_' => '링크로 쿼리 공유',
+			'disabled' => array(
+				'_' => 'disabled',	// TODO
+				'title' => 'Sharing',	// TODO
+			),
 			'greader' => 'Shareable link to the GReader JSON',	// TODO
 			'help' => '링크를 사용해서 쿼리를 공유하세요',
 			'html' => 'HTML 공유 링크',

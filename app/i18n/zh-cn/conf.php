@@ -107,7 +107,9 @@ return array(
 		'_' => '账户管理',
 		'api' => array(
 			'_' => 'API 管理',
-			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+			'check_link' => 'Check API status via: <kbd><a href="../api" target="_blank">%s</a></kbd>',	// TODO
+			'disabled' => 'The API access is disabled.',	// TODO
+			'help' => 'see <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
 		),
 		'delete' => array(
 			'_' => '账户删除',
@@ -152,6 +154,10 @@ return array(
 		'search' => '搜索 “%s”',
 		'share' => array(
 			'_' => '分享您的自定义查询',
+			'disabled' => array(
+				'_' => 'disabled',	// TODO
+				'title' => 'Sharing',	// TODO
+			),
 			'greader' => 'Shareable link to the GReader JSON',	// TODO
 			'help' => '获取此自定义查询的分享链接',
 			'html' => 'HTML 页面的分享链接',

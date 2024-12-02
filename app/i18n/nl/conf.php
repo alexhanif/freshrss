@@ -107,7 +107,9 @@ return array(
 		'_' => 'Profielbeheer',
 		'api' => array(
 			'_' => 'API-beheer',
-			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+			'check_link' => 'Check API status via: <kbd><a href="../api" target="_blank">%s</a></kbd>',	// TODO
+			'disabled' => 'The API access is disabled.',	// TODO
+			'help' => 'see <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
 		),
 		'delete' => array(
 			'_' => 'Account verwijderen',
@@ -152,6 +154,10 @@ return array(
 		'search' => 'Zoek naar „%s”',
 		'share' => array(
 			'_' => 'Deze query delen via een link',
+			'disabled' => array(
+				'_' => 'disabled',	// TODO
+				'title' => 'Sharing',	// TODO
+			),
 			'greader' => 'Shareable link to the GReader JSON',	// TODO
 			'help' => 'Geef deze link als je deze query met iemand wilt delen',
 			'html' => 'Deelbare link naar de HTML-pagina',

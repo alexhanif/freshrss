@@ -107,7 +107,9 @@ return array(
 		'_' => 'Profiilien hallinta',
 		'api' => array(
 			'_' => 'API-hallinta',
-			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+			'check_link' => 'Check API status via: <kbd><a href="../api" target="_blank">%s</a></kbd>',	// TODO
+			'disabled' => 'The API access is disabled.',	// TODO
+			'help' => 'see <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
 		),
 		'delete' => array(
 			'_' => 'Tilin poisto',
@@ -152,6 +154,10 @@ return array(
 		'search' => 'Hae sanaa “%s”',
 		'share' => array(
 			'_' => 'Jaa kysely linkin avulla',
+			'disabled' => array(
+				'_' => 'disabled',	// TODO
+				'title' => 'Sharing',	// TODO
+			),
 			'greader' => 'Linkki GReader JSON -muotoon jaettavaksi',
 			'help' => 'Voit jakaa kyselyn muiden kanssa antamalle heille tämän linkin',
 			'html' => 'Jaettava linkki HTML-sivuun',

@@ -107,7 +107,9 @@ return array(
 		'_' => 'Správca profilu',
 		'api' => array(
 			'_' => 'Správa API',
-			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+			'check_link' => 'Check API status via: <kbd><a href="../api" target="_blank">%s</a></kbd>',	// TODO
+			'disabled' => 'The API access is disabled.',	// TODO
+			'help' => 'see <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
 		),
 		'delete' => array(
 			'_' => 'Vymazanie účtu',
@@ -152,6 +154,10 @@ return array(
 		'search' => 'Vyhľadáva sa: “%s”',
 		'share' => array(
 			'_' => 'Zdieľať odkaz pre tento dopyt',
+			'disabled' => array(
+				'_' => 'disabled',	// TODO
+				'title' => 'Sharing',	// TODO
+			),
 			'greader' => 'Shareable link to the GReader JSON',	// TODO
 			'help' => 'Pošlite tento odkaz ak chcete zdielať dopyt s kýmkoľvek',
 			'html' => 'Zdielateľný odkaz na HTML stránku',

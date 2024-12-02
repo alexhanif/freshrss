@@ -107,7 +107,9 @@ return array(
 		'_' => 'Gestion du profil',
 		'api' => array(
 			'_' => 'Gestion de l’API',
-			'check_link' => 'Check API status via: <kbd><a href=.../api target=_blank>%s</a></kbd>',	// TODO
+			'check_link' => 'Check API status via: <kbd><a href="../api" target="_blank">%s</a></kbd>',	// TODO
+			'disabled' => 'The API access is disabled.',	// TODO
+			'help' => 'see <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
 		),
 		'delete' => array(
 			'_' => 'Suppression du compte',
@@ -152,6 +154,10 @@ return array(
 		'search' => 'Recherche de « %s »',
 		'share' => array(
 			'_' => 'Partager ce filtre par lien',
+			'disabled' => array(
+				'_' => 'disabled',	// TODO
+				'title' => 'Sharing',	// TODO
+			),
 			'greader' => 'Lien partageable au format JSON GReader',
 			'help' => 'Donner ce lien pour partager le contenu du filtre avec d’autres personnes',
 			'html' => 'Lien partageable de la page HTML',
