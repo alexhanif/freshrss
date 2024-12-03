@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'תיאור',
 		'empty' => 'הזנה זו ריקה. אנא ודאו שהיא עדיין מתוחזקת.',
-		'error' => 'הזנה זו נתקלה בשגיאה, אנא ודאו שהיא תקינה ואז נסו שנית.',
+		'error' => 'הזנה זו נתקלה בשגיאה, אנא ודאו שהיא תקינה ואז נסו שנית.',	// DIRTY
 		'export-as-opml' => array(
 			'download' => 'Download',	// TODO
 			'help' => 'XML file (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// TODO

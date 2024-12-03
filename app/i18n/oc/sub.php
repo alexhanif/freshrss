@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Descripcion',	// IGNORE
 		'empty' => 'Aqueste flux es void. Assegurats-vos qu’es totjorn mantengut.',
-		'error' => 'Aqueste flux a rescontrat un problèma. Volgatz verificar que siá totjorn accessible puèi actualizatz-lo.',
+		'error' => 'Aqueste flux a rescontrat un problèma. Volgatz verificar que siá totjorn accessible.',	// DIRTY
 		'export-as-opml' => array(
 			'download' => 'Download',	// TODO
 			'help' => 'XML file (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// TODO

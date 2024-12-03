@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Description',	// TODO
 		'empty' => 'This feed is empty. Please verify that it is still maintained.',	// TODO
-		'error' => 'This feed has encountered a problem. Please verify that it is always reachable then update it.',	// TODO
+		'error' => 'This feed has encountered a problem. If this situation persists, please verify that it is still reachable.',	// TODO
 		'export-as-opml' => array(
 			'download' => 'Download',	// TODO
 			'help' => 'XML file (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// TODO
@@ -193,7 +193,7 @@ return array(
 		),
 		'method_help' => 'The POST payload has automatic support for <code>application/x-www-form-urlencoded</code> and <code>application/json</code>',	// TODO
 		'method_postparams' => 'Payload for POST',	// TODO
-		'moved_category_deleted' => 'When you delete a category, its feeds are automatically classified under <em>%s</em>.',	// TODO
+		'moved_category_deleted' => 'When you remove a category, its feeds are automatically classified under <em>%s</em>.',	// TODO
 		'mute' => array(
 			'_' => 'mute',	// TODO
 			'state_is_muted' => 'This feed is muted',	// TODO

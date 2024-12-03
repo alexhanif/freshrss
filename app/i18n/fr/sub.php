@@ -66,8 +66,8 @@ return array(
 			'help' => 'Un sélecteur CSS peut être une liste comme : <kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',
 		),
 		'description' => 'Description',	// IGNORE
-		'empty' => 'Ce flux est vide. Veuillez vérifier qu’il est toujours maintenu.',
-		'error' => 'Ce flux a rencontré un problème. Veuillez vérifier qu’il est toujours accessible puis actualisez-le.',
+		'empty' => 'Ce flux est vide. Veuillez vérifier qu’il est encore maintenu.',
+		'error' => 'Ce flux a rencontré un problème. Si la situation persiste, vérifiez qu’il est encore accessible.',
 		'export-as-opml' => array(
 			'download' => 'Télécharger',
 			'help' => 'Fichier XML (données partielles. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">Voir documentation</a>)',

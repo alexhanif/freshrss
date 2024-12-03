@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Omschrijving',
 		'empty' => 'Deze feed is leeg. Controleer of deze nog actueel is.',
-		'error' => 'Deze feed heeft problemen. Verifieer a.u.b het doeladres en actualiseer het.',
+		'error' => 'Deze feed heeft een probleem ondervonden. Als deze situatie aanhoudt, controleer dan of de feed nog steeds bereikbaar is.',
 		'export-as-opml' => array(
 			'download' => 'Downloaden',
 			'help' => 'XML-bestand (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// DIRTY

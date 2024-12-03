@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Описание',
 		'empty' => 'Лента пустая. Пожалуйста, убедитесь, что её до сих пор обслуживают.',
-		'error' => 'С этой лентой возникла проблема. Пожалуйста, убедитесь, что она всегда досягаема. Затем снова обновите её.',
+		'error' => 'С этой лентой возникла проблема. Пожалуйста, убедитесь, что она всегда досягаема.',	// DIRTY
 		'export-as-opml' => array(
 			'download' => 'Скачать',
 			'help' => 'XML файл (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// DIRTY

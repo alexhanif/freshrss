@@ -18,6 +18,8 @@ return array(
 		'back_to_rss_feeds' => '← Atgriezieties pie RSS barotnēm',
 		'cancel' => 'Atcelt',
 		'create' => 'Uztaisīt',
+		'delete_all_feeds' => 'Delete all feeds',	// TODO
+		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO
 		'delete_muted_feeds' => 'Izdzēst izslēgtās barotnes',
 		'demote' => 'Pazemināt amatu',
 		'disable' => 'Izslēgt',

@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Beschreibung',
 		'empty' => 'Dieser Feed ist leer. Bitte stellen Sie sicher, dass er noch gepflegt wird.',
-		'error' => 'Dieser Feed ist auf ein Problem gestoßen. Bitte stellen Sie sicher, dass er immer lesbar ist und aktualisieren Sie ihn dann.',
+		'error' => 'Dieser Feed ist auf ein Problem gestoßen. Bitte stellen Sie sicher, dass er immer lesbar ist.',	// DIRTY
 		'export-as-opml' => array(
 			'download' => 'Download',	// IGNORE
 			'help' => 'XML Datei (ausgewählte Daten. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">Siehe Dokumentation</a>)',

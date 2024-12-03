@@ -376,10 +376,21 @@ HTML;
 		return null;
 	}
 
-	/** @return string HTML-encoded link of the entry */
-	public function link(): string {
+	/**
+	 * @param bool $raw Set to true to return the raw link,
+	 *  false (default) to attempt a fallback to the GUID if the link is empty.
+	 * @return string HTML-encoded link of the entry
+	 */
+	public function link(bool $raw = false): string {
+		if ($this->link === '' && !$raw) {
+			// Use the GUID as a fallback if it looks like a URL
+			if (filter_var($this->guid, FILTER_VALIDATE_URL, FILTER_NULL_ON_FAILURE) !== null) {
+				return $this->guid;
+			}
+		}
 		return $this->link;
 	}
+
 	/**
 	 * @phpstan-return ($raw is false ? string : int)
 	 */
@@ -955,7 +966,7 @@ HTML;
 			'title' => $this->title(),
 			'author' => $this->authors(true),
 			'content' => $this->content(false),
-			'link' => $this->link(),
+			'link' => $this->link(raw: true),
 			'date' => $this->date(true),
 			'lastSeen' => $this->lastSeen(),
 			'hash' => $this->hash(),
