@@ -384,7 +384,7 @@ HTML;
 	public function link(bool $raw = false): string {
 		if ($this->link === '' && !$raw) {
 			// Use the GUID as a fallback if it looks like a URL
-			if (filter_var($this->guid, FILTER_VALIDATE_URL)) {
+			if (filter_var($this->guid, FILTER_VALIDATE_URL, FILTER_NULL_ON_FAILURE) !== null) {
 				return $this->guid;
 			}
 		}
