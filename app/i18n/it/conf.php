@@ -109,7 +109,7 @@ return array(
 			'_' => 'Gestione API',
 			'check_link' => 'Verificare lo stato dell’API tramite: <kbd><a href="../api/" target="_blank">%s</a></kbd>',
 			'disabled' => 'L’accesso all’API è disabilitato.',
-			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
+			'documentation_link' => 'Vedi la <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentazione e l’elenco delle applicazioni</a>',
 			'help' => 'leggi la <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentazione</a>',
 		),
 		'delete' => array(
