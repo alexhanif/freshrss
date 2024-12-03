@@ -104,3 +104,7 @@ curl -s -H "Authorization:GoogleLogin auth=alice/8e6845e089457af25303abc6f53356e
 curl -H "Authorization:GoogleLogin auth=alice/8e6845e089457af25303abc6f53356eb60bdb5f8" \
   -d 'ac=unsubscribe&s=feed/52' 'https://freshrss.example.net/api/greader.php/reader/api/0/subscription/edit'
 ```
+
+# Plus de documentation
+
+* Voir [la documentation et les liens en anglais](../../en/developers/06_GoogleReader_API.md#api-documentation-from-other-compatible-servers).
