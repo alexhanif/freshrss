@@ -156,7 +156,7 @@ return array(
 			'_' => 'Condividi questa query tramite un link',
 			'disabled' => array(
 				'_' => 'disabled',	// TODO
-				'title' => 'Sharing',	// TODO
+				'title' => 'Condivisione',
 			),
 			'greader' => 'Shareable link to the GReader JSON',	// TODO
 			'help' => 'Fornisci questo link se vuoi condividere questa query con altre persone',
