@@ -107,10 +107,10 @@ return array(
 		'_' => 'Gestion du profil',
 		'api' => array(
 			'_' => 'Gestion de l’API',
-			'check_link' => 'Check API status via: <kbd><a href="../api" target="_blank">%s</a></kbd>',	// TODO
-			'disabled' => 'The API access is disabled.',	// TODO
-			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
-			'help' => 'see <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
+			'check_link' => 'Vérifier l’état de l’API via : <kbd><a href="../api/" target="_blank">%s</a></kbd>',
+			'disabled' => 'L’accès API est désactivé.',
+			'documentation_link' => 'Voir <a href="https://freshrss.github.io/FreshRSS/fr/users/06_Mobile_access.html" target="_blank">la documentation et une liste d’applications compatibles</a>',
+			'help' => 'Voir <a href="https://freshrss.github.io/FreshRSS/fr/users/06_Mobile_access.html" target=_blank>la documentation</a>',
 		),
 		'delete' => array(
 			'_' => 'Suppression du compte',
@@ -156,8 +156,8 @@ return array(
 		'share' => array(
 			'_' => 'Partager ce filtre par lien',
 			'disabled' => array(
-				'_' => 'disabled',	// TODO
-				'title' => 'Sharing',	// TODO
+				'_' => 'désactivé',
+				'title' => 'Partager',
 			),
 			'greader' => 'Lien partageable au format JSON GReader',
 			'help' => 'Donner ce lien pour partager le contenu du filtre avec d’autres personnes',
@@ -314,7 +314,7 @@ return array(
 		'mark_favorite' => 'Basculer l’indicateur de favori',
 		'mark_read' => 'Basculer l’indicateur de lecture',
 		'navigation' => 'Navigation',	// IGNORE
-		'navigation_help' => 'Avec le modificateur <kbd>⇧ Maj</kbd>, les raccourcis de navigation s’appliquent aux flux.<br/>Avec le modificateur <kbd>Alt ⎇</kbd>, les raccourcis de navigation s’appliquent aux catégories.',
+		'navigation_help' => 'Avec le modificateur <kbd>⇧ Maj</kbd>, les raccourcis de navigation s’appliquent aux flux.<br />Avec le modificateur <kbd>Alt ⎇</kbd>, les raccourcis de navigation s’appliquent aux catégories.',
 		'navigation_no_mod_help' => 'Les raccourcis suivant ne supportent pas les modificateurs.',
 		'next_article' => 'Passer à l’article suivant',
 		'next_unread_article' => 'Passer à l’article non lu suivant',
