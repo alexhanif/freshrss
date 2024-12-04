@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => '動的なOPMLを追加する',
 		'add_feed' => 'フィードの追加',
 		'add_label' => 'ラベルの追加',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'ラベルの削除',
 		'feed_management' => 'RSSフィードの管理',
 		'rename_label' => 'ラベルの名前変更',

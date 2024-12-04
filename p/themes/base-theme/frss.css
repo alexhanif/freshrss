@@ -1159,11 +1159,24 @@ li.drag-hover {
 /*=== STRUCTURE */
 /*===============*/
 /*=== Header */
+.header-wrapper {
+	height: calc(2.5rem + 2 * var(--frss-padding-top-bottom));
+}
+
 .header {
+	position: fixed;
+	top: 0;
+	left: 0;
 	display: table;
 	width: 100%;
 	height: calc(2.5rem + 2 * var(--frss-padding-top-bottom));
 	table-layout: fixed;
+	transition: transform 0.3s;
+	z-index: 110;
+}
+
+.header.hide {
+	transform: translateY(calc(-2.5rem - 2 * var(--frss-padding-top-bottom)));
 }
 
 .header > .item {

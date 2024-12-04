@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'Agrega un OPML dinámico',
 		'add_feed' => 'Añadir una fuente',
 		'add_label' => 'Añadir una etiqueta',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Eliminar una etiqueta',
 		'feed_management' => 'Administración de fuentes RSS',
 		'rename_label' => 'Cambiar el nombre de una etiqueta',

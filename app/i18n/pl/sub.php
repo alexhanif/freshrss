@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'Dodaj dynamiczny OPML',
 		'add_feed' => 'Dodaj kanał',
 		'add_label' => 'Dodaj etykietę',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Usuń etykietę',
 		'feed_management' => 'Zarządzanie kanałami RSS',
 		'rename_label' => 'Zmień nazwę etykiety',

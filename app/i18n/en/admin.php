@@ -14,7 +14,7 @@ return array(
 	'auth' => array(
 		'allow_anonymous' => 'Allow anonymous reading of the default user’s articles (%s)',
 		'allow_anonymous_refresh' => 'Allow anonymous refresh of the articles',
-		'api_enabled' => 'Allow <abbr>API</abbr> access <small>(required for mobile apps)</small>',
+		'api_enabled' => 'Allow <abbr>API</abbr> access <small>(required for mobile apps and sharing user queries)</small>',
 		'form' => 'Web form (traditional, requires JavaScript)',
 		'http' => 'HTTP (for advanced users with HTTPS)',
 		'none' => 'None (dangerous)',

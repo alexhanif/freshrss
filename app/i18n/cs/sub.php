@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'Přidání dynamického OPML',
 		'add_feed' => 'Přidat kanál',
 		'add_label' => 'Přidat popisek',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Odstranit popisek',
 		'feed_management' => 'Správa kanálů RSS',
 		'rename_label' => 'Přejmenovat popisek',

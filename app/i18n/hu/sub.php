@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'Dinamikus OPML hozzáadása',
 		'add_feed' => 'Hírforrás hozzáadása',
 		'add_label' => 'Címke hozzáadása',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Címke törlése',
 		'feed_management' => 'RSS hírforrások kezelése',
 		'rename_label' => 'Címke átnevezése',

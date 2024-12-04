@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => ' OPML پویا را اضافه کنید',
 		'add_feed' => ' یک فید اضافه کنید',
 		'add_label' => ' یک برچسب اضافه کنید',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => ' یک برچسب را حذف کنید',
 		'feed_management' => ' فیدهای RSS را مدیریت می کندment',
 		'rename_label' => ' نام یک برچسب را تغییر دهید',

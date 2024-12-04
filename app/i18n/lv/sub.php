@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'Pievienot dinamisku OPML',
 		'add_feed' => 'Pievienot barotni',
 		'add_label' => 'Pievienot birku',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Noņemt birku',
 		'feed_management' => 'RSS barotņu pārvalde',
 		'rename_label' => 'Birkas vārda maiņa',

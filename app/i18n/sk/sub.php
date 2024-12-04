@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'Pridať dynamické OPML',
 		'add_feed' => 'Pridať kanál',
 		'add_label' => 'Pridať štítok',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Zmazať štítok',
 		'feed_management' => 'Správa RSS kanálov',
 		'rename_label' => 'Premenovať štítok',

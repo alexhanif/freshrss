@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'Добавить динамичный OPML',
 		'add_feed' => 'Добавить ленту',
 		'add_label' => 'Добавить метку',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Удалить метку',
 		'feed_management' => 'Управление RSS-лентами',
 		'rename_label' => 'Переименовать метку',

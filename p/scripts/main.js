@@ -1954,6 +1954,23 @@ function init_confirm_action() {
 	document.querySelectorAll('button.confirm').forEach(function (b) { b.disabled = false; });
 }
 
+function init_scroll_header() {
+	const header = document.querySelector('header.header');
+	if (header) {
+		const headerHeight = parseInt(getComputedStyle(header).height);
+		header.previousScroll = 0;
+		window.addEventListener('scroll', function () {
+			const currentScroll = window.scrollY;
+			if (currentScroll > headerHeight && currentScroll > header.previousScroll) {
+				header.classList.add('hide');
+			} else {
+				header.classList.remove('hide');
+			}
+			header.previousScroll = currentScroll;
+		});
+	}
+}
+
 function faviconNbUnread(n) {
 	if (typeof n === 'undefined') {
 		const t = document.querySelector('.category.all .title');
@@ -2028,6 +2045,7 @@ function init_normal() {
 }
 
 function init_main_beforeDOM() {
+	history.scrollRestoration = 'manual';
 	document.scrollingElement.scrollTop = 0;
 	init_shortcuts();
 	if (['normal', 'reader', 'global'].indexOf(context.current_view) >= 0) {
@@ -2039,6 +2057,7 @@ function init_main_afterDOM() {
 	removeFirstLoadSpinner();
 	init_notifications();
 	init_confirm_action();
+	init_scroll_header();
 	const stream = document.getElementById('stream');
 	if (stream) {
 		init_load_more(stream);

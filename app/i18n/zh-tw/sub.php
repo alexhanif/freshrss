@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => '添加訂閱源動態列表',
 		'add_feed' => '添加訂閱源',
 		'add_label' => '添加標籤',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => '刪除標籤',
 		'feed_management' => '訂閱源管理',
 		'rename_label' => '重命名標籤',

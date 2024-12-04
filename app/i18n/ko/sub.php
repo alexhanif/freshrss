@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => '동적 OPML 추가',
 		'add_feed' => '피드 추가',
 		'add_label' => '라벨 추가',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => '라벨 삭제',
 		'feed_management' => 'RSS 피드 관리',
 		'rename_label' => '라벨 이름 바꾸기',

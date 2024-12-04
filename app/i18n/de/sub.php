@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'dynamisches OPML hinzufügen',
 		'add_feed' => 'Feed hinzufügen',
 		'add_label' => 'Label hinzufügen',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Label löschen',
 		'feed_management' => 'Verwaltung der RSS-Feeds',
 		'rename_label' => 'Label umbenennen',
