@@ -1956,8 +1956,8 @@ function init_confirm_action() {
 
 function init_scroll_header() {
 	const header = document.querySelector('header.header');
-	const headerHeight = parseInt(getComputedStyle(header).height);
 	if (header) {
+		const headerHeight = parseInt(getComputedStyle(header).height);
 		header.previousScroll = 0;
 		window.addEventListener('scroll', function () {
 			const currentScroll = window.scrollY;
