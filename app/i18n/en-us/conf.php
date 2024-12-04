@@ -100,17 +100,17 @@ return array(
 		),
 	),
 	'privacy' => array(
-		'_' => 'Privacy',	// TODO
-		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+		'_' => 'Privacy',	// IGNORE
+		'retrieve_extension_list' => 'Retrieve extension list',	// IGNORE
 	),
 	'profile' => array(
 		'_' => 'Profile management',	// IGNORE
 		'api' => array(
 			'_' => 'API management',	// IGNORE
-			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// TODO
-			'disabled' => 'The API access is disabled.',	// TODO
-			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
-			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
+			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// IGNORE
+			'disabled' => 'The API access is disabled.',	// IGNORE
+			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// IGNORE
+			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// IGNORE
 		),
 		'delete' => array(
 			'_' => 'Account deletion',	// IGNORE
@@ -156,8 +156,8 @@ return array(
 		'share' => array(
 			'_' => 'Share this query by link',	// IGNORE
 			'disabled' => array(
-				'_' => 'disabled',	// TODO
-				'title' => 'Sharing',	// TODO
+				'_' => 'disabled',	// IGNORE
+				'title' => 'Sharing',	// IGNORE
 			),
 			'greader' => 'Shareable link to the GReader JSON',	// IGNORE
 			'help' => 'Give this link if you want to share this query with anyone',	// IGNORE
