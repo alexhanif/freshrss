@@ -143,6 +143,10 @@ return array(
 		'image_url' => 'Image URL',	// TODO
 		'name' => '名称',
 		'no_filter' => '无过滤器',
+		'no_queries' => array(
+			'_' => 'No user queries are safed yet.',	// TODO
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="blank">documentation</a>',	// TODO
+		),
 		'number' => '查询 n°%d',
 		'order_asc' => '由旧至新显示文章',
 		'order_desc' => '由新至旧显示文章',

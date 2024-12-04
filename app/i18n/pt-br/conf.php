@@ -143,6 +143,10 @@ return array(
 		'image_url' => 'Image URL',	// TODO
 		'name' => 'Nome',
 		'no_filter' => 'Sem filtro',
+		'no_queries' => array(
+			'_' => 'No user queries are safed yet.',	// TODO
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="blank">documentation</a>',	// TODO
+		),
 		'number' => 'Consulta n°%d',
 		'order_asc' => 'Exibir artigos mais antigos primeiro',
 		'order_desc' => 'Exibir artigos mais novos primeiro',

@@ -143,6 +143,10 @@ return array(
 		'image_url' => 'Resim Bağlantısı (URL)',
 		'name' => 'İsim',
 		'no_filter' => 'Filtre yok',
+		'no_queries' => array(
+			'_' => 'No user queries are safed yet.',	// TODO
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="blank">documentation</a>',	// TODO
+		),
 		'number' => 'Sorgu n°%d',
 		'order_asc' => 'Önce eski makaleleri göster',
 		'order_desc' => 'Önce yeni makaleleri göster',
