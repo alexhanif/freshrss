@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Opis',
 		'empty' => 'Ten kanał jest pusty. Należy sprawdzić czy kanał w dalszym ciągu działa.',
-		'error' => 'Napotkano problem podczas dostępu do tego kanału. Należy sprawdzić czy kanał jest zawsze dostępny, a następnie go odświeżyć.',
+		'error' => 'Napotkano problem podczas dostępu do tego kanału. Należy sprawdzić czy kanał jest zawsze dostępny.',	// DIRTY
 		'export-as-opml' => array(
 			'download' => 'Pobierz',
 			'help' => 'Plik XML (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// DIRTY
@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'Dodaj dynamiczny OPML',
 		'add_feed' => 'Dodaj kanał',
 		'add_label' => 'Dodaj etykietę',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Usuń etykietę',
 		'feed_management' => 'Zarządzanie kanałami RSS',
 		'rename_label' => 'Zmień nazwę etykiety',

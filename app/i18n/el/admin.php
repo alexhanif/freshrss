@@ -14,7 +14,7 @@ return array(
 	'auth' => array(
 		'allow_anonymous' => 'Allow anonymous reading of the default user’s articles (%s)',	// TODO
 		'allow_anonymous_refresh' => 'Allow anonymous refresh of the articles',	// TODO
-		'api_enabled' => 'Allow <abbr>API</abbr> access <small>(required for mobile apps)</small>',	// TODO
+		'api_enabled' => 'Allow <abbr>API</abbr> access <small>(required for mobile apps and sharing user queries)</small>',	// TODO
 		'form' => 'Web form (σύνηθες, απαιτεί JavaScript)',
 		'http' => 'HTTP (για έμπειρους χρήστες με )',
 		'none' => 'Καμία (ριψοκίνδυνο)',

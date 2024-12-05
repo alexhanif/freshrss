@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Apraksts',
 		'empty' => 'Šī barotne ir tukša. Lūdzu, pārbaudiet, vai tā joprojām tiek uzturēta.',
-		'error' => 'Šajā barotnē ir radusies problēma. Lūdzu, pārbaudiet, vai tā vienmēr ir sasniedzama, un pēc tam to atjauniniet.',
+		'error' => 'Šajā barotnē ir radusies problēma. Lūdzu, pārbaudiet, vai tā vienmēr ir sasniedzama.',	// DIRTY
 		'export-as-opml' => array(
 			'download' => 'Download',	// TODO
 			'help' => 'XML file (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// TODO
@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'Pievienot dinamisku OPML',
 		'add_feed' => 'Pievienot barotni',
 		'add_label' => 'Pievienot birku',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Noņemt birku',
 		'feed_management' => 'RSS barotņu pārvalde',
 		'rename_label' => 'Birkas vārda maiņa',

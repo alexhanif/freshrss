@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => '설명',
 		'empty' => '이 피드는 비어있습니다. 피드가 계속 운영되고 있는지 확인하세요.',
-		'error' => '이 피드에 문제가 발생했습니다. 이 피드에 접근 권한이 있는지 확인하세요.',
+		'error' => '이 피드에 문제가 발생했습니다. 이 피드에 접근 권한이 있는지 확인하세요.',	// DIRTY
 		'export-as-opml' => array(
 			'download' => '다운로드',
 			'help' => 'XML 파일 (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// DIRTY
@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => '동적 OPML 추가',
 		'add_feed' => '피드 추가',
 		'add_label' => '라벨 추가',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => '라벨 삭제',
 		'feed_management' => 'RSS 피드 관리',
 		'rename_label' => '라벨 이름 바꾸기',

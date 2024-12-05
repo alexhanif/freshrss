@@ -105,7 +105,13 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'Gestione profili',
-		'api' => 'Gestione API',
+		'api' => array(
+			'_' => 'Gestione API',
+			'check_link' => 'Verificare lo stato dell’API tramite: <kbd><a href="../api/" target="_blank">%s</a></kbd>',
+			'disabled' => 'L’accesso all’API è disabilitato.',
+			'documentation_link' => 'Vedi la <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentazione e l’elenco delle applicazioni</a>',
+			'help' => 'leggi la <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentazione</a>',
+		),
 		'delete' => array(
 			'_' => 'Cancellazione account',
 			'warn' => 'Il tuo account e tutti i dati associati saranno cancellati.',
@@ -149,6 +155,10 @@ return array(
 		'search' => 'Cerca per “%s”',
 		'share' => array(
 			'_' => 'Condividi questa query tramite un link',
+			'disabled' => array(
+				'_' => 'disabilitato',
+				'title' => 'Condivisione',
+			),
 			'greader' => 'Shareable link to the GReader JSON',	// TODO
 			'help' => 'Fornisci questo link se vuoi condividere questa query con altre persone',
 			'html' => 'Link condivisibile alla pagina HTML',

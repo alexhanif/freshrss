@@ -14,7 +14,7 @@ return array(
 	'auth' => array(
 		'allow_anonymous' => 'デフォルトのユーザーの記事がログインしていないときでも読めるようにします。 (%s)',
 		'allow_anonymous_refresh' => '未ログインユーザーでも記事を更新できるようにします。',
-		'api_enabled' => '<abbr>API</abbr>からのアクセスを許可する <small>(モバイルアプリが必要です)</small>',
+		'api_enabled' => '<abbr>API</abbr>からのアクセスを許可する <small>(モバイルアプリが必要です and sharing user queries)</small>',	// DIRTY
 		'form' => 'ウェブフォーム (JavaScriptが必要です)',
 		'http' => 'HTTP (上級者はHTTPSでも)',
 		'none' => 'なし (危険)',

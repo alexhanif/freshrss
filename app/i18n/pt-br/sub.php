@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Descrição',
 		'empty' => 'Este feed está vazio. Por favor verifique ele ainda é mantido.',
-		'error' => 'Este feed encontra-se com problema. Por favor verifique se ele ainda está disponível e atualize-o.',
+		'error' => 'Este feed encontra-se com problema. Por favor verifique se ele ainda está disponível.',	// DIRTY
 		'export-as-opml' => array(
 			'download' => 'Download',	// IGNORE
 			'help' => 'Arquivo XML (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// DIRTY
@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'Adicionar OPML dinâmico',
 		'add_feed' => 'Adicionar um feed',
 		'add_label' => 'Adicionar uma etiqueta',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Deletar uma etiqueta',
 		'feed_management' => 'Gerenciamento dos RSS feeds',
 		'rename_label' => 'Renomear uma etiqueta',

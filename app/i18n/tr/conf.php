@@ -105,7 +105,13 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'Profil yönetimi',
-		'api' => 'API yönetimi',
+		'api' => array(
+			'_' => 'API yönetimi',
+			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// TODO
+			'disabled' => 'The API access is disabled.',	// TODO
+			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
+			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'Hesap silme',
 			'warn' => 'Hesabınız ve tüm verileriniz silinecek.',
@@ -149,6 +155,10 @@ return array(
 		'search' => '“%s” için arama',
 		'share' => array(
 			'_' => 'Bu aramayı linkle paylaşın',
+			'disabled' => array(
+				'_' => 'disabled',	// TODO
+				'title' => 'Sharing',	// TODO
+			),
 			'greader' => 'GReader JSON için paylaşılabilir bağlantı',
 			'help' => 'Bu aramayı herhangi biriyle paylaşmak istiyorsanız bu bağlantıyı verin',
 			'html' => 'HTML sayfasına paylaşılabilir bağlantı',
