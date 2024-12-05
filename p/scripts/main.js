@@ -785,6 +785,7 @@ function auto_share(key) {
 let box_to_follow;
 
 function onScroll() {
+	on_scroll_header();
 	if (!box_to_follow) {
 		return;
 	}
@@ -818,7 +819,7 @@ let lastScroll = 0;	// Throttle
 let timerId = 0;
 function debouncedOnScroll() {
 	clearTimeout(timerId);
-	if (lastScroll + 500 < Date.now()) {
+	if (lastScroll + 500 <= Date.now()) {
 		lastScroll = Date.now();
 		onScroll();
 	} else {
@@ -1954,21 +1955,25 @@ function init_confirm_action() {
 	document.querySelectorAll('button.confirm').forEach(function (b) { b.disabled = false; });
 }
 
-function init_scroll_header() {
-	const header = document.querySelector('header.header');
-	if (header) {
-		const headerHeight = parseInt(getComputedStyle(header).height);
-		header.previousScroll = 0;
-		window.addEventListener('scroll', function () {
-			const currentScroll = window.scrollY;
-			if (currentScroll > headerHeight && currentScroll > header.previousScroll) {
-				header.classList.add('hide');
-			} else {
-				header.classList.remove('hide');
-			}
-			header.previousScroll = currentScroll;
-		});
+function on_scroll_header() {
+	if (on_scroll_header.header === undefined) {
+		on_scroll_header.header = document.querySelector('header.header');
 	}
+	const header = on_scroll_header.header;
+	if (!header) {
+		return;
+	}
+	if (!header.headerHeight) {
+		header.headerHeight = parseInt(getComputedStyle(header).height);
+		header.previousScroll = 0;
+	}
+	const currentScroll = window.scrollY;
+	if (currentScroll <= header.headerHeight || currentScroll < header.previousScroll - 4) {
+		header.classList.remove('hide');
+	} else if (currentScroll > header.previousScroll + 8) {
+		header.classList.add('hide');
+	}
+	header.previousScroll = currentScroll;
 }
 
 function faviconNbUnread(n) {
@@ -2057,7 +2062,6 @@ function init_main_afterDOM() {
 	removeFirstLoadSpinner();
 	init_notifications();
 	init_confirm_action();
-	init_scroll_header();
 	const stream = document.getElementById('stream');
 	if (stream) {
 		init_load_more(stream);
