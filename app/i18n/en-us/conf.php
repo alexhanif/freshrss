@@ -151,7 +151,7 @@ return array(
 		'no_filter' => 'No filter',	// IGNORE
 		'no_queries' => array(
 			'_' => 'No user queries are safed yet.',	// IGNORE
-			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="blank">documentation</a>',	// IGNORE
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// IGNORE
 		),
 		'number' => 'Query n°%d',	// IGNORE
 		'order_asc' => 'Display oldest articles first',	// IGNORE

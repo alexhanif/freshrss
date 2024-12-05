@@ -151,7 +151,7 @@ return array(
 		'no_filter' => 'Tanpa filter',
 		'no_queries' => array(
 			'_' => 'No user queries are safed yet.',	// TODO
-			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="blank">documentation</a>',	// TODO
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
 		),
 		'number' => 'Permintaan n°%d',
 		'order_asc' => 'Tampilkan artikel tertua dahulu',

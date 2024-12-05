@@ -151,7 +151,7 @@ return array(
 		'no_filter' => 'フィルターはありません',
 		'no_queries' => array(
 			'_' => 'No user queries are safed yet.',	// TODO
-			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="blank">documentation</a>',	// TODO
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
 		),
 		'number' => 'クエリ n°%d',
 		'order_asc' => '古い記事を最初に表示する',
