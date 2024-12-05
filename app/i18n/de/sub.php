@@ -84,10 +84,10 @@ return array(
 		'kind' => array(
 			'_' => 'Art der Feed-Quelle',
 			'html_json' => array(
-				'_' => 'HTML + XPath + JSON dot notation (JSON in HTML)',	// TODO
+				'_' => 'HTML + XPath + JSON Punkt-Notation (JSON in HTML)',
 				'xpath' => array(
-					'_' => 'XPath for JSON in HTML',	// TODO
-					'help' => 'Example: <code>//script[@type="application/json"]</code>',	// TODO
+					'_' => 'XPath für JSON in HTML',
+					'help' => 'Beispiel: <code>//script[@type="application/json"]</code>',
 				),
 			),
 			'html_xpath' => array(
