@@ -151,7 +151,7 @@ return array(
 		'no_filter' => 'Nessun filtro',
 		'no_queries' => array(
 			'_' => 'Nessuna ricerca personale è stata ancora inserita',
-			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
+			'help' => 'Leggi la <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentazione</a>',
 		),
 		'number' => 'Ricerca n°%d',
 		'order_asc' => 'Mostra prima gli articoli più vecchi',
