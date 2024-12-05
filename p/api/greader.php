@@ -787,7 +787,7 @@ final class GReaderAPI {
 	/**
 	 * @param array<string> $e_ids IDs of the items to edit
 	 * @param array<string> $as tags to add to all the listed items
-	 * @param array<string> $rs tags to remove from all the listed the items
+	 * @param array<string> $rs tags to remove from all the listed items
 	 */
 	private static function editTag(array $e_ids, array $as, array $rs): never {
 		foreach ($e_ids as $i => $e_id) {
