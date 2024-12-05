@@ -150,7 +150,7 @@ return array(
 		'name' => 'Meno',
 		'no_filter' => 'Žiadny filter',
 		'no_queries' => array(
-			'_' => 'No user queries are safed yet.',	// TODO
+			'_' => 'No user queries are saved yet.',	// TODO
 			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
 		),
 		'number' => 'Dopyt číslo %d',

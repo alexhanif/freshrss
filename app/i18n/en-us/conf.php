@@ -150,7 +150,7 @@ return array(
 		'name' => 'Name',	// IGNORE
 		'no_filter' => 'No filter',	// IGNORE
 		'no_queries' => array(
-			'_' => 'No user queries are safed yet.',	// IGNORE
+			'_' => 'No user queries are saved yet.',	// IGNORE
 			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// IGNORE
 		),
 		'number' => 'Query n°%d',	// IGNORE

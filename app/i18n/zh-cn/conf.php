@@ -150,7 +150,7 @@ return array(
 		'name' => '名称',
 		'no_filter' => '无过滤器',
 		'no_queries' => array(
-			'_' => 'No user queries are safed yet.',	// TODO
+			'_' => 'No user queries are saved yet.',	// TODO
 			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
 		),
 		'number' => '查询 n°%d',
