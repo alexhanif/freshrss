@@ -14,7 +14,7 @@ return array(
 	'auth' => array(
 		'allow_anonymous' => 'Izinkan pembacaan anonim artikel pengguna default (%s)',
 		'allow_anonymous_refresh' => 'Izinkan refresh artikel anonim',
-		'api_enabled' => 'Izinkan <abbr>API</abbr> akses <small>(Diperlukan untuk aplikasi seluler)</small>',	// DIRTY
+		'api_enabled' => 'Izinkan <abbr>API</abbr> akses <small>(Diperlukan untuk aplikasi seluler and sharing user queries)</small>',	// DIRTY
 		'form' => 'Web form (traditional, membutuhkan JavaScript)',
 		'http' => 'HTTP (untuk pengguna tingkat lanjut HTTPS)',
 		'none' => 'None (berbahaya)',

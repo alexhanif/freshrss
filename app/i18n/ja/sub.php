@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => '説明',
 		'empty' => 'このフィードは空です。サイトが運営されているかどうかを確認してみてください。',
-		'error' => 'このフィードに問題が発生しました。ここでアクセスできるかどうかを確認して更新してみてください。',
+		'error' => 'このフィードに問題が発生しました。ここでアクセスできるかどうかを確認して更新してみてください。',	// DIRTY
 		'export-as-opml' => array(
 			'download' => 'ダウンロード',
 			'help' => 'XMLファイル (データのサブセット。<a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">ドキュメントを参照してください</a>。)',
@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => '動的なOPMLを追加する',
 		'add_feed' => 'フィードの追加',
 		'add_label' => 'ラベルの追加',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'ラベルの削除',
 		'feed_management' => 'RSSフィードの管理',
 		'rename_label' => 'ラベルの名前変更',

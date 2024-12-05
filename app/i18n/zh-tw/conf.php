@@ -105,7 +105,13 @@ return array(
 	),
 	'profile' => array(
 		'_' => '個人資料管理',
-		'api' => 'API 管理',
+		'api' => array(
+			'_' => 'API 管理',
+			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// TODO
+			'disabled' => 'The API access is disabled.',	// TODO
+			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
+			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
+		),
 		'delete' => array(
 			'_' => '帳號刪除',
 			'warn' => '你的帳號及所有相關資料將被刪除。',
@@ -149,6 +155,10 @@ return array(
 		'search' => '搜尋 “%s”',
 		'share' => array(
 			'_' => '透過連結分享此查詢',
+			'disabled' => array(
+				'_' => 'disabled',	// TODO
+				'title' => 'Sharing',	// TODO
+			),
 			'greader' => 'GReader JSON的可共享連結',
 			'help' => '如果您想與任何人分享此查詢，請提供此連結',
 			'html' => 'HTML頁面的可共享連結',

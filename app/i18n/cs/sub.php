@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Popis',
 		'empty' => 'Tento kanál je prázdný. Ověřte prosím, zda je stále udržován.',
-		'error' => 'Vyskytl se problém s kanálem. Ověřte prosím, že je vždy dostupný, pak ho aktualizujte.',
+		'error' => 'Vyskytl se problém s kanálem. Ověřte prosím, že je vždy dostupný.',	// DIRTY
 		'export-as-opml' => array(
 			'download' => 'Stáhnout',
 			'help' => 'Soubor XML (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// DIRTY
@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'Přidání dynamického OPML',
 		'add_feed' => 'Přidat kanál',
 		'add_label' => 'Přidat popisek',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Odstranit popisek',
 		'feed_management' => 'Správa kanálů RSS',
 		'rename_label' => 'Přejmenovat popisek',

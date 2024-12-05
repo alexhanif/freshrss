@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Leírás',
 		'empty' => 'Ez a hírforrás üres. Ellenőrizd hogy van e tartalom rajta.',
-		'error' => 'Ez a hírforrás nem működik. Ellenőrizd az elérhetőségét és frissítsd.',
+		'error' => 'Ez a hírforrás nem működik. Ellenőrizd az elérhetőségét.',	// DIRTY
 		'export-as-opml' => array(
 			'download' => 'Letöltés',
 			'help' => 'XML fájl (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// DIRTY
@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'Dinamikus OPML hozzáadása',
 		'add_feed' => 'Hírforrás hozzáadása',
 		'add_label' => 'Címke hozzáadása',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Címke törlése',
 		'feed_management' => 'RSS hírforrások kezelése',
 		'rename_label' => 'Címke átnevezése',

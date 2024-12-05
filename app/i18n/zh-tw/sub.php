@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => '描述',
 		'empty' => '此源為空。請確認它是否正常更新。',
-		'error' => '此源遇到一些問題。請在確認是否能正常訪問後重試。',
+		'error' => '此源遇到一些問題。請在確認是否能正常訪問後重試。',	// DIRTY
 		'export-as-opml' => array(
 			'download' => '下載',
 			'help' => 'XML file (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// TODO
@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => '添加訂閱源動態列表',
 		'add_feed' => '添加訂閱源',
 		'add_label' => '添加標籤',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => '刪除標籤',
 		'feed_management' => '訂閱源管理',
 		'rename_label' => '重命名標籤',
