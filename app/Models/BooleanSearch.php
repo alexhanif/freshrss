@@ -39,7 +39,7 @@ class FreshRSS_BooleanSearch implements \Stringable {
 		$this->raw_input = $input;
 
 		if ($level === 0) {
-			$input = self::escapeRegexParentheses($input);
+			$input = self::escapeLiteralParentheses($input);
 			$input = $this->parseUserQueryNames($input, $allowUserQueries);
 			$input = $this->parseUserQueryIds($input, $allowUserQueries);
 			$input = trim($input);
@@ -83,7 +83,7 @@ class FreshRSS_BooleanSearch implements \Stringable {
 					if (!empty($queries[$name])) {
 						$fromS[] = $matches[0][$i];
 						if ($allowUserQueries) {
-							$toS[] = '(' . self::escapeRegexParentheses($queries[$name]) . ')';
+							$toS[] = '(' . self::escapeLiteralParentheses($queries[$name]) . ')';
 						} else {
 							$toS[] = '';
 						}
@@ -124,7 +124,7 @@ class FreshRSS_BooleanSearch implements \Stringable {
 					if (!empty($queries[$id])) {
 						$fromS[] = $matches[0][$i];
 						if ($allowUserQueries) {
-							$toS[] = '(' . self::escapeRegexParentheses($queries[$id]) . ')';
+							$toS[] = '(' . self::escapeLiteralParentheses($queries[$id]) . ')';
 						} else {
 							$toS[] = '';
 						}
@@ -138,16 +138,16 @@ class FreshRSS_BooleanSearch implements \Stringable {
 	}
 
 	/**
-	 * Temporarily escape parentheses used in regex expressions.
+	 * Temporarily escape parentheses used in regex expressions or inside quoted strings.
 	 */
-	public static function escapeRegexParentheses(string $input): string {
-		return preg_replace_callback('%(?<=[\\s(:#!-]|^)(?<![\\\\])/.+?(?<!\\\\)/[im]*%',
+	public static function escapeLiteralParentheses(string $input): string {
+		return preg_replace_callback('%(?<=[\\s(:#!-]|^)(?<![\\\\])(?P<delim>[\'"/]).+?(?<!\\\\)(?P=delim)[im]*%',
 			fn(array $matches): string => str_replace(['(', ')'], ['\\u0028', '\\u0029'], $matches[0]),
 			$input
 		) ?? '';
 	}
 
-	public static function unescapeRegexParentheses(string $input): string {
+	public static function unescapeLiteralParentheses(string $input): string {
 		return str_replace(['\\u0028', '\\u0029'], ['(', ')'], $input);
 	}
 

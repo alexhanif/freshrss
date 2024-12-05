@@ -119,22 +119,14 @@ $today = @strtotime('today');
 									<img class="favicon" src="<?= $this->feed->favicon() ?>" alt="✇" loading="lazy" /><?php
 								endif; ?><span><?= $this->feed->name() ?></span></a>
 							</div>
-							<?php
+						<?php }
+						if (!empty($this->entry->authors())) {
+							$this->renderHelper('index/authors');
+							if ($this->feed === null || $this->entry === null) {
+								throw new Exception('Unexpected side effect!');	// Should never occur. Only for PHPStan
+							}
 						}
-
-						$authors = $this->entry->authors();
-						if (!empty($authors) && is_array($authors)) {
 						?>
-						<div class="author">
-							<?= _t('gen.short.by_author') ?>
-							<?php
-							foreach ($authors as $author) {
-								$href = Minz_Url::display(Minz_Request::modifiedCurrentRequest(['search' => 'author:"' . htmlspecialchars_decode($author, ENT_QUOTES) . '"']));
-							?>
-							<a href="<?= $href ?>" title="<?= _t('gen.action.filter') ?>"><?= $author ?></a>
-							<?php } ?>
-						</div>
-						<?php } ?>
 						<div class="date"><?= $this->entry->date() ?></div>
 					</div>
 					<?php } ?>
@@ -158,21 +150,14 @@ $today = @strtotime('today');
 											<img class="favicon" src="<?= $this->feed->favicon() ?>" alt="✇" loading="lazy" /><?php
 										endif; ?><span><?= $this->feed->name() ?></span></a>
 									</div>
-									<?php
-								}
-								$authors = $this->entry->authors();
-								if (!empty($authors) && is_array($authors)) {
+								<?php }
+									if (!empty($this->entry->authors())) {
+										$this->renderHelper('index/authors');
+										if ($this->feed === null || $this->entry === null) {
+											throw new Exception('Unexpected side effect!');	// Should never occur. Only for PHPStan
+										}
+									}
 								?>
-								<div class="author">
-									<?= _t('gen.short.by_author') ?>
-									<?php
-									foreach ($authors as $author) {
-										$href = Minz_Url::display(Minz_Request::modifiedCurrentRequest(['search' => 'author:"' . htmlspecialchars_decode($author, ENT_QUOTES) . '"']));
-									?>
-									<a href="<?= $href ?>" title="<?= _t('gen.action.filter') ?>"><?= $author ?></a>
-									<?php } ?>
-								</div>
-								<?php } ?>
 								<div class="date"><?= $this->entry->date() ?></div>
 							</div>
 						<?php
