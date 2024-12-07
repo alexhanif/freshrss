@@ -18,12 +18,12 @@ return array(
 		'back_to_rss_feeds' => '← Indietro',
 		'cancel' => 'Annulla',
 		'create' => 'Crea',
-		'delete_all_feeds' => 'Delete all feeds',	// TODO
-		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO
+		'delete_all_feeds' => 'Cancella tutti i feed',
+		'delete_errored_feeds' => 'Cancella i feed con errori',
 		'delete_muted_feeds' => 'Cancella i feed mutati',
 		'demote' => 'Retrocedi',
 		'disable' => 'Disabilita',
-		'download' => 'Download',	// TODO
+		'download' => 'Download',	// IGNORE
 		'empty' => 'Vuoto',
 		'enable' => 'Abilita',
 		'export' => 'Esporta',
@@ -33,12 +33,12 @@ return array(
 		'manage' => 'Gestisci',
 		'mark_read' => 'Segna come letto',
 		'menu' => array(
-			'open' => 'Open menu',	// TODO
+			'open' => 'Aprire il menu',
 		),
 		'nav_buttons' => array(
-			'next' => 'Next article',	// TODO
-			'prev' => 'Previous article',	// TODO
-			'up' => 'Go up',	// TODO
+			'next' => 'Articolo successivo',
+			'prev' => 'Articolo precedente',
+			'up' => 'Salire',
 		),
 		'open_url' => 'Apri URL',
 		'promote' => 'Promuovi',
@@ -187,7 +187,7 @@ return array(
 		'display' => 'Visualizzazione',
 		'extensions' => 'Estensioni',
 		'logs' => 'Log',
-		'privacy' => 'Privacy',	// TODO
+		'privacy' => 'Privacy',	// IGNORE
 		'queries' => 'Ricerche personali',
 		'reading' => 'Lettura',
 		'search' => 'Ricerca parole o #tags',

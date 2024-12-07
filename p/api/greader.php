@@ -11,11 +11,11 @@ Server-side API compatible with Google Reader API layer 2
 	under GNU AGPL 3 license http://www.gnu.org/licenses/agpl-3.0.html
 
 == Documentation ==
-* http://code.google.com/p/pyrfeed/wiki/GoogleReaderAPI
+* https://code.google.com/archive/p/pyrfeed/wikis/GoogleReaderAPI.wiki
 * https://web.archive.org/web/20130718025427/http://undoc.in/
 * http://ranchero.com/downloads/GoogleReaderAPI-2009.pdf
-* http://code.google.com/p/google-reader-api/w/list
-* https://web.archive.org/web/20210126115837/https://blog.martindoms.com/2009/10/16/using-the-google-reader-api-part-2/
+* https://github.com/mihaip/google-reader-api
+* https://web.archive.org/web/20210126113527/https://blog.martindoms.com/2009/08/15/using-the-google-reader-api-part-1
 * https://github.com/noinnion/newsplus/blob/master/extensions/GoogleReaderCloneExtension/src/com/noinnion/android/newsplus/extension/google_reader/GoogleReaderClient.java
 * https://github.com/ericmann/gReader-Library/blob/master/greader.class.php
 * https://github.com/devongovett/reader
@@ -230,8 +230,8 @@ final class GReaderAPI {
 	}
 
 	private static function token(?FreshRSS_UserConfiguration $conf): never {
-		//http://blog.martindoms.com/2009/08/15/using-the-google-reader-api-part-1/
-		//https://github.com/ericmann/gReader-Library/blob/master/greader.class.php
+		// https://web.archive.org/web/20210126113527/https://blog.martindoms.com/2009/08/15/using-the-google-reader-api-part-1
+		// https://github.com/ericmann/gReader-Library/blob/master/greader.class.php
 		$user = Minz_User::name();
 		if ($user === null || $conf === null || !FreshRSS_Context::hasSystemConf()) {
 			self::unauthorized();
@@ -243,7 +243,7 @@ final class GReaderAPI {
 	}
 
 	private static function checkToken(?FreshRSS_UserConfiguration $conf, string $token): bool {
-		//http://code.google.com/p/google-reader-api/wiki/ActionToken
+		// https://github.com/mihaip/google-reader-api/blob/master/wiki/ActionToken.wiki
 		$user = Minz_User::name();
 		if ($user === null || $conf === null || !FreshRSS_Context::hasSystemConf()) {
 			self::unauthorized();
@@ -485,7 +485,7 @@ final class GReaderAPI {
 	}
 
 	private static function unreadCount(): never {
-		//http://blog.martindoms.com/2009/10/16/using-the-google-reader-api-part-2/#unread-count
+		// https://web.archive.org/web/20210126115837/https://blog.martindoms.com/2009/10/16/using-the-google-reader-api-part-2#unread-count
 		header('Content-Type: application/json; charset=UTF-8');
 
 		$totalUnreads = 0;
@@ -647,8 +647,8 @@ final class GReaderAPI {
 
 	private static function streamContents(string $path, string $include_target, int $start_time, int $stop_time, int $count,
 		string $order, string $filter_target, string $exclude_target, string $continuation): never {
-		//http://code.google.com/p/pyrfeed/wiki/GoogleReaderAPI
-		//http://blog.martindoms.com/2009/10/16/using-the-google-reader-api-part-2/#feed
+		// https://code.google.com/archive/p/pyrfeed/wikis/GoogleReaderAPI.wiki
+		// https://web.archive.org/web/20210126115837/https://blog.martindoms.com/2009/10/16/using-the-google-reader-api-part-2#feed
 		header('Content-Type: application/json; charset=UTF-8');
 
 		$type = match ($path) {
@@ -696,9 +696,9 @@ final class GReaderAPI {
 
 	private static function streamContentsItemsIds(string $streamId, int $start_time, int $stop_time, int $count,
 		string $order, string $filter_target, string $exclude_target, string $continuation): never {
-		//http://code.google.com/p/google-reader-api/wiki/ApiStreamItemsIds
-		//http://code.google.com/p/pyrfeed/wiki/GoogleReaderAPI
-		//http://blog.martindoms.com/2009/10/16/using-the-google-reader-api-part-2/#feed
+		// https://github.com/mihaip/google-reader-api/blob/master/wiki/ApiStreamItemsIds.wiki
+		// https://code.google.com/archive/p/pyrfeed/wikis/GoogleReaderAPI.wiki
+		// https://web.archive.org/web/20210126115837/https://blog.martindoms.com/2009/10/16/using-the-google-reader-api-part-2#feed
 		$type = 'A';
 		if ($streamId === 'user/-/state/com.google/reading-list') {
 			$type = 'A';
@@ -1096,9 +1096,8 @@ final class GReaderAPI {
 						}
 					} elseif ($pathInfos[5] === 'items') {
 						if ($pathInfos[6] === 'ids' && isset($_GET['s'])) {
-							/* StreamId for which to fetch the item IDs. The parameter may
-							* be repeated to fetch the item IDs from multiple streams at once
-							* (more efficient from a backend perspective than multiple requests). */
+							// StreamId for which to fetch the item IDs.
+							// TODO: support multiple streams
 							$streamId = $_GET['s'];
 							self::streamContentsItemsIds($streamId, $start_time, $stop_time, $count, $order, $filter_target, $exclude_target, $continuation);
 						} elseif ($pathInfos[6] === 'contents' && isset($_POST['i'])) {	//FeedMe
@@ -1161,7 +1160,7 @@ final class GReaderAPI {
 					if ($output !== 'json') self::notImplemented();
 					self::unreadCount();
 					// Always exits
-				case 'edit-tag':	//http://blog.martindoms.com/2010/01/20/using-the-google-reader-api-part-3/
+				case 'edit-tag':	// https://web.archive.org/web/20200616071132/https://blog.martindoms.com/2010/01/20/using-the-google-reader-api-part-3
 					$token = isset($_POST['T']) ? trim($_POST['T']) : '';
 					self::checkToken(FreshRSS_Context::userConf(), $token);
 					// Add (Can be repeated to add multiple tags at once):	user/-/state/com.google/read	user/-/state/com.google/starred

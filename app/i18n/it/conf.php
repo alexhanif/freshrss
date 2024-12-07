@@ -35,7 +35,7 @@ return array(
 		'darkMode' => array(
 			'_' => 'Modalità scura automatica',
 			'auto' => 'Auto',	// IGNORE
-			'help' => 'For compatible themes only',	// TODO
+			'help' => 'Solo per i temi compatibili',
 			'no' => 'No',	// IGNORE
 		),
 		'icon' => array(
@@ -100,8 +100,8 @@ return array(
 		),
 	),
 	'privacy' => array(
-		'_' => 'Privacy',	// TODO
-		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+		'_' => 'Privacy',	// IGNORE
+		'retrieve_extension_list' => 'Recupero dell’elenco delle estensioni',
 	),
 	'profile' => array(
 		'_' => 'Gestione profili',
@@ -125,7 +125,7 @@ return array(
 	'query' => array(
 		'_' => 'Ricerche personali',
 		'deprecated' => 'Questa query non è più valida. La categoria o il feed di riferimento non stati cancellati.',
-		'description' => 'Description',	// TODO
+		'description' => 'Descrizione',
 		'filter' => array(
 			'_' => 'Filtro applicato:',
 			'categories' => 'Mostra per categoria',
@@ -146,7 +146,7 @@ return array(
 		'get_important' => 'Mostra articoli dai feed importanti',
 		'get_label' => 'Mostra articoli con l’etichetta “%s”',
 		'help' => 'Vedi la <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentazione per le query utente e ricondivisioine tramite HTML / RSS / OPML</a>.',
-		'image_url' => 'Image URL',	// TODO
+		'image_url' => 'URL immagine',
 		'name' => 'Nome',
 		'no_filter' => 'Nessun filtro',
 		'number' => 'Ricerca n°%d',
@@ -159,7 +159,7 @@ return array(
 				'_' => 'disabilitato',
 				'title' => 'Condivisione',
 			),
-			'greader' => 'Shareable link to the GReader JSON',	// TODO
+			'greader' => 'Link condivisibile al JSON GReader',
 			'help' => 'Fornisci questo link se vuoi condividere questa query con altre persone',
 			'html' => 'Link condivisibile alla pagina HTML',
 			'opml' => 'Link condivisibile alla lista OPML dei feed',
@@ -187,7 +187,7 @@ return array(
 		'_' => 'Lettura',
 		'after_onread' => 'Dopo “segna tutto come letto”,',
 		'always_show_favorites' => 'Mostra tutti gli articoli nei preferiti di default',
-		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
+		'apply_to_individual_feed' => 'Si applica ai feed singolarmente',
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Autori e data',
@@ -203,9 +203,9 @@ return array(
 			),
 			'feed_title' => 'Titolo del feed',
 			'icons' => array(
-				'_' => 'Article icons position<br /><small>(Reading view only)</small>',	// TODO
-				'above_title' => 'Above title',	// TODO
-				'with_authors' => 'In authors and date row',	// TODO
+				'_' => 'Posizione delle icone dell’articolo <br /><small>(solo in lettura)</small>',
+				'above_title' => 'Titolo in evidenza',
+				'with_authors' => 'Nella riga degli autori e della data',
 			),
 			'tags' => array(
 				'_' => 'Tag',
@@ -247,8 +247,8 @@ return array(
 			'upon_gone' => 'quando non si trova più nel feed di notizie in alto',
 			'upon_reception' => 'Alla ricezione del contenuto',
 			'when' => 'Segna articoli come letti…',
-			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
-			'when_same_title_in_feed' => 'se un titolo identico esiste già tra i <i>n</i> articoli più recenti (of the feed)',	// DIRTY
+			'when_same_title_in_category' => 'se un titolo identico esiste già nei primi <i>n</i> articoli più recenti della categoria',
+			'when_same_title_in_feed' => 'se un titolo identico esiste già tra i <i>n</i> articoli più recenti (del feed)',
 		),
 		'show' => array(
 			'_' => 'Articoli da visualizzare',
@@ -268,7 +268,7 @@ return array(
 			'older_first' => 'Prima i più vecchi',
 		),
 		'star' => array(
-			'when' => 'Mark an article as favourite…',	// TODO
+			'when' => 'Segna un articolo come preferito…',
 		),
 		'sticky_post' => 'Blocca il contenuto a inizio pagina quando aperto',
 		'title' => 'Lettura',
