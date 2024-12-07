@@ -1,3 +1,5 @@
+# Contributer Guidelines
+
 ## Report a bug
 
 Have you found a bug? Don’t panic, here are some steps to report it with ease:
