@@ -150,8 +150,8 @@ return array(
 		'name' => 'Nom',
 		'no_filter' => 'Aucun filtre appliqué',
 		'no_queries' => array(
-			'_' => 'No user queries are saved yet.',	// TODO
-			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
+			'_' => 'Aucun filtre utilisateur n’a été sauvegardé.',
+			'help' => 'Voir <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">la documentation</a>',
 		),
 		'number' => 'Filtre n°%d',
 		'order_asc' => 'Afficher les articles les plus anciens en premier',
