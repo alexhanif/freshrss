@@ -1,4 +1,4 @@
-# Contributer Guidelines
+# Contributor Guidelines
 
 ## Report a bug
 
