@@ -386,7 +386,7 @@
 	<form action="<?= _url('category', 'create') ?>" method="post">
 		<input type="hidden" name="_csrf" value="<?= FreshRSS_Auth::csrfToken() ?>" />
 		<div class="form-group">
-			<label class="group-name" for="new-category"><?= _t('sub.category') ?></label>
+			<label class="group-name" for="new-category"><?= _t('sub.title.add_opml_category') ?></label>
 			<div class="group-controls">
 				<input id="new-category" name="new-category" type="text" required="required" autocomplete="off" />
 			</div>

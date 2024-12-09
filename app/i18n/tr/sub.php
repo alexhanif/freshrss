@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'Dinamik OPML ekle',
 		'add_feed' => 'Akış ekle',
 		'add_label' => 'Etiket ekle',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Etiket sil',
 		'feed_management' => 'RSS akış yönetimi',
 		'rename_label' => 'Etiketi yeniden adlandır',

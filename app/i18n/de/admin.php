@@ -14,7 +14,7 @@ return array(
 	'auth' => array(
 		'allow_anonymous' => 'Anonymes Lesen der Artikel des Standardbenutzers (%s) erlauben',
 		'allow_anonymous_refresh' => 'Anonymes Aktualisieren der Artikel erlauben',
-		'api_enabled' => '<abbr>API</abbr>-Zugriff erlauben <small>(für mobile Anwendungen benötigt)</small>',
+		'api_enabled' => '<abbr>API</abbr>-Zugriff erlauben <small>(für mobile Apps und Benutzerabfragen benötigt)</small>',
 		'form' => 'Webformular (traditionell, benötigt JavaScript)',
 		'http' => 'HTTP (HTTPS für erfahrene Benutzer)',
 		'none' => 'Keine (gefährlich)',
@@ -116,7 +116,7 @@ return array(
 		'description' => 'Beschreibungen',
 		'disabled' => 'Deaktiviert',
 		'empty_list' => 'Es gibt keine installierte Erweiterung.',
-		'empty_list_help' => 'Check the logs to determine the reason behind the empty extension list.',	// TODO
+		'empty_list_help' => 'Siehe Protokolle für weitere Infos, warum die Erweiterungsliste ist.',
 		'enabled' => 'Aktiviert',
 		'latest' => 'Installiert',
 		'name' => 'Name',	// IGNORE

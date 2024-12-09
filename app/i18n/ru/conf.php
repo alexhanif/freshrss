@@ -105,7 +105,13 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'Настройки профиля',
-		'api' => 'Настройки API',
+		'api' => array(
+			'_' => 'Настройки API',
+			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// TODO
+			'disabled' => 'The API access is disabled.',	// TODO
+			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
+			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'Удаление аккаунта',
 			'warn' => 'Ваш аккаунт и вся связанная с ним информация будут удалены.',
@@ -143,12 +149,20 @@ return array(
 		'image_url' => 'Image URL',	// TODO
 		'name' => 'Название',
 		'no_filter' => 'Нет фильтров',
+		'no_queries' => array(
+			'_' => 'No user queries are saved yet.',	// TODO
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
+		),
 		'number' => 'Запрос №%d',
 		'order_asc' => 'Показывать сначала старые статьи',
 		'order_desc' => 'Показывать сначала новые статьи',
 		'search' => 'Искать “%s”',
 		'share' => array(
 			'_' => 'Поделиться запросом по ссылке',
+			'disabled' => array(
+				'_' => 'disabled',	// TODO
+				'title' => 'Sharing',	// TODO
+			),
 			'greader' => 'Shareable link to the GReader JSON',	// TODO
 			'help' => 'Дайте эту ссылку, если хотите поделиться этим запросом с кем-либо',
 			'html' => 'Ссылка доступа на HTML-страницу',

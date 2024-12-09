@@ -18,6 +18,8 @@ return array(
 		'back_to_rss_feeds' => '← 返回订阅源',
 		'cancel' => '取消',
 		'create' => '创建',
+		'delete_all_feeds' => 'Delete all feeds',	// TODO
+		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO
 		'delete_muted_feeds' => '删除已暂停的订阅源',
 		'demote' => '撤销管理员',
 		'disable' => '禁用',

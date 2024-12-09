@@ -105,7 +105,13 @@ return array(
 	),
 	'profile' => array(
 		'_' => '프로필 관리',
-		'api' => 'API 관리',
+		'api' => array(
+			'_' => 'API 관리',
+			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// TODO
+			'disabled' => 'The API access is disabled.',	// TODO
+			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
+			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
+		),
 		'delete' => array(
 			'_' => '계정 삭제',
 			'warn' => '당신의 계정과 관련된 모든 데이터가 삭제됩니다.',
@@ -143,12 +149,20 @@ return array(
 		'image_url' => 'Image URL',	// TODO
 		'name' => '이름',
 		'no_filter' => '필터가 없습니다',
+		'no_queries' => array(
+			'_' => 'No user queries are saved yet.',	// TODO
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
+		),
 		'number' => '쿼리 #%d',
 		'order_asc' => '오래된 글 먼저 표시',
 		'order_desc' => '최근 글 먼저 표시',
 		'search' => '“%s”의 검색 결과',
 		'share' => array(
 			'_' => '링크로 쿼리 공유',
+			'disabled' => array(
+				'_' => 'disabled',	// TODO
+				'title' => 'Sharing',	// TODO
+			),
 			'greader' => 'Shareable link to the GReader JSON',	// TODO
 			'help' => '링크를 사용해서 쿼리를 공유하세요',
 			'html' => 'HTML 공유 링크',

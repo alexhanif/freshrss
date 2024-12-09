@@ -105,7 +105,13 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'Manajemen Profil',
-		'api' => 'Manajemen API',
+		'api' => array(
+			'_' => 'Manajemen API',
+			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// TODO
+			'disabled' => 'The API access is disabled.',	// TODO
+			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
+			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'Hapus Akun',
 			'warn' => 'Akun Anda dan semua data terkait akan dihapus.',
@@ -143,12 +149,20 @@ return array(
 		'image_url' => 'Image URL',	// TODO
 		'name' => 'Nama',
 		'no_filter' => 'Tanpa filter',
+		'no_queries' => array(
+			'_' => 'No user queries are saved yet.',	// TODO
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
+		),
 		'number' => 'Permintaan n°%d',
 		'order_asc' => 'Tampilkan artikel tertua dahulu',
 		'order_desc' => 'Tampilkan artikel terbaru dahulu',
 		'search' => 'Cari untuk "%s"',
 		'share' => array(
 			'_' => 'Bagikan permintaan ini melalui tautan',
+			'disabled' => array(
+				'_' => 'disabled',	// TODO
+				'title' => 'Sharing',	// TODO
+			),
 			'greader' => 'Shareable link to the GReader JSON',	// TODO
 			'help' => 'Berikan tautan ini jika Anda ingin berbagi permintaan ini dengan siapa pun',
 			'html' => 'Tautan dapat dibagikan ke halaman HTML',

@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => ' توضیحات',
 		'empty' => ' این فید خالی است. لطفاً بررسی کنید که هنوز نگهداری می شود.',
-		'error' => ' این فید با مشکل مواجه شده است. لطفاً بررسی کنید که همیشه در دسترس است و سپس آن را به روز کنید.',
+		'error' => ' این فید با مشکل مواجه شده است. لطفاً بررسی کنید که همیشه در دسترس است و سپس آن را به روز کنید.',	// DIRTY
 		'export-as-opml' => array(
 			'download' => 'Download',	// TODO
 			'help' => 'XML file (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// TODO
@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => ' OPML پویا را اضافه کنید',
 		'add_feed' => ' یک فید اضافه کنید',
 		'add_label' => ' یک برچسب اضافه کنید',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => ' یک برچسب را حذف کنید',
 		'feed_management' => ' فیدهای RSS را مدیریت می کندment',
 		'rename_label' => ' نام یک برچسب را تغییر دهید',

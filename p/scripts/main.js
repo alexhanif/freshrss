@@ -1099,10 +1099,8 @@ function init_shortcuts() {
 
 			const link_go_website = document.querySelector('.flux.current a.go_website');
 			if (link_go_website) {
-				const newWindow = window.open();
+				const newWindow = window.open(link_go_website.href, '_blank', 'noopener');
 				if (newWindow) {
-					newWindow.opener = null;
-					newWindow.location = link_go_website.href;
 					ev.preventDefault();
 				}
 			}
@@ -2028,6 +2026,7 @@ function init_normal() {
 }
 
 function init_main_beforeDOM() {
+	history.scrollRestoration = 'manual';
 	document.scrollingElement.scrollTop = 0;
 	init_shortcuts();
 	if (['normal', 'reader', 'global'].indexOf(context.current_view) >= 0) {

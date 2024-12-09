@@ -14,7 +14,7 @@ return array(
 	'auth' => array(
 		'allow_anonymous' => 'Permitir la lectura anónima de los artículos del usuario por defecto (%s)',
 		'allow_anonymous_refresh' => 'Permitir la actualización anónima de los artículos',
-		'api_enabled' => 'Concederle acceso a la <abbr>API</abbr> <small>(necesario para apps de móvil)</small>',
+		'api_enabled' => 'Concederle acceso a la <abbr>API</abbr> <small>(necesario para apps de móvil and sharing user queries)</small>',	// DIRTY
 		'form' => 'Formulario Web (el más habitual, requiere JavaScript)',
 		'http' => 'HTTP (para usuarios avanzados con HTTPS)',
 		'none' => 'Ninguno (peligroso)',

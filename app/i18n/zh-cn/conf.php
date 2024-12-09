@@ -105,7 +105,13 @@ return array(
 	),
 	'profile' => array(
 		'_' => '账户管理',
-		'api' => 'API 管理',
+		'api' => array(
+			'_' => 'API 管理',
+			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// TODO
+			'disabled' => 'The API access is disabled.',	// TODO
+			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
+			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
+		),
 		'delete' => array(
 			'_' => '账户删除',
 			'warn' => '你的帐户以及所有相关数据将被删除。',
@@ -143,12 +149,20 @@ return array(
 		'image_url' => 'Image URL',	// TODO
 		'name' => '名称',
 		'no_filter' => '无过滤器',
+		'no_queries' => array(
+			'_' => 'No user queries are saved yet.',	// TODO
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
+		),
 		'number' => '查询 n°%d',
 		'order_asc' => '由旧至新显示文章',
 		'order_desc' => '由新至旧显示文章',
 		'search' => '搜索 “%s”',
 		'share' => array(
 			'_' => '分享您的自定义查询',
+			'disabled' => array(
+				'_' => 'disabled',	// TODO
+				'title' => 'Sharing',	// TODO
+			),
 			'greader' => 'Shareable link to the GReader JSON',	// TODO
 			'help' => '获取此自定义查询的分享链接',
 			'html' => 'HTML 页面的分享链接',

@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Description',
 		'empty' => 'This feed is empty. Please verify that it is still maintained.',
-		'error' => 'This feed has encountered a problem. Please verify that it is always reachable then update it.',
+		'error' => 'This feed has encountered a problem. If this situation persists, please verify that it is still reachable.',
 		'export-as-opml' => array(
 			'download' => 'Download',
 			'help' => 'XML file (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',
@@ -193,7 +193,7 @@ return array(
 		),
 		'method_help' => 'The POST payload has automatic support for <code>application/x-www-form-urlencoded</code> and <code>application/json</code>',
 		'method_postparams' => 'Payload for POST',
-		'moved_category_deleted' => 'When you delete a category, its feeds are automatically classified under <em>%s</em>.',
+		'moved_category_deleted' => 'When you remove a category, its feeds are automatically classified under <em>%s</em>.',
 		'mute' => array(
 			'_' => 'mute',
 			'state_is_muted' => 'This feed is muted',
@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'Add dynamic OPML',
 		'add_feed' => 'Add a feed',
 		'add_label' => 'Add a label',
+		'add_opml_category' => 'OPML category name',
 		'delete_label' => 'Delete a label',
 		'feed_management' => 'RSS feeds management',
 		'rename_label' => 'Rename a label',
