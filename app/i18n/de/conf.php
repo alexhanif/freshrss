@@ -100,12 +100,18 @@ return array(
 		),
 	),
 	'privacy' => array(
-		'_' => 'Privacy',	// TODO
-		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+		'_' => 'Privatsphäre',
+		'retrieve_extension_list' => 'Erweiterungsliste abrufen',
 	),
 	'profile' => array(
 		'_' => 'Profil-Verwaltung',
-		'api' => 'API-Verwaltung',
+		'api' => array(
+			'_' => 'API-Verwaltung',
+			'check_link' => 'API-Status prüfen: <kbd><a href="../api/" target="_blank">%s</a></kbd>',
+			'disabled' => 'Der API-Zugriff ist deaktiviert.',
+			'documentation_link' => 'Siehe die <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">Dokumentation und die Liste der bekannten Apps</a>',
+			'help' => 'Siehe <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>Dokumentation</a>',
+		),
 		'delete' => array(
 			'_' => 'Accountlöschung',
 			'warn' => 'Dieser Account und alle damit bezogenen Daten werden gelöscht.',
@@ -143,12 +149,20 @@ return array(
 		'image_url' => 'Bild-URL',
 		'name' => 'Name',	// IGNORE
 		'no_filter' => 'Kein Filter',
+		'no_queries' => array(
+			'_' => 'Keine Benutzerabfrage vorhanden.',
+			'help' => 'Siehe <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">Dokumentation</a>',
+		),
 		'number' => 'Abfrage Nr. %d',
 		'order_asc' => 'Älteste Artikel zuerst anzeigen',
 		'order_desc' => 'Neueste Artikel zuerst anzeigen',
 		'search' => 'Suche nach „%s“',
 		'share' => array(
 			'_' => 'Diese Benutzerabfrage per Link teilen',
+			'disabled' => array(
+				'_' => 'deaktiviert',
+				'title' => 'Teilen',
+			),
 			'greader' => 'Verteilbarer Link für GReader JSON',
 			'help' => 'Diesen Link verteilen, um in mit Jedem zu teilen',
 			'html' => 'Verteilbarer Link zur HTML-Seite',
@@ -177,7 +191,7 @@ return array(
 		'_' => 'Lesen',
 		'after_onread' => 'Nach „Alle als gelesen markieren“,',
 		'always_show_favorites' => 'Favoriten immer anzeigen',
-		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
+		'apply_to_individual_feed' => 'Betrifft die Feeds einzeln.',
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Autoren und Datum',
@@ -237,8 +251,8 @@ return array(
 			'upon_gone' => 'wenn der Artikel nicht mehr im Feed enthalten ist',
 			'upon_reception' => 'beim Empfang des Artikels',
 			'when' => 'Artikel als gelesen markieren…',
-			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
-			'when_same_title_in_feed' => 'falls der identische Titel bereit in den <i>n</i> neusten Artikel vorhanden ist. (of the feed)',	// DIRTY
+			'when_same_title_in_category' => 'falls der identische Titel bereits in den <i>n</i> neusten Artikel in der Kategorie vorhanden ist.',
+			'when_same_title_in_feed' => 'falls der identische Titel bereits in den <i>n</i> neusten Artikel (im Feed) vorhanden ist.',
 		),
 		'show' => array(
 			'_' => 'Artikel zum Anzeigen',

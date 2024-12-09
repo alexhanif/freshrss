@@ -100,12 +100,18 @@ return array(
 		),
 	),
 	'privacy' => array(
-		'_' => 'Privacy',	// TODO
-		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+		'_' => 'Privacy',
+		'retrieve_extension_list' => 'Retrieve extension list',
 	),
 	'profile' => array(
 		'_' => 'Profile management',
-		'api' => 'API management',
+		'api' => array(
+			'_' => 'External access via API',
+			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',
+			'disabled' => 'The API access is disabled.',
+			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',
+			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',
+		),
 		'delete' => array(
 			'_' => 'Account deletion',
 			'warn' => 'Your account and all related data will be deleted.',
@@ -143,12 +149,20 @@ return array(
 		'image_url' => 'Image URL',
 		'name' => 'Name',
 		'no_filter' => 'No filter',
+		'no_queries' => array(
+			'_' => 'No user queries are saved yet.',
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',
+		),
 		'number' => 'Query n°%d',
 		'order_asc' => 'Display oldest articles first',
 		'order_desc' => 'Display newest articles first',
 		'search' => 'Search for “%s”',
 		'share' => array(
 			'_' => 'Share this query by link',
+			'disabled' => array(
+				'_' => 'disabled',
+				'title' => 'Sharing',
+			),
 			'greader' => 'Shareable link to the GReader JSON',
 			'help' => 'Give this link if you want to share this query with anyone',
 			'html' => 'Shareable link to the HTML page',
@@ -177,7 +191,7 @@ return array(
 		'_' => 'Reading',
 		'after_onread' => 'After “mark all as read”,',
 		'always_show_favorites' => 'Show all articles in favourites by default',
-		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
+		'apply_to_individual_feed' => 'Applies to feeds individually',
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Authors and date',

@@ -640,7 +640,7 @@ class FreshRSS_Feed extends Minz_Model {
 				foreach ($authors as $author) {
 					$authorName = $author->name != '' ? $author->name : $author->email;
 					if (is_string($authorName) && $authorName !== '') {
-						$authorNames .= escapeToUnicodeAlternative(strip_tags($authorName), true) . '; ';
+						$authorNames .= html_only_entity_decode(strip_tags($authorName)) . '; ';
 					}
 				}
 			}

@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Kuvaus',
 		'empty' => 'Syöte on tyhjä. Varmista, että sitä ylläpidetään edelleen.',
-		'error' => 'Syötteessä on ilmennyt ongelma. Varmista, että se on aina tavoitettavissa ja päivitä se sitten.',
+		'error' => 'Syötteessä on ilmennyt ongelma. Varmista, että se on aina tavoitettavissa.',	// DIRTY
 		'export-as-opml' => array(
 			'download' => 'Lataa',
 			'help' => 'XML-tiedosto (osa tiedoista. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">Katso ohje</a>)',
@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'Lisää dynaaminen OPML',
 		'add_feed' => 'Lisää syöte',
 		'add_label' => 'Lisää tunniste',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Poista tunniste',
 		'feed_management' => 'RSS-syötteiden hallinta',
 		'rename_label' => 'Nimeä tunniste uudelleen',

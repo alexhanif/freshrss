@@ -105,7 +105,13 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'Profiilien hallinta',
-		'api' => 'API-hallinta',
+		'api' => array(
+			'_' => 'API-hallinta',
+			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// TODO
+			'disabled' => 'The API access is disabled.',	// TODO
+			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
+			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'Tilin poisto',
 			'warn' => 'Tilisi ja kaikki siihen kuuluvat tiedot poistetaan.',
@@ -143,12 +149,20 @@ return array(
 		'image_url' => 'Kuvan URL',
 		'name' => 'Nimi',
 		'no_filter' => 'Ei suodatinta',
+		'no_queries' => array(
+			'_' => 'No user queries are saved yet.',	// TODO
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
+		),
 		'number' => 'Kysely %d',
 		'order_asc' => 'Näytä vanhimmat artikkelit ensin',
 		'order_desc' => 'Näytä uusimmat artikkelit ensin',
 		'search' => 'Hae sanaa “%s”',
 		'share' => array(
 			'_' => 'Jaa kysely linkin avulla',
+			'disabled' => array(
+				'_' => 'disabled',	// TODO
+				'title' => 'Sharing',	// TODO
+			),
 			'greader' => 'Linkki GReader JSON -muotoon jaettavaksi',
 			'help' => 'Voit jakaa kyselyn muiden kanssa antamalle heille tämän linkin',
 			'html' => 'Jaettava linkki HTML-sivuun',

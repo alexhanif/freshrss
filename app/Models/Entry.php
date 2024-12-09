@@ -376,10 +376,21 @@ HTML;
 		return null;
 	}
 
-	/** @return string HTML-encoded link of the entry */
-	public function link(): string {
+	/**
+	 * @param bool $raw Set to true to return the raw link,
+	 *  false (default) to attempt a fallback to the GUID if the link is empty.
+	 * @return string HTML-encoded link of the entry
+	 */
+	public function link(bool $raw = false): string {
+		if ($this->link === '' && !$raw) {
+			// Use the GUID as a fallback if it looks like a URL
+			if (filter_var($this->guid, FILTER_VALIDATE_URL, FILTER_NULL_ON_FAILURE) !== null) {
+				return $this->guid;
+			}
+		}
 		return $this->link;
 	}
+
 	/**
 	 * @phpstan-return ($raw is false ? string : int)
 	 */
@@ -833,7 +844,13 @@ HTML;
 				$base = (parse_url($url, PHP_URL_SCHEME) ?? 'https') . ':' . $base;
 			}
 
-			$content = '';
+			unset($xpath, $doc);
+			$html = sanitizeHTML($html, $base);
+			$doc = new DOMDocument();
+			$doc->loadHTML($html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING);
+			$xpath = new DOMXPath($doc);
+
+			$html = '';
 			$cssSelector = htmlspecialchars_decode($feed->pathEntries(), ENT_QUOTES);
 			$cssSelector = trim($cssSelector, ', ');
 			$nodes = $xpath->query((new Gt\CssXPath\Translator($cssSelector, '//'))->asXPath());
@@ -842,19 +859,21 @@ HTML;
 				$path_entries_filter = trim($path_entries_filter, ', ');
 				foreach ($nodes as $node) {
 					if ($path_entries_filter !== '') {
-						$filterednodes = $xpath->query((new Gt\CssXPath\Translator($path_entries_filter))->asXPath(), $node) ?: [];
+						$filterednodes = $xpath->query((new Gt\CssXPath\Translator($path_entries_filter, 'descendant-or-self::'))->asXPath(), $node) ?: [];
 						foreach ($filterednodes as $filterednode) {
+							if ($filterednode === $node) {
+								continue 2;
+							}
 							if (!($filterednode instanceof DOMElement) || $filterednode->parentNode === null) {
 								continue;
 							}
 							$filterednode->parentNode->removeChild($filterednode);
 						}
 					}
-					$content .= $doc->saveHTML($node) . "\n";
+					$html .= $doc->saveHTML($node) . "\n";
 				}
 			}
-			$html = trim(sanitizeHTML($content, $base));
-			return $html;
+			return trim($html);
 		} else {
 			throw new Minz_Exception();
 		}
@@ -952,7 +971,7 @@ HTML;
 			'title' => $this->title(),
 			'author' => $this->authors(true),
 			'content' => $this->content(false),
-			'link' => $this->link(),
+			'link' => $this->link(raw: true),
 			'date' => $this->date(true),
 			'lastSeen' => $this->lastSeen(),
 			'hash' => $this->hash(),

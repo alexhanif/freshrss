@@ -14,7 +14,7 @@ return array(
 	'auth' => array(
 		'allow_anonymous' => 'Autorizar la lectura anonima dels articles de l’utilizaire per defaut (%s)',
 		'allow_anonymous_refresh' => 'Autorizar l’actualizacion anonime dels fluxes',
-		'api_enabled' => 'Autorizar l’accès per <abbr>API</abbr><small>(necessari per las aplicacions mobil)</small>',
+		'api_enabled' => 'Autorizar l’accès per <abbr>API</abbr><small>(necessari per las aplicacions mobil and sharing user queries)</small>',	// DIRTY
 		'form' => 'Formulari (tradicional, demanda JavaScript)',
 		'http' => 'HTTP (per utilizaires avançats amb HTTPS)',
 		'none' => 'Cap (perilhós)',

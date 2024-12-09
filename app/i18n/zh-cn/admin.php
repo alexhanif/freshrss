@@ -14,7 +14,7 @@ return array(
 	'auth' => array(
 		'allow_anonymous' => '允许匿名阅读默认用户（%s）的文章',
 		'allow_anonymous_refresh' => '允许匿名刷新文章',
-		'api_enabled' => '允许 <abbr>API</abbr> 访问 <small>（用于手机应用）</small>',
+		'api_enabled' => '允许 <abbr>API</abbr> 访问 <small>（用于手机应用 and sharing user queries）</small>',	// DIRTY
 		'form' => '网页表单（传统方式, 需要 JavaScript)',
 		'http' => 'HTTP（面向启用 HTTPS 的高级用户)',
 		'none' => '无（危险）',

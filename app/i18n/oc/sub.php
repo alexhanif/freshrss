@@ -67,7 +67,7 @@ return array(
 		),
 		'description' => 'Descripcion',	// IGNORE
 		'empty' => 'Aqueste flux es void. Assegurats-vos qu’es totjorn mantengut.',
-		'error' => 'Aqueste flux a rescontrat un problèma. Volgatz verificar que siá totjorn accessible puèi actualizatz-lo.',
+		'error' => 'Aqueste flux a rescontrat un problèma. Volgatz verificar que siá totjorn accessible.',	// DIRTY
 		'export-as-opml' => array(
 			'download' => 'Download',	// TODO
 			'help' => 'XML file (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// TODO
@@ -285,6 +285,7 @@ return array(
 		'add_dynamic_opml' => 'Apondre un OPML dinamic',
 		'add_feed' => 'Ajustar un flux',
 		'add_label' => 'Ajustar una etiqueta',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Suprimir una etiqueta',
 		'feed_management' => 'Gestion dels fluxes RSS',
 		'rename_label' => 'Renomenar una etiqueta',

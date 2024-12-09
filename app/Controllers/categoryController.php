@@ -229,11 +229,12 @@ class FreshRSS_category_Controller extends FreshRSS_ActionController {
 			}
 
 			$muted = Minz_Request::paramTernary('muted');
+			$errored = Minz_Request::paramTernary('errored');
 
 			// List feeds to remove then related user queries.
-			$feeds = $feedDAO->listByCategory($id, $muted);
+			$feeds = $feedDAO->listByCategory($id, $muted, $errored);
 
-			if ($feedDAO->deleteFeedByCategory($id, $muted)) {
+			if ($feedDAO->deleteFeedByCategory($id, $muted, $errored)) {
 				// TODO: Delete old favicons
 
 				// Remove related queries

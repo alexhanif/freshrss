@@ -105,7 +105,13 @@ return array(
 	),
 	'profile' => array(
 		'_' => 'プロフィール',
-		'api' => 'API管理',
+		'api' => array(
+			'_' => 'API管理',
+			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// TODO
+			'disabled' => 'The API access is disabled.',	// TODO
+			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
+			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'アカウント消去',
 			'warn' => 'あなたのアカウントとそれに関連したデータが消去されます。',
@@ -143,12 +149,20 @@ return array(
 		'image_url' => '画像のURL',
 		'name' => '名前',
 		'no_filter' => 'フィルターはありません',
+		'no_queries' => array(
+			'_' => 'No user queries are saved yet.',	// TODO
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
+		),
 		'number' => 'クエリ n°%d',
 		'order_asc' => '古い記事を最初に表示する',
 		'order_desc' => '新しい記事を最初に表示する',
 		'search' => '“%s”で検索する',
 		'share' => array(
 			'_' => 'このクエリをリンクで共有する',
+			'disabled' => array(
+				'_' => 'disabled',	// TODO
+				'title' => 'Sharing',	// TODO
+			),
 			'greader' => 'Shareable link to the GReader JSON',	// TODO
 			'help' => 'このクエリを誰かと共有したい場合は、このリンクを提供してください',
 			'html' => 'HTMLページへの共有リンク',
