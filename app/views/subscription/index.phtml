@@ -39,7 +39,7 @@
 				<p>
 					🗞️ <?= format_number(count($feeds)) ?>
 					<?= $cat->countFeedsMuted() > 0 ? ' · 🔇 ' . format_number($cat->countFeedsMuted()) : '' ?>
-					<?= $cat->nbFeedsWithError() > 0 ? ' · ⚠ ' . format_number($cat->nbFeedsWithError()) : '' ?>
+					<?= $cat->nbFeedsWithError() > 0 ? ' · ⚠️ ' . format_number($cat->nbFeedsWithError()) : '' ?>
 					<?= $cat->countFeedsWithScraping() > 0 ? ' · 🕸️ ' . format_number($cat->countFeedsWithScraping()) : '' ?>
 					<?= $cat->countFeedsWithRetrieval() > 0 ? ' · 🎣 ' . format_number($cat->countFeedsWithRetrieval()) : '' ?>
 				</p>
