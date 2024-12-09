@@ -844,7 +844,13 @@ HTML;
 				$base = (parse_url($url, PHP_URL_SCHEME) ?? 'https') . ':' . $base;
 			}
 
-			$content = '';
+			unset($xpath, $doc);
+			$html = sanitizeHTML($html, $base);
+			$doc = new DOMDocument();
+			$doc->loadHTML($html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING);
+			$xpath = new DOMXPath($doc);
+
+			$html = '';
 			$cssSelector = htmlspecialchars_decode($feed->pathEntries(), ENT_QUOTES);
 			$cssSelector = trim($cssSelector, ', ');
 			$nodes = $xpath->query((new Gt\CssXPath\Translator($cssSelector, '//'))->asXPath());
@@ -864,11 +870,10 @@ HTML;
 							$filterednode->parentNode->removeChild($filterednode);
 						}
 					}
-					$content .= $doc->saveHTML($node) . "\n";
+					$html .= $doc->saveHTML($node) . "\n";
 				}
 			}
-			$html = trim(sanitizeHTML($content, $base));
-			return $html;
+			return trim($html);
 		} else {
 			throw new Minz_Exception();
 		}

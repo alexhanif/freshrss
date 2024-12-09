@@ -370,7 +370,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 				['%Alice%', '%hello%', '%Bob%', '%world%'],
 			],
 			[
-				'intitle:"\\(test\\)"',
+				'intitle:"(test)"',
 				'(e.title LIKE ? )',
 				['%(test)%'],
 			],

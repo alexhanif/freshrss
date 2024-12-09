@@ -149,6 +149,10 @@ return array(
 		'image_url' => 'Image URL',	// TODO
 		'name' => 'Název',
 		'no_filter' => 'Žádný filtr',
+		'no_queries' => array(
+			'_' => 'No user queries are saved yet.',	// TODO
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
+		),
 		'number' => 'Dotaz č. %d',
 		'order_asc' => 'Zobrazit nejdříve nejstarší články',
 		'order_desc' => 'Zobrazit nejdříve nejnovější články',

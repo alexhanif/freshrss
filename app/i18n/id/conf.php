@@ -149,6 +149,10 @@ return array(
 		'image_url' => 'Image URL',	// TODO
 		'name' => 'Nama',
 		'no_filter' => 'Tanpa filter',
+		'no_queries' => array(
+			'_' => 'No user queries are saved yet.',	// TODO
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
+		),
 		'number' => 'Permintaan n°%d',
 		'order_asc' => 'Tampilkan artikel tertua dahulu',
 		'order_desc' => 'Tampilkan artikel terbaru dahulu',

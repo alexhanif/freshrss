@@ -149,6 +149,10 @@ return array(
 		'image_url' => '影像網址',
 		'name' => '名稱',
 		'no_filter' => '無過濾器',
+		'no_queries' => array(
+			'_' => 'No user queries are saved yet.',	// TODO
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
+		),
 		'number' => '查詢 n°%d',
 		'order_asc' => '由舊至新顯示文章',
 		'order_desc' => '由新至舊顯示文章',

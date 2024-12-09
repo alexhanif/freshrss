@@ -149,6 +149,10 @@ return array(
 		'image_url' => 'Kuvan URL',
 		'name' => 'Nimi',
 		'no_filter' => 'Ei suodatinta',
+		'no_queries' => array(
+			'_' => 'No user queries are saved yet.',	// TODO
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
+		),
 		'number' => 'Kysely %d',
 		'order_asc' => 'Näytä vanhimmat artikkelit ensin',
 		'order_desc' => 'Näytä uusimmat artikkelit ensin',

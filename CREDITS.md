@@ -10,6 +10,7 @@ People are sorted by name so please keep this order.
 
 * [312k](https://github.com/312k): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:312k)
 * [4xfu](https://github.com/4xfu): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:4xfu)
+* [aarnej](https://github.com/aarnej): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:aarnej)
 * [Aaron Schif](https://github.com/aaronschif): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:aaronschif)
 * [Adam Stephens](https://github.com/adamcstephens): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:adamcstephens)
 * [Adrien Dorsaz](https://github.com/Trim): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:Trim), [Web](https://adorsaz.ch/)
@@ -247,6 +248,7 @@ People are sorted by name so please keep this order.
 * [Twilek-de](https://github.com/Twilek-de): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:Twilek-de)
 * [Uncovery](https://github.com/uncovery): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:uncovery)
 * [upskaling](https://github.com/upskaling): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:upskaling)
+* [UserRoot-Luca](https://github.com/UserRoot-Luca): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:UserRoot-Luca)
 * [Virgil Chen](https://github.com/VirgilChen97): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:VirgilChen97)
 * [VYSE V.E.O](https://github.com/V-E-O): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:V-E-O)
 * [Wanabo](https://github.com/Wanabo): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:Wanabo)

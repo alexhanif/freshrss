@@ -84,10 +84,10 @@ return array(
 		'kind' => array(
 			'_' => 'Art der Feed-Quelle',
 			'html_json' => array(
-				'_' => 'HTML + XPath + JSON dot notation (JSON in HTML)',	// TODO
+				'_' => 'HTML + XPath + JSON Punkt-Notation (JSON in HTML)',
 				'xpath' => array(
-					'_' => 'XPath for JSON in HTML',	// TODO
-					'help' => 'Example: <code>//script[@type="application/json"]</code>',	// TODO
+					'_' => 'XPath für JSON in HTML',
+					'help' => 'Beispiel: <code>//script[@type="application/json"]</code>',
 				),
 			),
 			'html_xpath' => array(
@@ -229,14 +229,14 @@ return array(
 		'title_add' => 'Einen RSS-Feed hinzufügen',
 		'ttl' => 'Aktualisiere automatisch nicht öfter als',
 		'unicityCriteria' => array(
-			'_' => 'Article unicity criteria',	// TODO
-			'forced' => '<span title="Block the unicity criteria, even when the feed has duplicate articles">forced</span>',	// TODO
-			'help' => 'Relevant for invalid feeds.<br />⚠️ Changing the policy will create duplicates.',	// TODO
-			'id' => 'Standard ID (default)',	// TODO
-			'link' => 'Link',	// TODO
-			'sha1:link_published' => 'Link + Date',	// TODO
-			'sha1:link_published_title' => 'Link + Date + Title',	// TODO
-			'sha1:link_published_title_content' => 'Link + Date + Title + Content',	// TODO
+			'_' => 'Einzigartigkeit eines Artikels',
+			'forced' => '<span title="Einzigartikkeit-Einstellungen blockieren, selbst wenn der Feed Duplikat-Artikel hat">Erzwingen/span>',
+			'help' => 'Relevant für defekte Feeds.<br />⚠️ Änderungen werden Duplikate erzeugen.',
+			'id' => 'Standard ID (Standardeinstellung)',
+			'link' => 'Link',	// IGNORE
+			'sha1:link_published' => 'Link + Datum',
+			'sha1:link_published_title' => 'Link + Datum + Titel',
+			'sha1:link_published_title_content' => 'Link + Datum + Titel + Inhalt',
 		),
 		'url' => 'Feed-URL',
 		'useragent' => 'Browser User Agent für den Abruf des Feeds verwenden',
@@ -248,7 +248,7 @@ return array(
 	'import_export' => array(
 		'export' => array(
 			'_' => 'Exportieren',
-			'sqlite' => 'Download user database as SQLite',	// TODO
+			'sqlite' => 'Nutzer-Datenbank als SQLite herunterladen',
 		),
 		'export_labelled' => 'Artikel mit Labeln exportieren',
 		'export_opml' => 'Liste der Feeds exportieren (OPML)',
@@ -285,9 +285,9 @@ return array(
 		'add_dynamic_opml' => 'dynamisches OPML hinzufügen',
 		'add_feed' => 'Feed hinzufügen',
 		'add_label' => 'Label hinzufügen',
-		'add_opml_category' => 'OPML category name',	// TODO
+		'add_opml_category' => 'OPML Kategoriename',
 		'delete_label' => 'Label löschen',
-		'feed_management' => 'Verwaltung der RSS-Feeds',
+		'feed_management' => 'RSS-Feeds verwalten',
 		'rename_label' => 'Label umbenennen',
 		'subscription_tools' => 'Abonnement-Tools',
 	),
