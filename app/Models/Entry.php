@@ -847,7 +847,8 @@ HTML;
 			unset($xpath, $doc);
 			$html = sanitizeHTML($html, $base);
 			$doc = new DOMDocument();
-			$doc->loadHTML($html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING);
+			$utf8BOM = "\xEF\xBB\xBF";
+			$doc->loadHTML($utf8BOM . $html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING);
 			$xpath = new DOMXPath($doc);
 
 			$html = '';
@@ -855,11 +856,11 @@ HTML;
 			$cssSelector = trim($cssSelector, ', ');
 			$nodes = $xpath->query((new Gt\CssXPath\Translator($cssSelector, '//'))->asXPath());
 			if ($nodes != false) {
-				$path_entries_filter = $feed->attributeString('path_entries_filter') ?? '';
-				$path_entries_filter = trim($path_entries_filter, ', ');
+				$path_entries_filter = trim($feed->attributeString('path_entries_filter') ?? '');
+				$filter_xpath = $path_entries_filter === '' ? '' : (new Gt\CssXPath\Translator($path_entries_filter, 'descendant-or-self::'))->asXPath();
 				foreach ($nodes as $node) {
-					if ($path_entries_filter !== '') {
-						$filterednodes = $xpath->query((new Gt\CssXPath\Translator($path_entries_filter, 'descendant-or-self::'))->asXPath(), $node) ?: [];
+					if ($filter_xpath !== '') {
+						$filterednodes = $xpath->query($filter_xpath, $node) ?: [];
 						foreach ($filterednodes as $filterednode) {
 							if ($filterednode === $node) {
 								continue 2;
