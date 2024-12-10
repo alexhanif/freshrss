@@ -202,7 +202,7 @@ return array(
 		'no_selected' => 'Barotne nav izvēlēta.',
 		'number_entries' => '%d raksti',
 		'open_feed' => 'Open feed %s',	// TODO
-		'path_entries_condition' => 'Condition for content retrieval',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Prioritāte',
 			'archived' => 'Nerādīt (arhivēts)',

@@ -202,7 +202,7 @@ return array(
 		'no_selected' => 'Hiçbir akış seçilmedi.',
 		'number_entries' => '%d makale',
 		'open_feed' => '%s akışını aç',
-		'path_entries_condition' => 'Condition for content retrieval',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Görünürlük',
 			'archived' => 'Gösterme (arşivlenmiş)',

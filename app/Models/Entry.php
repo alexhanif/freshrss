@@ -814,9 +814,9 @@ HTML;
 		if ($url === '' || $feed === null || $feed->pathEntries() === '') {
 			return '';
 		}
-		if (!empty($feed->attributeArray('path_entries_condition'))) {
+		if (!empty($feed->attributeArray('path_entries_conditions'))) {
 			$found = false;
-			foreach ($feed->attributeArray('path_entries_condition') as $condition) {
+			foreach ($feed->attributeArray('path_entries_conditions') as $condition) {
 				if (!is_string($condition) || trim($condition) === '') {
 					continue;
 				}

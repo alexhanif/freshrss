@@ -202,7 +202,7 @@ return array(
 		'no_selected' => 'Cap de flux pas seleccionat.',
 		'number_entries' => '%d articles',	// IGNORE
 		'open_feed' => 'Open feed %s',	// TODO
-		'path_entries_condition' => 'Condition for content retrieval',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Visibilitat',
 			'archived' => 'Mostrar pas (archivat)',

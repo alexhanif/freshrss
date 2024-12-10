@@ -202,7 +202,7 @@ return array(
 		'no_selected' => 'No feed selected.',
 		'number_entries' => '%d articles',
 		'open_feed' => 'Open feed %s',
-		'path_entries_condition' => 'Condition for content retrieval',
+		'path_entries_conditions' => 'Conditions for content retrieval',
 		'priority' => array(
 			'_' => 'Visibility',
 			'archived' => 'Do not show (archived)',

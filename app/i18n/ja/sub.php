@@ -202,7 +202,7 @@ return array(
 		'no_selected' => 'どのフィードも選択されていません',
 		'number_entries' => '%d 記事数',
 		'open_feed' => 'Open feed %s',	// TODO
-		'path_entries_condition' => 'Condition for content retrieval',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => '表示する場所',
 			'archived' => '非表示にする(アーカイブ)',
