@@ -202,7 +202,7 @@ return array(
 		'no_selected' => '未選擇訂閱源',
 		'number_entries' => '%d 篇文章',
 		'open_feed' => 'Open feed %s',	// TODO
-		'path_entries_condition' => 'Condition for content retrieval',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => '可見性',
 			'archived' => '不顯示（歸檔）',

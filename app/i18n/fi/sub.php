@@ -202,7 +202,7 @@ return array(
 		'no_selected' => 'Syötettä ei ole valittu.',
 		'number_entries' => '%d artikkelia',
 		'open_feed' => 'Avaa syöte %s',
-		'path_entries_condition' => 'Condition for content retrieval',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Näkyvyys',
 			'archived' => 'Älä näytä (arkistoitu)',

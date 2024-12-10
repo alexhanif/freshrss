@@ -202,7 +202,7 @@ return array(
 		'no_selected' => 'Geen feed geselecteerd.',
 		'number_entries' => '%d artikelen',
 		'open_feed' => 'Open feed %s',	// TODO
-		'path_entries_condition' => 'Condition for content retrieval',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Zichtbaarheid',
 			'archived' => 'Niet weergeven (gearchiveerd)',

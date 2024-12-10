@@ -202,7 +202,7 @@ return array(
 		'no_selected' => 'Nejsou vybrány žádné kanály.',
 		'number_entries' => '%d článků',
 		'open_feed' => 'Open feed %s',	// TODO
-		'path_entries_condition' => 'Condition for content retrieval',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Viditelnost',
 			'archived' => 'Nezobrazovat (archivováno)',

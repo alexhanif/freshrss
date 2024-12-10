@@ -202,7 +202,7 @@ return array(
 		'no_selected' => 'No feed selected.',	// IGNORE
 		'number_entries' => '%d articles',	// IGNORE
 		'open_feed' => 'Open feed %s',	// IGNORE
-		'path_entries_condition' => 'Condition for content retrieval',	// IGNORE
+		'path_entries_conditions' => 'Conditions for content retrieval',	// IGNORE
 		'priority' => array(
 			'_' => 'Visibility',	// IGNORE
 			'archived' => 'Do not show (archived)',	// IGNORE

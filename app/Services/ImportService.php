@@ -180,8 +180,15 @@ class FreshRSS_Import_Service {
 				$feed->_pathEntries(Minz_Helper::htmlspecialchars_utf8($feed_elt['frss:cssFullContent']));
 			}
 
-			if (isset($feed_elt['frss:cssFullContentFilter'])) {
-				$feed->_attribute('path_entries_filter', $feed_elt['frss:cssFullContentFilter']);
+			if (isset($feed_elt['frss:cssFullContentConditions'])) {
+				$feed->_attribute(
+					'path_entries_conditions',
+					preg_split('/\R/u', $feed_elt['frss:cssFullContentConditions']) ?: []
+				);
+			}
+
+			if (isset($feed_elt['frss:cssContentFilter']) || isset($feed_elt['frss:cssFullContentFilter'])) {
+				$feed->_attribute('path_entries_filter', $feed_elt['frss:cssContentFilter'] ?? $feed_elt['frss:cssFullContentFilter']);
 			}
 
 			if (isset($feed_elt['frss:filtersActionRead'])) {

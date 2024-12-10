@@ -202,7 +202,7 @@ return array(
 		'no_selected' => 'Nessun feed selezionato.',
 		'number_entries' => '%d articoli',
 		'open_feed' => 'Aprire il feed %s',
-		'path_entries_condition' => 'Condition for content retrieval',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Visibilità',
 			'archived' => 'Non mostrare (archiviato)',
