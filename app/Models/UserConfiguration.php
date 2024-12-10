@@ -14,7 +14,7 @@ declare(strict_types=1);
  * @property bool $bottomline_tags
  * @property bool $bottomline_myLabels
  * @property string $content_width
- * @property-read int $default_state
+ * @property-read int $default_view_state
  * @property string $default_view
  * @property string|bool $display_categories
  * @property string $show_tags

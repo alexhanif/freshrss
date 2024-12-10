@@ -222,7 +222,7 @@ final class FreshRSS_Context {
 
 		self::_get(Minz_Request::paramString('get') ?: 'a');
 
-		self::$state = Minz_Request::paramInt('state') ?: FreshRSS_Context::userConf()->default_state;
+		self::$state = Minz_Request::paramInt('state') ?: FreshRSS_Context::userConf()->default_view_state;
 		$state_forced_by_user = Minz_Request::paramString('state') !== '';
 		if (!$state_forced_by_user && !self::isStateEnabled(FreshRSS_Entry::STATE_READ)) {
 			if (FreshRSS_Context::userConf()->default_view === 'all') {
