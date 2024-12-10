@@ -57,13 +57,14 @@ return array(
 			'prepend' => '既に存在するコンテンツの前に追加する',
 			'replace' => '既に存在するコンテンツを置換する',
 		),
+		'content_retrieval' => 'Content retrieval',	// TODO
 		'css_cookie' => '記事のコンテンツを読み出したとき、クッキーを使用する',
 		'css_cookie_help' => '例: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => '省略されたRSSフィードを復元します (ただし、時間がかかります)',
 		'css_path' => '元のWebサイトから記事を抽出するCSSセレクタ',
 		'css_path_filter' => array(
 			'_' => '要素を削除するCSSセレクタ',
-			'help' => 'CSSセレクタは次のようなリストです: <kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',
+			'help' => 'CSSセレクタは次のようなリストです: <kbd>.footer, .aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => '説明',
 		'empty' => 'このフィードは空です。サイトが運営されているかどうかを確認してみてください。',
@@ -201,6 +202,7 @@ return array(
 		'no_selected' => 'どのフィードも選択されていません',
 		'number_entries' => '%d 記事数',
 		'open_feed' => 'Open feed %s',	// TODO
+		'path_entries_condition' => 'Condition for content retrieval',	// TODO
 		'priority' => array(
 			'_' => '表示する場所',
 			'archived' => '非表示にする(アーカイブ)',

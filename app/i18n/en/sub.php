@@ -57,13 +57,14 @@ return array(
 			'prepend' => 'Add before existing content',
 			'replace' => 'Replace existing content',
 		),
+		'content_retrieval' => 'Content retrieval',
 		'css_cookie' => 'Use Cookies when fetching the article content',
 		'css_cookie_help' => 'Example: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => 'Retrieves truncated RSS feeds (caution, requires more time!)',
 		'css_path' => 'Article CSS selector on original website',
 		'css_path_filter' => array(
 			'_' => 'CSS selector of the elements to remove',
-			'help' => 'A CSS selector may be a list such as: <kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',
+			'help' => 'A CSS selector may be a list such as: <kbd>.footer, .aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Description',
 		'empty' => 'This feed is empty. Please verify that it is still maintained.',
@@ -201,6 +202,7 @@ return array(
 		'no_selected' => 'No feed selected.',
 		'number_entries' => '%d articles',
 		'open_feed' => 'Open feed %s',
+		'path_entries_condition' => 'Condition for content retrieval',
 		'priority' => array(
 			'_' => 'Visibility',
 			'archived' => 'Do not show (archived)',

@@ -57,13 +57,14 @@ return array(
 			'prepend' => 'Artikelinhalt vor Feed-Inhalt hinzufügen',
 			'replace' => 'Artikelinhalt ersetzt Feed-Inhalt (Standard)',
 		),
+		'content_retrieval' => 'Content retrieval',	// TODO
 		'css_cookie' => 'Verwende Cookies beim Herunterladen des Feed-Inhalts mit CSS-Filtern',
 		'css_cookie_help' => 'Beispiel: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => 'Ruft bei gekürzten RSS-Feeds den vollständigen Artikelinhalt ab (Achtung, benötigt mehr Zeit!)',
 		'css_path' => 'CSS-Selektor des Artikelinhaltes auf der Original-Webseite',
 		'css_path_filter' => array(
 			'_' => 'CSS-Selector für die Elemente, die entfernt werden sollen',
-			'help' => 'CSS-Selector könnte eine Liste sein, wie z.B.: <kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',
+			'help' => 'CSS-Selector könnte eine Liste sein, wie z.B.: <kbd>.footer, .aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Beschreibung',
 		'empty' => 'Dieser Feed ist leer. Bitte stellen Sie sicher, dass er noch gepflegt wird.',
@@ -201,6 +202,7 @@ return array(
 		'no_selected' => 'Kein Feed ausgewählt.',
 		'number_entries' => '%d Artikel',
 		'open_feed' => 'Feed %s öffnen',
+		'path_entries_condition' => 'Condition for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Sichtbarkeit',
 			'archived' => 'Nicht anzeigen (archiviert)',
