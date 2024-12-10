@@ -1114,17 +1114,21 @@ SQL;
 		$values = [];
 		if ($state & FreshRSS_Entry::STATE_NOT_READ) {
 			if (!($state & FreshRSS_Entry::STATE_READ)) {
-				$search .= 'AND ' . $alias . 'is_read=0 ';
+				$search .= 'AND (' . $alias . 'is_read=0) ';
 			}
 		} elseif ($state & FreshRSS_Entry::STATE_READ) {
-			$search .= 'AND ' . $alias . 'is_read=1 ';
+			$search .= 'AND (' . $alias . 'is_read=1) ';
 		}
 		if ($state & FreshRSS_Entry::STATE_FAVORITE) {
 			if (!($state & FreshRSS_Entry::STATE_NOT_FAVORITE)) {
-				$search .= 'AND ' . $alias . 'is_favorite=1 ';
+				$search .= 'AND (' . $alias . 'is_favorite=1) ';
 			}
 		} elseif ($state & FreshRSS_Entry::STATE_NOT_FAVORITE) {
-			$search .= 'AND ' . $alias . 'is_favorite=0 ';
+			$search .= 'AND (' . $alias . 'is_favorite=0) ';
+		}
+		if ($state & FreshRSS_Entry::STATE_OR_NOT_READ) {
+			$search = rtrim($search, ') ');
+			$search .= ' OR ' . $alias . 'is_read=0) ';
 		}
 
 		switch ($order) {

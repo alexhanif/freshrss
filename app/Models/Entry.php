@@ -9,6 +9,7 @@ class FreshRSS_Entry extends Minz_Model {
 	public const STATE_ALL = 3;
 	public const STATE_FAVORITE = 4;
 	public const STATE_NOT_FAVORITE = 8;
+	public const STATE_OR_NOT_READ = 32;
 
 	/** @var numeric-string */
 	private string $id = '0';
@@ -860,19 +861,12 @@ HTML;
 				$base = (parse_url($url, PHP_URL_SCHEME) ?? 'https') . ':' . $base;
 			}
 
-			unset($xpath, $doc);
-			$html = sanitizeHTML($html, $base);
-			$doc = new DOMDocument();
-			$utf8BOM = "\xEF\xBB\xBF";
-			$doc->loadHTML($utf8BOM . $html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING);
-			$xpath = new DOMXPath($doc);
-
 			$html = '';
 			$cssSelector = htmlspecialchars_decode($feed->pathEntries(), ENT_QUOTES);
 			$cssSelector = trim($cssSelector, ', ');
+			$path_entries_filter = trim($feed->attributeString('path_entries_filter') ?? '', ', ');
 			$nodes = $xpath->query((new Gt\CssXPath\Translator($cssSelector, '//'))->asXPath());
 			if ($nodes != false) {
-				$path_entries_filter = trim($feed->attributeString('path_entries_filter') ?? '');
 				$filter_xpath = $path_entries_filter === '' ? '' : (new Gt\CssXPath\Translator($path_entries_filter, 'descendant-or-self::'))->asXPath();
 				foreach ($nodes as $node) {
 					if ($filter_xpath !== '') {
