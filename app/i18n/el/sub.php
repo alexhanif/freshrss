@@ -57,13 +57,14 @@ return array(
 			'prepend' => 'Add before existing content',	// TODO
 			'replace' => 'Replace existing content',	// TODO
 		),
+		'content_retrieval' => 'Content retrieval',	// TODO
 		'css_cookie' => 'Use Cookies when fetching the article content',	// TODO
 		'css_cookie_help' => 'Example: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',	// TODO
 		'css_help' => 'Retrieves truncated RSS feeds (caution, requires more time!)',	// TODO
 		'css_path' => 'Article CSS selector on original website',	// TODO
 		'css_path_filter' => array(
 			'_' => 'CSS selector of the elements to remove',	// TODO
-			'help' => 'A CSS selector may be a list such as: <kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',	// TODO
+			'help' => 'A CSS selector may be a list such as: <kbd>.footer, .aside, p[data-sanitized-class~="menu"]</kbd>',	// TODO
 		),
 		'description' => 'Description',	// TODO
 		'empty' => 'This feed is empty. Please verify that it is still maintained.',	// TODO
@@ -201,6 +202,7 @@ return array(
 		'no_selected' => 'No feed selected.',	// TODO
 		'number_entries' => '%d articles',	// TODO
 		'open_feed' => 'Open feed %s',	// TODO
+		'path_entries_condition' => 'Condition for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Visibility',	// TODO
 			'archived' => 'Do not show (archived)',	// TODO
