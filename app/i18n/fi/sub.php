@@ -64,7 +64,7 @@ return array(
 		'css_path' => 'Artikkelin CSS-valitsin alkuperäisellä sivustolla',
 		'css_path_filter' => array(
 			'_' => 'Poistettavien elementtien CSS-valitsin',
-			'help' => 'CSS-valitsin voi olla luettelo, kuten: <kbd>.footer, .aside, p[data-sanitized-class~="menu"]</kbd>',
+			'help' => 'CSS-valitsin voi olla luettelo, kuten: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Kuvaus',
 		'empty' => 'Syöte on tyhjä. Varmista, että sitä ylläpidetään edelleen.',
