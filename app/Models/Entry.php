@@ -816,7 +816,7 @@ HTML;
 		}
 
 		$conditions = $feed->attributeArray('path_entries_conditions') ?? [];
-		$conditions = array_filter(array_map('trim', $conditions));
+		$conditions = array_filter(array_map(fn($v) => is_string($v) ? trim($v) : '', $conditions));
 		if (count($conditions) > 0) {
 			$found = false;
 			foreach ($conditions as $condition) {
@@ -907,7 +907,7 @@ HTML;
 					$modified = true;
 				}
 				if ($modified) {
-					$html = $doc->saveHTML($doc->getElementsByTagName('body')->item(0) ?? $doc->firstElementChild);
+					$html = $doc->saveHTML($doc->getElementsByTagName('body')->item(0) ?? $doc->firstElementChild) ?: $html;
 				}
 			}
 
