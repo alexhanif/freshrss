@@ -818,9 +818,12 @@ HTML;
 		if ($url === '' || $feed === null || $feed->pathEntries() === '') {
 			return '';
 		}
-		if (!empty($feed->attributeArray('path_entries_conditions'))) {
+
+		$conditions = $feed->attributeArray('path_entries_conditions') ?? [];
+		$conditions = array_filter(array_map(fn($v) => is_string($v) ? trim($v) : '', $conditions));
+		if (count($conditions) > 0) {
 			$found = false;
-			foreach ($feed->attributeArray('path_entries_conditions') as $condition) {
+			foreach ($conditions as $condition) {
 				if (!is_string($condition) || trim($condition) === '') {
 					continue;
 				}
@@ -864,22 +867,16 @@ HTML;
 				$base = (parse_url($url, PHP_URL_SCHEME) ?? 'https') . ':' . $base;
 			}
 
-			unset($xpath, $doc);
-			$html = sanitizeHTML($html, $base);
-			$doc = new DOMDocument();
-			$utf8BOM = "\xEF\xBB\xBF";
-			$doc->loadHTML($utf8BOM . $html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING);
-			$xpath = new DOMXPath($doc);
-
 			$html = '';
 			$cssSelector = htmlspecialchars_decode($feed->pathEntries(), ENT_QUOTES);
 			$cssSelector = trim($cssSelector, ', ');
+			$path_entries_filter = trim($feed->attributeString('path_entries_filter') ?? '', ', ');
 			$nodes = $xpath->query((new Gt\CssXPath\Translator($cssSelector, '//'))->asXPath());
 			if ($nodes != false) {
-				$path_entries_filter = trim($feed->attributeString('path_entries_filter') ?? '');
 				$filter_xpath = $path_entries_filter === '' ? '' : (new Gt\CssXPath\Translator($path_entries_filter, 'descendant-or-self::'))->asXPath();
 				foreach ($nodes as $node) {
 					if ($filter_xpath !== '') {
+						// Remove unwanted elements once before sanitizing, for CSS selectors to also match original content
 						$filterednodes = $xpath->query($filter_xpath, $node) ?: [];
 						foreach ($filterednodes as $filterednode) {
 							if ($filterednode === $node) {
@@ -894,6 +891,30 @@ HTML;
 					$html .= $doc->saveHTML($node) . "\n";
 				}
 			}
+
+			unset($xpath, $doc);
+			$html = sanitizeHTML($html, $base);
+
+			if ($path_entries_filter !== '') {
+				// Remove unwanted elements again after sanitizing, for CSS selectors to also match sanitized content
+				$modified = false;
+				$doc = new DOMDocument();
+				$utf8BOM = "\xEF\xBB\xBF";
+				$doc->loadHTML($utf8BOM . $html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING);
+				$xpath = new DOMXPath($doc);
+				$filterednodes = $xpath->query((new Gt\CssXPath\Translator($path_entries_filter, '//'))->asXPath()) ?: [];
+				foreach ($filterednodes as $filterednode) {
+					if (!($filterednode instanceof DOMElement) || $filterednode->parentNode === null) {
+						continue;
+					}
+					$filterednode->parentNode->removeChild($filterednode);
+					$modified = true;
+				}
+				if ($modified) {
+					$html = $doc->saveHTML($doc->getElementsByTagName('body')->item(0) ?? $doc->firstElementChild) ?: $html;
+				}
+			}
+
 			return trim($html);
 		} else {
 			throw new Minz_Exception();
