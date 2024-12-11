@@ -257,12 +257,13 @@ return array(
 		'show' => array(
 			'_' => '文章顯示',
 			'active_category' => '啟用的分類',
-			'adaptive' => '智能顯示',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => '顯示所有',
 			'all_categories' => '所有分類',
 			'no_category' => '無分類',
 			'remember_categories' => '記住打開的分類',
 			'unread' => '只顯示未讀',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => '同樣適用於標籤',
 		'sides_close_article' => '點擊文章區域外以關閉',

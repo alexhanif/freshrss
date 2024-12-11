@@ -257,12 +257,13 @@ return array(
 		'show' => array(
 			'_' => 'Какие статьи отображать',
 			'active_category' => 'Активную категорию',
-			'adaptive' => 'Адаптивно',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => 'Показывать все статьи',
 			'all_categories' => 'Все категории',
 			'no_category' => 'Никакие категории',
 			'remember_categories' => 'Запоминать открытые категории',
 			'unread' => 'Только непрочитанные',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => 'Также относится к меткам',
 		'sides_close_article' => 'Нажатия мышью за пределами текста статьи закрывают статью',

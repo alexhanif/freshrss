@@ -257,12 +257,13 @@ return array(
 		'show' => array(
 			'_' => 'Articles to display',	// IGNORE
 			'active_category' => 'Active category',	// IGNORE
-			'adaptive' => 'Adjust showing',	// IGNORE
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// IGNORE
 			'all_articles' => 'Show all articles',	// IGNORE
 			'all_categories' => 'All categories',	// IGNORE
 			'no_category' => 'No category',	// IGNORE
 			'remember_categories' => 'Remember open categories',	// IGNORE
-			'unread' => 'Show only unread',	// IGNORE
+			'unread' => 'Show unreads',	// IGNORE
+			'unread_or_favorite' => 'Show unreads and favorites',	// IGNORE
 		),
 		'show_fav_unread_help' => 'Applies also on labels',	// IGNORE
 		'sides_close_article' => 'Clicking outside of article text area closes the article',	// IGNORE
