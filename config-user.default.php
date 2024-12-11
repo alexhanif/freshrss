@@ -31,7 +31,7 @@ return array (
 	'max_posts_per_rss' => 400,
 	'view_mode' => 'normal',
 	'default_view' => 'adaptive',
-	'default_view_state' => FreshRSS_Entry::STATE_FAVORITE | FreshRSS_Entry::STATE_OR_NOT_READ,
+	'default_view_state' => FreshRSS_Entry::STATE_OR_NOT_READ | FreshRSS_Entry::STATE_OR_FAVORITE,
 	'show_fav_unread' => false,
 	'auto_load_more' => true,
 	'display_posts' => false,

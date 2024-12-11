@@ -22,7 +22,9 @@
 			foreach ($states as $state_str => $state) {
 				$state_enabled = FreshRSS_Context::isStateEnabled($state);
 				$url_state = Minz_Request::currentRequest();
-				$url_state['params']['state'] = FreshRSS_Context::getRevertState($state);
+				$reverted_state = FreshRSS_Context::getRevertState($state);
+				$reverted_state &= FreshRSS_Entry::STATE_ANDS;	// Keep only the AND states
+				$url_state['params']['state'] = $reverted_state;
 		?>
 		<a id="toggle-<?= $state_str ?>"
 			class="btn <?= $state_enabled ? 'active' : '' ?>"

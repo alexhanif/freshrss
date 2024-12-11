@@ -9,7 +9,10 @@ class FreshRSS_Entry extends Minz_Model {
 	public const STATE_ALL = 3;
 	public const STATE_FAVORITE = 4;
 	public const STATE_NOT_FAVORITE = 8;
+	public const STATE_ANDS = self::STATE_READ | self::STATE_NOT_READ | self::STATE_FAVORITE | self::STATE_NOT_FAVORITE;
 	public const STATE_OR_NOT_READ = 32;
+	public const STATE_OR_FAVORITE = 64;
+	public const STATE_ORS = self::STATE_OR_NOT_READ | self::STATE_OR_FAVORITE;
 
 	/** @var numeric-string */
 	private string $id = '0';
@@ -884,6 +887,25 @@ HTML;
 					$html .= $doc->saveHTML($node) . "\n";
 				}
 			}
+
+			unset($xpath, $doc);
+			$html = sanitizeHTML($html, $base);
+
+			if ($path_entries_filter !== '') {
+				$doc = new DOMDocument();
+				$utf8BOM = "\xEF\xBB\xBF";
+				$doc->loadHTML($utf8BOM . $html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING);
+				$xpath = new DOMXPath($doc);
+				$filterednodes = $xpath->query((new Gt\CssXPath\Translator($path_entries_filter, '//'))->asXPath()) ?: [];
+				foreach ($filterednodes as $filterednode) {
+					if (!($filterednode instanceof DOMElement) || $filterednode->parentNode === null) {
+						continue;
+					}
+					$filterednode->parentNode->removeChild($filterednode);
+				}
+				$html = '';
+			}
+
 			return trim($html);
 		} else {
 			throw new Minz_Exception();
