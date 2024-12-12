@@ -553,16 +553,8 @@ final class FreshRSS_Context {
 	 *   - the "unread" state is enable
 	 */
 	public static function isAutoRemoveAvailable(): bool {
-		if (!FreshRSS_Context::userConf()->auto_remove_article) {
-			return false;
-		}
-		if (self::isStateEnabled(FreshRSS_Entry::STATE_READ)) {
-			return false;
-		}
-		if (!self::isStateEnabled(FreshRSS_Entry::STATE_NOT_READ)) {
-			return false;
-		}
-		return true;
+		return FreshRSS_Context::userConf()->auto_remove_article && !self::isStateEnabled(FreshRSS_Entry::STATE_READ) &&
+			(self::isStateEnabled(FreshRSS_Entry::STATE_NOT_READ) || self::isStateEnabled(FreshRSS_Entry::STATE_OR_NOT_READ));
 	}
 
 	/**
