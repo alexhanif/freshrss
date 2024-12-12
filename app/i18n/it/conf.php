@@ -263,7 +263,7 @@ return array(
 			'no_category' => 'Nessuna categoria',
 			'remember_categories' => 'Ricorda le categorie aperte',
 			'unread' => 'Mostra solo non letti',
-			'unread_or_favorite' => 'Mostra i non letti e i preferiti',	
+			'unread_or_favorite' => 'Mostra i non letti e i preferiti',
 		),
 		'show_fav_unread_help' => 'Si applica anche alle etichette',
 		'sides_close_article' => 'Cliccare fuori dall’area di testo dell’articolo chiude l’articolo',
