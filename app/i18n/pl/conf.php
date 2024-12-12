@@ -263,7 +263,7 @@ return array(
 			'no_category' => 'Żadna',
 			'remember_categories' => 'Pamiętaj otwarte kategorie',
 			'unread' => 'Tylko nieprzeczytane',
-			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
+			'unread_or_favorite' => 'Pokaż nieprzeczytane i ulubione',	// TODO
 		),
 		'show_fav_unread_help' => 'Stosuje się również do etykiet',
 		'sides_close_article' => 'Kliknięcie poza zawartością wiadomości zamyka widok wiadomości',
