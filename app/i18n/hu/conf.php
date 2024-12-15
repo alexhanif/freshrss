@@ -257,12 +257,13 @@ return array(
 		'show' => array(
 			'_' => 'Megjelenített cikkek',
 			'active_category' => 'Aktív kategória',
-			'adaptive' => 'Megjelenítés beállítása',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => 'Mindegyik cikk megjelenítése',
 			'all_categories' => 'Mindegyik kategória',
 			'no_category' => 'Nincs kategória',
 			'remember_categories' => 'Emlékezzen a kibontott kategóriákra',
 			'unread' => 'Csak az olvasatlan cikkek',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => 'A címkékre is vonatkozik',
 		'sides_close_article' => 'A cikk szövegrészén kívüli kattintás bezárja a cikket',

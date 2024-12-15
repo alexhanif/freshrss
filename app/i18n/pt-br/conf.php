@@ -257,12 +257,13 @@ return array(
 		'show' => array(
 			'_' => 'Artigos para exibir',
 			'active_category' => 'Categoria ativa',
-			'adaptive' => 'Ajustar visualização',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => 'Exibir todos os artigos',
 			'all_categories' => 'Exibir todas as categorias',
 			'no_category' => 'Nenhuma categoria',
 			'remember_categories' => 'lembrar de abrir as categorias',
 			'unread' => 'Exibir apenas não lido',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => 'Aplicar também nas tags',
 		'sides_close_article' => 'Clicando fora da área do texto do artigo fecha o mesmo',

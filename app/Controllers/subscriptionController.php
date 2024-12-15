@@ -299,6 +299,9 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 				}
 			}
 
+			$conditions = Minz_Request::paramTextToArray('path_entries_conditions', plaintext: true);
+			$conditions = array_filter(array_map('trim', $conditions));
+			$feed->_attribute('path_entries_conditions', empty($conditions) ? null : $conditions);
 			$feed->_attribute('path_entries_filter', Minz_Request::paramString('path_entries_filter', true));
 
 			$values = [

@@ -57,13 +57,14 @@ return array(
 			'prepend' => 'Apondre abans lo contengut existent',
 			'replace' => 'Remplaçar lo contengut existent',
 		),
+		'content_retrieval' => 'Content retrieval',	// TODO
 		'css_cookie' => 'Utilizar los cookies en recuperant lo contengut de l’article',
 		'css_cookie_help' => 'Exemple : <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => 'Permet de recuperar los fluxes troncats (atencion, demanda mai de temps !)',
 		'css_path' => 'Selector CSS dels articles sul site d’origina',
 		'css_path_filter' => array(
 			'_' => 'Selector CSS de l’element de tirar',
-			'help' => 'Un selector CSS pòt èsser una lista coma : <kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',
+			'help' => 'Un selector CSS pòt èsser una lista coma : <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Descripcion',	// IGNORE
 		'empty' => 'Aqueste flux es void. Assegurats-vos qu’es totjorn mantengut.',
@@ -201,6 +202,7 @@ return array(
 		'no_selected' => 'Cap de flux pas seleccionat.',
 		'number_entries' => '%d articles',	// IGNORE
 		'open_feed' => 'Open feed %s',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Visibilitat',
 			'archived' => 'Mostrar pas (archivat)',

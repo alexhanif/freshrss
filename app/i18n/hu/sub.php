@@ -57,13 +57,14 @@ return array(
 			'prepend' => 'Hozzáadás a létező tartalom elé',
 			'replace' => 'Cserélje ki a létező tartalmat',
 		),
+		'content_retrieval' => 'Content retrieval',	// TODO
 		'css_cookie' => 'Használjon sütiket a cikkek letöltésénél',
 		'css_cookie_help' => 'Példa: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => 'Csonkított RSS hírforrások beszerzése (vigyázz, több időt igényel!)',
 		'css_path' => 'Cikk CSS selector az eredeti weblapon',
 		'css_path_filter' => array(
 			'_' => 'A törlendő elemek CSS selectora',
-			'help' => 'Egy CSS selector lehet egy lista például: <kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',
+			'help' => 'Egy CSS selector lehet egy lista például: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Leírás',
 		'empty' => 'Ez a hírforrás üres. Ellenőrizd hogy van e tartalom rajta.',
@@ -201,6 +202,7 @@ return array(
 		'no_selected' => 'Nincsen hírforrás kiválasztva.',
 		'number_entries' => '%d cikkek',
 		'open_feed' => 'Open feed %s',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Láthatóság',
 			'archived' => 'Ne jelenjen meg (archivált)',

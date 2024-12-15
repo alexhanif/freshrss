@@ -57,13 +57,14 @@ return array(
 			'prepend' => 'Lisää ennen aiempaa sisältöä',
 			'replace' => 'Korvaa aiempi sisältö',
 		),
+		'content_retrieval' => 'Content retrieval',	// TODO
 		'css_cookie' => 'Käytä evästeitä noudettaessa artikkelin sisältö',
 		'css_cookie_help' => 'Esimerkki: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => 'Noutaa lyhennetyt RSS-syötteet (huomautus: kestää pidempään!)',
 		'css_path' => 'Artikkelin CSS-valitsin alkuperäisellä sivustolla',
 		'css_path_filter' => array(
 			'_' => 'Poistettavien elementtien CSS-valitsin',
-			'help' => 'CSS-valitsin voi olla luettelo, kuten: <kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',
+			'help' => 'CSS-valitsin voi olla luettelo, kuten: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Kuvaus',
 		'empty' => 'Syöte on tyhjä. Varmista, että sitä ylläpidetään edelleen.',
@@ -201,6 +202,7 @@ return array(
 		'no_selected' => 'Syötettä ei ole valittu.',
 		'number_entries' => '%d artikkelia',
 		'open_feed' => 'Avaa syöte %s',
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Näkyvyys',
 			'archived' => 'Älä näytä (arkistoitu)',

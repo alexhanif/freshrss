@@ -257,12 +257,13 @@ return array(
 		'show' => array(
 			'_' => 'Článkov na zobrazenie',
 			'active_category' => 'Aktívna kategória',
-			'adaptive' => 'Vyberte zobrazenie',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => 'Zobraziť všetky články',
 			'all_categories' => 'Všetky kategórie',
 			'no_category' => 'Bez kategŕie',
 			'remember_categories' => 'Zapamätať otvorené kategórie',
 			'unread' => 'Zobraziť iba neprečítané',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => 'Týka sa aj štítkov',
 		'sides_close_article' => 'Po kliknutí mimo textu článku sa článok zatvorí',

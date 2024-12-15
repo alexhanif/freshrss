@@ -3,11 +3,11 @@
 	/** @var FreshRSS_View $this */
 	$actual_view = Minz_Request::actionName();
 	$class = '';
-	if (FreshRSS_Context::userConf()->hide_read_feeds &&
-			FreshRSS_Context::isStateEnabled(FreshRSS_Entry::STATE_NOT_READ) &&
+		if (FreshRSS_Context::userConf()->hide_read_feeds &&
+			(FreshRSS_Context::isStateEnabled(FreshRSS_Entry::STATE_NOT_READ) || FreshRSS_Context::isStateEnabled(FreshRSS_Entry::STATE_OR_NOT_READ)) &&
 			!FreshRSS_Context::isStateEnabled(FreshRSS_Entry::STATE_READ)) {
-		$class = ' state_unread';
-	}
+			$class = ' state_unread';
+		}
 
 	$state_filter_manual = Minz_Request::paramString('state');
 	if ($state_filter_manual !== '') {

@@ -57,13 +57,14 @@ return array(
 			'prepend' => 'Ajouter avant le contenu existant',
 			'replace' => 'Remplacer le contenu existant',
 		),
+		'content_retrieval' => 'Récupération de contenu',
 		'css_cookie' => 'Utiliser des cookies pour la réception du contenu des articles',
 		'css_cookie_help' => 'Exemple : <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => 'Permet de récupérer les flux tronqués (attention, demande plus de temps !)',
 		'css_path' => 'Sélecteur CSS des articles sur le site d’origine',
 		'css_path_filter' => array(
 			'_' => 'Sélecteur CSS des éléments à supprimer',
-			'help' => 'Un sélecteur CSS peut être une liste comme : <kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',
+			'help' => 'Un sélecteur CSS peut être une liste comme : <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Description',	// IGNORE
 		'empty' => 'Ce flux est vide. Veuillez vérifier qu’il est encore maintenu.',
@@ -201,6 +202,7 @@ return array(
 		'no_selected' => 'Aucun flux sélectionné.',
 		'number_entries' => '%d articles',	// IGNORE
 		'open_feed' => 'Ouvrir le flux %s',
+		'path_entries_conditions' => 'Conditions pour la récupération de contenu',
 		'priority' => array(
 			'_' => 'Visibilité',
 			'archived' => 'Ne pas afficher (archivé)',

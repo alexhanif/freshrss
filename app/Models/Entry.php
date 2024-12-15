@@ -9,6 +9,10 @@ class FreshRSS_Entry extends Minz_Model {
 	public const STATE_ALL = 3;
 	public const STATE_FAVORITE = 4;
 	public const STATE_NOT_FAVORITE = 8;
+	public const STATE_ANDS = self::STATE_READ | self::STATE_NOT_READ | self::STATE_FAVORITE | self::STATE_NOT_FAVORITE;
+	public const STATE_OR_NOT_READ = 32;
+	public const STATE_OR_FAVORITE = 64;
+	public const STATE_ORS = self::STATE_OR_NOT_READ | self::STATE_OR_FAVORITE;
 
 	/** @var numeric-string */
 	private string $id = '0';
@@ -815,6 +819,25 @@ HTML;
 			return '';
 		}
 
+		$conditions = $feed->attributeArray('path_entries_conditions') ?? [];
+		$conditions = array_filter(array_map(fn($v) => is_string($v) ? trim($v) : '', $conditions));
+		if (count($conditions) > 0) {
+			$found = false;
+			foreach ($conditions as $condition) {
+				if (!is_string($condition) || trim($condition) === '') {
+					continue;
+				}
+				$booleanSearch = new FreshRSS_BooleanSearch($condition);
+				if ($this->matches($booleanSearch)) {
+					$found = true;
+					break;
+				}
+			}
+			if (!$found) {
+				return '';
+			}
+		}
+
 		$cachePath = $feed->cacheFilename($url . '#' . $feed->pathEntries());
 		$html = httpGet($url, $cachePath, 'html', $feed->attributes(), $feed->curlOptions());
 		if (strlen($html) > 0) {
@@ -844,22 +867,17 @@ HTML;
 				$base = (parse_url($url, PHP_URL_SCHEME) ?? 'https') . ':' . $base;
 			}
 
-			unset($xpath, $doc);
-			$html = sanitizeHTML($html, $base);
-			$doc = new DOMDocument();
-			$doc->loadHTML($html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING);
-			$xpath = new DOMXPath($doc);
-
 			$html = '';
 			$cssSelector = htmlspecialchars_decode($feed->pathEntries(), ENT_QUOTES);
 			$cssSelector = trim($cssSelector, ', ');
+			$path_entries_filter = trim($feed->attributeString('path_entries_filter') ?? '', ', ');
 			$nodes = $xpath->query((new Gt\CssXPath\Translator($cssSelector, '//'))->asXPath());
 			if ($nodes != false) {
-				$path_entries_filter = $feed->attributeString('path_entries_filter') ?? '';
-				$path_entries_filter = trim($path_entries_filter, ', ');
+				$filter_xpath = $path_entries_filter === '' ? '' : (new Gt\CssXPath\Translator($path_entries_filter, 'descendant-or-self::'))->asXPath();
 				foreach ($nodes as $node) {
-					if ($path_entries_filter !== '') {
-						$filterednodes = $xpath->query((new Gt\CssXPath\Translator($path_entries_filter, 'descendant-or-self::'))->asXPath(), $node) ?: [];
+					if ($filter_xpath !== '') {
+						// Remove unwanted elements once before sanitizing, for CSS selectors to also match original content
+						$filterednodes = $xpath->query($filter_xpath, $node) ?: [];
 						foreach ($filterednodes as $filterednode) {
 							if ($filterednode === $node) {
 								continue 2;
@@ -873,6 +891,30 @@ HTML;
 					$html .= $doc->saveHTML($node) . "\n";
 				}
 			}
+
+			unset($xpath, $doc);
+			$html = sanitizeHTML($html, $base);
+
+			if ($path_entries_filter !== '') {
+				// Remove unwanted elements again after sanitizing, for CSS selectors to also match sanitized content
+				$modified = false;
+				$doc = new DOMDocument();
+				$utf8BOM = "\xEF\xBB\xBF";
+				$doc->loadHTML($utf8BOM . $html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING);
+				$xpath = new DOMXPath($doc);
+				$filterednodes = $xpath->query((new Gt\CssXPath\Translator($path_entries_filter, '//'))->asXPath()) ?: [];
+				foreach ($filterednodes as $filterednode) {
+					if (!($filterednode instanceof DOMElement) || $filterednode->parentNode === null) {
+						continue;
+					}
+					$filterednode->parentNode->removeChild($filterednode);
+					$modified = true;
+				}
+				if ($modified) {
+					$html = $doc->saveHTML($doc->getElementsByTagName('body')->item(0) ?? $doc->firstElementChild) ?: $html;
+				}
+			}
+
 			return trim($html);
 		} else {
 			throw new Minz_Exception();

@@ -57,13 +57,14 @@ return array(
 			'prepend' => 'Umieść przed treścią z kanału',
 			'replace' => 'Zastąp treść z kanału',
 		),
+		'content_retrieval' => 'Content retrieval',	// TODO
 		'css_cookie' => 'Użyj plików cookie podczas pobierania wiadomości',
 		'css_cookie_help' => 'Przykład: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => 'Pozwala na ograniczenie zawartości kanałów (uwaga, wymaga więcej czasu!)',
 		'css_path' => 'Selektor CSS dla wiadomości na pierwotnej stronie',
 		'css_path_filter' => array(
 			'_' => 'Selektor CSS elementów do usunięcia',
-			'help' => 'Selector CSS może być listą, na przykład: <kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',
+			'help' => 'Selector CSS może być listą, na przykład: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Opis',
 		'empty' => 'Ten kanał jest pusty. Należy sprawdzić czy kanał w dalszym ciągu działa.',
@@ -201,6 +202,7 @@ return array(
 		'no_selected' => 'Brak kanałów.',
 		'number_entries' => '%d wiadomości',
 		'open_feed' => 'Open feed %s',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Widoczność',
 			'archived' => 'Nie pokazuj (zarchiwizowany)',

@@ -57,13 +57,14 @@ return array(
 			'prepend' => 'Pievienot pirms esošā satura',
 			'replace' => 'Aizstāt esošo saturu',
 		),
+		'content_retrieval' => 'Content retrieval',	// TODO
 		'css_cookie' => 'Lietot sīkfailus, kad tiek iegūts raksta saturs',
 		'css_cookie_help' => 'Piemērs: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => 'Iegūst saīsinātas RSS plūsmas (uzmanību, prasa vairāk laika!)',
 		'css_path' => 'Raksta CSS selektors sākotnējā vietnē',
 		'css_path_filter' => array(
 			'_' => 'Noņemamo elementu CSS selektors',
-			'help' => 'CSS selektors var būt saraksts, piemēram.: <kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',
+			'help' => 'CSS selektors var būt saraksts, piemēram.: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Apraksts',
 		'empty' => 'Šī barotne ir tukša. Lūdzu, pārbaudiet, vai tā joprojām tiek uzturēta.',
@@ -201,6 +202,7 @@ return array(
 		'no_selected' => 'Barotne nav izvēlēta.',
 		'number_entries' => '%d raksti',
 		'open_feed' => 'Open feed %s',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Prioritāte',
 			'archived' => 'Nerādīt (arhivēts)',

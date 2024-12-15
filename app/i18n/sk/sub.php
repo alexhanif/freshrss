@@ -57,13 +57,14 @@ return array(
 			'prepend' => 'Pridať pred existujúci obsah',
 			'replace' => 'Nahradiť existujúci obsh',
 		),
+		'content_retrieval' => 'Content retrieval',	// TODO
 		'css_cookie' => 'Pri sťahovaní obsahu článku použiť cookies',
 		'css_cookie_help' => 'Príklad: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => 'Stiahnuť skrátenú verziu RSS kanála (pozor, vyžaduje viac času!)',
 		'css_path' => 'Pôvodný CSS súbor článku z webovej stránky',
 		'css_path_filter' => array(
 			'_' => 'CSS selektor elementu na odstránenie',
-			'help' => 'CSS selektor môže byť zoznam ako: <kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',
+			'help' => 'CSS selektor môže byť zoznam ako: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Popis',
 		'empty' => 'Tento kanál je prázdny. Overte, prosím, či je ešte spravovaný autorom.',
@@ -201,6 +202,7 @@ return array(
 		'no_selected' => 'Nevybrali ste kanál.',
 		'number_entries' => 'Počet článkov: %d',
 		'open_feed' => 'Open feed %s',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Viditeľnosť',
 			'archived' => 'Nezobrazovať (archivované)',

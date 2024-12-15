@@ -257,12 +257,13 @@ return array(
 		'show' => array(
 			'_' => 'Gösterilecek makaleler',
 			'active_category' => 'Mevcut kategori',
-			'adaptive' => 'Ayarlanmış gösterim',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => 'Tüm makaleleri göster',
 			'all_categories' => 'Tüm kategoriler',
 			'no_category' => 'Hiçbir kategori',
 			'remember_categories' => 'Açık kategorileri hatırla',
 			'unread' => 'Sadece okunmamış makaleleri göster',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => 'Etiketlerde de uygula',
 		'sides_close_article' => 'Makale dışında bir alana tıklamak makaleyi kapatır',

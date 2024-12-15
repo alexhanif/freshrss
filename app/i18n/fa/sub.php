@@ -57,6 +57,7 @@ return array(
 			'prepend' => ' قبل از محتوای موجود اضافه کنید',
 			'replace' => ' محتوای موجود را جایگزین کنید',
 		),
+		'content_retrieval' => 'Content retrieval',	// TODO
 		'css_cookie' => ' هنگام واکشی محتوای مقاله از کوکی ها استفاده کنید',
 		'css_cookie_help' => ' مثال: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => ' فیدهای RSS کوتاه شده را بازیابی می کند (احتیاط',
@@ -201,6 +202,7 @@ return array(
 		'no_selected' => ' هیچ خوراکی انتخاب نشده است.',
 		'number_entries' => ' %d مقاله',
 		'open_feed' => 'Open feed %s',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => ' دید',
 			'archived' => ' نشان داده نشود (بایگانی شده)',

@@ -257,12 +257,13 @@ return array(
 		'show' => array(
 			'_' => '記事を表示する',
 			'active_category' => 'アクティブなカテゴリ',
-			'adaptive' => '表示を調整する',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => 'すべての記事を表示する',
 			'all_categories' => 'すべてのカテゴリ',
 			'no_category' => '未分類',
 			'remember_categories' => '前回開いたカテゴリ',
 			'unread' => '未読のみ表示する',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => 'ラベルも適用する',
 		'sides_close_article' => '記事の外をクリックすると記事を閉じるようにする',

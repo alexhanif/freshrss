@@ -257,12 +257,13 @@ return array(
 		'show' => array(
 			'_' => 'Počet zobrazených článků',
 			'active_category' => 'Aktivní kategorie',
-			'adaptive' => 'Vyberte zobrazení',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => 'Zobrazit všechny články',
 			'all_categories' => 'Všechny kategorie',
 			'no_category' => 'Žádná kategorie',
 			'remember_categories' => 'Zapamatovat otevřené kategorie',
 			'unread' => 'Zobrazit pouze nepřečtené',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => 'Použije se také na popisky',
 		'sides_close_article' => 'Kliknutí mimo oblast textu článku zavře článek',

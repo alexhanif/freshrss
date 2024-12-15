@@ -257,12 +257,13 @@ return array(
 		'show' => array(
 			'_' => 'מאמרים להצגה',
 			'active_category' => 'Active category',	// TODO
-			'adaptive' => 'תצוגה מתעדכנת',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => 'הצגת כל המאמרים',
 			'all_categories' => 'All categories',	// TODO
 			'no_category' => 'No category',	// TODO
 			'remember_categories' => 'Remember open categories',	// TODO
 			'unread' => 'הצגת מאמרים שלא נקראו בלבד',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => 'Applies also on labels',	// TODO
 		'sides_close_article' => 'Clicking outside of article text area closes the article',	// TODO

@@ -57,13 +57,14 @@ return array(
 			'prepend' => '添加在現有內容前部',
 			'replace' => '替換現有內容',
 		),
+		'content_retrieval' => 'Content retrieval',	// TODO
 		'css_cookie' => '獲取原文時的 Cookies',
 		'css_cookie_help' => '例：<kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => '用於獲取全文（注意，這將耗費更多時間！）',
 		'css_path' => '原文的 CSS 選擇器',
 		'css_path_filter' => array(
 			'_' => '需移除元素的 CSS 選擇器',
-			'help' => '可設置多個 CSS 選擇器，例如：<kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',
+			'help' => '可設置多個 CSS 選擇器，例如：<kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => '描述',
 		'empty' => '此源為空。請確認它是否正常更新。',
@@ -201,6 +202,7 @@ return array(
 		'no_selected' => '未選擇訂閱源',
 		'number_entries' => '%d 篇文章',
 		'open_feed' => 'Open feed %s',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => '可見性',
 			'archived' => '不顯示（歸檔）',

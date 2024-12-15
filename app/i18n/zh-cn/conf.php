@@ -257,12 +257,13 @@ return array(
 		'show' => array(
 			'_' => '文章显示',
 			'active_category' => '活跃的分类',
-			'adaptive' => '自适应显示',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => '显示所有',
 			'all_categories' => '所有分类',
 			'no_category' => '无分类',
 			'remember_categories' => '记住打开的分类',
 			'unread' => '只显示未读',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => '同样适用于标签',
 		'sides_close_article' => '点击文章文本区域外关闭文章',

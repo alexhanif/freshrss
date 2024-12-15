@@ -57,13 +57,14 @@ return array(
 			'prepend' => 'Aggiungi prima del contenuto esistente',
 			'replace' => 'Rimpiazza il contenuto esistente',
 		),
+		'content_retrieval' => 'Recupero dei contenuti',
 		'css_cookie' => 'Usa i cookie quando viene recuperato il contenuto di un articolo',
 		'css_cookie_help' => 'Esempio: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => 'In caso di feed RSS troncati (attenzione, richiede molto tempo!)',
 		'css_path' => 'Percorso del foglio di stile CSS del sito di origine',
 		'css_path_filter' => array(
 			'_' => 'Il selettore CSS degli elementi da rimuovere',
-			'help' => 'Il selettore CSS potrebbe essere una lista, ad esempio: <kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',
+			'help' => 'Il selettore CSS potrebbe essere una lista, ad esempio: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Descrizione',
 		'empty' => 'Questo feed non contiene articoli. Per favore verifica il sito direttamente.',
@@ -201,6 +202,7 @@ return array(
 		'no_selected' => 'Nessun feed selezionato.',
 		'number_entries' => '%d articoli',
 		'open_feed' => 'Aprire il feed %s',
+		'path_entries_conditions' => 'Condizioni per il recupero dei contenuti',
 		'priority' => array(
 			'_' => 'Visibilità',
 			'archived' => 'Non mostrare (archiviato)',

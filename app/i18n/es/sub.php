@@ -57,13 +57,14 @@ return array(
 			'prepend' => 'Añadir antes del contenido existente',
 			'replace' => 'Reemplazar contenido existente',
 		),
+		'content_retrieval' => 'Content retrieval',	// TODO
 		'css_cookie' => 'Usar cookies al obtener el contenido del artículo',
 		'css_cookie_help' => 'Ejemplo: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => 'Recibir fuentes RSS truncadas (aviso, ¡necesita más tiempo!)',
 		'css_path' => 'Ruta a la CSS de los artículos en la web original',
 		'css_path_filter' => array(
 			'_' => 'Selector CSS de los elementos a remover',
-			'help' => 'Un selector CSS puede ser una lista, por ejemplo: <kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',
+			'help' => 'Un selector CSS puede ser una lista, por ejemplo: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Descripción',
 		'empty' => 'La fuente está vacía. Por favor, verifica que siga activa.',
@@ -201,6 +202,7 @@ return array(
 		'no_selected' => 'No hay fuentes seleccionadas.',
 		'number_entries' => '%d artículos',
 		'open_feed' => 'Fuente abierta %s',
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Visibilidad',
 			'archived' => 'No mostrar (archivado)',

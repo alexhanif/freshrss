@@ -57,13 +57,14 @@ return array(
 			'prepend' => 'Добавить перед существующим содержимым',
 			'replace' => 'Заменить существующее содержимое',
 		),
+		'content_retrieval' => 'Content retrieval',	// TODO
 		'css_cookie' => 'Использовать куки при извлечении содержимого статьи',
 		'css_cookie_help' => 'Пример: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => 'Получает усечённые RSS-ленты (осторожно, требует больше времени!)',
 		'css_path' => 'CSS селектор статьи на сайте',
 		'css_path_filter' => array(
 			'_' => 'CSS селектор элемента для удаления',
-			'help' => 'CSS селектор может быть списком как: <kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',
+			'help' => 'CSS селектор может быть списком как: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Описание',
 		'empty' => 'Лента пустая. Пожалуйста, убедитесь, что её до сих пор обслуживают.',
@@ -201,6 +202,7 @@ return array(
 		'no_selected' => 'Ленты не выбраны.',
 		'number_entries' => '%d статей',
 		'open_feed' => 'Open feed %s',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Видимость',
 			'archived' => 'Не показывать (архивировано)',
