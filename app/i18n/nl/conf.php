@@ -257,12 +257,13 @@ return array(
 		'show' => array(
 			'_' => 'Artikelen om te tonen',
 			'active_category' => 'Actieve categorie',
-			'adaptive' => 'Pas weergave aan',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => 'Bekijk alle artikelen',
 			'all_categories' => 'Alle categorieën',
 			'no_category' => 'Geen categorie',
 			'remember_categories' => 'Open categorieën herinneren',
 			'unread' => 'Bekijk alleen ongelezen',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => 'Ook toepassen op labels',
 		'sides_close_article' => 'Sluit het artikel door buiten de artikeltekst te klikken',

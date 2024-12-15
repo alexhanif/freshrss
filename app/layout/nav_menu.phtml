@@ -22,7 +22,9 @@
 			foreach ($states as $state_str => $state) {
 				$state_enabled = FreshRSS_Context::isStateEnabled($state);
 				$url_state = Minz_Request::currentRequest();
-				$url_state['params']['state'] = FreshRSS_Context::getRevertState($state);
+				$reverted_state = FreshRSS_Context::getRevertState($state);
+				$reverted_state &= FreshRSS_Entry::STATE_ANDS;	// Keep only the AND states
+				$url_state['params']['state'] = $reverted_state;
 		?>
 		<a id="toggle-<?= $state_str ?>"
 			class="btn <?= $state_enabled ? 'active' : '' ?>"
@@ -153,7 +155,8 @@
 	$mark_before_today['params']['idMax'] = $today . '000000';
 	$mark_before_one_week = $mark_read_url;
 	$mark_before_one_week['params']['idMax'] = ($today - 604800) . '000000';
-	$mark_unread_enabled = FreshRSS_Context::isStateEnabled(FreshRSS_Entry::STATE_READ) or !FreshRSS_Context::isStateEnabled(FreshRSS_Entry::STATE_NOT_READ);
+	$mark_unread_enabled = FreshRSS_Context::isStateEnabled(FreshRSS_Entry::STATE_READ) ||
+		(!FreshRSS_Context::isStateEnabled(FreshRSS_Entry::STATE_NOT_READ) && !FreshRSS_Context::isStateEnabled(FreshRSS_Entry::STATE_OR_NOT_READ));
 ?>
 				<li class="item separator">
 					<button class="as-link <?= $confirm ?>"

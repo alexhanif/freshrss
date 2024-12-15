@@ -64,7 +64,7 @@ return array(
 		'css_path' => '原文的 CSS 选择器',
 		'css_path_filter' => array(
 			'_' => '需移除元素的 CSS 选择器',
-			'help' => '可设置多个 CSS 选择器，例如：<kbd>.footer, .aside, p[data-sanitized-class~="menu"]</kbd>',
+			'help' => '可设置多个 CSS 选择器，例如：<kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => '描述',
 		'empty' => '此源为空。请确认它是否正常更新。',
@@ -202,7 +202,7 @@ return array(
 		'no_selected' => '未选择订阅源',
 		'number_entries' => '%d 篇文章',
 		'open_feed' => 'Open feed %s',	// TODO
-		'path_entries_condition' => 'Condition for content retrieval',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => '可见性',
 			'archived' => '不显示（归档）',

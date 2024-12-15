@@ -64,7 +64,7 @@ return array(
 		'css_path' => 'Přepínač CSS článku na původních webových stránkách',
 		'css_path_filter' => array(
 			'_' => 'selektor CSS prvků, které mají být odstraněny',
-			'help' => 'Selektor CSS může být seznam, například: <kbd>.footer, .aside, p[data-sanitized-class~="menu"]</kbd>',
+			'help' => 'Selektor CSS může být seznam, například: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Popis',
 		'empty' => 'Tento kanál je prázdný. Ověřte prosím, zda je stále udržován.',
@@ -202,7 +202,7 @@ return array(
 		'no_selected' => 'Nejsou vybrány žádné kanály.',
 		'number_entries' => '%d článků',
 		'open_feed' => 'Open feed %s',	// TODO
-		'path_entries_condition' => 'Condition for content retrieval',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Viditelnost',
 			'archived' => 'Nezobrazovat (archivováno)',

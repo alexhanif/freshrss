@@ -257,12 +257,13 @@ return array(
 		'show' => array(
 			'_' => 'Artikel zum Anzeigen',
 			'active_category' => 'Aktive Kategorie',
-			'adaptive' => 'Anzeige anpassen',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => 'Alle Artikel zeigen',
 			'all_categories' => 'Alle Kategorien',
 			'no_category' => 'Keine Kategorie',
 			'remember_categories' => 'Geöffnete Kategorien merken',
 			'unread' => 'Nur ungelesene zeigen',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => 'Auch auf Labels anwenden',
 		'sides_close_article' => 'Klick außerhalb des Artikel-Textes schließt den Artikel',

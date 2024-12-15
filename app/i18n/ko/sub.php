@@ -64,7 +64,7 @@ return array(
 		'css_path' => '웹사이트 상의 글 본문에 해당하는 CSS 경로',
 		'css_path_filter' => array(
 			'_' => '제거할 요소의 CSS 선택자',
-			'help' => 'CSS 선택자는 다음과 같은 목록일 수 있습니다: <kbd>.footer, .aside, p[data-sanitized-class~="menu"]</kbd>',
+			'help' => 'CSS 선택자는 다음과 같은 목록일 수 있습니다: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => '설명',
 		'empty' => '이 피드는 비어있습니다. 피드가 계속 운영되고 있는지 확인하세요.',
@@ -202,7 +202,7 @@ return array(
 		'no_selected' => '선택된 피드가 없습니다.',
 		'number_entries' => '%d 개의 글',
 		'open_feed' => 'Open feed %s',	// TODO
-		'path_entries_condition' => 'Condition for content retrieval',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => '표시',
 			'archived' => '표시하지 않음 (보관됨)',

@@ -257,12 +257,13 @@ return array(
 		'show' => array(
 			'_' => 'Rādāmie raksti',
 			'active_category' => 'Aktīvā kategorija',
-			'adaptive' => 'Pielāgot rādīšanu',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => 'Rādīt visus rakstus',
 			'all_categories' => 'Visas kategorijas',
 			'no_category' => 'Bez kategorijas',
 			'remember_categories' => 'Iegaumēt atvērtās kategorijas',
 			'unread' => 'Rādīt tikai nelasītos',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => 'Attiecas arī uz birkām',
 		'sides_close_article' => 'Spiežot ārpus raksta teksta apgabala, raksts tiek aizvērts',

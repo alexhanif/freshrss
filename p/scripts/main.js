@@ -1099,10 +1099,8 @@ function init_shortcuts() {
 
 			const link_go_website = document.querySelector('.flux.current a.go_website');
 			if (link_go_website) {
-				const newWindow = window.open(link_go_website.href, '_blank', 'noopener');
-				if (newWindow) {
-					ev.preventDefault();
-				}
+				window.open(link_go_website.href, '_blank', 'noopener');
+				ev.preventDefault();
 			}
 			return;
 		}
