@@ -224,15 +224,15 @@ final class FreshRSS_Context {
 
 		self::$state = Minz_Request::paramInt('state') ?: FreshRSS_Context::userConf()->default_state;
 		$state_forced_by_user = Minz_Request::paramString('state') !== '';
-		if (!$state_forced_by_user && !self::isStateEnabled(FreshRSS_Entry::STATE_READ)) {
-			if (FreshRSS_Context::userConf()->default_view === 'all') {
-				self::$state |= FreshRSS_Entry::STATE_ALL;
+		if (!$state_forced_by_user) {
+			if (FreshRSS_Context::userConf()->show_fav_unread && (self::isCurrentGet('s') || self::isCurrentGet('T') || self::isTag())) {
+				self::$state = FreshRSS_Entry::STATE_NOT_READ | FreshRSS_Entry::STATE_READ;
+			} elseif (FreshRSS_Context::userConf()->default_view === 'all') {
+				self::$state = FreshRSS_Entry::STATE_NOT_READ | FreshRSS_Entry::STATE_READ;
+			} elseif (FreshRSS_Context::userConf()->default_view === 'unread_or_favorite') {
+				self::$state = FreshRSS_Entry::STATE_OR_NOT_READ | FreshRSS_Entry::STATE_OR_FAVORITE;
 			} elseif (FreshRSS_Context::userConf()->default_view === 'adaptive' && self::$get_unread <= 0) {
-				self::$state |= FreshRSS_Entry::STATE_READ;
-			}
-			if (FreshRSS_Context::userConf()->show_fav_unread &&
-					(self::isCurrentGet('s') || self::isCurrentGet('T') || self::isTag())) {
-				self::$state |= FreshRSS_Entry::STATE_READ;
+				self::$state = FreshRSS_Entry::STATE_NOT_READ | FreshRSS_Entry::STATE_READ;
 			}
 		}
 
@@ -553,16 +553,8 @@ final class FreshRSS_Context {
 	 *   - the "unread" state is enable
 	 */
 	public static function isAutoRemoveAvailable(): bool {
-		if (!FreshRSS_Context::userConf()->auto_remove_article) {
-			return false;
-		}
-		if (self::isStateEnabled(FreshRSS_Entry::STATE_READ)) {
-			return false;
-		}
-		if (!self::isStateEnabled(FreshRSS_Entry::STATE_NOT_READ)) {
-			return false;
-		}
-		return true;
+		return FreshRSS_Context::userConf()->auto_remove_article && !self::isStateEnabled(FreshRSS_Entry::STATE_READ) &&
+			(self::isStateEnabled(FreshRSS_Entry::STATE_NOT_READ) || self::isStateEnabled(FreshRSS_Entry::STATE_OR_NOT_READ));
 	}
 
 	/**

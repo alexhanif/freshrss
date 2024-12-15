@@ -257,12 +257,13 @@ return array(
 		'show' => array(
 			'_' => 'Artikel untuk ditampilkan',
 			'active_category' => 'Kategori aktif',
-			'adaptive' => 'Penyesuaian tampilan',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => 'Tampilkan semua artikel',
 			'all_categories' => 'Semua kategori',
 			'no_category' => 'Tidak ada kategori',
 			'remember_categories' => 'Ingat kategori yang terbuka',
 			'unread' => 'Hanya tampilkan yang belum dibaca',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => 'Berlaku juga pada label',
 		'sides_close_article' => 'Klik di luar area teks artikel untuk menutup artikel',

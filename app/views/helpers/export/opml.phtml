@@ -82,8 +82,19 @@ function feedsToOutlines(array $feeds, bool $excludeMutedFeeds = false): array {
 			$outline['frss:cssFullContent'] = htmlspecialchars_decode($feed->pathEntries(), ENT_QUOTES);
 		}
 
+		if (!empty($feed->attributeArray('path_entries_conditions'))) {
+			$conditions = '';
+			foreach ($feed->attributeArray('path_entries_conditions') as $condition) {
+				if (is_string($condition)) {
+					$conditions .= $condition . "\n";
+				}
+			}
+			$conditions = trim($conditions);
+			$outline['frss:cssFullContentConditions'] = $conditions;
+		}
+
 		if ($feed->attributeString('path_entries_filter') != '') {
-			$outline['frss:cssFullContentFilter'] = $feed->attributeString('path_entries_filter');
+			$outline['frss:cssContentFilter'] = $feed->attributeString('path_entries_filter');
 		}
 
 		$curl_params = $feed->attributeArray('curl_params');

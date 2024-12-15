@@ -64,7 +64,7 @@ return array(
 		'css_path' => 'Sélecteur CSS des articles sur le site d’origine',
 		'css_path_filter' => array(
 			'_' => 'Sélecteur CSS des éléments à supprimer',
-			'help' => 'Un sélecteur CSS peut être une liste comme : <kbd>.footer, .aside, p[data-sanitized-class~="menu"]</kbd>',
+			'help' => 'Un sélecteur CSS peut être une liste comme : <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Description',	// IGNORE
 		'empty' => 'Ce flux est vide. Veuillez vérifier qu’il est encore maintenu.',
@@ -202,7 +202,7 @@ return array(
 		'no_selected' => 'Aucun flux sélectionné.',
 		'number_entries' => '%d articles',	// IGNORE
 		'open_feed' => 'Ouvrir le flux %s',
-		'path_entries_condition' => 'Condition pour la récupération de contenu',
+		'path_entries_conditions' => 'Conditions pour la récupération de contenu',
 		'priority' => array(
 			'_' => 'Visibilité',
 			'archived' => 'Ne pas afficher (archivé)',

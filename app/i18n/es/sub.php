@@ -64,7 +64,7 @@ return array(
 		'css_path' => 'Ruta a la CSS de los artículos en la web original',
 		'css_path_filter' => array(
 			'_' => 'Selector CSS de los elementos a remover',
-			'help' => 'Un selector CSS puede ser una lista, por ejemplo: <kbd>.footer, .aside, p[data-sanitized-class~="menu"]</kbd>',
+			'help' => 'Un selector CSS puede ser una lista, por ejemplo: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Descripción',
 		'empty' => 'La fuente está vacía. Por favor, verifica que siga activa.',
@@ -202,7 +202,7 @@ return array(
 		'no_selected' => 'No hay fuentes seleccionadas.',
 		'number_entries' => '%d artículos',
 		'open_feed' => 'Fuente abierta %s',
-		'path_entries_condition' => 'Condition for content retrieval',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Visibilidad',
 			'archived' => 'No mostrar (archivado)',

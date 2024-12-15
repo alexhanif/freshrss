@@ -257,12 +257,13 @@ return array(
 		'show' => array(
 			'_' => '글 표시 방식',
 			'active_category' => '활성화 된 카테고리',
-			'adaptive' => '읽지 않은 글이 없으면 모든 글 표시',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => '모든 글 표시',
 			'all_categories' => '모든 카테고리',
 			'no_category' => '카테고리 없음',
 			'remember_categories' => '열린 카테고리 기억',
 			'unread' => '읽지 않은 글만 표시',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => '라벨에도 적용하기',
 		'sides_close_article' => '글 영역 바깥을 클릭하면 글 접기',

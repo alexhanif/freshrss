@@ -64,7 +64,7 @@ return array(
 		'css_path' => 'Selektor CSS dla wiadomości na pierwotnej stronie',
 		'css_path_filter' => array(
 			'_' => 'Selektor CSS elementów do usunięcia',
-			'help' => 'Selector CSS może być listą, na przykład: <kbd>.footer, .aside, p[data-sanitized-class~="menu"]</kbd>',
+			'help' => 'Selector CSS może być listą, na przykład: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Opis',
 		'empty' => 'Ten kanał jest pusty. Należy sprawdzić czy kanał w dalszym ciągu działa.',
@@ -202,7 +202,7 @@ return array(
 		'no_selected' => 'Brak kanałów.',
 		'number_entries' => '%d wiadomości',
 		'open_feed' => 'Open feed %s',	// TODO
-		'path_entries_condition' => 'Condition for content retrieval',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Widoczność',
 			'archived' => 'Nie pokazuj (zarchiwizowany)',

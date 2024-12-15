@@ -64,7 +64,7 @@ return array(
 		'css_path' => 'Makaleleri kendi CSS görünümü ile göster',
 		'css_path_filter' => array(
 			'_' => 'Kaldırılacak elemana ait CSS seçicisi',
-			'help' => 'CSS seçicisi şu şekilde olabilir: <kbd>.footer, .aside, p[data-sanitized-class~="menu"]</kbd>',
+			'help' => 'CSS seçicisi şu şekilde olabilir: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Tanım',
 		'empty' => 'Bu akış boş. Lütfen akışın aktif olduğuna emin olun.',
@@ -202,7 +202,7 @@ return array(
 		'no_selected' => 'Hiçbir akış seçilmedi.',
 		'number_entries' => '%d makale',
 		'open_feed' => '%s akışını aç',
-		'path_entries_condition' => 'Condition for content retrieval',	// TODO
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Görünürlük',
 			'archived' => 'Gösterme (arşivlenmiş)',
