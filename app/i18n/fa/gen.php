@@ -225,7 +225,6 @@ return array(
 		'linkedin' => ' لینکدین',
 		'mastodon' => ' ماستودون',
 		'movim' => ' Movim',
-		'omnivore' => ' همه چیزخوار',
 		'pinboard' => ' پینبرد',
 		'pinterest' => ' پینترست',
 		'pocket' => ' جیبی',
