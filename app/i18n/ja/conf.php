@@ -287,6 +287,7 @@ return array(
 	'sharing' => array(
 		'_' => '共有',
 		'add' => '共有方法を追加する',
+		'bluesky' => 'Bluesky',	// TODO
 		'deprecated' => 'このサービスは非推奨でFreshRSSの<a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="Open documentation for more information" target="_blank">将来のリリース</a>から削除される予定です。',
 		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => 'Eメール',

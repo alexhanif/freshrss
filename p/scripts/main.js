@@ -721,7 +721,7 @@ function show_share_menu(el) {
 	const dropdownMenu = div.querySelector('.dropdown-menu');
 
 	if (!dropdownMenu) {
-		const itemId = el.closest('.flux').id;
+		const itemId = el.closest('.flux').dataset.entry;
 		const templateId = 'share_article_template';
 		const id = itemId;
 		const flux_header_el = el.closest('.flux');
