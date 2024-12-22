@@ -2357,6 +2357,10 @@ html.slider-active {
 	margin: auto;
 }
 
+.reader .content ~ footer {
+	padding: 0 3rem;
+}
+
 #loglist-wrapper {
 	overflow-x: auto;
 }
