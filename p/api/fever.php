@@ -151,7 +151,7 @@ final class FeverAPI
 	private function authenticate(): bool {
 		FreshRSS_Context::clearUserConf();
 		Minz_User::change();
-		$feverKey = empty($_POST['api_key']) ? '' : substr(trim($_POST['api_key']), 0, 128);
+		$feverKey = empty($_POST['api_key']) || !is_string($_POST['api_key']) ? '' : substr(trim($_POST['api_key']), 0, 128);
 		if (ctype_xdigit($feverKey)) {
 			$feverKey = strtolower($feverKey);
 			$username = @file_get_contents(DATA_PATH . '/fever/.key-' . sha1(FreshRSS_Context::systemConf()->salt) . '-' . $feverKey . '.txt', false);
@@ -223,9 +223,9 @@ final class FeverAPI
 			$response_arr['saved_item_ids'] = $this->getSavedItemIds();
 		}
 
-		if (isset($_REQUEST['mark'], $_REQUEST['as'], $_REQUEST['id']) && ctype_digit($_REQUEST['id'])) {
-			$id = (string)$_REQUEST['id'];
-			$before = (int)($_REQUEST['before'] ?? '0');
+		if (is_string($_REQUEST['mark'] ?? null) && is_string($_REQUEST['as'] ?? null) && is_string($_REQUEST['id'] ?? null) && ctype_digit($_REQUEST['id'])) {
+			$id = $_REQUEST['id'];
+			$before = is_numeric($_REQUEST['before'] ?? null) ? (int)$_REQUEST['before'] : 0;
 			switch (strtolower($_REQUEST['mark'])) {
 				case 'item':
 					switch ($_REQUEST['as']) {
@@ -459,39 +459,35 @@ final class FeverAPI
 		$max_id = '';
 		$since_id = '';
 
-		if (isset($_REQUEST['feed_ids']) || isset($_REQUEST['group_ids'])) {
-			if (isset($_REQUEST['feed_ids'])) {
-				$feed_ids = explode(',', $_REQUEST['feed_ids']);
-			}
-
-			if (isset($_REQUEST['group_ids'])) {
-				$categoryDAO = FreshRSS_Factory::createCategoryDao();
-				$group_ids = explode(',', $_REQUEST['group_ids']);
-				$feeds = [];
-				foreach ($group_ids as $id) {
-					$category = $categoryDAO->searchById((int)$id);	//TODO: Transform to SQL query without loop! Consider FreshRSS_CategoryDAO::listCategories(true)
-					if ($category == null) {
-						continue;
-					}
-					foreach ($category->feeds() as $feed) {
-						$feeds[] = $feed->id();
-					}
+		if (is_string($_REQUEST['feed_ids'] ?? null)) {
+			$feed_ids = explode(',', $_REQUEST['feed_ids']);
+		} elseif (is_string($_REQUEST['group_ids'] ?? null)) {
+			$categoryDAO = FreshRSS_Factory::createCategoryDao();
+			$group_ids = explode(',', $_REQUEST['group_ids']);
+			$feeds = [];
+			foreach ($group_ids as $id) {
+				$category = $categoryDAO->searchById((int)$id);	//TODO: Transform to SQL query without loop! Consider FreshRSS_CategoryDAO::listCategories(true)
+				if ($category == null) {
+					continue;
 				}
-				$feed_ids = array_unique($feeds);
+				foreach ($category->feeds() as $feed) {
+					$feeds[] = $feed->id();
+				}
 			}
+			$feed_ids = array_unique($feeds);
 		}
 
-		if (isset($_REQUEST['max_id'])) {
+		if (is_string($_REQUEST['max_id'] ?? null)) {
 			// use the max_id argument to request the previous $item_limit items
-			$max_id = '' . $_REQUEST['max_id'];
+			$max_id = $_REQUEST['max_id'];
 			if (!ctype_digit($max_id)) {
 				$max_id = '';
 			}
-		} elseif (isset($_REQUEST['with_ids'])) {
+		} elseif (is_string($_REQUEST['with_ids'] ?? null)) {
 			$entry_ids = explode(',', $_REQUEST['with_ids']);
-		} elseif (isset($_REQUEST['since_id'])) {
+		} elseif (is_string($_REQUEST['since_id'] ?? null)) {
 			// use the since_id argument to request the next $item_limit items
-			$since_id = '' . $_REQUEST['since_id'];
+			$since_id = $_REQUEST['since_id'];
 			if (!ctype_digit($since_id)) {
 				$since_id = '';
 			}

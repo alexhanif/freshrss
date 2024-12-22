@@ -180,7 +180,7 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 			if (is_array($share)) {
 				$share = array_filter($share, fn($value, $key): bool =>
 					is_string($key) && is_array($value) &&
-					is_array_of_string($value),
+					is_array_values_string($value),
 					ARRAY_FILTER_USE_BOTH);
 				/** @var array<string,array<string>> $share */
 				FreshRSS_Context::userConf()->sharing = $share;

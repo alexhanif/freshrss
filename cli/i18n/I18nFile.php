@@ -72,7 +72,20 @@ class I18nFile {
 		}
 
 		if (is_array($content)) {
-			return $content;
+			$result = [];
+			foreach ($content as $key => $value) {
+				if (!is_string($key) || !is_array($value)) {
+					continue;
+				}
+				$vs = [];
+				foreach ($value as $k => $v) {
+					if (is_string($k) && $v instanceof I18nValue) {
+						$vs[$k] = $v;
+					}
+				}
+				$result[$key] = $vs;
+			}
+			return $result;
 		}
 
 		return [];

@@ -84,8 +84,24 @@ function classAutoloader(string $class): void {
 spl_autoload_register('classAutoloader');
 //</Auto-loading>
 
-/** @param array<mixed,mixed> $array */
-function is_array_of_string(array $array): bool {
+/**
+ * @param array<mixed,mixed> $array
+ * @phpstan-assert-if-true array<string,mixed> $array
+ */
+function is_array_keys_string(array $array): bool {
+	foreach ($array as $key => $value) {
+		if (!is_string($key)) {
+			return false;
+		}
+	}
+	return true;
+}
+
+/**
+ * @param array<mixed,mixed> $array
+ * @phpstan-assert-if-true array<mixed,string> $array
+ */
+function is_array_values_string(array $array): bool {
 	foreach ($array as $value) {
 		if (!is_string($value)) {
 			return false;
@@ -262,7 +278,7 @@ function sensitive_log($log): array|string {
 		foreach ($log as $k => $v) {
 			if (in_array($k, ['api_key', 'Passwd', 'T'], true)) {
 				$log[$k] = '██';
-			} elseif (is_array($v) || is_string($v)) {
+			} elseif ((is_array($v) && is_array_keys_string($v)) || is_string($v)) {
 				$log[$k] = sensitive_log($v);
 			} else {
 				return '';
@@ -602,9 +618,10 @@ function lazyimg(string $content): string {
 /** @return numeric-string */
 function uTimeString(): string {
 	$t = @gettimeofday();
-	$result = $t['sec'] . str_pad('' . $t['usec'], 6, '0', STR_PAD_LEFT);
-	/** @var numeric-string @result */
-	return $result;
+	$sec = is_numeric($t['sec']) ? (int)$t['sec'] : 0;
+	$usec = is_numeric($t['usec']) ? (int)$t['usec'] : 0;
+	$result = ((string)$sec) . str_pad((string)$usec, 6, '0', STR_PAD_LEFT);
+	return ctype_digit($result) ? $result : '0';
 }
 
 function invalidateHttpCache(string $username = ''): bool {
@@ -722,9 +739,9 @@ function checkCIDR(string $ip, string $range): bool {
  * Use CONN_REMOTE_ADDR (if available, to be robust even when using Apache mod_remoteip) or REMOTE_ADDR environment variable to determine the connection IP.
  */
 function connectionRemoteAddress(): string {
-	$remoteIp = $_SERVER['CONN_REMOTE_ADDR'] ?? '';
+	$remoteIp = is_string($_SERVER['CONN_REMOTE_ADDR'] ?? null) ? $_SERVER['CONN_REMOTE_ADDR'] : '';
 	if ($remoteIp == '') {
-		$remoteIp = $_SERVER['REMOTE_ADDR'] ?? '';
+		$remoteIp = is_string($_SERVER['REMOTE_ADDR'] ?? null) ? $_SERVER['REMOTE_ADDR'] : '';
 	}
 	if ($remoteIp == 0) {
 		$remoteIp = '';
@@ -762,17 +779,17 @@ function checkTrustedIP(): bool {
 }
 
 function httpAuthUser(bool $onlyTrusted = true): string {
-	if (!empty($_SERVER['REMOTE_USER'])) {
+	if (!empty($_SERVER['REMOTE_USER']) && is_string($_SERVER['REMOTE_USER'])) {
 		return $_SERVER['REMOTE_USER'];
 	}
-	if (!empty($_SERVER['REDIRECT_REMOTE_USER'])) {
+	if (!empty($_SERVER['REDIRECT_REMOTE_USER']) && is_string($_SERVER['REDIRECT_REMOTE_USER'])) {
 		return $_SERVER['REDIRECT_REMOTE_USER'];
 	}
 	if (!$onlyTrusted || checkTrustedIP()) {
-		if (!empty($_SERVER['HTTP_REMOTE_USER'])) {
+		if (!empty($_SERVER['HTTP_REMOTE_USER']) && is_string($_SERVER['HTTP_REMOTE_USER'])) {
 			return $_SERVER['HTTP_REMOTE_USER'];
 		}
-		if (!empty($_SERVER['HTTP_X_WEBAUTH_USER'])) {
+		if (!empty($_SERVER['HTTP_X_WEBAUTH_USER']) && is_string($_SERVER['HTTP_X_WEBAUTH_USER'])) {
 			return $_SERVER['HTTP_X_WEBAUTH_USER'];
 		}
 	}

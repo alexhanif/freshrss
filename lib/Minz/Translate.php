@@ -231,10 +231,9 @@ class Minz_Translate {
 			}
 		}
 
-		if (is_array($translation_value)) {
-			if (isset($translation_value['_'])) {
-				$translation_value = $translation_value['_'];
-			} else {
+		if (!is_string($translation_value)) {
+			$translation_value = is_array($translation_value) ? ($translation_value['_'] ?? null) : null;
+			if (!is_string($translation_value)) {
 				Minz_Log::debug($key . ' is not a valid key');
 				return $key;
 			}

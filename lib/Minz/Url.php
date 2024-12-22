@@ -145,10 +145,16 @@ class Minz_Url {
 	 * @return array{c?:string,a?:string,params?:array<string,string>} URL representation
 	 */
 	public static function build(): array {
+		$get = [];
+		foreach ($_GET as $key => $value) {
+			if (is_string($key) && is_string($value)) {
+				$get[$key] = $value;
+			}
+		}
 		$url = [
-			'c' => $_GET['c'] ?? Minz_Request::defaultControllerName(),
-			'a' => $_GET['a'] ?? Minz_Request::defaultActionName(),
-			'params' => $_GET,
+			'c' => is_string($_GET['c'] ?? null) ? $_GET['c'] : Minz_Request::defaultControllerName(),
+			'a' => is_string($_GET['a'] ?? null) ? $_GET['a'] : Minz_Request::defaultActionName(),
+			'params' => $get,
 		];
 
 		// post-traitement

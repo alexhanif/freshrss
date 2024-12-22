@@ -162,7 +162,7 @@ try {
 
 if (!$ok) {
 	@unlink(join_path(DATA_PATH, 'config.php'));
-	fail('FreshRSS database error: ' . (empty($_SESSION['bd_error']) ? 'Unknown error' : $_SESSION['bd_error']));
+	fail('FreshRSS database error: ' . (is_string($_SESSION['bd_error'] ?? null) ? $_SESSION['bd_error'] : 'Unknown error'));
 }
 
 echo 'ℹ️ Remember to create the default user: ', $config['default_user'],

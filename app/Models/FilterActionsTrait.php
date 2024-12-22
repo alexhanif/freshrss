@@ -121,6 +121,7 @@ trait FreshRSS_FilterActionsTrait {
 
 	/**
 	 * @param bool $applyLabel Parameter by reference, which will be set to true if the callers needs to apply a label to the article entry.
+	 * @param-out bool $applyLabel
 	 */
 	public function applyFilterActions(FreshRSS_Entry $entry, ?bool &$applyLabel = null): void {
 		$applyLabel = false;
