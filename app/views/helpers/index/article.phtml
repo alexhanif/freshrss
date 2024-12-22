@@ -8,8 +8,8 @@
 		return;
 	}
 ?>
-<article class="flux_content" dir="auto">
-	<div class="content content_<?= FreshRSS_Context::userConf()->content_width ?>">
+<article class="flux_content content_<?= FreshRSS_Context::userConf()->content_width ?>" dir="auto">
+	<div class="content">
 		<header>
 			<?php
 				$favoriteUrl = ['c' => 'entry', 'a' => 'bookmark', 'params' => ['id' => $entry->id()]];

@@ -1191,7 +1191,7 @@ optgroup::before {
 	border: none;
 }
 
-#stream.reader .flux .content {
+#stream.reader .flux .flux_content {
 	background-color: var(--accent-bg);
 	border: none;
 	border-radius: 12px;

@@ -2347,10 +2347,14 @@ html.slider-active {
 	padding: 1rem 0 2rem;
 }
 
-.reader .flux .content {
+.reader .flux .flux_content {
 	padding: 3rem 0;
 	background-color: var(--frss-background-color);
 	border: 1px solid var(--frss-border-color);
+}
+
+.reader .flux_content {
+	margin: auto;
 }
 
 #loglist-wrapper {
