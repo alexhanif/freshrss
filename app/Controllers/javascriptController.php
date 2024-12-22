@@ -53,6 +53,9 @@ class FreshRSS_javascript_Controller extends FreshRSS_ActionController {
 		header('Pragma: no-cache');
 
 		$user = $_GET['user'] ?? '';
+		if (!is_string($user) || $user === '') {
+			Minz_Error::error(400);
+		}
 		FreshRSS_Context::initUser($user);
 		if (FreshRSS_Context::hasUserConf()) {
 			try {

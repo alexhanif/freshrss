@@ -84,6 +84,16 @@ function classAutoloader(string $class): void {
 spl_autoload_register('classAutoloader');
 //</Auto-loading>
 
+/** @param array<mixed,mixed> $array */
+function is_array_of_string(array $array): bool {
+	foreach ($array as $value) {
+		if (!is_string($value)) {
+			return false;
+		}
+	}
+	return true;
+}
+
 /**
  * Memory efficient replacement of `echo json_encode(...)`
  * @param array<mixed>|mixed $json

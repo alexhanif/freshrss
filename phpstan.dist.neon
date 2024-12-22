@@ -40,14 +40,12 @@ parameters:
 		allRules: false
 		booleansInConditions: true
 		closureUsesThis: true
-		disallowedConstructs: false
 		disallowedLooseComparison: false
 		matchingInheritedMethodNames: true
 		noVariableVariables: true
 		numericOperandsInArithmeticOperators: true
 		overwriteVariablesWithLoop: true
 		requireParentConstructorCall: true
-		strictCalls: true
 		switchConditionsMatchingType: true
 		uselessCast: true
 	exceptions:

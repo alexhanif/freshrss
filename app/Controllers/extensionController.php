@@ -76,11 +76,17 @@ class FreshRSS_extension_Controller extends FreshRSS_ActionController {
 		// the current implementation for now, unless it becomes too much effort maintain the extension list manually
 		$extensions = [];
 		foreach ($list['extensions'] as $extension) {
+			if (!is_array($extension)) {
+				continue;
+			}
 			if (isset($extension['version']) && is_numeric($extension['version'])) {
 				$extension['version'] = (string)$extension['version'];
 			}
-			foreach (['author', 'description', 'directory', 'entrypoint', 'method', 'name', 'type', 'url', 'version'] as $key) {
-				if (empty($extension[$key]) || !is_string($extension[$key])) {
+			$keys = ['author', 'description', 'directory', 'entrypoint', 'method', 'name', 'type', 'url', 'version'];
+			$extension = array_intersect_key($extension, array_flip($keys));	// Keep only valid keys
+			$extension = array_filter($extension, 'is_string');
+			foreach ($keys as $key) {
+				if (empty($extension[$key])) {
 					continue 2;
 				}
 			}

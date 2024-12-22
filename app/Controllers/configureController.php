@@ -176,10 +176,17 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 		FreshRSS_View::appendScript(Minz_Url::display('/scripts/draggable.js?' . @filemtime(PUBLIC_PATH . '/scripts/draggable.js')));
 
 		if (Minz_Request::isPost()) {
-			$params = $_POST;
-			FreshRSS_Context::userConf()->sharing = $params['share'];
-			FreshRSS_Context::userConf()->save();
-			invalidateHttpCache();
+			$share = $_POST['share'] ?? null;
+			if (is_array($share)) {
+				$share = array_filter($share, fn($value, $key): bool =>
+					is_string($key) && is_array($value) &&
+					is_array_of_string($value),
+					ARRAY_FILTER_USE_BOTH);
+				/** @var array<string,array<string>> $share */
+				FreshRSS_Context::userConf()->sharing = $share;
+				FreshRSS_Context::userConf()->save();
+				invalidateHttpCache();
+			}
 
 			Minz_Request::good(_t('feedback.conf.updated'), [ 'c' => 'configure', 'a' => 'integration' ]);
 		}

@@ -169,12 +169,13 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 			Minz_Request::forward(['c' => 'importExport', 'a' => 'index'], true);
 		}
 
-		$file = $_FILES['file'];
-		$status_file = $file['error'];
+		$file = $_FILES['file'] ?? null;
+		$status_file = is_array($file) ? $file['error'] ?? -1 : -1;
 
-		if ($status_file !== 0) {
-			Minz_Log::warning('File cannot be uploaded. Error code: ' . $status_file);
+		if (!is_array($file) || $status_file !== 0 || !is_string($file['name'] ?? null) || !is_string($file['tmp_name'] ?? null)) {
+			Minz_Log::warning('File cannot be uploaded. Error code: ' . (is_numeric($status_file) ? $status_file : -1));
 			Minz_Request::bad(_t('feedback.import_export.file_cannot_be_uploaded'), [ 'c' => 'importExport', 'a' => 'index' ]);
+			return;
 		}
 
 		if (function_exists('set_time_limit')) {
@@ -252,7 +253,7 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 				$labels_cache = json_decode($item['label_cache'], true);
 				if (is_array($labels_cache)) {
 					foreach ($labels_cache as $label_cache) {
-						if (!empty($label_cache[1]) && is_string($label_cache[1])) {
+						if (is_array($label_cache) && !empty($label_cache[1]) && is_string($label_cache[1])) {
 							$item['categories'][] = 'user/-/label/' . trim($label_cache[1]);
 						}
 					}
@@ -302,6 +303,9 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 
 		// First, we check feeds of articles are in DB (and add them if needed).
 		foreach ($items as &$item) {
+			if (!is_array($item)) {
+				continue;
+			}
 			if (!isset($item['guid']) && isset($item['id'])) {
 				$item['guid'] = $item['id'];
 			}
