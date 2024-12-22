@@ -9,7 +9,7 @@
 	}
 ?>
 <article class="flux_content" dir="auto">
-	<div class="content <?= FreshRSS_Context::userConf()->content_width ?>">
+	<div class="content content_<?= FreshRSS_Context::userConf()->content_width ?>">
 		<header>
 			<?php
 				$favoriteUrl = ['c' => 'entry', 'a' => 'bookmark', 'params' => ['id' => $entry->id()]];
