@@ -506,10 +506,6 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 	}
 
 	public function privacyAction(): void {
-		if (!FreshRSS_Auth::hasAccess('admin')) {
-			Minz_Error::error(403);
-		}
-
 		if (Minz_Request::isPost()) {
 			FreshRSS_Context::userConf()->retrieve_extension_list = Minz_Request::paramBoolean('retrieve_extension_list');
 			FreshRSS_Context::userConf()->save();
