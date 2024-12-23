@@ -29,7 +29,7 @@ class FreshRSS_StatsDAO extends Minz_ModelPdo {
 	 *   - unread entries
 	 *   - favorite entries
 	 *
-	 * @return array{'total':int,'count_unreads':int,'count_reads':int,'count_favorites':int}|false
+	 * @return array{total:int,count_unreads:int,count_reads:int,count_favorites:int}|false
 	 */
 	public function calculateEntryRepartitionPerFeed(?int $feed = null, bool $only_main = false): array|false {
 		$filter = '';
@@ -51,8 +51,8 @@ SQL;
 		$res = $this->fetchAssoc($sql);
 		if (!empty($res[0])) {
 			$dao = $res[0];
-			/** @var array<array{'total':int,'count_unreads':int,'count_reads':int,'count_favorites':int}> $res */
 			FreshRSS_DatabaseDAO::pdoInt($dao, ['total', 'count_unreads', 'count_reads', 'count_favorites']);
+			/** @var array{total:int,count_unreads:int,count_reads:int,count_favorites:int} $dao */
 			return $dao;
 		}
 		return false;
@@ -81,7 +81,7 @@ SQL;
 		if ($res == false) {
 			return [];
 		}
-		/** @var array<array{'day':int,'count':int}> $res */
+		/** @var array<array{day:int,count:int}> $res */
 		foreach ($res as $value) {
 			$count[(int)($value['day'])] = (int)($value['count']);
 		}

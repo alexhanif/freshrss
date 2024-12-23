@@ -15,7 +15,7 @@ class FreshRSS_Themes extends Minz_Model {
 		));
 	}
 
-	/** @return array<string,array{'id':string,'name':string,'author':string,'description':string,'version':float|string,'files':array<string>,'theme-color'?:string|array{'dark'?:string,'light'?:string,'default'?:string}}> */
+	/** @return array<string,array{id:string,name:string,author:string,description:string,version:float|string,files:array<string>,theme-color?:string|array{dark?:string,light?:string,default?:string}}> */
 	public static function get(): array {
 		$themes_list = self::getList();
 		$list = [];
@@ -29,7 +29,7 @@ class FreshRSS_Themes extends Minz_Model {
 	}
 
 	/**
-	 * @return false|array{'id':string,'name':string,'author':string,'description':string,'version':float|string,'files':array<string>,'theme-color'?:string|array{'dark'?:string,'light'?:string,'default'?:string}}
+	 * @return false|array{id:string,name:string,author:string,description:string,version:float|string,files:array<string>,theme-color?:string|array{dark?:string,light?:string,default?:string}}
 	 */
 	public static function get_infos(string $theme_id): array|false {
 		$theme_dir = PUBLIC_PATH . self::$themesUrl . $theme_id;
@@ -43,7 +43,7 @@ class FreshRSS_Themes extends Minz_Model {
 						isset($res['files']) &&
 						is_array($res['files'])) {
 					$res['id'] = $theme_id;
-					/** @var array{'id':string,'name':string,'author':string,'description':string,'version':float|string,'files':array<string>,'theme-color'?:string|array{'dark'?:string,'light'?:string,'default'?:string}} */
+					/** @var array{id:string,name:string,author:string,description:string,version:float|string,files:array<string>,theme-color?:string|array{dark?:string,light?:string,default?:string}} */
 					return $res;
 				}
 			}
@@ -56,7 +56,7 @@ class FreshRSS_Themes extends Minz_Model {
 	private static array $themeIcons;
 
 	/**
-	 * @return false|array{'id':string,'name':string,'author':string,'description':string,'version':float|string,'files':array<string>,'theme-color'?:string|array{'dark'?:string,'light'?:string,'default'?:string}}
+	 * @return false|array{id:string,name:string,author:string,description:string,version:float|string,files:array<string>,theme-color?:string|array{dark?:string,light?:string,default?:string}}
 	 */
 	public static function load(string $theme_id): array|false {
 		$infos = self::get_infos($theme_id);

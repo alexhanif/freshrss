@@ -126,12 +126,12 @@ SQL;
 			return;
 		}
 		while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
-			/** @var array{'id':int,'name':string,'attributes'?:array<string,mixed>} $row */
+			/** @var array{id:int,name:string,attributes?:array<string,mixed>} $row */
 			yield $row;
 		}
 	}
 
-	/** @return Traversable<array{'id_tag':int,'id_entry':string}> */
+	/** @return Traversable<array{id_tag:int,id_entry:string}> */
 	public function selectEntryTag(): Traversable {
 		$sql = 'SELECT id_tag, id_entry FROM `_entrytag`';
 		$stm = $this->pdo->query($sql);
@@ -140,8 +140,12 @@ SQL;
 			return;
 		}
 		while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
+			if (!is_array($row)) {
+				continue;
+			}
 			FreshRSS_DatabaseDAO::pdoInt($row, ['id_tag']);
 			FreshRSS_DatabaseDAO::pdoString($row, ['id_entry']);
+			/** @var array{id_tag:int,id_entry:string}> $row */
 			yield $row;
 		}
 	}

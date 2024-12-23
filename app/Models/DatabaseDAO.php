@@ -25,7 +25,11 @@ class FreshRSS_DatabaseDAO extends Minz_ModelPdo {
 		$db = FreshRSS_Context::systemConf()->db;
 
 		try {
-			$sql = sprintf($GLOBALS['SQL_CREATE_DB'], empty($db['base']) ? '' : $db['base']);
+			$sql = $GLOBALS['SQL_CREATE_DB'];
+			if (!is_string($sql)) {
+				throw new Exception('SQL_CREATE_DB is not a string!');
+			}
+			$sql = sprintf($sql, empty($db['base']) ? '' : $db['base']);
 			return $this->pdo->exec($sql) === false ? 'Error during CREATE DATABASE' : '';
 		} catch (Exception $e) {
 			syslog(LOG_DEBUG, __method__ . ' notice: ' . $e->getMessage());
@@ -256,7 +260,7 @@ SQL;
 		$catDAO->resetDefaultCategoryName();
 
 		include_once(APP_PATH . '/SQL/install.sql.' . $this->pdo->dbType() . '.php');
-		if (!empty($GLOBALS['SQL_UPDATE_MINOR'])) {
+		if (!empty($GLOBALS['SQL_UPDATE_MINOR']) && is_string($GLOBALS['SQL_UPDATE_MINOR'])) {
 			$sql = $GLOBALS['SQL_UPDATE_MINOR'];
 			$isMariaDB = false;
 
@@ -458,26 +462,26 @@ SQL;
 	/**
 	 * Ensure that some PDO columns are `int` and not `string`.
 	 * Compatibility with PHP 7.
-	 * @param array<string|int|null> $table
+	 * @param array<mixed> $table
 	 * @param array<string> $columns
 	 */
 	public static function pdoInt(array &$table, array $columns): void {
 		foreach ($columns as $column) {
-			if (isset($table[$column]) && is_string($table[$column])) {
-				$table[$column] = (int)$table[$column];
+			if (isset($table[$column])) {
+				$table[$column] = is_numeric($table[$column]) ? (int)$table[$column] : 0;
 			}
 		}
 	}
 
 	/**
 	 * Ensure that some PDO columns are `string` and not `bigint`.
-	 * @param array<string|int|null> $table
+	 * @param array<mixed> $table
 	 * @param array<string> $columns
 	 */
 	public static function pdoString(array &$table, array $columns): void {
 		foreach ($columns as $column) {
 			if (isset($table[$column])) {
-				$table[$column] = (string)$table[$column];
+				$table[$column] = is_string($table[$column]) || is_int($table[$column]) ? (string)$table[$column] : '';
 			}
 		}
 	}

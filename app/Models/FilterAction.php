@@ -42,7 +42,8 @@ class FreshRSS_FilterAction {
 
 	/** @param array|mixed|null $json */
 	public static function fromJSON($json): ?FreshRSS_FilterAction {
-		if (is_array($json) && !empty($json['search']) && !empty($json['actions']) && is_array($json['actions'])) {
+		if (is_array($json) && !empty($json['search']) && is_string($json['search']) &&
+			!empty($json['actions']) && is_array($json['actions']) && is_array_values_string($json['actions'])) {
 			return new FreshRSS_FilterAction(new FreshRSS_BooleanSearch($json['search']), $json['actions']);
 		}
 		return null;

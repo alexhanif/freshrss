@@ -291,6 +291,9 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 			return false;
 		}
 		$items = $article_object['items'] ?? $article_object;
+		if (!is_array($items)) {
+			$items = [];
+		}
 
 		$mark_as_read = FreshRSS_Context::userConf()->mark_when['reception'] ? 1 : 0;
 
@@ -379,7 +382,7 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 		$newGuids = [];
 		$this->entryDAO->beginTransaction();
 		foreach ($items as &$item) {
-			if (empty($item['guid']) || empty($article_to_feed[$item['guid']])) {
+			if (!is_array($item) || empty($item['guid']) || !is_string($item['guid']) || empty($article_to_feed[$item['guid']])) {
 				// Related feed does not exist for this entry, do nothing.
 				continue;
 			}

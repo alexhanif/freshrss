@@ -10,7 +10,7 @@ require(LIB_PATH . '/lib_install.php');
 
 Minz_Session::init('FreshRSS');
 
-if (isset($_GET['step'])) {
+if (isset($_GET['step']) && is_numeric($_GET['step'])) {
 	define('STEP', (int)$_GET['step']);
 } else {
 	define('STEP', 0);
@@ -41,7 +41,7 @@ function initTranslate(): void {
 }
 
 function get_best_language(): string {
-	$accept = empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? '' : $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+	$accept = empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) || !is_string($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? '' : $_SERVER['HTTP_ACCEPT_LANGUAGE'];
 	return strtolower(substr($accept, 0, 2));
 }
 
@@ -102,19 +102,22 @@ function saveStep2(): void {
 					'bd_prefix' => false,
 				]);
 		} else {
-			if (empty($_POST['type']) ||
-				empty($_POST['host']) ||
-				empty($_POST['user']) ||
-				empty($_POST['base'])) {
+			if (empty($_POST['type']) || !is_string($_POST['type']) ||
+				empty($_POST['host']) || !is_string($_POST['host']) ||
+				empty($_POST['user']) || !is_string($_POST['user']) ||
+				empty($_POST['base']) || !is_string($_POST['base']) ||
+				!is_string($_POST['pass'] ?? null) || !is_string($_POST['prefix'] ?? null)
+			) {
 				Minz_Session::_param('bd_error', 'Missing parameters!');
-			}
-			Minz_Session::_params([
+			} else {
+				Minz_Session::_params([
 					'bd_base' => substr($_POST['base'], 0, 64),
 					'bd_host' => $_POST['host'],
 					'bd_user' => $_POST['user'],
 					'bd_password' => $_POST['pass'],
 					'bd_prefix' => substr($_POST['prefix'], 0, 16),
 				]);
+			}
 		}
 
 		// We use dirname to remove the /i part
@@ -143,6 +146,9 @@ function saveStep2(): void {
 			$customConfig = include($customConfigPath);
 			if (is_array($customConfig)) {
 				$config_array = array_merge($customConfig, $config_array);
+				if (!is_string($config_array['default_user'] ?? null)) {
+					$config_array['default_user'] = '_';
+				}
 			}
 		}
 
@@ -327,11 +333,11 @@ function checkStep3(): array {
 
 	$form = Minz_Session::paramString('auth_type') != '';
 
-	$defaultUser = empty($_POST['default_user']) ? null : $_POST['default_user'];
-	if ($defaultUser === null) {
+	$defaultUser = is_string($_POST['default_user'] ?? null) ? trim($_POST['default_user']) : '';
+	if ($defaultUser === '') {
 		$defaultUser = Minz_Session::paramString('default_user') == '' ? '' : Minz_Session::paramString('default_user');
 	}
-	$data = is_writable(join_path(USERS_PATH, $defaultUser, 'config.php'));
+	$data = is_writable(USERS_PATH . '/' . $defaultUser . '/config.php');
 
 	return [
 		'conf' => $conf ? 'ok' : 'ko',
@@ -516,7 +522,7 @@ function printStep2(): void {
 	<p class="alert alert-success"><span class="alert-head"><?= _t('gen.short.ok') ?></span> <?= _t('install.bdd.conf.ok') ?></p>
 	<?php } elseif ($s2['conn'] == 'ko') { ?>
 	<p class="alert alert-error"><span class="alert-head"><?= _t('gen.short.damn') ?></span> <?= _t('install.bdd.conf.ko'),
-		(empty($_SESSION['bd_error']) ? '' : ' : ' . $_SESSION['bd_error']) ?></p>
+		(empty($_SESSION['bd_error']) || !is_string($_SESSION['bd_error']) ? '' : ' : ' . $_SESSION['bd_error']) ?></p>
 	<?php } ?>
 
 	<h2><?= _t('install.bdd.conf') ?></h2>
@@ -611,7 +617,7 @@ function no_auth(string $auth_type): bool {
 
 /* Create default user */
 function printStep3(): void {
-	$auth_type = $_SESSION['auth_type'] ?? '';
+	$auth_type = is_string($_SESSION['auth_type'] ?? null) ? $_SESSION['auth_type'] : '';
 	$s3 = checkStep3();
 	if ($s3['all'] == 'ok') { ?>
 	<p class="alert alert-success"><span class="alert-head"><?= _t('gen.short.ok') ?></span> <?= _t('install.conf.ok') ?></p>

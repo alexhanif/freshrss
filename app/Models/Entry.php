@@ -57,7 +57,7 @@ class FreshRSS_Entry extends Minz_Model {
 	public static function fromArray(array $dao): FreshRSS_Entry {
 		FreshRSS_DatabaseDAO::pdoInt($dao, ['id_feed', 'date', 'lastSeen', 'is_read', 'is_favorite']);
 
-		if (empty($dao['content'])) {
+		if (empty($dao['content']) || !is_string($dao['content'])) {
 			$dao['content'] = '';
 		}
 
@@ -241,7 +241,9 @@ HTML;
 			$content .= '<figure class="enclosure">';
 
 			foreach ($thumbnails as $thumbnail) {
-				$content .= '<p><img class="enclosure-thumbnail" src="' . $thumbnail . '" alt="" title="' . $etitle . '" /></p>';
+				if (is_string($thumbnail)) {
+					$content .= '<p><img class="enclosure-thumbnail" src="' . $thumbnail . '" alt="" title="' . $etitle . '" /></p>';
+				}
 			}
 
 			if (self::enclosureIsImage($enclosure)) {

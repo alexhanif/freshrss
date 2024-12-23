@@ -62,7 +62,7 @@ class FreshRSS_View extends Minz_View {
 	public int $size_user;
 
 	// Display
-	/** @var array<string,array{'id':string,'name':string,'author':string,'description':string,'version':float|string,'files':array<string>,'theme-color'?:string|array{'dark'?:string,'light'?:string,'default'?:string}}> */
+	/** @var array<string,array{id:string,name:string,author:string,description:string,version:float|string,files:array<string>,theme-color?:string|array{dark?:string,light?:string,default?:string}}> */
 	public array $themes;
 
 	// Shortcuts

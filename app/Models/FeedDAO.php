@@ -585,14 +585,14 @@ SQL;
 
 		foreach ($listDAO as $key => $dao) {
 			FreshRSS_DatabaseDAO::pdoInt($dao, ['id', 'kind', 'category', 'lastUpdate', 'priority', 'error', 'ttl', 'cache_nbUnreads', 'cache_nbEntries']);
-			if (!isset($dao['name'])) {
+			if (!isset($dao['name']) || !is_string($dao['name'])) {
 				continue;
 			}
-			if (isset($dao['id'])) {
+			if (isset($dao['id']) && is_numeric($dao['id'])) {
 				$key = (int)$dao['id'];
 			}
 			if ($catID === null) {
-				$category = $dao['category'] ?? 0;
+				$category = is_numeric($dao['category'] ?? null) ? (int)$dao['category'] : 0;
 			} else {
 				$category = $catID;
 			}

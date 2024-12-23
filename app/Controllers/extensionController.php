@@ -39,8 +39,8 @@ class FreshRSS_extension_Controller extends FreshRSS_ActionController {
 	}
 
 	/**
-	 * fetch extension list from GitHub
-	 * @return array<array{'name':string,'author':string,'description':string,'version':string,'entrypoint':string,'type':'system'|'user','url':string,'method':string,'directory':string}>
+	 * Fetch extension list from GitHub
+	 * @return array<array{name:string,author:string,description:string,version:string,entrypoint:string,type:'system'|'user',url:string,method:string,directory:string}>
 	 */
 	protected function getAvailableExtensionList(): array {
 		$extensionListUrl = 'https://raw.githubusercontent.com/FreshRSS/Extensions/master/extensions.json';
@@ -93,6 +93,7 @@ class FreshRSS_extension_Controller extends FreshRSS_ActionController {
 			if (!in_array($extension['type'], ['system', 'user'], true)) {
 				continue;
 			}
+			/** @var array{name:string,author:string,description:string,version:string,entrypoint:string,type:'system'|'user',url:string,method:string,directory:string} $extension */
 			$extensions[] = $extension;
 		}
 		return $extensions;

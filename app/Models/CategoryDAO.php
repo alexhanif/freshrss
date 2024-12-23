@@ -50,6 +50,8 @@ class FreshRSS_CategoryDAO extends Minz_ModelPdo {
 					}
 					if (!is_array($attributes)) {
 						$attributes = [];
+					} elseif (isset($attributes['archiving']) && !is_array($attributes['archiving'])) {
+						unset($attributes['archiving']);
 					}
 					if ($keepHistory > 0) {
 						$attributes['archiving']['keep_min'] = (int)$keepHistory;
@@ -239,7 +241,7 @@ SQL;
 	public function searchById(int $id): ?FreshRSS_Category {
 		$sql = 'SELECT * FROM `_category` WHERE id=:id';
 		$res = $this->fetchAssoc($sql, ['id' => $id]) ?? [];
-		/** @var array<array{'name':string,'id':int,'kind':int,'lastUpdate':int,'error':int|bool,'attributes':string}> $res */
+		/** @var array<array{name:string,id:int,kind:int,lastUpdate:int,error:int|bool,attribute:string}> $res */
 		$categories = self::daoToCategories($res);
 		return reset($categories) ?: null;
 	}
@@ -247,7 +249,7 @@ SQL;
 	public function searchByName(string $name): ?FreshRSS_Category {
 		$sql = 'SELECT * FROM `_category` WHERE name=:name';
 		$res = $this->fetchAssoc($sql, ['name' => $name]) ?? [];
-		/** @var array<array{'name':string,'id':int,'kind':int,'lastUpdate':int,'error':int|bool,'attributes':string}> $res */
+		/** @var array<array{name:string,id:int,kind:int,lastUpdate:int,error:int|bool,attributes:string}> $res */
 		$categories = self::daoToCategories($res);
 		return reset($categories) ?: null;
 	}
@@ -452,7 +454,7 @@ SQL;
 	}
 
 	/**
-	 * @param array<array{'name':string,'id':int,'kind':int,'lastUpdate'?:int,'error'?:int|bool,'attributes'?:string}> $listDAO
+	 * @param array<array{name:string,id:int,kind:int,lastUpdate?:int,error?:int|bool,attributes?:string}> $listDAO
 	 * @return array<int,FreshRSS_Category>
 	 */
 	private static function daoToCategories(array $listDAO): array {
