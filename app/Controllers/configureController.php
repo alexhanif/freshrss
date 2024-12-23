@@ -506,10 +506,6 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 	}
 
 	public function privacyAction(): void {
-		if (!FreshRSS_Auth::hasAccess('admin')) {
-			Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_403_FORBIDDEN);
-		}
-
 		if (Minz_Request::isPost()) {
 			FreshRSS_Context::userConf()->retrieve_extension_list = Minz_Request::paramBoolean('retrieve_extension_list');
 			FreshRSS_Context::userConf()->save();

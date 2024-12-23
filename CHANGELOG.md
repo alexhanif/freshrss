@@ -2,7 +2,10 @@
 
 See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 
-## 2024-12-XX FreshRSS 1.25.0-dev
+## 202X-XX-XX FreshRSS 1.25.1-dev
+
+
+## 2024-12-23 FreshRSS 1.25.0
 
 * Features
 	* Add support for [regex search (regular expressions)](https://freshrss.github.io/FreshRSS/en/users/10_filter.html#regex) [#6706](https://github.com/FreshRSS/FreshRSS/pull/6706), [#6926](https://github.com/FreshRSS/FreshRSS/pull/6926)
@@ -27,6 +30,7 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* New button to delete errored feeds from a category [#7030](https://github.com/FreshRSS/FreshRSS/pull/7030)
 	* Better import of Inoreader user labels [#6791](https://github.com/FreshRSS/FreshRSS/pull/6791)
 	* Rebuild feed favicon on cache clear [#6961](https://github.com/FreshRSS/FreshRSS/pull/6961)
+	* New sharing with Bluesky [#7116](https://github.com/FreshRSS/FreshRSS/pull/7116)
 	* New sharing with Telegram [#6838](https://github.com/FreshRSS/FreshRSS/pull/6838)
 * Bug fixing
 	* Fix searches with a parenthesis before an operator like `("a b")` or `(!c)` [#6818](https://github.com/FreshRSS/FreshRSS/pull/6818)
@@ -71,7 +75,7 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Sync upstream [#6840](https://github.com/FreshRSS/FreshRSS/pull/6840), [#7067](https://github.com/FreshRSS/FreshRSS/pull/7067)
 * Security
 	* Apache protect more non-public folders and files [#6881](https://github.com/FreshRSS/FreshRSS/pull/6881), [#6893](https://github.com/FreshRSS/FreshRSS/pull/6893), [#7008](https://github.com/FreshRSS/FreshRSS/pull/7008)
-	* Add privacy settings on extension list retrieval [#4603](https://github.com/FreshRSS/FreshRSS/pull/4603)
+	* Add privacy settings on extension list retrieval [#4603](https://github.com/FreshRSS/FreshRSS/pull/4603), [#7132](https://github.com/FreshRSS/FreshRSS/pull/7132)
 	* Fix login in unsafe mode when using a password with special XML characters [#6797](https://github.com/FreshRSS/FreshRSS/pull/6797)
 	* Fix login in e.g. Brave browser by avoiding synchronous XHR [#7023](https://github.com/FreshRSS/FreshRSS/pull/7023)
 	* Fix invalid login message [#7066](https://github.com/FreshRSS/FreshRSS/pull/7066)
@@ -84,7 +88,7 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Improved article footer for small / mobile screens [#7031](https://github.com/FreshRSS/FreshRSS/pull/7031)
 	* Improve Web accessibility: fix `aria-hidden` bug, and use HTML5 `hidden` [#6910](https://github.com/FreshRSS/FreshRSS/pull/6910)
 	* Default styles for `<pre>` and `<code>` [#6770](https://github.com/FreshRSS/FreshRSS/pull/6770)
-	* Refactor the sharing menu to use a `<template>` instead of duplicated HTML code [#6751](https://github.com/FreshRSS/FreshRSS/pull/6751)
+	* Refactor the sharing menu to use a `<template>` instead of duplicated HTML code [#6751](https://github.com/FreshRSS/FreshRSS/pull/6751), [#7113](https://github.com/FreshRSS/FreshRSS/pull/7113)
 	* Refactor the label menu to use a `<template>` [#6864](https://github.com/FreshRSS/FreshRSS/pull/6864)
 	* Rework UI for authors [#7054](https://github.com/FreshRSS/FreshRSS/pull/7054)
 		* Avoid Unicode escape of authors in HTML UI [#7056](https://github.com/FreshRSS/FreshRSS/pull/7056)
@@ -100,7 +104,7 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 * I18n
 	* Add Finnish [#6954](https://github.com/FreshRSS/FreshRSS/pull/6954)
 	* Improve English [#7049](https://github.com/FreshRSS/FreshRSS/pull/7049), [#7053](https://github.com/FreshRSS/FreshRSS/pull/7053)
-	* Improve German [#6847](https://github.com/FreshRSS/FreshRSS/pull/6847), [#7068](https://github.com/FreshRSS/FreshRSS/pull/7068)
+	* Improve German [#6847](https://github.com/FreshRSS/FreshRSS/pull/6847), [#7068](https://github.com/FreshRSS/FreshRSS/pull/7068), [#7128](https://github.com/FreshRSS/FreshRSS/pull/7128)
 	* Improve Italian [#6872](https://github.com/FreshRSS/FreshRSS/pull/6872), [#7069](https://github.com/FreshRSS/FreshRSS/pull/7069), [#7086](https://github.com/FreshRSS/FreshRSS/pull/7086)
 	* Improve Spanish [#6894](https://github.com/FreshRSS/FreshRSS/pull/6894), [#6908](https://github.com/FreshRSS/FreshRSS/pull/6908)
 	* Improve Turkish [#6960](https://github.com/FreshRSS/FreshRSS/pull/6960)

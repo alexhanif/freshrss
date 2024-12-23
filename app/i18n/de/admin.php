@@ -116,7 +116,7 @@ return array(
 		'description' => 'Beschreibungen',
 		'disabled' => 'Deaktiviert',
 		'empty_list' => 'Es gibt keine installierte Erweiterung.',
-		'empty_list_help' => 'Siehe Protokolle für weitere Infos, warum die Erweiterungsliste ist.',
+		'empty_list_help' => 'Siehe Protokolle für weitere Infos, warum die Erweiterungsliste leer ist.',
 		'enabled' => 'Aktiviert',
 		'latest' => 'Installiert',
 		'name' => 'Name',	// IGNORE
