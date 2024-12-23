@@ -197,7 +197,7 @@ class FreshRSS_category_Controller extends FreshRSS_ActionController {
 			}
 
 			// Remove related queries.
-			/** @var array<array{'get'?:string,'name'?:string,'order'?:string,'search'?:string,'state'?:int,'url'?:string}> $queries */
+			/** @var array<int,array{'get'?:string,'name'?:string,'order'?:string,'search'?:string,'state'?:int,'url'?:string}> $queries */
 			$queries = remove_query_by_get('c_' . $id, FreshRSS_Context::userConf()->queries);
 			FreshRSS_Context::userConf()->queries = $queries;
 			FreshRSS_Context::userConf()->save();
@@ -239,7 +239,7 @@ class FreshRSS_category_Controller extends FreshRSS_ActionController {
 
 				// Remove related queries
 				foreach ($feeds as $feed) {
-					/** @var array<array{'get'?:string,'name'?:string,'order'?:string,'search'?:string,'state'?:int,'url'?:string}> */
+					/** @var array<int,array{'get'?:string,'name'?:string,'order'?:string,'search'?:string,'state'?:int,'url'?:string}> $queries */
 					$queries = remove_query_by_get('f_' . $feed->id(), FreshRSS_Context::userConf()->queries);
 					FreshRSS_Context::userConf()->queries = $queries;
 				}

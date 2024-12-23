@@ -117,7 +117,7 @@ SQL;
 		}
 	}
 
-	/** @return Traversable<array{'id':int,'name':string,'attributes'?:array<string,mixed>}> */
+	/** @return Traversable<array{id:int,name:string,attributes?:array<string,mixed>}> */
 	public function selectAll(): Traversable {
 		$sql = 'SELECT id, name, attributes FROM `_tag`';
 		$stm = $this->pdo->query($sql);
@@ -131,7 +131,7 @@ SQL;
 		}
 	}
 
-	/** @return Traversable<array{id_tag:int,id_entry:string}> */
+	/** @return Traversable<array{id_tag:int,id_entry:int|numeric-string}> */
 	public function selectEntryTag(): Traversable {
 		$sql = 'SELECT id_tag, id_entry FROM `_entrytag`';
 		$stm = $this->pdo->query($sql);
@@ -140,13 +140,8 @@ SQL;
 			return;
 		}
 		while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
-			if (!is_array($row)) {
-				continue;
-			}
-			FreshRSS_DatabaseDAO::pdoInt($row, ['id_tag']);
-			FreshRSS_DatabaseDAO::pdoString($row, ['id_entry']);
-			/** @var array{id_tag:int,id_entry:string}> $row */
-			yield $row;
+			/** @var array{id_tag:int,id_entry:int|numeric-string}> $row */
+			yield $row;	// @phpstan-ignore generator.valueType
 		}
 	}
 
@@ -295,7 +290,7 @@ SQL;
 	}
 
 	/**
-	 * @param array<array{id_tag:int,id_entry:string}> $addLabels Labels to insert as batch
+	 * @param array<array{id_tag:int,id_entry:numeric-string|int}> $addLabels Labels to insert as batch
 	 * @return int|false Number of new entries or false in case of error
 	 */
 	public function tagEntries(array $addLabels): int|false {
@@ -304,7 +299,7 @@ SQL;
 		foreach ($addLabels as $addLabel) {
 			$id_tag = (int)($addLabel['id_tag'] ?? 0);
 			$id_entry = $addLabel['id_entry'] ?? '';
-			if ($id_tag > 0 && ctype_digit($id_entry)) {
+			if ($id_tag > 0 && (is_int($id_entry) || ctype_digit($id_entry))) {
 				$sql .= "({$id_tag},{$id_entry}),";
 				$hasValues = true;
 			}
@@ -324,7 +319,7 @@ SQL;
 	}
 
 	/**
-	 * @return array<int,array{'id':int,'name':string,'id_entry':string,'checked':bool}>|false
+	 * @return array<int,array{id:int,name:string,id_entry:numeric-string,checked:bool}>|false
 	 */
 	public function getTagsForEntry(string $id_entry): array|false {
 		$sql = <<<'SQL'
@@ -341,6 +336,7 @@ SQL;
 			$lines = $stm->fetchAll(PDO::FETCH_ASSOC);
 			for ($i = count($lines) - 1; $i >= 0; $i--) {
 				$lines[$i]['id'] = (int)($lines[$i]['id']);
+				$lines[$i]['id_entry'] = (string)($lines[$i]['id_entry']);
 				$lines[$i]['checked'] = !empty($lines[$i]['checked']);
 			}
 			return $lines;
@@ -352,7 +348,7 @@ SQL;
 
 	/**
 	 * @param array<FreshRSS_Entry|numeric-string|array<string,string>> $entries
-	 * @return array<array{'id_entry':string,'id_tag':int,'name':string}>|false
+	 * @return array<array{id_entry:int|numeric-string,id_tag:int,name:string}>|false
 	 */
 	public function getTagsForEntries(array $entries): array|false {
 		$sql = <<<'SQL'
@@ -425,7 +421,7 @@ SQL;
 	}
 
 	/**
-	 * @param iterable<array{'id':int,'name':string,'attributes'?:string}> $listDAO
+	 * @param iterable<array{id:int,name:string,attributes?:string}> $listDAO
 	 * @return array<int,FreshRSS_Tag>
 	 */
 	private static function daoToTags(iterable $listDAO): array {

@@ -533,19 +533,19 @@ function printStep2(): void {
 				<select name="type" id="type" tabindex="1">
 				<?php if (extension_loaded('pdo_sqlite')) {?>
 				<option value="sqlite"
-					<?= isset($_SESSION['bd_type']) && $_SESSION['bd_type'] === 'sqlite' ? 'selected="selected"' : '' ?>>
+					<?= ($_SESSION['bd_type'] ?? null) === 'sqlite' ? 'selected="selected"' : '' ?>>
 					SQLite
 				</option>
 				<?php }?>
 				<?php if (extension_loaded('pdo_mysql')) {?>
 				<option value="mysql"
-					<?= isset($_SESSION['bd_type']) && $_SESSION['bd_type'] === 'mysql' ? 'selected="selected"' : '' ?>>
+					<?= ($_SESSION['bd_type'] ?? null) === 'mysql' ? 'selected="selected"' : '' ?>>
 					MySQL / MariaDB
 				</option>
 				<?php }?>
 				<?php if (extension_loaded('pdo_pgsql')) {?>
 				<option value="pgsql"
-					<?= isset($_SESSION['bd_type']) && $_SESSION['bd_type'] === 'pgsql' ? 'selected="selected"' : '' ?>>
+					<?= ($_SESSION['bd_type'] ?? null) === 'pgsql' ? 'selected="selected"' : '' ?>>
 					PostgreSQL
 				</option>
 				<?php }?>
@@ -554,11 +554,18 @@ function printStep2(): void {
 		</div>
 
 		<div id="mysql">
+		<?php
+			$bd_base = is_string($_SESSION['bd_base'] ?? null) ? $_SESSION['bd_base'] : null;
+			$bd_host = is_string($_SESSION['bd_host'] ?? null) ? $_SESSION['bd_host'] : null;
+			$bd_password = is_string($_SESSION['bd_password'] ?? null) ? $_SESSION['bd_password'] : null;
+			$bd_prefix = is_string($_SESSION['bd_prefix'] ?? null) ? $_SESSION['bd_prefix'] : null;
+			$bd_user = is_string($_SESSION['bd_user'] ?? null) ? $_SESSION['bd_user'] : null;
+		?>
 		<div class="form-group">
 			<label class="group-name" for="host"><?= _t('install.bdd.host') ?></label>
 			<div class="group-controls">
 				<input type="text" id="host" name="host" pattern="[0-9A-Z\/a-z_.\-]{1,64}(:[0-9]{2,5})?" value="<?=
-					$_SESSION['bd_host'] ?? $system_default_config->db['host'] ?? '' ?>" tabindex="2" />
+					$bd_host ?? $system_default_config->db['host'] ?? '' ?>" tabindex="2" />
 			</div>
 		</div>
 
@@ -566,7 +573,7 @@ function printStep2(): void {
 			<label class="group-name" for="user"><?= _t('install.bdd.username') ?></label>
 			<div class="group-controls">
 				<input type="text" id="user" name="user" maxlength="64" pattern="[0-9A-Za-z@_.\-]{1,64}" value="<?=
-					$_SESSION['bd_user'] ?? '' ?>" tabindex="3" />
+					$bd_user ?? '' ?>" tabindex="3" />
 			</div>
 		</div>
 
@@ -575,7 +582,7 @@ function printStep2(): void {
 			<div class="group-controls">
 				<div class="stick">
 					<input type="password" id="pass" name="pass" value="<?=
-						$_SESSION['bd_password'] ?? '' ?>" tabindex="4" autocomplete="off" />
+						$bd_password ?? '' ?>" tabindex="4" autocomplete="off" />
 					<a class="btn toggle-password" data-toggle="pass" tabindex="5"><?= FreshRSS_Themes::icon('key') ?></a>
 				</div>
 			</div>
@@ -585,7 +592,7 @@ function printStep2(): void {
 			<label class="group-name" for="base"><?= _t('install.bdd') ?></label>
 			<div class="group-controls">
 				<input type="text" id="base" name="base" maxlength="64" pattern="[0-9A-Za-z_\-]{1,64}" value="<?=
-					$_SESSION['bd_base'] ?? '' ?>" tabindex="6" />
+					$bd_base ?? '' ?>" tabindex="6" />
 			</div>
 		</div>
 
@@ -593,7 +600,7 @@ function printStep2(): void {
 			<label class="group-name" for="prefix"><?= _t('install.bdd.prefix') ?></label>
 			<div class="group-controls">
 				<input type="text" id="prefix" name="prefix" maxlength="16" pattern="[0-9A-Za-z_]{1,16}" value="<?=
-					$_SESSION['bd_prefix'] ?? $system_default_config->db['prefix'] ?? '' ?>" tabindex="7" />
+					$bd_prefix ?? $system_default_config->db['prefix'] ?? '' ?>" tabindex="7" />
 			</div>
 		</div>
 		</div>
@@ -618,6 +625,7 @@ function no_auth(string $auth_type): bool {
 /* Create default user */
 function printStep3(): void {
 	$auth_type = is_string($_SESSION['auth_type'] ?? null) ? $_SESSION['auth_type'] : '';
+	$default_user = is_string($_SESSION['default_user'] ?? null) ? $_SESSION['default_user'] : '';
 	$s3 = checkStep3();
 	if ($s3['all'] == 'ok') { ?>
 	<p class="alert alert-success"><span class="alert-head"><?= _t('gen.short.ok') ?></span> <?= _t('install.conf.ok') ?></p>
@@ -631,7 +639,7 @@ function printStep3(): void {
 			<label class="group-name" for="default_user"><?= _t('install.default_user') ?></label>
 			<div class="group-controls">
 				<input type="text" id="default_user" name="default_user" autocomplete="username" required="required" size="16"
-					pattern="<?= FreshRSS_user_Controller::USERNAME_PATTERN ?>" value="<?= $_SESSION['default_user'] ?? '' ?>"
+					pattern="<?= FreshRSS_user_Controller::USERNAME_PATTERN ?>" value="<?= $default_user ?>"
 					placeholder="<?= httpAuthUser(false) == '' ? 'alice' : httpAuthUser(false) ?>" tabindex="1" />
 				<p class="help"><?= _i('help') ?> <?= _t('install.default_user.max_char') ?></p>
 			</div>

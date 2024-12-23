@@ -169,7 +169,7 @@ class FreshRSS_entry_Controller extends FreshRSS_ActionController {
 			$tagsForEntries = $tagDAO->getTagsForEntries($ids) ?: [];
 			$tags = [];
 			foreach ($tagsForEntries as $line) {
-				$tags['t_' . $line['id_tag']][] = $line['id_entry'];
+				$tags['t_' . $line['id_tag']][] = (string)$line['id_entry'];
 			}
 			$this->view->tagsForEntries = $tags;
 		}

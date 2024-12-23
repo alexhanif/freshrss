@@ -197,7 +197,7 @@ class Minz_Translate {
 			Minz_Log::debug($key . ' is not in a valid format');
 			$top_level = 'gen';
 		} else {
-			$top_level = array_shift($group);
+			$top_level = array_shift($group) ?? '';
 		}
 
 		// If $translates[$top_level] is null it means we have to load the
@@ -218,6 +218,9 @@ class Minz_Translate {
 		$level_processed = 0;
 		$translation_value = $key;
 		foreach ($group as $i18n_level) {
+			if (!is_array($translates)) {
+				continue;	// Not needed. To help PHPStan
+			}
 			$level_processed++;
 			if (!isset($translates[$i18n_level])) {
 				Minz_Log::debug($key . ' is not a valid key');

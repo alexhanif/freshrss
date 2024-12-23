@@ -1,4 +1,7 @@
 parameters:
+	phpVersion:
+		min: 80100	# PHP 8.1
+		max: 80499	# PHP 8.4
 	level: 9	# https://phpstan.org/user-guide/rule-levels
 	fileExtensions:
 		- php

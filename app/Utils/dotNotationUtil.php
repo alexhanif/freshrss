@@ -85,7 +85,7 @@ final class FreshRSS_dotNotation_Util
 	 * mapping fields from the JSON object into RSS equivalents
 	 * according to the dot-separated paths
 	 *
-	 * @param array<string> $jf json feed
+	 * @param array<int|string,mixed> $jf json feed
 	 * @param string $feedSourceUrl the source URL for the feed
 	 * @param array<string,string> $dotNotation dot notation to map JSON into RSS
 	 * @param string $defaultRssTitle Default title of the RSS feed, if not already provided in dotNotation `feedTitle`

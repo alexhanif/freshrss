@@ -31,7 +31,7 @@ Minz_Session::init('FreshRSS', true);
 // ================================================================================================
 
 // <Debug>
-$ORIGINAL_INPUT = file_get_contents('php://input', false, null, 0, 1_048_576) ?: '';;
+$ORIGINAL_INPUT = file_get_contents('php://input', false, null, 0, 1_048_576) ?: '';
 
 function debugInfo(): string {
 	if (function_exists('getallheaders')) {

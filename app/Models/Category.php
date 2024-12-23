@@ -142,7 +142,7 @@ class FreshRSS_Category extends Minz_Model {
 	}
 
 	/** @param array<FreshRSS_Feed>|FreshRSS_Feed $values */
-	public function _feeds($values): void {
+	public function _feeds(array|FreshRSS_Feed $values): void {
 		if (!is_array($values)) {
 			$values = [$values];
 		}

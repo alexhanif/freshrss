@@ -448,7 +448,7 @@ SQL;
 		foreach ($tagFrom->selectEntryTag() as $entryTag) {
 			if (!empty($idMaps['t' . $entryTag['id_tag']])) {
 				$entryTag['id_tag'] = $idMaps['t' . $entryTag['id_tag']];
-				if (!$tagTo->tagEntry($entryTag['id_tag'], $entryTag['id_entry'])) {
+				if (!$tagTo->tagEntry($entryTag['id_tag'], (string)$entryTag['id_entry'])) {
 					$error = 'Error during SQLite copy of entry-tags!';
 					return self::stdError($error);
 				}
@@ -457,32 +457,5 @@ SQL;
 		$tagTo->commit();
 
 		return true;
-	}
-
-	/**
-	 * Ensure that some PDO columns are `int` and not `string`.
-	 * Compatibility with PHP 7.
-	 * @param array<mixed> $table
-	 * @param array<string> $columns
-	 */
-	public static function pdoInt(array &$table, array $columns): void {
-		foreach ($columns as $column) {
-			if (isset($table[$column])) {
-				$table[$column] = is_numeric($table[$column]) ? (int)$table[$column] : 0;
-			}
-		}
-	}
-
-	/**
-	 * Ensure that some PDO columns are `string` and not `bigint`.
-	 * @param array<mixed> $table
-	 * @param array<string> $columns
-	 */
-	public static function pdoString(array &$table, array $columns): void {
-		foreach ($columns as $column) {
-			if (isset($table[$column])) {
-				$table[$column] = is_string($table[$column]) || is_int($table[$column]) ? (string)$table[$column] : '';
-			}
-		}
 	}
 }

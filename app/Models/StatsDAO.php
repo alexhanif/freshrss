@@ -49,9 +49,8 @@ WHERE e.id_feed = f.id
 {$filter}
 SQL;
 		$res = $this->fetchAssoc($sql);
-		if (!empty($res[0])) {
+		if (is_array($res) && !empty($res[0])) {
 			$dao = $res[0];
-			FreshRSS_DatabaseDAO::pdoInt($dao, ['total', 'count_unreads', 'count_reads', 'count_favorites']);
 			/** @var array{total:int,count_unreads:int,count_reads:int,count_favorites:int} $dao */
 			return $dao;
 		}
@@ -78,7 +77,7 @@ GROUP BY day
 ORDER BY day ASC
 SQL;
 		$res = $this->fetchAssoc($sql);
-		if ($res == false) {
+		if (!is_array($res)) {
 			return [];
 		}
 		/** @var array<array{day:int,count:int}> $res */
@@ -122,7 +121,6 @@ SQL;
 		\array_splice($monthRepartition, 0, 1);
 		return $monthRepartition;
 	}
-
 
 	/**
 	 * Calculates the number of article per period per feed
@@ -283,9 +281,6 @@ SQL;
 		$res = $this->fetchAssoc($sql);
 		/** @var array<array{'id':int,'name':string,'category':string,'count':int}>|null $res */
 		if (is_array($res)) {
-			foreach ($res as &$dao) {
-				FreshRSS_DatabaseDAO::pdoInt($dao, ['id', 'count']);
-			}
 			return $res;
 		}
 		return [];
@@ -309,9 +304,6 @@ SQL;
 		$res = $this->fetchAssoc($sql);
 		/** @var array<array{'id':int,'name':string,'last_date':int,'nb_articles':int}>|null $res */
 		if (is_array($res)) {
-			foreach ($res as &$dao) {
-				FreshRSS_DatabaseDAO::pdoInt($dao, ['id', 'last_date', 'nb_articles']);
-			}
 			return $res;
 		}
 		return [];
