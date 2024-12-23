@@ -4,6 +4,23 @@ declare(strict_types=1);
 require_once __DIR__ . '/I18nValue.php';
 
 class I18nFile {
+
+	/**
+	 * @param array<mixed,mixed> $array
+	 * @phpstan-assert-if-true array<string,string|array<string,mixed>> $array
+	 */
+	public static function is_array_recursive_string(array $array): bool {
+		foreach ($array as $key => $value) {
+			if (!is_string($key)) {
+				return false;
+			}
+			if (!is_string($value) && !(is_array($value) && self::is_array_recursive_string($value))) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	/**
 	 * @return array<string,array<string,array<string,I18nValue>>>
 	 */
@@ -45,7 +62,7 @@ class I18nFile {
 
 	/**
 	 * Process the content of an i18n file
-	 * @return array<string,array<string,I18nValue>>
+	 * @return array<string,string|array<string,mixed>>
 	 */
 	private function process(string $filename): array {
 		$fileContent = file_get_contents($filename) ?: [];
@@ -71,21 +88,8 @@ class I18nFile {
 			die(1);
 		}
 
-		if (is_array($content)) {
-			$result = [];
-			foreach ($content as $key => $value) {
-				if (!is_string($key) || !is_array($value)) {
-					continue;
-				}
-				$vs = [];
-				foreach ($value as $k => $v) {
-					if (is_string($k) && $v instanceof I18nValue) {
-						$vs[$k] = $v;
-					}
-				}
-				$result[$key] = $vs;
-			}
-			return $result;
+		if (is_array($content) && self::is_array_recursive_string($content)) {
+			return $content;
 		}
 
 		return [];
@@ -94,7 +98,7 @@ class I18nFile {
 	/**
 	 * Flatten an array of translation
 	 *
-	 * @param array<string,I18nValue|array<string,I18nValue>> $translation
+	 * @param array<string,I18nValue|string|array<string,I18nValue>|mixed> $translation
 	 * @return array<string,I18nValue>
 	 */
 	private function flatten(array $translation, string $prefix = ''): array {
@@ -105,9 +109,9 @@ class I18nFile {
 		}
 
 		foreach ($translation as $key => $value) {
-			if (is_array($value)) {
+			if (is_array($value) && is_array_keys_string($value)) {
 				$a += $this->flatten($value, $prefix . $key);
-			} else {
+			} elseif (is_string($value) || $value instanceof I18nValue) {
 				$a[$prefix . $key] = new I18nValue($value);
 			}
 		}
