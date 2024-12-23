@@ -4,7 +4,8 @@ See: [What is OpenID Connect?](https://openid.net/connect/).
 
 This is one of the [access control methods](09_AccessControl.md) supported by FreshRSS.
 
-OIDC support is provided by [mod_auth_openidc](https://github.com/OpenIDC/mod_auth_openidc).
+OIDC support is provided by the Apache module [mod_auth_openidc](https://github.com/OpenIDC/mod_auth_openidc).
+This documentation is about OIDC as available in our official Docker image, or when using an Apache Web server.
 Additional documentation can be found in that project.
 
 The callback URL is `https://<your-domain>/i/oidc/`.
