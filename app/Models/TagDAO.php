@@ -319,7 +319,7 @@ SQL;
 	}
 
 	/**
-	 * @return array<int,array{id:int,name:string,id_entry:numeric-string,checked:bool}>|false
+	 * @return array<int,array{id:int,name:string,checked:bool}>|false
 	 */
 	public function getTagsForEntry(string $id_entry): array|false {
 		$sql = <<<'SQL'
@@ -336,7 +336,6 @@ SQL;
 			$lines = $stm->fetchAll(PDO::FETCH_ASSOC);
 			for ($i = count($lines) - 1; $i >= 0; $i--) {
 				$lines[$i]['id'] = (int)($lines[$i]['id']);
-				$lines[$i]['id_entry'] = (string)($lines[$i]['id_entry']);
 				$lines[$i]['checked'] = !empty($lines[$i]['checked']);
 			}
 			return $lines;
