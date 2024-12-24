@@ -88,13 +88,14 @@ class Minz_Request {
 
 	/**
 	 * @param bool $plaintext `true` to return special characters without any escaping (unsafe), `false` (default) to XML-encode them
-	 * @return array<string>
+	 * @return list<string>
 	 */
 	public static function paramArrayString(string $key, bool $plaintext = false): array {
 		if (empty(self::$params[$key]) || !is_array(self::$params[$key])) {
 			return [];
 		}
 		$result = array_filter(self::$params[$key], 'is_string');
+		$result = array_values($result);
 		return $plaintext ? $result : Minz_Helper::htmlspecialchars_utf8($result);
 	}
 

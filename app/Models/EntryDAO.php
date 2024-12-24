@@ -35,7 +35,7 @@ class FreshRSS_EntryDAO extends Minz_ModelPdo {
 		return [];
 	}
 
-	/** @param array<int|string> $values */
+	/** @param list<int|string> $values */
 	protected static function sqlRegex(string $expression, string $regex, array &$values): string {
 		// The implementation of this function is solely for MySQL and MariaDB
 		static $databaseDAOMySQL = null;
@@ -115,7 +115,7 @@ SQL;
 	}
 
 	//TODO: Move the database auto-updates to DatabaseDAO
-	/** @param array<string|int> $errorInfo */
+	/** @param array<int,string|int> $errorInfo */
 	protected function autoUpdateDb(array $errorInfo): bool {
 		if (isset($errorInfo[0])) {
 			if ($errorInfo[0] === FreshRSS_DatabaseDAO::ER_BAD_FIELD_ERROR || $errorInfo[0] === FreshRSS_DatabaseDAOPGSQL::UNDEFINED_COLUMN) {
@@ -336,7 +336,7 @@ SQL;
 	 * @todo simplify the query by removing the str_repeat. I am pretty sure
 	 * there is an other way to do that.
 	 *
-	 * @param numeric-string|array<numeric-string> $ids
+	 * @param numeric-string|list<numeric-string> $ids
 	 */
 	public function markFavorite($ids, bool $is_favorite = true): int|false {
 		if (!is_array($ids)) {
@@ -414,7 +414,7 @@ SQL;
 	 * Toggle the read marker on one or more article.
 	 * Then the cache is updated.
 	 *
-	 * @param numeric-string|array<numeric-string> $ids
+	 * @param numeric-string|list<numeric-string> $ids
 	 * @return int|false affected rows
 	 */
 	public function markRead(array|string $ids, bool $is_read = true): int|false {
@@ -728,8 +728,8 @@ SQL;
 		}
 	}
 
-	/** @return Traversable<array{'id':string,'guid':string,'title':string,'author':string,'content':string,'link':string,'date':int,'lastSeen':int,
-	 *		'hash':string,'is_read':bool,'is_favorite':bool,'id_feed':int,'tags':string,'attributes':?string}> */
+	/** @return Traversable<array{id:string,guid:string,title:string,author:string,content:string,link:string,date:int,lastSeen:int,
+	 *		hash:string,is_read:bool,is_favorite:bool,id_feed:int,tags:string,attributes:?string}> */
 	public function selectAll(?int $limit = null): Traversable {
 		$content = static::isCompressed() ? 'UNCOMPRESS(content_bin) AS content' : 'content';
 		$hash = static::sqlHexEncode('hash');
@@ -743,8 +743,8 @@ SQL;
 		$stm = $this->pdo->query($sql);
 		if ($stm != false) {
 			while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
-				/** @var array{'id':string,'guid':string,'title':string,'author':string,'content':string,'link':string,'date':int,'lastSeen':int,
-				 *	'hash':string,'is_read':bool,'is_favorite':bool,'id_feed':int,'tags':string,'attributes':?string} $row */
+				/** @var array{id:string,guid:string,title:string,author:string,content:string,link:string,date:int,lastSeen:int,
+				 *	hash:string,is_read:bool,is_favorite:bool,id_feed:int,tags:string,attributes:?string} $row */
 				yield $row;
 			}
 		} else {
@@ -765,8 +765,8 @@ SELECT id, guid, title, author, link, date, is_read, is_favorite, {$hash} AS has
 FROM `_entry` WHERE id_feed=:id_feed AND guid=:guid
 SQL;
 		$res = $this->fetchAssoc($sql, [':id_feed' => $id_feed, ':guid' => $guid]);
-		/** @var array<array{'id':string,'id_feed':int,'guid':string,'title':string,'author':string,'content':string,'link':string,'date':int,
-		 *		'is_read':int,'is_favorite':int,'tags':string,'attributes':?string}> $res */
+		/** @var list<array{id:string,id_feed:int,guid:string,title:string,author:string,content:string,link:string,date:int,
+		 *		is_read:int,is_favorite:int,tags:string,attributes:?string}> $res */
 		return isset($res[0]) ? FreshRSS_Entry::fromArray($res[0]) : null;
 	}
 
@@ -778,7 +778,7 @@ SELECT id, guid, title, author, link, date, is_read, is_favorite, {$hash} AS has
 FROM `_entry` WHERE id=:id
 SQL;
 		$res = $this->fetchAssoc($sql, [':id' => $id]);
-		/** @var array<array{'id':string,'id_feed':int,'guid':string,'title':string,'author':string,'content':string,'link':string,'date':int,
+		/** @var list<array{'id':string,'id_feed':int,'guid':string,'title':string,'author':string,'content':string,'link':string,'date':int,
 		 *		'is_read':int,'is_favorite':int,'tags':string,'attributes':?string}> $res */
 		return isset($res[0]) ? FreshRSS_Entry::fromArray($res[0]) : null;
 	}
@@ -789,7 +789,7 @@ SQL;
 		return empty($res[0]) ? null : (string)($res[0]);
 	}
 
-	/** @return array{0:array<int|string>,1:string} */
+	/** @return array{0:list<int|string>,1:string} */
 	public static function sqlBooleanSearch(string $alias, FreshRSS_BooleanSearch $filters, int $level = 0): array {
 		$search = '';
 		$values = [];
@@ -1104,7 +1104,7 @@ SQL;
 
 	/**
 	 * @param 'ASC'|'DESC' $order
-	 * @return array{0:array<int|string>,1:string}
+	 * @return array{0:list<int|string>,1:string}
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
 	protected function sqlListEntriesWhere(string $alias = '', ?FreshRSS_BooleanSearch $filters = null,
@@ -1173,7 +1173,7 @@ SQL;
 	 * @phpstan-param 'a'|'A'|'i'|'s'|'S'|'c'|'f'|'t'|'T'|'ST' $type
 	 * @param int $id category/feed/tag ID
 	 * @param 'ASC'|'DESC' $order
-	 * @return array{0:array<int|string>,1:string}
+	 * @return array{0:list<int|string>,1:string}
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
 	private function sqlListWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL,
@@ -1297,7 +1297,7 @@ SQL;
 	}
 
 	/**
-	 * @param array<numeric-string> $ids
+	 * @param list<numeric-string> $ids
 	 * @param 'ASC'|'DESC' $order
 	 * @return Traversable<FreshRSS_Entry>
 	 */
@@ -1344,7 +1344,7 @@ SQL;
 	 * @phpstan-param 'a'|'A'|'s'|'S'|'c'|'f'|'t'|'T'|'ST' $type
 	 * @param int $id category/feed/tag ID
 	 * @param 'ASC'|'DESC' $order
-	 * @return array<numeric-string>|null
+	 * @return list<numeric-string>|null
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
 	public function listIdsWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL,
@@ -1353,7 +1353,7 @@ SQL;
 		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $order, $limit, $offset, $firstId, $filters);
 		$stm = $this->pdo->prepare($sql);
 		if ($stm !== false && $stm->execute($values) && ($res = $stm->fetchAll(PDO::FETCH_COLUMN, 0)) !== false) {
-			/** @var array<numeric-string> $res */
+			/** @var list<numeric-string> $res */
 			return $res;
 		}
 		$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
@@ -1362,8 +1362,8 @@ SQL;
 	}
 
 	/**
-	 * @param array<string> $guids
-	 * @return array<string>|false
+	 * @param list<string> $guids
+	 * @return array<string,string>|false
 	 */
 	public function listHashForFeedGuids(int $id_feed, array $guids): array|false {
 		$result = [];
@@ -1373,11 +1373,12 @@ SQL;
 			// Split a query with too many variables parameters
 			$guidsChunks = array_chunk($guids, FreshRSS_DatabaseDAO::MAX_VARIABLE_NUMBER);
 			foreach ($guidsChunks as $guidsChunk) {
-				$result += $this->listHashForFeedGuids($id_feed, $guidsChunk);
+				$result += $this->listHashForFeedGuids($id_feed, $guidsChunk) ?: [];
 			}
 			return $result;
 		}
 		$guids = array_unique($guids);
+		/** @var list<string> $guids */
 		$sql = 'SELECT guid, ' . static::sqlHexEncode('hash') .
 			' AS hex_hash FROM `_entry` WHERE id_feed=? AND guid IN (' . str_repeat('?,', count($guids) - 1) . '?)';
 		$stm = $this->pdo->prepare($sql);
@@ -1401,7 +1402,7 @@ SQL;
 	}
 
 	/**
-	 * @param array<string> $guids
+	 * @param list<string> $guids
 	 * @return int|false The number of affected entries, or false if error
 	 */
 	public function updateLastSeen(int $id_feed, array $guids, int $mtime = 0): int|false {

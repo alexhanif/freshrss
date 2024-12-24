@@ -315,7 +315,7 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 		FreshRSS_View::appendScript(Minz_Url::display('/scripts/draggable.js?' . @filemtime(PUBLIC_PATH . '/scripts/draggable.js')));
 
 		if (Minz_Request::isPost()) {
-			/** @var array<int,array{'get'?:string,'name'?:string,'order'?:string,'search'?:string,'state'?:int,'url'?:string,'token'?:string}> $params */
+			/** @var array<int,array{get?:string,name?:string,order?:string,search?:string,state?:int,url?:string,token?:string}> $params */
 			$params = Minz_Request::paramArray('queries');
 
 			$queries = [];

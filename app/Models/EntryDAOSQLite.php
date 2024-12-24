@@ -49,7 +49,7 @@ class FreshRSS_EntryDAOSQLite extends FreshRSS_EntryDAO {
 		);
 	}
 
-	/** @param array<string|int> $errorInfo */
+	/** @param array<int,string|int> $errorInfo */
 	#[\Override]
 	protected function autoUpdateDb(array $errorInfo): bool {
 		if (($tableInfo = $this->pdo->query("PRAGMA table_info('entry')")) !== false) {

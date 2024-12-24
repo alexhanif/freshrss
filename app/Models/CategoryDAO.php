@@ -85,7 +85,7 @@ class FreshRSS_CategoryDAO extends Minz_ModelPdo {
 		return false;
 	}
 
-	/** @param array<string|int> $errorInfo */
+	/** @param array<int,string|int> $errorInfo */
 	protected function autoUpdateDb(array $errorInfo): bool {
 		if (isset($errorInfo[0])) {
 			if ($errorInfo[0] === FreshRSS_DatabaseDAO::ER_BAD_FIELD_ERROR || $errorInfo[0] === FreshRSS_DatabaseDAOPGSQL::UNDEFINED_COLUMN) {

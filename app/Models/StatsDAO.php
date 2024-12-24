@@ -80,7 +80,7 @@ SQL;
 		if (!is_array($res)) {
 			return [];
 		}
-		/** @var array<array{day:int,count:int}> $res */
+		/** @var list<array{day:int,count:int}> $res */
 		foreach ($res as $value) {
 			$count[(int)($value['day'])] = (int)($value['count']);
 		}
@@ -226,7 +226,7 @@ SQL;
 
 	/**
 	 * Calculates feed count per category.
-	 * @return array<array{'label':string,'data':int}>
+	 * @return list<array{'label':string,'data':int}>
 	 */
 	public function calculateFeedByCategory(): array {
 		$sql = <<<SQL
@@ -237,14 +237,14 @@ WHERE c.id = f.category
 GROUP BY label
 ORDER BY data DESC
 SQL;
-		/** @var array<array{'label':string,'data':int}>|null @res */
+		/** @var list<array{'label':string,'data':int}>|null @res */
 		$res = $this->fetchAssoc($sql);
 		return $res == null ? [] : $res;
 	}
 
 	/**
 	 * Calculates entry count per category.
-	 * @return array<array{'label':string,'data':int}>
+	 * @return list<array{'label':string,'data':int}>
 	 */
 	public function calculateEntryByCategory(): array {
 		$sql = <<<SQL
@@ -257,13 +257,13 @@ GROUP BY label
 ORDER BY data DESC
 SQL;
 		$res = $this->fetchAssoc($sql);
-		/** @var array<array{'label':string,'data':int}>|null $res */
+		/** @var list<array{'label':string,'data':int}>|null $res */
 		return $res == null ? [] : $res;
 	}
 
 	/**
 	 * Calculates the 10 top feeds based on their number of entries
-	 * @return array<array{'id':int,'name':string,'category':string,'count':int}>
+	 * @return list<array{'id':int,'name':string,'category':string,'count':int}>
 	 */
 	public function calculateTopFeed(): array {
 		$sql = <<<SQL
@@ -279,7 +279,7 @@ ORDER BY count DESC
 LIMIT 10
 SQL;
 		$res = $this->fetchAssoc($sql);
-		/** @var array<array{'id':int,'name':string,'category':string,'count':int}>|null $res */
+		/** @var list<array{'id':int,'name':string,'category':string,'count':int}>|null $res */
 		if (is_array($res)) {
 			return $res;
 		}
@@ -288,7 +288,7 @@ SQL;
 
 	/**
 	 * Calculates the last publication date for each feed
-	 * @return array<array{'id':int,'name':string,'last_date':int,'nb_articles':int}>
+	 * @return list<array{'id':int,'name':string,'last_date':int,'nb_articles':int}>
 	 */
 	public function calculateFeedLastDate(): array {
 		$sql = <<<SQL
@@ -302,7 +302,7 @@ GROUP BY f.id
 ORDER BY name
 SQL;
 		$res = $this->fetchAssoc($sql);
-		/** @var array<array{'id':int,'name':string,'last_date':int,'nb_articles':int}>|null $res */
+		/** @var list<array{'id':int,'name':string,'last_date':int,'nb_articles':int}>|null $res */
 		if (is_array($res)) {
 			return $res;
 		}
@@ -311,7 +311,7 @@ SQL;
 
 	/**
 	 * Gets days ready for graphs
-	 * @return array<string>
+	 * @return list<string>
 	 */
 	public function getDays(): array {
 		return $this->convertToTranslatedJson([
@@ -327,7 +327,7 @@ SQL;
 
 	/**
 	 * Gets months ready for graphs
-	 * @return array<string>
+	 * @return list<string>
 	 */
 	public function getMonths(): array {
 		return $this->convertToTranslatedJson([
@@ -348,8 +348,8 @@ SQL;
 
 	/**
 	 * Translates array content
-	 * @param array<string> $data
-	 * @return array<string>
+	 * @param list<string> $data
+	 * @return list<string>
 	 */
 	private function convertToTranslatedJson(array $data = []): array {
 		$translated = array_map(static fn(string $a) => _t('gen.date.' . $a), $data);

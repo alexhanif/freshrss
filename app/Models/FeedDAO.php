@@ -18,7 +18,7 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 		return false;
 	}
 
-	/** @param array<int|string> $errorInfo */
+	/** @param array<int,string|int> $errorInfo */
 	protected function autoUpdateDb(array $errorInfo): bool {
 		if (isset($errorInfo[0])) {
 			if ($errorInfo[0] === FreshRSS_DatabaseDAO::ER_BAD_FIELD_ERROR || $errorInfo[0] === FreshRSS_DatabaseDAOPGSQL::UNDEFINED_COLUMN) {
@@ -290,8 +290,8 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 		}
 	}
 
-	/** @return Traversable<array{'id':int,'url':string,'kind':int,'category':int,'name':string,'website':string,'description':string,'lastUpdate':int,'priority'?:int,
-	 * 	'pathEntries'?:string,'httpAuth':string,'error':int|bool,'ttl'?:int,'attributes'?:string}> */
+	/** @return Traversable<array{id:int,url:string,kind:int,category:int,name:string,website:string,description:string,lastUpdate:int,priority?:int,
+	 * 	pathEntries?:string,httpAuth:string,error:int|bool,ttl?:int,attributes?:string}> */
 	public function selectAll(): Traversable {
 		$sql = <<<'SQL'
 SELECT id, url, kind, category, name, website, description, `lastUpdate`,
@@ -301,8 +301,8 @@ SQL;
 		$stm = $this->pdo->query($sql);
 		if ($stm !== false) {
 			while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
-				/** @var array{'id':int,'url':string,'kind':int,'category':int,'name':string,'website':string,'description':string,'lastUpdate':int,'priority'?:int,
-				 *	'pathEntries'?:string,'httpAuth':string,'error':int|bool,'ttl'?:int,'attributes'?:string} $row */
+				/** @var array{id:int,url:string,kind:int,category:int,name:string,website:string,description:string,lastUpdate:int,priority?:int,
+				 *	pathEntries?:string,httpAuth:string,error:int|bool,ttl?:int,attributes?:string} $row */
 				yield $row;
 			}
 		} else {
@@ -321,8 +321,8 @@ SQL;
 		if ($res == null) {
 			return null;
 		}
-		/** @var array<int,array{'url':string,'kind':int,'category':int,'name':string,'website':string,'lastUpdate':int,
-		 *	'priority'?:int,'pathEntries'?:string,'httpAuth':string,'error':int,'ttl'?:int,'attributes'?:string}> $res */
+		/** @var list<array{url:string,kind:int,category:int,name:string,website:string,lastUpdate:int,
+		 *	priority?:int,pathEntries?:string,httpAuth:string,error:int,ttl?:int,attributes?:string}> $res */
 		$feeds = self::daoToFeeds($res);
 		return $feeds[$id] ?? null;
 	}
@@ -330,8 +330,8 @@ SQL;
 	public function searchByUrl(string $url): ?FreshRSS_Feed {
 		$sql = 'SELECT * FROM `_feed` WHERE url=:url';
 		$res = $this->fetchAssoc($sql, [':url' => $url]);
-		/** @var array<int,array{'url':string,'kind':int,'category':int,'name':string,'website':string,'lastUpdate':int,
-		 *	'priority'?:int,'pathEntries'?:string,'httpAuth':string,'error':int,'ttl'?:int,'attributes'?:string}> $res */
+		/** @var list<array{url:string,kind:int,category:int,name:string,website:string,lastUpdate:int,
+		 *	priority?:int,pathEntries?:string,httpAuth:string,error:int,ttl?:int,attributes?:string}> $res */
 		return empty($res[0]) ? null : (current(self::daoToFeeds($res)) ?: null);
 	}
 
@@ -349,7 +349,7 @@ SQL;
 	public function listFeeds(): array {
 		$sql = 'SELECT * FROM `_feed` ORDER BY name';
 		$res = $this->fetchAssoc($sql);
-		/** @var array<array{'url':string,'kind':int,'category':int,'name':string,'website':string,'lastUpdate':int,
+		/** @var list<array{'url':string,'kind':int,'category':int,'name':string,'website':string,'lastUpdate':int,
 		 *	'priority':int,'pathEntries':string,'httpAuth':string,'error':int,'ttl':int,'attributes':string}>|null $res */
 		return $res == null ? [] : self::daoToFeeds($res);
 	}
@@ -363,7 +363,7 @@ SQL;
 			$sql .= 'WHERE id_feed=' . intval($id_feed);
 		}
 		$res = $this->fetchAssoc($sql);
-		/** @var array<array{'id_feed':int,'newest_item_us':string}>|null $res */
+		/** @var list<array{'id_feed':int,'newest_item_us':string}>|null $res */
 		if ($res == null) {
 			return [];
 		}
@@ -576,8 +576,8 @@ SQL;
 	}
 
 	/**
-	 * @param array<int,array{'id'?:int,'url'?:string,'kind'?:int,'category'?:int,'name'?:string,'website'?:string,'description'?:string,'lastUpdate'?:int,'priority'?:int,
-	 * 	'pathEntries'?:string,'httpAuth'?:string,'error'?:int|bool,'ttl'?:int,'attributes'?:string,'cache_nbUnreads'?:int,'cache_nbEntries'?:int}> $listDAO
+	 * @param array<int,array{id?:int,url?:string,kind?:int,category?:int,name?:string,website?:string,description?:string,lastUpdate?:int,priority?:int,
+	 * 	pathEntries?:string,httpAuth?:string,error?:int|bool,ttl?:int,attributes?:string,cache_nbUnreads?:int,cache_nbEntries?:int}> $listDAO
 	 * @return array<int,FreshRSS_Feed>
 	 */
 	public static function daoToFeeds(array $listDAO, ?int $catID = null): array {

@@ -257,6 +257,7 @@ function timestamptodate(int $t, bool $hour = true): string {
  * Decode HTML entities but preserve XML entities.
  */
 function html_only_entity_decode(?string $text): string {
+	/** @var array<string,string>|null $htmlEntitiesOnly */
 	static $htmlEntitiesOnly = null;
 	if ($htmlEntitiesOnly === null) {
 		$htmlEntitiesOnly = array_flip(array_diff(
@@ -324,7 +325,9 @@ function customSimplePie(array $attributes = [], array $curl_options = []): \Sim
 	}
 	if (!empty($attributes['curl_params']) && is_array($attributes['curl_params'])) {
 		foreach ($attributes['curl_params'] as $co => $v) {
-			$curl_options[$co] = $v;
+			if (is_int($co)) {
+				$curl_options[$co] = $v;
+			}
 		}
 	}
 	$simplePie->set_curl_options($curl_options);
@@ -392,13 +395,18 @@ function sanitizeHTML(string $data, string $base = '', ?int $maxLength = null): 
 	if ($maxLength !== null) {
 		$data = mb_strcut($data, 0, $maxLength, 'UTF-8');
 	}
+	/** @var \SimplePie\SimplePie|null $simplePie */
 	static $simplePie = null;
-	if ($simplePie == null) {
+	if ($simplePie === null) {
 		$simplePie = customSimplePie();
 		$simplePie->enable_cache(false);
 		$simplePie->init();
 	}
-	$result = html_only_entity_decode($simplePie->sanitize->sanitize($data, \SimplePie\SimplePie::CONSTRUCT_HTML, $base));
+	$sanitized = $simplePie->sanitize->sanitize($data, \SimplePie\SimplePie::CONSTRUCT_HTML, $base);
+	if (!is_string($sanitized)) {
+		return '';
+	}
+	$result = html_only_entity_decode($sanitized);
 	if ($maxLength !== null && strlen($result) > $maxLength) {
 		//Sanitizing has made the result too long so try again shorter
 		$data = mb_strcut($result, 0, (2 * $maxLength) - strlen($result) - 2, 'UTF-8');
@@ -899,14 +907,14 @@ function recursive_unlink(string $dir): bool {
 /**
  * Remove queries where $get is appearing.
  * @param string $get the get attribute which should be removed.
- * @param array<int,array<string,string|int>> $queries an array of queries.
- * @return array<int,array<string,string|int>> without queries where $get is appearing.
+ * @param array<int,array{get?:string,name?:string,order?:string,search?:string,state?:int,url?:string}> $queries an array of queries.
+ * @return array<int,array{get?:string,name?:string,order?:string,search?:string,state?:int,url?:string}> without queries where $get is appearing.
  */
 function remove_query_by_get(string $get, array $queries): array {
 	$final_queries = [];
-	foreach ($queries as $key => $query) {
+	foreach ($queries as $query) {
 		if (empty($query['get']) || $query['get'] !== $get) {
-			$final_queries[$key] = $query;
+			$final_queries[] = $query;
 		}
 	}
 	return $final_queries;

@@ -49,7 +49,7 @@ class FreshRSS_EntryDAOPGSQL extends FreshRSS_EntryDAOSQLite {
 		// Nothing to do for PostgreSQL
 	}
 
-	/** @param array<string|int> $errorInfo */
+	/** @param array<int,string|int> $errorInfo */
 	#[\Override]
 	protected function autoUpdateDb(array $errorInfo): bool {
 		if (isset($errorInfo[0])) {

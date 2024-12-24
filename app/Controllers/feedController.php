@@ -1002,7 +1002,6 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 			// TODO: Delete old favicon
 
 			// Remove related queries
-			/** @var array<array{'get'?:string,'name'?:string,'order'?:string,'search'?:string,'state'?:int,'url'?:string}> $queries */
 			$queries = remove_query_by_get('f_' . $feed_id, FreshRSS_Context::userConf()->queries);
 			FreshRSS_Context::userConf()->queries = $queries;
 			FreshRSS_Context::userConf()->save();

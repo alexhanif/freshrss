@@ -122,13 +122,13 @@ class FreshRSS_Feed extends Minz_Model {
 	}
 
 	/**
-	 * @return array<FreshRSS_Entry>|null
+	 * @return list<FreshRSS_Entry>|null
 	 * @deprecated
 	 */
 	public function entries(): ?array {
 		Minz_Log::warning(__method__ . ' is deprecated since FreshRSS 1.16.1!');
 		$simplePie = $this->load(false, true);
-		return $simplePie == null ? [] : iterator_to_array($this->loadEntries($simplePie));
+		return $simplePie == null ? [] : array_values(iterator_to_array($this->loadEntries($simplePie)));
 	}
 	public function name(bool $raw = false): string {
 		return $raw || $this->name != '' ? $this->name : (preg_replace('%^https?://(www[.])?%i', '', $this->url) ?? '');
@@ -479,7 +479,7 @@ class FreshRSS_Feed extends Minz_Model {
 	 * @param float $invalidGuidsTolerance (default 0.05) The maximum ratio (rounded) of invalid GUIDs to tolerate before degrading the unicity criteria.
 	 * Example for 0.05 (5% rounded): tolerate 0 invalid GUIDs for up to 9 articles, 1 for 10, 2 for 30, 3 for 50, 4 for 70, 5 for 90, 6 for 110, etc.
 	 * The default value of 5% rounded was chosen to allow 1 invalid GUID for feeds of 10 articles, which is a frequently observed amount of articles.
-	 * @return array<string>
+	 * @return list<string>
 	 */
 	public function loadGuids(\SimplePie\SimplePie $simplePie, float $invalidGuidsTolerance = 0.05): array {
 		$invalidGuids = 0;

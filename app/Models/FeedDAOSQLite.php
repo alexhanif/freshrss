@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 class FreshRSS_FeedDAOSQLite extends FreshRSS_FeedDAO {
 
-	/** @param array<int|string> $errorInfo */
+	/** @param array<int,string|int> $errorInfo */
 	#[\Override]
 	protected function autoUpdateDb(array $errorInfo): bool {
 		if (($tableInfo = $this->pdo->query("PRAGMA table_info('feed')")) !== false) {

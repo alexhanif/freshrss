@@ -72,7 +72,7 @@ final class GReaderAPI {
 
 	private static string $ORIGINAL_INPUT = '';
 
-	/** @return array<string> */
+	/** @return list<string> */
 	private static function multiplePosts(string $name): array {
 		//https://bugs.php.net/bug.php?id=51633
 		$inputs = explode('&', self::$ORIGINAL_INPUT);
@@ -363,8 +363,8 @@ final class GReaderAPI {
 	}
 
 	/**
-	 * @param array<string> $streamNames StreamId(s) to operate on. The parameter may be repeated to edit multiple subscriptions at once
-	 * @param array<string> $titles Title(s) to use for the subscription(s). Each title is associated with the corresponding streamName
+	 * @param list<string> $streamNames StreamId(s) to operate on. The parameter may be repeated to edit multiple subscriptions at once
+	 * @param list<string> $titles Title(s) to use for the subscription(s). Each title is associated with the corresponding streamName
 	 * @param string $action 'subscribe'|'unsubscribe'|'edit'
 	 * @param string $add StreamId to add the subscription(s) to (generally a category)
 	 * @param string $remove StreamId to remove the subscription(s) from (generally a category)
@@ -542,8 +542,8 @@ final class GReaderAPI {
 	}
 
 	/**
-	 * @param array<FreshRSS_Entry> $entries
-	 * @return array<array<string,mixed>>
+	 * @param list<FreshRSS_Entry> $entries
+	 * @return list<array<string,mixed>>
 	 */
 	private static function entriesToArray(array $entries): array {
 		if (empty($entries)) {
@@ -666,7 +666,7 @@ final class GReaderAPI {
 
 		$entryDAO = FreshRSS_Factory::createEntryDao();
 		$entries = $entryDAO->listWhere($type, $include_target, $state, $order === 'o' ? 'ASC' : 'DESC', $count, 0, $continuation, $searches);
-		$entries = iterator_to_array($entries);	//TODO: Improve
+		$entries = array_values(iterator_to_array($entries));	//TODO: Improve
 
 		$items = self::entriesToArray($entries);
 
@@ -752,7 +752,7 @@ final class GReaderAPI {
 	}
 
 	/**
-	 * @param array<string> $e_ids
+	 * @param list<string> $e_ids
 	 */
 	private static function streamContentsItems(array $e_ids, string $order): never {
 		header('Content-Type: application/json; charset=UTF-8');
@@ -763,11 +763,11 @@ final class GReaderAPI {
 				$e_ids[$i] = hex2dec(basename($e_id));	//Strip prefix 'tag:google.com,2005:reader/item/'
 			}
 		}
-		/** @var array<numeric-string> $e_ids */
+		/** @var list<numeric-string> $e_ids */
 
 		$entryDAO = FreshRSS_Factory::createEntryDao();
 		$entries = $entryDAO->listByIds($e_ids, $order === 'o' ? 'ASC' : 'DESC');
-		$entries = iterator_to_array($entries);	//TODO: Improve
+		$entries = array_values(iterator_to_array($entries));	//TODO: Improve
 
 		$items = self::entriesToArray($entries);
 
@@ -783,9 +783,9 @@ final class GReaderAPI {
 	}
 
 	/**
-	 * @param array<string> $e_ids IDs of the items to edit
-	 * @param array<string> $as tags to add to all the listed items
-	 * @param array<string> $rs tags to remove from all the listed items
+	 * @param list<string> $e_ids IDs of the items to edit
+	 * @param list<string> $as tags to add to all the listed items
+	 * @param list<string> $rs tags to remove from all the listed items
 	 */
 	private static function editTag(array $e_ids, array $as, array $rs): never {
 		foreach ($e_ids as $i => $e_id) {
@@ -793,7 +793,7 @@ final class GReaderAPI {
 				$e_ids[$i] = hex2dec(basename($e_id));	//Strip prefix 'tag:google.com,2005:reader/item/'
 			}
 		}
-		/** @var array<numeric-string> $e_ids */
+		/** @var list<numeric-string> $e_ids */
 
 		$entryDAO = FreshRSS_Factory::createEntryDao();
 		$tagDAO = FreshRSS_Factory::createTagDao();

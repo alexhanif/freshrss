@@ -458,9 +458,12 @@ function printStep1(): void {
 
 	<?php
 	$version = function_exists('curl_version') ? curl_version() : [];
+	if (!is_array($version) || !is_string($version['version'] ?? null)) {
+		$version = ['version' => ''];
+	}
 	printStep1Template('php', $res['php'], [PHP_VERSION, FRESHRSS_MIN_PHP_VERSION]);
 	printStep1Template('pdo', $res['pdo']);
-	printStep1Template('curl', $res['curl'], [$version['version'] ?? '']);
+	printStep1Template('curl', $res['curl'], [$version['version']]);
 	printStep1Template('json', $res['json']);
 	printStep1Template('pcre', $res['pcre']);
 	printStep1Template('ctype', $res['ctype']);

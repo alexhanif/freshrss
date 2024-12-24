@@ -154,7 +154,7 @@ class FreshRSS_entry_Controller extends FreshRSS_ActionController {
 				}
 			}
 		} else {
-			/** @var array<numeric-string> $idArray */
+			/** @var list<numeric-string> $idArray */
 			$idArray = Minz_Request::paramArrayString('id');
 			$idString = Minz_Request::paramString('id');
 			if (count($idArray) > 0) {

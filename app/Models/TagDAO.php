@@ -172,13 +172,13 @@ SQL;
 
 	public function searchById(int $id): ?FreshRSS_Tag {
 		$res = $this->fetchAssoc('SELECT * FROM `_tag` WHERE id=:id', [':id' => $id]);
-		/** @var array<array{'id':int,'name':string,'attributes'?:string}>|null $res */
+		/** @var list<array{id:int,name:string,attributes?:string}>|null $res */
 		return $res === null ? null : (current(self::daoToTags($res)) ?: null);
 	}
 
 	public function searchByName(string $name): ?FreshRSS_Tag {
 		$res = $this->fetchAssoc('SELECT * FROM `_tag` WHERE name=:name', [':name' => $name]);
-		/** @var array<array{'id':int,'name':string,'attributes'?:string}>|null $res */
+		/** @var list<array{id:int,name:string,attributes?:string}>|null $res */
 		return $res === null ? null : (current(self::daoToTags($res)) ?: null);
 	}
 
@@ -290,7 +290,7 @@ SQL;
 	}
 
 	/**
-	 * @param array<array{id_tag:int,id_entry:numeric-string|int}> $addLabels Labels to insert as batch
+	 * @param list<array{id_tag:int,id_entry:numeric-string|int}> $addLabels Labels to insert as batch
 	 * @return int|false Number of new entries or false in case of error
 	 */
 	public function tagEntries(array $addLabels): int|false {
@@ -346,8 +346,8 @@ SQL;
 	}
 
 	/**
-	 * @param array<FreshRSS_Entry|numeric-string|array<string,string>> $entries
-	 * @return array<array{id_entry:int|numeric-string,id_tag:int,name:string}>|false
+	 * @param list<FreshRSS_Entry|numeric-string|array<string,string>> $entries
+	 * @return list<array{id_entry:int|numeric-string,id_tag:int,name:string}>|false
 	 */
 	public function getTagsForEntries(array $entries): array|false {
 		$sql = <<<'SQL'
@@ -372,19 +372,19 @@ SQL;
 			}
 			$sql .= ' AND et.id_entry IN (' . str_repeat('?,', count($entries) - 1) . '?)';
 			if (is_array($entries[0])) {
-				/** @var array<array<string,string>> $entries */
+				/** @var list<array<string,string>> $entries */
 				foreach ($entries as $entry) {
 					if (!empty($entry['id'])) {
 						$values[] = $entry['id'];
 					}
 				}
 			} elseif (is_object($entries[0])) {
-				/** @var array<FreshRSS_Entry> $entries */
+				/** @var list<FreshRSS_Entry> $entries */
 				foreach ($entries as $entry) {
 					$values[] = $entry->id();
 				}
 			} else {
-				/** @var array<numeric-string> $entries */
+				/** @var list<numeric-string> $entries */
 				foreach ($entries as $entry) {
 					$values[] = $entry;
 				}
@@ -393,7 +393,9 @@ SQL;
 		$stm = $this->pdo->prepare($sql);
 
 		if ($stm !== false && $stm->execute($values)) {
-			return $stm->fetchAll(PDO::FETCH_ASSOC);
+			$result = $stm->fetchAll(PDO::FETCH_ASSOC);
+			/** @var list<array{id_entry:int|numeric-string,id_tag:int,name:string}> $result; */
+			return $result;
 		}
 		$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
 		Minz_Log::error('SQL error ' . __METHOD__ . json_encode($info));
@@ -403,7 +405,7 @@ SQL;
 	/**
 	 * Produces an array: for each entry ID (prefixed by `e_`), associate a list of labels.
 	 * Used by API and by JSON export, to speed up queries (would be very expensive to perform a label look-up on each entry individually).
-	 * @param array<FreshRSS_Entry|numeric-string> $entries the list of entries for which to retrieve the labels.
+	 * @param list<FreshRSS_Entry|numeric-string> $entries the list of entries for which to retrieve the labels.
 	 * @return array<string,array<string>> An array of the shape `[e_id_entry => ["label 1", "label 2"]]`
 	 */
 	public function getEntryIdsTagNames(array $entries): array {
