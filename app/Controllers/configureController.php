@@ -397,7 +397,7 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 				$queryParams['search'] = htmlspecialchars_decode($params['search'], ENT_QUOTES);
 			}
 			if (!empty($params['state']) && is_array($params['state'])) {
-				$queryParams['state'] = (int)array_sum($params['state']);
+				$queryParams['state'] = (int)array_sum(array_map('intval', $params['state']));
 			}
 			if (empty($params['token']) || !is_string($params['token'])) {
 				$queryParams['token'] = FreshRSS_UserQuery::generateToken($name);

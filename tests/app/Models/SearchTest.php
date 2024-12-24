@@ -10,7 +10,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	#[DataProvider('provideEmptyInput')]
 	public static function test__construct_whenInputIsEmpty_getsOnlyNullValues(string $input): void {
 		$search = new FreshRSS_Search($input);
-		self::assertEquals('', $search->getRawInput());
+		self::assertSame('', $search->getRawInput());
 		self::assertNull($search->getIntitle());
 		self::assertNull($search->getMinDate());
 		self::assertNull($search->getMaxDate());
@@ -40,8 +40,8 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	#[DataProvider('provideIntitleSearch')]
 	public static function test__construct_whenInputContainsIntitle_setsIntitleProperty(string $input, ?array $intitle_value, ?array $search_value): void {
 		$search = new FreshRSS_Search($input);
-		self::assertEquals($intitle_value, $search->getIntitle());
-		self::assertEquals($search_value, $search->getSearch());
+		self::assertSame($intitle_value, $search->getIntitle());
+		self::assertSame($search_value, $search->getSearch());
 	}
 
 	/**
@@ -77,8 +77,8 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	#[DataProvider('provideAuthorSearch')]
 	public static function test__construct_whenInputContainsAuthor_setsAuthorValue(string $input, ?array $author_value, ?array $search_value): void {
 		$search = new FreshRSS_Search($input);
-		self::assertEquals($author_value, $search->getAuthor());
-		self::assertEquals($search_value, $search->getSearch());
+		self::assertSame($author_value, $search->getAuthor());
+		self::assertSame($search_value, $search->getSearch());
 	}
 
 	/**
@@ -114,8 +114,8 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	#[DataProvider('provideInurlSearch')]
 	public static function test__construct_whenInputContainsInurl_setsInurlValue(string $input, ?array $inurl_value, ?array $search_value): void {
 		$search = new FreshRSS_Search($input);
-		self::assertEquals($inurl_value, $search->getInurl());
-		self::assertEquals($search_value, $search->getSearch());
+		self::assertSame($inurl_value, $search->getInurl());
+		self::assertSame($search_value, $search->getSearch());
 	}
 
 	/**
@@ -137,8 +137,8 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	#[DataProvider('provideDateSearch')]
 	public static function test__construct_whenInputContainsDate_setsDateValues(string $input, ?int $min_date_value, ?int $max_date_value): void {
 		$search = new FreshRSS_Search($input);
-		self::assertEquals($min_date_value, $search->getMinDate());
-		self::assertEquals($max_date_value, $search->getMaxDate());
+		self::assertSame($min_date_value, $search->getMinDate());
+		self::assertSame($max_date_value, $search->getMaxDate());
 	}
 
 	/**
@@ -158,8 +158,8 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	#[DataProvider('providePubdateSearch')]
 	public static function test__construct_whenInputContainsPubdate_setsPubdateValues(string $input, ?int $min_pubdate_value, ?int $max_pubdate_value): void {
 		$search = new FreshRSS_Search($input);
-		self::assertEquals($min_pubdate_value, $search->getMinPubdate());
-		self::assertEquals($max_pubdate_value, $search->getMaxPubdate());
+		self::assertSame($min_pubdate_value, $search->getMinPubdate());
+		self::assertSame($max_pubdate_value, $search->getMaxPubdate());
 	}
 
 	/**
@@ -183,8 +183,8 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	#[DataProvider('provideTagsSearch')]
 	public static function test__construct_whenInputContainsTags_setsTagsValue(string $input, ?array $tags_value, ?array $search_value): void {
 		$search = new FreshRSS_Search($input);
-		self::assertEquals($tags_value, $search->getTags());
-		self::assertEquals($search_value, $search->getSearch());
+		self::assertSame($tags_value, $search->getTags());
+		self::assertSame($search_value, $search->getSearch());
 	}
 
 	/**
@@ -215,16 +215,16 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 			?int $max_date_value, ?array $intitle_value, ?array $inurl_value, ?int $min_pubdate_value,
 			?int $max_pubdate_value, ?array $tags_value, ?array $search_value): void {
 		$search = new FreshRSS_Search($input);
-		self::assertEquals($author_value, $search->getAuthor());
-		self::assertEquals($min_date_value, $search->getMinDate());
-		self::assertEquals($max_date_value, $search->getMaxDate());
-		self::assertEquals($intitle_value, $search->getIntitle());
-		self::assertEquals($inurl_value, $search->getInurl());
-		self::assertEquals($min_pubdate_value, $search->getMinPubdate());
-		self::assertEquals($max_pubdate_value, $search->getMaxPubdate());
-		self::assertEquals($tags_value, $search->getTags());
-		self::assertEquals($search_value, $search->getSearch());
-		self::assertEquals($input, $search->getRawInput());
+		self::assertSame($author_value, $search->getAuthor());
+		self::assertSame($min_date_value, $search->getMinDate());
+		self::assertSame($max_date_value, $search->getMaxDate());
+		self::assertSame($intitle_value, $search->getIntitle());
+		self::assertSame($inurl_value, $search->getInurl());
+		self::assertSame($min_pubdate_value, $search->getMinPubdate());
+		self::assertSame($max_pubdate_value, $search->getMaxPubdate());
+		self::assertSame($tags_value, $search->getTags());
+		self::assertSame($search_value, $search->getSearch());
+		self::assertSame($input, $search->getRawInput());
 	}
 
 	/** @return array<array<mixed>> */
@@ -283,7 +283,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 
 	#[DataProvider('provideAddOrParentheses')]
 	public static function test__addOrParentheses(string $input, string $output): void {
-		self::assertEquals($output, FreshRSS_BooleanSearch::addOrParentheses($input));
+		self::assertSame($output, FreshRSS_BooleanSearch::addOrParentheses($input));
 	}
 
 	/** @return array<array{string,string}> */
@@ -302,7 +302,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 
 	#[DataProvider('provideconsistentOrParentheses')]
 	public static function test__consistentOrParentheses(string $input, string $output): void {
-		self::assertEquals($output, FreshRSS_BooleanSearch::consistentOrParentheses($input));
+		self::assertSame($output, FreshRSS_BooleanSearch::consistentOrParentheses($input));
 	}
 
 	/** @return array<array{string,string}> */
@@ -332,8 +332,8 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	#[DataProvider('provideParentheses')]
 	public function test__parentheses(string $input, string $sql, array $values): void {
 		[$filterValues, $filterSearch] = FreshRSS_EntryDAOPGSQL::sqlBooleanSearch('e.', new FreshRSS_BooleanSearch($input));
-		self::assertEquals(trim($sql), trim($filterSearch));
-		self::assertEquals($values, $filterValues);
+		self::assertSame(trim($sql), trim($filterSearch));
+		self::assertSame($values, $filterValues);
 	}
 
 	/** @return array<array<mixed>> */
@@ -343,13 +343,13 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 				'f:1 (f:2 OR f:3 OR f:4) (f:5 OR (f:6 OR f:7))',
 				' ((e.id_feed IN (?) )) AND ((e.id_feed IN (?) ) OR (e.id_feed IN (?) ) OR (e.id_feed IN (?) )) AND' .
 					' (((e.id_feed IN (?) )) OR ((e.id_feed IN (?) ) OR (e.id_feed IN (?) ))) ',
-				['1', '2', '3', '4', '5', '6', '7']
+				[1, 2, 3, 4, 5, 6, 7]
 			],
 			[
 				'#tag Hello OR (author:Alice inurl:example) OR (f:3 intitle:World) OR L:12',
 				" ((TRIM(e.tags) || ' #' LIKE ? AND (e.title LIKE ? OR e.content LIKE ?) )) OR ((e.author LIKE ? AND e.link LIKE ? )) OR" .
 					' ((e.id_feed IN (?) AND e.title LIKE ? )) OR ((e.id IN (SELECT et.id_entry FROM `_entrytag` et WHERE et.id_tag IN (?)) )) ',
-				['%tag #%', '%Hello%', '%Hello%', '%Alice%', '%example%', '3', '%World%', '12']
+				['%tag #%', '%Hello%', '%Hello%', '%Alice%', '%example%', 3, '%World%', 12]
 			],
 			[
 				'#tag Hello (author:Alice inurl:example) (f:3 intitle:World) label:Bleu',
@@ -357,7 +357,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 					' ((e.author LIKE ? AND e.link LIKE ? )) AND' .
 					' ((e.id_feed IN (?) AND e.title LIKE ? )) AND' .
 					' ((e.id IN (SELECT et.id_entry FROM `_entrytag` et, `_tag` t WHERE et.id_tag = t.id AND t.name IN (?)) )) ',
-				['%tag #%', '%Hello%', '%Hello%', '%Alice%', '%example%', '3', '%World%', 'Bleu']
+				['%tag #%', '%Hello%', '%Hello%', '%Alice%', '%example%', 3, '%World%', 'Bleu']
 			],
 			[
 				'!((author:Alice intitle:hello) OR (author:Bob intitle:world))',
@@ -478,8 +478,8 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function test__regex_postgresql(string $input, string $sql, array $values): void {
 		[$filterValues, $filterSearch] = FreshRSS_EntryDAOPGSQL::sqlBooleanSearch('e.', new FreshRSS_BooleanSearch($input));
-		self::assertEquals(trim($sql), trim($filterSearch));
-		self::assertEquals($values, $filterValues);
+		self::assertSame(trim($sql), trim($filterSearch));
+		self::assertSame($values, $filterValues);
 	}
 
 	/** @return array<array<mixed>> */
@@ -551,8 +551,8 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 		FreshRSS_DatabaseDAO::$dummyConnection = true;
 		FreshRSS_DatabaseDAO::setStaticVersion('11.4.3-MariaDB-ubu2404');
 		[$filterValues, $filterSearch] = FreshRSS_EntryDAO::sqlBooleanSearch('e.', new FreshRSS_BooleanSearch($input));
-		self::assertEquals(trim($sql), trim($filterSearch));
-		self::assertEquals($values, $filterValues);
+		self::assertSame(trim($sql), trim($filterSearch));
+		self::assertSame($values, $filterValues);
 	}
 
 	/** @return array<array<mixed>> */
@@ -584,8 +584,8 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 		FreshRSS_DatabaseDAO::$dummyConnection = true;
 		FreshRSS_DatabaseDAO::setStaticVersion('9.0.1');
 		[$filterValues, $filterSearch] = FreshRSS_EntryDAO::sqlBooleanSearch('e.', new FreshRSS_BooleanSearch($input));
-		self::assertEquals(trim($sql), trim($filterSearch));
-		self::assertEquals($values, $filterValues);
+		self::assertSame(trim($sql), trim($filterSearch));
+		self::assertSame($values, $filterValues);
 	}
 
 	/** @return array<array<mixed>> */
@@ -615,8 +615,8 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function test__regex_sqlite(string $input, string $sql, array $values): void {
 		[$filterValues, $filterSearch] = FreshRSS_EntryDAOSQLite::sqlBooleanSearch('e.', new FreshRSS_BooleanSearch($input));
-		self::assertEquals(trim($sql), trim($filterSearch));
-		self::assertEquals($values, $filterValues);
+		self::assertSame(trim($sql), trim($filterSearch));
+		self::assertSame($values, $filterValues);
 	}
 
 	/** @return array<array<mixed>> */

@@ -10,13 +10,13 @@ class UserQueryTest extends TestCase {
 	public static function test__construct_whenAllQuery_storesAllParameters(): void {
 		$query = ['get' => 'a'];
 		$user_query = new FreshRSS_UserQuery($query, [], []);
-		self::assertEquals('all', $user_query->getGetType());
+		self::assertSame('all', $user_query->getGetType());
 	}
 
 	public static function test__construct_whenFavoriteQuery_storesFavoriteParameters(): void {
 		$query = ['get' => 's'];
 		$user_query = new FreshRSS_UserQuery($query, [], []);
-		self::assertEquals('favorite', $user_query->getGetType());
+		self::assertSame('favorite', $user_query->getGetType());
 	}
 
 	public function test__construct_whenCategoryQuery_storesCategoryParameters(): void {
@@ -29,8 +29,8 @@ class UserQueryTest extends TestCase {
 			->willReturn($category_name);
 		$query = ['get' => 'c_1'];
 		$user_query = new FreshRSS_UserQuery($query, [1 => $cat], []);
-		self::assertEquals($category_name, $user_query->getGetName());
-		self::assertEquals('category', $user_query->getGetType());
+		self::assertSame($category_name, $user_query->getGetName());
+		self::assertSame('category', $user_query->getGetType());
 	}
 
 	public function test__construct_whenFeedQuery_storesFeedParameters(): void {
@@ -53,8 +53,8 @@ class UserQueryTest extends TestCase {
 			->willReturn([1 => $feed]);
 		$query = ['get' => 'f_1'];
 		$user_query = new FreshRSS_UserQuery($query, [1 => $cat], []);
-		self::assertEquals($feed_name, $user_query->getGetName());
-		self::assertEquals('feed', $user_query->getGetType());
+		self::assertSame($feed_name, $user_query->getGetName());
+		self::assertSame('feed', $user_query->getGetType());
 	}
 
 	public static function test__construct_whenUnknownQuery_doesStoreParameters(): void {
@@ -68,28 +68,28 @@ class UserQueryTest extends TestCase {
 		$name = 'some name';
 		$query = ['name' => $name];
 		$user_query = new FreshRSS_UserQuery($query, [], []);
-		self::assertEquals($name, $user_query->getName());
+		self::assertSame($name, $user_query->getName());
 	}
 
 	public static function test__construct_whenOrder_storesOrder(): void {
 		$order = 'some order';
 		$query = ['order' => $order];
 		$user_query = new FreshRSS_UserQuery($query, [], []);
-		self::assertEquals($order, $user_query->getOrder());
+		self::assertSame($order, $user_query->getOrder());
 	}
 
 	public static function test__construct_whenState_storesState(): void {
 		$state = FreshRSS_Entry::STATE_NOT_READ | FreshRSS_Entry::STATE_FAVORITE;
 		$query = ['state' => $state];
 		$user_query = new FreshRSS_UserQuery($query, [], []);
-		self::assertEquals($state, $user_query->getState());
+		self::assertSame($state, $user_query->getState());
 	}
 
 	public static function test__construct_whenUrl_storesUrl(): void {
 		$url = 'some url';
 		$query = ['url' => $url];
 		$user_query = new FreshRSS_UserQuery($query, [], []);
-		self::assertEquals($url, $user_query->getUrl());
+		self::assertSame($url, $user_query->getUrl());
 	}
 
 	public static function testToArray_whenNoData_returnsEmptyArray(): void {
@@ -108,7 +108,7 @@ class UserQueryTest extends TestCase {
 		];
 		$user_query = new FreshRSS_UserQuery($query, [], []);
 		self::assertCount(6, $user_query->toArray());
-		self::assertEquals($query, $user_query->toArray());
+		self::assertSame($query, $user_query->toArray());
 	}
 
 	public static function testHasSearch_whenSearch_returnsTrue(): void {

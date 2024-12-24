@@ -7,14 +7,14 @@ class CategoryTest extends PHPUnit\Framework\TestCase {
 
 	public static function test__construct_whenNoParameters_createsObjectWithDefaultValues(): void {
 		$category = new FreshRSS_Category();
-		self::assertEquals(0, $category->id());
-		self::assertEquals('', $category->name());
+		self::assertSame(0, $category->id());
+		self::assertSame('', $category->name());
 	}
 
 	#[DataProvider('provideValidNames')]
 	public static function test_name_whenValidValue_storesModifiedValue(string $input, string $expected): void {
 		$category = new FreshRSS_Category($input);
-		self::assertEquals($expected, $category->name());
+		self::assertSame($expected, $category->name());
 	}
 
 	/** @return array<array{string,string}> */
@@ -60,11 +60,11 @@ class CategoryTest extends PHPUnit\Framework\TestCase {
 
 		self::assertCount(3, $feeds);
 		$feed = reset($feeds) ?: FreshRSS_Feed::default();
-		self::assertEquals('AAA', $feed->name());
+		self::assertSame('AAA', $feed->name());
 		$feed = next($feeds) ?: FreshRSS_Feed::default();
-		self::assertEquals('lll', $feed->name());
+		self::assertSame('lll', $feed->name());
 		$feed = next($feeds) ?: FreshRSS_Feed::default();
-		self::assertEquals('ZZZ', $feed->name());
+		self::assertSame('ZZZ', $feed->name());
 
 		/** @var FreshRSS_Feed&PHPUnit\Framework\MockObject\MockObject */
 		$feed_4 = $this->getMockBuilder(FreshRSS_Feed::class)
@@ -79,12 +79,12 @@ class CategoryTest extends PHPUnit\Framework\TestCase {
 
 		self::assertCount(4, $feeds);
 		$feed = reset($feeds) ?: FreshRSS_Feed::default();
-		self::assertEquals('AAA', $feed->name());
+		self::assertSame('AAA', $feed->name());
 		$feed = next($feeds) ?: FreshRSS_Feed::default();
-		self::assertEquals('BBB', $feed->name());
+		self::assertSame('BBB', $feed->name());
 		$feed = next($feeds) ?: FreshRSS_Feed::default();
-		self::assertEquals('lll', $feed->name());
+		self::assertSame('lll', $feed->name());
 		$feed = next($feeds) ?: FreshRSS_Feed::default();
-		self::assertEquals('ZZZ', $feed->name());
+		self::assertSame('ZZZ', $feed->name());
 	}
 }
