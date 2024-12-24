@@ -77,7 +77,8 @@
             "@phtml-lint",
             "@phpunit",
             "@phpcs",
-            "@phpstan"
+            "@phpstan",
+            "@phpstan-next"
         ],
         "fix": [
             "@translations",

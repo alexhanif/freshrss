@@ -257,6 +257,6 @@ class Minz_ModelPdo {
 			Minz_Log::error('SQL error ' . json_encode($stm->errorInfo()) . ' during ' . $sql);
 			return null;
 		}
-		return isset($columns[0]) ? (string)$columns[0] : null;
+		return is_scalar($columns[0] ?? null) ? (string)$columns[0] : null;
 	}
 }

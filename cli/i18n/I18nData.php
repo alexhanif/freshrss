@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 class I18nData {
 
+	/** @var string */
 	public const REFERENCE_LANGUAGE = 'en';
 
 	/** @param array<string,array<string,array<string,I18nValue>>> $data */

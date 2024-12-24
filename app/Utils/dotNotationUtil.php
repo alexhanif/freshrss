@@ -65,6 +65,7 @@ final class FreshRSS_dotNotation_Util
 	 * Determine if the given key exists in the provided array.
 	 *
 	 * @param \ArrayAccess<string,mixed>|array<string,mixed>|mixed $array
+	 * @phpstan-assert-if-true \ArrayAccess<string,mixed>|array<string,mixed> $array
 	 */
 	private static function exists($array, string $key): bool {
 		if ($array instanceof \ArrayAccess) {
