@@ -403,7 +403,10 @@ final class Minz_ExtensionManager {
 	public static function callHookString(string $hook_name): string {
 		$result = '';
 		foreach (self::$hook_list[$hook_name]['list'] ?? [] as $function) {
-			$result = $result . call_user_func($function);
+			$return = call_user_func($function);
+			if (is_scalar($return)) {
+				$result .= $return;
+			}
 		}
 		return $result;
 	}

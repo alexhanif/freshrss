@@ -94,8 +94,9 @@ final class FreshRSS_UserConfiguration extends Minz_Configuration {
 	 * @throws Minz_FileNotExistException
 	 */
 	public static function default(): FreshRSS_UserConfiguration {
+		/** @var FreshRSS_UserConfiguration|null $default_user_conf */
 		static $default_user_conf = null;
-		if ($default_user_conf == null) {
+		if ($default_user_conf === null) {
 			$namespace = 'user_default';
 			FreshRSS_UserConfiguration::register($namespace, '_', FRESHRSS_PATH . '/config-user.default.php');
 			$default_user_conf = FreshRSS_UserConfiguration::get($namespace);

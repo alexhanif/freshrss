@@ -303,7 +303,10 @@ class FreshRSS_Share {
 		}
 
 		foreach ($transform as $action) {
-			$data = call_user_func($action, $data);
+			$return = call_user_func($action, $data);
+			if (is_string($return)) {
+				$data = $return;
+			}
 		}
 
 		return $data;
