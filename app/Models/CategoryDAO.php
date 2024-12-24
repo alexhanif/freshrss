@@ -50,18 +50,18 @@ class FreshRSS_CategoryDAO extends Minz_ModelPdo {
 					}
 					if (!is_array($attributes)) {
 						$attributes = [];
-					} elseif (isset($attributes['archiving']) && !is_array($attributes['archiving'])) {
-						unset($attributes['archiving']);
 					}
+					$archiving = is_array($attributes['archiving'] ?? null) ? $attributes['archiving'] : [];
 					if ($keepHistory > 0) {
-						$attributes['archiving']['keep_min'] = (int)$keepHistory;
+						$archiving['keep_min'] = (int)$keepHistory;
 					} elseif ($keepHistory == -1) {	//Infinite
-						$attributes['archiving']['keep_period'] = false;
-						$attributes['archiving']['keep_max'] = false;
-						$attributes['archiving']['keep_min'] = false;
+						$archiving['keep_period'] = false;
+						$archiving['keep_max'] = false;
+						$archiving['keep_min'] = false;
 					} else {
 						continue;
 					}
+					$attributes['archiving'] = $archiving;
 					if (!($stm->bindValue(':id', $feed['id'], PDO::PARAM_INT) &&
 						$stm->bindValue(':attributes', json_encode($attributes, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)) &&
 						$stm->execute())) {
@@ -85,7 +85,7 @@ class FreshRSS_CategoryDAO extends Minz_ModelPdo {
 		return false;
 	}
 
-	/** @param array<int,string|int> $errorInfo */
+	/** @param array{0:string,1:int,2:string} $errorInfo */
 	protected function autoUpdateDb(array $errorInfo): bool {
 		if (isset($errorInfo[0])) {
 			if ($errorInfo[0] === FreshRSS_DatabaseDAO::ER_BAD_FIELD_ERROR || $errorInfo[0] === FreshRSS_DatabaseDAOPGSQL::UNDEFINED_COLUMN) {
@@ -129,6 +129,7 @@ SQL;
 			return $catId === false ? false : (int)$catId;
 		} else {
 			$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
+			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				return $this->addCategory($valuesTmp);
 			}
@@ -178,6 +179,7 @@ SQL;
 			return $stm->rowCount();
 		} else {
 			$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
+			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				return $this->updateCategory($id, $valuesTmp);
 			}
@@ -230,6 +232,7 @@ SQL;
 			}
 		} else {
 			$info = $this->pdo->errorInfo();
+			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				yield from $this->selectAll();
 			} else {
@@ -293,6 +296,7 @@ SQL;
 				return self::daoToCategoriesPrepopulated($res);
 			} else {
 				$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
+				/** @var array{0:string,1:int,2:string} $info */
 				if ($this->autoUpdateDb($info)) {
 					return $this->listCategories($prePopulateFeeds, $details);
 				}
@@ -315,9 +319,12 @@ SQL;
 			$stm->bindValue(':kind', FreshRSS_Category::KIND_DYNAMIC_OPML, PDO::PARAM_INT) &&
 			$stm->bindValue(':lu', time() - $defaultCacheDuration, PDO::PARAM_INT) &&
 			$stm->execute()) {
-			return self::daoToCategories($stm->fetchAll(PDO::FETCH_ASSOC));
+			$res = $stm->fetchAll(PDO::FETCH_ASSOC);
+			/** @var array<array{name:string,id:int,kind:int,lastUpdate:int,error?:int|bool,attributes?:string}> $res */
+			return self::daoToCategories($res);
 		} else {
 			$info = $stm !== false ? $stm->errorInfo() : $this->pdo->errorInfo();
+			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				return $this->listCategoriesOrderUpdate($defaultCacheDuration, $limit);
 			}

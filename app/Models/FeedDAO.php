@@ -18,7 +18,7 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 		return false;
 	}
 
-	/** @param array<int,string|int> $errorInfo */
+	/** @param array{0:string,1:int,2:string} $errorInfo */
 	protected function autoUpdateDb(array $errorInfo): bool {
 		if (isset($errorInfo[0])) {
 			if ($errorInfo[0] === FreshRSS_DatabaseDAO::ER_BAD_FIELD_ERROR || $errorInfo[0] === FreshRSS_DatabaseDAOPGSQL::UNDEFINED_COLUMN) {
@@ -72,6 +72,7 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 			return $feedId === false ? false : (int)$feedId;
 		} else {
 			$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
+			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				return $this->addFeed($valuesTmp);
 			}
@@ -177,6 +178,7 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 			return true;
 		} else {
 			$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
+			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				return $this->updateFeed($id, $originalValues);
 			}
@@ -307,6 +309,7 @@ SQL;
 			}
 		} else {
 			$info = $this->pdo->errorInfo();
+			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				yield from $this->selectAll();
 			} else {
@@ -391,6 +394,7 @@ SQL;
 			return self::daoToFeeds($stm->fetchAll(PDO::FETCH_ASSOC));
 		} else {
 			$info = $this->pdo->errorInfo();
+			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				return $this->listFeedsOrderUpdate($defaultCacheDuration, $limit);
 			}

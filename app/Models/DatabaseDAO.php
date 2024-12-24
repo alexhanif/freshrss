@@ -85,7 +85,7 @@ class FreshRSS_DatabaseDAO extends Minz_ModelPdo {
 		return count(array_keys($tables, true, true)) === count($tables);
 	}
 
-	/** @return array<array{name:string,type:string,notnull:bool,default:mixed}> */
+	/** @return list<array{name:string,type:string,notnull:bool,default:mixed}> */
 	public function getSchema(string $table): array {
 		$res = $this->fetchAssoc('DESC `_' . $table . '`');
 		return $res == null ? [] : $this->listDaoToSchema($res);
@@ -168,16 +168,16 @@ class FreshRSS_DatabaseDAO extends Minz_ModelPdo {
 	 */
 	public function daoToSchema(array $dao): array {
 		return [
-			'name' => (string)($dao['Field']),
-			'type' => strtolower((string)($dao['Type'])),
-			'notnull' => (bool)$dao['Null'],
-			'default' => $dao['Default'],
+			'name' => is_string($dao['Field'] ?? null) ? $dao['Field'] : '',
+			'type' => is_string($dao['Type'] ?? null) ? strtolower($dao['Type']) : '',
+			'notnull' => empty($dao['Null']),
+			'default' => is_scalar($dao['Default'] ?? null) ? $dao['Default'] : null,
 		];
 	}
 
 	/**
 	 * @param array<array<string,string|int|bool|null>> $listDAO
-	 * @return array<array{name:string,type:string,notnull:bool,default:mixed}>
+	 * @return list<array{name:string,type:string,notnull:bool,default:mixed}>
 	 */
 	public function listDaoToSchema(array $listDAO): array {
 		$list = [];
@@ -202,7 +202,7 @@ class FreshRSS_DatabaseDAO extends Minz_ModelPdo {
 			return self::$staticVersion;
 		}
 		static $version = null;
-		if ($version === null) {
+		if (!is_string($version)) {
 			$version = $this->fetchValue('SELECT version()') ?? '';
 		}
 		return $version;
@@ -276,7 +276,7 @@ SQL;
 			if ($this->pdo->exec($sql) === false) {
 				$info = $this->pdo->errorInfo();
 				if ($this->pdo->dbType() === 'mysql' &&
-					!$isMariaDB && !empty($info[2]) && (stripos($info[2], "Can't DROP ") !== false)) {
+					!$isMariaDB && is_string($info[2] ?? null) && (stripos($info[2], "Can't DROP ") !== false)) {
 					// Too bad for MySQL, but ignore error
 					return;
 				}

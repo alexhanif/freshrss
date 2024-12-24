@@ -115,7 +115,7 @@ SQL;
 	}
 
 	//TODO: Move the database auto-updates to DatabaseDAO
-	/** @param array<int,string|int> $errorInfo */
+	/** @param array{0:string,1:int,2:string} $errorInfo */
 	protected function autoUpdateDb(array $errorInfo): bool {
 		if (isset($errorInfo[0])) {
 			if ($errorInfo[0] === FreshRSS_DatabaseDAO::ER_BAD_FIELD_ERROR || $errorInfo[0] === FreshRSS_DatabaseDAOPGSQL::UNDEFINED_COLUMN) {
@@ -201,6 +201,7 @@ SQL;
 			return true;
 		} else {
 			$info = $this->addEntryPrepared == false ? $this->pdo->errorInfo() : $this->addEntryPrepared->errorInfo();
+			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				$this->addEntryPrepared = null;
 				return $this->addEntry($valuesTmp);
@@ -310,6 +311,7 @@ SQL;
 			return true;
 		} else {
 			$info = $this->updateEntryPrepared == false ? $this->pdo->errorInfo() : $this->updateEntryPrepared->errorInfo();
+			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				return $this->updateEntry($valuesTmp);
 			}
@@ -720,6 +722,7 @@ SQL;
 			return $stm->rowCount();
 		} else {
 			$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
+			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				return $this->cleanOldEntries($id_feed, $options);
 			}
@@ -749,6 +752,7 @@ SQL;
 			}
 		} else {
 			$info = $this->pdo->errorInfo();
+			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				yield from $this->selectAll();
 			} else {
@@ -1266,6 +1270,7 @@ SQL;
 			return $stm;
 		} else {
 			$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
+			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				return $this->listWhereRaw($type, $id, $state, $order, $limit, $offset, $firstId, $filters, $date_min);
 			}
@@ -1392,6 +1397,7 @@ SQL;
 			return $result;
 		} else {
 			$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
+			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				return $this->listHashForFeedGuids($id_feed, $guids);
 			}
@@ -1428,6 +1434,7 @@ SQL;
 			return $stm->rowCount();
 		} else {
 			$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
+			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				return $this->updateLastSeen($id_feed, $guids);
 			}
