@@ -120,6 +120,8 @@ final class FeverDAO extends Minz_ModelPdo
 
 			$entries = [];
 			foreach ($result as $dao) {
+				/** @var array{id?:string,id_feed?:int,guid?:string,title?:string,author?:string,content?:string,link?:string,date?:int|string,lastSeen?:int,
+				 *	hash?:string,is_read?:bool|int,is_favorite?:bool|int,tags?:string|array<string>,attributes?:?string,thumbnail?:string,timestamp?:string} $dao */
 				$entries[] = FreshRSS_Entry::fromArray($dao);
 			}
 
