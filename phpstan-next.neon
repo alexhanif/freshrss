@@ -27,7 +27,3 @@ parameters:
 			- app/views/helpers/feed/update.phtml
 			- app/views/index/global.phtml
 			- cli/do-install.php
-			- lib/Minz/Configuration.php
-			- lib/Minz/FrontController.php
-			- lib/Minz/Migrator.php
-			- lib/Minz/Request.php
