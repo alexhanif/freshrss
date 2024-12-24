@@ -100,7 +100,7 @@ class FreshRSS_Category extends Minz_Model {
 	}
 
 	/**
-	 * @return array<int,FreshRSS_Feed>
+	 * @return array<FreshRSS_Feed>
 	 * @throws Minz_ConfigurationNamespaceException
 	 * @throws Minz_PDOConnectionException
 	 */

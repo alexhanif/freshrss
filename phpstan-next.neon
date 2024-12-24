@@ -7,8 +7,6 @@ parameters:
 	excludePaths:
 		analyse:
 			# TODO: Update files below and remove them from this list
-			- app/install.php
-			- app/Models/Category.php
 			- app/Models/CategoryDAO.php
 			- app/Models/DatabaseDAO.php
 			- app/Models/DatabaseDAOSQLite.php
@@ -18,7 +16,6 @@ parameters:
 			- app/Models/TagDAO.php
 			- app/Models/Themes.php
 			- app/Services/ImportService.php
-			- app/views/configure/integration.phtml
 			- app/views/entry/bookmark.phtml
 			- app/views/helpers/feed/update.phtml
 			- app/views/index/global.phtml

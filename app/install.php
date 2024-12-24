@@ -163,6 +163,9 @@ function saveStep2(): void {
 
 		$ok = false;
 		try {
+			if (!is_string($config_array['default_user'])) {
+				throw new Exception('Invalid default user name');
+			}
 			Minz_User::change($config_array['default_user']);
 			$error = initDb();
 			Minz_User::change();
@@ -451,19 +454,15 @@ function getProcessUsername(): string {
 /* check system environment */
 function printStep1(): void {
 	$res = checkRequirements();
-	$processUsername = getProcessUsername();
 ?>
 	<h2><?= _t('admin.check_install.php') ?></h2>
 	<noscript><p class="alert alert-warn"><span class="alert-head"><?= _t('gen.short.attention') ?></span> <?= _t('install.javascript_is_better') ?></p></noscript>
-
 	<?php
-	$version = function_exists('curl_version') ? curl_version() : [];
-	if (!is_array($version) || !is_string($version['version'] ?? null)) {
-		$version = ['version' => ''];
-	}
 	printStep1Template('php', $res['php'], [PHP_VERSION, FRESHRSS_MIN_PHP_VERSION]);
 	printStep1Template('pdo', $res['pdo']);
-	printStep1Template('curl', $res['curl'], [$version['version']]);
+	$curlVersion = function_exists('curl_version') ? curl_version() : [];
+	$curlVersion = is_string($curlVersion['version'] ?? null) ? $curlVersion['version'] : '';
+	printStep1Template('curl', $res['curl'], [$curlVersion]);
 	printStep1Template('json', $res['json']);
 	printStep1Template('pcre', $res['pcre']);
 	printStep1Template('ctype', $res['ctype']);
@@ -474,6 +473,7 @@ function printStep1(): void {
 	?>
 	<h2><?= _t('admin.check_install.files') ?></h2>
 	<?php
+	$processUsername = getProcessUsername();
 	printStep1Template('data', $res['data'], [DATA_PATH, $processUsername]);
 	printStep1Template('cache', $res['cache'], [CACHE_PATH, $processUsername]);
 	printStep1Template('tmp', $res['tmp'], [TMP_PATH, $processUsername]);
