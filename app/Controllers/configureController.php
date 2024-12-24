@@ -182,7 +182,7 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 					is_string($key) && is_array($value) &&
 					is_array_values_string($value),
 					ARRAY_FILTER_USE_BOTH);
-				/** @var array<string,array<string>> $share */
+				/** @var array<string,array<string,string>> $share */
 				FreshRSS_Context::userConf()->sharing = $share;
 				FreshRSS_Context::userConf()->save();
 				invalidateHttpCache();
@@ -460,9 +460,10 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 		foreach (FreshRSS_Context::userConf()->queries as $key => $query) {
 			$queries[$key] = (new FreshRSS_UserQuery($query, FreshRSS_Context::categories(), FreshRSS_Context::labels()))->toArray();
 		}
-		$params = $_GET;
+		$params = array_filter($_GET, 'is_string', ARRAY_FILTER_USE_KEY);
 		unset($params['name']);
 		unset($params['rid']);
+		/** @var array{get?:string,name?:string,order?:string,search?:string,state?:int,url?:string,token?:string,shareRss?:bool,shareOpml?:bool,description?:string,imageUrl?:string} $params */
 		$params['url'] = Minz_Url::display(['params' => $params]);
 		$params['name'] = _t('conf.query.number', count($queries) + 1);
 		$queries[] = (new FreshRSS_UserQuery($params, FreshRSS_Context::categories(), FreshRSS_Context::labels()))->toArray();
