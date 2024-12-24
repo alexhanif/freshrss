@@ -26,4 +26,3 @@ parameters:
 			- app/views/entry/bookmark.phtml
 			- app/views/helpers/feed/update.phtml
 			- app/views/index/global.phtml
-			- cli/do-install.php
