@@ -538,6 +538,9 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 
 	// TODO: Implement HTTP 1.1 conditional GET If-Modified-Since
 	$ch = curl_init();
+	if ($ch === false) {
+		return '';
+	}
 	curl_setopt_array($ch, [
 		CURLOPT_URL => $url,
 		CURLOPT_HTTPHEADER => ['Accept: ' . $accept],

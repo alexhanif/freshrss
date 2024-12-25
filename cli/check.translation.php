@@ -90,6 +90,9 @@ function findUsedTranslations(): array {
 	$regex = new RegexIterator($iterator, '/^.+\.(php|phtml)$/i', RecursiveRegexIterator::GET_MATCH);
 	$usedI18n = [];
 	foreach (array_keys(iterator_to_array($regex)) as $file) {
+		if (!is_string($file) || $file === '') {
+			continue;
+		}
 		$fileContent = file_get_contents($file);
 		if ($fileContent === false) {
 			continue;

@@ -61,7 +61,7 @@ function downloadHttp(string &$url, array $curlOptions = []): string {
 			$url = $url2;	//Possible redirect
 		}
 	}
-	return $info['http_code'] == 200 ? $response : '';
+	return is_array($info) && $info['http_code'] == 200 ? $response : '';
 }
 
 function searchFavicon(string &$url): string {
