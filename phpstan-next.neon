@@ -16,4 +16,3 @@ parameters:
 			- app/Models/Entry.php
 			- app/Models/FeedDAO.php
 			- app/Models/TagDAO.php
-			- app/Models/Themes.php

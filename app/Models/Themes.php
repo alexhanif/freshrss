@@ -38,13 +38,24 @@ class FreshRSS_Themes extends Minz_Model {
 			if (file_exists($json_filename)) {
 				$content = file_get_contents($json_filename) ?: '';
 				$res = json_decode($content, true);
-				if (is_array($res) &&
-						!empty($res['name']) &&
-						isset($res['files']) &&
-						is_array($res['files'])) {
-					$res['id'] = $theme_id;
-					/** @var array{id:string,name:string,author:string,description:string,version:float|string,files:array<string>,theme-color?:string|array{dark?:string,light?:string,default?:string}} */
-					return $res;
+				if (is_array($res)) {
+					$result = [
+						'id' => $theme_id,
+						'name' => is_string($res['name'] ?? null) ? $res['name'] : '',
+						'author' => is_string($res['author'] ?? null) ? $res['author'] : '',
+						'description' => is_string($res['description'] ?? null) ? $res['description'] : '',
+						'version' => is_string($res['version'] ?? null) || is_numeric($res['version'] ?? null) ? $res['version'] : '0',
+						'files' => is_array($res['files']) && is_array_values_string($res['files']) ? array_values($res['files']) : [],
+						'theme-color' => is_string($res['theme-color'] ?? null) ? $res['theme-color'] : '',
+					];
+					if (empty($result['theme-color']) && is_array($res['theme-color'])) {
+						$result['theme-color'] = [
+							'dark' => is_string($res['theme-color']['dark'] ?? null) ? $res['theme-color']['dark'] : '',
+							'light' => is_string($res['theme-color']['light'] ?? null) ? $res['theme-color']['light'] : '',
+							'default' => is_string($res['theme-color']['default'] ?? null) ? $res['theme-color']['default'] : '',
+						];
+					}
+					return $result;
 				}
 			}
 		}
