@@ -36,21 +36,17 @@ parameters:
 		- STDOUT
 		- TMP_PATH
 		- USERS_PATH
+	checkBenevolentUnionTypes: false	# TODO pass
+	checkImplicitMixed: false	# TODO pass
 	checkMissingOverrideMethodAttribute: true
-	reportMaybesInPropertyPhpDocTypes: false
+	checkTooWideReturnTypesInProtectedAndPublicMethods: true
+	reportAnyTypeWideningInVarTag: false	# TODO pass
 	treatPhpDocTypesAsCertain: false
 	strictRules:
-		allRules: false
-		booleansInConditions: true
-		closureUsesThis: true
+		disallowedEmpty: false
 		disallowedLooseComparison: false
-		matchingInheritedMethodNames: true
-		noVariableVariables: true
-		numericOperandsInArithmeticOperators: true
-		overwriteVariablesWithLoop: true
-		requireParentConstructorCall: true
-		switchConditionsMatchingType: true
-		uselessCast: true
+		disallowedShortTernary: false
+		strictArrayFilter: false	# TODO pass
 	exceptions:
 		check:
 			missingCheckedExceptionInThrows: false	# TODO pass

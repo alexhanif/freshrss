@@ -345,8 +345,7 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 					// Oops, no more place!
 					Minz_Log::warning(_t('feedback.sub.feed.over_max', $limits['max_feeds']));
 				} else {
-					/** @var array<string,string> $origin */
-					$origin = $item['origin'];
+					$origin = array_filter($item['origin'], fn($value, $key): bool => is_string($key) && is_string($value), ARRAY_FILTER_USE_BOTH);
 					$feed = $this->addFeedJson($origin);
 				}
 
