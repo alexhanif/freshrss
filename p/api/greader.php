@@ -93,7 +93,7 @@ final class GReaderAPI {
 		} else {	//nginx	http://php.net/getallheaders#84262
 			$ALL_HEADERS = [];
 			foreach ($_SERVER as $name => $value) {
-				if (str_starts_with($name, 'HTTP_')) {
+				if (is_string($name) && str_starts_with($name, 'HTTP_')) {
 					$ALL_HEADERS[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
 				}
 			}

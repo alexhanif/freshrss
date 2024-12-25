@@ -4,14 +4,17 @@ includes:
 
 parameters:
 	level: 10
+	checkBenevolentUnionTypes: false	# TODO pass
+	checkImplicitMixed: false	# TODO pass
+	reportAnyTypeWideningInVarTag: true	# TODO pass
+	strictRules:
+		strictArrayFilter: false	# TODO pass
 	excludePaths:
 		analyse:
 			# TODO: Update files below and remove them from this list
+			- app/Models/CategoryDAO.php
 			- app/Models/Entry.php
 			- app/Models/EntryDAO.php
 			- app/Models/FeedDAO.php
 			- app/Models/TagDAO.php
 			- app/Models/Themes.php
-			- app/Services/ImportService.php
-			- app/views/helpers/feed/update.phtml
-			- app/views/index/global.phtml
