@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 class FreshRSS_FilterAction {
 
-	/** @var array<string>|null */
+	/** @var list<string>|null */
 	private ?array $actions = null;
 
 	/** @param array<string> $actions */
@@ -15,7 +15,7 @@ class FreshRSS_FilterAction {
 		return $this->booleanSearch;
 	}
 
-	/** @return array<string> */
+	/** @return list<string> */
 	public function actions(): array {
 		return $this->actions ?? [];
 	}
@@ -23,7 +23,7 @@ class FreshRSS_FilterAction {
 	/** @param array<string> $actions */
 	public function _actions(?array $actions): void {
 		if (is_array($actions)) {
-			$this->actions = array_unique($actions);
+			$this->actions = array_values(array_unique($actions));
 		} else {
 			$this->actions = null;
 		}

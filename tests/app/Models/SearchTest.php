@@ -45,7 +45,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @return array<array<mixed>>
+	 * @return list<list<mixed>>
 	 */
 	public static function provideIntitleSearch(): array {
 		return [
@@ -82,7 +82,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @return array<array<mixed>>
+	 * @return list<list<mixed>>
 	 */
 	public static function provideAuthorSearch(): array {
 		return [
@@ -119,7 +119,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @return array<array<mixed>>
+	 * @return list<list<mixed>>
 	 */
 	public static function provideInurlSearch(): array {
 		return [
@@ -142,7 +142,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @return array<array<mixed>>
+	 * @return list<list<mixed>>
 	 */
 	public static function provideDateSearch(): array {
 		return [
@@ -163,7 +163,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @return array<array<mixed>>
+	 * @return list<list<mixed>>
 	 */
 	public static function providePubdateSearch(): array {
 		return [
@@ -188,7 +188,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @return array<array<string|array<string>|null>>
+	 * @return list<list<string|list<string>|null>>
 	 */
 	public static function provideTagsSearch(): array {
 		return [
@@ -227,7 +227,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 		self::assertSame($input, $search->getRawInput());
 	}
 
-	/** @return array<array<mixed>> */
+	/** @return list<list<mixed>> */
 	public static function provideMultipleSearch(): array {
 		return [
 			[
@@ -286,7 +286,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 		self::assertSame($output, FreshRSS_BooleanSearch::addOrParentheses($input));
 	}
 
-	/** @return array<array{string,string}> */
+	/** @return list<list{string,string}> */
 	public static function provideAddOrParentheses(): array {
 		return [
 			['ab', 'ab'],
@@ -305,7 +305,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 		self::assertSame($output, FreshRSS_BooleanSearch::consistentOrParentheses($input));
 	}
 
-	/** @return array<array{string,string}> */
+	/** @return list<list{string,string}> */
 	public static function provideconsistentOrParentheses(): array {
 		return [
 			['ab cd ef', 'ab cd ef'],
@@ -336,7 +336,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 		self::assertSame($values, $filterValues);
 	}
 
-	/** @return array<array<mixed>> */
+	/** @return list<list<mixed>> */
 	public static function provideParentheses(): array {
 		return [
 			[
@@ -482,7 +482,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 		self::assertSame($values, $filterValues);
 	}
 
-	/** @return array<array<mixed>> */
+	/** @return list<list<mixed>> */
 	public static function provideRegexPostreSQL(): array {
 		return [
 			[
@@ -555,7 +555,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 		self::assertSame($values, $filterValues);
 	}
 
-	/** @return array<array<mixed>> */
+	/** @return list<list<mixed>> */
 	public static function provideRegexMariaDB(): array {
 		return [
 			[
@@ -588,7 +588,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 		self::assertSame($values, $filterValues);
 	}
 
-	/** @return array<array<mixed>> */
+	/** @return list<list<mixed>> */
 	public static function provideRegexMySQL(): array {
 		return [
 			[
@@ -619,7 +619,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 		self::assertSame($values, $filterValues);
 	}
 
-	/** @return array<array<mixed>> */
+	/** @return list<list<mixed>> */
 	public static function provideRegexSQLite(): array {
 		return [
 			[

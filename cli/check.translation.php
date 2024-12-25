@@ -82,7 +82,7 @@ if (!$isValidated) {
  * Iterates through all php and phtml files in the whole project and extracts all
  * translation keys used.
  *
- * @return array<string>
+ * @return list<string>
  */
 function findUsedTranslations(): array {
 	$directory = new RecursiveDirectoryIterator(__DIR__ . '/..');

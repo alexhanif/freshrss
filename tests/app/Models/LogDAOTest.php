@@ -27,7 +27,6 @@ class LogDAOTest extends TestCase {
 		$line = $this->logDAO::lines(self::LOG_FILE_TEST);
 
 		self::assertCount(1, $line);
-		self::assertInstanceOf(FreshRSS_Log::class, $line[0]);
 		self::assertSame('Wed, 08 Feb 2023 15:35:05 +0000', $line[0]->date());
 		self::assertSame('notice', $line[0]->level());
 		self::assertSame("Migration 2019_12_22_FooBar: OK", $line[0]->info());

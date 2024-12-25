@@ -308,7 +308,7 @@ final class FeverAPI
 		return $lastUpdate;
 	}
 
-	/** @return array<array<string,string|int>> */
+	/** @return list<array{id:int,favicon_id:int,title:string,url:string,site_url:string,is_spark:int,last_updated_on_time:int}> */
 	private function getFeeds(): array {
 		$feeds = [];
 		$myFeeds = $this->feedDAO->listFeeds();
@@ -330,7 +330,7 @@ final class FeverAPI
 		return $feeds;
 	}
 
-	/** @return array<array<string,int|string>> */
+	/** @return list<array{id:int,title:string}> */
 	private function getGroups(): array {
 		$groups = [];
 
@@ -347,7 +347,7 @@ final class FeverAPI
 		return $groups;
 	}
 
-	/** @return array<array<string,int|string>> */
+	/** @return list<array{id:int,data:string}> */
 	private function getFavicons(): array {
 		if (!FreshRSS_Context::hasSystemConf()) {
 			return [];
@@ -380,7 +380,7 @@ final class FeverAPI
 	}
 
 	/**
-	 * @return array<array<string,int|string>>
+	 * @return list<array<string,int|string>>
 	 */
 	private function getFeedsGroup(): array {
 		$groups = [];
@@ -403,7 +403,7 @@ final class FeverAPI
 
 	/**
 	 * AFAIK there is no 'hot links' alternative in FreshRSS
-	 * @return array<string>
+	 * @return list<string>
 	 */
 	private function getLinks(): array {
 		return [];
@@ -454,7 +454,7 @@ final class FeverAPI
 		return $this->entryDAO->markFavorite($id, false);
 	}
 
-	/** @return array<array<string,string|int>> */
+	/** @return list<array<string,string|int>> */
 	private function getItems(): array {
 		$feed_ids = [];
 		$entry_ids = [];

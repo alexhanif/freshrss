@@ -182,7 +182,7 @@ SQL;
 		return $res === null ? null : (current(self::daoToTags($res)) ?: null);
 	}
 
-	/** @return array<int,FreshRSS_Tag>|false */
+	/** @return list<FreshRSS_Tag>|false */
 	public function listTags(bool $precounts = false): array|false {
 		if ($precounts) {
 			$sql = <<<'SQL'
@@ -290,10 +290,10 @@ SQL;
 	}
 
 	/**
-	 * @param list<array{id_tag:int,id_entry:numeric-string|int}> $addLabels Labels to insert as batch
+	 * @param iterable<array{id_tag:int,id_entry:numeric-string|int}> $addLabels Labels to insert as batch
 	 * @return int|false Number of new entries or false in case of error
 	 */
-	public function tagEntries(array $addLabels): int|false {
+	public function tagEntries(iterable $addLabels): int|false {
 		$hasValues = false;
 		$sql = 'INSERT ' . $this->sqlIgnore() . ' INTO `_entrytag`(id_tag, id_entry) VALUES ';
 		foreach ($addLabels as $addLabel) {
@@ -346,7 +346,7 @@ SQL;
 	}
 
 	/**
-	 * @param list<FreshRSS_Entry|numeric-string|array<string,string>> $entries
+	 * @param array<FreshRSS_Entry|numeric-string|array<string,string>> $entries
 	 * @return list<array{id_entry:int|numeric-string,id_tag:int,name:string}>|false
 	 */
 	public function getTagsForEntries(array $entries): array|false {
@@ -405,7 +405,7 @@ SQL;
 	/**
 	 * Produces an array: for each entry ID (prefixed by `e_`), associate a list of labels.
 	 * Used by API and by JSON export, to speed up queries (would be very expensive to perform a label look-up on each entry individually).
-	 * @param list<FreshRSS_Entry|numeric-string> $entries the list of entries for which to retrieve the labels.
+	 * @param array<FreshRSS_Entry|numeric-string> $entries the list of entries for which to retrieve the labels.
 	 * @return array<string,array<string>> An array of the shape `[e_id_entry => ["label 1", "label 2"]]`
 	 */
 	public function getEntryIdsTagNames(array $entries): array {
@@ -423,7 +423,7 @@ SQL;
 
 	/**
 	 * @param iterable<array{id:int,name:string,attributes?:string}> $listDAO
-	 * @return array<int,FreshRSS_Tag>
+	 * @return list<FreshRSS_Tag>
 	 */
 	private static function daoToTags(iterable $listDAO): array {
 		$list = [];
@@ -439,7 +439,7 @@ SQL;
 			if (isset($dao['unreads'])) {
 				$tag->_nbUnread($dao['unreads']);
 			}
-			$list[$tag->id()] = $tag;
+			$list[] = $tag;
 		}
 		return $list;
 	}

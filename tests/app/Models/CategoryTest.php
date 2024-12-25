@@ -17,7 +17,7 @@ class CategoryTest extends PHPUnit\Framework\TestCase {
 		self::assertSame($expected, $category->name());
 	}
 
-	/** @return array<array{string,string}> */
+	/** @return list<array{string,string}> */
 	public static function provideValidNames(): array {
 		return [
 			['', ''],

@@ -172,7 +172,7 @@ function _url(string $controller, string $action, int|string ...$args): string|f
 		return false;
 	}
 
-	$params = array ();
+	$params = [];
 	for ($i = 0; $i < $nb_args; $i += 2) {
 		$arg = '' . $args[$i];
 		$params[$arg] = '' . $args[$i + 1];

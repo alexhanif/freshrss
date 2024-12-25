@@ -641,7 +641,7 @@ function invalidateHttpCache(string $username = ''): bool {
 }
 
 /**
- * @return array<string>
+ * @return list<string>
  */
 function listUsers(): array {
 	$final_list = [];
@@ -936,7 +936,7 @@ const SHORTCUT_KEYS = [
 
 /**
  * @param array<string> $shortcuts
- * @return array<string>
+ * @return list<string>
  */
 function getNonStandardShortcuts(array $shortcuts): array {
 	$standard = strtolower(implode(' ', SHORTCUT_KEYS));
@@ -946,7 +946,7 @@ function getNonStandardShortcuts(array $shortcuts): array {
 		return $shortcut !== '' && stripos($standard, $shortcut) === false;
 	});
 
-	return $nonStandard;
+	return array_values($nonStandard);
 }
 
 function errorMessageInfo(string $errorTitle, string $error = ''): string {

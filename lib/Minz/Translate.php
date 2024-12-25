@@ -63,7 +63,7 @@ class Minz_Translate {
 
 	/**
 	 * Return the list of available languages.
-	 * @return array<string> containing langs found in different registered paths.
+	 * @return list<string> containing langs found in different registered paths.
 	 */
 	public static function availableLanguages(): array {
 		$list_langs = [];
@@ -81,7 +81,7 @@ class Minz_Translate {
 			}
 		}
 
-		return array_unique($list_langs);
+		return array_values(array_unique($list_langs));
 	}
 
 	/**

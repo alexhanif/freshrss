@@ -8,11 +8,11 @@ declare(strict_types=1);
 final class FreshRSS_Context {
 
 	/**
-	 * @var array<int,FreshRSS_Category>
+	 * @var list<FreshRSS_Category>
 	 */
 	private static array $categories = [];
 	/**
-	 * @var array<int,FreshRSS_Tag>
+	 * @var list<FreshRSS_Tag>
 	 */
 	private static array $tags = [];
 	public static string $name = '';
@@ -174,7 +174,7 @@ final class FreshRSS_Context {
 		FreshRSS_Context::$user_conf = null;
 	}
 
-	/** @return array<int,FreshRSS_Category> */
+	/** @return list<FreshRSS_Category> */
 	public static function categories(): array {
 		if (empty(self::$categories)) {
 			$catDAO = FreshRSS_Factory::createCategoryDao();
@@ -183,12 +183,12 @@ final class FreshRSS_Context {
 		return self::$categories;
 	}
 
-	/** @return array<int,FreshRSS_Feed> */
+	/** @return list<FreshRSS_Feed> */
 	public static function feeds(): array {
 		return FreshRSS_Category::findFeeds(self::categories());
 	}
 
-	/** @return array<int,FreshRSS_Tag> */
+	/** @return list<FreshRSS_Tag> */
 	public static function labels(bool $precounts = false): array {
 		if (empty(self::$tags) || $precounts) {
 			$tagDAO = FreshRSS_Factory::createTagDao();
@@ -403,7 +403,6 @@ final class FreshRSS_Context {
 				self::$name = _t('index.feed.title_fav');
 				self::$description = FreshRSS_Context::systemConf()->meta_description;
 				self::$get_unread = self::$total_starred['unread'];
-
 				// Update state if favorite is not yet enabled.
 				self::$state = self::$state | FreshRSS_Entry::STATE_FAVORITE;
 				break;
@@ -411,11 +410,7 @@ final class FreshRSS_Context {
 				// We try to find the corresponding feed. When allowing robots, always retrieve the full feed including description
 				$feed = FreshRSS_Context::systemConf()->allow_robots ? null : FreshRSS_Category::findFeed(self::$categories, $id);
 				if ($feed === null) {
-					$feedDAO = FreshRSS_Factory::createFeedDao();
-					$feed = $feedDAO->searchById($id);
-					if ($feed === null) {
-						throw new FreshRSS_Context_Exception('Invalid feed: ' . $id);
-					}
+					throw new FreshRSS_Context_Exception('Invalid feed: ' . $id);
 				}
 				self::$current_get['feed'] = $id;
 				self::$current_get['category'] = $feed->categoryId();
@@ -426,15 +421,15 @@ final class FreshRSS_Context {
 			case 'c':
 				// We try to find the corresponding category.
 				self::$current_get['category'] = $id;
-				if (!isset(self::$categories[$id])) {
-					$catDAO = FreshRSS_Factory::createCategoryDao();
-					$cat = $catDAO->searchById($id);
-					if ($cat === null) {
-						throw new FreshRSS_Context_Exception('Invalid category: ' . $id);
+				$cat = null;
+				foreach (self::$categories as $category) {
+					if ($category->id() === $id) {
+						$cat = $category;
+						break;
 					}
-					self::$categories[$id] = $cat;
-				} else {
-					$cat = self::$categories[$id];
+				}
+				if ($cat === null) {
+					throw new FreshRSS_Context_Exception('Invalid category: ' . $id);
 				}
 				self::$name = $cat->name();
 				self::$get_unread = $cat->nbNotRead();
@@ -442,15 +437,15 @@ final class FreshRSS_Context {
 			case 't':
 				// We try to find the corresponding tag.
 				self::$current_get['tag'] = $id;
-				if (!isset(self::$tags[$id])) {
-					$tagDAO = FreshRSS_Factory::createTagDao();
-					$tag = $tagDAO->searchById($id);
-					if ($tag === null) {
-						throw new FreshRSS_Context_Exception('Invalid tag: ' . $id);
+				$tag = null;
+				foreach (self::$tags as $t) {
+					if ($t->id() === $id) {
+						$tag = $t;
+						break;
 					}
-					self::$tags[$id] = $tag;
-				} else {
-					$tag = self::$tags[$id];
+				}
+				if ($tag === null) {
+					throw new FreshRSS_Context_Exception('Invalid tag: ' . $id);
 				}
 				self::$name = $tag->name();
 				self::$get_unread = $tag->nbUnread();

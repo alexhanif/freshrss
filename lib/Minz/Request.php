@@ -158,7 +158,7 @@ class Minz_Request {
 	 * character is used to break the text into lines. This method is well suited to use
 	 * to split textarea content.
 	 * @param bool $plaintext `true` to return special characters without any escaping (unsafe), `false` (default) to XML-encode them
-	 * @return array<string>
+	 * @return list<string>
 	 */
 	public static function paramTextToArray(string $key, bool $plaintext = false): array {
 		if (isset(self::$params[$key]) && is_string(self::$params[$key])) {
@@ -504,7 +504,7 @@ class Minz_Request {
 	}
 
 	/**
-	 * @return array<string>
+	 * @return list<string>
 	 */
 	public static function getPreferredLanguages(): array {
 		$acceptLanguage = is_string($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? null) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : '';

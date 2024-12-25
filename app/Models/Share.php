@@ -315,7 +315,7 @@ class FreshRSS_Share {
 	/**
 	 * Get the list of transformations for the given attribute.
 	 * @param string $attr the attribute of which we want the transformations.
-	 * @return array<callable> containing a list of transformations to apply.
+	 * @return list<callable> containing a list of transformations to apply.
 	 */
 	private function getTransform(string $attr): array {
 		if (array_key_exists($attr, $this->transforms)) {

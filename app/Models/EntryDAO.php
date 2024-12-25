@@ -1302,7 +1302,7 @@ SQL;
 	}
 
 	/**
-	 * @param list<numeric-string> $ids
+	 * @param array<numeric-string> $ids
 	 * @param 'ASC'|'DESC' $order
 	 * @return Traversable<FreshRSS_Entry>
 	 */
@@ -1367,7 +1367,7 @@ SQL;
 	}
 
 	/**
-	 * @param list<string> $guids
+	 * @param array<string> $guids
 	 * @return array<string,string>|false
 	 */
 	public function listHashForFeedGuids(int $id_feed, array $guids): array|false {
@@ -1403,7 +1403,7 @@ SQL;
 	}
 
 	/**
-	 * @param list<string> $guids
+	 * @param array<string> $guids
 	 * @return int|false The number of affected entries, or false if error
 	 */
 	public function updateLastSeen(int $id_feed, array $guids, int $mtime = 0): int|false {
@@ -1429,10 +1429,6 @@ SQL;
 			return $stm->rowCount();
 		} else {
 			$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
-			/** @var array{0:string,1:int,2:string} $info */
-			if ($this->autoUpdateDb($info)) {
-				return $this->updateLastSeen($id_feed, $guids);
-			}
 			Minz_Log::error('SQL error ' . __METHOD__ . json_encode($info)
 				. ' while updating feed ' . $id_feed);
 			return false;
