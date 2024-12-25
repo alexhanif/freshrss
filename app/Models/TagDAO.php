@@ -346,7 +346,7 @@ SQL;
 	}
 
 	/**
-	 * @param array<FreshRSS_Entry|numeric-string|array<string,string>> $entries
+	 * @param list<FreshRSS_Entry|numeric-string> $entries
 	 * @return list<array{id_entry:int|numeric-string,id_tag:int,name:string}>|false
 	 */
 	public function getTagsForEntries(array $entries): array|false {
@@ -371,23 +371,8 @@ SQL;
 				return $values;
 			}
 			$sql .= ' AND et.id_entry IN (' . str_repeat('?,', count($entries) - 1) . '?)';
-			if (is_array($entries[0])) {
-				/** @var list<array<string,string>> $entries */
-				foreach ($entries as $entry) {
-					if (!empty($entry['id'])) {
-						$values[] = $entry['id'];
-					}
-				}
-			} elseif (is_object($entries[0])) {
-				/** @var list<FreshRSS_Entry> $entries */
-				foreach ($entries as $entry) {
-					$values[] = $entry->id();
-				}
-			} else {
-				/** @var list<numeric-string> $entries */
-				foreach ($entries as $entry) {
-					$values[] = $entry;
-				}
+			foreach ($entries as $entry) {
+				$values[] = is_string($entry) ? $entry : $entry->id();
 			}
 		}
 		$stm = $this->pdo->prepare($sql);
@@ -405,7 +390,7 @@ SQL;
 	/**
 	 * Produces an array: for each entry ID (prefixed by `e_`), associate a list of labels.
 	 * Used by API and by JSON export, to speed up queries (would be very expensive to perform a label look-up on each entry individually).
-	 * @param array<FreshRSS_Entry|numeric-string> $entries the list of entries for which to retrieve the labels.
+	 * @param list<FreshRSS_Entry|numeric-string> $entries the list of entries for which to retrieve the labels.
 	 * @return array<string,array<string>> An array of the shape `[e_id_entry => ["label 1", "label 2"]]`
 	 */
 	public function getEntryIdsTagNames(array $entries): array {

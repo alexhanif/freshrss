@@ -15,4 +15,3 @@ parameters:
 			- app/Models/CategoryDAO.php
 			- app/Models/Entry.php
 			- app/Models/FeedDAO.php
-			- app/Models/TagDAO.php
