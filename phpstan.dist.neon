@@ -40,7 +40,7 @@ parameters:
 	checkImplicitMixed: false	# TODO pass
 	checkMissingOverrideMethodAttribute: true
 	checkTooWideReturnTypesInProtectedAndPublicMethods: true
-	reportAnyTypeWideningInVarTag: false	# TODO pass
+	reportAnyTypeWideningInVarTag: true
 	treatPhpDocTypesAsCertain: false
 	strictRules:
 		disallowedEmpty: false

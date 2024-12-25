@@ -34,8 +34,8 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 	}
 
 	/**
-	 * @param array{'url':string,'kind':int,'category':int,'name':string,'website':string,'description':string,'lastUpdate':int,'priority'?:int,
-	 * 	'pathEntries'?:string,'httpAuth':string,'error':int|bool,'ttl'?:int,'attributes'?:string|array<string|mixed>} $valuesTmp
+	 * @param array{url:string,kind:int,category:int,name:string,website:string,description:string,lastUpdate:int,priority?:int,
+	 * 	pathEntries?:string,httpAuth:string,error:int|bool,ttl?:int,attributes?:string|array<string|mixed>} $valuesTmp
 	 */
 	public function addFeed(array $valuesTmp): int|false {
 		$sql = 'INSERT INTO `_feed` (url, kind, category, name, website, description, `lastUpdate`, priority, `pathEntries`, `httpAuth`, error, ttl, attributes)
@@ -321,21 +321,17 @@ SQL;
 	public function searchById(int $id): ?FreshRSS_Feed {
 		$sql = 'SELECT * FROM `_feed` WHERE id=:id';
 		$res = $this->fetchAssoc($sql, [':id' => $id]);
-		if ($res == null) {
+		if (!is_array($res)) {
 			return null;
 		}
-		/** @var list<array{url:string,kind:int,category:int,name:string,website:string,lastUpdate:int,
-		 *	priority?:int,pathEntries?:string,httpAuth:string,error:int,ttl?:int,attributes?:string}> $res */
-		$feeds = self::daoToFeeds($res);
+		$feeds = self::daoToFeeds($res);	// @phpstan-ignore argument.type
 		return $feeds[0] ?? null;
 	}
 
 	public function searchByUrl(string $url): ?FreshRSS_Feed {
 		$sql = 'SELECT * FROM `_feed` WHERE url=:url';
 		$res = $this->fetchAssoc($sql, [':url' => $url]);
-		/** @var list<array{url:string,kind:int,category:int,name:string,website:string,lastUpdate:int,
-		 *	priority?:int,pathEntries?:string,httpAuth:string,error:int,ttl?:int,attributes?:string}> $res */
-		return empty($res[0]) ? null : (current(self::daoToFeeds($res)) ?: null);
+		return empty($res[0]) ? null : (current(self::daoToFeeds($res)) ?: null);	// @phpstan-ignore argument.type
 	}
 
 	/** @return list<int> */
@@ -352,9 +348,7 @@ SQL;
 	public function listFeeds(): array {
 		$sql = 'SELECT * FROM `_feed` ORDER BY name';
 		$res = $this->fetchAssoc($sql);
-		/** @var list<array{'url':string,'kind':int,'category':int,'name':string,'website':string,'lastUpdate':int,
-		 *	'priority':int,'pathEntries':string,'httpAuth':string,'error':int,'ttl':int,'attributes':string}>|null $res */
-		return $res == null ? [] : self::daoToFeeds($res);
+		return $res == null ? [] : self::daoToFeeds($res);	// @phpstan-ignore argument.type
 	}
 
 	/** @return array<string,string> */
@@ -403,12 +397,12 @@ SQL;
 		}
 	}
 
-	/** @return array<int,string> */
+	/** @return list<string> */
 	public function listTitles(int $id, int $limit = 0): array {
 		$sql = 'SELECT title FROM `_entry` WHERE id_feed=:id_feed ORDER BY id DESC'
 			. ($limit < 1 ? '' : ' LIMIT ' . intval($limit));
 		$res = $this->fetchColumn($sql, 0, [':id_feed' => $id]) ?? [];
-		/** @var array<int,string> $res */
+		/** @var list<string> $res */
 		return $res;
 	}
 
@@ -426,15 +420,10 @@ SQL;
 			$sql .= ' AND error <> 0';
 		}
 		$res = $this->fetchAssoc($sql, [':category' => $cat]);
-		if ($res == null) {
+		if (!is_array($res)) {
 			return [];
 		}
-
-		/**
-		 * @var list<array{'url':string,'kind':int,'category':int,'name':string,'website':string,'lastUpdate':int,
-		 *	'priority'?:int,'pathEntries'?:string,'httpAuth':string,'error':int,'ttl'?:int,'attributes'?:string}> $res
-		 */
-		$feeds = self::daoToFeeds($res);
+		$feeds = self::daoToFeeds($res);	// @phpstan-ignore argument.type
 		usort($feeds, static fn(FreshRSS_Feed $a, FreshRSS_Feed $b) => strnatcasecmp($a->name(), $b->name()));
 		return $feeds;
 	}
@@ -578,19 +567,16 @@ SQL;
 	}
 
 	/**
-	 * @param array<int,array{id?:int,url?:string,kind?:int,category?:int,name?:string,website?:string,description?:string,lastUpdate?:int,priority?:int,
+	 * @param array<array{id?:int,url?:string,kind?:int,category?:int,name?:string,website?:string,description?:string,lastUpdate?:int,priority?:int,
 	 * 	pathEntries?:string,httpAuth?:string,error?:int|bool,ttl?:int,attributes?:string,cache_nbUnreads?:int,cache_nbEntries?:int}> $listDAO
 	 * @return list<FreshRSS_Feed>
 	 */
 	public static function daoToFeeds(array $listDAO, ?int $catID = null): array {
 		$list = [];
 
-		foreach ($listDAO as $key => $dao) {
+		foreach ($listDAO as $dao) {
 			if (!isset($dao['name']) || !is_string($dao['name'])) {
 				continue;
-			}
-			if (isset($dao['id']) && is_numeric($dao['id'])) {
-				$key = (int)$dao['id'];
 			}
 			if ($catID === null) {
 				$category = is_numeric($dao['category'] ?? null) ? (int)$dao['category'] : 0;

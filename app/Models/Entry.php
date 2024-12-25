@@ -283,9 +283,9 @@ HTML;
 	/** @return Traversable<array{'url':string,'type'?:string,'medium'?:string,'length'?:int,'title'?:string,'description'?:string,'credit'?:string|array<string>,'height'?:int,'width'?:int,'thumbnails'?:array<string>}> */
 	public function enclosures(bool $searchBodyImages = false): Traversable {
 		$attributeEnclosures = $this->attributeArray('enclosures');
-		if (is_iterable($attributeEnclosures)) {
+		if (is_array($attributeEnclosures)) {
 			// FreshRSS 1.20.1+: The enclosures are saved as attributes
-			/** @var iterable<array{'url':string,'type'?:string,'medium'?:string,'length'?:int,'title'?:string,'description'?:string,'credit'?:string|array<string>,'height'?:int,'width'?:int,'thumbnails'?:array<string>}> $attributeEnclosures */
+			/** @var list<array{'url':string,'type'?:string,'medium'?:string,'length'?:int,'title'?:string,'description'?:string,'credit'?:string|array<string>,'height'?:int,'width'?:int,'thumbnails'?:array<string>}> $attributeEnclosures */
 			yield from $attributeEnclosures;
 		}
 		try {
@@ -354,7 +354,7 @@ HTML;
 	public function thumbnail(bool $searchEnclosures = true): ?array {
 		$thumbnail = $this->attributeArray('thumbnail') ?? [];
 		// First, use the provided thumbnail, if any
-		if (!empty($thumbnail['url'])) {
+		if (is_string($thumbnail['url'] ?? null)) {
 			/** @var array{'url':string,'height'?:int,'width'?:int,'time'?:string} $thumbnail */
 			return $thumbnail;
 		}

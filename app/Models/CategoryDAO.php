@@ -30,7 +30,7 @@ class FreshRSS_CategoryDAO extends Minz_ModelPdo {
 			} elseif ('attributes' === $name) {	//v1.15.0
 				$ok = $this->pdo->exec('ALTER TABLE `_category` ADD COLUMN attributes TEXT') !== false;
 
-				/** @var array<array{id:int,url:string,kind:int,category:int,name:string,website:string,lastUpdate:int,
+				/** @var list<array{id:int,url:string,kind:int,category:int,name:string,website:string,lastUpdate:int,
 				 * 	priority:int,pathEntries:string,httpAuth:string,error:int,keep_history:?int,ttl:int,attributes:string}> $feeds */
 				$feeds = $this->fetchAssoc('SELECT * FROM `_feed`') ?? [];
 
@@ -397,7 +397,7 @@ SQL;
 		return isset($res[0]) ? (int)$res[0] : -1;
 	}
 
-	/** @return array<int,string> */
+	/** @return list<string> */
 	public function listTitles(int $id, int $limit = 0): array {
 		$sql = <<<'SQL'
 			SELECT e.title FROM `_entry` e
@@ -407,7 +407,7 @@ SQL;
 		SQL;
 		$sql .= ($limit < 1 ? '' : ' LIMIT ' . intval($limit));
 		$res = $this->fetchColumn($sql, 0, [':id_category' => $id]) ?? [];
-		/** @var array<int,string> $res */
+		/** @var list<string> $res */
 		return $res;
 	}
 
