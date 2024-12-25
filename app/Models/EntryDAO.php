@@ -1383,7 +1383,6 @@ SQL;
 			return $result;
 		}
 		$guids = array_unique($guids);
-		/** @var list<string> $guids */
 		$sql = 'SELECT guid, ' . static::sqlHexEncode('hash') .
 			' AS hex_hash FROM `_entry` WHERE id_feed=? AND guid IN (' . str_repeat('?,', count($guids) - 1) . '?)';
 		$stm = $this->pdo->prepare($sql);
@@ -1397,10 +1396,6 @@ SQL;
 			return $result;
 		} else {
 			$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
-			/** @var array{0:string,1:int,2:string} $info */
-			if ($this->autoUpdateDb($info)) {
-				return $this->listHashForFeedGuids($id_feed, $guids);
-			}
 			Minz_Log::error('SQL error ' . __METHOD__ . json_encode($info)
 				. ' while querying feed ' . $id_feed);
 			return false;

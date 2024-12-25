@@ -14,7 +14,6 @@ parameters:
 			# TODO: Update files below and remove them from this list
 			- app/Models/CategoryDAO.php
 			- app/Models/Entry.php
-			- app/Models/EntryDAO.php
 			- app/Models/FeedDAO.php
 			- app/Models/TagDAO.php
 			- app/Models/Themes.php
