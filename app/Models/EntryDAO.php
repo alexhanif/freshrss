@@ -1358,7 +1358,7 @@ SQL;
 		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $order, $limit, $offset, $firstId, $filters);
 		$stm = $this->pdo->prepare($sql);
 		if ($stm !== false && $stm->execute($values) && ($res = $stm->fetchAll(PDO::FETCH_COLUMN, 0)) !== false) {
-			array_walk($res, 'strval');
+			$res = array_map('strval', $res);
 			/** @var list<numeric-string> $res */
 			return $res;
 		}
