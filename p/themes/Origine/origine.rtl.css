@@ -1004,7 +1004,7 @@ a:hover .icon {
 	border: none;
 }
 
-#stream.reader .flux .content {
+#stream.reader .flux .flux_content {
 	background-color: var(--background-color-light);
 	border-color: var(--border-color);
 }
