@@ -937,7 +937,7 @@ input[type="checkbox"]:focus-visible {
 	margin: 20px 0 20px 20px;
 	display: inline-block;
 	max-width: 95%;
-	width: 20rem;
+	width: 30rem;
 	vertical-align: top;
 }
 
