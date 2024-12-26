@@ -26,6 +26,8 @@ return array(
 		'version' => 'Version',
 	),
 	'feed' => array(
+		'allAndArchived' => 'All feeds, also archived ones',
+		'allAndCategories' => 'All feeds, also those shown in their category',
 		'empty' => 'There are no articles to show.',
 		'rss_of' => 'RSS feed of %s',
 		'title' => 'Main stream',

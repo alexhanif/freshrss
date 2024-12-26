@@ -26,6 +26,8 @@ return array(
 		'version' => '版本',
 	),
 	'feed' => array(
+		'allAndArchived' => 'All feeds, also archived ones',	// TODO
+		'allAndCategories' => 'All feeds, also those shown in their category',	// TODO
 		'empty' => '暫時沒有文章可顯示。',
 		'rss_of' => '%s 的訂閱源',
 		'title' => '首頁',

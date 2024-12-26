@@ -26,6 +26,8 @@ return array(
 		'version' => 'Wersja',
 	),
 	'feed' => array(
+		'allAndArchived' => 'All feeds, also archived ones',	// TODO
+		'allAndCategories' => 'All feeds, also those shown in their category',	// TODO
 		'empty' => 'Brak wiadomości do wyświetlenia.',
 		'rss_of' => 'Kanał RSS: %s',
 		'title' => 'Kanał główny',

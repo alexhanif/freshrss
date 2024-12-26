@@ -26,6 +26,8 @@ return array(
 		'version' => 'バージョン',
 	),
 	'feed' => array(
+		'allAndArchived' => 'All feeds, also archived ones',	// TODO
+		'allAndCategories' => 'All feeds, also those shown in their category',	// TODO
 		'empty' => '表示できる記事がありません',
 		'rss_of' => '%s のRSSフィード',
 		'title' => 'メイン',

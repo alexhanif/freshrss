@@ -26,6 +26,8 @@ return array(
 		'version' => 'Verze',
 	),
 	'feed' => array(
+		'allAndArchived' => 'All feeds, also archived ones',	// TODO
+		'allAndCategories' => 'All feeds, also those shown in their category',	// TODO
 		'empty' => 'Nejsou žádné články k zobrazení.',
 		'rss_of' => 'Kanál RSS %s',
 		'title' => 'Hlavní kanál',

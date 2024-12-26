@@ -26,6 +26,8 @@ return array(
 		'version' => 'Version',	// IGNORE
 	),
 	'feed' => array(
+		'allAndArchived' => 'Tous les flux, y compris les archivés',
+		'allAndCategories' => 'Tous les flux, y compris ceux limités à leur catégorie',
 		'empty' => 'Il n’y a aucun article à afficher.',
 		'rss_of' => 'Flux RSS de %s',
 		'title' => 'Flux principal',

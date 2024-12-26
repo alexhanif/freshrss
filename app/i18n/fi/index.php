@@ -26,6 +26,8 @@ return array(
 		'version' => 'Versio',
 	),
 	'feed' => array(
+		'allAndArchived' => 'All feeds, also archived ones',	// TODO
+		'allAndCategories' => 'All feeds, also those shown in their category',	// TODO
 		'empty' => 'Näytettäviä artikkeleita ei ole.',
 		'rss_of' => 'Sivuston %s RSS-syöte',
 		'title' => 'Pääsyötevirta',

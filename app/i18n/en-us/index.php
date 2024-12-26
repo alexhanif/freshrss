@@ -26,6 +26,8 @@ return array(
 		'version' => 'Version',	// IGNORE
 	),
 	'feed' => array(
+		'allAndArchived' => 'All feeds, also archived ones',	// IGNORE
+		'allAndCategories' => 'All feeds, also those shown in their category',	// IGNORE
 		'empty' => 'There are no articles to show.',	// IGNORE
 		'rss_of' => 'RSS feed of %s',	// IGNORE
 		'title' => 'Main stream',	// IGNORE

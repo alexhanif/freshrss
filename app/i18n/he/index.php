@@ -26,6 +26,8 @@ return array(
 		'version' => 'גרסה',
 	),
 	'feed' => array(
+		'allAndArchived' => 'All feeds, also archived ones',	// TODO
+		'allAndCategories' => 'All feeds, also those shown in their category',	// TODO
 		'empty' => 'אין מאמר להצגה.',
 		'rss_of' => 'הזנת RSS של %s',
 		'title' => 'הזנה ראשית',

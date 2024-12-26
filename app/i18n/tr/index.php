@@ -26,6 +26,8 @@ return array(
 		'version' => 'Sürüm',
 	),
 	'feed' => array(
+		'allAndArchived' => 'All feeds, also archived ones',	// TODO
+		'allAndCategories' => 'All feeds, also those shown in their category',	// TODO
 		'empty' => 'Gösterilecek makale yok.',
 		'rss_of' => '%s kaynağına ait RSS akışı',
 		'title' => 'Ana akış',
