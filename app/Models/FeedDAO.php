@@ -575,7 +575,7 @@ SQL;
 		$list = [];
 
 		foreach ($listDAO as $dao) {
-			if (!isset($dao['name']) || !is_string($dao['name'])) {
+			if (!is_string($dao['name'] ?? null)) {
 				continue;
 			}
 			if ($catID === null) {

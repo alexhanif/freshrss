@@ -372,7 +372,7 @@ SQL;
 			}
 			$sql .= ' AND et.id_entry IN (' . str_repeat('?,', count($entries) - 1) . '?)';
 			foreach ($entries as $entry) {
-				$values[] = is_string($entry) ? $entry : $entry->id();
+				$values[] = is_object($entry) ? $entry->id() : $entry;
 			}
 		}
 		$stm = $this->pdo->prepare($sql);
