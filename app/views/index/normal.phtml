@@ -96,7 +96,7 @@ $today = @strtotime('today');
 				throw new Exception('Unexpected side effect!');	// Should never occur. Only for PHPStan
 			}
 		?><article class="flux_content" dir="auto">
-			<div class="content <?= FreshRSS_Context::userConf()->content_width ?>">
+			<div class="content content_<?= FreshRSS_Context::userConf()->content_width ?>">
 				<header>
 					<?php if (FreshRSS_Context::userConf()->show_feed_name === 't') { ?>
 						<div class="website"><a href="<?= _url('index', 'index', 'get', 'f_' . $this->feed->id()) ?>" title="<?= _t('gen.action.filter') ?>">

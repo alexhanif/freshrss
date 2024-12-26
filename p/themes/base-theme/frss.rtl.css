@@ -206,8 +206,8 @@ img.favicon {
 	vertical-align: middle;
 }
 
-.content.thin figure,
-.content.medium figure {
+.content_thin figure,
+.content_medium figure {
 	margin: 8px 0px;
 }
 
@@ -1551,15 +1551,15 @@ a.website:hover .favicon {
 	padding-bottom: calc(2 * var(--frss-padding-top-bottom));
 }
 
-.content.large {
+.content_large {
 	max-width: 1100px;
 }
 
-.content.medium {
+.content_medium {
 	max-width: 900px;
 }
 
-.content.thin {
+.content_thin {
 	max-width: 650px;
 }
 
@@ -2347,10 +2347,18 @@ html.slider-active {
 	padding: 1rem 0 2rem;
 }
 
-.reader .flux .content {
+.reader .flux .flux_content {
 	padding: 3rem 0;
 	background-color: var(--frss-background-color);
 	border: 1px solid var(--frss-border-color);
+}
+
+.reader .flux_content {
+	margin: auto;
+}
+
+.reader .content ~ footer {
+	padding: 0 3rem;
 }
 
 #loglist-wrapper {
