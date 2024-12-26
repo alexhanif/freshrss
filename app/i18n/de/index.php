@@ -26,8 +26,6 @@ return array(
 		'version' => 'Version',	// IGNORE
 	),
 	'feed' => array(
-		'allAndArchived' => 'All feeds, also archived ones',	// TODO
-		'allAndCategories' => 'All feeds, also those shown in their category',	// TODO
 		'empty' => 'Es gibt keinen Artikel zum Anzeigen.',
 		'rss_of' => 'RSS-Feed von %s',
 		'title' => 'Haupt-Feeds',

@@ -26,8 +26,6 @@ return array(
 		'version' => 'Версия',
 	),
 	'feed' => array(
-		'allAndArchived' => 'All feeds, also archived ones',	// TODO
-		'allAndCategories' => 'All feeds, also those shown in their category',	// TODO
 		'empty' => 'Нет статей для отображения.',
 		'rss_of' => 'RSS-лента %s',
 		'title' => 'Основной поток',

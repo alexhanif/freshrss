@@ -26,8 +26,6 @@ return array(
 		'version' => 'Versión',
 	),
 	'feed' => array(
-		'allAndArchived' => 'All feeds, also archived ones',	// TODO
-		'allAndCategories' => 'All feeds, also those shown in their category',	// TODO
 		'empty' => 'No hay artículos a mostrar.',
 		'rss_of' => 'Fuente RSS de %s',
 		'title' => 'Salida Principal',

@@ -26,8 +26,6 @@ return array(
 		'version' => 'Verzió',
 	),
 	'feed' => array(
-		'allAndArchived' => 'All feeds, also archived ones',	// TODO
-		'allAndCategories' => 'All feeds, also those shown in their category',	// TODO
 		'empty' => 'Nincs megjeleníthető cikk.',
 		'rss_of' => 'RSS hírforrás %s',
 		'title' => 'Minden cikk',

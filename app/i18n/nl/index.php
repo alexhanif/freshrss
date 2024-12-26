@@ -26,8 +26,6 @@ return array(
 		'version' => 'Versie',	// IGNORE
 	),
 	'feed' => array(
-		'allAndArchived' => 'All feeds, also archived ones',	// TODO
-		'allAndCategories' => 'All feeds, also those shown in their category',	// TODO
 		'empty' => 'Er is geen artikel om te laten zien.',
 		'rss_of' => 'RSS-feed van %s',
 		'title' => 'Overzicht',

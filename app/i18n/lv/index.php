@@ -26,8 +26,6 @@ return array(
 		'version' => 'Versija',
 	),
 	'feed' => array(
-		'allAndArchived' => 'All feeds, also archived ones',	// TODO
-		'allAndCategories' => 'All feeds, also those shown in their category',	// TODO
 		'empty' => 'Nav neviena raksta, ko parādīt.',
 		'rss_of' => 'RSS plūsma %s',
 		'title' => 'Galvenā plūsma',

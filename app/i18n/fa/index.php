@@ -26,8 +26,6 @@ return array(
 		'version' => ' نسخه',
 	),
 	'feed' => array(
-		'allAndArchived' => 'All feeds, also archived ones',	// TODO
-		'allAndCategories' => 'All feeds, also those shown in their category',	// TODO
 		'empty' => ' هیچ مقاله ای برای نمایش وجود ندارد.',
 		'rss_of' => ' فید RSS %s',
 		'title' => ' جریان اصلی',
