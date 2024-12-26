@@ -126,11 +126,12 @@ class FreshRSS_UserQuery {
 		$this->get = $get;
 		if ($this->get === '') {
 			$this->get_type = 'all';
-		} elseif (preg_match('/(?P<type>[acfistT])(_(?P<id>\d+))?/', $get, $matches)) {
+		} elseif (preg_match('/(?P<type>[aAcfistTZ])(_(?P<id>\d+))?/', $get, $matches)) {
 			$id = intval($matches['id'] ?? '0');
 			switch ($matches['type']) {
-				case 'a':
-				case 'A':
+				case 'a':	// All PRIORITY_MAIN_STREAM
+				case 'A':	// All except PRIORITY_ARCHIVED
+				case 'Z':	// All including PRIORITY_ARCHIVED
 					$this->get_type = 'all';
 					break;
 				case 'c':

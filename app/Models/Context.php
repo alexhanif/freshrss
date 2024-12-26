@@ -271,7 +271,7 @@ final class FreshRSS_Context {
 	 * Return the current get as a string or an array.
 	 *
 	 * If $array is true, the first item of the returned value is 'f' or 'c' or 't' and the second is the id.
-	 * @phpstan-return ($asArray is true ? array{'a'|'A'|'c'|'f'|'i'|'s'|'t'|'T',bool|int} : string)
+	 * @phpstan-return ($asArray is true ? array{'a'|'A'|'c'|'f'|'i'|'s'|'t'|'T'|'Z',bool|int} : string)
 	 * @return string|array{string,bool|int}
 	 */
 	public static function currentGet(bool $asArray = false): string|array {
@@ -386,14 +386,15 @@ final class FreshRSS_Context {
 		}
 
 		switch ($type) {
-			case 'a':
-			case 'A':
+			case 'a':	// All PRIORITY_MAIN_STREAM
+			case 'A':	// All except PRIORITY_ARCHIVED
+			case 'Z':	// All including PRIORITY_ARCHIVED
 				self::$current_get['all'] = true;
 				self::$name = _t('index.feed.title');
 				self::$description = FreshRSS_Context::systemConf()->meta_description;
 				self::$get_unread = self::$total_unread;
 				break;
-			case 'i':
+			case 'i':	// Priority important feeds
 				self::$current_get['important'] = true;
 				self::$name = _t('index.menu.important');
 				self::$description = FreshRSS_Context::systemConf()->meta_description;
