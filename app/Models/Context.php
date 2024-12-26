@@ -42,15 +42,15 @@ final class FreshRSS_Context {
 
 	public static string $next_get = 'a';
 	public static int $state = 0;
-	/**
-	 * @phpstan-var 'ASC'|'DESC'
-	 */
+	/** @var 'ASC'|'DESC' */
 	public static string $order = 'DESC';
+	/** @var 'id'|'date'|'link'|'title'|'rand' */
+	public static string $sort = 'id';
 	public static int $number = 0;
 	public static int $offset = 0;
 	public static FreshRSS_BooleanSearch $search;
 	public static string $first_id = '';
-	public static string $next_id = '';
+	public static string $last_id = '';
 	public static string $id_max = '';
 	public static int $sinceHours = 0;
 	public static bool $isCli = false;
@@ -239,6 +239,8 @@ final class FreshRSS_Context {
 		self::$search = new FreshRSS_BooleanSearch(Minz_Request::paramString('search'));
 		$order = Minz_Request::paramString('order') ?: FreshRSS_Context::userConf()->sort_order;
 		self::$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
+		$sort = Minz_Request::paramString('sort') ?: FreshRSS_Context::userConf()->sort;
+		self::$sort = in_array($sort, ['id', 'date', 'link', 'title', 'rand'], true) ? $sort : 'id';
 		self::$number = Minz_Request::paramInt('nb') ?: FreshRSS_Context::userConf()->posts_per_page;
 		if (self::$number > FreshRSS_Context::userConf()->max_posts_per_rss) {
 			self::$number = max(

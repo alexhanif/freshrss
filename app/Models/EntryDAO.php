@@ -27,6 +27,10 @@ class FreshRSS_EntryDAO extends Minz_ModelPdo {
 		return str_replace('INSERT INTO ', 'INSERT IGNORE INTO ', $sql);
 	}
 
+	public static function sqlRandom(): string {
+		return 'RAND()';
+	}
+
 	/** @return array{pattern?:string,matchType?:string} */
 	protected static function regexToSql(string $regex): array {
 		if (preg_match('#^/(?P<pattern>.*)/(?P<matchType>[im]*)$#', $regex, $matches)) {
@@ -1146,13 +1150,7 @@ SQL;
 			}
 		}
 
-		switch ($order) {
-			case 'DESC':
-			case 'ASC':
-				break;
-			default:
-				throw new FreshRSS_EntriesGetter_Exception('Bad order in Entry->listByType: [' . $order . ']!');
-		}
+		$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
 		if ($firstId !== '') {
 			$search .= 'AND ' . $alias . 'id ' . ($order === 'DESC' ? '<=' : '>=') . ' ? ';
 			$values[] = $firstId;
@@ -1177,12 +1175,13 @@ SQL;
 	 * @phpstan-param 'a'|'A'|'i'|'s'|'S'|'c'|'f'|'t'|'T'|'ST' $type
 	 * @param int $id category/feed/tag ID
 	 * @param 'ASC'|'DESC' $order
+	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
 	 * @return array{0:list<int|string>,1:string}
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
 	private function sqlListWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL,
 			string $order = 'DESC', int $limit = 1, int $offset = 0, string $firstId = '', ?FreshRSS_BooleanSearch $filters = null,
-			int $date_min = 0): array {
+			int $date_min = 0, string $sort = 'id'): array {
 		if (!$state) {
 			$state = FreshRSS_Entry::STATE_ALL;
 		}
@@ -1228,7 +1227,10 @@ SQL;
 				throw new FreshRSS_EntriesGetter_Exception('Bad type in Entry->listByType: [' . $type . ']!');
 		}
 
-		[$searchValues, $search] = $this->sqlListEntriesWhere('e.', $filters, $state, $order, $firstId, $date_min);
+		$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
+		$sort = in_array($sort, ['id', 'date', 'link', 'title', 'rand'], true) ? $sort : 'id';
+		$orderBy = ($sort === 'rand' ? static::sqlRandom() : 'e.' . $sort);
+		[$searchValues, $search] = $this->sqlListEntriesWhere('e.', $filters, $state, $order, $firstId, $date_min, $sort);
 
 		return [array_merge($values, $searchValues), 'SELECT '
 			. ($type === 'T' ? 'DISTINCT ' : '')
@@ -1237,7 +1239,7 @@ SQL;
 			. ($type === 't' || $type === 'T' ? 'INNER JOIN `_entrytag` et ON et.id_entry = e.id ' : '')
 			. 'WHERE ' . $where
 			. $search
-			. 'ORDER BY e.id ' . $order
+			. 'ORDER BY ' . $orderBy . ' ' . $order
 			. ($limit > 0 ? ' LIMIT ' . $limit : '')	// http://explainextended.com/2009/10/23/mysql-order-by-limit-performance-late-row-lookups/
 			. ($offset > 0 ? ' OFFSET ' . $offset : '')
 		];
@@ -1246,24 +1248,26 @@ SQL;
 	/**
 	 * @phpstan-param 'a'|'A'|'s'|'S'|'i'|'c'|'f'|'t'|'T'|'ST' $type
 	 * @param 'ASC'|'DESC' $order
+	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
 	 * @param int $id category/feed/tag ID
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
 	private function listWhereRaw(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL,
 			string $order = 'DESC', int $limit = 1, int $offset = 0, string $firstId = '', ?FreshRSS_BooleanSearch $filters = null,
-			int $date_min = 0): PDOStatement|false {
-		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $order, $limit, $offset, $firstId, $filters, $date_min);
+			int $date_min = 0, string $sort = 'id'): PDOStatement|false {
+		$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
+		$sort = in_array($sort, ['id', 'date', 'link', 'title', 'rand'], true) ? $sort : 'id';
 
-		if ($order !== 'DESC' && $order !== 'ASC') {
-			$order = 'DESC';
-		}
+		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $order, $limit, $offset, $firstId, $filters, $date_min, $sort);
+
+		$orderBy = ($sort === 'rand' ? static::sqlRandom() : 'e0.' . $sort);
 		$content = static::isCompressed() ? 'UNCOMPRESS(e0.content_bin) AS content' : 'e0.content';
 		$hash = static::sqlHexEncode('e0.hash');
 		$sql = <<<SQL
 SELECT e0.id, e0.guid, e0.title, e0.author, {$content}, e0.link, e0.date, {$hash} AS hash, e0.is_read, e0.is_favorite, e0.id_feed, e0.tags, e0.attributes
 FROM `_entry` e0
 INNER JOIN ({$sql}) e2 ON e2.id=e0.id
-ORDER BY e0.id {$order}
+ORDER BY {$orderBy} {$order}
 SQL;
 		$stm = $this->pdo->prepare($sql);
 		if ($stm !== false && $stm->execute($values)) {
@@ -1272,7 +1276,7 @@ SQL;
 			$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
 			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
-				return $this->listWhereRaw($type, $id, $state, $order, $limit, $offset, $firstId, $filters, $date_min);
+				return $this->listWhereRaw($type, $id, $state, $order, $limit, $offset, $firstId, $filters, $date_min, $sort);
 			}
 			Minz_Log::error('SQL error ' . __METHOD__ . json_encode($info));
 			return false;
@@ -1283,13 +1287,14 @@ SQL;
 	 * @phpstan-param 'a'|'A'|'s'|'S'|'i'|'c'|'f'|'t'|'T'|'ST' $type
 	 * @param int $id category/feed/tag ID
 	 * @param 'ASC'|'DESC' $order
+	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
 	 * @return Traversable<FreshRSS_Entry>
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
 	public function listWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL,
 			string $order = 'DESC', int $limit = 1, int $offset = 0, string $firstId = '',
-			?FreshRSS_BooleanSearch $filters = null, int $date_min = 0): Traversable {
-		$stm = $this->listWhereRaw($type, $id, $state, $order, $limit, $offset, $firstId, $filters, $date_min);
+			?FreshRSS_BooleanSearch $filters = null, int $date_min = 0, string $sort = 'id'): Traversable {
+		$stm = $this->listWhereRaw($type, $id, $state, $order, $limit, $offset, $firstId, $filters, $date_min, $sort);
 		if ($stm !== false) {
 			while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
 				if (is_array($row)) {
@@ -1304,9 +1309,10 @@ SQL;
 	/**
 	 * @param array<numeric-string> $ids
 	 * @param 'ASC'|'DESC' $order
+	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
 	 * @return Traversable<FreshRSS_Entry>
 	 */
-	public function listByIds(array $ids, string $order = 'DESC'): Traversable {
+	public function listByIds(array $ids, string $order = 'DESC', string $sort = 'id'): Traversable {
 		if (count($ids) < 1) {
 			return;
 		}
@@ -1314,15 +1320,15 @@ SQL;
 			// Split a query with too many variables parameters
 			$idsChunks = array_chunk($ids, FreshRSS_DatabaseDAO::MAX_VARIABLE_NUMBER);
 			foreach ($idsChunks as $idsChunk) {
-				foreach ($this->listByIds($idsChunk, $order) as $entry) {
+				foreach ($this->listByIds($idsChunk, $order, $sort) as $entry) {
 					yield $entry;
 				}
 			}
 			return;
 		}
-		if ($order !== 'DESC' && $order !== 'ASC') {
-			$order = 'DESC';
-		}
+		$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
+		$sort = in_array($sort, ['id', 'date', 'link', 'title', 'rand'], true) ? $sort : 'id';
+		$orderBy = ($sort === 'rand' ? static::sqlRandom() : $sort);
 		$content = static::isCompressed() ? 'UNCOMPRESS(content_bin) AS content' : 'content';
 		$hash = static::sqlHexEncode('hash');
 		$repeats = str_repeat('?,', count($ids) - 1) . '?';
@@ -1330,7 +1336,7 @@ SQL;
 SELECT id, guid, title, author, link, date, {$hash} AS hash, is_read, is_favorite, id_feed, tags, attributes, {$content}
 FROM `_entry`
 WHERE id IN ({$repeats})
-ORDER BY id {$order}
+ORDER BY {$orderBy} {$order}
 SQL;
 		$stm = $this->pdo->prepare($sql);
 		if ($stm === false || !$stm->execute($ids)) {
@@ -1349,13 +1355,14 @@ SQL;
 	 * @phpstan-param 'a'|'A'|'s'|'S'|'c'|'f'|'t'|'T'|'ST' $type
 	 * @param int $id category/feed/tag ID
 	 * @param 'ASC'|'DESC' $order
+	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
 	 * @return list<numeric-string>|null
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
 	public function listIdsWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL,
-		string $order = 'DESC', int $limit = 1, int $offset = 0, string $firstId = '', ?FreshRSS_BooleanSearch $filters = null): ?array {
-
-		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $order, $limit, $offset, $firstId, $filters);
+		string $order = 'DESC', int $limit = 1, int $offset = 0, string $firstId = '', ?FreshRSS_BooleanSearch $filters = null,
+		int $date_min = 0, string $sort = 'id'): ?array {
+		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $order, $limit, $offset, $firstId, $filters, $date_min, $sort);
 		$stm = $this->pdo->prepare($sql);
 		if ($stm !== false && $stm->execute($values) && ($res = $stm->fetchAll(PDO::FETCH_COLUMN, 0)) !== false) {
 			$res = array_map('strval', $res);

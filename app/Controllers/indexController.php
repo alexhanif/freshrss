@@ -84,10 +84,10 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 		};
 
 		$this->view->callbackBeforePagination = static function (?FreshRSS_View $view, int $nbEntries, FreshRSS_Entry $lastEntry) {
-			if ($nbEntries >= FreshRSS_Context::$number) {
+			if ($nbEntries > FreshRSS_Context::$number) {
 				//We have enough entries: we discard the last one to use it for the next articles' page
 				ob_clean();
-				FreshRSS_Context::$next_id = $lastEntry->id();
+				FreshRSS_Context::$last_id = $lastEntry->id();
 			}
 			ob_end_flush();
 		};
@@ -270,7 +270,7 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 		foreach ($entryDAO->listWhere(
 					$type, $id, FreshRSS_Context::$state, FreshRSS_Context::$order,
 					$postsPerPage ?? FreshRSS_Context::$number, FreshRSS_Context::$offset, FreshRSS_Context::$first_id,
-					FreshRSS_Context::$search, $date_min
+					FreshRSS_Context::$search, $date_min, FreshRSS_Context::$sort
 				) as $entry) {
 			yield $entry;
 		}

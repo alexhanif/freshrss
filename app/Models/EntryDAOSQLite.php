@@ -29,6 +29,11 @@ class FreshRSS_EntryDAOSQLite extends FreshRSS_EntryDAO {
 	}
 
 	#[\Override]
+	public static function sqlRandom(): string {
+		return 'RANDOM()';
+	}
+
+	#[\Override]
 	protected static function sqlRegex(string $expression, string $regex, array &$values): string {
 		$values[] = $regex;
 		return "{$expression} REGEXP ?";
