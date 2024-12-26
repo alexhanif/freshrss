@@ -277,7 +277,7 @@ final class FreshRSS_Context {
 	 * @return string|array{string,bool|int}
 	 */
 	public static function currentGet(bool $asArray = false): string|array {
-		if (self::$current_get['all'] || self::$current_get['a']) {
+		if (self::$current_get['all']) {
 			return $asArray ? ['a', true] : 'a';
 		} elseif (self::$current_get['A']) {
 			return $asArray ? ['A', true] : 'A';
@@ -315,7 +315,7 @@ final class FreshRSS_Context {
 	 * @return bool true if the current request targets all feeds (main view), false otherwise.
 	 */
 	public static function isAll(): bool {
-		return self::$current_get['all'] != false && self::$current_get['a'] != false;
+		return self::$current_get['all'] != false;
 	}
 
 	public static function isAllAndCategories(): bool {
