@@ -130,9 +130,13 @@ class FreshRSS_UserQuery {
 			$id = intval($matches['id'] ?? '0');
 			switch ($matches['type']) {
 				case 'a':	// All PRIORITY_MAIN_STREAM
-				case 'A':	// All except PRIORITY_ARCHIVED
-				case 'Z':	// All including PRIORITY_ARCHIVED
 					$this->get_type = 'all';
+					break;
+				case 'A':	// All except PRIORITY_ARCHIVED
+					$this->get_type = 'A';
+					break;
+				case 'Z':	// All including PRIORITY_ARCHIVED
+					$this->get_type = 'Z';
 					break;
 				case 'c':
 					$this->get_type = 'category';
