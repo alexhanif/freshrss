@@ -338,8 +338,8 @@ SQL;
 		$res = $this->fetchAssoc($sql, [':id' => self::DEFAULTCATEGORYID]) ?? [];
 		/** @var array<array{name:string,id:int,kind:int,lastUpdate?:int,error?:int|bool,attributes?:string}> $res */
 		$categories = self::daoToCategories($res);	// @phpstan-ignore varTag.type
-		if (isset($categories[self::DEFAULTCATEGORYID])) {
-			return $categories[self::DEFAULTCATEGORYID];
+		if (isset($categories[0])) {
+			return $categories[0];
 		} else {
 			if (FreshRSS_Context::$isCli) {
 				fwrite(STDERR, 'FreshRSS database error: Default category not found!' . "\n");
