@@ -271,7 +271,7 @@ final class FreshRSS_Context {
 	 * Return the current get as a string or an array.
 	 *
 	 * If $array is true, the first item of the returned value is 'f' or 'c' or 't' and the second is the id.
-	 * @phpstan-return ($asArray is true ? array{'a'|'c'|'f'|'i'|'s'|'t'|'T',bool|int} : string)
+	 * @phpstan-return ($asArray is true ? array{'a'|'A'|'c'|'f'|'i'|'s'|'t'|'T',bool|int} : string)
 	 * @return string|array{string,bool|int}
 	 */
 	public static function currentGet(bool $asArray = false): string|array {
