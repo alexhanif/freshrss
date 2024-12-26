@@ -126,7 +126,7 @@ class FreshRSS_Feed extends Minz_Model {
 	 * @deprecated
 	 */
 	public function entries(): ?array {
-		Minz_Log::warning(__method__ . ' is deprecated since FreshRSS 1.16.1!');
+		Minz_Log::warning(__METHOD__ . ' is deprecated since FreshRSS 1.16.1!');
 		$simplePie = $this->load(false, true);
 		return $simplePie == null ? [] : array_values(iterator_to_array($this->loadEntries($simplePie)));
 	}

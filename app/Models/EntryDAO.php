@@ -90,7 +90,7 @@ SQL;
 			$ok = $this->pdo->exec($sql) !== false;
 		} catch (Exception $e) {
 			$ok = false;
-			Minz_Log::error(__method__ . ' error: ' . $e->getMessage());
+			Minz_Log::error(__METHOD__ . ' error: ' . $e->getMessage());
 		}
 		return $ok;
 	}
@@ -99,7 +99,7 @@ SQL;
 		if ($this->pdo->inTransaction()) {
 			$this->pdo->commit();
 		}
-		Minz_Log::warning(__method__ . ': ' . $name);
+		Minz_Log::warning(__METHOD__ . ': ' . $name);
 		try {
 			if ($name === 'attributes') {	//v1.20.0
 				$sql = <<<'SQL'
@@ -109,7 +109,7 @@ SQL;
 				return $this->pdo->exec($sql) !== false;
 			}
 		} catch (Exception $e) {
-			Minz_Log::error(__method__ . ' error: ' . $e->getMessage());
+			Minz_Log::error(__METHOD__ . ' error: ' . $e->getMessage());
 		}
 		return false;
 	}
@@ -726,7 +726,7 @@ SQL;
 			if ($this->autoUpdateDb($info)) {
 				return $this->cleanOldEntries($id_feed, $options);
 			}
-			Minz_Log::error(__method__ . ' error:' . json_encode($info));
+			Minz_Log::error(__METHOD__ . ' error:' . json_encode($info));
 			return false;
 		}
 	}
@@ -756,7 +756,7 @@ SQL;
 			if ($this->autoUpdateDb($info)) {
 				yield from $this->selectAll();
 			} else {
-				Minz_Log::error(__method__ . ' error: ' . json_encode($info));
+				Minz_Log::error(__METHOD__ . ' error: ' . json_encode($info));
 			}
 		}
 	}

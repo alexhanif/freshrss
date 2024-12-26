@@ -19,7 +19,7 @@ class FreshRSS_CategoryDAO extends Minz_ModelPdo {
 		if ($this->pdo->inTransaction()) {
 			$this->pdo->commit();
 		}
-		Minz_Log::warning(__method__ . ': ' . $name);
+		Minz_Log::warning(__METHOD__ . ': ' . $name);
 		try {
 			if ($name === 'kind') {	//v1.20.0
 				return $this->pdo->exec('ALTER TABLE `_category` ADD COLUMN kind SMALLINT DEFAULT 0') !== false;
@@ -80,7 +80,7 @@ class FreshRSS_CategoryDAO extends Minz_ModelPdo {
 				return $ok;
 			}
 		} catch (Exception $e) {
-			Minz_Log::error(__method__ . ': ' . $e->getMessage());
+			Minz_Log::error(__METHOD__ . ': ' . $e->getMessage());
 		}
 		return false;
 	}
@@ -236,7 +236,7 @@ SQL;
 			if ($this->autoUpdateDb($info)) {
 				yield from $this->selectAll();
 			} else {
-				Minz_Log::error(__method__ . ' error: ' . json_encode($info));
+				Minz_Log::error(__METHOD__ . ' error: ' . json_encode($info));
 			}
 		}
 	}

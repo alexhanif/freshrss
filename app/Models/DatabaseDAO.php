@@ -32,7 +32,7 @@ class FreshRSS_DatabaseDAO extends Minz_ModelPdo {
 			$sql = sprintf($sql, empty($db['base']) ? '' : $db['base']);
 			return $this->pdo->exec($sql) === false ? 'Error during CREATE DATABASE' : '';
 		} catch (Exception $e) {
-			syslog(LOG_DEBUG, __method__ . ' notice: ' . $e->getMessage());
+			syslog(LOG_DEBUG, __METHOD__ . ' notice: ' . $e->getMessage());
 			return $e->getMessage();
 		}
 	}
@@ -47,7 +47,7 @@ class FreshRSS_DatabaseDAO extends Minz_ModelPdo {
 			$res = $stm->fetchAll(PDO::FETCH_COLUMN, 0);
 			return $res == false ? 'Error during SQL connection fetch test!' : '';
 		} catch (Exception $e) {
-			syslog(LOG_DEBUG, __method__ . ' warning: ' . $e->getMessage());
+			syslog(LOG_DEBUG, __METHOD__ . ' warning: ' . $e->getMessage());
 			return $e->getMessage();
 		}
 	}

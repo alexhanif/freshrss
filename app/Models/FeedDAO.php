@@ -7,13 +7,13 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 		if ($this->pdo->inTransaction()) {
 			$this->pdo->commit();
 		}
-		Minz_Log::warning(__method__ . ': ' . $name);
+		Minz_Log::warning(__METHOD__ . ': ' . $name);
 		try {
 			if ($name === 'kind') {	//v1.20.0
 				return $this->pdo->exec('ALTER TABLE `_feed` ADD COLUMN kind SMALLINT DEFAULT 0') !== false;
 			}
 		} catch (Exception $e) {
-			Minz_Log::error(__method__ . ' error: ' . $e->getMessage());
+			Minz_Log::error(__METHOD__ . ' error: ' . $e->getMessage());
 		}
 		return false;
 	}
@@ -313,7 +313,7 @@ SQL;
 			if ($this->autoUpdateDb($info)) {
 				yield from $this->selectAll();
 			} else {
-				Minz_Log::error(__method__ . ' error: ' . json_encode($info));
+				Minz_Log::error(__METHOD__ . ' error: ' . json_encode($info));
 			}
 		}
 	}
