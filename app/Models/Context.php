@@ -362,7 +362,7 @@ final class FreshRSS_Context {
 		$id = substr($get, 2);
 
 		return match ($type) {
-			'a' => self::$current_get['all'] || self::$current_get['a'],
+			'a' => self::$current_get['all'],
 			'A' => self::$current_get['A'],
 			'i' => self::$current_get['important'],
 			's' => self::$current_get['starred'],
