@@ -387,6 +387,7 @@ final class FreshRSS_Context {
 
 		switch ($type) {
 			case 'a':
+			case 'A':
 				self::$current_get['all'] = true;
 				self::$name = _t('index.feed.title');
 				self::$description = FreshRSS_Context::systemConf()->meta_description;

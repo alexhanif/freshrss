@@ -1189,7 +1189,7 @@ SQL;
 				$where .= 'f.priority >= ' . FreshRSS_Feed::PRIORITY_MAIN_STREAM . ' ';
 				break;
 			case 'A':	//All except PRIORITY_ARCHIVED
-				$where .= 'f.priority > ' . FreshRSS_Feed::PRIORITY_ARCHIVED . ' ';
+				$where .= 'f.priority >= ' . FreshRSS_Feed::PRIORITY_CATEGORY . ' ';
 				break;
 			case 'i':	//Priority important feeds
 				$where .= 'f.priority >= ' . FreshRSS_Feed::PRIORITY_IMPORTANT . ' ';

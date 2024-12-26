@@ -130,6 +130,7 @@ class FreshRSS_UserQuery {
 			$id = intval($matches['id'] ?? '0');
 			switch ($matches['type']) {
 				case 'a':
+				case 'A':
 					$this->get_type = 'all';
 					break;
 				case 'c':

@@ -206,6 +206,7 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 
 		switch ($type) {
 			case 'a':
+			case 'A':
 				$this->view->categories = FreshRSS_Context::categories();
 				break;
 			case 'c':
