@@ -138,7 +138,7 @@ return array(
 			'tags' => '按标签显示',
 			'type' => '类型',
 		),
-		'get_A' => 'Show all feeds, also those showed in their category',	// TODO
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
 		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => '显示所有文章',
 		'get_all_labels' => '显示所有打了标签的文章',

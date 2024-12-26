@@ -138,7 +138,7 @@ return array(
 			'tags' => 'Rādīt pēc birkas',
 			'type' => 'Veids',
 		),
-		'get_A' => 'Show all feeds, also those showed in their category',	// TODO
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
 		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'Rādīt visus rakstus',
 		'get_all_labels' => 'Display articles with any label',	// TODO

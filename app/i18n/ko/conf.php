@@ -138,7 +138,7 @@ return array(
 			'tags' => '태그별로 표시',
 			'type' => '유형',
 		),
-		'get_A' => 'Show all feeds, also those showed in their category',	// TODO
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
 		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => '모든 글 표시',
 		'get_all_labels' => '라벨이 있는 글 표시',
