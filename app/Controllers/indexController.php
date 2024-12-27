@@ -207,7 +207,9 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 		$this->view->excludeMutedFeeds = $type !== 'f';	// Exclude muted feeds except when we focus on a feed
 
 		switch ($type) {
-			case 'a':
+			case 'a':	// All PRIORITY_MAIN_STREAM
+			case 'A':	// All except PRIORITY_ARCHIVED
+			case 'Z':	// All including PRIORITY_ARCHIVED
 				$this->view->categories = FreshRSS_Context::categories();
 				break;
 			case 'c':

@@ -138,6 +138,8 @@ return array(
 			'tags' => 'Tampilkan berdasarkan label',
 			'type' => 'Tipe',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'Tampilkan semua artikel',
 		'get_all_labels' => 'Tampilkan artikel dengan setiap label',
 		'get_category' => 'Tampilkan kategori "%s"',

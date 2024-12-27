@@ -138,6 +138,8 @@ return array(
 			'tags' => 'Tag',
 			'type' => 'Tipo',
 		),
+		'get_A' => 'Mostra tutti i feed, anche quelli mostrati nella loro categoria',
+		'get_Z' => 'Mostra tutti i feed, anche quelli archiviati',
 		'get_all' => 'Mostra tutti gli articoli',
 		'get_all_labels' => 'Mostra gli articoli con qualsiasi etichetta',
 		'get_category' => 'Mostra la categoria “%s” ',

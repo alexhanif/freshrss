@@ -20,7 +20,7 @@ final class FreshRSS_Context {
 	public static int $total_unread = 0;
 	public static int $total_important_unread = 0;
 
-	/** @var array{'all':int,'read':int,'unread':int} */
+	/** @var array{all:int,read:int,unread:int} */
 	public static array $total_starred = [
 		'all' => 0,
 		'read' => 0,
@@ -29,15 +29,17 @@ final class FreshRSS_Context {
 
 	public static int $get_unread = 0;
 
-	/** @var array{'all':bool,'starred':bool,'important':bool,'feed':int|false,'category':int|false,'tag':int|false,'tags':bool} */
+	/** @var array{all:bool,A:bool,starred:bool,important:bool,feed:int|false,category:int|false,tag:int|false,tags:bool,Z:bool} */
 	public static array $current_get = [
 		'all' => false,
+		'A' => false,
 		'starred' => false,
 		'important' => false,
 		'feed' => false,
 		'category' => false,
 		'tag' => false,
 		'tags' => false,
+		'Z' => false,
 	];
 
 	public static string $next_get = 'a';
@@ -271,12 +273,14 @@ final class FreshRSS_Context {
 	 * Return the current get as a string or an array.
 	 *
 	 * If $array is true, the first item of the returned value is 'f' or 'c' or 't' and the second is the id.
-	 * @phpstan-return ($asArray is true ? array{'a'|'c'|'f'|'i'|'s'|'t'|'T',bool|int} : string)
+	 * @phpstan-return ($asArray is true ? array{'a'|'A'|'c'|'f'|'i'|'s'|'t'|'T'|'Z',bool|int} : string)
 	 * @return string|array{string,bool|int}
 	 */
 	public static function currentGet(bool $asArray = false): string|array {
 		if (self::$current_get['all']) {
 			return $asArray ? ['a', true] : 'a';
+		} elseif (self::$current_get['A']) {
+			return $asArray ? ['A', true] : 'A';
 		} elseif (self::$current_get['important']) {
 			return $asArray ? ['i', true] : 'i';
 		} elseif (self::$current_get['starred']) {
@@ -301,6 +305,8 @@ final class FreshRSS_Context {
 			}
 		} elseif (self::$current_get['tags']) {
 			return $asArray ? ['T', true] : 'T';
+		} elseif (self::$current_get['Z']) {
+			return $asArray ? ['Z', true] : 'Z';
 		}
 		return '';
 	}
@@ -310,6 +316,14 @@ final class FreshRSS_Context {
 	 */
 	public static function isAll(): bool {
 		return self::$current_get['all'] != false;
+	}
+
+	public static function isAllAndCategories(): bool {
+		return self::$current_get['A'] != false;
+	}
+
+	public static function isAllAndArchived(): bool {
+		return self::$current_get['Z'] != false;
 	}
 
 	/**
@@ -349,12 +363,14 @@ final class FreshRSS_Context {
 
 		return match ($type) {
 			'a' => self::$current_get['all'],
+			'A' => self::$current_get['A'],
 			'i' => self::$current_get['important'],
 			's' => self::$current_get['starred'],
 			'f' => self::$current_get['feed'] == $id,
 			'c' => self::$current_get['category'] == $id,
 			't' => self::$current_get['tag'] == $id,
 			'T' => self::$current_get['tags'] || self::$current_get['tag'],
+			'Z' => self::$current_get['Z'],
 			default => false,
 		};
 	}
@@ -386,13 +402,23 @@ final class FreshRSS_Context {
 		}
 
 		switch ($type) {
-			case 'a':
+			case 'a':	// All PRIORITY_MAIN_STREAM
 				self::$current_get['all'] = true;
+				self::$description = FreshRSS_Context::systemConf()->meta_description;
+				self::$get_unread = self::$total_unread;
+				break;
+			case 'A':	// All except PRIORITY_ARCHIVED
+				self::$current_get['A'] = true;
+				self::$description = FreshRSS_Context::systemConf()->meta_description;
+				self::$get_unread = self::$total_unread;
+				break;
+			case 'Z':	// All including PRIORITY_ARCHIVED
+				self::$current_get['Z'] = true;
 				self::$name = _t('index.feed.title');
 				self::$description = FreshRSS_Context::systemConf()->meta_description;
 				self::$get_unread = self::$total_unread;
 				break;
-			case 'i':
+			case 'i':	// Priority important feeds
 				self::$current_get['important'] = true;
 				self::$name = _t('index.menu.important');
 				self::$description = FreshRSS_Context::systemConf()->meta_description;

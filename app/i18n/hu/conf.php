@@ -138,6 +138,8 @@ return array(
 			'tags' => 'Rendezés címke szerint',
 			'type' => 'Típus',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'Minden cikk megjelenítése',
 		'get_all_labels' => 'Cikkek megjelenítése bármilyen címkével',
 		'get_category' => '„%s” kategória megjelenítése',

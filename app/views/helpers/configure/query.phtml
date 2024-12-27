@@ -121,6 +121,8 @@
 				<label class="group-name" for="query_get"><?= _t('conf.query.filter.type') ?></label>
 				<div class="group-controls">
 					<select name="query[get]" class="w100" id="query_get" size="10">
+						<option value="Z" <?= 'Z' === $this->query->getGet() ? 'selected="selected"' : '' ?>><?= _t('conf.query.get_Z') ?></option>
+						<option value="A" <?= 'A' === $this->query->getGet() ? 'selected="selected"' : '' ?>><?= _t('conf.query.get_A') ?></option>
 						<option value="a" <?= in_array($this->query->getGet(), ['', 'a'], true) ? 'selected="selected"' : '' ?>><?= _t('index.feed.title') ?></option>
 						<option value="i" <?= 'i' === $this->query->getGet() ? 'selected="selected"' : '' ?>><?= _t('index.menu.important') ?></option>
 						<option value="s" <?= 's' === $this->query->getGet() ? 'selected="selected"' : '' ?>><?= _t('index.feed.title_fav') ?></option>

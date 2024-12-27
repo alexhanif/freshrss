@@ -138,6 +138,8 @@ return array(
 			'tags' => 'Etikete göre göster',
 			'type' => 'Tür',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'Tüm makaleleri göster',
 		'get_all_labels' => 'Herhangi etikete sahip makaleleri göster ',
 		'get_category' => '“%s” kategorisini göster',
