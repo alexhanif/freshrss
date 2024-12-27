@@ -1875,6 +1875,7 @@ function load_more_posts() {
 	req.responseType = 'document';
 	req.onload = function (e) {
 		if (context.sort === 'rand') {
+			document.scrollingElement.scrollTop = 0;
 			remove_existing_posts();
 		}
 
