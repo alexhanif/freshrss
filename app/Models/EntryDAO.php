@@ -1113,7 +1113,6 @@ SQL;
 	/**
 	 * @param 'ASC'|'DESC' $order
 	 * @return array{0:list<int|string>,1:string}
-	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
 	protected function sqlListEntriesWhere(string $alias = '', ?FreshRSS_BooleanSearch $filters = null,
 			int $state = FreshRSS_Entry::STATE_ALL,
@@ -1233,7 +1232,7 @@ SQL;
 		$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
 		$sort = in_array($sort, ['id', 'date', 'link', 'title', 'rand'], true) ? $sort : 'id';
 		$orderBy = ($sort === 'rand' ? static::sqlRandom() : 'e.' . $sort);
-		[$searchValues, $search] = $this->sqlListEntriesWhere('e.', $filters, $state, $order, $firstId, $date_min, $sort);
+		[$searchValues, $search] = $this->sqlListEntriesWhere('e.', $filters, $state, $order, $firstId, $date_min);
 
 		return [array_merge($values, $searchValues), 'SELECT '
 			. ($type === 'T' ? 'DISTINCT ' : '')
