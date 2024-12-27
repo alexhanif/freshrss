@@ -471,7 +471,11 @@ final class FreshRSS_Context {
 					}
 				}
 				if ($tag === null) {
-					throw new FreshRSS_Context_Exception('Invalid tag: ' . $id);
+					$tagDAO = FreshRSS_Factory::createTagDao();
+					$tag = $tagDAO->searchById($id);
+					if ($tag === null) {
+						throw new FreshRSS_Context_Exception('Invalid tag: ' . $id);
+					}
 				}
 				self::$name = $tag->name();
 				self::$get_unread = $tag->nbUnread();
