@@ -138,6 +138,8 @@ return array(
 			'tags' => 'Display by label',	// IGNORE
 			'type' => 'Type',	// IGNORE
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// IGNORE
+		'get_Z' => 'Show all feeds, also archived ones',	// IGNORE
 		'get_all' => 'Display all articles',	// IGNORE
 		'get_all_labels' => 'Display articles with any label',	// IGNORE
 		'get_category' => 'Display “%s” category',	// IGNORE

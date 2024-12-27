@@ -138,6 +138,8 @@ return array(
 			'tags' => 'Według tagu',
 			'type' => 'Rodzaj',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'Wyświetlenie wszystkich wiadomości',
 		'get_all_labels' => 'Wyświetl wiadomości z dowolnymi etykietami',
 		'get_category' => 'Wyświetlenie kategorii “%s”',

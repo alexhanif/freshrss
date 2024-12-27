@@ -138,6 +138,8 @@ return array(
 			'tags' => ' نمایش بر اساس برچسب',
 			'type' => ' نوع',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => ' نمایش همه مقالات',
 		'get_all_labels' => 'Display articles with any label',	// TODO
 		'get_category' => ' دسته «%s» را نمایش دهید',

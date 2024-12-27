@@ -138,6 +138,8 @@ return array(
 			'tags' => 'Weergeven op label',
 			'type' => 'Type',	// IGNORE
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'Toon alle artikelen',
 		'get_all_labels' => 'Artikelen met elk label tonen',
 		'get_category' => 'Toon „%s” categorie',
