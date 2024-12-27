@@ -8,9 +8,9 @@ if (!Minz_Request::paramBoolean('ajax')) {
 
 call_user_func($this->callbackBeforeEntries, $this);
 
-$display_today = true;
-$display_yesterday = true;
-$display_others = true;
+$display_today = FreshRSS_Context::$sort === 'id';
+$display_yesterday = $display_today;
+$display_others = $display_today;
 $useKeepUnreadImportant = !FreshRSS_Context::isImportant() && !FreshRSS_Context::isFeed();
 
 $today = @strtotime('today');
