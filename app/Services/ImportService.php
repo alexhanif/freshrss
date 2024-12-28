@@ -149,7 +149,7 @@ class FreshRSS_Import_Service {
 		try {
 			// Create a Feed object and add it in DB
 			$feed = new FreshRSS_Feed($url);
-			$category->addFeed($feed);
+			$feed->_category($category);
 			$feed->_name($name);
 			$feed->_website($website);
 			$feed->_description($description);
@@ -319,6 +319,7 @@ class FreshRSS_Import_Service {
 					$this->lastStatus = false;
 				} else {
 					$feed->_id($id);
+					$category->addFeed($feed);
 					return $feed;
 				}
 			}

@@ -134,7 +134,7 @@ switch ($type) {
 			Minz_Error::error(404, "Category {$id} not found!");
 			die();
 		}
-		$view->categories = [ $cat ];
+		$view->categories = [$cat->id() => $cat];
 		break;
 	case 'f':	// Feed
 		$feed = FreshRSS_Category::findFeed(FreshRSS_Context::categories(), $id);

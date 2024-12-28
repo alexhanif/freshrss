@@ -218,7 +218,7 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 					Minz_Error::error(404);
 					return;
 				}
-				$this->view->categories = [ $cat ];
+				$this->view->categories = [$cat->id() => $cat];
 				break;
 			case 'f':
 				// We most likely already have the feed object in cache
@@ -231,7 +231,7 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 						return;
 					}
 				}
-				$this->view->feeds = [ $feed ];
+				$this->view->feeds = [$feed->id() => $feed];
 				break;
 			case 's':
 			case 't':

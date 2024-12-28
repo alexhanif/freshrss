@@ -19,7 +19,7 @@ class FreshRSS_Category extends Minz_Model {
 	private string $name;
 	private int $nbFeeds = -1;
 	private int $nbNotRead = -1;
-	/** @var list<FreshRSS_Feed>|null */
+	/** @var array<int,FreshRSS_Feed>|null where the key is the feed ID */
 	private ?array $feeds = null;
 	/** @var bool|int */
 	private $hasFeedsWithError = false;
@@ -100,7 +100,7 @@ class FreshRSS_Category extends Minz_Model {
 	}
 
 	/**
-	 * @return list<FreshRSS_Feed>
+	 * @return array<int,FreshRSS_Feed> where the key is the feed ID
 	 * @throws Minz_ConfigurationNamespaceException
 	 * @throws Minz_PDOConnectionException
 	 */
@@ -157,9 +157,11 @@ class FreshRSS_Category extends Minz_Model {
 		if ($this->feeds === null) {
 			$this->feeds = [];
 		}
-		$feed->_category($this);
-		$this->feeds[] = $feed;
-		$this->sortFeeds();
+		if ($feed->id() !== 0) {
+			$feed->_category($this);
+			$this->feeds[$feed->id()] = $feed;
+			$this->sortFeeds();
+		}
 	}
 
 	/**
@@ -243,7 +245,7 @@ class FreshRSS_Category extends Minz_Model {
 		if ($this->feeds === null) {
 			return;
 		}
-		usort($this->feeds, static fn(FreshRSS_Feed $a, FreshRSS_Feed $b) => strnatcasecmp($a->name(), $b->name()));
+		uasort($this->feeds, static fn(FreshRSS_Feed $a, FreshRSS_Feed $b) => strnatcasecmp($a->name(), $b->name()));
 	}
 
 	/**
@@ -265,13 +267,13 @@ class FreshRSS_Category extends Minz_Model {
 	/**
 	 * Access cached feeds
 	 * @param array<FreshRSS_Category> $categories
-	 * @return list<FreshRSS_Feed>
+	 * @return array<int,FreshRSS_Feed> where the key is the feed ID
 	 */
 	public static function findFeeds(array $categories): array {
 		$result = [];
 		foreach ($categories as $category) {
 			foreach ($category->feeds() as $feed) {
-				$result[] = $feed;
+				$result[$feed->id()] = $feed;
 			}
 		}
 		return $result;

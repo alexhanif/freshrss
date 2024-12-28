@@ -7,13 +7,9 @@ declare(strict_types=1);
  */
 final class FreshRSS_Context {
 
-	/**
-	 * @var list<FreshRSS_Category>
-	 */
+	/** @var array<int,FreshRSS_Category> where the key is the category ID */
 	private static array $categories = [];
-	/**
-	 * @var list<FreshRSS_Tag>
-	 */
+	/** @var array<int,FreshRSS_Tag> where the key is the label ID */
 	private static array $tags = [];
 	public static string $name = '';
 	public static string $description = '';
@@ -176,7 +172,7 @@ final class FreshRSS_Context {
 		FreshRSS_Context::$user_conf = null;
 	}
 
-	/** @return list<FreshRSS_Category> */
+	/** @return array<int,FreshRSS_Category> where the key is the category ID */
 	public static function categories(): array {
 		if (empty(self::$categories)) {
 			$catDAO = FreshRSS_Factory::createCategoryDao();
@@ -185,12 +181,12 @@ final class FreshRSS_Context {
 		return self::$categories;
 	}
 
-	/** @return list<FreshRSS_Feed> */
+	/** @return array<int,FreshRSS_Feed> where the key is the feed ID */
 	public static function feeds(): array {
 		return FreshRSS_Category::findFeeds(self::categories());
 	}
 
-	/** @return list<FreshRSS_Tag> */
+	/** @return array<int,FreshRSS_Tag> where the key is the label ID */
 	public static function labels(bool $precounts = false): array {
 		if (empty(self::$tags) || $precounts) {
 			$tagDAO = FreshRSS_Factory::createTagDao();

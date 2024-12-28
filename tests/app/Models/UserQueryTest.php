@@ -23,12 +23,13 @@ class UserQueryTest extends TestCase {
 		$category_name = 'some category name';
 		/** @var FreshRSS_Category&PHPUnit\Framework\MockObject\MockObject */
 		$cat = $this->createMock(FreshRSS_Category::class);
+		$cat->method('id')->withAnyParameters()->willReturn(1);
 		$cat->expects(self::atLeastOnce())
 			->method('name')
 			->withAnyParameters()
 			->willReturn($category_name);
 		$query = ['get' => 'c_1'];
-		$user_query = new FreshRSS_UserQuery($query, [1 => $cat], []);
+		$user_query = new FreshRSS_UserQuery($query, [$cat], []);
 		self::assertSame($category_name, $user_query->getGetName());
 		self::assertSame('category', $user_query->getGetType());
 	}
@@ -47,12 +48,13 @@ class UserQueryTest extends TestCase {
 			->willReturn($feed_name);
 		/** @var FreshRSS_Category&PHPUnit\Framework\MockObject\MockObject */
 		$cat = $this->createMock(FreshRSS_Category::class);
+		$cat->method('id')->withAnyParameters()->willReturn(1);
 		$cat->expects(self::atLeastOnce())
 			->method('feeds')
 			->withAnyParameters()
 			->willReturn([1 => $feed]);
 		$query = ['get' => 'f_1'];
-		$user_query = new FreshRSS_UserQuery($query, [1 => $cat], []);
+		$user_query = new FreshRSS_UserQuery($query, [$cat], []);
 		self::assertSame($feed_name, $user_query->getGetName());
 		self::assertSame('feed', $user_query->getGetType());
 	}
@@ -143,12 +145,13 @@ class UserQueryTest extends TestCase {
 	public function testIsDeprecated_whenCategoryExists_returnFalse(): void {
 		/** @var FreshRSS_Category&PHPUnit\Framework\MockObject\MockObject */
 		$cat = $this->createMock(FreshRSS_Category::class);
+		$cat->method('id')->withAnyParameters()->willReturn(1);
 		$cat->expects(self::atLeastOnce())
 			->method('name')
 			->withAnyParameters()
 			->willReturn('cat 1');
 		$query = ['get' => 'c_1'];
-		$user_query = new FreshRSS_UserQuery($query, [1 => $cat], []);
+		$user_query = new FreshRSS_UserQuery($query, [$cat], []);
 		self::assertFalse($user_query->isDeprecated());
 	}
 
@@ -171,24 +174,26 @@ class UserQueryTest extends TestCase {
 			->willReturn('feed 1');
 		/** @var FreshRSS_Category&PHPUnit\Framework\MockObject\MockObject */
 		$cat = $this->createMock(FreshRSS_Category::class);
+		$cat->method('id')->withAnyParameters()->willReturn(1);
 		$cat->expects(self::atLeastOnce())
 			->method('feeds')
 			->withAnyParameters()
 			->willReturn([1 => $feed]);
 		$query = ['get' => 'f_1'];
-		$user_query = new FreshRSS_UserQuery($query, [1 => $cat], []);
+		$user_query = new FreshRSS_UserQuery($query, [$cat], []);
 		self::assertFalse($user_query->isDeprecated());
 	}
 
 	public function testIsDeprecated_whenFeedDoesNotExist_returnTrue(): void {
 		/** @var FreshRSS_Category&PHPUnit\Framework\MockObject\MockObject */
 		$cat = $this->createMock(FreshRSS_Category::class);
+		$cat->method('id')->withAnyParameters()->willReturn(1);
 		$cat->expects(self::atLeastOnce())
 			->method('feeds')
 			->withAnyParameters()
 			->willReturn([]);
 		$query = ['get' => 'f_1'];
-		$user_query = new FreshRSS_UserQuery($query, [1 => $cat], []);
+		$user_query = new FreshRSS_UserQuery($query, [$cat], []);
 		self::assertTrue($user_query->isDeprecated());
 	}
 

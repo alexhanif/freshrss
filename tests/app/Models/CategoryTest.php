@@ -33,6 +33,7 @@ class CategoryTest extends PHPUnit\Framework\TestCase {
 		$feed_1 = $this->getMockBuilder(FreshRSS_Feed::class)
 			->disableOriginalConstructor()
 			->getMock();
+		$feed_1->method('id')->withAnyParameters()->willReturn(1);
 		$feed_1->expects(self::any())
 			->method('name')
 			->willReturn('AAA');
@@ -40,6 +41,7 @@ class CategoryTest extends PHPUnit\Framework\TestCase {
 		$feed_2 = $this->getMockBuilder(FreshRSS_Feed::class)
 			->disableOriginalConstructor()
 			->getMock();
+		$feed_2->method('id')->withAnyParameters()->willReturn(2);
 		$feed_2->expects(self::any())
 			->method('name')
 			->willReturn('ZZZ');
@@ -47,6 +49,7 @@ class CategoryTest extends PHPUnit\Framework\TestCase {
 		$feed_3 = $this->getMockBuilder(FreshRSS_Feed::class)
 			->disableOriginalConstructor()
 			->getMock();
+		$feed_3->method('id')->withAnyParameters()->willReturn(3);
 		$feed_3->expects(self::any())
 			->method('name')
 			->willReturn('lll');
@@ -70,9 +73,11 @@ class CategoryTest extends PHPUnit\Framework\TestCase {
 		$feed_4 = $this->getMockBuilder(FreshRSS_Feed::class)
 			->disableOriginalConstructor()
 			->getMock();
+		$feed_4->method('id')->withAnyParameters()->willReturn(4);
 		$feed_4->expects(self::any())
 			->method('name')
 			->willReturn('BBB');
+		$feed_4->method('id')->withAnyParameters()->willReturn(5);
 
 		$category->addFeed($feed_4);
 		$feeds = $category->feeds();

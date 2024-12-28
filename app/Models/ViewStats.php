@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 final class FreshRSS_ViewStats extends FreshRSS_View {
 
-	/** @var list<FreshRSS_Category> */
+	/** @var array<int,FreshRSS_Category> where the key is the category ID */
 	public array $categories;
 	public ?FreshRSS_Feed $feed = null;
-	/** @var list<FreshRSS_Feed> */
+	/** @var array<int,FreshRSS_Feed> where the key is the feed ID */
 	public array $feeds;
 	public bool $displaySlider = false;
 
