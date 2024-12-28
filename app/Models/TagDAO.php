@@ -182,7 +182,7 @@ SQL;
 		return $res === null ? null : (current(self::daoToTags($res)) ?: null);
 	}
 
-	/** @return list<FreshRSS_Tag>|false */
+	/** @return array<int,FreshRSS_Tag>|false where the key is the label ID */
 	public function listTags(bool $precounts = false): array|false {
 		if ($precounts) {
 			$sql = <<<'SQL'
@@ -408,7 +408,7 @@ SQL;
 
 	/**
 	 * @param iterable<array{id:int,name:string,attributes?:string}> $listDAO
-	 * @return list<FreshRSS_Tag>
+	 * @return array<int,FreshRSS_Tag> where the key is the label ID
 	 */
 	private static function daoToTags(iterable $listDAO): array {
 		$list = [];
@@ -424,7 +424,7 @@ SQL;
 			if (isset($dao['unreads'])) {
 				$tag->_nbUnread($dao['unreads']);
 			}
-			$list[] = $tag;
+			$list[$tag->id()] = $tag;
 		}
 		return $list;
 	}

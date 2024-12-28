@@ -10,7 +10,7 @@ class FreshRSS_View extends Minz_View {
 	public $callbackBeforeFeeds;
 	/** @var callable */
 	public $callbackBeforePagination;
-	/** @var list<FreshRSS_Category> */
+	/** @var array<int,FreshRSS_Category> where the key is the category ID */
 	public array $categories;
 	public ?FreshRSS_Category $category = null;
 	public ?FreshRSS_Tag $tag = null;
@@ -19,10 +19,10 @@ class FreshRSS_View extends Minz_View {
 	public $entries;
 	public ?FreshRSS_Entry $entry = null;
 	public ?FreshRSS_Feed $feed = null;
-	/** @var list<FreshRSS_Feed> */
+	/** @var array<int,FreshRSS_Feed> where the key is the feed ID */
 	public array $feeds;
 	public int $nbUnreadTags;
-	/** @var list<FreshRSS_Tag> */
+	/** @var array<int,FreshRSS_Tag> where the key is the label ID */
 	public array $tags;
 	/** @var array<int,array{id:int,name:string,checked:bool}> */
 	public array $tagsForEntry;
@@ -70,7 +70,7 @@ class FreshRSS_View extends Minz_View {
 	public array $list_keys;
 
 	// User queries
-	/** @var array<int,FreshRSS_UserQuery> */
+	/** @var array<int,FreshRSS_UserQuery> where the key is the query ID */
 	public array $queries;
 	/**  @var FreshRSS_UserQuery|null */
 	public ?FreshRSS_UserQuery $query = null;
