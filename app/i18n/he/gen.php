@@ -14,7 +14,6 @@ return array(
 	'action' => array(
 		'actualize' => 'מימוש',
 		'add' => 'Add',	// TODO
-		'back' => '← Go back',	// TODO
 		'back_to_rss_feeds' => '← חזרה להזנות הRSS שלך',
 		'cancel' => 'ביטול',
 		'create' => 'יצירה',
