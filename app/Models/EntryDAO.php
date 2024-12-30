@@ -1151,7 +1151,7 @@ SQL;
 
 		$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
 		if ($id_max !== '') {
-			$search .= 'AND ' . $alias . 'id <= ?';
+			$search .= 'AND ' . $alias . 'id <= ? ';
 			$values[] = $id_max;
 		}
 		if ($date_min > 0) {
