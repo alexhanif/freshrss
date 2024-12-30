@@ -504,9 +504,9 @@ final class FeverAPI
 		Minz_ExtensionManager::init();
 
 		foreach ($entries as $item) {
-			/** @var FreshRSS_Entry $entry */
+			/** @var FreshRSS_Entry|null $entry */
 			$entry = Minz_ExtensionManager::callHook('entry_before_display', $item);
-			if ($entry == null) {
+			if ($entry === null) {
 				continue;
 			}
 			$items[] = [

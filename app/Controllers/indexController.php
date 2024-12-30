@@ -62,7 +62,9 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 		}
 		FreshRSS_View::prependTitle($title . ' · ');
 
-		FreshRSS_Context::$id_max = time() . '000000';
+		if (FreshRSS_Context::$id_max === '') {
+			FreshRSS_Context::$id_max = time() . '000000';
+		}
 
 		$this->view->callbackBeforeFeeds = static function (FreshRSS_View $view) {
 			$view->tags = FreshRSS_Context::labels(true);
@@ -271,7 +273,7 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 
 		foreach ($entryDAO->listWhere(
 					$type, $id, FreshRSS_Context::$state, FreshRSS_Context::$order,
-					$postsPerPage ?? FreshRSS_Context::$number, FreshRSS_Context::$offset, FreshRSS_Context::$first_id,
+					$postsPerPage ?? FreshRSS_Context::$number, FreshRSS_Context::$offset, FreshRSS_Context::$id_max,
 					FreshRSS_Context::$search, $date_min, FreshRSS_Context::$sort
 				) as $entry) {
 			yield $entry;

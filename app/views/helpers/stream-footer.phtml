@@ -3,9 +3,9 @@
 	/** @var FreshRSS_View $this */
 	$url_next = Minz_Request::currentRequest();
 	if (FreshRSS_Context::$last_id !== '') {
-		// $url_next['params']['next'] = FreshRSS_Context::$last_id;
 		$url_next['params']['offset'] = FreshRSS_Context::$offset + FreshRSS_Context::$number;
 	}
+	$url_next['params']['idMax'] = FreshRSS_Context::$id_max;
 	$url_next['params']['state'] = (string)FreshRSS_Context::$state;
 	$url_next['params']['ajax'] = '1';
 

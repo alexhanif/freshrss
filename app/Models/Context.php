@@ -47,7 +47,6 @@ final class FreshRSS_Context {
 	public static int $number = 0;
 	public static int $offset = 0;
 	public static FreshRSS_BooleanSearch $search;
-	public static string $first_id = '';
 	public static string $last_id = '';
 	public static string $id_max = '';
 	public static int $sinceHours = 0;
@@ -221,7 +220,7 @@ final class FreshRSS_Context {
 		self::_get(Minz_Request::paramString('get') ?: 'a');
 
 		self::$state = Minz_Request::paramInt('state') ?: FreshRSS_Context::userConf()->default_state;
-		$state_forced_by_user = Minz_Request::paramString('state') !== '';
+		$state_forced_by_user = Minz_Request::paramString('state', true) !== '';
 		if (!$state_forced_by_user) {
 			if (FreshRSS_Context::userConf()->show_fav_unread && (self::isCurrentGet('s') || self::isCurrentGet('T') || self::isTag())) {
 				self::$state = FreshRSS_Entry::STATE_NOT_READ | FreshRSS_Entry::STATE_READ;
@@ -235,9 +234,9 @@ final class FreshRSS_Context {
 		}
 
 		self::$search = new FreshRSS_BooleanSearch(Minz_Request::paramString('search'));
-		$order = Minz_Request::paramString('order') ?: FreshRSS_Context::userConf()->sort_order;
+		$order = Minz_Request::paramString('order', true) ?: FreshRSS_Context::userConf()->sort_order;
 		self::$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
-		$sort = Minz_Request::paramString('sort') ?: FreshRSS_Context::userConf()->sort;
+		$sort = Minz_Request::paramString('sort', true) ?: FreshRSS_Context::userConf()->sort;
 		self::$sort = in_array($sort, ['id', 'date', 'link', 'title', 'rand'], true) ? $sort : 'id';
 		self::$number = Minz_Request::paramInt('nb') ?: FreshRSS_Context::userConf()->posts_per_page;
 		if (self::$number > FreshRSS_Context::userConf()->max_posts_per_rss) {
@@ -246,7 +245,10 @@ final class FreshRSS_Context {
 				FreshRSS_Context::userConf()->posts_per_page);
 		}
 		self::$offset = Minz_Request::paramInt('offset');
-		self::$first_id = Minz_Request::paramString('next');
+		self::$id_max = Minz_Request::paramString('idMax', true);
+		if (!ctype_digit(self::$id_max)) {
+			self::$id_max = '';
+		}
 		self::$sinceHours = Minz_Request::paramInt('hours');
 	}
 
