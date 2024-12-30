@@ -14,7 +14,6 @@ return array(
 	'action' => array(
 		'actualize' => '更新提要',
 		'add' => '新增',
-		'back' => '← 返回',
 		'back_to_rss_feeds' => '← 返回訂閱源',
 		'cancel' => '取消',
 		'create' => '創建',

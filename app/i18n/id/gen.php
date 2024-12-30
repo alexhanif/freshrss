@@ -14,7 +14,6 @@ return array(
 	'action' => array(
 		'actualize' => 'Update feeds',	// TODO
 		'add' => 'Add',	// TODO
-		'back' => '← Go back',	// TODO
 		'back_to_rss_feeds' => '← Go back to your RSS feeds',	// TODO
 		'cancel' => 'Cancel',	// TODO
 		'create' => 'Create',	// TODO
