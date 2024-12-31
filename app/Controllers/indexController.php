@@ -266,16 +266,15 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 			$id = 0;
 		}
 
-		$date_min = 0;
+		$id_min = '0';
 		if (FreshRSS_Context::$sinceHours > 0) {
-			$date_min = time() - (FreshRSS_Context::$sinceHours * 3600);
+			$id_min = (time() - (FreshRSS_Context::$sinceHours * 3600)) . '000000';
 		}
 
 		foreach ($entryDAO->listWhere(
-					$type, $id, FreshRSS_Context::$state, FreshRSS_Context::$order,
-					$postsPerPage ?? FreshRSS_Context::$number, FreshRSS_Context::$offset, FreshRSS_Context::$id_max,
-					FreshRSS_Context::$search, $date_min, FreshRSS_Context::$sort
-				) as $entry) {
+					$type, $id, FreshRSS_Context::$state, FreshRSS_Context::$search,
+					id_min: $id_min, id_max: FreshRSS_Context::$id_max, sort: FreshRSS_Context::$sort, order: FreshRSS_Context::$order,
+					limit: $postsPerPage ?? FreshRSS_Context::$number, offset: FreshRSS_Context::$offset) as $entry) {
 			yield $entry;
 		}
 	}

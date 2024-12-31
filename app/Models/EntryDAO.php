@@ -515,7 +515,7 @@ SQL;
 			$sql .= ')';
 		}
 
-		[$searchValues, $search] = $this->sqlListEntriesWhere('', $filters, $state);
+		[$searchValues, $search] = $this->sqlListEntriesWhere(alias: '', state: $state, filters: $filters);
 
 		$stm = $this->pdo->prepare($sql . $search);
 		if ($stm === false || !$stm->execute(array_merge($values, $searchValues))) {
@@ -556,7 +556,7 @@ AND id_feed IN (SELECT f.id FROM `_feed` f WHERE f.category=?)
 SQL;
 		$values = [$is_read ? 1 : 0, $is_read ? 1 : 0, $idMax, $id];
 
-		[$searchValues, $search] = $this->sqlListEntriesWhere('', $filters, $state);
+		[$searchValues, $search] = $this->sqlListEntriesWhere(alias: '', state: $state, filters: $filters);
 
 		$stm = $this->pdo->prepare($sql . $search);
 		if ($stm === false || !$stm->execute(array_merge($values, $searchValues))) {
@@ -598,7 +598,7 @@ SQL;
 			 . 'WHERE id_feed=? AND is_read <> ? AND id <= ?';
 		$values = [$is_read ? 1 : 0, $id_feed, $is_read ? 1 : 0, $idMax];
 
-		[$searchValues, $search] = $this->sqlListEntriesWhere('', $filters, $state);
+		[$searchValues, $search] = $this->sqlListEntriesWhere(alias: '', state: $state, filters: $filters);
 
 		$stm = $this->pdo->prepare($sql . $search);
 		if ($stm === false || !$stm->execute(array_merge($values, $searchValues))) {
@@ -656,7 +656,7 @@ SQL;
 		$values[] = $is_read ? 1 : 0;
 		$values[] = $idMax;
 
-		[$searchValues, $search] = $this->sqlListEntriesWhere('e.', $filters, $state);
+		[$searchValues, $search] = $this->sqlListEntriesWhere(alias: 'e.', state: $state, filters: $filters);
 
 		$stm = $this->pdo->prepare($sql . $search);
 		if ($stm === false || !$stm->execute(array_merge($values, $searchValues))) {
@@ -1111,12 +1111,12 @@ SQL;
 	}
 
 	/**
-	 * @param 'ASC'|'DESC' $order
+	 * @param numeric-string $id_min
+	 * @param numeric-string $id_max
 	 * @return array{0:list<int|string>,1:string}
 	 */
-	protected function sqlListEntriesWhere(string $alias = '', ?FreshRSS_BooleanSearch $filters = null,
-			int $state = FreshRSS_Entry::STATE_ALL,
-			string $order = 'DESC', string $id_max = '', int $date_min = 0): array {
+	protected function sqlListEntriesWhere(string $alias = '', int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
+		string $id_min = '0', string $id_max = '0'): array {
 		$search = ' ';
 		$values = [];
 		if ($state & FreshRSS_Entry::STATE_ANDS) {
@@ -1149,14 +1149,13 @@ SQL;
 			}
 		}
 
-		$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
-		if ($id_max !== '') {
+		if (ctype_digit($id_max) && $id_max !== '0') {
 			$search .= 'AND ' . $alias . 'id <= ? ';
 			$values[] = $id_max;
 		}
-		if ($date_min > 0) {
+		if (ctype_digit($id_min) && $id_min !== '0') {
 			$search .= 'AND ' . $alias . 'id >= ? ';
-			$values[] = $date_min . '000000';
+			$values[] = $id_min;
 		}
 		if ($filters !== null && count($filters->searches()) > 0) {
 			[$filterValues, $filterSearch] = self::sqlBooleanSearch($alias, $filters);
@@ -1171,16 +1170,17 @@ SQL;
 	}
 
 	/**
-	 * @phpstan-param 'a'|'A'|'i'|'s'|'S'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
+	 * @param 'a'|'A'|'i'|'s'|'S'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
 	 * @param int $id category/feed/tag ID
-	 * @param 'ASC'|'DESC' $order
+	 * @param numeric-string $id_min
+	 * @param numeric-string $id_max
 	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
+	 * @param 'ASC'|'DESC' $order
 	 * @return array{0:list<int|string>,1:string}
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
-	private function sqlListWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL,
-			string $order = 'DESC', int $limit = 1, int $offset = 0, string $id_max = '', ?FreshRSS_BooleanSearch $filters = null,
-			int $date_min = 0, string $sort = 'id'): array {
+	private function sqlListWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
+			string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC', int $limit = 1, int $offset = 0): array {
 		if (!$state) {
 			$state = FreshRSS_Entry::STATE_ALL;
 		}
@@ -1232,7 +1232,7 @@ SQL;
 		$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
 		$sort = in_array($sort, ['id', 'date', 'link', 'title', 'rand'], true) ? $sort : 'id';
 		$orderBy = ($sort === 'rand' ? static::sqlRandom() : 'e.' . $sort);
-		[$searchValues, $search] = $this->sqlListEntriesWhere('e.', $filters, $state, $order, $id_max, $date_min);
+		[$searchValues, $search] = $this->sqlListEntriesWhere('e.', $state, $filters, id_min: $id_min, id_max: $id_max);
 
 		return [array_merge($values, $searchValues), 'SELECT '
 			. ($type === 'T' ? 'DISTINCT ' : '')
@@ -1248,19 +1248,21 @@ SQL;
 	}
 
 	/**
-	 * @phpstan-param 'a'|'A'|'s'|'S'|'i'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
-	 * @param 'ASC'|'DESC' $order
-	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
+	 * @param 'a'|'A'|'s'|'S'|'i'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
 	 * @param int $id category/feed/tag ID
+	 * @param numeric-string $id_min
+	 * @param numeric-string $id_max
+	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
+	 * @param 'ASC'|'DESC' $order
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
-	private function listWhereRaw(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL,
-			string $order = 'DESC', int $limit = 1, int $offset = 0, string $id_max = '', ?FreshRSS_BooleanSearch $filters = null,
-			int $date_min = 0, string $sort = 'id'): PDOStatement|false {
+	private function listWhereRaw(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
+			string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC', int $limit = 1, int $offset = 0): PDOStatement|false {
 		$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
 		$sort = in_array($sort, ['id', 'date', 'link', 'title', 'rand'], true) ? $sort : 'id';
 
-		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $order, $limit, $offset, $id_max, $filters, $date_min, $sort);
+		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $filters,
+			id_min: $id_min, id_max: $id_max, sort: $sort, order: $order, limit: $limit, offset: $offset);
 
 		$orderBy = ($sort === 'rand' ? static::sqlRandom() : 'e0.' . $sort);
 		$content = static::isCompressed() ? 'UNCOMPRESS(e0.content_bin) AS content' : 'e0.content';
@@ -1278,7 +1280,8 @@ SQL;
 			$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
 			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
-				return $this->listWhereRaw($type, $id, $state, $order, $limit, $offset, $id_max, $filters, $date_min, $sort);
+				return $this->listWhereRaw($type, $id, $state, $filters,
+					id_min: $id_min, id_max: $id_max, sort: $sort, order: $order, limit: $limit, offset: $offset);
 			}
 			Minz_Log::error('SQL error ' . __METHOD__ . json_encode($info));
 			return false;
@@ -1286,17 +1289,20 @@ SQL;
 	}
 
 	/**
-	 * @phpstan-param 'a'|'A'|'s'|'S'|'i'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
+	 * @param 'a'|'A'|'s'|'S'|'i'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
 	 * @param int $id category/feed/tag ID
-	 * @param 'ASC'|'DESC' $order
+	 * @param numeric-string $id_min
+	 * @param numeric-string $id_max
 	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
+	 * @param 'ASC'|'DESC' $order
 	 * @return Traversable<FreshRSS_Entry>
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
-	public function listWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL,
-			string $order = 'DESC', int $limit = 1, int $offset = 0, string $id_max = '',
-			?FreshRSS_BooleanSearch $filters = null, int $date_min = 0, string $sort = 'id'): Traversable {
-		$stm = $this->listWhereRaw($type, $id, $state, $order, $limit, $offset, $id_max, $filters, $date_min, $sort);
+	public function listWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
+			string $id_min = '0', string $id_max = '0', string $sort = 'id',
+			string $order = 'DESC', int $limit = 1, int $offset = 0): Traversable {
+		$stm = $this->listWhereRaw($type, $id, $state, $filters,
+			id_min: $id_min, id_max: $id_max, sort: $sort, order: $order, limit: $limit, offset: $offset);
 		if ($stm !== false) {
 			while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
 				if (is_array($row)) {
@@ -1314,7 +1320,7 @@ SQL;
 	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
 	 * @return Traversable<FreshRSS_Entry>
 	 */
-	public function listByIds(array $ids, string $order = 'DESC', string $sort = 'id'): Traversable {
+	public function listByIds(array $ids, string $sort = 'id', string $order = 'DESC'): Traversable {
 		if (count($ids) < 1) {
 			return;
 		}
@@ -1322,7 +1328,7 @@ SQL;
 			// Split a query with too many variables parameters
 			$idsChunks = array_chunk($ids, FreshRSS_DatabaseDAO::MAX_VARIABLE_NUMBER);
 			foreach ($idsChunks as $idsChunk) {
-				foreach ($this->listByIds($idsChunk, $order, $sort) as $entry) {
+				foreach ($this->listByIds($idsChunk, sort: $sort, order: $order) as $entry) {
 					yield $entry;
 				}
 			}
@@ -1354,17 +1360,19 @@ SQL;
 	}
 
 	/**
-	 * @phpstan-param 'a'|'A'|'s'|'S'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
+	 * @param 'a'|'A'|'s'|'S'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
 	 * @param int $id category/feed/tag ID
-	 * @param 'ASC'|'DESC' $order
+	 * @param numeric-string $id_min
+	 * @param numeric-string $id_max
 	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
+	 * @param 'ASC'|'DESC' $order
 	 * @return list<numeric-string>|null
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
-	public function listIdsWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL,
-		string $order = 'DESC', int $limit = 1, int $offset = 0, string $id_max = '', ?FreshRSS_BooleanSearch $filters = null,
-		int $date_min = 0, string $sort = 'id'): ?array {
-		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $order, $limit, $offset, $id_max, $filters, $date_min, $sort);
+	public function listIdsWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
+		string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC', int $limit = 1, int $offset = 0): ?array {
+		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $filters,
+			id_min: $id_min, id_max: $id_max, sort: $sort, order: $order, limit: $limit, offset: $offset);
 		$stm = $this->pdo->prepare($sql);
 		if ($stm !== false && $stm->execute($values) && ($res = $stm->fetchAll(PDO::FETCH_COLUMN, 0)) !== false) {
 			$res = array_map('strval', $res);

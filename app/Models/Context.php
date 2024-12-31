@@ -47,8 +47,10 @@ final class FreshRSS_Context {
 	public static int $number = 0;
 	public static int $offset = 0;
 	public static FreshRSS_BooleanSearch $search;
-	public static string $last_id = '';
-	public static string $id_max = '';
+	/** @var numeric-string */
+	public static string $last_id = '0';
+	/** @var numeric-string */
+	public static string $id_max = '0';
 	public static int $sinceHours = 0;
 	public static bool $isCli = false;
 
@@ -245,10 +247,8 @@ final class FreshRSS_Context {
 				FreshRSS_Context::userConf()->posts_per_page);
 		}
 		self::$offset = Minz_Request::paramInt('offset');
-		self::$id_max = Minz_Request::paramString('idMax', true);
-		if (!ctype_digit(self::$id_max)) {
-			self::$id_max = '';
-		}
+		$id_max = Minz_Request::paramString('idMax', true);
+		self::$id_max = ctype_digit($id_max) ? $id_max : '0';
 		self::$sinceHours = Minz_Request::paramInt('hours');
 	}
 
