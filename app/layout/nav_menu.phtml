@@ -150,6 +150,7 @@
 						type="submit"><?= $string_mark ?></button>
 				</li>
 <?php
+	$mark_read_enabled = FreshRSS_Context::$sort === 'id';
 	$today = @strtotime('today');
 	$mark_before_today = $mark_read_url;
 	$mark_before_today['params']['idMax'] = $today . '000000';
@@ -159,13 +160,13 @@
 		(!FreshRSS_Context::isStateEnabled(FreshRSS_Entry::STATE_NOT_READ) && !FreshRSS_Context::isStateEnabled(FreshRSS_Entry::STATE_OR_NOT_READ));
 ?>
 				<li class="item separator">
-					<button class="as-link <?= $confirm ?>"
+					<button class="as-link <?= $mark_read_enabled ? $confirm : '" disabled="disabled' ?>"
 						form="mark-read-menu"
 						formaction="<?= Minz_Url::display($mark_before_today) ?>"
 						type="submit"><?= _t('index.menu.before_one_day') ?></button>
 				</li>
 				<li class="item">
-					<button class="as-link <?= $confirm ?>"
+					<button class="as-link <?= $mark_read_enabled ? $confirm : '" disabled="disabled' ?>"
 						form="mark-read-menu"
 						formaction="<?= Minz_Url::display($mark_before_one_week) ?>"
 						type="submit"><?= _t('index.menu.before_one_week') ?></button>
