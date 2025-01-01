@@ -669,9 +669,8 @@ final class GReaderAPI {
 
 		$entryDAO = FreshRSS_Factory::createEntryDao();
 		$entries = $entryDAO->listWhere($type, $include_target, $state, $searches,
-			id_min: $order === 'o' ? $continuation : '0',
-			id_max: $order === 'o' ? '0' : $continuation,
 			order: $order === 'o' ? 'ASC' : 'DESC',
+			continuation_id: $continuation,
 			limit: $count);
 		$entries = array_values(iterator_to_array($entries));	//TODO: Improve
 
