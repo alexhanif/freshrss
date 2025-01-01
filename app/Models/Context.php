@@ -48,7 +48,7 @@ final class FreshRSS_Context {
 	public static int $offset = 0;
 	public static FreshRSS_BooleanSearch $search;
 	/** @var numeric-string */
-	public static string $last_id = '0';
+	public static string $pagingId = '0';
 	/** @var numeric-string */
 	public static string $id_max = '0';
 	public static int $sinceHours = 0;
@@ -249,6 +249,8 @@ final class FreshRSS_Context {
 		self::$offset = Minz_Request::paramInt('offset');
 		$id_max = Minz_Request::paramString('idMax', true);
 		self::$id_max = ctype_digit($id_max) ? $id_max : '0';
+		$pagingId = Minz_Request::paramString('pagingId', true);
+		self::$pagingId = ctype_digit($pagingId) ? $pagingId : '0';
 		self::$sinceHours = Minz_Request::paramInt('hours');
 	}
 

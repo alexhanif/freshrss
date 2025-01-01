@@ -1116,7 +1116,8 @@ SQL;
 	 * @return array{0:list<int|string>,1:string}
 	 */
 	protected function sqlListEntriesWhere(string $alias = '', int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
-		string $id_min = '0', string $id_max = '0'): array {
+		string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC',
+		string $continuation_id = '0', string|int $continuation_value = 0): array {
 		$search = ' ';
 		$values = [];
 		if ($state & FreshRSS_Entry::STATE_ANDS) {
@@ -1149,14 +1150,42 @@ SQL;
 			}
 		}
 
-		if (ctype_digit($id_max) && $id_max !== '0') {
+		if (!ctype_digit($id_min)) {
+			$id_min = '0';
+		}
+		if (!ctype_digit($id_max)) {
+			$id_max = '0';
+		}
+		if (!ctype_digit($continuation_id)) {
+			$continuation_id = '0';
+		}
+
+		if ($continuation_id !== '0' && $sort === 'id') {
+			if ($order === 'DESC' && $id_max !== '0') {
+				$id_max = min($id_max, $continuation_id);
+			} elseif ($order === 'ASC' && $id_min !== '0') {
+				$id_min = max($id_min, $continuation_id);
+			}
+		}
+
+		if ($id_max !== '0') {
 			$search .= 'AND ' . $alias . 'id <= ? ';
 			$values[] = $id_max;
 		}
-		if (ctype_digit($id_min) && $id_min !== '0') {
+		if ($id_min !== '0') {
 			$search .= 'AND ' . $alias . 'id >= ? ';
 			$values[] = $id_min;
 		}
+
+		if ($continuation_id !== '0' && in_array($sort, ['date', 'link', 'title'], true)) {
+			$sign = $order === 'ASC' ? '>' : '<';
+			// Keyset pagination (Compatibility syntax due to poor performance of tuple syntax in MySQL https://bugs.mysql.com/bug.php?id=104128)
+			$search .= "AND ({$alias}{$sort} {$sign} ? OR ({$alias}{$sort} = ? AND {$alias}id {$sign}= ?)) ";
+			$values[] = $continuation_value;
+			$values[] = $continuation_value;
+			$values[] = $continuation_id;
+		}
+
 		if ($filters !== null && count($filters->searches()) > 0) {
 			[$filterValues, $filterSearch] = self::sqlBooleanSearch($alias, $filters);
 			$filterSearch = trim($filterSearch);
@@ -1176,11 +1205,13 @@ SQL;
 	 * @param numeric-string $id_max
 	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
 	 * @param 'ASC'|'DESC' $order
+	 * @param numeric-string $continuation_id
 	 * @return array{0:list<int|string>,1:string}
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
 	private function sqlListWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
-			string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC', int $limit = 1, int $offset = 0): array {
+			string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC',
+			string $continuation_id = '0', string|int $continuation_value = 0, int $limit = 1, int $offset = 0): array {
 		if (!$state) {
 			$state = FreshRSS_Entry::STATE_ALL;
 		}
@@ -1232,7 +1263,8 @@ SQL;
 		$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
 		$sort = in_array($sort, ['id', 'date', 'link', 'title', 'rand'], true) ? $sort : 'id';
 		$orderBy = ($sort === 'rand' ? static::sqlRandom() : 'e.' . $sort);
-		[$searchValues, $search] = $this->sqlListEntriesWhere('e.', $state, $filters, id_min: $id_min, id_max: $id_max);
+		[$searchValues, $search] = $this->sqlListEntriesWhere(alias: 'e.', state: $state, filters: $filters, id_min: $id_min, id_max: $id_max,
+			sort: $sort, order: $order, continuation_id: $continuation_id, continuation_value: $continuation_value);
 
 		return [array_merge($values, $searchValues), 'SELECT '
 			. ($type === 'T' ? 'DISTINCT ' : '')
@@ -1254,15 +1286,17 @@ SQL;
 	 * @param numeric-string $id_max
 	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
 	 * @param 'ASC'|'DESC' $order
+	 * @param numeric-string $continuation_id
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
 	private function listWhereRaw(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
-			string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC', int $limit = 1, int $offset = 0): PDOStatement|false {
+		string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC',
+		string $continuation_id = '0', string|int $continuation_value = 0, int $limit = 1, int $offset = 0): PDOStatement|false {
 		$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
 		$sort = in_array($sort, ['id', 'date', 'link', 'title', 'rand'], true) ? $sort : 'id';
 
-		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $filters,
-			id_min: $id_min, id_max: $id_max, sort: $sort, order: $order, limit: $limit, offset: $offset);
+		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $filters, id_min: $id_min, id_max: $id_max, sort: $sort, order: $order,
+			continuation_id: $continuation_id, continuation_value: $continuation_value, limit: $limit, offset: $offset);
 
 		$orderBy = ($sort === 'rand' ? static::sqlRandom() : 'e0.' . $sort);
 		$content = static::isCompressed() ? 'UNCOMPRESS(e0.content_bin) AS content' : 'e0.content';
@@ -1280,8 +1314,8 @@ SQL;
 			$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
 			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
-				return $this->listWhereRaw($type, $id, $state, $filters,
-					id_min: $id_min, id_max: $id_max, sort: $sort, order: $order, limit: $limit, offset: $offset);
+				return $this->listWhereRaw($type, $id, $state, $filters, id_min: $id_min, id_max: $id_max, sort: $sort, order: $order,
+					continuation_id: $continuation_id, continuation_value: $continuation_value, limit: $limit, offset: $offset);
 			}
 			Minz_Log::error('SQL error ' . __METHOD__ . json_encode($info));
 			return false;
@@ -1295,14 +1329,15 @@ SQL;
 	 * @param numeric-string $id_max
 	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
 	 * @param 'ASC'|'DESC' $order
+	 * @param numeric-string $continuation_id
 	 * @return Traversable<FreshRSS_Entry>
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
 	public function listWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
-			string $id_min = '0', string $id_max = '0', string $sort = 'id',
-			string $order = 'DESC', int $limit = 1, int $offset = 0): Traversable {
-		$stm = $this->listWhereRaw($type, $id, $state, $filters,
-			id_min: $id_min, id_max: $id_max, sort: $sort, order: $order, limit: $limit, offset: $offset);
+			string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC',
+			string $continuation_id = '0', string|int $continuation_value = 0, int $limit = 1, int $offset = 0): Traversable {
+		$stm = $this->listWhereRaw($type, $id, $state, $filters, id_min: $id_min, id_max: $id_max, sort: $sort, order: $order,
+			continuation_id: $continuation_id, continuation_value: $continuation_value, limit: $limit, offset: $offset);
 		if ($stm !== false) {
 			while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
 				if (is_array($row)) {
@@ -1364,15 +1399,17 @@ SQL;
 	 * @param int $id category/feed/tag ID
 	 * @param numeric-string $id_min
 	 * @param numeric-string $id_max
+	 * @param numeric-string $continuation_id
 	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
 	 * @param 'ASC'|'DESC' $order
 	 * @return list<numeric-string>|null
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
 	public function listIdsWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
-		string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC', int $limit = 1, int $offset = 0): ?array {
-		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $filters,
-			id_min: $id_min, id_max: $id_max, sort: $sort, order: $order, limit: $limit, offset: $offset);
+		string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC',
+		string $continuation_id = '0', string|int $continuation_value = 0, int $limit = 1, int $offset = 0): ?array {
+		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $filters, id_min: $id_min, id_max: $id_max, sort: $sort, order: $order,
+			continuation_id: $continuation_id, continuation_value: $continuation_value, limit: $limit, offset: $offset);
 		$stm = $this->pdo->prepare($sql);
 		if ($stm !== false && $stm->execute($values) && ($res = $stm->fetchAll(PDO::FETCH_COLUMN, 0)) !== false) {
 			$res = array_map('strval', $res);
