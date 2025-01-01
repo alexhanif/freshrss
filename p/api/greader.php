@@ -663,7 +663,7 @@ final class GReaderAPI {
 		[$type, $include_target, $state, $searches] =
 			self::streamContentsFilters($type, $include_target, $filter_target, $exclude_target, $start_time, $stop_time);
 
-		if ($continuation != '') {
+		if ($continuation !== '0') {
 			$count++;	//Shift by one element
 		}
 
@@ -677,7 +677,7 @@ final class GReaderAPI {
 
 		$items = self::entriesToArray($entries);
 
-		if ($continuation != '') {
+		if ($continuation !== '0') {
 			array_shift($items);	//Discard first element that was already sent in the previous response
 			$count--;
 		}
@@ -722,21 +722,20 @@ final class GReaderAPI {
 
 		[$type, $id, $state, $searches] = self::streamContentsFilters($type, $streamId, $filter_target, $exclude_target, $start_time, $stop_time);
 
-		if ($continuation != '') {
+		if ($continuation !== '0') {
 			$count++;	//Shift by one element
 		}
 
 		$entryDAO = FreshRSS_Factory::createEntryDao();
 		$ids = $entryDAO->listIdsWhere($type, $id, $state, $searches,
-			id_min: $order === 'o' ? $continuation : '0',
-			id_max: $order === 'o' ? '0' : $continuation,
 			order: $order === 'o' ? 'ASC' : 'DESC',
+			continuation_id: $continuation,
 			limit: $count);
 		if ($ids === null) {
 			self::internalServerError();
 		}
 
-		if ($continuation != '') {
+		if ($continuation !== '0') {
 			array_shift($ids);	//Discard first element that was already sent in the previous response
 			$count--;
 		}

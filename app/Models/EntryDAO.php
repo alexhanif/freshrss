@@ -1113,6 +1113,8 @@ SQL;
 	/**
 	 * @param numeric-string $id_min
 	 * @param numeric-string $id_max
+	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
+	 * @param 'ASC'|'DESC' $order
 	 * @return array{0:list<int|string>,1:string}
 	 */
 	protected function sqlListEntriesWhere(string $alias = '', int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
@@ -1161,10 +1163,10 @@ SQL;
 		}
 
 		if ($continuation_id !== '0' && $sort === 'id') {
-			if ($order === 'DESC' && $id_max !== '0') {
-				$id_max = min($id_max, $continuation_id);
-			} elseif ($order === 'ASC' && $id_min !== '0') {
-				$id_min = max($id_min, $continuation_id);
+			if ($order === 'ASC') {
+				$id_min = $id_min === '0' ? $continuation_id : max($id_min, $continuation_id);
+			} else {
+				$id_max = $id_max === '0' ? $continuation_id : min($id_max, $continuation_id);
 			}
 		}
 
@@ -1274,6 +1276,7 @@ SQL;
 			. 'WHERE ' . $where
 			. $search
 			. 'ORDER BY ' . $orderBy . ' ' . $order
+			. ($sort === 'id' ? '' : ', e.id ' . $order)	// For keyset pagination
 			. ($limit > 0 ? ' LIMIT ' . $limit : '')	// http://explainextended.com/2009/10/23/mysql-order-by-limit-performance-late-row-lookups/
 			. ($offset > 0 ? ' OFFSET ' . $offset : '')
 		];
@@ -1307,6 +1310,10 @@ FROM `_entry` e0
 INNER JOIN ({$sql}) e2 ON e2.id=e0.id
 ORDER BY {$orderBy} {$order}
 SQL;
+		if ($sort !== 'id') {
+			// For keyset pagination
+			$sql .= ', e0.id ' . $order;
+		}
 		$stm = $this->pdo->prepare($sql);
 		if ($stm !== false && $stm->execute($values)) {
 			return $stm;
@@ -1350,12 +1357,12 @@ SQL;
 	}
 
 	/**
+	 * For API.
 	 * @param array<numeric-string> $ids
 	 * @param 'ASC'|'DESC' $order
-	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
 	 * @return Traversable<FreshRSS_Entry>
 	 */
-	public function listByIds(array $ids, string $sort = 'id', string $order = 'DESC'): Traversable {
+	public function listByIds(array $ids, string $order = 'DESC'): Traversable {
 		if (count($ids) < 1) {
 			return;
 		}
@@ -1363,15 +1370,13 @@ SQL;
 			// Split a query with too many variables parameters
 			$idsChunks = array_chunk($ids, FreshRSS_DatabaseDAO::MAX_VARIABLE_NUMBER);
 			foreach ($idsChunks as $idsChunk) {
-				foreach ($this->listByIds($idsChunk, sort: $sort, order: $order) as $entry) {
+				foreach ($this->listByIds($idsChunk, order: $order) as $entry) {
 					yield $entry;
 				}
 			}
 			return;
 		}
 		$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
-		$sort = in_array($sort, ['id', 'date', 'link', 'title', 'rand'], true) ? $sort : 'id';
-		$orderBy = ($sort === 'rand' ? static::sqlRandom() : $sort);
 		$content = static::isCompressed() ? 'UNCOMPRESS(content_bin) AS content' : 'content';
 		$hash = static::sqlHexEncode('hash');
 		$repeats = str_repeat('?,', count($ids) - 1) . '?';
@@ -1379,7 +1384,7 @@ SQL;
 SELECT id, guid, title, author, link, date, {$hash} AS hash, is_read, is_favorite, id_feed, tags, attributes, {$content}
 FROM `_entry`
 WHERE id IN ({$repeats})
-ORDER BY {$orderBy} {$order}
+ORDER BY id {$order}
 SQL;
 		$stm = $this->pdo->prepare($sql);
 		if ($stm === false || !$stm->execute($ids)) {
@@ -1400,15 +1405,14 @@ SQL;
 	 * @param numeric-string $id_min
 	 * @param numeric-string $id_max
 	 * @param numeric-string $continuation_id
-	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
 	 * @param 'ASC'|'DESC' $order
 	 * @return list<numeric-string>|null
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
 	public function listIdsWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
-		string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC',
+		string $id_min = '0', string $id_max = '0', string $order = 'DESC',
 		string $continuation_id = '0', string|int $continuation_value = 0, int $limit = 1, int $offset = 0): ?array {
-		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $filters, id_min: $id_min, id_max: $id_max, sort: $sort, order: $order,
+		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $filters, id_min: $id_min, id_max: $id_max, order: $order,
 			continuation_id: $continuation_id, continuation_value: $continuation_value, limit: $limit, offset: $offset);
 		$stm = $this->pdo->prepare($sql);
 		if ($stm !== false && $stm->execute($values) && ($res = $stm->fetchAll(PDO::FETCH_COLUMN, 0)) !== false) {
