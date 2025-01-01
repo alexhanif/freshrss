@@ -149,7 +149,7 @@ class FreshRSS_Export_Service {
 
 		// From https://stackoverflow.com/questions/1061710/php-zip-files-on-the-fly
 		$zip_file = tempnam(TMP_PATH, 'zip');
-		if ($zip_file == false) {
+		if ($zip_file === false) {
 			return [$zip_filename, false];
 		}
 		$zip_archive = new ZipArchive();
