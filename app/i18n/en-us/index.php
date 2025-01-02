@@ -60,6 +60,18 @@ return array(
 		'reader_view' => 'Reading view',	// IGNORE
 		'rss_view' => 'RSS feed',	// IGNORE
 		'search_short' => 'Search',	// IGNORE
+		'sort' => array(
+			'_' => 'Sorting criteria',	// IGNORE
+			'date_asc' => 'Publication date 1→9',	// IGNORE
+			'date_desc' => 'Publication date 9→1',	// IGNORE
+			'id_asc' => 'Freshly received last',	// IGNORE
+			'id_desc' => 'Freshly received first',	// IGNORE
+			'link_asc' => 'Link A→Z',	// IGNORE
+			'link_desc' => 'Link Z→A',	// IGNORE
+			'rand' => 'Random order',	// IGNORE
+			'title_asc' => 'Title A→Z',	// IGNORE
+			'title_desc' => 'Title Z→A',	// IGNORE
+		),
 		'starred' => 'Show favorites',
 		'stats' => 'Statistics',	// IGNORE
 		'subscription' => 'Subscription management',	// IGNORE

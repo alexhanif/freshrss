@@ -60,6 +60,18 @@ return array(
 		'reader_view' => '阅读视图',
 		'rss_view' => '订阅源',
 		'search_short' => '搜索',
+		'sort' => array(
+			'_' => 'Sorting criteria',	// TODO
+			'date_asc' => 'Publication date 1→9',	// TODO
+			'date_desc' => 'Publication date 9→1',	// TODO
+			'id_asc' => 'Freshly received last',	// TODO
+			'id_desc' => 'Freshly received first',	// TODO
+			'link_asc' => 'Link A→Z',	// TODO
+			'link_desc' => 'Link Z→A',	// TODO
+			'rand' => 'Random order',	// TODO
+			'title_asc' => 'Title A→Z',	// TODO
+			'title_desc' => 'Title Z→A',	// TODO
+		),
 		'starred' => '显示收藏',
 		'stats' => '统计',
 		'subscription' => '订阅管理',

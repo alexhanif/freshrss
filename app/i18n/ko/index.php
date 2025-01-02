@@ -60,6 +60,18 @@ return array(
 		'reader_view' => '읽기 모드',
 		'rss_view' => 'RSS 피드',
 		'search_short' => '검색',
+		'sort' => array(
+			'_' => 'Sorting criteria',	// TODO
+			'date_asc' => 'Publication date 1→9',	// TODO
+			'date_desc' => 'Publication date 9→1',	// TODO
+			'id_asc' => 'Freshly received last',	// TODO
+			'id_desc' => 'Freshly received first',	// TODO
+			'link_asc' => 'Link A→Z',	// TODO
+			'link_desc' => 'Link Z→A',	// TODO
+			'rand' => 'Random order',	// TODO
+			'title_asc' => 'Title A→Z',	// TODO
+			'title_desc' => 'Title Z→A',	// TODO
+		),
 		'starred' => '즐겨찾기만 표시',
 		'stats' => '통계',
 		'subscription' => '구독 관리',

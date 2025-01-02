@@ -60,6 +60,18 @@ return array(
 		'reader_view' => 'תצוגת קריאה',
 		'rss_view' => 'הזנת RSS',
 		'search_short' => 'חיפוש',
+		'sort' => array(
+			'_' => 'Sorting criteria',	// TODO
+			'date_asc' => 'Publication date 1→9',	// TODO
+			'date_desc' => 'Publication date 9→1',	// TODO
+			'id_asc' => 'Freshly received last',	// TODO
+			'id_desc' => 'Freshly received first',	// TODO
+			'link_asc' => 'Link A→Z',	// TODO
+			'link_desc' => 'Link Z→A',	// TODO
+			'rand' => 'Random order',	// TODO
+			'title_asc' => 'Title A→Z',	// TODO
+			'title_desc' => 'Title Z→A',	// TODO
+		),
 		'starred' => 'הצגת מועדפים בלבד',
 		'stats' => 'סטטיסטיקות',
 		'subscription' => 'ניהול הרשמות',
