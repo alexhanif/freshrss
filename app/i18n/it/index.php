@@ -62,15 +62,15 @@ return array(
 		'search_short' => 'Cerca',
 		'sort' => array(
 			'_' => 'Sorting criteria',	// TODO
-			'date_asc' => 'Publication date 1→9',	// TODO
-			'date_desc' => 'Publication date 9→1',	// TODO
-			'id_asc' => 'Freshly received last',	// TODO
-			'id_desc' => 'Freshly received first',	// TODO
-			'link_asc' => 'Link A→Z',	// TODO
-			'link_desc' => 'Link Z→A',	// TODO
-			'rand' => 'Random order',	// TODO
-			'title_asc' => 'Title A→Z',	// TODO
-			'title_desc' => 'Title Z→A',	// TODO
+			'date_asc' => 'Data di pubblicazione 1→9',
+			'date_desc' => 'Data di pubblicazione 9→1',
+			'id_asc' => 'Dal meno recente',
+			'id_desc' => 'Dal più recente',
+			'link_asc' => 'Link A→Z',	// IGNORE
+			'link_desc' => 'Link Z→A',	// IGNORE
+			'rand' => 'Ordine casuale',
+			'title_asc' => 'Titolo A→Z',	
+			'title_desc' => 'Titolo Z→A',
 		),
 		'starred' => 'Mostra solo preferiti',
 		'stats' => 'Statistiche',
