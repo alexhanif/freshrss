@@ -61,7 +61,7 @@ return array(
 		'rss_view' => 'Feed RSS',
 		'search_short' => 'Cerca',
 		'sort' => array(
-			'_' => 'Sorting criteria',	// TODO
+			'_' => 'Ordina per',
 			'date_asc' => 'Data di pubblicazione 1→9',
 			'date_desc' => 'Data di pubblicazione 9→1',
 			'id_asc' => 'Dal meno recente',
