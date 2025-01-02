@@ -69,7 +69,7 @@ return array(
 			'link_asc' => 'Link A→Z',	// IGNORE
 			'link_desc' => 'Link Z→A',	// IGNORE
 			'rand' => 'Ordine casuale',
-			'title_asc' => 'Titolo A→Z',	
+			'title_asc' => 'Titolo A→Z',
 			'title_desc' => 'Titolo Z→A',
 		),
 		'starred' => 'Mostra solo preferiti',
