@@ -61,16 +61,16 @@ return array(
 		'rss_view' => 'RSS-feed',
 		'search_short' => 'Zoeken',
 		'sort' => array(
-			'_' => 'Sorting criteria',	// TODO
-			'date_asc' => 'Publication date 1→9',	// TODO
-			'date_desc' => 'Publication date 9→1',	// TODO
-			'id_asc' => 'Freshly received last',	// TODO
-			'id_desc' => 'Freshly received first',	// TODO
-			'link_asc' => 'Link A→Z',	// TODO
-			'link_desc' => 'Link Z→A',	// TODO
-			'rand' => 'Random order',	// TODO
-			'title_asc' => 'Title A→Z',	// TODO
-			'title_desc' => 'Title Z→A',	// TODO
+			'_' => 'Sorteercriteria',
+			'date_asc' => 'Publicatiedatum 1→9',
+			'date_desc' => 'Publicatiedatum 9→1',
+			'id_asc' => 'Nieuw ontvangen laatst',
+			'id_desc' => 'Nieuw ontvangen eerst',
+			'link_asc' => 'Link A→Z',	// IGNORE
+			'link_desc' => 'Link Z→A',	// IGNORE
+			'rand' => 'Willekeurige volgorde',
+			'title_asc' => 'Titel A→Z',
+			'title_desc' => 'Titel Z→A',
 		),
 		'starred' => 'Laat alleen favorieten zien',
 		'stats' => 'Statistieken',
