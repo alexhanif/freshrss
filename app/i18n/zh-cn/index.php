@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => '没有文章可以显示。',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => '%s 的订阅源',
 		'title' => '首页',
 		'title_fav' => '收藏',

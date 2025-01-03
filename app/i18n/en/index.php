@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => 'There are no articles to show.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',
+			'today' => 'Received today',
+			'yesterday' => 'Received yesterday',
+		),
 		'rss_of' => 'RSS feed of %s',
 		'title' => 'Main stream',
 		'title_fav' => 'Favourites',

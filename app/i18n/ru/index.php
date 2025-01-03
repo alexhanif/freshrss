@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => 'Нет статей для отображения.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => 'RSS-лента %s',
 		'title' => 'Основной поток',
 		'title_fav' => 'Избранное',

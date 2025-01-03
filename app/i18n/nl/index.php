@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => 'Er is geen artikel om te laten zien.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => 'RSS-feed van %s',
 		'title' => 'Overzicht',
 		'title_fav' => 'Favorieten',

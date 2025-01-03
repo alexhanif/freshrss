@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => 'Nav neviena raksta, ko parādīt.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => 'RSS plūsma %s',
 		'title' => 'Galvenā plūsma',
 		'title_fav' => 'Mīļākie',

@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => ' هیچ مقاله ای برای نمایش وجود ندارد.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => ' فید RSS %s',
 		'title' => ' جریان اصلی',
 		'title_fav' => ' موارد دلخواه',

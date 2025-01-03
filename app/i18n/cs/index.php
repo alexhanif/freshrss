@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => 'Nejsou žádné články k zobrazení.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => 'Kanál RSS %s',
 		'title' => 'Hlavní kanál',
 		'title_fav' => 'Oblíbené',

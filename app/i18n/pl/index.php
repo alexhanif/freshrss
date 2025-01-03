@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => 'Brak wiadomości do wyświetlenia.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => 'Kanał RSS: %s',
 		'title' => 'Kanał główny',
 		'title_fav' => 'Ulubione',

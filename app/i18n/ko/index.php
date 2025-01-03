@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => '글이 없습니다.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => '%s의 피드',
 		'title' => '메인 스트림',
 		'title_fav' => '즐겨찾기',

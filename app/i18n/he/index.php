@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => 'אין מאמר להצגה.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => 'הזנת RSS של %s',
 		'title' => 'הזנה ראשית',
 		'title_fav' => 'מועדפים',

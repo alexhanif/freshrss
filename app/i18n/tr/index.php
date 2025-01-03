@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => 'Gösterilecek makale yok.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => '%s kaynağına ait RSS akışı',
 		'title' => 'Ana akış',
 		'title_fav' => 'Favoriler',

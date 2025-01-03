@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => '表示できる記事がありません',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => '%s のRSSフィード',
 		'title' => 'メイン',
 		'title_fav' => 'お気に入り',

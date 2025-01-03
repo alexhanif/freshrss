@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => 'Näytettäviä artikkeleita ei ole.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => 'Sivuston %s RSS-syöte',
 		'title' => 'Pääsyötevirta',
 		'title_fav' => 'Suosikit',

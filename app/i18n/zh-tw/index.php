@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => '暫時沒有文章可顯示。',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => '%s 的訂閱源',
 		'title' => '首頁',
 		'title_fav' => '收藏',
