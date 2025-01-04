@@ -45,7 +45,7 @@ class Minz_Configuration {
 	 */
 	public static function load(string $filename): array {
 		$data = @include($filename);
-		if (is_array($data)) {
+		if (is_array($data) && is_array_keys_string($data)) {
 			return $data;
 		} else {
 			throw new Minz_FileNotExistException($filename);
@@ -117,9 +117,10 @@ class Minz_Configuration {
 		}
 
 		try {
-			$this->data = array_replace_recursive(
+			$overloaded = array_replace_recursive(
 				$this->data, self::load($this->config_filename)
 			);
+			$this->data = array_filter($overloaded, 'is_string', ARRAY_FILTER_USE_KEY);
 		} catch (Minz_FileNotExistException $e) {
 			if ($this->default_filename == null) {
 				throw $e;

@@ -138,6 +138,8 @@ return array(
 			'tags' => 'Nach Labels filtern',
 			'type' => 'Filter-Typ',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'Alle Artikel anzeigen',
 		'get_all_labels' => 'Alle Artikle mit beliebigem Label anzeigen',
 		'get_category' => 'Kategorie „%s“ anzeigen',

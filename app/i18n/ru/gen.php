@@ -14,7 +14,6 @@ return array(
 	'action' => array(
 		'actualize' => 'Обновить ленту',
 		'add' => 'Добавить',
-		'back' => '← Вернуться',
 		'back_to_rss_feeds' => '← Вернуться к вашим RSS-лентам',
 		'cancel' => 'Отменить',
 		'create' => 'Создать',

@@ -14,7 +14,6 @@ return array(
 	'action' => array(
 		'actualize' => 'Hírforrások frissítése',
 		'add' => 'Hozzáad',
-		'back' => '← Vissza',
 		'back_to_rss_feeds' => '← Vissza az RSS hírforrásokhoz',
 		'cancel' => 'Mégsem',
 		'create' => 'Létrehoz',

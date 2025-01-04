@@ -7,7 +7,7 @@ declare(strict_types=1);
 class FreshRSS_BooleanSearch implements \Stringable {
 
 	private string $raw_input = '';
-	/** @var array<FreshRSS_BooleanSearch|FreshRSS_Search> */
+	/** @var list<FreshRSS_BooleanSearch|FreshRSS_Search> */
 	private array $searches = [];
 
 	/**
@@ -400,7 +400,7 @@ class FreshRSS_BooleanSearch implements \Stringable {
 	/**
 	 * Either a list of FreshRSS_BooleanSearch combined by implicit AND
 	 * or a series of FreshRSS_Search combined by explicit OR
-	 * @return array<FreshRSS_BooleanSearch|FreshRSS_Search>
+	 * @return list<FreshRSS_BooleanSearch|FreshRSS_Search>
 	 */
 	public function searches(): array {
 		return $this->searches;

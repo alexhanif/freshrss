@@ -14,7 +14,6 @@ return array(
 	'action' => array(
 		'actualize' => 'Päivitä syötteet',
 		'add' => 'Lisää',
-		'back' => '← Palaa',
 		'back_to_rss_feeds' => '← Palaa RSS-syötteisiin',
 		'cancel' => 'Peruuta',
 		'create' => 'Luo',

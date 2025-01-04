@@ -138,6 +138,8 @@ return array(
 			'tags' => 'Näytä merkinnän mukaan',
 			'type' => 'Laji',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'Näytä kaikki artikkelit',
 		'get_all_labels' => 'Näytä artikkelit, joissa on mikä tahansa merkintä',
 		'get_category' => 'Näytä luokka “%s”',

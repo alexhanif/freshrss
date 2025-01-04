@@ -169,12 +169,13 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 			Minz_Request::forward(['c' => 'importExport', 'a' => 'index'], true);
 		}
 
-		$file = $_FILES['file'];
-		$status_file = $file['error'];
+		$file = $_FILES['file'] ?? null;
+		$status_file = is_array($file) ? $file['error'] ?? -1 : -1;
 
-		if ($status_file !== 0) {
-			Minz_Log::warning('File cannot be uploaded. Error code: ' . $status_file);
+		if (!is_array($file) || $status_file !== 0 || !is_string($file['name'] ?? null) || !is_string($file['tmp_name'] ?? null)) {
+			Minz_Log::warning('File cannot be uploaded. Error code: ' . (is_numeric($status_file) ? $status_file : -1));
 			Minz_Request::bad(_t('feedback.import_export.file_cannot_be_uploaded'), [ 'c' => 'importExport', 'a' => 'index' ]);
+			return;
 		}
 
 		if (function_exists('set_time_limit')) {
@@ -232,33 +233,36 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 	private function ttrssXmlToJson(string $xml): string|false {
 		$table = (array)simplexml_load_string($xml, options: LIBXML_NOBLANKS | LIBXML_NOCDATA);
 		$table['items'] = $table['article'] ?? [];
+		if (!is_array($table['items'])) {
+			$table['items'] = [];
+		}
 		unset($table['article']);
 		for ($i = count($table['items']) - 1; $i >= 0; $i--) {
 			$item = (array)($table['items'][$i]);
 			$item = array_filter($item, static fn($v) =>
 				// Filter out empty properties, potentially reported as empty objects
 				(is_string($v) && trim($v) !== '') || !empty($v));
-			$item['updated'] = isset($item['updated']) ? strtotime($item['updated']) : '';
+			$item['updated'] = is_string($item['updated'] ?? null) ? strtotime($item['updated']) : '';
 			$item['published'] = $item['updated'];
 			$item['content'] = ['content' => $item['content'] ?? ''];
-			$item['categories'] = isset($item['tag_cache']) ? [$item['tag_cache']] : [];
+			$item['categories'] = is_string($item['tag_cache'] ?? null) ? [$item['tag_cache']] : [];
 			if (!empty($item['marked'])) {
 				$item['categories'][] = 'user/-/state/com.google/starred';
 			}
 			if (!empty($item['published'])) {
 				$item['categories'][] = 'user/-/state/com.google/broadcast';
 			}
-			if (!empty($item['label_cache'])) {
+			if (is_string($item['label_cache'] ?? null)) {
 				$labels_cache = json_decode($item['label_cache'], true);
 				if (is_array($labels_cache)) {
 					foreach ($labels_cache as $label_cache) {
-						if (!empty($label_cache[1]) && is_string($label_cache[1])) {
+						if (is_array($label_cache) && !empty($label_cache[1]) && is_string($label_cache[1])) {
 							$item['categories'][] = 'user/-/label/' . trim($label_cache[1]);
 						}
 					}
 				}
 			}
-			$item['alternate'][0]['href'] = $item['link'] ?? '';
+			$item['alternate'] = [['href' => $item['link'] ?? '']];
 			$item['origin'] = [
 				'title' => $item['feed_title'] ?? '',
 				'feedUrl' => $item['feed_url'] ?? '',
@@ -290,6 +294,9 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 			return false;
 		}
 		$items = $article_object['items'] ?? $article_object;
+		if (!is_array($items)) {
+			$items = [];
+		}
 
 		$mark_as_read = FreshRSS_Context::userConf()->mark_when['reception'] ? 1 : 0;
 
@@ -302,29 +309,32 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 
 		// First, we check feeds of articles are in DB (and add them if needed).
 		foreach ($items as &$item) {
-			if (!isset($item['guid']) && isset($item['id'])) {
-				$item['guid'] = $item['id'];
-			}
-			if (empty($item['guid'])) {
+			if (!is_array($item)) {
 				continue;
 			}
-			if (empty($item['origin'])) {
+			if (!is_string($item['guid'] ?? null) && is_string($item['id'] ?? null)) {
+				$item['guid'] = $item['id'];
+			}
+			if (!is_string($item['guid'] ?? null)) {
+				continue;
+			}
+			if (!is_array($item['origin'] ?? null)) {
 				$item['origin'] = [];
 			}
-			if (empty($item['origin']['title']) || trim($item['origin']['title']) === '') {
+			if (!is_string($item['origin']['title'] ?? null) || trim($item['origin']['title']) === '') {
 				$item['origin']['title'] = 'Import';
 			}
-			if (!empty($item['origin']['feedUrl'])) {
+			if (is_string($item['origin']['feedUrl'] ?? null)) {
 				$feedUrl = $item['origin']['feedUrl'];
-			} elseif (!empty($item['origin']['streamId']) && str_starts_with($item['origin']['streamId'], 'feed/')) {
+			} elseif (is_string($item['origin']['streamId'] ?? null) && str_starts_with($item['origin']['streamId'], 'feed/')) {
 				$feedUrl = substr($item['origin']['streamId'], 5);	//Google Reader
 				$item['origin']['feedUrl'] = $feedUrl;
-			} elseif (!empty($item['origin']['htmlUrl'])) {
+			} elseif (is_string($item['origin']['htmlUrl'] ?? null)) {
 				$feedUrl = $item['origin']['htmlUrl'];
 			} else {
 				$feedUrl = 'http://import.localhost/import.xml';
 				$item['origin']['feedUrl'] = $feedUrl;
-				$item['origin']['disable'] = true;
+				$item['origin']['disable'] = 'true';
 			}
 			$feed = new FreshRSS_Feed($feedUrl);
 			$feed = $this->feedDAO->searchByUrl($feed->url());
@@ -335,7 +345,8 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 					// Oops, no more place!
 					Minz_Log::warning(_t('feedback.sub.feed.over_max', $limits['max_feeds']));
 				} else {
-					$feed = $this->addFeedJson($item['origin']);
+					$origin = array_filter($item['origin'], fn($value, $key): bool => is_string($key) && is_string($value), ARRAY_FILTER_USE_BOTH);
+					$feed = $this->addFeedJson($origin);
 				}
 
 				if ($feed === null) {
@@ -375,19 +386,24 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 		$newGuids = [];
 		$this->entryDAO->beginTransaction();
 		foreach ($items as &$item) {
-			if (empty($item['guid']) || empty($article_to_feed[$item['guid']])) {
+			if (!is_array($item) || empty($item['guid']) || !is_string($item['guid']) || empty($article_to_feed[$item['guid']])) {
 				// Related feed does not exist for this entry, do nothing.
 				continue;
 			}
 
 			$feed_id = $article_to_feed[$item['guid']];
-			$author = $item['author'] ?? '';
+			$author = is_string($item['author'] ?? null) ? $item['author'] : '';
 			$is_starred = null; // null is used to preserve the current state if that item exists and is already starred
 			$is_read = null;
-			$tags = empty($item['categories']) ? [] : $item['categories'];
+			$tags = is_array($item['categories'] ?? null) ? $item['categories'] : [];
 			$labels = [];
 			for ($i = count($tags) - 1; $i >= 0; $i--) {
-				$tag = trim($tags[$i]);
+				$tag = $tags[$i];
+				if (!is_string($tag)) {
+					unset($tags[$i]);
+					continue;
+				}
+				$tag = trim($tag);
 				if (preg_match('%^user/[A-Za-z0-9_-]+/%', $tag)) {
 					if (preg_match('%^user/[A-Za-z0-9_-]+/state/com.google/starred$%', $tag)) {
 						$is_starred = true;
@@ -401,6 +417,7 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 					unset($tags[$i]);
 				}
 			}
+			$tags = array_values(array_filter($tags, 'is_string'));
 			if ($starred && !$is_starred) {
 				//If the article has no label, mark it as starred (old format)
 				$is_starred = empty($labels);
@@ -409,41 +426,38 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 				$is_read = $mark_as_read;
 			}
 
-			if (isset($item['alternate'][0]['href'])) {
+			if (is_array($item['alternate']) && is_array($item['alternate'][0] ?? null) && is_string($item['alternate'][0]['href'] ?? null)) {
 				$url = $item['alternate'][0]['href'];
-			} elseif (isset($item['url'])) {
+			} elseif (is_string($item['url'] ?? null)) {
 				$url = $item['url'];	//FeedBin
 			} else {
 				$url = '';
 			}
-			if (!is_string($url)) {
-				$url = '';
-			}
 
-			$title = empty($item['title']) ? $url : $item['title'];
+			$title = is_string($item['title'] ?? null) ? $item['title'] : $url;
 
-			if (isset($item['content']['content']) && is_string($item['content']['content'])) {
+			if (is_array($item['content'] ?? null) && is_string($item['content']['content'] ?? null)) {
 				$content = $item['content']['content'];
-			} elseif (isset($item['summary']['content']) && is_string($item['summary']['content'])) {
+			} elseif (is_array($item['summary']) && is_string($item['summary']['content'] ?? null)) {
 				$content = $item['summary']['content'];
-			} elseif (isset($item['content']) && is_string($item['content'])) {
+			} elseif (is_string($item['content'] ?? null)) {
 				$content = $item['content'];	//FeedBin
 			} else {
 				$content = '';
 			}
 			$content = sanitizeHTML($content, $url);
 
-			if (!empty($item['published'])) {
-				$published = '' . $item['published'];
-			} elseif (!empty($item['timestampUsec'])) {
-				$published = substr('' . $item['timestampUsec'], 0, -6);
-			} elseif (!empty($item['updated'])) {
-				$published = '' . $item['updated'];
+			if (is_int($item['published'] ?? null) || is_string($item['published'] ?? null)) {
+				$published = (string)$item['published'];
+			} elseif (is_int($item['timestampUsec'] ?? null) || is_string($item['timestampUsec'] ?? null)) {
+				$published = substr((string)$item['timestampUsec'], 0, -6);
+			} elseif (is_int($item['updated'] ?? null) || is_string($item['updated'] ?? null)) {
+				$published = (string)$item['updated'];
 			} else {
 				$published = '0';
 			}
 			if (!ctype_digit($published)) {
-				$published = '' . strtotime($published);
+				$published = (string)strtotime($published);
 			}
 			if (strlen($published) > 10) {	// Milliseconds, e.g. Feedly
 				$published = substr($published, 0, -3);

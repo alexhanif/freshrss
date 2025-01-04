@@ -14,7 +14,6 @@ return array(
 	'action' => array(
 		'actualize' => 'Feeds aktualisieren',
 		'add' => 'Hinzufügen',
-		'back' => '← Zurück',
 		'back_to_rss_feeds' => '← Zurück zu Ihren RSS-Feeds gehen',
 		'cancel' => 'Abbrechen',
 		'create' => 'Erstellen',

@@ -14,7 +14,6 @@ return array(
 	'action' => array(
 		'actualize' => 'Aktualizovat kanály',
 		'add' => 'Přidat',
-		'back' => '← Jít zpět',
 		'back_to_rss_feeds' => '← Jít zpět na vaše kanály RSS',
 		'cancel' => 'Zrušit',
 		'create' => 'Vytvořit',

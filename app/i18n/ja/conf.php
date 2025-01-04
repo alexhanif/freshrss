@@ -138,6 +138,8 @@ return array(
 			'tags' => 'タグごとに表示する',
 			'type' => 'タイプ',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'すべての記事を表示する',
 		'get_all_labels' => '任意のラベルで記事を表示する',
 		'get_category' => 'カテゴリ“%s”を表示する',

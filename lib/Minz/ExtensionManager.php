@@ -136,7 +136,6 @@ final class Minz_ExtensionManager {
 		array_walk($list_core_extensions, function (&$s) { $s = CORE_EXTENSIONS_PATH . '/' . $s; });
 		array_walk($list_thirdparty_extensions, function (&$s) { $s = THIRDPARTY_EXTENSIONS_PATH . '/' . $s; });
 
-		/** @var array<string> */
 		$list_potential_extensions = array_merge($list_core_extensions, $list_thirdparty_extensions);
 
 		$system_conf = Minz_Configuration::get('system');
@@ -403,7 +402,10 @@ final class Minz_ExtensionManager {
 	public static function callHookString(string $hook_name): string {
 		$result = '';
 		foreach (self::$hook_list[$hook_name]['list'] ?? [] as $function) {
-			$result = $result . call_user_func($function);
+			$return = call_user_func($function);
+			if (is_scalar($return)) {
+				$result .= $return;
+			}
 		}
 		return $result;
 	}

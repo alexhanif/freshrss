@@ -40,7 +40,7 @@ class Minz_ModelArray {
 
 			if ($data === false) {
 				throw new Minz_PermissionDeniedException($this->filename);
-			} elseif (!is_array($data)) {
+			} elseif (!is_array($data) || !is_array_keys_string($data)) {
 				$data = [];
 			}
 			return $data;

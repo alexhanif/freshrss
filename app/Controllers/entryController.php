@@ -96,6 +96,14 @@ class FreshRSS_entry_Controller extends FreshRSS_ActionController {
 						$entryDAO->markReadEntries($id_max, false, FreshRSS_Feed::PRIORITY_MAIN_STREAM, FreshRSS_Feed::PRIORITY_IMPORTANT,
 							FreshRSS_Context::$search, FreshRSS_Context::$state, $is_read);
 						break;
+					case 'A':
+						$entryDAO->markReadEntries($id_max, false, FreshRSS_Feed::PRIORITY_CATEGORY, FreshRSS_Feed::PRIORITY_IMPORTANT,
+							FreshRSS_Context::$search, FreshRSS_Context::$state, $is_read);
+						break;
+					case 'Z':
+						$entryDAO->markReadEntries($id_max, false, FreshRSS_Feed::PRIORITY_ARCHIVED, FreshRSS_Feed::PRIORITY_IMPORTANT,
+							FreshRSS_Context::$search, FreshRSS_Context::$state, $is_read);
+						break;
 					case 'i':
 						$entryDAO->markReadEntries($id_max, false, FreshRSS_Feed::PRIORITY_IMPORTANT, null,
 							FreshRSS_Context::$search, FreshRSS_Context::$state, $is_read);
@@ -154,7 +162,7 @@ class FreshRSS_entry_Controller extends FreshRSS_ActionController {
 				}
 			}
 		} else {
-			/** @var array<numeric-string> $idArray */
+			/** @var list<numeric-string> $idArray */
 			$idArray = Minz_Request::paramArrayString('id');
 			$idString = Minz_Request::paramString('id');
 			if (count($idArray) > 0) {
@@ -169,7 +177,7 @@ class FreshRSS_entry_Controller extends FreshRSS_ActionController {
 			$tagsForEntries = $tagDAO->getTagsForEntries($ids) ?: [];
 			$tags = [];
 			foreach ($tagsForEntries as $line) {
-				$tags['t_' . $line['id_tag']][] = $line['id_entry'];
+				$tags['t_' . $line['id_tag']][] = (string)$line['id_entry'];
 			}
 			$this->view->tagsForEntries = $tags;
 		}

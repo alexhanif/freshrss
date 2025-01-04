@@ -3,7 +3,7 @@
 	/** @var FreshRSS_View $this */
 	$c = Minz_Request::controllerName();
 	$a = Minz_Request::actionName();
-	$params = $_GET;
+	$params = array_filter($_GET, 'is_string', ARRAY_FILTER_USE_KEY);
 ?>
 <?php if ($this->nbPage > 1) { ?>
 <nav class="nav-pagination nav-list">

@@ -4,10 +4,6 @@
 	$this->partial('aside_subscription');
 ?>
 <main class="post">
-	<div class="link-back-wrapper">
-		<a class="link-back" href="<?= _url('index', 'index') ?>"><?= _t('gen.action.back_to_rss_feeds') ?></a>
-	</div>
-
 	<h1><?= _t('admin.stats.main') ?></h1>
 
 	<div class="stat-grid">
@@ -102,7 +98,7 @@
  * Generate a color palette.
  *
  * @param int $count The number of colors to generate.
- * @return array<int, string> An array of HSL color strings.
+ * @return array<int,string> An array of HSL color strings.
  */
 function generateColorPalette(int $count): array {
 	$colors = [];

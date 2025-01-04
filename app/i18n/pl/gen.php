@@ -14,7 +14,6 @@ return array(
 	'action' => array(
 		'actualize' => 'Aktualizuj kanały',
 		'add' => 'Dodaj',
-		'back' => '← Wróć',
 		'back_to_rss_feeds' => '← Wróć do subskrybowanych kanałów RSS',
 		'cancel' => 'Anuluj',
 		'create' => 'Stwórz',

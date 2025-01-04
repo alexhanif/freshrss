@@ -138,6 +138,8 @@ return array(
 			'tags' => 'Zobrazit podle štítku',
 			'type' => 'Typ',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'Zobrazit všechny články',
 		'get_all_labels' => 'Zobrazit články s libovolným štítkem',
 		'get_category' => 'Zobrazit kategorii „%s“',
