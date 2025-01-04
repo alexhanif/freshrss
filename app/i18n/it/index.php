@@ -28,9 +28,9 @@ return array(
 	'feed' => array(
 		'empty' => 'Non ci sono articoli da mostrare.',
 		'received' => array(
-			'before_yesterday' => 'Received before yesterday',	// TODO
-			'today' => 'Received today',	// TODO
-			'yesterday' => 'Received yesterday',	// TODO
+			'before_yesterday' => 'Ricevuto prima di ieri',
+			'today' => 'Ricevuto oggi',
+			'yesterday' => 'Ricevuto ieri',
 		),
 		'rss_of' => 'RSS feed di %s',
 		'title' => 'Flusso principale',
