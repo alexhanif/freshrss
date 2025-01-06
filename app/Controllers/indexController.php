@@ -62,7 +62,9 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 		}
 		FreshRSS_View::prependTitle($title . ' · ');
 
-		FreshRSS_Context::$id_max = time() . '000000';
+		if (FreshRSS_Context::$id_max === '0') {
+			FreshRSS_Context::$id_max = time() . '000000';
+		}
 
 		$this->view->callbackBeforeFeeds = static function (FreshRSS_View $view) {
 			$view->tags = FreshRSS_Context::labels(true);
@@ -84,10 +86,10 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 		};
 
 		$this->view->callbackBeforePagination = static function (?FreshRSS_View $view, int $nbEntries, FreshRSS_Entry $lastEntry) {
-			if ($nbEntries >= FreshRSS_Context::$number) {
+			if ($nbEntries > FreshRSS_Context::$number) {
 				//We have enough entries: we discard the last one to use it for the next articles' page
 				ob_clean();
-				FreshRSS_Context::$next_id = $lastEntry->id();
+				FreshRSS_Context::$continuation_id = $lastEntry->id();
 			}
 			ob_end_flush();
 		};
@@ -264,16 +266,30 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 			$id = 0;
 		}
 
-		$date_min = 0;
+		$id_min = '0';
 		if (FreshRSS_Context::$sinceHours > 0) {
-			$date_min = time() - (FreshRSS_Context::$sinceHours * 3600);
+			$id_min = (time() - (FreshRSS_Context::$sinceHours * 3600)) . '000000';
+		}
+
+		$continuation_value = 0;
+		if (FreshRSS_Context::$continuation_id !== '0') {
+			if (in_array(FreshRSS_Context::$sort, ['date', 'link', 'title'], true)) {
+				$pagingEntry = $entryDAO->searchById(FreshRSS_Context::$continuation_id);
+				$continuation_value = $pagingEntry === null ? 0 : match (FreshRSS_Context::$sort) {
+					'date' => $pagingEntry->date(true),
+					'link' => $pagingEntry->link(true),
+					'title' => $pagingEntry->title(),
+				};
+			} elseif (FreshRSS_Context::$sort === 'rand') {
+				FreshRSS_Context::$continuation_id = '0';
+			}
 		}
 
 		foreach ($entryDAO->listWhere(
-					$type, $id, FreshRSS_Context::$state, FreshRSS_Context::$order,
-					$postsPerPage ?? FreshRSS_Context::$number, FreshRSS_Context::$offset, FreshRSS_Context::$first_id,
-					FreshRSS_Context::$search, $date_min
-				) as $entry) {
+					$type, $id, FreshRSS_Context::$state, FreshRSS_Context::$search,
+					id_min: $id_min, id_max: FreshRSS_Context::$id_max, sort: FreshRSS_Context::$sort, order: FreshRSS_Context::$order,
+					continuation_id: FreshRSS_Context::$continuation_id, continuation_value: $continuation_value,
+					limit: $postsPerPage ?? FreshRSS_Context::$number, offset: FreshRSS_Context::$offset) as $entry) {
 			yield $entry;
 		}
 	}

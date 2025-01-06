@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => 'Non ci sono articoli da mostrare.',
+		'received' => array(
+			'before_yesterday' => 'Ricevuto prima di ieri',
+			'today' => 'Ricevuto oggi',
+			'yesterday' => 'Ricevuto ieri',
+		),
 		'rss_of' => 'RSS feed di %s',
 		'title' => 'Flusso principale',
 		'title_fav' => 'Preferiti',
@@ -60,6 +65,18 @@ return array(
 		'reader_view' => 'Modalità di lettura',
 		'rss_view' => 'Feed RSS',
 		'search_short' => 'Cerca',
+		'sort' => array(
+			'_' => 'Ordina per',
+			'date_asc' => 'Data di pubblicazione 1→9',
+			'date_desc' => 'Data di pubblicazione 9→1',
+			'id_asc' => 'Dal meno recente',
+			'id_desc' => 'Dal più recente',
+			'link_asc' => 'Link A→Z',	// IGNORE
+			'link_desc' => 'Link Z→A',	// IGNORE
+			'rand' => 'Ordine casuale',
+			'title_asc' => 'Titolo A→Z',
+			'title_desc' => 'Titolo Z→A',
+		),
 		'starred' => 'Mostra solo preferiti',
 		'stats' => 'Statistiche',
 		'subscription' => 'Gestione sottoscrizioni',
