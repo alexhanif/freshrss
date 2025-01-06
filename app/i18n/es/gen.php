@@ -14,7 +14,6 @@ return array(
 	'action' => array(
 		'actualize' => 'Actualizar fuentes',
 		'add' => 'Añadir',
-		'back' => '← Volver',
 		'back_to_rss_feeds' => '← regresar a tus fuentes RSS',
 		'cancel' => 'Cancelar',
 		'create' => 'Crear',

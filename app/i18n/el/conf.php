@@ -138,6 +138,8 @@ return array(
 			'tags' => 'Display by label',	// TODO
 			'type' => 'Type',	// TODO
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'Display all articles',	// TODO
 		'get_all_labels' => 'Display articles with any label',	// TODO
 		'get_category' => 'Display “%s” category',	// TODO

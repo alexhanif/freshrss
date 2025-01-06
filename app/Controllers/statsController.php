@@ -8,6 +8,7 @@ class FreshRSS_stats_Controller extends FreshRSS_ActionController {
 
 	/**
 	 * @var FreshRSS_ViewStats
+	 * @phpstan-ignore property.phpDocType
 	 */
 	protected $view;
 

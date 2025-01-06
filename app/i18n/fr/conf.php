@@ -138,6 +138,8 @@ return array(
 			'tags' => 'Afficher par étiquette',
 			'type' => 'Type',	// IGNORE
 		),
+		'get_A' => 'Tous les flux, y compris ceux limités à leur catégorie',
+		'get_Z' => 'Tous les flux, y compris les archivés',
 		'get_all' => 'Afficher tous les articles',
 		'get_all_labels' => 'Afficher les articles avec une étiquette',
 		'get_category' => 'Afficher la catégorie <em>%s<em>',

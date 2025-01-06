@@ -85,6 +85,32 @@ spl_autoload_register('classAutoloader');
 //</Auto-loading>
 
 /**
+ * @param array<mixed,mixed> $array
+ * @phpstan-assert-if-true array<string,mixed> $array
+ */
+function is_array_keys_string(array $array): bool {
+	foreach ($array as $key => $value) {
+		if (!is_string($key)) {
+			return false;
+		}
+	}
+	return true;
+}
+
+/**
+ * @param array<mixed,mixed> $array
+ * @phpstan-assert-if-true array<mixed,string> $array
+ */
+function is_array_values_string(array $array): bool {
+	foreach ($array as $value) {
+		if (!is_string($value)) {
+			return false;
+		}
+	}
+	return true;
+}
+
+/**
  * Memory efficient replacement of `echo json_encode(...)`
  * @param array<mixed>|mixed $json
  * @param int $optimisationDepth Number of levels for which to perform memory optimisation
@@ -231,6 +257,7 @@ function timestamptodate(int $t, bool $hour = true): string {
  * Decode HTML entities but preserve XML entities.
  */
 function html_only_entity_decode(?string $text): string {
+	/** @var array<string,string>|null $htmlEntitiesOnly */
 	static $htmlEntitiesOnly = null;
 	if ($htmlEntitiesOnly === null) {
 		$htmlEntitiesOnly = array_flip(array_diff(
@@ -252,7 +279,7 @@ function sensitive_log($log): array|string {
 		foreach ($log as $k => $v) {
 			if (in_array($k, ['api_key', 'Passwd', 'T'], true)) {
 				$log[$k] = '██';
-			} elseif (is_array($v) || is_string($v)) {
+			} elseif ((is_array($v) && is_array_keys_string($v)) || is_string($v)) {
 				$log[$k] = sensitive_log($v);
 			} else {
 				return '';
@@ -298,7 +325,9 @@ function customSimplePie(array $attributes = [], array $curl_options = []): \Sim
 	}
 	if (!empty($attributes['curl_params']) && is_array($attributes['curl_params'])) {
 		foreach ($attributes['curl_params'] as $co => $v) {
-			$curl_options[$co] = $v;
+			if (is_int($co)) {
+				$curl_options[$co] = $v;
+			}
 		}
 	}
 	$simplePie->set_curl_options($curl_options);
@@ -366,13 +395,18 @@ function sanitizeHTML(string $data, string $base = '', ?int $maxLength = null): 
 	if ($maxLength !== null) {
 		$data = mb_strcut($data, 0, $maxLength, 'UTF-8');
 	}
+	/** @var \SimplePie\SimplePie|null $simplePie */
 	static $simplePie = null;
-	if ($simplePie == null) {
+	if ($simplePie === null) {
 		$simplePie = customSimplePie();
 		$simplePie->enable_cache(false);
 		$simplePie->init();
 	}
-	$result = html_only_entity_decode($simplePie->sanitize->sanitize($data, \SimplePie\SimplePie::CONSTRUCT_HTML, $base));
+	$sanitized = $simplePie->sanitize->sanitize($data, \SimplePie\SimplePie::CONSTRUCT_HTML, $base);
+	if (!is_string($sanitized)) {
+		return '';
+	}
+	$result = html_only_entity_decode($sanitized);
 	if ($maxLength !== null && strlen($result) > $maxLength) {
 		//Sanitizing has made the result too long so try again shorter
 		$data = mb_strcut($result, 0, (2 * $maxLength) - strlen($result) - 2, 'UTF-8');
@@ -504,6 +538,9 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 
 	// TODO: Implement HTTP 1.1 conditional GET If-Modified-Since
 	$ch = curl_init();
+	if ($ch === false) {
+		return '';
+	}
 	curl_setopt_array($ch, [
 		CURLOPT_URL => $url,
 		CURLOPT_HTTPHEADER => ['Accept: ' . $accept],
@@ -592,9 +629,10 @@ function lazyimg(string $content): string {
 /** @return numeric-string */
 function uTimeString(): string {
 	$t = @gettimeofday();
-	$result = $t['sec'] . str_pad('' . $t['usec'], 6, '0', STR_PAD_LEFT);
-	/** @var numeric-string @result */
-	return $result;
+	$sec = is_numeric($t['sec']) ? (int)$t['sec'] : 0;
+	$usec = is_numeric($t['usec']) ? (int)$t['usec'] : 0;
+	$result = ((string)$sec) . str_pad((string)$usec, 6, '0', STR_PAD_LEFT);
+	return ctype_digit($result) ? $result : '0';
 }
 
 function invalidateHttpCache(string $username = ''): bool {
@@ -606,7 +644,7 @@ function invalidateHttpCache(string $username = ''): bool {
 }
 
 /**
- * @return array<string>
+ * @return list<string>
  */
 function listUsers(): array {
 	$final_list = [];
@@ -712,9 +750,9 @@ function checkCIDR(string $ip, string $range): bool {
  * Use CONN_REMOTE_ADDR (if available, to be robust even when using Apache mod_remoteip) or REMOTE_ADDR environment variable to determine the connection IP.
  */
 function connectionRemoteAddress(): string {
-	$remoteIp = $_SERVER['CONN_REMOTE_ADDR'] ?? '';
+	$remoteIp = is_string($_SERVER['CONN_REMOTE_ADDR'] ?? null) ? $_SERVER['CONN_REMOTE_ADDR'] : '';
 	if ($remoteIp == '') {
-		$remoteIp = $_SERVER['REMOTE_ADDR'] ?? '';
+		$remoteIp = is_string($_SERVER['REMOTE_ADDR'] ?? null) ? $_SERVER['REMOTE_ADDR'] : '';
 	}
 	if ($remoteIp == 0) {
 		$remoteIp = '';
@@ -752,17 +790,17 @@ function checkTrustedIP(): bool {
 }
 
 function httpAuthUser(bool $onlyTrusted = true): string {
-	if (!empty($_SERVER['REMOTE_USER'])) {
+	if (!empty($_SERVER['REMOTE_USER']) && is_string($_SERVER['REMOTE_USER'])) {
 		return $_SERVER['REMOTE_USER'];
 	}
-	if (!empty($_SERVER['REDIRECT_REMOTE_USER'])) {
+	if (!empty($_SERVER['REDIRECT_REMOTE_USER']) && is_string($_SERVER['REDIRECT_REMOTE_USER'])) {
 		return $_SERVER['REDIRECT_REMOTE_USER'];
 	}
 	if (!$onlyTrusted || checkTrustedIP()) {
-		if (!empty($_SERVER['HTTP_REMOTE_USER'])) {
+		if (!empty($_SERVER['HTTP_REMOTE_USER']) && is_string($_SERVER['HTTP_REMOTE_USER'])) {
 			return $_SERVER['HTTP_REMOTE_USER'];
 		}
-		if (!empty($_SERVER['HTTP_X_WEBAUTH_USER'])) {
+		if (!empty($_SERVER['HTTP_X_WEBAUTH_USER']) && is_string($_SERVER['HTTP_X_WEBAUTH_USER'])) {
 			return $_SERVER['HTTP_X_WEBAUTH_USER'];
 		}
 	}
@@ -872,14 +910,14 @@ function recursive_unlink(string $dir): bool {
 /**
  * Remove queries where $get is appearing.
  * @param string $get the get attribute which should be removed.
- * @param array<int,array<string,string|int>> $queries an array of queries.
- * @return array<int,array<string,string|int>> without queries where $get is appearing.
+ * @param array<int,array{get?:string,name?:string,order?:string,search?:string,state?:int,url?:string}> $queries an array of queries.
+ * @return array<int,array{get?:string,name?:string,order?:string,search?:string,state?:int,url?:string}> without queries where $get is appearing.
  */
 function remove_query_by_get(string $get, array $queries): array {
 	$final_queries = [];
-	foreach ($queries as $key => $query) {
+	foreach ($queries as $query) {
 		if (empty($query['get']) || $query['get'] !== $get) {
-			$final_queries[$key] = $query;
+			$final_queries[] = $query;
 		}
 	}
 	return $final_queries;
@@ -901,7 +939,7 @@ const SHORTCUT_KEYS = [
 
 /**
  * @param array<string> $shortcuts
- * @return array<string>
+ * @return list<string>
  */
 function getNonStandardShortcuts(array $shortcuts): array {
 	$standard = strtolower(implode(' ', SHORTCUT_KEYS));
@@ -911,7 +949,7 @@ function getNonStandardShortcuts(array $shortcuts): array {
 		return $shortcut !== '' && stripos($standard, $shortcut) === false;
 	});
 
-	return $nonStandard;
+	return array_values($nonStandard);
 }
 
 function errorMessageInfo(string $errorTitle, string $error = ''): string {

@@ -13,7 +13,8 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 	#[\Override]
 	public function firstAction(): void {
 		if (!FreshRSS_Auth::hasAccess()) {
-			Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_403_FORBIDDEN);
+			Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_
+                        3_FORBIDDEN);
 		}
 
 		$catDAO = FreshRSS_Factory::createCategoryDao();
@@ -93,16 +94,18 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 			FreshRSS_View::appendScript(Minz_Url::display('/scripts/feed.js?' . @filemtime(PUBLIC_PATH . '/scripts/feed.js')));
 		}
 
-		$feedDAO = FreshRSS_Factory::createFeedDao();
-		$this->view->feeds = $feedDAO->listFeeds();
-
 		$id = Minz_Request::paramInt('id');
-		if ($id === 0 || !isset($this->view->feeds[$id])) {
-			Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_404_NOT_FOUND);
+		if ($id === 0) {
+			Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_400_BAD_REQUES);
 			return;
 		}
 
-		$feed = $this->view->feeds[$id];
+		$feedDAO = FreshRSS_Factory::createFeedDao();
+		$feed = $feedDAO->searchById($id);
+		if ($feed === null) {
+			Minz_Error::error(404);
+			return;
+		}
 		$this->view->feed = $feed;
 
 		FreshRSS_View::prependTitle($feed->name() . ' · ' . _t('sub.title.feed_management') . ' · ');

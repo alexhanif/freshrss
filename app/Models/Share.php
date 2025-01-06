@@ -13,8 +13,8 @@ class FreshRSS_Share {
 
 	/**
 	 * Register a new sharing option.
-	 * @param array{'type':string,'url':string,'transform'?:array<callable>|array<string,array<callable>>,'field'?:string,'help'?:string,'form'?:'simple'|'advanced',
-	 *	'method'?:'GET'|'POST','HTMLtag'?:'button','deprecated'?:bool} $share_options is an array defining the share option.
+	 * @param array{type:string,url:string,transform?:array<callable>|array<string,array<callable>>,field?:string,help?:string,form?:'simple'|'advanced',
+	 *	method?:'GET'|'POST',HTMLtag?:'button',deprecated?:bool} $share_options is an array defining the share option.
 	 */
 	public static function register(array $share_options): void {
 		$type = $share_options['type'];
@@ -46,7 +46,12 @@ class FreshRSS_Share {
 		}
 
 		foreach ($shares_from_file as $share_type => $share_options) {
+			if (!is_array($share_options)) {
+				continue;
+			}
 			$share_options['type'] = $share_type;
+			/** @var array{type:string,url:string,transform?:array<callable>|array<string,array<callable>>,field?:string,help?:string,form?:'simple'|'advanced',
+			 *	method?:'GET'|'POST',HTMLtag?:'button',deprecated?:bool} $share_options */
 			self::register($share_options);
 		}
 
@@ -233,8 +238,8 @@ class FreshRSS_Share {
 			'~LINK~',
 		];
 		$replaces = [
-			$this->id(),
-			$this->base_url,
+			$this->id() ?? '',
+			$this->base_url ?? '',
 			$this->title(),
 			$this->link(),
 		];
@@ -298,7 +303,10 @@ class FreshRSS_Share {
 		}
 
 		foreach ($transform as $action) {
-			$data = call_user_func($action, $data);
+			$return = call_user_func($action, $data);
+			if (is_string($return)) {
+				$data = $return;
+			}
 		}
 
 		return $data;
@@ -307,7 +315,7 @@ class FreshRSS_Share {
 	/**
 	 * Get the list of transformations for the given attribute.
 	 * @param string $attr the attribute of which we want the transformations.
-	 * @return array<callable> containing a list of transformations to apply.
+	 * @return list<callable> containing a list of transformations to apply.
 	 */
 	private function getTransform(string $attr): array {
 		if (array_key_exists($attr, $this->transforms)) {

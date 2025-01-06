@@ -138,6 +138,8 @@ return array(
 			'tags' => 'Отображение по метке',
 			'type' => 'Тип',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'Показать все статьи',
 		'get_all_labels' => 'Показать все статьи с любыми метками',
 		'get_category' => 'Показать категорию “%s”',

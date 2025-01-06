@@ -59,7 +59,7 @@ class FreshRSS_ReadingMode {
 	}
 
 	/**
-	 * @return array<FreshRSS_ReadingMode> the built-in reading modes
+	 * @return list<FreshRSS_ReadingMode> the built-in reading modes
 	 */
 	public static function getReadingModes(): array {
 		$actualView = Minz_Request::actionName();

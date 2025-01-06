@@ -138,6 +138,8 @@ return array(
 			'tags' => '按標籤顯示',
 			'type' => '類型',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => '顯示所有文章',
 		'get_all_labels' => '顯示任何標籤的文章',
 		'get_category' => '顯示分類 “%s”',
