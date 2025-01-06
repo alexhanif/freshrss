@@ -28,8 +28,6 @@ Server-side API compatible with Google Reader API layer 2
 require(__DIR__ . '/../../constants.php');
 require(LIB_PATH . '/lib_rss.php');	//Includes class autoloader
 
-$ORIGINAL_INPUT = file_get_contents('php://input', false, null, 0, 1048576) ?: '';
-
 if (PHP_INT_SIZE < 8) {	//32-bit
 	/** @return numeric-string */
 	function hex2dec(string $hex): string {
@@ -53,13 +51,13 @@ const JSON_OPTIONS = JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
 function headerVariable(string $headerName, string $varName): string {
 	$header = '';
 	$upName = 'HTTP_' . strtoupper($headerName);
-	if (isset($_SERVER[$upName])) {
+	if (is_string($_SERVER[$upName] ?? null)) {
 		$header = '' . $_SERVER[$upName];
-	} elseif (isset($_SERVER['REDIRECT_' . $upName])) {
+	} elseif (is_string($_SERVER['REDIRECT_' . $upName] ?? null)) {
 		$header = '' . $_SERVER['REDIRECT_' . $upName];
 	} elseif (function_exists('getallheaders')) {
 		$ALL_HEADERS = getallheaders();
-		if (isset($ALL_HEADERS[$headerName])) {
+		if (is_string($ALL_HEADERS[$headerName] ?? null)) {
 			$header = '' . $ALL_HEADERS[$headerName];
 		}
 	}
@@ -70,47 +68,47 @@ function headerVariable(string $headerName, string $varName): string {
 	return is_string($pairs[$varName]) ? $pairs[$varName] : '';
 }
 
-/** @return array<string> */
-function multiplePosts(string $name): array {
-	//https://bugs.php.net/bug.php?id=51633
-	global $ORIGINAL_INPUT;
-	$inputs = explode('&', $ORIGINAL_INPUT);
-	$result = [];
-	$prefix = $name . '=';
-	$prefixLength = strlen($prefix);
-	foreach ($inputs as $input) {
-		if (str_starts_with($input, $prefix)) {
-			$result[] = urldecode(substr($input, $prefixLength));
-		}
-	}
-	return $result;
-}
+final class GReaderAPI {
 
-function debugInfo(): string {
-	if (function_exists('getallheaders')) {
-		$ALL_HEADERS = getallheaders();
-	} else {	//nginx	http://php.net/getallheaders#84262
-		$ALL_HEADERS = [];
-		foreach ($_SERVER as $name => $value) {
-			if (str_starts_with($name, 'HTTP_')) {
-				$ALL_HEADERS[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
+	private static string $ORIGINAL_INPUT = '';
+
+	/** @return list<string> */
+	private static function multiplePosts(string $name): array {
+		//https://bugs.php.net/bug.php?id=51633
+		$inputs = explode('&', self::$ORIGINAL_INPUT);
+		$result = [];
+		$prefix = $name . '=';
+		$prefixLength = strlen($prefix);
+		foreach ($inputs as $input) {
+			if (str_starts_with($input, $prefix)) {
+				$result[] = urldecode(substr($input, $prefixLength));
 			}
 		}
+		return $result;
 	}
-	global $ORIGINAL_INPUT;
-	$log = sensitive_log([
-			'date' => date('c'),
-			'headers' => $ALL_HEADERS,
-			'_SERVER' => $_SERVER,
-			'_GET' => $_GET,
-			'_POST' => $_POST,
-			'_COOKIE' => $_COOKIE,
-			'INPUT' => $ORIGINAL_INPUT,
-		]);
-	return print_r($log, true);
-}
 
-final class GReaderAPI {
+	private static function debugInfo(): string {
+		if (function_exists('getallheaders')) {
+			$ALL_HEADERS = getallheaders();
+		} else {	//nginx	http://php.net/getallheaders#84262
+			$ALL_HEADERS = [];
+			foreach ($_SERVER as $name => $value) {
+				if (is_string($name) && str_starts_with($name, 'HTTP_')) {
+					$ALL_HEADERS[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
+				}
+			}
+		}
+		$log = sensitive_log([
+				'date' => date('c'),
+				'headers' => $ALL_HEADERS,
+				'_SERVER' => $_SERVER,
+				'_GET' => $_GET,
+				'_POST' => $_POST,
+				'_COOKIE' => $_COOKIE,
+				'INPUT' => self::$ORIGINAL_INPUT,
+			]);
+		return print_r($log, true);
+	}
 
 	private static function noContent(): never {
 		header('HTTP/1.1 204 No Content');
@@ -119,7 +117,7 @@ final class GReaderAPI {
 
 	private static function badRequest(): never {
 		Minz_Log::warning(__METHOD__, API_LOG);
-		Minz_Log::debug(__METHOD__ . ' ' . debugInfo(), API_LOG);
+		Minz_Log::debug(__METHOD__ . ' ' . self::debugInfo(), API_LOG);
 		header('HTTP/1.1 400 Bad Request');
 		header('Content-Type: text/plain; charset=UTF-8');
 		die('Bad Request!');
@@ -127,7 +125,7 @@ final class GReaderAPI {
 
 	private static function unauthorized(): never {
 		Minz_Log::warning(__METHOD__, API_LOG);
-		Minz_Log::debug(__METHOD__ . ' ' . debugInfo(), API_LOG);
+		Minz_Log::debug(__METHOD__ . ' ' . self::debugInfo(), API_LOG);
 		header('HTTP/1.1 401 Unauthorized');
 		header('Content-Type: text/plain; charset=UTF-8');
 		header('Google-Bad-Token: true');
@@ -136,7 +134,7 @@ final class GReaderAPI {
 
 	private static function internalServerError(): never {
 		Minz_Log::warning(__METHOD__, API_LOG);
-		Minz_Log::debug(__METHOD__ . ' ' . debugInfo(), API_LOG);
+		Minz_Log::debug(__METHOD__ . ' ' . self::debugInfo(), API_LOG);
 		header('HTTP/1.1 500 Internal Server Error');
 		header('Content-Type: text/plain; charset=UTF-8');
 		die('Internal Server Error!');
@@ -144,7 +142,7 @@ final class GReaderAPI {
 
 	private static function notImplemented(): never {
 		Minz_Log::warning(__METHOD__, API_LOG);
-		Minz_Log::debug(__METHOD__ . ' ' . debugInfo(), API_LOG);
+		Minz_Log::debug(__METHOD__ . ' ' . self::debugInfo(), API_LOG);
 		header('HTTP/1.1 501 Not Implemented');
 		header('Content-Type: text/plain; charset=UTF-8');
 		die('Not Implemented!');
@@ -152,7 +150,7 @@ final class GReaderAPI {
 
 	private static function serviceUnavailable(): never {
 		Minz_Log::warning(__METHOD__, API_LOG);
-		Minz_Log::debug(__METHOD__ . ' ' . debugInfo(), API_LOG);
+		Minz_Log::debug(__METHOD__ . ' ' . self::debugInfo(), API_LOG);
 		header('HTTP/1.1 503 Service Unavailable');
 		header('Content-Type: text/plain; charset=UTF-8');
 		die('Service Unavailable!');
@@ -160,7 +158,7 @@ final class GReaderAPI {
 
 	private static function checkCompatibility(): never {
 		Minz_Log::warning(__METHOD__, API_LOG);
-		Minz_Log::debug(__METHOD__ . ' ' . debugInfo(), API_LOG);
+		Minz_Log::debug(__METHOD__ . ' ' . self::debugInfo(), API_LOG);
 		header('Content-Type: text/plain; charset=UTF-8');
 		if (PHP_INT_SIZE < 8 && !function_exists('gmp_init')) {
 			die('FAIL 64-bit or GMP extension! Wrong PHP configuration.');
@@ -365,9 +363,9 @@ final class GReaderAPI {
 	}
 
 	/**
-	 * @param array<string> $streamNames StreamId(s) to operate on. The parameter may be repeated to edit multiple subscriptions at once
-	 * @param array<string> $titles Title(s) to use for the subscription(s). Each title is associated with the corresponding streamName
-	 * @param 'subscribe'|'unsubscribe'|'edit' $action
+	 * @param list<string> $streamNames StreamId(s) to operate on. The parameter may be repeated to edit multiple subscriptions at once
+	 * @param list<string> $titles Title(s) to use for the subscription(s). Each title is associated with the corresponding streamName
+	 * @param string $action 'subscribe'|'unsubscribe'|'edit'
 	 * @param string $add StreamId to add the subscription(s) to (generally a category)
 	 * @param string $remove StreamId to remove the subscription(s) from (generally a category)
 	 */
@@ -544,8 +542,8 @@ final class GReaderAPI {
 	}
 
 	/**
-	 * @param array<FreshRSS_Entry> $entries
-	 * @return array<array<string,mixed>>
+	 * @param list<FreshRSS_Entry> $entries
+	 * @return list<array<string,mixed>>
 	 */
 	private static function entriesToArray(array $entries): array {
 		if (empty($entries)) {
@@ -559,9 +557,9 @@ final class GReaderAPI {
 
 		$items = [];
 		foreach ($entries as $item) {
-			/** @var FreshRSS_Entry $entry */
+			/** @var FreshRSS_Entry|null $entry */
 			$entry = Minz_ExtensionManager::callHook('entry_before_display', $item);
-			if ($entry == null) {
+			if ($entry === null) {
 				continue;
 			}
 
@@ -645,6 +643,9 @@ final class GReaderAPI {
 		return [$type, $streamId, $state, $searches];
 	}
 
+	/**
+	 * @param numeric-string $continuation
+	 */
 	private static function streamContents(string $path, string $include_target, int $start_time, int $stop_time, int $count,
 		string $order, string $filter_target, string $exclude_target, string $continuation): never {
 		// https://code.google.com/archive/p/pyrfeed/wikis/GoogleReaderAPI.wiki
@@ -662,17 +663,20 @@ final class GReaderAPI {
 		[$type, $include_target, $state, $searches] =
 			self::streamContentsFilters($type, $include_target, $filter_target, $exclude_target, $start_time, $stop_time);
 
-		if ($continuation != '') {
+		if ($continuation !== '0') {
 			$count++;	//Shift by one element
 		}
 
 		$entryDAO = FreshRSS_Factory::createEntryDao();
-		$entries = $entryDAO->listWhere($type, $include_target, $state, $order === 'o' ? 'ASC' : 'DESC', $count, 0, $continuation, $searches);
-		$entries = iterator_to_array($entries);	//TODO: Improve
+		$entries = $entryDAO->listWhere($type, $include_target, $state, $searches,
+			order: $order === 'o' ? 'ASC' : 'DESC',
+			continuation_id: $continuation,
+			limit: $count);
+		$entries = array_values(iterator_to_array($entries));	//TODO: Improve
 
 		$items = self::entriesToArray($entries);
 
-		if ($continuation != '') {
+		if ($continuation !== '0') {
 			array_shift($items);	//Discard first element that was already sent in the previous response
 			$count--;
 		}
@@ -694,6 +698,9 @@ final class GReaderAPI {
 		exit();
 	}
 
+	/**
+	 * @param numeric-string $continuation
+	 */
 	private static function streamContentsItemsIds(string $streamId, int $start_time, int $stop_time, int $count,
 		string $order, string $filter_target, string $exclude_target, string $continuation): never {
 		// https://github.com/mihaip/google-reader-api/blob/master/wiki/ApiStreamItemsIds.wiki
@@ -714,17 +721,20 @@ final class GReaderAPI {
 
 		[$type, $id, $state, $searches] = self::streamContentsFilters($type, $streamId, $filter_target, $exclude_target, $start_time, $stop_time);
 
-		if ($continuation != '') {
+		if ($continuation !== '0') {
 			$count++;	//Shift by one element
 		}
 
 		$entryDAO = FreshRSS_Factory::createEntryDao();
-		$ids = $entryDAO->listIdsWhere($type, $id, $state, $order === 'o' ? 'ASC' : 'DESC', $count, 0, $continuation, $searches);
+		$ids = $entryDAO->listIdsWhere($type, $id, $state, $searches,
+			order: $order === 'o' ? 'ASC' : 'DESC',
+			continuation_id: $continuation,
+			limit: $count);
 		if ($ids === null) {
 			self::internalServerError();
 		}
 
-		if ($continuation != '') {
+		if ($continuation !== '0') {
 			array_shift($ids);	//Discard first element that was already sent in the previous response
 			$count--;
 		}
@@ -754,7 +764,7 @@ final class GReaderAPI {
 	}
 
 	/**
-	 * @param array<string> $e_ids
+	 * @param list<string> $e_ids
 	 */
 	private static function streamContentsItems(array $e_ids, string $order): never {
 		header('Content-Type: application/json; charset=UTF-8');
@@ -765,11 +775,11 @@ final class GReaderAPI {
 				$e_ids[$i] = hex2dec(basename($e_id));	//Strip prefix 'tag:google.com,2005:reader/item/'
 			}
 		}
-		/** @var array<numeric-string> $e_ids */
+		/** @var list<numeric-string> $e_ids */
 
 		$entryDAO = FreshRSS_Factory::createEntryDao();
-		$entries = $entryDAO->listByIds($e_ids, $order === 'o' ? 'ASC' : 'DESC');
-		$entries = iterator_to_array($entries);	//TODO: Improve
+		$entries = $entryDAO->listByIds($e_ids, order: $order === 'o' ? 'ASC' : 'DESC');
+		$entries = array_values(iterator_to_array($entries));	//TODO: Improve
 
 		$items = self::entriesToArray($entries);
 
@@ -785,9 +795,9 @@ final class GReaderAPI {
 	}
 
 	/**
-	 * @param array<string> $e_ids IDs of the items to edit
-	 * @param array<string> $as tags to add to all the listed items
-	 * @param array<string> $rs tags to remove from all the listed items
+	 * @param list<string> $e_ids IDs of the items to edit
+	 * @param list<string> $as tags to add to all the listed items
+	 * @param list<string> $rs tags to remove from all the listed items
 	 */
 	private static function editTag(array $e_ids, array $as, array $rs): never {
 		foreach ($e_ids as $i => $e_id) {
@@ -795,7 +805,7 @@ final class GReaderAPI {
 				$e_ids[$i] = hex2dec(basename($e_id));	//Strip prefix 'tag:google.com,2005:reader/item/'
 			}
 		}
-		/** @var array<numeric-string> $e_ids */
+		/** @var list<numeric-string> $e_ids */
 
 		$entryDAO = FreshRSS_Factory::createEntryDao();
 		$tagDAO = FreshRSS_Factory::createTagDao();
@@ -960,8 +970,6 @@ final class GReaderAPI {
 	}
 
 	public static function parse(): never {
-		global $ORIGINAL_INPUT;
-
 		header('Access-Control-Allow-Headers: Authorization');
 		header('Access-Control-Allow-Methods: GET, POST');
 		header('Access-Control-Allow-Origin: *');
@@ -971,8 +979,8 @@ final class GReaderAPI {
 		}
 
 		$pathInfo = '';
-		if (empty($_SERVER['PATH_INFO'])) {
-			if (!empty($_SERVER['ORIG_PATH_INFO'])) {
+		if (empty($_SERVER['PATH_INFO']) || !is_string($_SERVER['PATH_INFO'])) {
+			if (!empty($_SERVER['ORIG_PATH_INFO']) && is_string($_SERVER['ORIG_PATH_INFO'])) {
 				// Compatibility https://php.net/reserved.variables.server
 				$pathInfo = $_SERVER['ORIG_PATH_INFO'];
 			}
@@ -992,7 +1000,7 @@ final class GReaderAPI {
 		FreshRSS_Context::initSystem();
 
 		//Minz_Log::debug('----------------------------------------------------------------', API_LOG);
-		//Minz_Log::debug(debugInfo(), API_LOG);
+		//Minz_Log::debug(self::debugInfo(), API_LOG);
 
 		if (!FreshRSS_Context::hasSystemConf() || !FreshRSS_Context::systemConf()->api_enabled) {
 			self::serviceUnavailable();
@@ -1013,15 +1021,18 @@ final class GReaderAPI {
 			Minz_Translate::init();
 		}
 
+		self::$ORIGINAL_INPUT = file_get_contents('php://input', false, null, 0, 1048576) ?: '';
+
 		if ($pathInfos[1] === 'accounts') {
-			if (($pathInfos[2] === 'ClientLogin') && isset($_REQUEST['Email']) && isset($_REQUEST['Passwd'])) {
+			if (($pathInfos[2] === 'ClientLogin') && is_string($_REQUEST['Email'] ?? null) && is_string($_REQUEST['Passwd'] ?? null)) {
 				self::clientLogin($_REQUEST['Email'], $_REQUEST['Passwd']);
 			}
 		} elseif (isset($pathInfos[3], $pathInfos[4]) && $pathInfos[1] === 'reader' && $pathInfos[2] === 'api' && $pathInfos[3] === '0') {
 			if (Minz_User::name() === null) {
 				self::unauthorized();
 			}
-			$timestamp = isset($_GET['ck']) ? (int)$_GET['ck'] : 0;	//ck=[unix timestamp] : Use the current Unix time here, helps Google with caching.
+			// ck=[unix timestamp]: Use the current Unix time here, helps Google with caching
+			$timestamp = is_numeric($_GET['ck'] ?? null) ? (int)$_GET['ck'] : 0;
 			switch ($pathInfos[4]) {
 				case 'stream':
 					/**
@@ -1031,41 +1042,41 @@ final class GReaderAPI {
 					 * exclude items from a particular feed (obviously not useful in this request,
 					 * but xt appears in other listing requests).
 					 */
-					$exclude_target = $_GET['xt'] ?? '';
-					$filter_target = $_GET['it'] ?? '';
+					$exclude_target = is_string($_GET['xt'] ?? null) ? $_GET['xt'] : '';
+					$filter_target = is_string($_GET['it'] ?? null) ? $_GET['it'] : '';
 					//n=[integer] : The maximum number of results to return.
-					$count = isset($_GET['n']) ? (int)$_GET['n'] : 20;
+					$count = is_numeric($_GET['n'] ?? null) ? (int)$_GET['n'] : 20;
 					//r=[d|n|o] : Sort order of item results. d or n gives items in descending date order, o in ascending order.
-					$order = $_GET['r'] ?? 'd';
+					$order = is_string($_GET['r'] ?? null) ? $_GET['r'] : 'd';
 					/**
 					 * ot=[unix timestamp] : The time from which you want to retrieve items.
 					 * Only items that have been crawled by Google Reader after this time will be returned.
 					 */
-					$start_time = isset($_GET['ot']) ? (int)$_GET['ot'] : 0;
-					$stop_time = isset($_GET['nt']) ? (int)$_GET['nt'] : 0;
+					$start_time = is_numeric($_GET['ot'] ?? null) ? (int)$_GET['ot'] : 0;
+					$stop_time = is_numeric($_GET['nt'] ?? null) ? (int)$_GET['nt'] : 0;
 					/**
 					 * Continuation token. If a StreamContents response does not represent
 					 * all items in a timestamp range, it will have a continuation attribute.
 					 * The same request can be re-issued with the value of that attribute put
 					 * in this parameter to get more items
 					 */
-					$continuation = isset($_GET['c']) ? trim((string)$_GET['c']) : '';
+					$continuation = is_string($_GET['c'] ?? null) ? trim($_GET['c']) : '';
 					if (!ctype_digit($continuation)) {
-						$continuation = '';
+						$continuation = '0';
 					}
 					if (isset($pathInfos[5]) && $pathInfos[5] === 'contents') {
-						if (!isset($pathInfos[6]) && isset($_GET['s'])) {
+						if (!isset($pathInfos[6]) && is_string($_GET['s'] ?? null)) {
 							// Compatibility BazQux API https://github.com/bazqux/bazqux-api#fetching-streams
 							$streamIdInfos = explode('/', $_GET['s']);
 							foreach ($streamIdInfos as $streamIdInfo) {
 								$pathInfos[] = $streamIdInfo;
 							}
 						}
-						if (isset($pathInfos[6]) && isset($pathInfos[7])) {
+						if (isset($pathInfos[6], $pathInfos[7])) {
 							if ($pathInfos[6] === 'feed') {
 								$include_target = $pathInfos[7];
-								if ($include_target != '' && !is_numeric($include_target)) {
-									$include_target = empty($_SERVER['REQUEST_URI']) ? '' : $_SERVER['REQUEST_URI'];
+								if ($include_target !== '' && !is_numeric($include_target)) {
+									$include_target = empty($_SERVER['REQUEST_URI']) || !is_string($_SERVER['REQUEST_URI']) ? '' : $_SERVER['REQUEST_URI'];
 									if (preg_match('#/reader/api/0/stream/contents/feed/([A-Za-z0-9\'!*()%$_.~+-]+)#', $include_target, $matches) === 1) {
 										$include_target = urldecode($matches[1]);
 									} else {
@@ -1095,13 +1106,13 @@ final class GReaderAPI {
 								$count, $order, $filter_target, $exclude_target, $continuation);
 						}
 					} elseif ($pathInfos[5] === 'items') {
-						if ($pathInfos[6] === 'ids' && isset($_GET['s'])) {
+						if ($pathInfos[6] === 'ids' && is_string($_GET['s'] ?? null)) {
 							// StreamId for which to fetch the item IDs.
 							// TODO: support multiple streams
 							$streamId = $_GET['s'];
 							self::streamContentsItemsIds($streamId, $start_time, $stop_time, $count, $order, $filter_target, $exclude_target, $continuation);
 						} elseif ($pathInfos[6] === 'contents' && isset($_POST['i'])) {	//FeedMe
-							$e_ids = multiplePosts('i');	//item IDs
+							$e_ids = self::multiplePosts('i');	//item IDs
 							self::streamContentsItems($e_ids, $order);
 						}
 					}
@@ -1120,8 +1131,8 @@ final class GReaderAPI {
 								self::subscriptionExport();
 								// Always exits
 							case 'import':
-								if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST' && $ORIGINAL_INPUT != '') {
-									self::subscriptionImport($ORIGINAL_INPUT);
+								if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST' && self::$ORIGINAL_INPUT != '') {
+									self::subscriptionImport(self::$ORIGINAL_INPUT);
 								}
 								break;
 							case 'list':
@@ -1132,23 +1143,23 @@ final class GReaderAPI {
 							case 'edit':
 								if (isset($_REQUEST['s'], $_REQUEST['ac'])) {
 									// StreamId to operate on. The parameter may be repeated to edit multiple subscriptions at once
-									$streamNames = empty($_POST['s']) && isset($_GET['s']) ? [$_GET['s']] : multiplePosts('s');
+									$streamNames = empty($_POST['s']) && is_string($_GET['s'] ?? null) ? [$_GET['s']] : self::multiplePosts('s');
 									/* Title to use for the subscription. For the `subscribe` action,
 									* if not specified then the feed’s current title will be used. Can
 									* be used with the `edit` action to rename a subscription */
-									$titles = empty($_POST['t']) && isset($_GET['t']) ? [$_GET['t']] : multiplePosts('t');
+									$titles = empty($_POST['t']) && is_string($_GET['t'] ?? null) ? [$_GET['t']] : self::multiplePosts('t');
 									// Action to perform on the given StreamId. Possible values are `subscribe`, `unsubscribe` and `edit`
-									$action = $_REQUEST['ac'];
+									$action = is_string($_REQUEST['ac'] ?? null) ? $_REQUEST['ac'] : '';
 									// StreamId to add the subscription to (generally a user label)
 									// (in FreshRSS, we do not support repeated values since a feed can only be in one category)
-									$add = $_REQUEST['a'] ?? '';
+									$add = is_string($_REQUEST['a'] ?? null) ? $_REQUEST['a'] : '';
 									// StreamId to remove the subscription from (generally a user label) (in FreshRSS, we do not support repeated values)
-									$remove = $_REQUEST['r'] ?? '';
+									$remove = is_string($_REQUEST['r'] ?? null) ? $_REQUEST['r'] : '';
 									self::subscriptionEdit($streamNames, $titles, $action, $add, $remove);
 								}
 								break;
 							case 'quickadd':	//https://github.com/theoldreader/api
-								if (isset($_REQUEST['quickadd'])) {
+								if (is_string($_REQUEST['quickadd'] ?? null)) {
 									self::quickadd($_REQUEST['quickadd']);
 								}
 								break;
@@ -1161,35 +1172,35 @@ final class GReaderAPI {
 					self::unreadCount();
 					// Always exits
 				case 'edit-tag':	// https://web.archive.org/web/20200616071132/https://blog.martindoms.com/2010/01/20/using-the-google-reader-api-part-3
-					$token = isset($_POST['T']) ? trim($_POST['T']) : '';
+					$token = is_string($_POST['T'] ?? null) ? trim($_POST['T']) : '';
 					self::checkToken(FreshRSS_Context::userConf(), $token);
 					// Add (Can be repeated to add multiple tags at once):	user/-/state/com.google/read	user/-/state/com.google/starred
-					$as = multiplePosts('a');
+					$as = self::multiplePosts('a');
 					// Remove (Can be repeated to remove multiple tags at once):	user/-/state/com.google/read	user/-/state/com.google/starred
-					$rs = multiplePosts('r');
-					$e_ids = multiplePosts('i');	//item IDs
+					$rs = self::multiplePosts('r');
+					$e_ids = self::multiplePosts('i');	//item IDs
 					self::editTag($e_ids, $as, $rs);
 					// Always exits
 				case 'rename-tag':	//https://github.com/theoldreader/api
-					$token = isset($_POST['T']) ? trim($_POST['T']) : '';
+					$token = is_string($_POST['T'] ?? null) ? trim($_POST['T']) : '';
 					self::checkToken(FreshRSS_Context::userConf(), $token);
-					$s = $_POST['s'] ?? '';	//user/-/label/Folder
-					$dest = $_POST['dest'] ?? '';	//user/-/label/NewFolder
+					$s = is_string($_POST['s'] ?? null) ? trim($_POST['s']) : '';	//user/-/label/Folder
+					$dest = is_string($_POST['dest'] ?? null) ? trim($_POST['dest']) : '';	//user/-/label/NewFolder
 					self::renameTag($s, $dest);
 					// Always exits
 				case 'disable-tag':	//https://github.com/theoldreader/api
-					$token = isset($_POST['T']) ? trim($_POST['T']) : '';
+					$token = is_string($_POST['T'] ?? null) ? trim($_POST['T']) : '';
 					self::checkToken(FreshRSS_Context::userConf(), $token);
-					$s_s = multiplePosts('s');
+					$s_s = self::multiplePosts('s');
 					foreach ($s_s as $s) {
 						self::disableTag($s);	//user/-/label/Folder
 					}
 					// Always exits
 				case 'mark-all-as-read':
-					$token = isset($_POST['T']) ? trim($_POST['T']) : '';
+					$token = is_string($_POST['T'] ?? null) ? trim($_POST['T']) : '';
 					self::checkToken(FreshRSS_Context::userConf(), $token);
-					$streamId = trim($_POST['s'] ?? '');
-					$ts = trim($_POST['ts'] ?? '0');	//Older than timestamp in nanoseconds
+					$streamId = is_string($_POST['s'] ?? null) ? trim($_POST['s']) : '';
+					$ts = is_string($_POST['ts'] ?? null) ? trim($_POST['ts']) : '0';	//Older than timestamp in nanoseconds
 					if (!ctype_digit($ts)) {
 						self::badRequest();
 					}

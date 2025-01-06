@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 /**
  * @param array<FreshRSS_Feed> $feeds
- * @return array<array<string,string|bool|int>>
+ * @return list<array<string,string|bool|int>>
  */
 function feedsToOutlines(array $feeds, bool $excludeMutedFeeds = false): array {
 	$outlines = [];
@@ -112,7 +112,9 @@ function feedsToOutlines(array $feeds, bool $excludeMutedFeeds = false): array {
 			if (!empty($curl_params[CURLOPT_HTTPHEADER]) && is_array($curl_params[CURLOPT_HTTPHEADER])) {
 				$headers = '';
 				foreach ($curl_params[CURLOPT_HTTPHEADER] as $header) {
-					$headers .= $header . "\n";
+					if (is_string($header)) {
+						$headers .= $header . "\n";
+					}
 				}
 				$headers = trim($headers);
 				$outline['frss:CURLOPT_HTTPHEADER'] = $headers;

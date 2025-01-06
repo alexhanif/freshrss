@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 class FreshRSS_FilterAction {
 
-	/** @var array<string>|null */
+	/** @var list<string>|null */
 	private ?array $actions = null;
 
 	/** @param array<string> $actions */
@@ -15,7 +15,7 @@ class FreshRSS_FilterAction {
 		return $this->booleanSearch;
 	}
 
-	/** @return array<string> */
+	/** @return list<string> */
 	public function actions(): array {
 		return $this->actions ?? [];
 	}
@@ -23,7 +23,7 @@ class FreshRSS_FilterAction {
 	/** @param array<string> $actions */
 	public function _actions(?array $actions): void {
 		if (is_array($actions)) {
-			$this->actions = array_unique($actions);
+			$this->actions = array_values(array_unique($actions));
 		} else {
 			$this->actions = null;
 		}
@@ -42,7 +42,8 @@ class FreshRSS_FilterAction {
 
 	/** @param array|mixed|null $json */
 	public static function fromJSON($json): ?FreshRSS_FilterAction {
-		if (is_array($json) && !empty($json['search']) && !empty($json['actions']) && is_array($json['actions'])) {
+		if (is_array($json) && !empty($json['search']) && is_string($json['search']) &&
+			!empty($json['actions']) && is_array($json['actions']) && is_array_values_string($json['actions'])) {
 			return new FreshRSS_FilterAction(new FreshRSS_BooleanSearch($json['search']), $json['actions']);
 		}
 		return null;

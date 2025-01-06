@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => 'Žiadne články.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => 'RSS kanál pre %s',
 		'title' => 'Všetky kanály',
 		'title_fav' => 'Obľúbené',
@@ -60,6 +65,18 @@ return array(
 		'reader_view' => 'Zobrazenie na čítanie',
 		'rss_view' => 'RSS kanál',
 		'search_short' => 'Hľadať',
+		'sort' => array(
+			'_' => 'Sorting criteria',	// TODO
+			'date_asc' => 'Publication date 1→9',	// TODO
+			'date_desc' => 'Publication date 9→1',	// TODO
+			'id_asc' => 'Freshly received last',	// TODO
+			'id_desc' => 'Freshly received first',	// TODO
+			'link_asc' => 'Link A→Z',	// TODO
+			'link_desc' => 'Link Z→A',	// TODO
+			'rand' => 'Random order',	// TODO
+			'title_asc' => 'Title A→Z',	// TODO
+			'title_desc' => 'Title Z→A',	// TODO
+		),
 		'starred' => 'Zobraziť obľúbené',
 		'stats' => 'Štatistiky',
 		'subscription' => 'Správca odberov',

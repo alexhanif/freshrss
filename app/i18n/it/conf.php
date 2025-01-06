@@ -138,6 +138,8 @@ return array(
 			'tags' => 'Tag',
 			'type' => 'Tipo',
 		),
+		'get_A' => 'Mostra tutti i feed, anche quelli mostrati nella loro categoria',
+		'get_Z' => 'Mostra tutti i feed, anche quelli archiviati',
 		'get_all' => 'Mostra tutti gli articoli',
 		'get_all_labels' => 'Mostra gli articoli con qualsiasi etichetta',
 		'get_category' => 'Mostra la categoria “%s” ',
@@ -287,6 +289,7 @@ return array(
 	'sharing' => array(
 		'_' => 'Condivisione',
 		'add' => 'Aggiungi un metodo di condivisione',
+		'bluesky' => 'Bluesky',	// IGNORE
 		'deprecated' => 'Questo servizio è deprecato e sarà rimosso da FreshRSS in una <a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="Apri la documentazione per ulteriori informazioni" target="_blank">release successiva</a>.',
 		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => 'Email',	// IGNORE

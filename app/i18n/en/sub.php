@@ -217,7 +217,7 @@ return array(
 			'show_rendered' => 'Show content',
 		),
 		'show' => array(
-			'all' => 'Show all feeds',
+			'all' => 'All feeds',
 			'error' => 'Show only feeds with errors',
 		),
 		'showing' => array(

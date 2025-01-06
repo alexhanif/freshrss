@@ -52,12 +52,10 @@ class FreshRSS_Entry extends Minz_Model {
 		$this->_guid($guid);
 	}
 
-	/** @param array{'id'?:string,'id_feed'?:int,'guid'?:string,'title'?:string,'author'?:string,'content'?:string,'link'?:string,'date'?:int|string,'lastSeen'?:int,
-	 *		'hash'?:string,'is_read'?:bool|int,'is_favorite'?:bool|int,'tags'?:string|array<string>,'attributes'?:?string,'thumbnail'?:string,'timestamp'?:string} $dao */
+	/** @param array{id?:string,id_feed?:int,guid?:string,title?:string,author?:string,content?:string,link?:string,date?:int|string,lastSeen?:int,
+	 *		hash?:string,is_read?:bool|int,is_favorite?:bool|int,tags?:string|array<string>,attributes?:?string,thumbnail?:string,timestamp?:string} $dao */
 	public static function fromArray(array $dao): FreshRSS_Entry {
-		FreshRSS_DatabaseDAO::pdoInt($dao, ['id_feed', 'date', 'lastSeen', 'is_read', 'is_favorite']);
-
-		if (empty($dao['content'])) {
+		if (empty($dao['content']) || !is_string($dao['content'])) {
 			$dao['content'] = '';
 		}
 
@@ -83,7 +81,7 @@ class FreshRSS_Entry extends Minz_Model {
 			$dao['is_favorite'] ?? false,
 			$dao['tags'] ?? ''
 		);
-		if (!empty($dao['id'])) {
+		if (!empty($dao['id']) && is_numeric($dao['id'])) {
 			$entry->_id($dao['id']);
 		}
 		if (!empty($dao['timestamp'])) {
@@ -241,7 +239,9 @@ HTML;
 			$content .= '<figure class="enclosure">';
 
 			foreach ($thumbnails as $thumbnail) {
-				$content .= '<p><img class="enclosure-thumbnail" src="' . $thumbnail . '" alt="" title="' . $etitle . '" /></p>';
+				if (is_string($thumbnail)) {
+					$content .= '<p><img class="enclosure-thumbnail" src="' . $thumbnail . '" alt="" title="' . $etitle . '" /></p>';
+				}
 			}
 
 			if (self::enclosureIsImage($enclosure)) {
@@ -283,9 +283,9 @@ HTML;
 	/** @return Traversable<array{'url':string,'type'?:string,'medium'?:string,'length'?:int,'title'?:string,'description'?:string,'credit'?:string|array<string>,'height'?:int,'width'?:int,'thumbnails'?:array<string>}> */
 	public function enclosures(bool $searchBodyImages = false): Traversable {
 		$attributeEnclosures = $this->attributeArray('enclosures');
-		if (is_iterable($attributeEnclosures)) {
+		if (is_array($attributeEnclosures)) {
 			// FreshRSS 1.20.1+: The enclosures are saved as attributes
-			/** @var iterable<array{'url':string,'type'?:string,'medium'?:string,'length'?:int,'title'?:string,'description'?:string,'credit'?:string|array<string>,'height'?:int,'width'?:int,'thumbnails'?:array<string>}> $attributeEnclosures */
+			/** @var list<array{'url':string,'type'?:string,'medium'?:string,'length'?:int,'title'?:string,'description'?:string,'credit'?:string|array<string>,'height'?:int,'width'?:int,'thumbnails'?:array<string>}> $attributeEnclosures */
 			yield from $attributeEnclosures;
 		}
 		try {
@@ -354,7 +354,7 @@ HTML;
 	public function thumbnail(bool $searchEnclosures = true): ?array {
 		$thumbnail = $this->attributeArray('thumbnail') ?? [];
 		// First, use the provided thumbnail, if any
-		if (!empty($thumbnail['url'])) {
+		if (is_string($thumbnail['url'] ?? null)) {
 			/** @var array{'url':string,'height'?:int,'width'?:int,'time'?:string} $thumbnail */
 			return $thumbnail;
 		}

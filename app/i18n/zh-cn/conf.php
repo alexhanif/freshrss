@@ -138,6 +138,8 @@ return array(
 			'tags' => '按标签显示',
 			'type' => '类型',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => '显示所有文章',
 		'get_all_labels' => '显示所有打了标签的文章',
 		'get_category' => '显示分类“%s”',
@@ -287,6 +289,7 @@ return array(
 	'sharing' => array(
 		'_' => '分享',
 		'add' => '添加分享方式',
+		'bluesky' => 'Bluesky',	// TODO
 		'deprecated' => '此功能已被废弃并会在未来的 FreshRSS 版本中移除，详情见 <a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="打开文档获更多信息" target="_blank">说明文档</a>.',
 		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => 'Email',	// IGNORE

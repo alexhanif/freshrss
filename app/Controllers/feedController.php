@@ -799,7 +799,6 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 		}
 
 		$entryDAO = FreshRSS_Factory::createEntryDao();
-		/** @var array<array{id_tag:int,id_entry:string}> $applyLabels */
 		$applyLabels = [];
 		foreach (FreshRSS_Entry::fromTraversable($entryDAO->selectAll($nbNewEntries)) as $entry) {
 			foreach ($labels as $label) {
@@ -1003,7 +1002,6 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 			// TODO: Delete old favicon
 
 			// Remove related queries
-			/** @var array<array{'get'?:string,'name'?:string,'order'?:string,'search'?:string,'state'?:int,'url'?:string}> $queries */
 			$queries = remove_query_by_get('f_' . $feed_id, FreshRSS_Context::userConf()->queries);
 			FreshRSS_Context::userConf()->queries = $queries;
 			FreshRSS_Context::userConf()->save();
@@ -1106,7 +1104,7 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 
 		//Extract all feed entries from database, load complete content and store them back in database.
 		$entryDAO = FreshRSS_Factory::createEntryDao();
-		$entries = $entryDAO->listWhere('f', $feed_id, FreshRSS_Entry::STATE_ALL, 'DESC', $limit);
+		$entries = $entryDAO->listWhere('f', $feed_id, FreshRSS_Entry::STATE_ALL, order: 'DESC', limit: $limit);
 
 		//We need another DB connection in parallel for unbuffered streaming
 		Minz_ModelPdo::$usesSharedPdo = false;

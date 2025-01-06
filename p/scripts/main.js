@@ -721,7 +721,7 @@ function show_share_menu(el) {
 	const dropdownMenu = div.querySelector('.dropdown-menu');
 
 	if (!dropdownMenu) {
-		const itemId = el.closest('.flux').id;
+		const itemId = el.closest('.flux').dataset.entry;
 		const templateId = 'share_article_template';
 		const id = itemId;
 		const flux_header_el = el.closest('.flux');
@@ -1857,6 +1857,12 @@ let url_load_more = '';
 let load_more = false;
 let box_load_more = null;
 
+function remove_existing_posts() {
+	document.querySelectorAll('.flux, .day').forEach(function (div) {
+		div.remove();
+	});
+}
+
 function load_more_posts() {
 	if (load_more || !url_load_more || !box_load_more) {
 		return;
@@ -1868,6 +1874,11 @@ function load_more_posts() {
 	req.open('GET', url_load_more, true);
 	req.responseType = 'document';
 	req.onload = function (e) {
+		if (context.sort === 'rand') {
+			document.scrollingElement.scrollTop = 0;
+			remove_existing_posts();
+		}
+
 		const html = this.response;
 		const streamFooter = document.getElementById('stream-footer');
 

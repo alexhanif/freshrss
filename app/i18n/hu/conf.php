@@ -138,6 +138,8 @@ return array(
 			'tags' => 'Rendezés címke szerint',
 			'type' => 'Típus',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'Minden cikk megjelenítése',
 		'get_all_labels' => 'Cikkek megjelenítése bármilyen címkével',
 		'get_category' => '„%s” kategória megjelenítése',
@@ -287,6 +289,7 @@ return array(
 	'sharing' => array(
 		'_' => 'Megosztás',
 		'add' => 'Megosztási mód hozzáadása',
+		'bluesky' => 'Bluesky',	// TODO
 		'deprecated' => 'Ez a szolgáltatás elavult, és el lesz távolítva a FreshRSS <a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="Dokumentáció további információkért" target="_blank">következő kiadásában.</a>.',
 		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => 'Email',	// IGNORE

@@ -21,6 +21,10 @@ class FreshRSS_UserQuery {
 	private string $token = '';
 	private bool $shareRss = false;
 	private bool $shareOpml = false;
+	/** @var array<int,FreshRSS_Category> $categories where the key is the category ID */
+	private array $categories;
+	/** @var array<int,FreshRSS_Tag> $labels where the key is the label ID */
+	private array $labels;
 	/** XML-encoded description */
 	private string $description = '';
 	private string $imageUrl = '';
@@ -40,14 +44,18 @@ class FreshRSS_UserQuery {
 	/**
 	 * @param array{get?:string,name?:string,order?:string,search?:string,state?:int,url?:string,token?:string,
 	 * 	shareRss?:bool,shareOpml?:bool,description?:string,imageUrl?:string} $query
-	 * @param array<int,FreshRSS_Category> $categories
-	 * @param array<int,FreshRSS_Tag> $labels
+	 * @param array<FreshRSS_Category> $categories
+	 * @param array<FreshRSS_Tag> $labels
 	 */
-	public function __construct(
-		array $query,
-		private array $categories,
-		private array $labels,
-	) {
+	public function __construct(array $query, array $categories, array $labels) {
+		$this->categories = [];
+		foreach ($categories as $category) {
+			$this->categories[$category->id()] = $category;
+		}
+		$this->labels = [];
+		foreach ($labels as $label) {
+			$this->labels[$label->id()] = $label;
+		}
 		if (isset($query['get'])) {
 			$this->parseGet($query['get']);
 		} else {
@@ -126,11 +134,17 @@ class FreshRSS_UserQuery {
 		$this->get = $get;
 		if ($this->get === '') {
 			$this->get_type = 'all';
-		} elseif (preg_match('/(?P<type>[acfistT])(_(?P<id>\d+))?/', $get, $matches)) {
+		} elseif (preg_match('/(?P<type>[aAcfistTZ])(_(?P<id>\d+))?/', $get, $matches)) {
 			$id = intval($matches['id'] ?? '0');
 			switch ($matches['type']) {
-				case 'a':
+				case 'a':	// All PRIORITY_MAIN_STREAM
 					$this->get_type = 'all';
+					break;
+				case 'A':	// All except PRIORITY_ARCHIVED
+					$this->get_type = 'A';
+					break;
+				case 'Z':	// All including PRIORITY_ARCHIVED
+					$this->get_type = 'Z';
 					break;
 				case 'c':
 					$this->get_type = 'category';

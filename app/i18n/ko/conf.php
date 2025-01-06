@@ -138,6 +138,8 @@ return array(
 			'tags' => '태그별로 표시',
 			'type' => '유형',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => '모든 글 표시',
 		'get_all_labels' => '라벨이 있는 글 표시',
 		'get_category' => '“%s” 카테고리 표시',
@@ -287,6 +289,7 @@ return array(
 	'sharing' => array(
 		'_' => '공유',
 		'add' => '공유 방법 추가',
+		'bluesky' => 'Bluesky',	// TODO
 		'deprecated' => '이 서비스는 더 이상 사용되지 않으며 <a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="상세 정보 문서 열기" target="_blank">추후 릴리즈</a> FreshRSS에서 삭제 될 것 입니다.',
 		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => '메일',

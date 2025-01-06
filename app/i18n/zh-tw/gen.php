@@ -14,7 +14,6 @@ return array(
 	'action' => array(
 		'actualize' => '更新提要',
 		'add' => '新增',
-		'back' => '← 返回',
 		'back_to_rss_feeds' => '← 返回訂閱源',
 		'cancel' => '取消',
 		'create' => '創建',
@@ -212,6 +211,7 @@ return array(
 		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
+		'bluesky' => 'Bluesky',	// TODO
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => '剪貼板',
 		'diaspora' => 'Diaspora*',	// IGNORE

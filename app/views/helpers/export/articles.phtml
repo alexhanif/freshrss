@@ -21,10 +21,10 @@ if (empty($this->entryIdsTagNames)) {
 
 foreach ($this->entries as $entry) {
 	if (!$this->internal_rendering) {
-		/** @var FreshRSS_Entry */
+		/** @var FreshRSS_Entry|null $entry */
 		$entry = Minz_ExtensionManager::callHook('entry_before_display', $entry);
 	}
-	if ($entry == null) {
+	if ($entry === null) {
 		continue;
 	}
 
