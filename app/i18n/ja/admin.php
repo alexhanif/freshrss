@@ -116,7 +116,7 @@ return array(
 		'description' => '説明',
 		'disabled' => '無効',
 		'empty_list' => 'インストールされている拡張機能はありません',
-		'empty_list_help' => '拡張子リストが表示されない原因を特定するために、ログを確認してください。',
+		'empty_list_help' => '拡張機能リストが表示されない原因を特定するために、ログを確認してください。',
 		'enabled' => '有効',
 		'latest' => 'インストール済み',
 		'name' => '名前',
