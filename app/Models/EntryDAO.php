@@ -344,7 +344,7 @@ SQL;
 	 *
 	 * @param numeric-string|list<numeric-string> $ids
 	 */
-	public function markFavorite($ids, bool $is_favorite = true): int|false {
+	public function markFavorite(string|array $ids, bool $is_favorite = true): int|false {
 		if (!is_array($ids)) {
 			$ids = [$ids];
 		}

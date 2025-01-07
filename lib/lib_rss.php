@@ -217,8 +217,7 @@ function escapeToUnicodeAlternative(string $text, bool $extended = true): string
 	return trim(str_replace($problem, $replace, $text));
 }
 
-/** @param int|float $n */
-function format_number($n, int $precision = 0): string {
+function format_number(int|float $n, int $precision = 0): string {
 	// number_format does not seem to be Unicode-compatible
 	return str_replace(' ', ' ',	// Thin non-breaking space
 		number_format((float)$n, $precision, '.', ' ')
@@ -274,7 +273,7 @@ function html_only_entity_decode(?string $text): string {
  * @param array<string,mixed>|string $log
  * @return array<string,mixed>|string
  */
-function sensitive_log($log): array|string {
+function sensitive_log(array|string $log): array|string {
 	if (is_array($log)) {
 		foreach ($log as $k => $v) {
 			if (in_array($k, ['api_key', 'Passwd', 'T'], true)) {
