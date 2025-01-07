@@ -18,7 +18,7 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 	 */
 	public function indexAction(): void {
 		if (!FreshRSS_Auth::hasAccess('admin')) {
-			Minz_Error::error(403);
+			Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_403_FORBIDDEN);
 		}
 
 		FreshRSS_View::prependTitle(_t('admin.auth.title') . ' · ');
@@ -74,15 +74,15 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 		FreshRSS_Context::initUser(Minz_User::INTERNAL_USER, false);
 		match ($auth_type) {
 			'form' => Minz_Request::forward(['c' => 'auth', 'a' => 'formLogin']),
-			'http_auth' => Minz_Error::error(403, [
+			'http_auth' => Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_403_FORBIDDEN, [
 					'error' => [
 						_t('feedback.access.denied'),
 						' [HTTP Remote-User=' . htmlspecialchars(httpAuthUser(false), ENT_NOQUOTES, 'UTF-8') .
 						' ; Remote IP address=' . connectionRemoteAddress() . ']'
 					]
 				], false),
-			'none' => Minz_Error::error(404),	// It should not happen!
-			default => Minz_Error::error(404),	// TODO load plugin instead
+			'none' => Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_404_NOT_FOUND),	// It should not happen!
+			default => Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_404_NOT_FOUND),	// TODO load plugin instead
 		};
 	}
 
@@ -133,13 +133,13 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 			if (!FreshRSS_Context::hasUserConf()) {
 				// Initialise the default user to be able to display the error page
 				FreshRSS_Context::initUser(FreshRSS_Context::systemConf()->default_user);
-				Minz_Error::error(403, _t('feedback.auth.login.invalid'), false);
+				Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_403_FORBIDDEN, _t('feedback.auth.login.invalid'), false);
 				return;
 			}
 
 			if (!FreshRSS_Context::userConf()->enabled || FreshRSS_Context::userConf()->passwordHash == '') {
 				usleep(random_int(100, 5000));	//Primitive mitigation of timing attacks, in μs
-				Minz_Error::error(403, _t('feedback.auth.login.invalid'), false);
+				Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_403_FORBIDDEN, _t('feedback.auth.login.invalid'), false);
 				return;
 			}
 
@@ -239,7 +239,7 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 		}
 
 		if (max_registrations_reached()) {
-			Minz_Error::error(403);
+			Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_403_FORBIDDEN);
 		}
 
 		$this->view->show_tos_checkbox = file_exists(TOS_FILENAME);
