@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => 'Näytettäviä artikkeleita ei ole.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => 'Sivuston %s RSS-syöte',
 		'title' => 'Pääsyötevirta',
 		'title_fav' => 'Suosikit',
@@ -60,6 +65,18 @@ return array(
 		'reader_view' => 'Lukunäkymä',
 		'rss_view' => 'RSS-syöte',
 		'search_short' => 'Haku',
+		'sort' => array(
+			'_' => 'Sorting criteria',	// TODO
+			'date_asc' => 'Publication date 1→9',	// TODO
+			'date_desc' => 'Publication date 9→1',	// TODO
+			'id_asc' => 'Freshly received last',	// TODO
+			'id_desc' => 'Freshly received first',	// TODO
+			'link_asc' => 'Link A→Z',	// TODO
+			'link_desc' => 'Link Z→A',	// TODO
+			'rand' => 'Random order',	// TODO
+			'title_asc' => 'Title A→Z',	// TODO
+			'title_desc' => 'Title Z→A',	// TODO
+		),
 		'starred' => 'Näytä suosikit',
 		'stats' => 'Tilastot',
 		'subscription' => 'Tilausten hallinta',

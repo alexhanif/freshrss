@@ -40,16 +40,17 @@ final class FreshRSS_Context {
 
 	public static string $next_get = 'a';
 	public static int $state = 0;
-	/**
-	 * @phpstan-var 'ASC'|'DESC'
-	 */
+	/** @var 'ASC'|'DESC' */
 	public static string $order = 'DESC';
+	/** @var 'id'|'date'|'link'|'title'|'rand' */
+	public static string $sort = 'id';
 	public static int $number = 0;
 	public static int $offset = 0;
 	public static FreshRSS_BooleanSearch $search;
-	public static string $first_id = '';
-	public static string $next_id = '';
-	public static string $id_max = '';
+	/** @var numeric-string */
+	public static string $continuation_id = '0';
+	/** @var numeric-string */
+	public static string $id_max = '0';
 	public static int $sinceHours = 0;
 	public static bool $isCli = false;
 
@@ -221,7 +222,7 @@ final class FreshRSS_Context {
 		self::_get(Minz_Request::paramString('get') ?: 'a');
 
 		self::$state = Minz_Request::paramInt('state') ?: FreshRSS_Context::userConf()->default_state;
-		$state_forced_by_user = Minz_Request::paramString('state') !== '';
+		$state_forced_by_user = Minz_Request::paramString('state', true) !== '';
 		if (!$state_forced_by_user) {
 			if (FreshRSS_Context::userConf()->show_fav_unread && (self::isCurrentGet('s') || self::isCurrentGet('T') || self::isTag())) {
 				self::$state = FreshRSS_Entry::STATE_NOT_READ | FreshRSS_Entry::STATE_READ;
@@ -235,8 +236,10 @@ final class FreshRSS_Context {
 		}
 
 		self::$search = new FreshRSS_BooleanSearch(Minz_Request::paramString('search'));
-		$order = Minz_Request::paramString('order') ?: FreshRSS_Context::userConf()->sort_order;
+		$order = Minz_Request::paramString('order', true) ?: FreshRSS_Context::userConf()->sort_order;
 		self::$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
+		$sort = Minz_Request::paramString('sort', true) ?: FreshRSS_Context::userConf()->sort;
+		self::$sort = in_array($sort, ['id', 'date', 'link', 'title', 'rand'], true) ? $sort : 'id';
 		self::$number = Minz_Request::paramInt('nb') ?: FreshRSS_Context::userConf()->posts_per_page;
 		if (self::$number > FreshRSS_Context::userConf()->max_posts_per_rss) {
 			self::$number = max(
@@ -244,7 +247,10 @@ final class FreshRSS_Context {
 				FreshRSS_Context::userConf()->posts_per_page);
 		}
 		self::$offset = Minz_Request::paramInt('offset');
-		self::$first_id = Minz_Request::paramString('next');
+		$id_max = Minz_Request::paramString('idMax', true);
+		self::$id_max = ctype_digit($id_max) ? $id_max : '0';
+		$continuation_id = Minz_Request::paramString('cid', true);
+		self::$continuation_id = ctype_digit($continuation_id) ? $continuation_id : '0';
 		self::$sinceHours = Minz_Request::paramInt('hours');
 	}
 

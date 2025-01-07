@@ -27,6 +27,10 @@ class FreshRSS_EntryDAO extends Minz_ModelPdo {
 		return str_replace('INSERT INTO ', 'INSERT IGNORE INTO ', $sql);
 	}
 
+	public static function sqlRandom(): string {
+		return 'RAND()';
+	}
+
 	/** @return array{pattern?:string,matchType?:string} */
 	protected static function regexToSql(string $regex): array {
 		if (preg_match('#^/(?P<pattern>.*)/(?P<matchType>[im]*)$#', $regex, $matches)) {
@@ -511,7 +515,7 @@ SQL;
 			$sql .= ')';
 		}
 
-		[$searchValues, $search] = $this->sqlListEntriesWhere('', $filters, $state);
+		[$searchValues, $search] = $this->sqlListEntriesWhere(alias: '', state: $state, filters: $filters);
 
 		$stm = $this->pdo->prepare($sql . $search);
 		if ($stm === false || !$stm->execute(array_merge($values, $searchValues))) {
@@ -552,7 +556,7 @@ AND id_feed IN (SELECT f.id FROM `_feed` f WHERE f.category=?)
 SQL;
 		$values = [$is_read ? 1 : 0, $is_read ? 1 : 0, $idMax, $id];
 
-		[$searchValues, $search] = $this->sqlListEntriesWhere('', $filters, $state);
+		[$searchValues, $search] = $this->sqlListEntriesWhere(alias: '', state: $state, filters: $filters);
 
 		$stm = $this->pdo->prepare($sql . $search);
 		if ($stm === false || !$stm->execute(array_merge($values, $searchValues))) {
@@ -594,7 +598,7 @@ SQL;
 			 . 'WHERE id_feed=? AND is_read <> ? AND id <= ?';
 		$values = [$is_read ? 1 : 0, $id_feed, $is_read ? 1 : 0, $idMax];
 
-		[$searchValues, $search] = $this->sqlListEntriesWhere('', $filters, $state);
+		[$searchValues, $search] = $this->sqlListEntriesWhere(alias: '', state: $state, filters: $filters);
 
 		$stm = $this->pdo->prepare($sql . $search);
 		if ($stm === false || !$stm->execute(array_merge($values, $searchValues))) {
@@ -652,7 +656,7 @@ SQL;
 		$values[] = $is_read ? 1 : 0;
 		$values[] = $idMax;
 
-		[$searchValues, $search] = $this->sqlListEntriesWhere('e.', $filters, $state);
+		[$searchValues, $search] = $this->sqlListEntriesWhere(alias: 'e.', state: $state, filters: $filters);
 
 		$stm = $this->pdo->prepare($sql . $search);
 		if ($stm === false || !$stm->execute(array_merge($values, $searchValues))) {
@@ -1107,13 +1111,15 @@ SQL;
 	}
 
 	/**
+	 * @param numeric-string $id_min
+	 * @param numeric-string $id_max
+	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
 	 * @param 'ASC'|'DESC' $order
 	 * @return array{0:list<int|string>,1:string}
-	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
-	protected function sqlListEntriesWhere(string $alias = '', ?FreshRSS_BooleanSearch $filters = null,
-			int $state = FreshRSS_Entry::STATE_ALL,
-			string $order = 'DESC', string $firstId = '', int $date_min = 0): array {
+	protected function sqlListEntriesWhere(string $alias = '', int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
+		string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC',
+		string $continuation_id = '0', string|int $continuation_value = 0): array {
 		$search = ' ';
 		$values = [];
 		if ($state & FreshRSS_Entry::STATE_ANDS) {
@@ -1146,21 +1152,42 @@ SQL;
 			}
 		}
 
-		switch ($order) {
-			case 'DESC':
-			case 'ASC':
-				break;
-			default:
-				throw new FreshRSS_EntriesGetter_Exception('Bad order in Entry->listByType: [' . $order . ']!');
+		if (!ctype_digit($id_min)) {
+			$id_min = '0';
 		}
-		if ($firstId !== '') {
-			$search .= 'AND ' . $alias . 'id ' . ($order === 'DESC' ? '<=' : '>=') . ' ? ';
-			$values[] = $firstId;
+		if (!ctype_digit($id_max)) {
+			$id_max = '0';
 		}
-		if ($date_min > 0) {
+		if (!ctype_digit($continuation_id)) {
+			$continuation_id = '0';
+		}
+
+		if ($continuation_id !== '0' && $sort === 'id') {
+			if ($order === 'ASC') {
+				$id_min = $id_min === '0' ? $continuation_id : max($id_min, $continuation_id);
+			} else {
+				$id_max = $id_max === '0' ? $continuation_id : min($id_max, $continuation_id);
+			}
+		}
+
+		if ($id_max !== '0') {
+			$search .= 'AND ' . $alias . 'id <= ? ';
+			$values[] = $id_max;
+		}
+		if ($id_min !== '0') {
 			$search .= 'AND ' . $alias . 'id >= ? ';
-			$values[] = $date_min . '000000';
+			$values[] = $id_min;
 		}
+
+		if ($continuation_id !== '0' && in_array($sort, ['date', 'link', 'title'], true)) {
+			$sign = $order === 'ASC' ? '>' : '<';
+			// Keyset pagination (Compatibility syntax due to poor performance of tuple syntax in MySQL https://bugs.mysql.com/bug.php?id=104128)
+			$search .= "AND ({$alias}{$sort} {$sign} ? OR ({$alias}{$sort} = ? AND {$alias}id {$sign}= ?)) ";
+			$values[] = $continuation_value;
+			$values[] = $continuation_value;
+			$values[] = $continuation_id;
+		}
+
 		if ($filters !== null && count($filters->searches()) > 0) {
 			[$filterValues, $filterSearch] = self::sqlBooleanSearch($alias, $filters);
 			$filterSearch = trim($filterSearch);
@@ -1174,15 +1201,19 @@ SQL;
 	}
 
 	/**
-	 * @phpstan-param 'a'|'A'|'i'|'s'|'S'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
+	 * @param 'a'|'A'|'i'|'s'|'S'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
 	 * @param int $id category/feed/tag ID
+	 * @param numeric-string $id_min
+	 * @param numeric-string $id_max
+	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
 	 * @param 'ASC'|'DESC' $order
+	 * @param numeric-string $continuation_id
 	 * @return array{0:list<int|string>,1:string}
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
-	private function sqlListWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL,
-			string $order = 'DESC', int $limit = 1, int $offset = 0, string $firstId = '', ?FreshRSS_BooleanSearch $filters = null,
-			int $date_min = 0): array {
+	private function sqlListWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
+			string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC',
+			string $continuation_id = '0', string|int $continuation_value = 0, int $limit = 1, int $offset = 0): array {
 		if (!$state) {
 			$state = FreshRSS_Entry::STATE_ALL;
 		}
@@ -1231,7 +1262,11 @@ SQL;
 				throw new FreshRSS_EntriesGetter_Exception('Bad type in Entry->listByType: [' . $type . ']!');
 		}
 
-		[$searchValues, $search] = $this->sqlListEntriesWhere('e.', $filters, $state, $order, $firstId, $date_min);
+		$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
+		$sort = in_array($sort, ['id', 'date', 'link', 'title', 'rand'], true) ? $sort : 'id';
+		$orderBy = ($sort === 'rand' ? static::sqlRandom() : 'e.' . $sort);
+		[$searchValues, $search] = $this->sqlListEntriesWhere(alias: 'e.', state: $state, filters: $filters, id_min: $id_min, id_max: $id_max,
+			sort: $sort, order: $order, continuation_id: $continuation_id, continuation_value: $continuation_value);
 
 		return [array_merge($values, $searchValues), 'SELECT '
 			. ($type === 'T' ? 'DISTINCT ' : '')
@@ -1240,34 +1275,45 @@ SQL;
 			. ($type === 't' || $type === 'T' ? 'INNER JOIN `_entrytag` et ON et.id_entry = e.id ' : '')
 			. 'WHERE ' . $where
 			. $search
-			. 'ORDER BY e.id ' . $order
+			. 'ORDER BY ' . $orderBy . ' ' . $order
+			. ($sort === 'id' ? '' : ', e.id ' . $order)	// For keyset pagination
 			. ($limit > 0 ? ' LIMIT ' . $limit : '')	// http://explainextended.com/2009/10/23/mysql-order-by-limit-performance-late-row-lookups/
 			. ($offset > 0 ? ' OFFSET ' . $offset : '')
 		];
 	}
 
 	/**
-	 * @phpstan-param 'a'|'A'|'s'|'S'|'i'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
-	 * @param 'ASC'|'DESC' $order
+	 * @param 'a'|'A'|'s'|'S'|'i'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
 	 * @param int $id category/feed/tag ID
+	 * @param numeric-string $id_min
+	 * @param numeric-string $id_max
+	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
+	 * @param 'ASC'|'DESC' $order
+	 * @param numeric-string $continuation_id
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
-	private function listWhereRaw(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL,
-			string $order = 'DESC', int $limit = 1, int $offset = 0, string $firstId = '', ?FreshRSS_BooleanSearch $filters = null,
-			int $date_min = 0): PDOStatement|false {
-		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $order, $limit, $offset, $firstId, $filters, $date_min);
+	private function listWhereRaw(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
+		string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC',
+		string $continuation_id = '0', string|int $continuation_value = 0, int $limit = 1, int $offset = 0): PDOStatement|false {
+		$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
+		$sort = in_array($sort, ['id', 'date', 'link', 'title', 'rand'], true) ? $sort : 'id';
 
-		if ($order !== 'DESC' && $order !== 'ASC') {
-			$order = 'DESC';
-		}
+		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $filters, id_min: $id_min, id_max: $id_max, sort: $sort, order: $order,
+			continuation_id: $continuation_id, continuation_value: $continuation_value, limit: $limit, offset: $offset);
+
+		$orderBy = ($sort === 'rand' ? static::sqlRandom() : 'e0.' . $sort);
 		$content = static::isCompressed() ? 'UNCOMPRESS(e0.content_bin) AS content' : 'e0.content';
 		$hash = static::sqlHexEncode('e0.hash');
 		$sql = <<<SQL
 SELECT e0.id, e0.guid, e0.title, e0.author, {$content}, e0.link, e0.date, {$hash} AS hash, e0.is_read, e0.is_favorite, e0.id_feed, e0.tags, e0.attributes
 FROM `_entry` e0
 INNER JOIN ({$sql}) e2 ON e2.id=e0.id
-ORDER BY e0.id {$order}
+ORDER BY {$orderBy} {$order}
 SQL;
+		if ($sort !== 'id') {
+			// For keyset pagination
+			$sql .= ', e0.id ' . $order;
+		}
 		$stm = $this->pdo->prepare($sql);
 		if ($stm !== false && $stm->execute($values)) {
 			return $stm;
@@ -1275,7 +1321,8 @@ SQL;
 			$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
 			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
-				return $this->listWhereRaw($type, $id, $state, $order, $limit, $offset, $firstId, $filters, $date_min);
+				return $this->listWhereRaw($type, $id, $state, $filters, id_min: $id_min, id_max: $id_max, sort: $sort, order: $order,
+					continuation_id: $continuation_id, continuation_value: $continuation_value, limit: $limit, offset: $offset);
 			}
 			Minz_Log::error('SQL error ' . __METHOD__ . json_encode($info));
 			return false;
@@ -1283,16 +1330,21 @@ SQL;
 	}
 
 	/**
-	 * @phpstan-param 'a'|'A'|'s'|'S'|'i'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
+	 * @param 'a'|'A'|'s'|'S'|'i'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
 	 * @param int $id category/feed/tag ID
+	 * @param numeric-string $id_min
+	 * @param numeric-string $id_max
+	 * @param 'id'|'date'|'link'|'title'|'rand' $sort
 	 * @param 'ASC'|'DESC' $order
+	 * @param numeric-string $continuation_id
 	 * @return Traversable<FreshRSS_Entry>
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
-	public function listWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL,
-			string $order = 'DESC', int $limit = 1, int $offset = 0, string $firstId = '',
-			?FreshRSS_BooleanSearch $filters = null, int $date_min = 0): Traversable {
-		$stm = $this->listWhereRaw($type, $id, $state, $order, $limit, $offset, $firstId, $filters, $date_min);
+	public function listWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
+			string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC',
+			string $continuation_id = '0', string|int $continuation_value = 0, int $limit = 1, int $offset = 0): Traversable {
+		$stm = $this->listWhereRaw($type, $id, $state, $filters, id_min: $id_min, id_max: $id_max, sort: $sort, order: $order,
+			continuation_id: $continuation_id, continuation_value: $continuation_value, limit: $limit, offset: $offset);
 		if ($stm !== false) {
 			while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
 				if (is_array($row)) {
@@ -1305,6 +1357,7 @@ SQL;
 	}
 
 	/**
+	 * For API.
 	 * @param array<numeric-string> $ids
 	 * @param 'ASC'|'DESC' $order
 	 * @return Traversable<FreshRSS_Entry>
@@ -1317,15 +1370,13 @@ SQL;
 			// Split a query with too many variables parameters
 			$idsChunks = array_chunk($ids, FreshRSS_DatabaseDAO::MAX_VARIABLE_NUMBER);
 			foreach ($idsChunks as $idsChunk) {
-				foreach ($this->listByIds($idsChunk, $order) as $entry) {
+				foreach ($this->listByIds($idsChunk, order: $order) as $entry) {
 					yield $entry;
 				}
 			}
 			return;
 		}
-		if ($order !== 'DESC' && $order !== 'ASC') {
-			$order = 'DESC';
-		}
+		$order = in_array($order, ['ASC', 'DESC'], true) ? $order : 'DESC';
 		$content = static::isCompressed() ? 'UNCOMPRESS(content_bin) AS content' : 'content';
 		$hash = static::sqlHexEncode('hash');
 		$repeats = str_repeat('?,', count($ids) - 1) . '?';
@@ -1349,16 +1400,20 @@ SQL;
 	}
 
 	/**
-	 * @phpstan-param 'a'|'A'|'s'|'S'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
+	 * @param 'a'|'A'|'s'|'S'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
 	 * @param int $id category/feed/tag ID
+	 * @param numeric-string $id_min
+	 * @param numeric-string $id_max
+	 * @param numeric-string $continuation_id
 	 * @param 'ASC'|'DESC' $order
 	 * @return list<numeric-string>|null
 	 * @throws FreshRSS_EntriesGetter_Exception
 	 */
-	public function listIdsWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL,
-		string $order = 'DESC', int $limit = 1, int $offset = 0, string $firstId = '', ?FreshRSS_BooleanSearch $filters = null): ?array {
-
-		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $order, $limit, $offset, $firstId, $filters);
+	public function listIdsWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
+		string $id_min = '0', string $id_max = '0', string $order = 'DESC',
+		string $continuation_id = '0', string|int $continuation_value = 0, int $limit = 1, int $offset = 0): ?array {
+		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $filters, id_min: $id_min, id_max: $id_max, order: $order,
+			continuation_id: $continuation_id, continuation_value: $continuation_value, limit: $limit, offset: $offset);
 		$stm = $this->pdo->prepare($sql);
 		if ($stm !== false && $stm->execute($values) && ($res = $stm->fetchAll(PDO::FETCH_COLUMN, 0)) !== false) {
 			$res = array_map('strval', $res);
