@@ -568,9 +568,9 @@ HTML;
 		$this->feedId = $this->feed == null ? 0 : $this->feed->id();
 	}
 
-	private function _feedId(int|string $id): void {
+	private function _feedId(int $id): void {
 		$this->feed = null;
-		$this->feedId = (int)$id;
+		$this->feedId = $id;
 	}
 
 	/** @param array<string>|string $value */

@@ -407,7 +407,7 @@ SQL;
 	}
 
 	/**
-	 * @param iterable<array{id:int,name:string,attributes?:string}> $listDAO
+	 * @param iterable<array{id:int,name:string,attributes?:string,unreads?:int}> $listDAO
 	 * @return array<int,FreshRSS_Tag> where the key is the label ID
 	 */
 	private static function daoToTags(iterable $listDAO): array {
