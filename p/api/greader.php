@@ -557,9 +557,9 @@ final class GReaderAPI {
 
 		$items = [];
 		foreach ($entries as $item) {
-			/** @var FreshRSS_Entry $entry */
+			/** @var FreshRSS_Entry|null $entry */
 			$entry = Minz_ExtensionManager::callHook('entry_before_display', $item);
-			if ($entry == null) {
+			if ($entry === null) {
 				continue;
 			}
 
@@ -643,6 +643,9 @@ final class GReaderAPI {
 		return [$type, $streamId, $state, $searches];
 	}
 
+	/**
+	 * @param numeric-string $continuation
+	 */
 	private static function streamContents(string $path, string $include_target, int $start_time, int $stop_time, int $count,
 		string $order, string $filter_target, string $exclude_target, string $continuation): never {
 		// https://code.google.com/archive/p/pyrfeed/wikis/GoogleReaderAPI.wiki
@@ -660,17 +663,20 @@ final class GReaderAPI {
 		[$type, $include_target, $state, $searches] =
 			self::streamContentsFilters($type, $include_target, $filter_target, $exclude_target, $start_time, $stop_time);
 
-		if ($continuation != '') {
+		if ($continuation !== '0') {
 			$count++;	//Shift by one element
 		}
 
 		$entryDAO = FreshRSS_Factory::createEntryDao();
-		$entries = $entryDAO->listWhere($type, $include_target, $state, $order === 'o' ? 'ASC' : 'DESC', $count, 0, $continuation, $searches);
+		$entries = $entryDAO->listWhere($type, $include_target, $state, $searches,
+			order: $order === 'o' ? 'ASC' : 'DESC',
+			continuation_id: $continuation,
+			limit: $count);
 		$entries = array_values(iterator_to_array($entries));	//TODO: Improve
 
 		$items = self::entriesToArray($entries);
 
-		if ($continuation != '') {
+		if ($continuation !== '0') {
 			array_shift($items);	//Discard first element that was already sent in the previous response
 			$count--;
 		}
@@ -692,6 +698,9 @@ final class GReaderAPI {
 		exit();
 	}
 
+	/**
+	 * @param numeric-string $continuation
+	 */
 	private static function streamContentsItemsIds(string $streamId, int $start_time, int $stop_time, int $count,
 		string $order, string $filter_target, string $exclude_target, string $continuation): never {
 		// https://github.com/mihaip/google-reader-api/blob/master/wiki/ApiStreamItemsIds.wiki
@@ -712,17 +721,20 @@ final class GReaderAPI {
 
 		[$type, $id, $state, $searches] = self::streamContentsFilters($type, $streamId, $filter_target, $exclude_target, $start_time, $stop_time);
 
-		if ($continuation != '') {
+		if ($continuation !== '0') {
 			$count++;	//Shift by one element
 		}
 
 		$entryDAO = FreshRSS_Factory::createEntryDao();
-		$ids = $entryDAO->listIdsWhere($type, $id, $state, $order === 'o' ? 'ASC' : 'DESC', $count, 0, $continuation, $searches);
+		$ids = $entryDAO->listIdsWhere($type, $id, $state, $searches,
+			order: $order === 'o' ? 'ASC' : 'DESC',
+			continuation_id: $continuation,
+			limit: $count);
 		if ($ids === null) {
 			self::internalServerError();
 		}
 
-		if ($continuation != '') {
+		if ($continuation !== '0') {
 			array_shift($ids);	//Discard first element that was already sent in the previous response
 			$count--;
 		}
@@ -766,7 +778,7 @@ final class GReaderAPI {
 		/** @var list<numeric-string> $e_ids */
 
 		$entryDAO = FreshRSS_Factory::createEntryDao();
-		$entries = $entryDAO->listByIds($e_ids, $order === 'o' ? 'ASC' : 'DESC');
+		$entries = $entryDAO->listByIds($e_ids, order: $order === 'o' ? 'ASC' : 'DESC');
 		$entries = array_values(iterator_to_array($entries));	//TODO: Improve
 
 		$items = self::entriesToArray($entries);
@@ -1050,7 +1062,7 @@ final class GReaderAPI {
 					 */
 					$continuation = is_string($_GET['c'] ?? null) ? trim($_GET['c']) : '';
 					if (!ctype_digit($continuation)) {
-						$continuation = '';
+						$continuation = '0';
 					}
 					if (isset($pathInfos[5]) && $pathInfos[5] === 'contents') {
 						if (!isset($pathInfos[6]) && is_string($_GET['s'] ?? null)) {

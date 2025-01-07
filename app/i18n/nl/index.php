@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => 'Er is geen artikel om te laten zien.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => 'RSS-feed van %s',
 		'title' => 'Overzicht',
 		'title_fav' => 'Favorieten',
@@ -60,6 +65,18 @@ return array(
 		'reader_view' => 'Lees modus',
 		'rss_view' => 'RSS-feed',
 		'search_short' => 'Zoeken',
+		'sort' => array(
+			'_' => 'Sorteercriteria',
+			'date_asc' => 'Publicatiedatum 1→9',
+			'date_desc' => 'Publicatiedatum 9→1',
+			'id_asc' => 'Nieuw ontvangen laatst',
+			'id_desc' => 'Nieuw ontvangen eerst',
+			'link_asc' => 'Link A→Z',	// IGNORE
+			'link_desc' => 'Link Z→A',	// IGNORE
+			'rand' => 'Willekeurige volgorde',
+			'title_asc' => 'Titel A→Z',
+			'title_desc' => 'Titel Z→A',
+		),
 		'starred' => 'Laat alleen favorieten zien',
 		'stats' => 'Statistieken',
 		'subscription' => 'Abonnementen beheer',

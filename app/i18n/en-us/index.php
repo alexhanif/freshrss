@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => 'There are no articles to show.',	// IGNORE
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// IGNORE
+			'today' => 'Received today',	// IGNORE
+			'yesterday' => 'Received yesterday',	// IGNORE
+		),
 		'rss_of' => 'RSS feed of %s',	// IGNORE
 		'title' => 'Main stream',	// IGNORE
 		'title_fav' => 'Favorites',
@@ -60,6 +65,18 @@ return array(
 		'reader_view' => 'Reading view',	// IGNORE
 		'rss_view' => 'RSS feed',	// IGNORE
 		'search_short' => 'Search',	// IGNORE
+		'sort' => array(
+			'_' => 'Sorting criteria',	// IGNORE
+			'date_asc' => 'Publication date 1→9',	// IGNORE
+			'date_desc' => 'Publication date 9→1',	// IGNORE
+			'id_asc' => 'Freshly received last',	// IGNORE
+			'id_desc' => 'Freshly received first',	// IGNORE
+			'link_asc' => 'Link A→Z',	// IGNORE
+			'link_desc' => 'Link Z→A',	// IGNORE
+			'rand' => 'Random order',	// IGNORE
+			'title_asc' => 'Title A→Z',	// IGNORE
+			'title_desc' => 'Title Z→A',	// IGNORE
+		),
 		'starred' => 'Show favorites',
 		'stats' => 'Statistics',	// IGNORE
 		'subscription' => 'Subscription management',	// IGNORE

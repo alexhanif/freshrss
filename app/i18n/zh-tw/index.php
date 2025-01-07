@@ -27,6 +27,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => '暫時沒有文章可顯示。',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => '%s 的訂閱源',
 		'title' => '首頁',
 		'title_fav' => '收藏',
@@ -60,6 +65,18 @@ return array(
 		'reader_view' => '閱讀視圖',
 		'rss_view' => '訂閱源',
 		'search_short' => '搜尋',
+		'sort' => array(
+			'_' => 'Sorting criteria',	// TODO
+			'date_asc' => 'Publication date 1→9',	// TODO
+			'date_desc' => 'Publication date 9→1',	// TODO
+			'id_asc' => 'Freshly received last',	// TODO
+			'id_desc' => 'Freshly received first',	// TODO
+			'link_asc' => 'Link A→Z',	// TODO
+			'link_desc' => 'Link Z→A',	// TODO
+			'rand' => 'Random order',	// TODO
+			'title_asc' => 'Title A→Z',	// TODO
+			'title_desc' => 'Title Z→A',	// TODO
+		),
 		'starred' => '顯示收藏',
 		'stats' => '統計',
 		'subscription' => '訂閱管理',
