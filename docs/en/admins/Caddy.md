@@ -16,6 +16,7 @@ To set up FreshRSS behind a reverse proxy with Caddy and using a subfolder, foll
 				header_up X-Forwarded-Prefix "/subfolder" # Sets the correct header for the login cookies
 			}
 		}
+	}
     ```
 
     Replace `example.com` with your actual domain and the four instances of `subfolder` with the subfolder where you want FreshRSS to be hosted.
