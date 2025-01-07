@@ -81,7 +81,7 @@ class Minz_FrontController {
 	 * Kills the programme
 	 */
 	public static function killApp(string $txt = ''): never {
-		header('HTTP/1.1 500 Internal Server Error', true, 500);
+		header('HTTP/1.1 500 Internal Server Error', true, FreshRSS_HttpResponseCode::HTTP_500_INTERNAL_SERVER_ERROR->value);
 		if (function_exists('errorMessageInfo')) {
 			//If the application has defined a custom error message function
 			die(errorMessageInfo('Application problem', $txt));
