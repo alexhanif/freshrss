@@ -2196,6 +2196,7 @@ html.slider-active {
 	padding: var(--frss-padding-top-bottom) 0 var(--frss-padding-top-bottom) 3.5rem;
 }
 
+.box .box-title h2:not([data-unread="0"])::after,
 .aside .category .tree-folder-title .title:not([data-unread="0"])::after,
 .aside .feed .item-title:not([data-unread="0"])::after {
 	margin: var(--frss-padding-top-bottom) 0 0 0;

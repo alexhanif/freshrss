@@ -21,8 +21,7 @@ class FreshRSS_Category extends Minz_Model {
 	private int $nbNotRead = -1;
 	/** @var array<int,FreshRSS_Feed>|null where the key is the feed ID */
 	private ?array $feeds = null;
-	/** @var bool|int */
-	private $hasFeedsWithError = false;
+	private int $nbFeedsWithError = 0;
 	private int $lastUpdate = 0;
 	private bool $error = false;
 
@@ -40,7 +39,7 @@ class FreshRSS_Category extends Minz_Model {
 				$feed->_category($this);
 				$this->nbFeeds++;
 				$this->nbNotRead += $feed->nbNotRead();
-				$this->hasFeedsWithError |= ($feed->inError() && !$feed->mute());
+				$this->nbFeedsWithError += ($feed->inError() && !$feed->mute()) ? 1 : 0;
 			}
 		}
 	}
@@ -110,18 +109,53 @@ class FreshRSS_Category extends Minz_Model {
 			$this->feeds = $feedDAO->listByCategory($this->id());
 			$this->nbFeeds = 0;
 			$this->nbNotRead = 0;
+			$this->nbFeedsWithError = 0;
 			foreach ($this->feeds as $feed) {
 				$this->nbFeeds++;
 				$this->nbNotRead += $feed->nbNotRead();
-				$this->hasFeedsWithError |= ($feed->inError() && !$feed->mute());
+				$this->nbFeedsWithError += ($feed->inError() && !$feed->mute()) ? 1 : 0;
 			}
 			$this->sortFeeds();
 		}
 		return $this->feeds ?? [];
 	}
 
-	public function hasFeedsWithError(): bool {
-		return (bool)($this->hasFeedsWithError);
+	public function nbFeedsWithError(): int {
+		return $this->nbFeedsWithError;
+	}
+
+	public function countFeedsMuted(): int {
+		$nb = 0;
+		foreach ($this->feeds ?? [] as $feed) {
+			$nb += $feed->mute() ? 1 : 0;
+		}
+		return $nb;
+	}
+
+	public function countFeedsWithRetrieval(): int {
+		$nb = 0;
+		foreach ($this->feeds ?? [] as $feed) {
+			$nb += $feed->pathEntries() === '' ? 0 : 1;
+		}
+		return $nb;
+	}
+
+	public function countFeedsWithScraping(): int {
+		$nb = 0;
+		foreach ($this->feeds ?? [] as $feed) {
+			$nb += match ($feed->kind()) {
+				FreshRSS_Feed::KIND_RSS,
+				FreshRSS_Feed::KIND_RSS_FORCED,
+				FreshRSS_Feed::KIND_JSONFEED => 0,
+
+				FreshRSS_Feed::KIND_HTML_XPATH,
+				FreshRSS_Feed::KIND_XML_XPATH,
+				FreshRSS_Feed::KIND_JSON_DOTNOTATION,
+				FreshRSS_Feed::KIND_JSON_XPATH => 1,
+				default => 1,
+			};
+		}
+		return $nb;
 	}
 
 	public function _id(int $id): void {
