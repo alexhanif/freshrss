@@ -412,7 +412,7 @@ class FreshRSS_BooleanSearch implements \Stringable {
 	}
 
 	/** @param FreshRSS_BooleanSearch|FreshRSS_Search $search */
-	public function add($search): void {
+	public function add(FreshRSS_BooleanSearch|FreshRSS_Search $search): void {
 		$this->searches[] = $search;
 	}
 
