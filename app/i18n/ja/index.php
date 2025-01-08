@@ -28,9 +28,9 @@ return array(
 	'feed' => array(
 		'empty' => '表示できる記事がありません',
 		'received' => array(
-			'before_yesterday' => 'Received before yesterday',	// TODO
-			'today' => 'Received today',	// TODO
-			'yesterday' => 'Received yesterday',	// TODO
+			'before_yesterday' => '一昨日以前',
+			'today' => '今日',
+			'yesterday' => '昨日',
 		),
 		'rss_of' => '%s のRSSフィード',
 		'title' => 'メイン',
@@ -66,16 +66,16 @@ return array(
 		'rss_view' => 'RSSフィード',
 		'search_short' => '検索',
 		'sort' => array(
-			'_' => 'Sorting criteria',	// TODO
-			'date_asc' => 'Publication date 1→9',	// TODO
-			'date_desc' => 'Publication date 9→1',	// TODO
-			'id_asc' => 'Freshly received last',	// TODO
-			'id_desc' => 'Freshly received first',	// TODO
-			'link_asc' => 'Link A→Z',	// TODO
-			'link_desc' => 'Link Z→A',	// TODO
-			'rand' => 'Random order',	// TODO
-			'title_asc' => 'Title A→Z',	// TODO
-			'title_desc' => 'Title Z→A',	// TODO
+			'_' => '並べ替え',
+			'date_asc' => '公開日順 1→9',
+			'date_desc' => '公開日順 9→1',
+			'id_asc' => '新着を最後に並べる',
+			'id_desc' => '新着を最初に並べる',
+			'link_asc' => 'リンクURL順 A→Z',
+			'link_desc' => 'リンクURL順 Z→A',
+			'rand' => 'ランダムに並べる',
+			'title_asc' => 'タイトル順 A→Z',
+			'title_desc' => 'タイトル順 Z→A',
 		),
 		'starred' => 'お気に入りを表示する',
 		'stats' => '統計',
