@@ -337,7 +337,7 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 			FreshRSS_View::prependTitle(_t('sub.feed.title_add') . ' · ');
 
 			$catDAO = FreshRSS_Factory::createCategoryDao();
-			$this->view->categories = $catDAO->listCategories(false) ?: [];
+			$this->view->categories = $catDAO->listCategories(prePopulateFeeds: false);
 			$this->view->feed = new FreshRSS_Feed($url);
 			try {
 				// We try to get more information about the feed.
@@ -423,12 +423,8 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 			}
 		} else {
 			$feeds = $feedDAO->listFeedsOrderUpdate(-1);
-
 			// Hydrate category for each feed to avoid that each feed has to make an SQL request
-			$categories = [];
-			foreach ($catDAO->listCategories(false, false) as $category) {
-				$categories[$category->id()] = $category;
-			}
+			$categories = $catDAO->listCategories(prePopulateFeeds: false, details: false);
 			foreach ($feeds as $feed) {
 				$category = $categories[$feed->categoryId()] ?? null;
 				if ($category !== null) {
@@ -576,7 +572,7 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 				$mark_updated_article_unread = $feed->attributeBoolean('mark_updated_article_unread') ?? FreshRSS_Context::userConf()->mark_updated_article_unread;
 
 				// For this feed, check existing GUIDs already in database.
-				$existingHashForGuids = $entryDAO->listHashForFeedGuids($feed->id(), $newGuids) ?: [];
+				$existingHashForGuids = $entryDAO->listHashForFeedGuids($feed->id(), $newGuids);
 				/** @var array<string,bool> $newGuids */
 				$newGuids = [];
 

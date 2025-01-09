@@ -177,7 +177,7 @@ final class FreshRSS_Context {
 	public static function categories(): array {
 		if (empty(self::$categories)) {
 			$catDAO = FreshRSS_Factory::createCategoryDao();
-			self::$categories = $catDAO->listSortedCategories(true, false);
+			self::$categories = $catDAO->listSortedCategories(prePopulateFeeds: true, details: false);
 		}
 		return self::$categories;
 	}
@@ -191,7 +191,7 @@ final class FreshRSS_Context {
 	public static function labels(bool $precounts = false): array {
 		if (empty(self::$tags) || $precounts) {
 			$tagDAO = FreshRSS_Factory::createTagDao();
-			self::$tags = $tagDAO->listTags($precounts) ?: [];
+			self::$tags = $tagDAO->listTags($precounts);
 		}
 		return self::$tags;
 	}
@@ -400,7 +400,7 @@ final class FreshRSS_Context {
 		if (empty(self::$categories)) {
 			$catDAO = FreshRSS_Factory::createCategoryDao();
 			$details = $type === 'f'; 	// Load additional feed details in the case of feed view
-			self::$categories = $catDAO->listCategories(true, $details);
+			self::$categories = $catDAO->listCategories(prePopulateFeeds: true, details: $details);
 		}
 
 		switch ($type) {
@@ -505,7 +505,7 @@ final class FreshRSS_Context {
 
 		if (empty(self::$categories)) {
 			$catDAO = FreshRSS_Factory::createCategoryDao();
-			self::$categories = $catDAO->listCategories(true);
+			self::$categories = $catDAO->listCategories(prePopulateFeeds: true);
 		}
 
 		if (FreshRSS_Context::userConf()->onread_jump_next && strlen($get) > 2) {

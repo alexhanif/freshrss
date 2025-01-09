@@ -335,7 +335,7 @@ final class FeverAPI
 		$groups = [];
 
 		$categoryDAO = FreshRSS_Factory::createCategoryDao();
-		$categories = $categoryDAO->listCategories(false, false) ?: [];
+		$categories = $categoryDAO->listCategories(prePopulateFeeds: false, details: false);
 
 		foreach ($categories as $category) {
 			$groups[] = [

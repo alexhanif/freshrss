@@ -255,7 +255,7 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 			# The trailing slash is necessary so that we don’t redirect to http://.
 			# https://bz.apache.org/bugzilla/show_bug.cgi?id=61355#c13
 		} else {
-			return _url('auth', 'logout') ?: '';
+			return _url('auth', 'logout');
 		}
 	}
 }

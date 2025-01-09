@@ -879,9 +879,8 @@ HTML;
 			if ($nodes != false) {
 				$filter_xpath = $path_entries_filter === '' ? '' : (new Gt\CssXPath\Translator($path_entries_filter, 'descendant-or-self::'))->asXPath();
 				foreach ($nodes as $node) {
-					if ($filter_xpath !== '') {
+					if ($filter_xpath !== '' && ($filterednodes = $xpath->query($filter_xpath, $node)) !== false) {
 						// Remove unwanted elements once before sanitizing, for CSS selectors to also match original content
-						$filterednodes = $xpath->query($filter_xpath, $node) ?: [];
 						foreach ($filterednodes as $filterednode) {
 							if ($filterednode === $node) {
 								continue 2;
