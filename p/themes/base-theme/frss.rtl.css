@@ -58,7 +58,7 @@ html, body {
 	padding: 0;
 	background-color: var(--frss-background-color);
 	height: 100%;
-	font-family: "OpenSans", "Cantarell", "Helvetica", "Arial", sans-serif;
+	font-family: "Open Sans", "OpenSans", "Cantarell", "Helvetica", "Arial", sans-serif;
 	font-size: 100%;
 }
 

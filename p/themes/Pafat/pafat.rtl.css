@@ -91,7 +91,7 @@
 html, body {
 	background-color: var(--background-color-grey-light);
 	color: var(--font-color-grey);
-	font-family: "OpenSans", "Cantarell", "Helvetica", "Arial", sans-serif;
+	font-family: "Open Sans", "OpenSans", "Cantarell", "Helvetica", "Arial", sans-serif;
 }
 
 /*=== Links */

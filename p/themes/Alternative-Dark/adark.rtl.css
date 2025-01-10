@@ -51,7 +51,7 @@
 html, body {
 	background-color: var(--background-color-dark);
 	color: var(--font-color-middle);
-	font-family: "OpenSans", "Cantarell", "Helvetica", "Arial", sans-serif;
+	font-family: "Open Sans", "OpenSans", "Cantarell", "Helvetica", "Arial", sans-serif;
 }
 
 /*=== Links */
