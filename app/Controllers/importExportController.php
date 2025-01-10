@@ -457,10 +457,13 @@ class FreshRSS_importExport_Controller extends FreshRSS_ActionController {
 				$published = '0';
 			}
 			if (!ctype_digit($published)) {
-				$published = (string)strtotime($published);
+				$published = (string)(strtotime($published) ?: 0);
 			}
 			if (strlen($published) > 10) {	// Milliseconds, e.g. Feedly
 				$published = substr($published, 0, -3);
+				if (!is_numeric($published)) {
+					$published = '0';	// For PHPStan
+				}
 			}
 
 			$entry = new FreshRSS_Entry(

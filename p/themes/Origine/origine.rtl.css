@@ -72,6 +72,7 @@
 
 	--border-color: #ddd;
 	--border-color-shadow-side: #ccc;
+	--frss-border-color: var(--border-color);
 	--contrast-border-color-active: #0062be;
 
 	--form-element-font-color-focus: #0062be;

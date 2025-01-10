@@ -14,6 +14,16 @@ return array(
 	'about' => array(
 		'_' => 'Over',
 		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',	// IGNORE
+		'bug_reports' => array(
+			'environment_information' => array(
+				'_' => 'System information',	// TODO
+				'browser' => 'Browser',	// TODO
+				'database' => 'Database',	// TODO
+				'server_software' => 'Server software',	// TODO
+				'version_frss' => 'FreshRSS version',	// TODO
+				'version_php' => 'PHP version',	// TODO
+			),
+		),
 		'bugs_reports' => 'Rapporteer fouten',
 		'credits' => 'Waarderingen',
 		'credits_content' => 'Sommige ontwerp elementen komen van <a href="http://twitter.github.io/bootstrap/">Bootstrap</a> alhoewel FreshRSS dit raamwerk niet gebruikt. <a href="https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic">Pictogrammen</a> komen van het <a href="https://www.gnome.org/">GNOME project</a>. <em>De Open Sans</em> font police is gemaakt door <a href="https://fonts.google.com/specimen/Open+Sans">Steve Matteson</a>. FreshRSS is gebaseerd op <a href="https://framagit.org/marienfressinaud/MINZ">Minz</a>, een PHP raamwerk. Nederlandse vertaling door Wanabo, <a href="http://www.nieuwskop.be" title="NieuwsKop">NieuwsKop.be</a>. Link naar de Nederlandse vertaling, <a href="https://github.com/Wanabo/FreshRSS-Dutch-translation/tree/master">FreshRSS-Dutch-translation</a>.',

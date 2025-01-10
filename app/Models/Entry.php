@@ -37,6 +37,7 @@ class FreshRSS_Entry extends Minz_Model {
 
 	/**
 	 * @param string|array<string> $tags
+	 * @param int|numeric-string $pubdate
 	 */
 	public function __construct(int $feedId = 0, string $guid = '', string $title = '', string $authors = '', string $content = '',
 			string $link = '', int|string $pubdate = 0, bool|int|null $is_read = false, bool|int|null $is_favorite = false, $tags = '') {
@@ -57,6 +58,10 @@ class FreshRSS_Entry extends Minz_Model {
 	public static function fromArray(array $dao): FreshRSS_Entry {
 		if (empty($dao['content']) || !is_string($dao['content'])) {
 			$dao['content'] = '';
+		}
+
+		if (!is_numeric($dao['date'] ?? null)) {
+			$dao['date'] = 0;
 		}
 
 		$dao['attributes'] = empty($dao['attributes']) ? [] : json_decode($dao['attributes'], true);
@@ -487,7 +492,7 @@ HTML;
 	}
 
 	/** @param int|numeric-string $value String is for compatibility with 32-bit platforms */
-	public function _id($value): void {
+	public function _id(int|string $value): void {
 		if (is_int($value)) {
 			$value = (string)$value;
 		}
@@ -510,7 +515,7 @@ HTML;
 		$this->_authors($value);
 	}
 	/** @param array<string>|string $value */
-	public function _authors($value): void {
+	public function _authors(array|string $value): void {
 		$this->hash = '';
 		if (!is_array($value)) {
 			if (str_contains($value, ';')) {
@@ -531,8 +536,8 @@ HTML;
 		$this->hash = '';
 		$this->link = trim($value);
 	}
-	/** @param int|string $value */
-	public function _date($value): void {
+	/** @param int|numeric-string $value */
+	public function _date(int|string $value): void {
 		$value = (int)$value;
 		$this->date = $value > 1 ? $value : time();
 	}
@@ -541,20 +546,20 @@ HTML;
 		$this->lastSeen = $value > 0 ? $value : 0;
 	}
 
-	/** @param int|string $value */
-	public function _dateAdded($value, bool $microsecond = false): void {
+	/** @param int|numeric-string $value */
+	public function _dateAdded(int|string $value, bool $microsecond = false): void {
 		if ($microsecond) {
 			$this->date_added = (string)($value);
 		} else {
 			$this->date_added = $value . '000000';
 		}
 	}
-	/** @param bool|int|null $value */
-	public function _isRead($value): void {
+
+	public function _isRead(bool|int|null $value): void {
 		$this->is_read = $value === null ? null : (bool)$value;
 	}
-	/** @param bool|int|null $value */
-	public function _isFavorite($value): void {
+
+	public function _isFavorite(bool|int|null $value): void {
 		$this->is_favorite = $value === null ? null : (bool)$value;
 	}
 
@@ -563,14 +568,13 @@ HTML;
 		$this->feedId = $this->feed == null ? 0 : $this->feed->id();
 	}
 
-	/** @param int|string $id */
-	private function _feedId($id): void {
+	private function _feedId(int $id): void {
 		$this->feed = null;
-		$this->feedId = (int)$id;
+		$this->feedId = $id;
 	}
 
 	/** @param array<string>|string $value */
-	public function _tags($value): void {
+	public function _tags(array|string $value): void {
 		$this->hash = '';
 		if (!is_array($value)) {
 			$value = preg_split('/\s*[#,]\s*/', $value, -1, PREG_SPLIT_NO_EMPTY) ?: [];
@@ -875,9 +879,8 @@ HTML;
 			if ($nodes != false) {
 				$filter_xpath = $path_entries_filter === '' ? '' : (new Gt\CssXPath\Translator($path_entries_filter, 'descendant-or-self::'))->asXPath();
 				foreach ($nodes as $node) {
-					if ($filter_xpath !== '') {
+					if ($filter_xpath !== '' && ($filterednodes = $xpath->query($filter_xpath, $node)) !== false) {
 						// Remove unwanted elements once before sanitizing, for CSS selectors to also match original content
-						$filterednodes = $xpath->query($filter_xpath, $node) ?: [];
 						foreach ($filterednodes as $filterednode) {
 							if ($filterednode === $node) {
 								continue 2;
@@ -1052,7 +1055,7 @@ HTML;
 	 * @param numeric-string|int $dec Decimal number
 	 * @return string 64-bit hexa http://code.google.com/p/google-reader-api/wiki/ItemId
 	 */
-	private static function dec2hex($dec): string {
+	private static function dec2hex(string|int $dec): string {
 		return PHP_INT_SIZE < 8 ? // 32-bit ?
 			str_pad(gmp_strval(gmp_init($dec, 10), 16), 16, '0', STR_PAD_LEFT) :
 			str_pad(dechex((int)($dec)), 16, '0', STR_PAD_LEFT);

@@ -24,7 +24,7 @@ class FreshRSS_View extends Minz_View {
 	public int $nbUnreadTags;
 	/** @var array<int,FreshRSS_Tag> where the key is the label ID */
 	public array $tags;
-	/** @var array<int,array{id:int,name:string,checked:bool}> */
+	/** @var list<array{id:int,name:string,checked:bool}> */
 	public array $tagsForEntry;
 	/** @var array<string,array<string>> */
 	public array $tagsForEntries;

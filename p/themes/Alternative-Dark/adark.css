@@ -29,6 +29,7 @@
 
 	--border-color-dark: #333;
 	--border-color-middle: #666;
+	--frss-border-color: var(--border-color-dark);
 	--border-color-favorite: #ffc300;
 	--border-color-unread: #e74c3c;
 

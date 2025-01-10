@@ -432,7 +432,7 @@ class Minz_Request {
 	 * @param bool $redirect If true, uses an HTTP redirection, and if false (default), performs an internal dispatcher redirection.
 	 * @throws Minz_ConfigurationException
 	 */
-	public static function forward($url = [], bool $redirect = false): void {
+	public static function forward(array $url = [], bool $redirect = false): void {
 		if (empty(Minz_Request::originalRequest())) {
 			self::$originalRequest = $url;
 		}

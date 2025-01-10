@@ -14,6 +14,16 @@ return array(
 	'about' => array(
 		'_' => 'Informazioni',
 		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',	// IGNORE
+		'bug_reports' => array(
+			'environment_information' => array(
+				'_' => 'Informazioni sul sistema',
+				'browser' => 'Browser',	// IGNORE
+				'database' => 'Database',	// IGNORE
+				'server_software' => 'Software server',
+				'version_frss' => 'Versione FreshRSS',
+				'version_php' => 'Versione PHP',
+			),
+		),
 		'bugs_reports' => 'Bugs',
 		'credits' => 'Crediti',
 		'credits_content' => 'Alcuni elementi di design provengono da <a href="http://twitter.github.io/bootstrap/">Bootstrap</a> sebbene FreshRSS non usi questo framework. Le <a href="https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic">icone</a> provengono dal progetto <a href="https://www.gnome.org/">GNOME</a>. Il carattere <em>Open Sans</em> è stato creato da <a href="https://fonts.google.com/specimen/Open+Sans">Steve Matteson</a>. FreshRSS è basato su <a href="https://framagit.org/marienfressinaud/MINZ">Minz</a>, un framework PHP.',
