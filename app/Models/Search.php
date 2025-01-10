@@ -506,7 +506,7 @@ class FreshRSS_Search implements \Stringable {
 			$input = str_replace($matches[0], '', $input);
 		}
 		if (preg_match_all('/\\bintitle:(?P<search>[^\s"]*)/', $input, $matches)) {
-			$this->intitle = array_merge($this->intitle ?: [], $matches['search']);
+			$this->intitle = array_merge($this->intitle ?? [], $matches['search']);
 			$input = str_replace($matches[0], '', $input);
 		}
 		$this->intitle = self::removeEmptyValues($this->intitle);
@@ -526,7 +526,7 @@ class FreshRSS_Search implements \Stringable {
 			$input = str_replace($matches[0], '', $input);
 		}
 		if (preg_match_all('/(?<=[\\s(]|^)[!-]intitle:(?P<search>[^\s"]*)/', $input, $matches)) {
-			$this->not_intitle = array_merge($this->not_intitle ?: [], $matches['search']);
+			$this->not_intitle = array_merge($this->not_intitle ?? [], $matches['search']);
 			$input = str_replace($matches[0], '', $input);
 		}
 		$this->not_intitle = self::removeEmptyValues($this->not_intitle);
@@ -551,7 +551,7 @@ class FreshRSS_Search implements \Stringable {
 			$input = str_replace($matches[0], '', $input);
 		}
 		if (preg_match_all('/\\bauthor:(?P<search>[^\s"]*)/', $input, $matches)) {
-			$this->author = array_merge($this->author ?: [], $matches['search']);
+			$this->author = array_merge($this->author ?? [], $matches['search']);
 			$input = str_replace($matches[0], '', $input);
 		}
 		$this->author = self::removeEmptyValues($this->author);
@@ -571,7 +571,7 @@ class FreshRSS_Search implements \Stringable {
 			$input = str_replace($matches[0], '', $input);
 		}
 		if (preg_match_all('/(?<=[\\s(]|^)[!-]author:(?P<search>[^\s"]*)/', $input, $matches)) {
-			$this->not_author = array_merge($this->not_author ?: [], $matches['search']);
+			$this->not_author = array_merge($this->not_author ?? [], $matches['search']);
 			$input = str_replace($matches[0], '', $input);
 		}
 		$this->not_author = self::removeEmptyValues($this->not_author);

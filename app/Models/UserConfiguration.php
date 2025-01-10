@@ -52,7 +52,7 @@ declare(strict_types=1);
  * @property bool $show_nav_buttons
  * @property 'ASC'|'DESC' $sort_order
  * @property 'id'|'date'|'link'|'title'|'rand' $sort
- * @property array<string,array<string,string>> $sharing
+ * @property array<int,array<string,string>> $sharing
  * @property array<string,string> $shortcuts
  * @property bool $sides_close_article
  * @property bool $sticky_post

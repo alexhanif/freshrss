@@ -114,7 +114,7 @@ class FreshRSS_entry_Controller extends FreshRSS_ActionController {
 						// so the next unread tag calculation is deferred by passing next_get = 'a' instead of the current get ID.
 						if ($next_get === 'a' && $is_read) {
 							$tagDAO = FreshRSS_Factory::createTagDao();
-							$tagsList = $tagDAO->listTags() ?: [];
+							$tagsList = $tagDAO->listTags();
 							$found_tag = false;
 							foreach ($tagsList as $tag) {
 								if ($found_tag) {
@@ -174,7 +174,7 @@ class FreshRSS_entry_Controller extends FreshRSS_ActionController {
 			}
 			$entryDAO->markRead($ids, $is_read);
 			$tagDAO = FreshRSS_Factory::createTagDao();
-			$tagsForEntries = $tagDAO->getTagsForEntries($ids) ?: [];
+			$tagsForEntries = $tagDAO->getTagsForEntries($ids) ?? [];
 			$tags = [];
 			foreach ($tagsForEntries as $line) {
 				$tags['t_' . $line['id_tag']][] = (string)$line['id_entry'];

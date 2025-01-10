@@ -344,7 +344,7 @@ SQL;
 	 *
 	 * @param numeric-string|list<numeric-string> $ids
 	 */
-	public function markFavorite($ids, bool $is_favorite = true): int|false {
+	public function markFavorite(string|array $ids, bool $is_favorite = true): int|false {
 		if (!is_array($ids)) {
 			$ids = [$ids];
 		}
@@ -1427,9 +1427,9 @@ SQL;
 
 	/**
 	 * @param array<string> $guids
-	 * @return array<string,string>|false
+	 * @return array<string,string> guid => hash
 	 */
-	public function listHashForFeedGuids(int $id_feed, array $guids): array|false {
+	public function listHashForFeedGuids(int $id_feed, array $guids): array {
 		$result = [];
 		if (count($guids) < 1) {
 			return $result;
@@ -1437,7 +1437,7 @@ SQL;
 			// Split a query with too many variables parameters
 			$guidsChunks = array_chunk($guids, FreshRSS_DatabaseDAO::MAX_VARIABLE_NUMBER);
 			foreach ($guidsChunks as $guidsChunk) {
-				$result += $this->listHashForFeedGuids($id_feed, $guidsChunk) ?: [];
+				$result += $this->listHashForFeedGuids($id_feed, $guidsChunk);
 			}
 			return $result;
 		}
@@ -1457,7 +1457,7 @@ SQL;
 			$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();
 			Minz_Log::error('SQL error ' . __METHOD__ . json_encode($info)
 				. ' while querying feed ' . $id_feed);
-			return false;
+			return [];
 		}
 	}
 

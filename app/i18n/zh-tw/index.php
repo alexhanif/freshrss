@@ -14,6 +14,16 @@ return array(
 	'about' => array(
 		'_' => '關於',
 		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',	// IGNORE
+		'bug_reports' => array(
+			'environment_information' => array(
+				'_' => 'System information',	// TODO
+				'browser' => 'Browser',	// TODO
+				'database' => 'Database',	// TODO
+				'server_software' => 'Server software',	// TODO
+				'version_frss' => 'FreshRSS version',	// TODO
+				'version_php' => 'PHP version',	// TODO
+			),
+		),
 		'bugs_reports' => '報告錯誤',
 		'credits' => '致謝',
 		'credits_content' => '某些設計元素來自於 <a href="http://twitter.github.io/bootstrap/">Bootstrap</a> ，盡管 FreshRSS 並沒有使用此框架。<a href="https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic">圖標</a> 來自於 <a href="https://www.gnome.org/">GNOME 項目</a>。<em>Open Sans</em> 字體出自 <a href="https://fonts.google.com/specimen/Open+Sans">Steve Matteson</a> 之手。FreshRSS 基於 PHP 框架 <a href="https://framagit.org/marienfressinaud/MINZ">Minz</a>。',

@@ -14,6 +14,16 @@ return array(
 	'about' => array(
 		'_' => '정보',
 		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',	// IGNORE
+		'bug_reports' => array(
+			'environment_information' => array(
+				'_' => 'System information',	// TODO
+				'browser' => 'Browser',	// TODO
+				'database' => 'Database',	// TODO
+				'server_software' => 'Server software',	// TODO
+				'version_frss' => 'FreshRSS version',	// TODO
+				'version_php' => 'PHP version',	// TODO
+			),
+		),
 		'bugs_reports' => '버그 제보하기',
 		'credits' => '크레딧',
 		'credits_content' => 'FreshRSS는 <a href="http://twitter.github.io/bootstrap/">Bootstrap</a> 프레임워크를 사용하진 않지만, 일부 디자인 요소를 가져왔습니다. <a href="https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic">아이콘들</a>은 <a href="https://www.gnome.org/">GNOME 프로젝트</a>에서 가져왔습니다. <em>Open Sans</em> 글꼴은 <a href="https://fonts.google.com/specimen/Open+Sans">Steve Matteson</a>가 제작하였습니다. FreshRSS는 PHP 프레임워크인 <a href="https://framagit.org/marienfressinaud/MINZ">Minz</a>에 기반하고 있습니다.',

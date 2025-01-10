@@ -35,7 +35,7 @@ class FreshRSS_category_Controller extends FreshRSS_ActionController {
 		$url_redirect = ['c' => 'subscription', 'a' => 'add'];
 
 		$limits = FreshRSS_Context::systemConf()->limits;
-		$this->view->categories = $catDAO->listCategories(false) ?: [];
+		$this->view->categories = $catDAO->listCategories(prePopulateFeeds: false);
 
 		if (count($this->view->categories) >= $limits['max_categories']) {
 			Minz_Request::bad(_t('feedback.sub.category.over_max', $limits['max_categories']), $url_redirect);

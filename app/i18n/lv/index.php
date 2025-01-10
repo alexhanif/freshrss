@@ -14,6 +14,16 @@ return array(
 	'about' => array(
 		'_' => 'Par vietni',
 		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',	// IGNORE
+		'bug_reports' => array(
+			'environment_information' => array(
+				'_' => 'System information',	// TODO
+				'browser' => 'Browser',	// TODO
+				'database' => 'Database',	// TODO
+				'server_software' => 'Server software',	// TODO
+				'version_frss' => 'FreshRSS version',	// TODO
+				'version_php' => 'PHP version',	// TODO
+			),
+		),
 		'bugs_reports' => 'Ziņojumi par kļūdām',
 		'credits' => 'Kredīti',
 		'credits_content' => 'Daži dizaina elementi nāk no <a href="http://twitter.github.io/bootstrap/">Bootstrap</a>, lai gan FreshRSS neizmanto šo ietvaru. <a href="https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic">Ikonas</a> ir no <a href="https://www.gnome.org/">GNOME projekta</a>. <em>Open Sans</em> fontu policiju ir izveidojis <a href="https://fonts.google.com/specimen/Open+Sans">Steve Matteson</a>. FreshRSS pamatā ir PHP ietvarstruktūra <a href="https://framagit.org/marienfressinaud/MINZ">Minz</a>.',

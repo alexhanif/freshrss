@@ -2365,6 +2365,28 @@ html.slider-active {
 	overflow-x: auto;
 }
 
+.envInfo summary {
+	margin-top: 0.5rem;
+	padding-left: 0.25rem;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.envInfo dl {
+	margin: 1rem 2rem 2rem 1.5rem;
+	padding: 2rem 4rem 2rem 2rem;
+	border: 1px solid var(--frss-border-color);
+}
+
+.envInfo dt::after {
+	content: ":";
+}
+
+.envInfo dd {
+	margin-bottom: 0.5rem;
+	padding-left: 2rem;
+	font-family: monospace;
+}
 /*=== MOBILE */
 /*===========*/
 

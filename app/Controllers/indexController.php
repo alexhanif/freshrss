@@ -90,6 +90,8 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 				//We have enough entries: we discard the last one to use it for the next articles' page
 				ob_clean();
 				FreshRSS_Context::$continuation_id = $lastEntry->id();
+			} else {
+				FreshRSS_Context::$continuation_id = '0';
 			}
 			ob_end_flush();
 		};
