@@ -36,7 +36,7 @@ class FreshRSS_StatsDAO extends Minz_ModelPdo {
 		if ($only_main) {
 			$filter .= 'AND f.priority = 10';
 		}
-		if (!is_null($feed)) {
+		if ($feed !== null) {
 			$filter .= "AND e.id_feed = {$feed}";
 		}
 		$sql = <<<SQL
@@ -49,8 +49,8 @@ WHERE e.id_feed = f.id
 {$filter}
 SQL;
 		$res = $this->fetchAssoc($sql);
-		if (is_array($res) && !empty($res[0])) {
-			$dao = $res[0];
+		if (is_array($res) && !empty($res[0]) && is_array($res[0])) {
+			$dao = array_map('intval', $res[0]);
 			/** @var array{total:int,count_unreads:int,count_reads:int,count_favorites:int} $dao */
 			return $dao;
 		}
