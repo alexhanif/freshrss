@@ -292,6 +292,8 @@ Le mode multilignes peut être activé avec l’option de recherche `m` comme : 
 
 Exemple pour rechercher des articles dont le titre commence par le mot *Lol* avec un nombre indéterminé de *o*: `intitle:/^Lo+l/i`
 
+Exemple pour rechercher des articles dont le contenu est vide : `intext:/^\s*$/`
+
 Contrairement aux recherches normales, les caractères spéciaux XML `<&">` ne sont pas encodés dans les recherches regex, afin de permettre de chercher du code HTML, comme : `/Bonjour <span>à tous<\/span>/`
 
 > ℹ️ Une barre oblique (slash) doit être échappée comme suit : `\/`

@@ -133,6 +133,8 @@ Supports multiline mode with `m` modifier, like: `/^Alice/m`
 
 Example to search entries, which title starts with the *Lol* word, with any number of *o*: `intitle:/^Lo+l/i`
 
+Example to search empty entries (where the body of articles is blank): `intext:/^\s*$/`
+
 As opposed to normal searches, special XML characters `<&">` are not escaped in regex searches, to allow searching HTML code, like: `/Hello <span>world<\/span>/`
 
 > ℹ️ A literal slash needs to be escaped, like `\/`
