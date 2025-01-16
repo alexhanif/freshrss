@@ -207,6 +207,7 @@ Il est possible d’utiliser le champ de recherche pour raffiner les résultats 
 * par ID de flux : `f:123` ou plusieurs flux (*ou*) : `f:123,234,345`
 * par auteur : `author:nom` ou `author:'nom composé'`
 * par titre : `intitle:mot` ou `intitle:'mot composé'`
+* par texte (contenu) : `intext:mot` ou `intext:'mot composé'`
 * par URL : `inurl:mot` ou `inurl:'mot composé'`
 * par tag : `#tag` ou `#'tag avec espace'`
 * par texte libre : `mot` ou `'mot composé'`

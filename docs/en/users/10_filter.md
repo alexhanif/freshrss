@@ -48,6 +48,7 @@ You can use the search field to further refine results:
 * by feed ID: `f:123` or multiple feed IDs (*or*): `f:123,234,345`
 * by author: `author:name` or `author:'composed name'`
 * by title: `intitle:keyword` or `intitle:'composed keyword'`
+* by text (content): `intext:keyword` or `intext:'composed keyword'`
 * by URL: `inurl:keyword` or `inurl:'composed keyword'`
 * by tag: `#tag` or `#tag+with+whitespace` or `#'tag with whitespace'`
 * by free-text: `keyword` or `'composed keyword'`
@@ -97,7 +98,7 @@ Some operators can be used negatively, to exclude articles, with the same syntax
 `!f:234`, `-author:name`, `-intitle:keyword`, `-inurl:keyword`, `-#tag`, `!keyword`, `!date:2019`, `!date:P1W`, `!pubdate:P3d/`.
 
 It is also possible to combine keywords to create a more precise filter.
-For example, you can enter multiple instances of `f:`, `author:`, `intitle:`, `inurl:`, `#`, and free-text.
+For example, you can enter multiple instances of `f:`, `author:`, `intitle:`, `intext:`, `inurl:`, `#`, and free-text.
 
 Combining several search criteria implies a logical *and*, but the keyword ` OR `
 can be used to combine several search criteria with a logical *or* instead: `author:Dupont OR author:Dupond`
