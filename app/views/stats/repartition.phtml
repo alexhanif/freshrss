@@ -45,15 +45,27 @@
 			<table>
 			<tr>
 				<th><?= _t('admin.stats.status_total') ?></th>
-				<th><?= _t('admin.stats.status_read') ?></th>
-				<th><?= _t('admin.stats.status_unread') ?></th>
-				<th><?= _t('admin.stats.status_favorites') ?></th>
+				<th><?= _i('read') ?> <?= _t('admin.stats.status_read') ?></th>
+				<th><?= _i('unread') ?> <?= _t('admin.stats.status_unread') ?></th>
+				<th><?= _i('starred') ?> <?= _t('admin.stats.status_favorites') ?></th>
 			</tr>
 			<tr>
-				<td class="numeric"><?= $this->repartition['total'] ?? -1 ?></td>
-				<td class="numeric"><?= $this->repartition['count_reads'] ?? -1 ?></td>
-				<td class="numeric"><?= $this->repartition['count_unreads'] ?? -1 ?></td>
-				<td class="numeric"><?= $this->repartition['count_favorites'] ?? -1 ?></td>
+				<?php
+				$feed_id = $this->feed->id();
+				if ( $feed_id === 0) { ?>
+					<td class="numeric"><?= $this->repartition['total'] ?? -1 ?></td>
+					<td class="numeric"><?= $this->repartition['count_reads'] ?? -1 ?></td>
+					<td class="numeric"><?= $this->repartition['count_unreads'] ?? -1 ?></td>
+					<td class="numeric"><a href="<?= _url('index', 'index', 'get', 's') ?>" title="<?= _t('gen.action.filter') ?>"><?= $this->repartition['count_favorites'] ?? -1 ?></a></td>
+				<?php
+				}
+				else {
+				?>
+					<td class="numeric"><a href="<?= _url('index', 'index', 'get', 'f_' . $feed_id, 'state', FreshRSS_Entry::STATE_ALL) ?>" title="<?= _t('gen.action.filter') ?>"><?= $this->repartition['total'] ?? -1 ?></a></td>
+					<td class="numeric"><a href="<?= _url('index', 'index', 'get', 'f_' . $feed_id, 'state', FreshRSS_Entry::STATE_READ) ?>" title="<?= _t('gen.action.filter') ?>"><?= $this->repartition['count_reads'] ?? -1 ?></a></td>
+					<td class="numeric"><a href="<?= _url('index', 'index', 'get', 'f_' . $feed_id, 'state', FreshRSS_Entry::STATE_NOT_READ) ?>" title="<?= _t('gen.action.filter') ?>"><?= $this->repartition['count_unreads'] ?? -1 ?></a></td>
+					<td class="numeric"><a href="<?= _url('index', 'index', 'get', 'f_' . $feed_id, 'state', FreshRSS_Entry::STATE_FAVORITE) ?>" title="<?= _t('gen.action.filter') ?>"><?= $this->repartition['count_favorites'] ?? -1 ?></a></td>
+				<?php } ?>
 			</tr>
 			</table>
 		</div>
