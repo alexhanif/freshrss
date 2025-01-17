@@ -934,11 +934,32 @@ input[type="checkbox"]:focus-visible {
 
 /*=== Boxes */
 .box {
-	margin: 20px 20px 20px 0;
+	margin: 1.25rem 1.25rem 1.25rem 0;
 	display: inline-block;
 	max-width: 95%;
 	width: 30rem;
 	vertical-align: top;
+}
+
+.box.double-width,
+.box:target {
+	width: 61.25rem;
+}
+
+.box .target-hidden {
+	display: initial;
+}
+
+.box:target .target-hidden {
+	display: none;
+}
+
+.box .target-visible {
+	display: none;
+}
+
+.box:target .target-visible {
+	display: initial;
 }
 
 .box.visible-semi {
@@ -971,6 +992,18 @@ input[type="checkbox"]:focus-visible {
 	min-height: 2.5em;
 	max-height: 260px;
 	overflow: auto;
+}
+
+.box .box-content table {
+	width: calc(100% - 1.25rem);
+}
+
+.box.double-height .box-content {
+	max-height: 520px;
+}
+
+.box:target .box-content {
+	max-height: fit-content;
 }
 
 .box .box-content .feed.item {
@@ -1866,6 +1899,15 @@ a.website:hover .favicon {
 }
 
 /*=== Statistiques */
+.box .box-title .btn {
+	position: absolute;
+	right: 1rem;
+	line-height: 1;
+	min-height: 1rem;
+	padding: 0.25rem;
+	text-align: center;
+}
+
 .stat-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -2292,8 +2334,14 @@ html.slider-active {
 .nav_menu {
 	padding-top: var(--frss-padding-top-bottom);
 	padding-bottom: var(--frss-padding-top-bottom);
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
 	background: inherit;
 	text-align: center;
+}
+
+.nav_menu .stick {
+	max-width: 500px;
 }
 
 .nav_mobile {
