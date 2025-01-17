@@ -149,7 +149,7 @@ return array(
 		'no_idle' => 'אין הזנות מובטלות!',
 		'number_entries' => '%d מאמרים',
 		'percent_of_total' => '% מסך הכל',
-		'repartition' => 'חלוקת המאמרים',
+		'repartition' => 'חלוקת המאמרים: %s',	// DIRTY
 		'status_favorites' => 'מועדפים',
 		'status_read' => 'נקרא',
 		'status_total' => 'סך הכל',

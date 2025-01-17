@@ -149,7 +149,7 @@ return array(
 		'no_idle' => 'Нет неактивных лент!',
 		'number_entries' => 'статей: %d',
 		'percent_of_total' => '% от всего',
-		'repartition' => 'Распределение статей',
+		'repartition' => 'Распределение статей: %s',
 		'status_favorites' => 'В избранном',
 		'status_read' => 'Прочитано',
 		'status_total' => 'Всего',

@@ -149,7 +149,7 @@ return array(
 		'no_idle' => 'Δεν υπάρχουν αδρανείς τροφοδοσίες!',
 		'number_entries' => '%d άρθρα',
 		'percent_of_total' => '% εκ του συνόλου',
-		'repartition' => 'Articles repartition',	// TODO
+		'repartition' => 'Articles repartition: %s',	// TODO
 		'status_favorites' => 'Αγαπημένα',
 		'status_read' => 'Ανάγνωση',
 		'status_total' => 'Σύνολο',

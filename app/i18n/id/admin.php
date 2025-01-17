@@ -149,7 +149,7 @@ return array(
 		'no_idle' => 'Tidak ada idle feed!',
 		'number_entries' => '%d artikel',
 		'percent_of_total' => '% dari total',
-		'repartition' => 'Mengembalikan artikel',
+		'repartition' => 'Mengembalikan artikel: %s',
 		'status_favorites' => 'Favorites',
 		'status_read' => 'Terbaca',
 		'status_total' => 'Total',	// TODO

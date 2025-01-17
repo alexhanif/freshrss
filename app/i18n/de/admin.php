@@ -149,7 +149,7 @@ return array(
 		'no_idle' => 'Es gibt keinen inaktiven Feed!',
 		'number_entries' => '%d Artikel',
 		'percent_of_total' => '% Gesamt',
-		'repartition' => 'Artikel-Verteilung',
+		'repartition' => 'Artikel-Verteilung: %s',
 		'status_favorites' => 'Favoriten',
 		'status_read' => 'Gelesen',
 		'status_total' => 'Gesamt',

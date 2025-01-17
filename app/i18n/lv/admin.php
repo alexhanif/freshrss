@@ -149,7 +149,7 @@ return array(
 		'no_idle' => 'Nav neaktīvu barotņu!',
 		'number_entries' => '%d raksti',
 		'percent_of_total' => '% no kopsummas',
-		'repartition' => 'Rakstu pārdalīšana',
+		'repartition' => 'Rakstu pārdalīšana: %s',	// DIRTY
 		'status_favorites' => 'Mīļākie',
 		'status_read' => 'Izlasīti',
 		'status_total' => 'Kopā',

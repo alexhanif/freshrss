@@ -149,7 +149,7 @@ return array(
 		'no_idle' => '未使用のフィードはありません!',
 		'number_entries' => '%d 記事',
 		'percent_of_total' => '% 総計',
-		'repartition' => '記事の仕切り',
+		'repartition' => '記事の仕切り: %s',	// DIRTY
 		'status_favorites' => 'お気に入り',
 		'status_read' => '既読',
 		'status_total' => 'すべて',

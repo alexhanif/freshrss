@@ -149,7 +149,7 @@ return array(
 		'no_idle' => '订阅源近期皆有更新！',
 		'number_entries' => '%d 篇文章',
 		'percent_of_total' => '%',
-		'repartition' => '文章分布',
+		'repartition' => '文章分布: %s',	// DIRTY
 		'status_favorites' => '收藏',
 		'status_read' => '已读',
 		'status_total' => '总计',

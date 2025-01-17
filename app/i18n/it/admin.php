@@ -149,7 +149,7 @@ return array(
 		'no_idle' => 'Non ci sono feed non aggiornati',
 		'number_entries' => '%d articoli',
 		'percent_of_total' => '% del totale',
-		'repartition' => 'Ripartizione articoli',
+		'repartition' => 'Ripartizione articoli: %s',
 		'status_favorites' => 'Preferiti',
 		'status_read' => 'Letti',
 		'status_total' => 'Totale',

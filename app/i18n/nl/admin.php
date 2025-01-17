@@ -149,7 +149,7 @@ return array(
 		'no_idle' => 'Er is geen gepauzeerde feed!',
 		'number_entries' => '%d artikelen',
 		'percent_of_total' => '% van totaal',
-		'repartition' => 'Artikelverdeling',
+		'repartition' => 'Artikelverdeling: %s',
 		'status_favorites' => 'Favorieten',
 		'status_read' => 'Gelezen',
 		'status_total' => 'Totaal',

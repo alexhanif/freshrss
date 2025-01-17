@@ -149,7 +149,7 @@ return array(
 		'no_idle' => 'I a pas cap d’article inactiu !',
 		'number_entries' => '%d articles',	// IGNORE
 		'percent_of_total' => '% del total',
-		'repartition' => 'Reparticion dels articles',
+		'repartition' => 'Reparticion dels articles: %s',
 		'status_favorites' => 'Favorits',
 		'status_read' => 'Legit',
 		'status_total' => 'Total',	// IGNORE

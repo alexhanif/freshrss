@@ -149,7 +149,7 @@ return array(
 		'no_idle' => 'There are no idle feeds!',
 		'number_entries' => '%d articles',
 		'percent_of_total' => '% of total',
-		'repartition' => 'Articles repartition',
+		'repartition' => 'Articles repartition: %s',
 		'status_favorites' => 'Favourites',
 		'status_read' => 'Read',
 		'status_total' => 'Total',

@@ -149,7 +149,7 @@ return array(
 		'no_idle' => 'Nejsou žádné nečinné kanály!',
 		'number_entries' => '%d článků',
 		'percent_of_total' => '% ze všech',
-		'repartition' => 'Přerozdělení článků',
+		'repartition' => 'Přerozdělení článků: %s',
 		'status_favorites' => 'Oblíbené',
 		'status_read' => 'Přečtené',
 		'status_total' => 'Celkem',

@@ -149,7 +149,7 @@ return array(
 		'no_idle' => 'Nincsenek tétlen hírforrások!',
 		'number_entries' => '%d cikk',
 		'percent_of_total' => '% az összesből',
-		'repartition' => 'Cikkek eloszlása',
+		'repartition' => 'Cikkek eloszlása: %s',
 		'status_favorites' => 'Kedvencek',
 		'status_read' => 'Olvasott',
 		'status_total' => 'Összes',

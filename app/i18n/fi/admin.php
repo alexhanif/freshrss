@@ -149,7 +149,7 @@ return array(
 		'no_idle' => 'Hiljentyneitä syötteitä ei ole.',
 		'number_entries' => '%d artikkelia',
 		'percent_of_total' => '% kaikista',
-		'repartition' => 'Artikkelien uudelleenjaottelu',
+		'repartition' => 'Artikkelien uudelleenjaottelu: %s',
 		'status_favorites' => 'Suosikit',
 		'status_read' => 'Luetut',
 		'status_total' => 'Yhteensä',

@@ -149,7 +149,7 @@ return array(
 		'no_idle' => 'There are no idle feeds!',	// IGNORE
 		'number_entries' => '%d articles',	// IGNORE
 		'percent_of_total' => '% of total',	// IGNORE
-		'repartition' => 'Articles repartition',	// IGNORE
+		'repartition' => 'Articles repartition: %s',	// IGNORE
 		'status_favorites' => 'Favorites',
 		'status_read' => 'Read',	// IGNORE
 		'status_total' => 'Total',	// IGNORE
