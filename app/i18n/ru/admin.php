@@ -148,6 +148,7 @@ return array(
 		'main_stream' => 'Основной поток',
 		'no_idle' => 'Нет неактивных лент!',
 		'number_entries' => 'статей: %d',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% от всего',
 		'repartition' => 'Распределение статей: %s',
 		'status_favorites' => 'В избранном',

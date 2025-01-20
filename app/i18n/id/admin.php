@@ -148,6 +148,7 @@ return array(
 		'main_stream' => 'Aliran utama',
 		'no_idle' => 'Tidak ada idle feed!',
 		'number_entries' => '%d artikel',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% dari total',
 		'repartition' => 'Mengembalikan artikel: %s',
 		'status_favorites' => 'Favorites',

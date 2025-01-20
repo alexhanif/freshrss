@@ -148,6 +148,7 @@ return array(
 		'main_stream' => 'Kanał główny',
 		'no_idle' => 'Brak bezczynnych kanałów!',
 		'number_entries' => '%d wiadomości',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% wszystkich',
 		'repartition' => 'Podział wiadomości: %s',
 		'status_favorites' => 'Ulubione',

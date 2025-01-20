@@ -148,6 +148,7 @@ return array(
 		'main_stream' => 'הזנה ראשית',
 		'no_idle' => 'אין הזנות מובטלות!',
 		'number_entries' => '%d מאמרים',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% מסך הכל',
 		'repartition' => 'חלוקת המאמרים: %s',	// DIRTY
 		'status_favorites' => 'מועדפים',

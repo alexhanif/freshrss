@@ -148,6 +148,7 @@ return array(
 		'main_stream' => '主なストリーム',
 		'no_idle' => '未使用のフィードはありません!',
 		'number_entries' => '%d 記事',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% 総計',
 		'repartition' => '記事の仕切り: %s',	// DIRTY
 		'status_favorites' => 'お気に入り',

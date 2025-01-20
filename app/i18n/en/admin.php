@@ -148,6 +148,7 @@ return array(
 		'main_stream' => 'Main stream',
 		'no_idle' => 'There are no idle feeds!',
 		'number_entries' => '%d articles',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% of total',
 		'repartition' => 'Articles repartition: %s',
 		'status_favorites' => 'Favourites',

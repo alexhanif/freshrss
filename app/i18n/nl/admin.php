@@ -148,6 +148,7 @@ return array(
 		'main_stream' => 'Overzicht',
 		'no_idle' => 'Er is geen gepauzeerde feed!',
 		'number_entries' => '%d artikelen',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% van totaal',
 		'repartition' => 'Artikelverdeling: %s',
 		'status_favorites' => 'Favorieten',

@@ -148,6 +148,7 @@ return array(
 		'main_stream' => 'Galvenā plūsma',
 		'no_idle' => 'Nav neaktīvu barotņu!',
 		'number_entries' => '%d raksti',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% no kopsummas',
 		'repartition' => 'Rakstu pārdalīšana: %s',	// DIRTY
 		'status_favorites' => 'Mīļākie',

@@ -148,6 +148,7 @@ return array(
 		'main_stream' => '首頁',
 		'no_idle' => '訂閱源近期皆有更新！',
 		'number_entries' => '%d 篇文章',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '%',
 		'repartition' => '文章分布: %s',	// DIRTY
 		'status_favorites' => '收藏',

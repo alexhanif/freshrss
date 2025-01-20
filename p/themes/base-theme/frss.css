@@ -2344,6 +2344,11 @@ html.slider-active {
 	max-width: 500px;
 }
 
+.nav_menu select {
+	max-width: 300px;
+	width: 60%;
+}
+
 .nav_mobile {
 	display: none;
 }
