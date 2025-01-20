@@ -51,7 +51,7 @@
 			</tr>
 			<tr>
 				<?php
-				$feedID = $this->feed !== null? $this->feed->id() : 0;
+				$feedID = $this->feed !== null ? $this->feed->id() : 0;
 				if ($feedID === 0) { ?>
 					<td class="numeric"><?= $this->repartition['total'] ?? -1 ?></td>
 					<td class="numeric"><?= $this->repartition['count_reads'] ?? -1 ?></td>
