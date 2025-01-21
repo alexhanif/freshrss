@@ -14,13 +14,15 @@ return array(
 	'action' => array(
 		'actualize' => 'Actualiser flux',
 		'add' => 'Ajouter',
-		'back' => '← Retour',
 		'back_to_rss_feeds' => '← Retour à vos flux RSS',
 		'cancel' => 'Annuler',
 		'create' => 'Créer',
+		'delete_all_feeds' => 'Supprimer tous les flux',
+		'delete_errored_feeds' => 'Supprimer les flux en erreur',
 		'delete_muted_feeds' => 'Supprimer les flux désactivés',
 		'demote' => 'Rétrograder',
 		'disable' => 'Désactiver',
+		'download' => 'Télécharger',
 		'empty' => 'Vider',
 		'enable' => 'Activer',
 		'export' => 'Exporter',
@@ -29,6 +31,9 @@ return array(
 		'load_default_shortcuts' => 'Utiliser les raccourcis par défaut',
 		'manage' => 'Gérer',
 		'mark_read' => 'Marquer comme lu',
+		'menu' => array(
+			'open' => 'Ouvrir le menu',
+		),
 		'nav_buttons' => array(
 			'next' => 'Article suivant',
 			'prev' => 'Article précédent',
@@ -151,6 +156,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE
@@ -180,6 +186,7 @@ return array(
 		'display' => 'Affichage',
 		'extensions' => 'Extensions',	// IGNORE
 		'logs' => 'Logs',	// IGNORE
+		'privacy' => 'Vie privée',
 		'queries' => 'Filtres utilisateurs',
 		'reading' => 'Lecture',
 		'search' => 'Rechercher des mots ou des #tags',
@@ -201,8 +208,10 @@ return array(
 	),
 	'share' => array(
 		'Known' => 'Sites basés sur Known',
+		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
+		'bluesky' => 'Bluesky',	// TODO
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'Presse-papier',
 		'diaspora' => 'Diaspora*',	// IGNORE
@@ -224,6 +233,7 @@ return array(
 		'raindrop' => 'Raindrop.io',	// IGNORE
 		'reddit' => 'Reddit',	// IGNORE
 		'shaarli' => 'Shaarli',	// IGNORE
+		'telegram' => 'Telegram',	// IGNORE
 		'twitter' => 'Twitter',	// IGNORE
 		'wallabag' => 'wallabag v1',	// IGNORE
 		'wallabagv2' => 'wallabag v2',	// IGNORE

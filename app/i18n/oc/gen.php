@@ -14,13 +14,15 @@ return array(
 	'action' => array(
 		'actualize' => 'Actualizar flux',
 		'add' => 'Ajustar',
-		'back' => '← Tornar',
 		'back_to_rss_feeds' => '← Tornar a vòstres fluxes RSS',
 		'cancel' => 'Anullar',
 		'create' => 'Crear',
+		'delete_all_feeds' => 'Delete all feeds',	// TODO
+		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO
 		'delete_muted_feeds' => 'Suprimir los flux muts',
 		'demote' => 'Retrogradar',
 		'disable' => 'Desactivar',
+		'download' => 'Download',	// TODO
 		'empty' => 'Voidar',
 		'enable' => 'Activar',
 		'export' => 'Exportar',
@@ -29,6 +31,9 @@ return array(
 		'load_default_shortcuts' => 'Cargar los acorchis per defaut',
 		'manage' => 'Gerir',
 		'mark_read' => 'Marcar coma legit',
+		'menu' => array(
+			'open' => 'Open menu',	// TODO
+		),
 		'nav_buttons' => array(
 			'next' => 'Next article',	// TODO
 			'prev' => 'Previous article',	// TODO
@@ -151,6 +156,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE
@@ -180,6 +186,7 @@ return array(
 		'display' => 'Afichatge',
 		'extensions' => 'Extensions',	// IGNORE
 		'logs' => 'Jornals d’audit',	// IGNORE
+		'privacy' => 'Privacy',	// TODO
 		'queries' => 'Filtres utilizaire',
 		'reading' => 'Lectura',
 		'search' => 'Recercar de mots o d’#etiquetas',
@@ -201,8 +208,10 @@ return array(
 	),
 	'share' => array(
 		'Known' => 'Sites basats sus Known',
+		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
+		'bluesky' => 'Bluesky',	// TODO
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'Quicha-papiers.',
 		'diaspora' => 'Diaspora*',	// IGNORE
@@ -224,6 +233,7 @@ return array(
 		'raindrop' => 'Raindrop.io',	// IGNORE
 		'reddit' => 'Reddit',	// IGNORE
 		'shaarli' => 'Shaarli',	// IGNORE
+		'telegram' => 'Telegram',	// IGNORE
 		'twitter' => 'Twitter',	// IGNORE
 		'wallabag' => 'wallabag v1',	// IGNORE
 		'wallabagv2' => 'wallabag v2',	// IGNORE

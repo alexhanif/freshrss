@@ -162,6 +162,10 @@ They need to be compiled manually:
 cd ./FreshRSS/
 docker build --pull --tag freshrss/freshrss:oldest -f Docker/Dockerfile-Oldest .
 docker build --pull --tag freshrss/freshrss:newest -f Docker/Dockerfile-Newest .
+
+# Example of use:
+make composer-test
+docker run --rm -e FRESHRSS_ENV=development -e TZ=UTC -v $(pwd):/var/www/FreshRSS freshrss/freshrss:oldest bin/composer test
 ```
 
 ## Supported databases
@@ -270,6 +274,7 @@ sudo nano /var/lib/docker/volumes/freshrss_data/_data/config.php
 First, put variables such as passwords in your `.env` file, which can live where your `docker-compose.yml` should be. See [`example.env`](./freshrss/example.env).
 
 ```ini
+BASE_URL=https://freshrss.example.net
 ADMIN_EMAIL=admin@example.net
 ADMIN_PASSWORD=freshrss
 ADMIN_API_PASSWORD=freshrss

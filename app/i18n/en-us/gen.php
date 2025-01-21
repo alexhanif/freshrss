@@ -14,13 +14,15 @@ return array(
 	'action' => array(
 		'actualize' => 'Update feeds',	// IGNORE
 		'add' => 'Add',	// IGNORE
-		'back' => '← Go back',	// IGNORE
 		'back_to_rss_feeds' => '← Go back to your RSS feeds',	// IGNORE
 		'cancel' => 'Cancel',	// IGNORE
 		'create' => 'Create',	// IGNORE
+		'delete_all_feeds' => 'Delete all feeds',	// IGNORE
+		'delete_errored_feeds' => 'Delete feeds with errors',	// IGNORE
 		'delete_muted_feeds' => 'Delete muted feeds',	// IGNORE
 		'demote' => 'Demote',	// IGNORE
 		'disable' => 'Disable',	// IGNORE
+		'download' => 'Download',	// IGNORE
 		'empty' => 'Empty',	// IGNORE
 		'enable' => 'Enable',	// IGNORE
 		'export' => 'Export',	// IGNORE
@@ -29,6 +31,9 @@ return array(
 		'load_default_shortcuts' => 'Load default shortcuts',	// IGNORE
 		'manage' => 'Manage',	// IGNORE
 		'mark_read' => 'Mark as read',	// IGNORE
+		'menu' => array(
+			'open' => 'Open menu',	// IGNORE
+		),
 		'nav_buttons' => array(
 			'next' => 'Next article',	// IGNORE
 			'prev' => 'Previous article',	// IGNORE
@@ -151,6 +156,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE
@@ -180,6 +186,7 @@ return array(
 		'display' => 'Display',	// IGNORE
 		'extensions' => 'Extensions',	// IGNORE
 		'logs' => 'Logs',	// IGNORE
+		'privacy' => 'Privacy',	// IGNORE
 		'queries' => 'User queries',	// IGNORE
 		'reading' => 'Reading',	// IGNORE
 		'search' => 'Search words or #tags',	// IGNORE
@@ -201,8 +208,10 @@ return array(
 	),
 	'share' => array(
 		'Known' => 'Known based sites',	// IGNORE
+		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
+		'bluesky' => 'Bluesky',	// IGNORE
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'Clipboard',	// IGNORE
 		'diaspora' => 'Diaspora*',	// IGNORE
@@ -224,6 +233,7 @@ return array(
 		'raindrop' => 'Raindrop.io',	// IGNORE
 		'reddit' => 'Reddit',	// IGNORE
 		'shaarli' => 'Shaarli',	// IGNORE
+		'telegram' => 'Telegram',	// IGNORE
 		'twitter' => 'Twitter',	// IGNORE
 		'wallabag' => 'wallabag v1',	// IGNORE
 		'wallabagv2' => 'wallabag v2',	// IGNORE

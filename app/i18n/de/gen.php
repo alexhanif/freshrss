@@ -14,13 +14,15 @@ return array(
 	'action' => array(
 		'actualize' => 'Feeds aktualisieren',
 		'add' => 'Hinzufügen',
-		'back' => '← Zurück',
 		'back_to_rss_feeds' => '← Zurück zu Ihren RSS-Feeds gehen',
 		'cancel' => 'Abbrechen',
 		'create' => 'Erstellen',
+		'delete_all_feeds' => 'Alle Feeds löschen',
+		'delete_errored_feeds' => 'Feeds mit Fehlern löschen',
 		'delete_muted_feeds' => 'Lösche stumm gestellte Feeds',
 		'demote' => 'Zurückstufen',
 		'disable' => 'Deaktivieren',
+		'download' => 'Download',	// IGNORE
 		'empty' => 'Leeren',
 		'enable' => 'Aktivieren',
 		'export' => 'Exportieren',
@@ -29,6 +31,9 @@ return array(
 		'load_default_shortcuts' => 'Standard-Kürzel laden',
 		'manage' => 'Verwalten',
 		'mark_read' => 'Als gelesen markieren',
+		'menu' => array(
+			'open' => 'Menü öffnen',
+		),
 		'nav_buttons' => array(
 			'next' => 'Nächster Artikel',
 			'prev' => 'Vorheriger Artikel',
@@ -151,6 +156,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE
@@ -180,6 +186,7 @@ return array(
 		'display' => 'Anzeige',
 		'extensions' => 'Erweiterungen',
 		'logs' => 'Protokolle',
+		'privacy' => 'Privatsphäre',
 		'queries' => 'Benutzerabfragen',
 		'reading' => 'Lesen',
 		'search' => 'Suche Worte oder #Tags',
@@ -201,8 +208,10 @@ return array(
 	),
 	'share' => array(
 		'Known' => 'Known-Seite (https://withknown.com)',
+		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
+		'bluesky' => 'Bluesky',	// TODO
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'Zwischenablage',
 		'diaspora' => 'Diaspora*',	// IGNORE
@@ -224,6 +233,7 @@ return array(
 		'raindrop' => 'Raindrop.io',	// IGNORE
 		'reddit' => 'Reddit',	// IGNORE
 		'shaarli' => 'Shaarli',	// IGNORE
+		'telegram' => 'Telegram',	// IGNORE
 		'twitter' => 'Twitter',	// IGNORE
 		'wallabag' => 'wallabag v1',	// IGNORE
 		'wallabagv2' => 'wallabag v2',	// IGNORE

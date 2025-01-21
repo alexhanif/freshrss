@@ -14,13 +14,15 @@ return array(
 	'action' => array(
 		'actualize' => '更新提要',
 		'add' => '新增',
-		'back' => '← 返回',
 		'back_to_rss_feeds' => '← 返回訂閱源',
 		'cancel' => '取消',
 		'create' => '創建',
+		'delete_all_feeds' => 'Delete all feeds',	// TODO
+		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO
 		'delete_muted_feeds' => '刪除已暫停的訂閱源',
 		'demote' => '撤銷管理員',
 		'disable' => '禁用',
+		'download' => 'Download',	// TODO
 		'empty' => '清空',
 		'enable' => '啟用',
 		'export' => '導出',
@@ -29,10 +31,13 @@ return array(
 		'load_default_shortcuts' => '重置快捷鍵',
 		'manage' => '管理',
 		'mark_read' => '標記已讀',
+		'menu' => array(
+			'open' => '開啟選單',
+		),
 		'nav_buttons' => array(
-			'next' => 'Next article',	// TODO
-			'prev' => 'Previous article',	// TODO
-			'up' => 'Go up',	// TODO
+			'next' => '下一篇文章',
+			'prev' => '預覽文章',
+			'up' => '回上一篇',
 		),
 		'open_url' => '打開連結',
 		'promote' => '設為管理員',
@@ -139,7 +144,7 @@ return array(
 			'request_failed' => '請求失敗，這可能是因為網絡連接問題。',
 			'title_new_articles' => 'FreshRSS: 新文章！',
 		),
-		'labels_empty' => 'No labels',	// TODO
+		'labels_empty' => '沒有標籤',
 		'new_article' => '發現新文章，點擊刷新頁面。',
 		'should_be_activated' => '必須啟用 JavaScript',
 	),
@@ -151,6 +156,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE
@@ -180,6 +186,7 @@ return array(
 		'display' => '顯示',
 		'extensions' => '擴充功能',
 		'logs' => '日誌',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => '自定義查詢',
 		'reading' => '閱讀',
 		'search' => '搜尋內容或#標簽',
@@ -201,8 +208,10 @@ return array(
 	),
 	'share' => array(
 		'Known' => '基於 Known 的站點',
+		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
+		'bluesky' => 'Bluesky',	// TODO
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => '剪貼板',
 		'diaspora' => 'Diaspora*',	// IGNORE
@@ -224,6 +233,7 @@ return array(
 		'raindrop' => 'Raindrop.io',	// IGNORE
 		'reddit' => 'Reddit',	// IGNORE
 		'shaarli' => 'Shaarli',	// IGNORE
+		'telegram' => 'Telegram',	// IGNORE
 		'twitter' => '推特',	// IGNORE
 		'wallabag' => 'Wallabag v1',	// IGNORE
 		'wallabagv2' => 'Wallabag v2',	// IGNORE

@@ -99,9 +99,19 @@ return array(
 			'previous' => 'Предыдущая',
 		),
 	),
+	'privacy' => array(
+		'_' => 'Privacy',	// TODO
+		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
+	),
 	'profile' => array(
 		'_' => 'Настройки профиля',
-		'api' => 'Настройки API',
+		'api' => array(
+			'_' => 'Настройки API',
+			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// TODO
+			'disabled' => 'The API access is disabled.',	// TODO
+			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
+			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
+		),
 		'delete' => array(
 			'_' => 'Удаление аккаунта',
 			'warn' => 'Ваш аккаунт и вся связанная с ним информация будут удалены.',
@@ -128,6 +138,8 @@ return array(
 			'tags' => 'Отображение по метке',
 			'type' => 'Тип',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'Показать все статьи',
 		'get_all_labels' => 'Показать все статьи с любыми метками',
 		'get_category' => 'Показать категорию “%s”',
@@ -139,12 +151,21 @@ return array(
 		'image_url' => 'Image URL',	// TODO
 		'name' => 'Название',
 		'no_filter' => 'Нет фильтров',
+		'no_queries' => array(
+			'_' => 'No user queries are saved yet.',	// TODO
+			'help' => 'See <a href="https://freshrss.github.io/FreshRSS/en/users/user_queries.html" target="_blank">documentation</a>',	// TODO
+		),
 		'number' => 'Запрос №%d',
 		'order_asc' => 'Показывать сначала старые статьи',
 		'order_desc' => 'Показывать сначала новые статьи',
 		'search' => 'Искать “%s”',
 		'share' => array(
 			'_' => 'Поделиться запросом по ссылке',
+			'disabled' => array(
+				'_' => 'disabled',	// TODO
+				'title' => 'Sharing',	// TODO
+			),
+			'greader' => 'Shareable link to the GReader JSON',	// TODO
 			'help' => 'Дайте эту ссылку, если хотите поделиться этим запросом с кем-либо',
 			'html' => 'Ссылка доступа на HTML-страницу',
 			'opml' => 'Ссылка доступа на список лент в формате OPML',
@@ -172,6 +193,7 @@ return array(
 		'_' => 'Чтение',
 		'after_onread' => 'После «отметить всё прочитанным»',
 		'always_show_favorites' => 'Показывать все статьи в избранном по умолчанию',
+		'apply_to_individual_feed' => 'Applies to feeds individually',	// TODO
 		'article' => array(
 			'authors_date' => array(
 				'_' => 'Авторы и дата',
@@ -219,7 +241,7 @@ return array(
 		),
 		'hide_read_feeds' => 'Скрывать категории и ленты без непрочитанных статей (не работает с «Показывать все статьи»)',
 		'img_with_lazyload' => 'Использовать режим «ленивой загрузки» для загрузки картинок',
-		'jump_next' => 'перейти к следующей ленте или категории',
+		'jump_next' => 'перейти к следующей',
 		'mark_updated_article_unread' => 'Отмечать обновлённые статьи непрочитанными',
 		'number_divided_when_reader' => 'Делится на 2 в виде для чтения.',
 		'read' => array(
@@ -231,17 +253,19 @@ return array(
 			'upon_gone' => 'когда это больше не в новостной ленте',
 			'upon_reception' => 'по получении статьи',
 			'when' => 'Отмечать статью прочитанной…',
-			'when_same_title' => 'если идентичный заголовок уже существует в верхних <i>n</i> новейших статьях',
+			'when_same_title_in_category' => 'if an identical title already exists in the top <i>n</i> newest articles of the category',	// TODO
+			'when_same_title_in_feed' => 'если идентичный заголовок уже существует в верхних <i>n</i> новейших статьях (of the feed)',	// DIRTY
 		),
 		'show' => array(
 			'_' => 'Какие статьи отображать',
 			'active_category' => 'Активную категорию',
-			'adaptive' => 'Адаптивно',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => 'Показывать все статьи',
 			'all_categories' => 'Все категории',
 			'no_category' => 'Никакие категории',
 			'remember_categories' => 'Запоминать открытые категории',
 			'unread' => 'Только непрочитанные',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => 'Также относится к меткам',
 		'sides_close_article' => 'Нажатия мышью за пределами текста статьи закрывают статью',
@@ -249,6 +273,9 @@ return array(
 			'_' => 'Порядок сортировки',
 			'newer_first' => 'Сначала новые',
 			'older_first' => 'Сначала старые',
+		),
+		'star' => array(
+			'when' => 'Mark an article as favourite…',	// TODO
 		),
 		'sticky_post' => 'Прикрепить статью к верху при открытии',
 		'title' => 'Чтение',
@@ -262,6 +289,7 @@ return array(
 	'sharing' => array(
 		'_' => 'Обмен',
 		'add' => 'Добавить способ обмена',
+		'bluesky' => 'Bluesky',	// TODO
 		'deprecated' => 'Этот сервис устарел и будет удалён из FreshRSS в <a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="Открыть документацию для большей информации" target="_blank">будущем релизе</a>.',
 		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => 'Электронная почта',

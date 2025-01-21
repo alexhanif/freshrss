@@ -31,6 +31,8 @@
 			<input type="hidden" name="user" value="<?= Minz_User::name() ?>" />
 			<?php } if (ctype_alnum(Minz_Request::paramString('t'))) { ?>
 			<input type="hidden" name="t" value="<?= Minz_Request::paramString('t') ?>" />
+			<?php } if (ctype_lower(Minz_Request::paramString('sort'))) { ?>
+			<input type="hidden" name="sort" value="<?= FreshRSS_Context::$sort ?>" />
 			<?php } if (ctype_upper(Minz_Request::paramString('order'))) { ?>
 			<input type="hidden" name="order" value="<?= FreshRSS_Context::$order ?>" />
 			<?php } if (ctype_lower(Minz_Request::paramString('f'))) { ?>
@@ -79,6 +81,7 @@
 						<li class="item"><a href="<?= _url('configure', 'shortcut') ?>"><?= _t('gen.menu.shortcuts') ?></a></li>
 						<li class="item"><a href="<?= _url('configure', 'queries') ?>"><?= _t('gen.menu.queries') ?></a></li>
 						<li class="item"><a href="<?= _url('extension', 'index') ?>"><?= _t('gen.menu.extensions') ?></a></li>
+						<li class="item"><a href="<?= _url('configure', 'privacy') ?>"><?= _t('gen.menu.privacy') ?></a></li>
 						<?= Minz_ExtensionManager::callHookString('menu_configuration_entry') ?>
 					</ul>
 				</li>
