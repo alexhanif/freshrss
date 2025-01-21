@@ -52,6 +52,7 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 			FreshRSS_Context::userConf()->content_width = Minz_Request::paramString('content_width') ?: 'thin';
 			FreshRSS_Context::userConf()->topline_read = Minz_Request::paramBoolean('topline_read');
 			FreshRSS_Context::userConf()->topline_favorite = Minz_Request::paramBoolean('topline_favorite');
+			FreshRSS_Context::userConf()->topline_myLabels = Minz_Request::paramBoolean('topline_myLabels');
 			FreshRSS_Context::userConf()->topline_sharing = Minz_Request::paramBoolean('topline_sharing');
 			FreshRSS_Context::userConf()->topline_date = Minz_Request::paramBoolean('topline_date');
 			FreshRSS_Context::userConf()->topline_link = Minz_Request::paramBoolean('topline_link');
@@ -175,10 +176,17 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 		FreshRSS_View::appendScript(Minz_Url::display('/scripts/draggable.js?' . @filemtime(PUBLIC_PATH . '/scripts/draggable.js')));
 
 		if (Minz_Request::isPost()) {
-			$params = $_POST;
-			FreshRSS_Context::userConf()->sharing = $params['share'];
-			FreshRSS_Context::userConf()->save();
-			invalidateHttpCache();
+			$share = $_POST['share'] ?? null;
+			if (is_array($share)) {
+				$share = array_filter($share, fn($value, $key): bool =>
+					is_int($key) && is_array($value) &&
+					is_array_values_string($value),
+					ARRAY_FILTER_USE_BOTH);
+				/** @var array<int,array<string,string>> $share */
+				FreshRSS_Context::userConf()->sharing = $share;
+				FreshRSS_Context::userConf()->save();
+				invalidateHttpCache();
+			}
 
 			Minz_Request::good(_t('feedback.conf.updated'), [ 'c' => 'configure', 'a' => 'integration' ]);
 		}
@@ -202,7 +210,7 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 		$this->view->list_keys = SHORTCUT_KEYS;
 
 		if (Minz_Request::isPost()) {
-			$shortcuts = Minz_Request::paramArray('shortcuts');
+			$shortcuts = Minz_Request::paramArray('shortcuts', plaintext: true);
 			if (Minz_Request::paramBoolean('load_default_shortcuts')) {
 				$default = Minz_Configuration::load(FRESHRSS_PATH . '/config-user.default.php');
 				$shortcuts = $default['shortcuts'];
@@ -307,7 +315,7 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 		FreshRSS_View::appendScript(Minz_Url::display('/scripts/draggable.js?' . @filemtime(PUBLIC_PATH . '/scripts/draggable.js')));
 
 		if (Minz_Request::isPost()) {
-			/** @var array<int,array{'get'?:string,'name'?:string,'order'?:string,'search'?:string,'state'?:int,'url'?:string,'token'?:string}> $params */
+			/** @var array<int,array{get?:string,name?:string,order?:string,search?:string,state?:int,url?:string,token?:string}> $params */
 			$params = Minz_Request::paramArray('queries');
 
 			$queries = [];
@@ -379,16 +387,17 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 				$name = _t('conf.query.number', $id + 1);
 			}
 			if (!empty($params['get']) && is_string($params['get'])) {
-				$queryParams['get'] = htmlspecialchars_decode($params['get'], ENT_QUOTES);
+				$queryParams['get'] = $params['get'];
 			}
 			if (!empty($params['order']) && is_string($params['order'])) {
-				$queryParams['order'] = htmlspecialchars_decode($params['order'], ENT_QUOTES);
+				$queryParams['order'] = $params['order'];
 			}
 			if (!empty($params['search']) && is_string($params['search'])) {
+				// Search must be as plain text to be XML-encoded or URL-encoded depending on the situation
 				$queryParams['search'] = htmlspecialchars_decode($params['search'], ENT_QUOTES);
 			}
 			if (!empty($params['state']) && is_array($params['state'])) {
-				$queryParams['state'] = (int)array_sum($params['state']);
+				$queryParams['state'] = (int)array_sum(array_map('intval', $params['state']));
 			}
 			if (empty($params['token']) || !is_string($params['token'])) {
 				$queryParams['token'] = FreshRSS_UserQuery::generateToken($name);
@@ -398,7 +407,7 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 			$queryParams['url'] = Minz_Url::display(['params' => $queryParams]);
 			$queryParams['name'] = $name;
 			if (!empty($params['description']) && is_string($params['description'])) {
-				$queryParams['description'] = htmlspecialchars_decode($params['description'], ENT_QUOTES);
+				$queryParams['description'] = $params['description'];
 			}
 			if (!empty($params['imageUrl']) && is_string($params['imageUrl'])) {
 				$queryParams['imageUrl'] = $params['imageUrl'];
@@ -451,9 +460,10 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 		foreach (FreshRSS_Context::userConf()->queries as $key => $query) {
 			$queries[$key] = (new FreshRSS_UserQuery($query, FreshRSS_Context::categories(), FreshRSS_Context::labels()))->toArray();
 		}
-		$params = $_GET;
+		$params = array_filter($_GET, 'is_string', ARRAY_FILTER_USE_KEY);
 		unset($params['name']);
 		unset($params['rid']);
+		/** @var array{get?:string,name?:string,order?:string,search?:string,state?:int,url?:string,token?:string,shareRss?:bool,shareOpml?:bool,description?:string,imageUrl?:string} $params */
 		$params['url'] = Minz_Url::display(['params' => $params]);
 		$params['name'] = _t('conf.query.number', count($queries) + 1);
 		$queries[] = (new FreshRSS_UserQuery($params, FreshRSS_Context::categories(), FreshRSS_Context::labels()))->toArray();
@@ -501,5 +511,17 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 
 			Minz_Request::good(_t('feedback.conf.updated'), [ 'c' => 'configure', 'a' => 'system' ]);
 		}
+	}
+
+	public function privacyAction(): void {
+		if (Minz_Request::isPost()) {
+			FreshRSS_Context::userConf()->retrieve_extension_list = Minz_Request::paramBoolean('retrieve_extension_list');
+			FreshRSS_Context::userConf()->save();
+			invalidateHttpCache();
+
+			Minz_Request::good(_t('feedback.conf.updated'), ['c' => 'configure', 'a' => 'privacy']);
+		}
+
+		FreshRSS_View::prependTitle(_t('conf.privacy') . ' · ');
 	}
 }

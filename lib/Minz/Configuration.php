@@ -18,7 +18,7 @@ class Minz_Configuration {
 	 * The list of configurations.
 	 * @var array<string,static>
 	 */
-	private static array $config_list = array();
+	private static array $config_list = [];
 
 	/**
 	 * Add a new configuration to the list of configuration.
@@ -29,8 +29,8 @@ class Minz_Configuration {
 	 * @param Minz_ConfigurationSetterInterface $configuration_setter an optional helper to set values in configuration
 	 * @throws Minz_FileNotExistException
 	 */
-	public static function register(string $namespace, string $config_filename, string $default_filename = null,
-		Minz_ConfigurationSetterInterface $configuration_setter = null): void {
+	public static function register(string $namespace, string $config_filename, ?string $default_filename = null,
+		?Minz_ConfigurationSetterInterface $configuration_setter = null): void {
 		self::$config_list[$namespace] = new static(
 			$namespace, $config_filename, $default_filename, $configuration_setter
 		);
@@ -45,7 +45,7 @@ class Minz_Configuration {
 	 */
 	public static function load(string $filename): array {
 		$data = @include($filename);
-		if (is_array($data)) {
+		if (is_array($data) && is_array_keys_string($data)) {
 			return $data;
 		} else {
 			throw new Minz_FileNotExistException($filename);
@@ -105,8 +105,8 @@ class Minz_Configuration {
 	 * @param Minz_ConfigurationSetterInterface $configuration_setter an optional helper to set values in configuration
 	 * @throws Minz_FileNotExistException
 	 */
-	final private function __construct(string $namespace, string $config_filename, string $default_filename = null,
-		Minz_ConfigurationSetterInterface $configuration_setter = null) {
+	final private function __construct(string $namespace, string $config_filename, ?string $default_filename = null,
+		?Minz_ConfigurationSetterInterface $configuration_setter = null) {
 		$this->namespace = $namespace;
 		$this->config_filename = $config_filename;
 		$this->default_filename = $default_filename;
@@ -117,9 +117,10 @@ class Minz_Configuration {
 		}
 
 		try {
-			$this->data = array_replace_recursive(
+			$overloaded = array_replace_recursive(
 				$this->data, self::load($this->config_filename)
 			);
+			$this->data = array_filter($overloaded, 'is_string', ARRAY_FILTER_USE_KEY);
 		} catch (Minz_FileNotExistException $e) {
 			if ($this->default_filename == null) {
 				throw $e;
@@ -132,7 +133,7 @@ class Minz_Configuration {
 	 * @param Minz_ConfigurationSetterInterface|null $configuration_setter the setter to call when modifying data.
 	 */
 	public function _configurationSetter(?Minz_ConfigurationSetterInterface $configuration_setter): void {
-		if (is_callable(array($configuration_setter, 'handle'))) {
+		if (is_callable([$configuration_setter, 'handle'])) {
 			$this->configuration_setter = $configuration_setter;
 		}
 	}

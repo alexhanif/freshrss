@@ -314,18 +314,12 @@ th {
 }
 
 .box .box-title {
-	margin: 0;
-	padding: 5px 10px;
 }
 
 .box .box-content {
-	max-height: 260px;
 }
 
 .box .box-content .item {
-	padding: 0 10px;
-	font-size: 0.9rem;
-	line-height: 2.5;
 }
 
 /*=== Tree */
@@ -634,7 +628,7 @@ th {
 	color: #333;
 }
 
-#stream.reader .flux .content {
+#stream.reader .flux .flux_content {
 	background-color: #fff;
 	border-color: #ddd;
 }
