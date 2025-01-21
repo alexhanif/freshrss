@@ -1908,28 +1908,6 @@ a.website:hover .favicon {
 	text-align: center;
 }
 
-.stat-grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-gap: 20px;
-}
-
-.stat {
-	grid-column: 1 / span 2;
-}
-
-.stat.half {
-	grid-column: auto;
-}
-
-.stat > table {
-	width: 100%;
-}
-
-.statGraph {
-	height: 300px;
-}
-
 /*=== GLOBAL VIEW */
 /*================*/
 #stream.global {
@@ -2732,10 +2710,6 @@ html.slider-active {
 
 	#slider.active:target + #close-slider {
 		display: none;
-	}
-
-	.stat.half {
-		grid-column: 1 / span 2;
 	}
 }
 
