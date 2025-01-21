@@ -2270,6 +2270,7 @@ html.slider-active {
 	border-radius: 12px;
 	line-height: 1;
 	font-weight: initial;
+	text-indent: 0;
 }
 
 .feed.active .item-title:not([data-unread="0"])::after {
