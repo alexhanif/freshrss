@@ -148,7 +148,7 @@ return array(
 		'main_stream' => 'Flux principal',
 		'no_idle' => 'Il n’y a aucun flux inactif !',
 		'number_entries' => '%d articles',	// IGNORE
-		'overview' => 'Overview',	// TODO
+		'overview' => 'Vue d’ensemble',
 		'percent_of_total' => '% du total',
 		'repartition' => 'Répartition des articles: %s',
 		'status_favorites' => 'favoris',
