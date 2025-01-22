@@ -90,7 +90,7 @@ class FreshRSS_extension_Controller extends FreshRSS_ActionController {
 					continue 2;
 				}
 			}
-			if (!in_array($extension['type'], ['system', 'user'], true)) {
+			if (!in_array($extension['type'], ['system', 'user'], true) || trim($extension['name']) === '') {
 				continue;
 			}
 			/** @var array{name:string,author:string,description:string,version:string,entrypoint:string,type:'system'|'user',url:string,method:string,directory:string} $extension */

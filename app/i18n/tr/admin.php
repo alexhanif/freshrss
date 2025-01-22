@@ -148,8 +148,9 @@ return array(
 		'main_stream' => 'Ana akış',
 		'no_idle' => 'Boşta akış yok!',
 		'number_entries' => '%d makale',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% toplamın yüzdesi',
-		'repartition' => 'Makale dağılımı',
+		'repartition' => 'Makale dağılımı: %s',
 		'status_favorites' => 'Favoriler',
 		'status_read' => 'Okunmuş',
 		'status_total' => 'Toplam',

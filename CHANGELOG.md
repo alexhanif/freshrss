@@ -2,7 +2,31 @@
 
 See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 
-## 202X-XX-XX FreshRSS 1.25.1-dev
+## 2025-0X-XX FreshRSS 1.26.0-dev
+
+* Features
+	* Add order-by options to sort articles by received date (existing, default), publication date, title, link, random [#7149](https://github.com/FreshRSS/FreshRSS/pull/7149)
+	* Allow searching in all feeds, also feeds only visible at category level with `&get=A`, and also those archived with `&get=Z` [#7144](https://github.com/FreshRSS/FreshRSS/pull/7144)
+		* UI accessible from user-query view
+	* New *About* page with system information [#7161](https://github.com/FreshRSS/FreshRSS/pull/7161)
+* Bug fixing
+	* Fix regression denying access to app manifest [#7158](https://github.com/FreshRSS/FreshRSS/pull/7158)
+	* Ensure no PHP buffer for SQLite download (some setups would first put the file in memory) [#7230](https://github.com/FreshRSS/FreshRSS/pull/7230)
+* Deployment
+	* Reduce superfluous Docker builds [#7137](https://github.com/FreshRSS/FreshRSS/pull/7137)
+* UI
+	* Add footer icons to reader view [#7133](https://github.com/FreshRSS/FreshRSS/pull/7133)
+	* Remove local reference to font *Open Sans* to avoid bugs with some local versions [#7215](https://github.com/FreshRSS/FreshRSS/pull/7215)
+	* Various UI and style improvements: [#7162](https://github.com/FreshRSS/FreshRSS/pull/7162)
+* I18n:
+	* Improve German [#7177](https://github.com/FreshRSS/FreshRSS/pull/7177)
+	* Improve Japanese [#7187](https://github.com/FreshRSS/FreshRSS/pull/7187), [#7195](https://github.com/FreshRSS/FreshRSS/pull/7195)
+* Misc.
+	* Improve PHP code [#7191](https://github.com/FreshRSS/FreshRSS/pull/7191), [#7204](https://github.com/FreshRSS/FreshRSS/pull/7204)
+		* Upgrade to PHPStan 2 [#7131](https://github.com/FreshRSS/FreshRSS/pull/7131), [#7164](https://github.com/FreshRSS/FreshRSS/pull/7164), [#7224](https://github.com/FreshRSS/FreshRSS/pull/7224)
+	* Update to CssXPath 1.3.0 (no change) [#7211](https://github.com/FreshRSS/FreshRSS/pull/7211)
+	* Update dev dependencies [#7165](https://github.com/FreshRSS/FreshRSS/pull/7165), [#7166](https://github.com/FreshRSS/FreshRSS/pull/7166), [#7167](https://github.com/FreshRSS/FreshRSS/pull/7167)
+	* Update GitHub Actions to Ubuntu 24.04 [#7207](https://github.com/FreshRSS/FreshRSS/pull/7207)
 
 
 ## 2024-12-23 FreshRSS 1.25.0

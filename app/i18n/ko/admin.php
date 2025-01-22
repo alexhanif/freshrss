@@ -148,8 +148,9 @@ return array(
 		'main_stream' => '메인 스트림',
 		'no_idle' => '유휴 피드가 없습니다!',
 		'number_entries' => '%d 개의 글',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '전체에서의 비율 (%)',
-		'repartition' => '글 분류',
+		'repartition' => '글 분류: %s',	// DIRTY
 		'status_favorites' => '즐겨찾기',
 		'status_read' => '읽음',
 		'status_total' => '전체',
