@@ -148,8 +148,9 @@ return array(
 		'main_stream' => 'Salida principal',
 		'no_idle' => 'No hay fuentes inactivas',
 		'number_entries' => '%d artículos',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% del total',
-		'repartition' => 'Reparto de artículos',
+		'repartition' => 'Reparto de artículos: %s',
 		'status_favorites' => 'Favoritos',
 		'status_read' => 'Leídos',
 		'status_total' => 'Total',	// IGNORE

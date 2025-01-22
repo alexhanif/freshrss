@@ -148,8 +148,9 @@ return array(
 		'main_stream' => 'Flux màger',
 		'no_idle' => 'I a pas cap d’article inactiu !',
 		'number_entries' => '%d articles',	// IGNORE
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% del total',
-		'repartition' => 'Reparticion dels articles',
+		'repartition' => 'Reparticion dels articles: %s',
 		'status_favorites' => 'Favorits',
 		'status_read' => 'Legit',
 		'status_total' => 'Total',	// IGNORE

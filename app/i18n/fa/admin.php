@@ -148,8 +148,9 @@ return array(
 		'main_stream' => ' جریان اصلی',
 		'no_idle' => ' هیچ فید بیکار وجود ندارد!',
 		'number_entries' => ' %d مقاله',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => ' درصد از کل',
-		'repartition' => ' تقسیم مجدد مقالات',
+		'repartition' => ' تقسیم مجدد مقالات: %s',	// DIRTY
 		'status_favorites' => ' موارد دلخواه',
 		'status_read' => ' بخوانید',
 		'status_total' => ' مجموع',
