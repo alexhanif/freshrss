@@ -390,6 +390,10 @@ function customSimplePie(array $attributes = [], array $curl_options = []): \Sim
 	if (is_array($force)) {
 		$https_domains = array_merge($https_domains, $force);
 	}
+
+	// Filter lines containing a # / ; as comments
+	$https_domains = array_filter($https_domains, fn(string $v) => !preg_match('/\\s*[\/#;]/', $v));
+
 	$simplePie->set_https_domains($https_domains);
 	return $simplePie;
 }
