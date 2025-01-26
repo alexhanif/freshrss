@@ -391,8 +391,9 @@ function customSimplePie(array $attributes = [], array $curl_options = []): \Sim
 		$https_domains = array_merge($https_domains, $force);
 	}
 
-	// Filter lines containing a # / ; as comments
-	$https_domains = array_filter($https_domains, fn(string $v) => !preg_match('/^\\s*[\/#;]/', $v));
+	// Remove whitespace and comments starting with # / ;
+	$https_domains = preg_replace('%\\s+|[\/#;].*$%', '', $https_domains) ?? $https_domains;
+	$https_domains = array_filter($https_domains, fn(string $v) => $v !== '');
 
 	$simplePie->set_https_domains($https_domains);
 	return $simplePie;
