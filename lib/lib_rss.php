@@ -392,7 +392,7 @@ function customSimplePie(array $attributes = [], array $curl_options = []): \Sim
 	}
 
 	// Filter lines containing a # / ; as comments
-	$https_domains = array_filter($https_domains, fn(string $v) => !preg_match('/\\s*[\/#;]/', $v));
+	$https_domains = array_filter($https_domains, fn(string $v) => !preg_match('/^\\s*[\/#;]/', $v));
 
 	$simplePie->set_https_domains($https_domains);
 	return $simplePie;
