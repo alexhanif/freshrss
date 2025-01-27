@@ -16,7 +16,7 @@ return array(
 		'allow_anonymous_refresh' => 'Autorizar l’actualizacion anonime dels fluxes',
 		'api_enabled' => 'Autorizar l’accès per <abbr>API</abbr><small>(necessari per las aplicacions mobil and sharing user queries)</small>',	// DIRTY
 		'form' => 'Formulari (tradicional, demanda JavaScript)',
-		'http' => 'HTTP (per utilizaires avançats amb HTTPS)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => 'Cap (perilhós)',
 		'title' => 'Autentificacion',
 		'token' => 'Master authentication token',	// TODO

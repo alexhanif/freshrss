@@ -16,7 +16,7 @@ return array(
 		'allow_anonymous_refresh' => 'Autoriser le rafraîchissement anonyme des flux',
 		'api_enabled' => 'Autoriser l’accès par <abbr>API</abbr> <small>(nécessaire pour les applications mobiles et pour partager les filtres utilisateurs)</small>',
 		'form' => 'Formulaire (traditionnel, requiert JavaScript)',
-		'http' => 'HTTP (pour utilisateurs avancés avec HTTPS)',
+		'http' => 'HTTP (avancé : contrôlé par serveur Web, OIDC, SSO…)',
 		'none' => 'Aucune (dangereux)',
 		'title' => 'Authentification',
 		'token' => 'Jeton d’identification maître',

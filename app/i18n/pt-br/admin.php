@@ -16,7 +16,7 @@ return array(
 		'allow_anonymous_refresh' => 'Permitir atualização anônima dos artigos',
 		'api_enabled' => 'Permitir acesso à <abbr>API</abbr> <small>(Necessáiro para aplicativos móveis and sharing user queries)</small>',	// DIRTY
 		'form' => 'Formulário Web(tradicional, Necessita de JavaScript)',
-		'http' => 'HTTP (Para usuários avançados com HTTPS)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => 'Nenhum (Perigoso)',
 		'title' => 'Autenticação',
 		'token' => 'Token de autenticação principal',

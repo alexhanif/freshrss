@@ -16,7 +16,7 @@ return array(
 		'allow_anonymous_refresh' => 'Allow anonymous refresh of the articles',	// IGNORE
 		'api_enabled' => 'Allow <abbr>API</abbr> access <small>(required for mobile apps and sharing user queries)</small>',	// IGNORE
 		'form' => 'Web form (traditional, requires JavaScript)',	// IGNORE
-		'http' => 'HTTP (for advanced users with HTTPS)',	// IGNORE
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// IGNORE
 		'none' => 'None (dangerous)',	// IGNORE
 		'title' => 'Authentication',	// IGNORE
 		'token' => 'Master authentication token',	// IGNORE

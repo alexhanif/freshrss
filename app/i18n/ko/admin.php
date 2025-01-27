@@ -16,7 +16,7 @@ return array(
 		'allow_anonymous_refresh' => '누구나 피드를 갱신할 수 있도록 합니다',
 		'api_enabled' => '<abbr>API</abbr> 사용을 허가합니다<small>(모바일 애플리케이션을 사용할 때 필요합니다	and sharing user queries)</small>',	// DIRTY
 		'form' => '웹폼 (전통적인 방식, 자바스크립트 필요)',
-		'http' => 'HTTP (HTTPS를 사용하는 고급 사용자용)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => '사용하지 않음 (위험)',
 		'title' => '인증',
 		'token' => '마스터 인증 토큰',
