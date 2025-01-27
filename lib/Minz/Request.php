@@ -120,6 +120,10 @@ class Minz_Request {
 		return $value;
 	}
 
+	public static function paramIntNull(string $key): ?int {
+		return is_numeric(self::$params[$key] ?? null) ? (int)self::$params[$key] : null;
+	}
+
 	public static function paramInt(string $key): int {
 		if (!empty(self::$params[$key]) && is_numeric(self::$params[$key])) {
 			return (int)self::$params[$key];

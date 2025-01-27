@@ -329,6 +329,13 @@ function customSimplePie(array $attributes = [], array $curl_options = []): \Sim
 			}
 		}
 	}
+	if (!empty($curl_options[CURLOPT_PROXYTYPE]) && ($curl_options[CURLOPT_PROXYTYPE] < 0 || $curl_options[CURLOPT_PROXYTYPE] === 3)) {
+		// 3 is legacy for NONE
+		unset($curl_options[CURLOPT_PROXYTYPE]);
+		if (isset($curl_options[CURLOPT_PROXY])) {
+			unset($curl_options[CURLOPT_PROXY]);
+		}
+	}
 	$simplePie->set_curl_options($curl_options);
 
 	$simplePie->strip_comments(true);
@@ -383,6 +390,11 @@ function customSimplePie(array $attributes = [], array $curl_options = []): \Sim
 	if (is_array($force)) {
 		$https_domains = array_merge($https_domains, $force);
 	}
+
+	// Remove whitespace and comments starting with # / ;
+	$https_domains = preg_replace('%\\s+|[\/#;].*$%', '', $https_domains) ?? $https_domains;
+	$https_domains = array_filter($https_domains, fn(string $v) => $v !== '');
+
 	$simplePie->set_https_domains($https_domains);
 	return $simplePie;
 }
