@@ -296,6 +296,9 @@ class FreshRSS_Import_Service {
 			}
 			if (isset($feed_elt['frss:CURLOPT_PROXYTYPE'])) {
 				$curl_params[CURLOPT_PROXYTYPE] = (int)$feed_elt['frss:CURLOPT_PROXYTYPE'];
+				if ($curl_params[CURLOPT_PROXYTYPE] === 3) {	// Legacy for NONE
+					$curl_params[CURLOPT_PROXYTYPE] = -1;
+				}
 			}
 			if (isset($feed_elt['frss:CURLOPT_USERAGENT'])) {
 				$curl_params[CURLOPT_USERAGENT] = $feed_elt['frss:CURLOPT_USERAGENT'];

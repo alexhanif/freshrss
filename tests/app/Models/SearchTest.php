@@ -71,6 +71,27 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @param array<string>|null $intext_value
+	 * @param array<string>|null $search_value
+	 */
+	#[DataProvider('provideIntextSearch')]
+	public static function test__construct_whenInputContainsIntext(string $input, ?array $intext_value, ?array $search_value): void {
+		$search = new FreshRSS_Search($input);
+		self::assertSame($intext_value, $search->getIntext());
+		self::assertSame($search_value, $search->getSearch());
+	}
+
+	/**
+	 * @return list<list<mixed>>
+	 */
+	public static function provideIntextSearch(): array {
+		return [
+			['intext:word1', ['word1'], null],
+			['intext:"word1 word2"', ['word1 word2'], null],
+		];
+	}
+
+	/**
 	 * @param array<string>|null $author_value
 	 * @param array<string>|null $search_value
 	 */
@@ -380,6 +401,11 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 				['%"hello world"%'],
 			],
 			[
+				'intext:\'"hello world"\'',
+				'(e.content LIKE ? )',
+				['%"hello world"%'],
+			],
+			[
 				'(ab) OR (cd) OR (ef)',
 				'(((e.title LIKE ? OR e.content LIKE ?) )) OR (((e.title LIKE ? OR e.content LIKE ?) )) OR (((e.title LIKE ? OR e.content LIKE ?) ))',
 				['%ab%', '%ab%', '%cd%', '%cd%', '%ef%', '%ef%'],
@@ -469,6 +495,11 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 				'(e.title ~ ? )',
 				['^(ab|cd)']
 			],
+			[
+				'intext:/^(ab|cd)/',
+				'(e.content ~ ? )',
+				['^(ab|cd)']
+			],
 		];
 	}
 
@@ -503,6 +534,11 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 			[
 				'intitle:/^ab\\M/',
 				'(e.title ~ ? )',
+				['^ab\\M']
+			],
+			[
+				'intext:/^ab\\M/',
+				'(e.content ~ ? )',
 				['^ab\\M']
 			],
 			[
@@ -573,6 +609,11 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 				"(e.title REGEXP ? )",
 				['(?-i)(?m)^ab$']
 			],
+			[
+				'intext:/^ab$/m',
+				'(UNCOMPRESS(e.content_bin) REGEXP ?) )',
+				['(?-i)(?m)^ab$']
+			],
 		];
 	}
 
@@ -604,6 +645,11 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 			[
 				'intitle:/^ab$/m',
 				"(REGEXP_LIKE(e.title,?,'mc') )",
+				['^ab$']
+			],
+			[
+				'intext:/^ab$/m',
+				"(REGEXP_LIKE(UNCOMPRESS(e.content_bin),?,'mc')) )",
 				['^ab$']
 			],
 		];
@@ -640,6 +686,11 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 			[
 				'intitle:/^ab\\b/',
 				'(e.title REGEXP ? )',
+				['/^ab\\b/']
+			],
+			[
+				'intext:/^ab\\b/',
+				'(e.content REGEXP ? )',
 				['/^ab\\b/']
 			],
 		];

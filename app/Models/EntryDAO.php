@@ -981,6 +981,30 @@ SQL;
 					$sub_search .= 'AND ' . static::sqlRegex($alias . 'title', $title, $values) . ' ';
 				}
 			}
+			if ($filter->getIntext() !== null) {
+				if (static::isCompressed()) {	// MySQL-only
+					foreach ($filter->getIntext() as $content) {
+						$sub_search .= "AND UNCOMPRESS({$alias}content_bin) LIKE ? ";
+						$values[] = "%{$content}%";
+					}
+				} else {
+					foreach ($filter->getIntext() as $content) {
+						$sub_search .= 'AND ' . $alias . 'content LIKE ? ';
+						$values[] = "%{$content}%";
+					}
+				}
+			}
+			if ($filter->getIntextRegex() !== null) {
+				if (static::isCompressed()) {	// MySQL-only
+					foreach ($filter->getIntextRegex() as $content) {
+						$sub_search .= 'AND ' . static::sqlRegex("UNCOMPRESS({$alias}content_bin)", $content, $values) . ') ';
+					}
+				} else {
+					foreach ($filter->getIntextRegex() as $content) {
+						$sub_search .= 'AND ' . static::sqlRegex($alias . 'content', $content, $values) . ' ';
+					}
+				}
+			}
 			if ($filter->getTags() !== null) {
 				foreach ($filter->getTags() as $tag) {
 					$sub_search .= 'AND ' . static::sqlConcat('TRIM(' . $alias . 'tags) ', " ' #'") . ' LIKE ? ';
@@ -1024,6 +1048,30 @@ SQL;
 			if ($filter->getNotIntitleRegex() !== null) {
 				foreach ($filter->getNotIntitleRegex() as $title) {
 					$sub_search .= 'AND NOT ' . static::sqlRegex($alias . 'title', $title, $values) . ' ';
+				}
+			}
+			if ($filter->getNotIntext() !== null) {
+				if (static::isCompressed()) {	// MySQL-only
+					foreach ($filter->getNotIntext() as $content) {
+						$sub_search .= "AND UNCOMPRESS({$alias}content_bin) NOT LIKE ? ";
+						$values[] = "%{$content}%";
+					}
+				} else {
+					foreach ($filter->getNotIntext() as $content) {
+						$sub_search .= 'AND ' . $alias . 'content NOT LIKE ? ';
+						$values[] = "%{$content}%";
+					}
+				}
+			}
+			if ($filter->getNotIntextRegex() !== null) {
+				if (static::isCompressed()) {	// MySQL-only
+					foreach ($filter->getNotIntextRegex() as $content) {
+						$sub_search .= 'AND NOT ' . static::sqlRegex("UNCOMPRESS({$alias}content_bin)", $content, $values) . ') ';
+					}
+				} else {
+					foreach ($filter->getNotIntextRegex() as $content) {
+						$sub_search .= 'AND NOT ' . static::sqlRegex($alias . 'content', $content, $values) . ' ';
+					}
 				}
 			}
 			if ($filter->getNotTags() !== null) {

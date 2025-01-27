@@ -673,6 +673,26 @@ HTML;
 						$ok &= preg_match($title, $this->title) === 0;
 					}
 				}
+				if ($ok && $filter->getIntext() !== null) {
+					foreach ($filter->getIntext() as $content) {
+						$ok &= stripos($this->content, $content) !== false;
+					}
+				}
+				if ($ok && $filter->getIntextRegex() !== null) {
+					foreach ($filter->getIntextRegex() as $content) {
+						$ok &= preg_match($content, $this->content) === 1;
+					}
+				}
+				if ($ok && $filter->getNotIntext() !== null) {
+					foreach ($filter->getNotIntext() as $content) {
+						$ok &= stripos($this->content, $content) === false;
+					}
+				}
+				if ($ok && $filter->getNotIntextRegex() !== null) {
+					foreach ($filter->getNotIntextRegex() as $content) {
+						$ok &= preg_match($content, $this->content) === 0;
+					}
+				}
 				if ($ok && $filter->getTags() !== null) {
 					foreach ($filter->getTags() as $tag2) {
 						$found = false;
