@@ -16,7 +16,7 @@ return array(
 		'allow_anonymous_refresh' => 'Sta bezoekers toe om de artikelen te vernieuwen',
 		'api_enabled' => 'Sta <abbr>API</abbr> toegang toe <small>(nodig voor mobiele apps and sharing user queries)</small>',	// DIRTY
 		'form' => 'Web formulier (traditioneel, JavaScript vereist)',
-		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
+		'http' => 'HTTP (geavanceerd: beheerd door webserver, OIDC, SSO…)',
 		'none' => 'Geen (gevaarlijk)',
 		'title' => 'Authenticatie',
 		'token' => 'Hoofdauthenticatietoken',
