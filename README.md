@@ -81,6 +81,7 @@ If you want a rolling release with the newest features, or want to help testing 
 * [![Cloudron](https://cloudron.io/img/button.svg)](https://cloudron.io/button.html?app=org.freshrss.cloudronapp)
 * [![PikaPods](https://www.pikapods.com/static/run-button-34.svg)](https://www.pikapods.com/pods?run=freshrss)
 * [![Deploy on Elestio](https://elest.io/images/logos/deploy-to-elestio-btn.png)](https://elest.io/open-source/freshrss)
+* [![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/MD4TRW)
 
 ## Manual install
 
