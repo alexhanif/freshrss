@@ -2,22 +2,31 @@
 
 See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 
-## 2025-0X-XX FreshRSS 1.26.0-dev
+## 2025-02-XX FreshRSS 1.26.0-dev
 
 * Features
 	* Add order-by options to sort articles by received date (existing, default), publication date, title, link, random [#7149](https://github.com/FreshRSS/FreshRSS/pull/7149)
 	* Allow searching in all feeds, also feeds only visible at category level with `&get=A`, and also those archived with `&get=Z` [#7144](https://github.com/FreshRSS/FreshRSS/pull/7144)
 		* UI accessible from user-query view
+	* Add search operator `intext:` [#7228](https://github.com/FreshRSS/FreshRSS/pull/7228)
 	* New *About* page with system information [#7161](https://github.com/FreshRSS/FreshRSS/pull/7161)
 * Bug fixing
 	* Fix regression denying access to app manifest [#7158](https://github.com/FreshRSS/FreshRSS/pull/7158)
 	* Ensure no PHP buffer for SQLite download (some setups would first put the file in memory) [#7230](https://github.com/FreshRSS/FreshRSS/pull/7230)
+	* Improve cURL proxy options and fix some constants [#7231](https://github.com/FreshRSS/FreshRSS/pull/7231)
+	* Fix UI of global view unread articles counter [#7247](https://github.com/FreshRSS/FreshRSS/pull/7247)
+	* Hide base theme in carrousel [#7234](https://github.com/FreshRSS/FreshRSS/pull/7234)
 * Deployment
 	* Reduce superfluous Docker builds [#7137](https://github.com/FreshRSS/FreshRSS/pull/7137)
 * UI
 	* Add footer icons to reader view [#7133](https://github.com/FreshRSS/FreshRSS/pull/7133)
 	* Remove local reference to font *Open Sans* to avoid bugs with some local versions [#7215](https://github.com/FreshRSS/FreshRSS/pull/7215)
+	* Improve stats page layout [#7243](https://github.com/FreshRSS/FreshRSS/pull/7243)
+	* Smaller *mark as read* button in mobile view [#5220](https://github.com/FreshRSS/FreshRSS/pull/5220)
 	* Various UI and style improvements: [#7162](https://github.com/FreshRSS/FreshRSS/pull/7162)
+Security
+	* Better authorization label for OIDC in the UI [#7264](https://github.com/FreshRSS/FreshRSS/pull/7264)
+	* Allow comments in `force-https.txt` [#7259](https://github.com/FreshRSS/FreshRSS/pull/7259)
 * I18n:
 	* Improve German [#7177](https://github.com/FreshRSS/FreshRSS/pull/7177)
 	* Improve Japanese [#7187](https://github.com/FreshRSS/FreshRSS/pull/7187), [#7195](https://github.com/FreshRSS/FreshRSS/pull/7195)
@@ -84,7 +93,7 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 		[#6781](https://github.com/FreshRSS/FreshRSS/pull/6781), [#4374](https://github.com/FreshRSS/FreshRSS/pull/4374)
 	* Require PostgreSQL 10+ (drop PostgreSQL 9.5) [#6705](https://github.com/FreshRSS/FreshRSS/pull/6705)
 	* Require MariaDB 10.0.5+ (drop MariaDB 5.5) [#6706](https://github.com/FreshRSS/FreshRSS/pull/6706)
-	* Requiring MySQL 8+ (drop MySQL 5.5.3) [#6706](https://github.com/FreshRSS/FreshRSS/pull/6706)
+	* Require MySQL 8+ (drop MySQL 5.5.3) [#6706](https://github.com/FreshRSS/FreshRSS/pull/6706)
 * Deployment
 	* Docker: dev image `freshrss/freshrss:oldest` updated to Alpine 3.16 with PHP 8.1.22 and Apache 2.4.59 [#6711](https://github.com/FreshRSS/FreshRSS/pull/6711)
 	* Docker alternative image updated to Alpine 3.21 with PHP 8.3.14 and Apache 2.4.62 [#5383](https://github.com/FreshRSS/FreshRSS/pull/5383)

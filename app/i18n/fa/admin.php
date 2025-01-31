@@ -16,7 +16,7 @@ return array(
 		'allow_anonymous_refresh' => ' اجازه بازخوانی ناشناس مقالات را بدهید',
 		'api_enabled' => ' اجازه دسترسی به <abbr>API</abbr> <small>(الزامی برای برنامه های تلفن همراه and sharing user queries and sharing user queries)</small>',	// DIRTY
 		'form' => ' فرم وب (سنتی',
-		'http' => ' HTTP (برای کاربران پیشرفته با HTTPS)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => ' هیچ (خطرناک)',
 		'title' => ' احراز هویت',
 		'token' => 'Master authentication token',	// TODO

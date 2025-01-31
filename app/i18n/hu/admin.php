@@ -16,7 +16,7 @@ return array(
 		'allow_anonymous_refresh' => 'Névtelen felhasználok frissíthetik a cikkeket',
 		'api_enabled' => ' <abbr>API</abbr> elérés engedélyezése <small>(mobilalkalmazásokhoz szükséges and sharing user queries)</small>',	// DIRTY
 		'form' => 'Webes űrlap (hagyományos, JavaScript szükséges hozzá)',
-		'http' => 'HTTP (haladó felhasználóknak HTTPS-el)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => 'nincs (veszélyes)',
 		'title' => 'Hitelesítés',
 		'token' => 'Fő hitelesítési token',

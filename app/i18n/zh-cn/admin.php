@@ -16,7 +16,7 @@ return array(
 		'allow_anonymous_refresh' => '允许匿名刷新文章',
 		'api_enabled' => '允许 <abbr>API</abbr> 访问 <small>（用于手机应用 and sharing user queries）</small>',	// DIRTY
 		'form' => '网页表单（传统方式, 需要 JavaScript)',
-		'http' => 'HTTP（面向启用 HTTPS 的高级用户)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => '无（危险）',
 		'title' => '认证',
 		'token' => '主验证 token',

@@ -16,7 +16,7 @@ return array(
 		'allow_anonymous_refresh' => 'Salli kirjautumattomien käyttäjien päivittää artikkelit',
 		'api_enabled' => 'Salli <abbr>API</abbr>-käyttö <small>(pakollinen kännykkäsovelluksille and sharing user queries)</small>',	// DIRTY
 		'form' => 'Web-lomake (perinteinen, käyttää JavaScriptiä)',
-		'http' => 'HTTP (tai HTTPS edistyneille käyttäjille)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => 'Ei mitään (vaarallinen)',
 		'title' => 'Todentaminen',
 		'token' => 'Todentamisen päätunnisteväline',
