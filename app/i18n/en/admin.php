@@ -16,7 +16,7 @@ return array(
 		'allow_anonymous_refresh' => 'Allow anonymous refresh of the articles',
 		'api_enabled' => 'Allow <abbr>API</abbr> access <small>(required for mobile apps and sharing user queries)</small>',
 		'form' => 'Web form (traditional, requires JavaScript)',
-		'http' => 'HTTP (for advanced users with HTTPS)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',
 		'none' => 'None (dangerous)',
 		'title' => 'Authentication',
 		'token' => 'Master authentication token',
