@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'Načíst více článků',
 		'mark_favorite' => 'Přepnout oblíbené',
 		'mark_read' => 'Přepnout přečtené',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => 'Navigace',
 		'navigation_help' => 'S přepínačem <kbd>⇧ Shift</kbd> se navigační zkratky použijí na kanály.<br/>S přepínačem <kbd>Alt ⎇</kbd> se navigační zkratky použijí na kategorie.',
 		'navigation_no_mod_help' => 'Následující navigační zkratky nepodporují přepínače.',

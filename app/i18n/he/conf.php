@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'טעינת מאמרים נוספים',
 		'mark_favorite' => 'סימון כמועדף',
 		'mark_read' => 'סימון כנקרא',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => 'ניווט',
 		'navigation_help' => 'בעזרת מקש השיפט קיצורי דרך חלים על הזנות .<br/>עם מקש האלט הם חלים על קטגוריות.',
 		'navigation_no_mod_help' => 'The following navigation shortcuts do not support modifiers.',	// TODO

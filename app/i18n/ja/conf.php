@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'もっと記事を読み込む',
 		'mark_favorite' => 'お気に入りを切り替える',
 		'mark_read' => '既読/未読を切り替える',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => 'ナビゲーション',
 		'navigation_help' => '<kbd>⇧ Shift</kbd>キーとの組み合わせで、フィードをナビゲーションします。<br/><kbd>Alt ⎇</kbd> キーとの組み合わせで、カテゴリをナビゲーションします。',
 		'navigation_no_mod_help' => '以下のナビゲーションショートカットは、修飾キーをサポートしません。',

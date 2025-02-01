@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'Lataa lisää artikkeleita',
 		'mark_favorite' => 'Suosikki / Ei suosikki',
 		'mark_read' => 'Luettu / Lukematon',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => 'Siirtyminen',
 		'navigation_help' => 'Kun <kbd>⇧ Shift</kbd> -näppäin on painettuna, siirtymisen pikanäppäimet koskevat syötteitä.<br/>Kun <kbd>Alt ⎇</kbd> -näppäin on painettuna, siirtymisen pikanäppäimet koskevat luokkia.',
 		'navigation_no_mod_help' => 'Seuraavat siirtymisen pikanäppäimet eivät tue Shift/Alt-näppäintoimintoa.',

@@ -90,7 +90,7 @@ return array(
 		'starred' => 'Zobrazit oblíbené',
 		'stats' => 'Statistika',
 		'subscription' => 'Správa odběrů',
-		'tags' => 'Mé popisky',
+		'mylabels' => 'Mé popisky',
 		'unread' => 'Zobrazit nepřečtené',
 	),
 	'share' => 'Sdílet',

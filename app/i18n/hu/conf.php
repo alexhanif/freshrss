@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'Több cikk betöltése',
 		'mark_favorite' => 'Legyen kedvenc',
 		'mark_read' => 'Legyen olvasott',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => 'Navigáció',
 		'navigation_help' => 'A <kbd>⇧ Shift</kbd> billentyűk lenyomásával a navigációs gyorsgombok a hírforrásokra vonatkoznak. <br/>A <kbd>Alt ⎇</kbd> billentyűk lenyomásával a navigációs gyorsgombok kategóriákra vonatkoznak.',
 		'navigation_no_mod_help' => 'A következő navigációs gombok nem támogatják a módosítókat.',

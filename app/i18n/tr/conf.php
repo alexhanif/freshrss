@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'Daha fazla makale yükle',
 		'mark_favorite' => 'Favori olarak işaretle',
 		'mark_read' => 'Okundu olarak işaretle',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => 'Genel eylemler',
 		'navigation_help' => '<kbd>⇧ Shift</kbd> tuşu ile kısayollar akışlar için geçerli olur.<br/><kbd>Alt ⎇</kbd> tuşu ile kısayollar kategoriler için geçerli olur.',
 		'navigation_no_mod_help' => 'Aşağıdaki kısayollar değiştiricileri desteklenmemektedir.',

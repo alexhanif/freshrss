@@ -321,7 +321,6 @@ return array(
 		'load_more' => '글 더 불러오기',
 		'mark_favorite' => '즐겨찾기에 등록',
 		'mark_read' => '읽음으로 표시',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => '탐색',
 		'navigation_help' => '<kbd>⇧ Shift</kbd> 키를 누른 상태에선 탐색 단축키가 피드에 적용됩니다.<br/><kbd>Alt ⎇</kbd> 키를 누른 상태에선 탐색 단축키가 카테고리에 적용됩니다.',
 		'navigation_no_mod_help' => '아래 탐색 단축키에는 "Shift"와 "Alt" 키가 적용되지 않습니다.',

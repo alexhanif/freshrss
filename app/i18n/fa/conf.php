@@ -321,7 +321,6 @@ return array(
 		'load_more' => ' بارگذاری مقالات بیشتر',
 		'mark_favorite' => ' موارد دلخواه را تغییر دهید',
 		'mark_read' => ' خواندن را تغییر دهید',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => ' ناوبری',
 		'navigation_help' => ' با اصلاح‌کننده <kbd>⇧ Shift</kbd>',
 		'navigation_no_mod_help' => ' میانبرهای پیمایش زیر از اصلاح کننده ها پشتیبانی نمی کنند.',

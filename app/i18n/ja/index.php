@@ -90,7 +90,7 @@ return array(
 		'starred' => 'お気に入りを表示する',
 		'stats' => '統計',
 		'subscription' => '購読フィードの管理',
-		'tags' => 'ラベル',
+		'mylabels' => 'ラベル',
 		'unread' => '未読の記事を表示する',
 	),
 	'share' => '共有',

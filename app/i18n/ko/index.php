@@ -90,7 +90,7 @@ return array(
 		'starred' => '즐겨찾기만 표시',
 		'stats' => '통계',
 		'subscription' => '구독 관리',
-		'tags' => '내 라벨',
+		'mylabels' => '내 라벨',
 		'unread' => '읽지 않은 글만 표시',
 	),
 	'share' => '공유',

@@ -90,7 +90,7 @@ return array(
 		'starred' => 'Rādīt mīļākos',
 		'stats' => 'Statistika',
 		'subscription' => 'Abonementa pārvalde',
-		'tags' => 'Manas birkas',
+		'mylabels' => 'Manas birkas',
 		'unread' => 'Rādīt neizlasītos',
 	),
 	'share' => 'Dalīties',

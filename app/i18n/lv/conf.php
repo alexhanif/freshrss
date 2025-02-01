@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'Ielādēt vairāk rakstus',
 		'mark_favorite' => 'Pārslēgt mīļāko',
 		'mark_read' => 'Pārslēgt izlasītu',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => 'Navigācija',
 		'navigation_help' => 'Izmantojot modifikatoru <kbd>⇧ Shift</kbd>, navigācijas saīsnes attiecas uz barotnēm.<br/>Izmantojot modifikatoru <kbd>Alt ⎇</kbd>, navigācijas saīsnes attiecas uz kategorijām.',
 		'navigation_no_mod_help' => 'Sekojošās navigācijas saīsnes neatbalsta modifikatorus.',

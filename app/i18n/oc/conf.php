@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'Cargar mai d’articles',
 		'mark_favorite' => 'Ajustar als favorits',
 		'mark_read' => 'Marcar coma legit',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => 'Navigacion',	// IGNORE
 		'navigation_help' => 'Amb lo modificador <kbd>⇧ Shift</kbd>, los acorchis de navigacion s’aplican als fluxes.<br/>Amb lo modificador <kbd>Alt ⎇</kbd>, los acorchis de navigacion s’aplican a las categorias.',
 		'navigation_no_mod_help' => 'Los acorchis clavièrs de navigacion son pas compatibles amb los modificadors.',

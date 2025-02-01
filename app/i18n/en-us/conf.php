@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'Load more articles',	// IGNORE
 		'mark_favorite' => 'Toggle favorite',
 		'mark_read' => 'Toggle read',	// IGNORE
-		'mylabels' => 'My labels',	// IGNORE
 		'navigation' => 'Navigation',	// IGNORE
 		'navigation_help' => 'With the <kbd>⇧ Shift</kbd> modifier, navigation shortcuts apply on feeds.<br/>With the <kbd>Alt ⎇</kbd> modifier, navigation shortcuts apply on categories.',	// IGNORE
 		'navigation_no_mod_help' => 'The following navigation shortcuts do not support modifiers.',	// IGNORE

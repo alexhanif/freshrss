@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'Cargar más artículos',
 		'mark_favorite' => 'Marcar como favorito',
 		'mark_read' => 'Marcar como leído',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => 'Navegación',
 		'navigation_help' => 'Con el modificador <kbd>⇧ Mayúsculas</kbd> es posible usar los atajos de teclado en las fuentes.<br/>Con el modificador <kbd>Alt ⎇</kbd> es posible aplicar los atajos de teclado en las categorías.',
 		'navigation_no_mod_help' => 'Los siguientes accesos directos de navegación no admiten modificadores.',

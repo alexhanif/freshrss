@@ -90,7 +90,7 @@ return array(
 		'starred' => 'Zobraziť obľúbené',
 		'stats' => 'Štatistiky',
 		'subscription' => 'Správca odberov',
-		'tags' => 'Moje nálepky',
+		'mylabels' => 'Moje nálepky',
 		'unread' => 'Zobraziť neprečítané',
 	),
 	'share' => 'Zdieľať',

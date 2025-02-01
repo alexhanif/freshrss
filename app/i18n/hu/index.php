@@ -90,7 +90,7 @@ return array(
 		'starred' => 'Kedvencek megjelenítése',
 		'stats' => 'Statisztika',
 		'subscription' => 'Hírforrások kezelése',
-		'tags' => 'Címkék',
+		'mylabels' => 'Címkék',
 		'unread' => 'Olvasatlanok megjelenítése',
 	),
 	'share' => 'Megosztás',

@@ -90,7 +90,7 @@ return array(
 		'starred' => 'Show favourites',
 		'stats' => 'Statistics',
 		'subscription' => 'Subscription management',
-		'tags' => 'My labels',
+		'mylabels' => 'My labels',
 		'unread' => 'Show unread',
 	),
 	'share' => 'Share',

@@ -90,7 +90,7 @@ return array(
 		'starred' => 'Show favourites',	// TODO
 		'stats' => 'Statistics',	// TODO
 		'subscription' => 'Subscription management',	// TODO
-		'tags' => 'My labels',	// TODO
+		'mylabels' => 'My labels',	// TODO
 		'unread' => 'Show unread',	// TODO
 	),
 	'share' => 'Share',	// TODO

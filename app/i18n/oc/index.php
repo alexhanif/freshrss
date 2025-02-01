@@ -90,7 +90,7 @@ return array(
 		'starred' => 'Mostrar los favorits',
 		'stats' => 'Estatisticas',
 		'subscription' => 'Gestion dels abonaments',
-		'tags' => 'Mas etiquetas',
+		'mylabels' => 'Mas etiquetas',
 		'unread' => 'Mostar los pas legits',
 	),
 	'share' => 'Partejar',

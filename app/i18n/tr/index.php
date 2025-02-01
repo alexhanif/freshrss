@@ -90,7 +90,7 @@ return array(
 		'starred' => 'Favorileri göster',
 		'stats' => 'İstatistikler',
 		'subscription' => 'Abonelik yönetimi',
-		'tags' => 'Etiketlerim',
+		'mylabels' => 'Etiketlerim',
 		'unread' => 'Okunmamışları göster',
 	),
 	'share' => 'Paylaş',

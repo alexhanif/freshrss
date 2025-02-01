@@ -90,7 +90,7 @@ return array(
 		'starred' => 'Afficher les favoris',
 		'stats' => 'Statistiques',
 		'subscription' => 'Gestion des abonnements',
-		'tags' => 'Mes étiquettes',
+		'mylabels' => 'Mes étiquettes',
 		'unread' => 'Afficher les non-lus',
 	),
 	'share' => 'Partager',

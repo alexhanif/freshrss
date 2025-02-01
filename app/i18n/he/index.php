@@ -90,7 +90,7 @@ return array(
 		'starred' => 'הצגת מועדפים בלבד',
 		'stats' => 'סטטיסטיקות',
 		'subscription' => 'ניהול הרשמות',
-		'tags' => 'My labels',	// TODO
+		'mylabels' => 'My labels',	// TODO
 		'unread' => 'הצגת מאמרים שלא נקראו בלבד',
 	),
 	'share' => 'שיתוף',

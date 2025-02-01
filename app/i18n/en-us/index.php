@@ -90,7 +90,7 @@ return array(
 		'starred' => 'Show favorites',
 		'stats' => 'Statistics',	// IGNORE
 		'subscription' => 'Subscription management',	// IGNORE
-		'tags' => 'My labels',	// IGNORE
+		'mylabels' => 'My labels',	// IGNORE
 		'unread' => 'Show unread',	// IGNORE
 	),
 	'share' => 'Share',	// IGNORE

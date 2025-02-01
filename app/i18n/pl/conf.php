@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'Załadowanie kolejnych wiadomości',
 		'mark_favorite' => 'Zmiana stanu „ulubione”',
 		'mark_read' => 'Zmiana stanu „przeczytane”',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => 'Nawigacja',
 		'navigation_help' => 'Z wykorzystaniem modyfikatora <kbd>⇧ Shift</kbd> skróty nawigacyjne stosowane są dla kanałów.<br/>Z wykorzystaniem modyfikatora <kbd>Alt ⎇</kbd> skróty nawigacyjne stosowane są dla kategorii.',
 		'navigation_no_mod_help' => 'Pozostałe skróty nawigacyjne nie wspierają modyfikatorów.',

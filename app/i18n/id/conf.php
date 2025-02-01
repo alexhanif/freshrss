@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'Muat lebih banyak artikel',
 		'mark_favorite' => 'Toggle favorit',
 		'mark_read' => 'Toggle baca',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => 'Navigasi',
 		'navigation_help' => 'Dengan modifikasi <kbd>⇧ Shift</kbd>, pintasan navigasi berlaku pada feed.<br/>Dengan modifikasi <kbd>Alt ⎇</kbd>, pintasan navigasi berlaku pada kategori.',
 		'navigation_no_mod_help' => 'Pintasan navigasi berikut tidak mendukung modifikasi.',

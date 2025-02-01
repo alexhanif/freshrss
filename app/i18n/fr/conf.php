@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'Charger plus d’articles',
 		'mark_favorite' => 'Basculer l’indicateur de favori',
 		'mark_read' => 'Basculer l’indicateur de lecture',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => 'Navigation',	// IGNORE
 		'navigation_help' => 'Avec le modificateur <kbd>⇧ Maj</kbd>, les raccourcis de navigation s’appliquent aux flux.<br />Avec le modificateur <kbd>Alt ⎇</kbd>, les raccourcis de navigation s’appliquent aux catégories.',
 		'navigation_no_mod_help' => 'Les raccourcis suivant ne supportent pas les modificateurs.',

@@ -321,7 +321,6 @@ return array(
 		'load_more' => '載入更多文章',
 		'mark_favorite' => '加入收藏',
 		'mark_read' => '設為已讀',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => '瀏覽',
 		'navigation_help' => '組合 <kbd>⇧ Shift</kbd> 鍵，瀏覽快捷鍵將生效於訂閱源。<br/>組合 <kbd>Alt ⎇</kbd> 鍵，瀏覽快捷鍵將生效於分類。',
 		'navigation_no_mod_help' => '以下快捷鍵不支持組合鍵（Shift 或 Alt）',

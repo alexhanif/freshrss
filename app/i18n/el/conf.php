@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'Load more articles',	// TODO
 		'mark_favorite' => 'Toggle favourite',	// TODO
 		'mark_read' => 'Toggle read',	// TODO
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => 'Navigation',	// TODO
 		'navigation_help' => 'With the <kbd>⇧ Shift</kbd> modifier, navigation shortcuts apply on feeds.<br/>With the <kbd>Alt ⎇</kbd> modifier, navigation shortcuts apply on categories.',	// TODO
 		'navigation_no_mod_help' => 'The following navigation shortcuts do not support modifiers.',	// TODO

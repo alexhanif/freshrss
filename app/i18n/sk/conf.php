@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'Načíta viac článkov',
 		'mark_favorite' => 'O(d)značí ako obľúbené',
 		'mark_read' => 'O(d)značí ako prečítané',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => 'Navigácia',
 		'navigation_help' => 'Po stlačení skratky s klávesou <kbd>⇧ Shift</kbd>, sa skratky navigácie vzťahujú na kanály.<br/>Po stlačení skratky s klávesou <kbd>Alt ⎇</kbd>, sa skratky navigácie vzťahujú na kategórie.',
 		'navigation_no_mod_help' => 'Tieto skratky navigácie nepodporujú klávesy “Shift” a “Alt”.',

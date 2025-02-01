@@ -90,7 +90,7 @@ return array(
 		'starred' => 'Näytä suosikit',
 		'stats' => 'Tilastot',
 		'subscription' => 'Tilausten hallinta',
-		'tags' => 'Omat tunnisteet',
+		'mylabels' => 'Omat tunnisteet',
 		'unread' => 'Näytä lukemattomat',
 	),
 	'share' => 'Jaa',

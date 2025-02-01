@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'Carregar mais artigos',
 		'mark_favorite' => 'Marcar como favorito',
 		'mark_read' => 'Marcar como lido',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => 'Navegação',
 		'navigation_help' => 'Com o modificador <kbd>⇧ Shift</kbd>, atalhos de navegação aplicam aos feeds.<br/>Com o <kbd>Alt ⎇</kbd> modificador, atalhos de navegação aplicam as categorias.',
 		'navigation_no_mod_help' => 'Os seguintes atalhos de navegação não suportam modificadores.',

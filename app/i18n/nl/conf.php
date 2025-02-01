@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'Laad meer artikelen',
 		'mark_favorite' => 'Markeer als favoriet',
 		'mark_read' => 'Markeer als gelezen',
-		'mylabels' => 'Mijn labels',
 		'navigation' => 'Navigatie',
 		'navigation_help' => 'Met de <kbd>⇧ Shift</kbd> toets worden navigatieverwijzingen op feeds toegepast.<br/>Met de <kbd>Alt ⎇</kbd> toets worden navigatieverwijzingen op categorieën toegepast.',
 		'navigation_no_mod_help' => 'De volgende navigatiesnelkoppelingen ondersteunen geen toetsencombinaties.',

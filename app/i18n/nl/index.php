@@ -90,7 +90,7 @@ return array(
 		'starred' => 'Laat alleen favorieten zien',
 		'stats' => 'Statistieken',
 		'subscription' => 'Abonnementen beheer',
-		'tags' => 'Mijn labels',
+		'mylabels' => 'Mijn labels',
 		'unread' => 'Laat alleen ongelezen zien',
 	),
 	'share' => 'Delen',

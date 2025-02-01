@@ -321,7 +321,6 @@ return array(
 		'load_more' => 'Carica altri articoli',
 		'mark_favorite' => 'Segna come preferito',
 		'mark_read' => 'Segna come letto',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => 'Navigazione',
 		'navigation_help' => 'Con il tasto <kbd>⇧ Shift</kbd> i comandi di navigazione verranno applicati ai feed.<br/>Con il tasto <kbd>Alt ⎇</kbd> i comandi di navigazione verranno applicati alle categorie.',
 		'navigation_no_mod_help' => 'Le seguenti scorciatoie di navigazione non supportano i modificatori.',

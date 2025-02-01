@@ -90,7 +90,7 @@ return array(
 		'starred' => '显示收藏',
 		'stats' => '统计',
 		'subscription' => '订阅管理',
-		'tags' => '我的标签',
+		'mylabels' => '我的标签',
 		'unread' => '显示未读',
 	),
 	'share' => '分享',

@@ -321,7 +321,6 @@ return array(
 		'load_more' => '载入更多文章',
 		'mark_favorite' => '加入收藏',
 		'mark_read' => '设为已读',
-		'mylabels' => 'My labels',	// TODO
 		'navigation' => '浏览',
 		'navigation_help' => '组合 <kbd>⇧ Shift</kbd> 键，导航快捷键将应用于订阅源。<br/>组合 <kbd>Alt ⎇</kbd> 键，导航快捷键将应用于分类。',
 		'navigation_no_mod_help' => '以下快捷键不支持组合键（Shift 或 Alt）',
