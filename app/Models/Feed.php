@@ -287,8 +287,8 @@ class FreshRSS_Feed extends Minz_Model {
 		$this->categoryId = $this->category == null ? 0 : $this->category->id();
 	}
 
-	/** @param int|string $id */
-	public function _categoryId($id): void {
+	/** @param int|numeric-string $id */
+	public function _categoryId(int|string $id): void {
 		$this->category = null;
 		$this->categoryId = (int)$id;
 	}
@@ -321,8 +321,8 @@ class FreshRSS_Feed extends Minz_Model {
 	public function _httpAuth(string $value): void {
 		$this->httpAuth = $value;
 	}
-	/** @param bool|int $value */
-	public function _error($value): void {
+
+	public function _error(bool|int $value): void {
 		$this->error = (bool)$value;
 	}
 	public function _mute(bool $value): void {
@@ -350,7 +350,7 @@ class FreshRSS_Feed extends Minz_Model {
 			/**
 			 * @throws Minz_FileNotExistException
 			 */
-			if (CACHE_PATH == '') {
+			if (trim(CACHE_PATH) === '') {
 				throw new Minz_FileNotExistException(
 					'CACHE_PATH',
 					Minz_Exception::ERROR
@@ -549,6 +549,9 @@ class FreshRSS_Feed extends Minz_Model {
 			$authors = $item->get_authors();
 			$link = $item->get_permalink();
 			$date = $item->get_date('U');
+			if (!is_numeric($date)) {
+				$date = 0;
+			}
 
 			//Tag processing (tag == category)
 			$categories = $item->get_categories();
@@ -1146,6 +1149,10 @@ class FreshRSS_Feed extends Minz_Model {
 				file_put_contents($hubFilename, json_encode($hubJson));
 			}
 			$ch = curl_init();
+			if ($ch === false) {
+				Minz_Log::warning('curl_init() failed in ' . __METHOD__);
+				return false;
+			}
 			curl_setopt_array($ch, [
 				CURLOPT_URL => $hubJson['hub'],
 				CURLOPT_RETURNTRANSFER => true,
@@ -1163,6 +1170,10 @@ class FreshRSS_Feed extends Minz_Model {
 			]);
 			$response = curl_exec($ch);
 			$info = curl_getinfo($ch);
+			if (!is_array($info)) {
+				Minz_Log::warning('curl_getinfo() failed in ' . __METHOD__);
+				return false;
+			}
 
 			Minz_Log::warning('WebSub ' . ($state ? 'subscribe' : 'unsubscribe') . ' to ' . $url .
 				' via hub ' . $hubJson['hub'] .

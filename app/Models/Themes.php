@@ -21,7 +21,7 @@ class FreshRSS_Themes extends Minz_Model {
 		$list = [];
 		foreach ($themes_list as $theme_dir) {
 			$theme = self::get_infos($theme_dir);
-			if (is_array($theme)) {
+			if (is_array($theme) && trim($theme['name']) !== '') {
 				$list[$theme_dir] = $theme;
 			}
 		}

@@ -16,7 +16,7 @@ return array(
 		'allow_anonymous_refresh' => 'Allow anonymous refresh of the articles',	// IGNORE
 		'api_enabled' => 'Allow <abbr>API</abbr> access <small>(required for mobile apps and sharing user queries)</small>',	// IGNORE
 		'form' => 'Web form (traditional, requires JavaScript)',	// IGNORE
-		'http' => 'HTTP (for advanced users with HTTPS)',	// IGNORE
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// IGNORE
 		'none' => 'None (dangerous)',	// IGNORE
 		'title' => 'Authentication',	// IGNORE
 		'token' => 'Master authentication token',	// IGNORE
@@ -148,8 +148,9 @@ return array(
 		'main_stream' => 'Main stream',	// IGNORE
 		'no_idle' => 'There are no idle feeds!',	// IGNORE
 		'number_entries' => '%d articles',	// IGNORE
+		'overview' => 'Overview',	// IGNORE
 		'percent_of_total' => '% of total',	// IGNORE
-		'repartition' => 'Articles repartition',	// IGNORE
+		'repartition' => 'Articles repartition: %s',	// IGNORE
 		'status_favorites' => 'Favorites',
 		'status_read' => 'Read',	// IGNORE
 		'status_total' => 'Total',	// IGNORE

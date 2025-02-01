@@ -12,8 +12,18 @@
 
 return array(
 	'about' => array(
-		'_' => 'Über',
+		'_' => 'Info',
 		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',	// IGNORE
+		'bug_reports' => array(
+			'environment_information' => array(
+				'_' => 'Systemumgebung',
+				'browser' => 'Browser',	// IGNORE
+				'database' => 'Datenbank',
+				'server_software' => 'Serversoftware',
+				'version_frss' => 'FreshRSS-Version',
+				'version_php' => 'PHP-Version',
+			),
+		),
 		'bugs_reports' => 'Fehlerberichte',
 		'credits' => 'Mitwirkende',
 		'credits_content' => 'Einige Designelemente stammen von <a href="http://twitter.github.io/bootstrap/">Bootstrap</a>, obwohl FreshRSS dieses Framework nicht nutzt. <a href="https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic">Icons</a> stammen vom <a href="https://www.gnome.org/">GNOME project</a>. <em>Open Sans</em> Font wurde von <a href="https://fonts.google.com/specimen/Open+Sans">Steve Matteson</a> erstellt. FreshRSS basiert auf <a href="https://framagit.org/marienfressinaud/MINZ">Minz</a>, einem PHP-Framework.',
@@ -22,11 +32,16 @@ return array(
 		'github' => '<a href="https://github.com/FreshRSS/FreshRSS/issues">auf GitHub</a>',
 		'license' => 'Lizenz',
 		'project_website' => 'Projekt-Website',
-		'title' => 'Über',
+		'title' => 'Info',
 		'version' => 'Version',	// IGNORE
 	),
 	'feed' => array(
 		'empty' => 'Es gibt keinen Artikel zum Anzeigen.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => 'RSS-Feed von %s',
 		'title' => 'Haupt-Feeds',
 		'title_fav' => 'Favoriten',
@@ -60,6 +75,18 @@ return array(
 		'reader_view' => 'Lese-Ansicht',
 		'rss_view' => 'RSS-Feed',
 		'search_short' => 'Suchen',
+		'sort' => array(
+			'_' => 'Sorting criteria',	// TODO
+			'date_asc' => 'Publication date 1→9',	// TODO
+			'date_desc' => 'Publication date 9→1',	// TODO
+			'id_asc' => 'Freshly received last',	// TODO
+			'id_desc' => 'Freshly received first',	// TODO
+			'link_asc' => 'Link A→Z',	// TODO
+			'link_desc' => 'Link Z→A',	// TODO
+			'rand' => 'Random order',	// TODO
+			'title_asc' => 'Title A→Z',	// TODO
+			'title_desc' => 'Title Z→A',	// TODO
+		),
 		'starred' => 'Nur Favoriten zeigen',
 		'stats' => 'Statistiken',
 		'subscription' => 'Abonnementverwaltung',

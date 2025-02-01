@@ -197,13 +197,17 @@ class FreshRSS_DatabaseDAO extends Minz_ModelPdo {
 		self::$staticVersion = $version;
 	}
 
+	protected function selectVersion(): string {
+		return $this->fetchValue('SELECT version()') ?? '';
+	}
+
 	public function version(): string {
 		if (self::$staticVersion !== null) {
 			return self::$staticVersion;
 		}
 		static $version = null;
 		if (!is_string($version)) {
-			$version = $this->fetchValue('SELECT version()') ?? '';
+			$version = $this->selectVersion();
 		}
 		return $version;
 	}

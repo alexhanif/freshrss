@@ -812,7 +812,7 @@ form th {
 .notification.bad a.close:hover {
 	background-color: var(--color-background-bad);
 }
-.notification a.close {
+.notification .close {
 	display: none;
 }
 
@@ -1027,15 +1027,15 @@ a.signin {
 	.notification {
 		width: 100%;
 	}
-	.notification a.close {
+	.notification .close {
 		background: transparent;
 		display: block;
 		left: 0;
 	}
-	.notification a.close:hover {
+	.notification .close:hover {
 		opacity: 0.5;
 	}
-	.notification a.close .icon {
+	.notification .close .icon {
 		display: none;
 	}
 	#nav_entries {
