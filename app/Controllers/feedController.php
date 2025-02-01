@@ -918,7 +918,7 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 			// Redirect to the main page with correct notification.
 			Minz_Request::good(_t('feedback.sub.feed.actualized', $feed->name()), [
 				'params' => ['get' => 'f_' . $id]
-			]);
+			], 'actualizeAction');
 		} elseif ($nbUpdatedFeeds >= 1) {
 			Minz_Request::good(_t('feedback.sub.feed.n_actualized', $nbUpdatedFeeds), []);
 		} else {
