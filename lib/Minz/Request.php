@@ -385,23 +385,23 @@ class Minz_Request {
 		return $_GET['rid'];
 	}
 
-	private static function setNotification(string $type, string $content): void {
+	private static function setNotification(string $type, string $content, string $notificationID = ''): void {
 		Minz_Session::lock();
 		$requests = Minz_Session::paramArray('requests');
 		$requests[self::requestId()] = [
 				'time' => time(),
-				'notification' => [ 'type' => $type, 'content' => $content ],
+				'notification' => [ 'type' => $type, 'content' => $content, 'notificationID' => $notificationID ],
 			];
 		Minz_Session::_param('requests', $requests);
 		Minz_Session::unlock();
 	}
 
-	public static function setGoodNotification(string $content): void {
-		self::setNotification('good', $content);
+	public static function setGoodNotification(string $content, string $notificationID = 'xx'): void {
+		self::setNotification('good', $content, $notificationID);
 	}
 
-	public static function setBadNotification(string $content): void {
-		self::setNotification('bad', $content);
+	public static function setBadNotification(string $content, string $notificationID = ''): void {
+		self::setNotification('bad', $content, $notificationID);
 	}
 
 	/**
@@ -411,7 +411,7 @@ class Minz_Request {
 	public static function getNotification(bool $pop = true): ?array {
 		$notif = null;
 		Minz_Session::lock();
-		/** @var array<string,array{time:int,notification:array{type:string,content:string}}> */
+		/** @var array<string,array{time:int,notification:array{type:string,content:string,notificationID:string}}> */
 		$requests = Minz_Session::paramArray('requests');
 		if (!empty($requests)) {
 			//Delete abandoned notifications
@@ -461,8 +461,8 @@ class Minz_Request {
 	 * @param string $msg notification content
 	 * @param array{c?:string,a?:string,params?:array<string,mixed>} $url url array to where we should be forwarded
 	 */
-	public static function good(string $msg, array $url = []): void {
-		Minz_Request::setGoodNotification($msg);
+	public static function good(string $msg, array $url = [], string $notificationID = ''): void {
+		Minz_Request::setGoodNotification($msg, $notificationID);
 		Minz_Request::forward($url, true);
 	}
 
@@ -471,8 +471,8 @@ class Minz_Request {
 	 * @param string $msg notification content
 	 * @param array{c?:string,a?:string,params?:array<string,mixed>} $url url array to where we should be forwarded
 	 */
-	public static function bad(string $msg, array $url = []): void {
-		Minz_Request::setBadNotification($msg);
+	public static function bad(string $msg, array $url = [], string $notificationID = ''): void {
+		Minz_Request::setBadNotification($msg, $notificationID);
 		Minz_Request::forward($url, true);
 	}
 
