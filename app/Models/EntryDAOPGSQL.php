@@ -24,6 +24,11 @@ class FreshRSS_EntryDAOPGSQL extends FreshRSS_EntryDAOSQLite {
 	}
 
 	#[\Override]
+	public static function sqlRandom(): string {
+		return 'RANDOM()';
+	}
+
+	#[\Override]
 	protected static function sqlRegex(string $expression, string $regex, array &$values): string {
 		$matches = static::regexToSql($regex);
 		if (isset($matches['pattern'])) {

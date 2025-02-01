@@ -65,7 +65,10 @@ class I18nFile {
 	 * @return array<string,string|array<string,mixed>>
 	 */
 	private function process(string $filename): array {
-		$fileContent = file_get_contents($filename) ?: [];
+		$fileContent = file_get_contents($filename);
+		if (!is_string($fileContent)) {
+			return [];
+		}
 		$content = str_replace('<?php', '', $fileContent);
 
 		$content = preg_replace([

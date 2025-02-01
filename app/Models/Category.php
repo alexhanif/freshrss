@@ -65,8 +65,7 @@ class FreshRSS_Category extends Minz_Model {
 		return $this->error;
 	}
 
-	/** @param bool|int $value */
-	public function _error($value): void {
+	public function _error(bool|int $value): void {
 		$this->error = (bool)$value;
 	}
 	public function isDefault(): bool {

@@ -16,6 +16,7 @@ return array(
 		'add' => '添加',
 		'back_to_rss_feeds' => '← 返回订阅源',
 		'cancel' => '取消',
+		'close' => 'Close',	// TODO
 		'create' => '创建',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
 		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO

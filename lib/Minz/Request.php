@@ -120,6 +120,10 @@ class Minz_Request {
 		return $value;
 	}
 
+	public static function paramIntNull(string $key): ?int {
+		return is_numeric(self::$params[$key] ?? null) ? (int)self::$params[$key] : null;
+	}
+
 	public static function paramInt(string $key): int {
 		if (!empty(self::$params[$key]) && is_numeric(self::$params[$key])) {
 			return (int)self::$params[$key];
@@ -432,7 +436,7 @@ class Minz_Request {
 	 * @param bool $redirect If true, uses an HTTP redirection, and if false (default), performs an internal dispatcher redirection.
 	 * @throws Minz_ConfigurationException
 	 */
-	public static function forward($url = [], bool $redirect = false): void {
+	public static function forward(array $url = [], bool $redirect = false): void {
 		if (empty(Minz_Request::originalRequest())) {
 			self::$originalRequest = $url;
 		}

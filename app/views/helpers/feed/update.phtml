@@ -740,7 +740,7 @@
 				<div class="group-controls">
 					<input type="text" name="curl_params_useragent" id="curl_params_useragent" class="w100" value="<?=
 						htmlspecialchars((string)($curlParams[CURLOPT_USERAGENT] ?? ''), ENT_COMPAT, 'UTF-8')
-					?>" placeholder="<?= _t('gen.short.blank_to_disable') ?>" />
+					?>" placeholder="<?= _t('gen.short.by_default') ?>" />
 					<p class="help"><?= _i('help') ?> <?= _t('sub.feed.useragent_help') ?></p>
 				</div>
 			</div>
@@ -750,14 +750,19 @@
 				<div class="group-controls">
 					<select name="proxy_type" id="proxy_type"><?php
 						$type = $curlParams[CURLOPT_PROXYTYPE] ?? '';
-						foreach (['' => '', 3 => 'NONE', 0 => 'HTTP', 2 => 'HTTPS', 4 => 'SOCKS4', 6 => 'SOCKS4A', 5 => 'SOCKS5', 7 => 'SOCKS5H'] as $k => $v) {
+						if ($type === 3) {	// Legacy for NONE
+							$type = -1;
+						}
+						foreach (['' => '', -1 => 'NONE', CURLPROXY_HTTP => 'HTTP', CURLPROXY_HTTPS => 'HTTPS',
+							CURLPROXY_SOCKS4 => 'SOCKS4', CURLPROXY_SOCKS4A => 'SOCKS4A', CURLPROXY_SOCKS5 => 'SOCKS5',
+							CURLPROXY_SOCKS5_HOSTNAME => 'SOCKS5H'] as $k => $v) {
 							echo '<option value="' . $k . ($type === $k ? '" selected="selected' : '' ) . '">' . $v . '</option>';
 						}
 					?>
 					</select>
 					<input type="text" name="curl_params" id="curl_params" value="<?=
 						htmlspecialchars((string)($curlParams[CURLOPT_PROXY] ?? ''), ENT_COMPAT, 'UTF-8')
-					?>" placeholder="<?= _t('gen.short.blank_to_disable') ?>" />
+					?>" placeholder="<?= _t('gen.short.by_default') ?>" />
 					<p class="help"><?= _i('help') ?> <?= _t('sub.feed.proxy_help') ?></p>
 				</div>
 			</div>

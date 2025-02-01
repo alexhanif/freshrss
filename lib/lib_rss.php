@@ -217,8 +217,7 @@ function escapeToUnicodeAlternative(string $text, bool $extended = true): string
 	return trim(str_replace($problem, $replace, $text));
 }
 
-/** @param int|float $n */
-function format_number($n, int $precision = 0): string {
+function format_number(int|float $n, int $precision = 0): string {
 	// number_format does not seem to be Unicode-compatible
 	return str_replace(' ', ' ',	// Thin non-breaking space
 		number_format((float)$n, $precision, '.', ' ')
@@ -274,7 +273,7 @@ function html_only_entity_decode(?string $text): string {
  * @param array<string,mixed>|string $log
  * @return array<string,mixed>|string
  */
-function sensitive_log($log): array|string {
+function sensitive_log(array|string $log): array|string {
 	if (is_array($log)) {
 		foreach ($log as $k => $v) {
 			if (in_array($k, ['api_key', 'Passwd', 'T'], true)) {
@@ -328,6 +327,13 @@ function customSimplePie(array $attributes = [], array $curl_options = []): \Sim
 			if (is_int($co)) {
 				$curl_options[$co] = $v;
 			}
+		}
+	}
+	if (!empty($curl_options[CURLOPT_PROXYTYPE]) && ($curl_options[CURLOPT_PROXYTYPE] < 0 || $curl_options[CURLOPT_PROXYTYPE] === 3)) {
+		// 3 is legacy for NONE
+		unset($curl_options[CURLOPT_PROXYTYPE]);
+		if (isset($curl_options[CURLOPT_PROXY])) {
+			unset($curl_options[CURLOPT_PROXY]);
 		}
 	}
 	$simplePie->set_curl_options($curl_options);
@@ -384,6 +390,11 @@ function customSimplePie(array $attributes = [], array $curl_options = []): \Sim
 	if (is_array($force)) {
 		$https_domains = array_merge($https_domains, $force);
 	}
+
+	// Remove whitespace and comments starting with # / ;
+	$https_domains = preg_replace('%\\s+|[\/#;].*$%', '', $https_domains) ?? $https_domains;
+	$https_domains = array_filter($https_domains, fn(string $v) => $v !== '');
+
 	$simplePie->set_https_domains($https_domains);
 	return $simplePie;
 }

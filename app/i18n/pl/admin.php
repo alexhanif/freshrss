@@ -16,7 +16,7 @@ return array(
 		'allow_anonymous_refresh' => 'Pozwól na anonimowe odświeżanie wiadomości',
 		'api_enabled' => 'Pozwól na dostęp przez <abbr>API</abbr> <small>(wymagane dla aplikacji na telefon and sharing user queries)</small>',	// DIRTY
 		'form' => 'Formularz na stronie (tradycyjna, wymagany JavaScript)',
-		'http' => 'HTTP (dla zaawansowanych użytkowników, z wykorzystaniem HTTPS)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => 'Brak (niebezpieczna)',
 		'title' => 'Uwierzytelnianie',
 		'token' => 'Główny token uwierzytelniania',
@@ -148,8 +148,9 @@ return array(
 		'main_stream' => 'Kanał główny',
 		'no_idle' => 'Brak bezczynnych kanałów!',
 		'number_entries' => '%d wiadomości',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% wszystkich',
-		'repartition' => 'Podział wiadomości',
+		'repartition' => 'Podział wiadomości: %s',
 		'status_favorites' => 'Ulubione',
 		'status_read' => 'Przeczytane',
 		'status_total' => 'Wszystkie',

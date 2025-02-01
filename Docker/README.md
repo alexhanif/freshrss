@@ -61,7 +61,7 @@ docker exec --user www-data freshrss cli/list-users.php
 Example of installation via command line:
 
 ```sh
-docker exec --user www-data freshrss cli/do-install.php --default_user freshrss
+docker exec --user www-data freshrss cli/do-install.php --default-user freshrss
 
 docker exec --user www-data freshrss cli/create-user.php --user freshrss --password freshrss
 ```
@@ -366,7 +366,7 @@ services:
         --db-password ${DB_PASSWORD}
         --db-type pgsql
         --db-user ${DB_USER}
-        --default_user admin
+        --default-user admin
         --language en
       FRESHRSS_USER: |-
         --api-password ${ADMIN_API_PASSWORD}

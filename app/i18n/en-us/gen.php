@@ -16,6 +16,7 @@ return array(
 		'add' => 'Add',	// IGNORE
 		'back_to_rss_feeds' => '← Go back to your RSS feeds',	// IGNORE
 		'cancel' => 'Cancel',	// IGNORE
+		'close' => 'Close',	// IGNORE
 		'create' => 'Create',	// IGNORE
 		'delete_all_feeds' => 'Delete all feeds',	// IGNORE
 		'delete_errored_feeds' => 'Delete feeds with errors',	// IGNORE

@@ -280,7 +280,7 @@ final class GReaderAPI {
 			// ['id' => 'user/-/state/com.google/broadcast', 'sortid' => '2']
 		];
 		$categoryDAO = FreshRSS_Factory::createCategoryDao();
-		$categories = $categoryDAO->listCategories(prePopulateFeeds: false, details: false) ?: [];
+		$categories = $categoryDAO->listCategories(prePopulateFeeds: false, details: false);
 		foreach ($categories as $cat) {
 			$tags[] = [
 				'id' => 'user/-/label/' . htmlspecialchars_decode($cat->name(), ENT_QUOTES),
@@ -290,7 +290,7 @@ final class GReaderAPI {
 		}
 
 		$tagDAO = FreshRSS_Factory::createTagDao();
-		$labels = $tagDAO->listTags(true) ?: [];
+		$labels = $tagDAO->listTags(precounts: true);
 		foreach ($labels as $label) {
 			$tags[] = [
 				'id' => 'user/-/label/' . htmlspecialchars_decode($label->name(), ENT_QUOTES),
@@ -338,7 +338,7 @@ final class GReaderAPI {
 		$subscriptions = [];
 
 		$categoryDAO = FreshRSS_Factory::createCategoryDao();
-		foreach ($categoryDAO->listCategories(true, true) ?: [] as $cat) {
+		foreach ($categoryDAO->listCategories(prePopulateFeeds: true, details: true) as $cat) {
 			foreach ($cat->feeds() as $feed) {
 				$subscriptions[] = [
 					'id' => 'feed/' . $feed->id(),
@@ -493,7 +493,7 @@ final class GReaderAPI {
 		$feedDAO = FreshRSS_Factory::createFeedDao();
 		$feedsNewestItemUsec = $feedDAO->listFeedsNewestItemUsec();
 		$unreadcounts = [];
-		foreach ($categoryDAO->listCategories(true, true) ?: [] as $cat) {
+		foreach ($categoryDAO->listCategories(prePopulateFeeds: true, details: true) as $cat) {
 			$catLastUpdate = 0;
 			foreach ($cat->feeds() as $feed) {
 				$lastUpdate = $feedsNewestItemUsec['f_' . $feed->id()] ?? 0;
@@ -519,7 +519,7 @@ final class GReaderAPI {
 
 		$tagDAO = FreshRSS_Factory::createTagDao();
 		$tagsNewestItemUsec = $tagDAO->listTagsNewestItemUsec();
-		foreach ($tagDAO->listTags(true) ?: [] as $label) {
+		foreach ($tagDAO->listTags(precounts: true) as $label) {
 			$lastUpdate = $tagsNewestItemUsec['t_' . $label->id()] ?? 0;
 			$unreadcounts[] = [
 				'id' => 'user/-/label/' . htmlspecialchars_decode($label->name(), ENT_QUOTES),
@@ -550,16 +550,16 @@ final class GReaderAPI {
 			return [];
 		}
 		$catDAO = FreshRSS_Factory::createCategoryDao();
-		$categories = $catDAO->listCategories(true) ?: [];
+		$categories = $catDAO->listCategories(prePopulateFeeds: true);
 
 		$tagDAO = FreshRSS_Factory::createTagDao();
 		$entryIdsTagNames = $tagDAO->getEntryIdsTagNames($entries);
 
 		$items = [];
 		foreach ($entries as $item) {
-			/** @var FreshRSS_Entry $entry */
+			/** @var FreshRSS_Entry|null $entry */
 			$entry = Minz_ExtensionManager::callHook('entry_before_display', $item);
-			if ($entry == null) {
+			if ($entry === null) {
 				continue;
 			}
 
@@ -643,6 +643,9 @@ final class GReaderAPI {
 		return [$type, $streamId, $state, $searches];
 	}
 
+	/**
+	 * @param numeric-string $continuation
+	 */
 	private static function streamContents(string $path, string $include_target, int $start_time, int $stop_time, int $count,
 		string $order, string $filter_target, string $exclude_target, string $continuation): never {
 		// https://code.google.com/archive/p/pyrfeed/wikis/GoogleReaderAPI.wiki
@@ -660,17 +663,20 @@ final class GReaderAPI {
 		[$type, $include_target, $state, $searches] =
 			self::streamContentsFilters($type, $include_target, $filter_target, $exclude_target, $start_time, $stop_time);
 
-		if ($continuation != '') {
+		if ($continuation !== '0') {
 			$count++;	//Shift by one element
 		}
 
 		$entryDAO = FreshRSS_Factory::createEntryDao();
-		$entries = $entryDAO->listWhere($type, $include_target, $state, $order === 'o' ? 'ASC' : 'DESC', $count, 0, $continuation, $searches);
+		$entries = $entryDAO->listWhere($type, $include_target, $state, $searches,
+			order: $order === 'o' ? 'ASC' : 'DESC',
+			continuation_id: $continuation,
+			limit: $count);
 		$entries = array_values(iterator_to_array($entries));	//TODO: Improve
 
 		$items = self::entriesToArray($entries);
 
-		if ($continuation != '') {
+		if ($continuation !== '0') {
 			array_shift($items);	//Discard first element that was already sent in the previous response
 			$count--;
 		}
@@ -692,6 +698,9 @@ final class GReaderAPI {
 		exit();
 	}
 
+	/**
+	 * @param numeric-string $continuation
+	 */
 	private static function streamContentsItemsIds(string $streamId, int $start_time, int $stop_time, int $count,
 		string $order, string $filter_target, string $exclude_target, string $continuation): never {
 		// https://github.com/mihaip/google-reader-api/blob/master/wiki/ApiStreamItemsIds.wiki
@@ -712,17 +721,20 @@ final class GReaderAPI {
 
 		[$type, $id, $state, $searches] = self::streamContentsFilters($type, $streamId, $filter_target, $exclude_target, $start_time, $stop_time);
 
-		if ($continuation != '') {
+		if ($continuation !== '0') {
 			$count++;	//Shift by one element
 		}
 
 		$entryDAO = FreshRSS_Factory::createEntryDao();
-		$ids = $entryDAO->listIdsWhere($type, $id, $state, $order === 'o' ? 'ASC' : 'DESC', $count, 0, $continuation, $searches);
+		$ids = $entryDAO->listIdsWhere($type, $id, $state, $searches,
+			order: $order === 'o' ? 'ASC' : 'DESC',
+			continuation_id: $continuation,
+			limit: $count);
 		if ($ids === null) {
 			self::internalServerError();
 		}
 
-		if ($continuation != '') {
+		if ($continuation !== '0') {
 			array_shift($ids);	//Discard first element that was already sent in the previous response
 			$count--;
 		}
@@ -766,7 +778,7 @@ final class GReaderAPI {
 		/** @var list<numeric-string> $e_ids */
 
 		$entryDAO = FreshRSS_Factory::createEntryDao();
-		$entries = $entryDAO->listByIds($e_ids, $order === 'o' ? 'ASC' : 'DESC');
+		$entries = $entryDAO->listByIds($e_ids, order: $order === 'o' ? 'ASC' : 'DESC');
 		$entries = array_values(iterator_to_array($entries));	//TODO: Improve
 
 		$items = self::entriesToArray($entries);
@@ -1050,7 +1062,7 @@ final class GReaderAPI {
 					 */
 					$continuation = is_string($_GET['c'] ?? null) ? trim($_GET['c']) : '';
 					if (!ctype_digit($continuation)) {
-						$continuation = '';
+						$continuation = '0';
 					}
 					if (isset($pathInfos[5]) && $pathInfos[5] === 'contents') {
 						if (!isset($pathInfos[6]) && is_string($_GET['s'] ?? null)) {

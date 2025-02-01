@@ -335,7 +335,7 @@ final class FeverAPI
 		$groups = [];
 
 		$categoryDAO = FreshRSS_Factory::createCategoryDao();
-		$categories = $categoryDAO->listCategories(false, false) ?: [];
+		$categories = $categoryDAO->listCategories(prePopulateFeeds: false, details: false);
 
 		foreach ($categories as $category) {
 			$groups[] = [
@@ -417,12 +417,12 @@ final class FeverAPI
 	}
 
 	private function getUnreadItemIds(): string {
-		$entries = $this->entryDAO->listIdsWhere('a', 0, FreshRSS_Entry::STATE_NOT_READ, 'ASC', 0) ?? [];
+		$entries = $this->entryDAO->listIdsWhere('a', 0, FreshRSS_Entry::STATE_NOT_READ, order: 'ASC', limit: 0) ?? [];
 		return $this->entriesToIdList($entries);
 	}
 
 	private function getSavedItemIds(): string {
-		$entries = $this->entryDAO->listIdsWhere('a', 0, FreshRSS_Entry::STATE_FAVORITE, 'ASC', 0) ?? [];
+		$entries = $this->entryDAO->listIdsWhere('a', 0, FreshRSS_Entry::STATE_FAVORITE, order: 'ASC', limit: 0) ?? [];
 		return $this->entriesToIdList($entries);
 	}
 
@@ -504,9 +504,9 @@ final class FeverAPI
 		Minz_ExtensionManager::init();
 
 		foreach ($entries as $item) {
-			/** @var FreshRSS_Entry $entry */
+			/** @var FreshRSS_Entry|null $entry */
 			$entry = Minz_ExtensionManager::callHook('entry_before_display', $item);
-			if ($entry == null) {
+			if ($entry === null) {
 				continue;
 			}
 			$items[] = [
