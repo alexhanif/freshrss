@@ -406,7 +406,7 @@ class Minz_Request {
 
 	/**
 	 * @param $pop true (default) to remove the notification, false to keep it.
-	 * @return array{type:string,content:string}|null
+	 * @return array{type:string,content:string,notificationID:string}|null
 	 */
 	public static function getNotification(bool $pop = true): ?array {
 		$notif = null;
