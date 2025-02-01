@@ -252,12 +252,12 @@ HTML;
 			if (self::enclosureIsImage($enclosure)) {
 				$content .= '<p class="enclosure-content"><img src="' . $elink . '" alt="" title="' . $etitle . '" /></p>';
 			} elseif ($medium === 'audio' || str_starts_with($mime, 'audio')) {
-				$content .= '<p class="enclosure-content"><audio preload="none" src="' . $elink
+				$content .= '<p class="enclosure-content"><audio preload="metadata" src="' . $elink
 					. ($length == null ? '' : '" data-length="' . (int)$length)
 					. ($mime == '' ? '' : '" data-type="' . htmlspecialchars($mime, ENT_COMPAT, 'UTF-8'))
 					. '" controls="controls" title="' . $etitle . '"></audio> <a download="" href="' . $elink . '">💾</a></p>';
 			} elseif ($medium === 'video' || str_starts_with($mime, 'video')) {
-				$content .= '<p class="enclosure-content"><video preload="none" src="' . $elink
+				$content .= '<p class="enclosure-content"><video preload="metadata" src="' . $elink
 					. ($length == null ? '' : '" data-length="' . (int)$length)
 					. ($mime == '' ? '' : '" data-type="' . htmlspecialchars($mime, ENT_COMPAT, 'UTF-8'))
 					. '" controls="controls" title="' . $etitle . '"></video> <a download="" href="' . $elink . '">💾</a></p>';
