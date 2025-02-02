@@ -1,18 +1,22 @@
 # Setting up Pocket ID for FreshRSS
 
-**[Pocket ID](https://github.com/stonith404/pocket-id)** Pocket ID is a simple OIDC provider that allows users to authenticate with their passkeys to your services. (see [FreshRSS’ OpenID Connect documentation](16_OpenID-Connect.md)).
+**[Pocket ID](https://github.com/stonith404/pocket-id)** is a simple OIDC provider that allows users to authenticate with their passkeys to your services.
+(See [FreshRSS’ OpenID Connect documentation](16_OpenID-Connect.md)).
 
 You can find more information in the [Pocket ID documentation](https://docs.pocket-id.org/introduction).
 
 ## 1. Create OAuth2/OpenID Provider
 
-Click on **Add OIDC Client** in the Pocket ID Web ui:
+Click on **Add OIDC Client** in the Pocket ID Web UI:
 
 ![pocket-id-1](../img/admins/pocket-id-1.png)
 
-Give the client a name. Under callback URLs, put the URL for your FreshRSS instance as such:`https://freshrss.your.domain/i/oidc/`. (Optional) Upload a logo for the client. Click Save.
+Give the client a name. Under callback URLs, put the URL for your FreshRSS instance as such:
+`https://freshrss.your.domain/i/oidc/`.
+(Optional) Upload a logo for the client. Click Save.
 
-OIDC credentials for the client will be generated. Click *Show more details* to view all generated fields. Keep this window open as these values will now need to be copied into your Docker Compose file for FreshRSS.
+OIDC credentials for the client will be generated. Click *Show more details* to view all generated fields.
+Keep this window open as these values will now need to be copied into your Docker Compose file for FreshRSS.
 
 ![pocket-id-1](../img/admins/pocket-id-2.png)
 
@@ -50,12 +54,18 @@ networks:
     name: freshrss
 ```
 
-> ℹ️ The Username used in Pocket ID must match the Username used in FreshRSS **exactly**. This also applies to case sensitivity. As of version `0.24` of Pocket ID all Usernames are required to be entirely lowercase. FreshRSS allows for uppercase. If a Pocket ID Username is `amanda` and your FreshRSS Username is `Amanda`, you will get a 403 error in FreshRSS and be unable to login. As of version `1.25` of FreshRSS, you are unable to change your username in the GUI. To change your FreshRSS username to lowercase or to match your Pocket ID username, you must nagivate to your FreshRSS volume location. Go to `data/users/` and change the folder for your user to the matching username in Pocket ID, then restart the FreshRSS container to apply the changes.
+> ℹ️ The Username used in Pocket ID must match the Username used in FreshRSS **exactly**. This also applies to case sensitivity.
+As of version `0.24` of Pocket ID all Usernames are required to be entirely lowercase. FreshRSS allows for uppercase.
+If a Pocket ID Username is `amanda` and your FreshRSS Username is `Amanda`, you will get a 403 error in FreshRSS and be unable to login.
+As of version `1.25` of FreshRSS, you are unable to change your username in the GUI.
+To change your FreshRSS username to lowercase or to match your Pocket ID username, you must navigate to your FreshRSS volume location.
+Go to `data/users/` and change the folder for your user to the matching username in Pocket ID, then restart the FreshRSS container to apply the changes.
 
 ## Step 3. Complete OIDC Setup
 
 Back in your Pocket ID window, once your Pocket ID credentials are copied over, click *Save*.
 
-If you are setting up a new instance of FreshRSS, simply start the container with the OIDC variables and navigate to your FreshRSS URL. If you are adding OIDC to an existing FreshRSS instance, recreate the container with the docker-compose file with the OIDC variables in it and navigate to your FreshRSS URL.
+If you are setting up a new instance of FreshRSS, simply start the container with the OIDC variables and navigate to your FreshRSS URL.
+If you are adding OIDC to an existing FreshRSS instance, recreate the container with the docker-compose file with the OIDC variables in it and navigate to your FreshRSS URL.
 
 See [FreshRSS’ OpenID Connect documentation](16_OpenID-Connect.md) for more information.
