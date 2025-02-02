@@ -122,13 +122,13 @@ class FreshRSS_Feed extends Minz_Model {
 	}
 
 	/**
-	 * @return array<FreshRSS_Entry>|null
+	 * @return list<FreshRSS_Entry>|null
 	 * @deprecated
 	 */
 	public function entries(): ?array {
-		Minz_Log::warning(__method__ . ' is deprecated since FreshRSS 1.16.1!');
+		Minz_Log::warning(__METHOD__ . ' is deprecated since FreshRSS 1.16.1!');
 		$simplePie = $this->load(false, true);
-		return $simplePie == null ? [] : iterator_to_array($this->loadEntries($simplePie));
+		return $simplePie == null ? [] : array_values(iterator_to_array($this->loadEntries($simplePie)));
 	}
 	public function name(bool $raw = false): string {
 		return $raw || $this->name != '' ? $this->name : (preg_replace('%^https?://(www[.])?%i', '', $this->url) ?? '');
@@ -225,7 +225,7 @@ class FreshRSS_Feed extends Minz_Model {
 		return $this->nbNotRead;
 	}
 
-	public function faviconPrepare(): void {
+	public function faviconPrepare(bool $force = false): void {
 		require_once(LIB_PATH . '/favicons.php');
 		$url = $this->website;
 		if ($url == '') {
@@ -235,7 +235,7 @@ class FreshRSS_Feed extends Minz_Model {
 		if (@file_get_contents($txt) !== $url) {
 			file_put_contents($txt, $url);
 		}
-		if (FreshRSS_Context::$isCli) {
+		if (FreshRSS_Context::$isCli || $force) {
 			$ico = FAVICONS_DIR . $this->hash() . '.ico';
 			$ico_mtime = @filemtime($ico);
 			$txt_mtime = @filemtime($txt);
@@ -287,8 +287,8 @@ class FreshRSS_Feed extends Minz_Model {
 		$this->categoryId = $this->category == null ? 0 : $this->category->id();
 	}
 
-	/** @param int|string $id */
-	public function _categoryId($id): void {
+	/** @param int|numeric-string $id */
+	public function _categoryId(int|string $id): void {
 		$this->category = null;
 		$this->categoryId = (int)$id;
 	}
@@ -321,8 +321,8 @@ class FreshRSS_Feed extends Minz_Model {
 	public function _httpAuth(string $value): void {
 		$this->httpAuth = $value;
 	}
-	/** @param bool|int $value */
-	public function _error($value): void {
+
+	public function _error(bool|int $value): void {
 		$this->error = (bool)$value;
 	}
 	public function _mute(bool $value): void {
@@ -350,7 +350,7 @@ class FreshRSS_Feed extends Minz_Model {
 			/**
 			 * @throws Minz_FileNotExistException
 			 */
-			if (CACHE_PATH == '') {
+			if (trim(CACHE_PATH) === '') {
 				throw new Minz_FileNotExistException(
 					'CACHE_PATH',
 					Minz_Exception::ERROR
@@ -358,7 +358,7 @@ class FreshRSS_Feed extends Minz_Model {
 			} else {
 				$simplePie = customSimplePie($this->attributes(), $this->curlOptions());
 				$url = htmlspecialchars_decode($this->url, ENT_QUOTES);
-				if (substr($url, -11) === '#force_feed') {
+				if (str_ends_with($url, '#force_feed')) {
 					$simplePie->force_feed(true);
 					$url = substr($url, 0, -11);
 				}
@@ -372,6 +372,7 @@ class FreshRSS_Feed extends Minz_Model {
 				}
 				Minz_ExtensionManager::callHook('simplepie_before_init', $simplePie, $this);
 				$simplePieResult = $simplePie->init();
+				Minz_ExtensionManager::callHook('simplepie_after_init', $simplePie, $this, $simplePieResult);
 
 				if ($simplePieResult === false || $simplePie->get_hash() === '' || !empty($simplePie->error())) {
 					$errorMessage = $simplePie->error();
@@ -478,7 +479,7 @@ class FreshRSS_Feed extends Minz_Model {
 	 * @param float $invalidGuidsTolerance (default 0.05) The maximum ratio (rounded) of invalid GUIDs to tolerate before degrading the unicity criteria.
 	 * Example for 0.05 (5% rounded): tolerate 0 invalid GUIDs for up to 9 articles, 1 for 10, 2 for 30, 3 for 50, 4 for 70, 5 for 90, 6 for 110, etc.
 	 * The default value of 5% rounded was chosen to allow 1 invalid GUID for feeds of 10 articles, which is a frequently observed amount of articles.
-	 * @return array<string>
+	 * @return list<string>
 	 */
 	public function loadGuids(\SimplePie\SimplePie $simplePie, float $invalidGuidsTolerance = 0.05): array {
 		$invalidGuids = 0;
@@ -548,6 +549,9 @@ class FreshRSS_Feed extends Minz_Model {
 			$authors = $item->get_authors();
 			$link = $item->get_permalink();
 			$date = $item->get_date('U');
+			if (!is_numeric($date)) {
+				$date = 0;
+			}
 
 			//Tag processing (tag == category)
 			$categories = $item->get_categories();
@@ -639,7 +643,7 @@ class FreshRSS_Feed extends Minz_Model {
 				foreach ($authors as $author) {
 					$authorName = $author->name != '' ? $author->name : $author->email;
 					if (is_string($authorName) && $authorName !== '') {
-						$authorNames .= escapeToUnicodeAlternative(strip_tags($authorName), true) . '; ';
+						$authorNames .= html_only_entity_decode(strip_tags($authorName)) . '; ';
 					}
 				}
 			}
@@ -1006,7 +1010,13 @@ class FreshRSS_Feed extends Minz_Model {
 		}
 	}
 
+	private function faviconRebuild(): void {
+		FreshRSS_Feed::faviconDelete($this->hash());
+		$this->faviconPrepare(true);
+	}
+
 	public function clearCache(): bool {
+		$this->faviconRebuild();
 		return @unlink($this->cacheFilename());
 	}
 
@@ -1070,13 +1080,13 @@ class FreshRSS_Feed extends Minz_Model {
 			$hubFilename = $path . '/!hub.json';
 			if (($hubFile = @file_get_contents($hubFilename)) != false) {
 				$hubJson = json_decode($hubFile, true);
-				if (!is_array($hubJson) || empty($hubJson['key']) || !ctype_xdigit($hubJson['key'])) {
+				if (!is_array($hubJson) || empty($hubJson['key']) || !is_string($hubJson['key']) || !ctype_xdigit($hubJson['key'])) {
 					$text = 'Invalid JSON for WebSub: ' . $this->url;
 					Minz_Log::warning($text);
 					Minz_Log::warning($text, PSHB_LOG);
 					return false;
 				}
-				if ((!empty($hubJson['lease_end'])) && ($hubJson['lease_end'] < (time() + (3600 * 23)))) {	//TODO: Make a better policy
+				if (!empty($hubJson['lease_end']) && is_int($hubJson['lease_end']) && $hubJson['lease_end'] < (time() + (3600 * 23))) {	//TODO: Make a better policy
 					$text = 'WebSub lease ends at '
 						. date('c', empty($hubJson['lease_end']) ? time() : $hubJson['lease_end'])
 						. ' and needs renewal: ' . $this->url;
@@ -1124,7 +1134,8 @@ class FreshRSS_Feed extends Minz_Model {
 				return false;
 			}
 			$hubJson = json_decode($hubFile, true);
-			if (!is_array($hubJson) || empty($hubJson['key']) || !ctype_xdigit($hubJson['key']) || empty($hubJson['hub'])) {
+			if (!is_array($hubJson) || empty($hubJson['key']) || !is_string($hubJson['key']) || !ctype_xdigit($hubJson['key']) ||
+				empty($hubJson['hub']) || !is_string($hubJson['hub'])) {
 				Minz_Log::warning('Invalid JSON for WebSub: ' . $this->url);
 				return false;
 			}
@@ -1138,6 +1149,10 @@ class FreshRSS_Feed extends Minz_Model {
 				file_put_contents($hubFilename, json_encode($hubJson));
 			}
 			$ch = curl_init();
+			if ($ch === false) {
+				Minz_Log::warning('curl_init() failed in ' . __METHOD__);
+				return false;
+			}
 			curl_setopt_array($ch, [
 				CURLOPT_URL => $hubJson['hub'],
 				CURLOPT_RETURNTRANSFER => true,
@@ -1155,12 +1170,16 @@ class FreshRSS_Feed extends Minz_Model {
 			]);
 			$response = curl_exec($ch);
 			$info = curl_getinfo($ch);
+			if (!is_array($info)) {
+				Minz_Log::warning('curl_getinfo() failed in ' . __METHOD__);
+				return false;
+			}
 
 			Minz_Log::warning('WebSub ' . ($state ? 'subscribe' : 'unsubscribe') . ' to ' . $url .
 				' via hub ' . $hubJson['hub'] .
 				' with callback ' . $callbackUrl . ': ' . $info['http_code'] . ' ' . $response, PSHB_LOG);
 
-			if (substr('' . $info['http_code'], 0, 1) == '2') {
+			if (str_starts_with('' . $info['http_code'], '2')) {
 				return true;
 			} else {
 				$hubJson['lease_start'] = time();	//Prevent trying again too soon

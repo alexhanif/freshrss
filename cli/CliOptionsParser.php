@@ -24,6 +24,7 @@ abstract class CliOptionsParser {
 
 	private function parseInput(): void {
 		$getoptInputs = $this->getGetoptInputs();
+		// @phpstan-ignore argument.type
 		$this->getoptOutputTransformer(getopt($getoptInputs['short'], $getoptInputs['long']));
 		$this->checkForDeprecatedAliasUse();
 	}
@@ -129,7 +130,7 @@ abstract class CliOptionsParser {
 
 	/**
 	 * @param array<string> $userInputs
-	 * @return array<string>
+	 * @return list<string>
 	 */
 	private function getAliasesUsed(array $userInputs, string $regex): array {
 		$foundAliases = [];

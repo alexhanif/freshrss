@@ -16,9 +16,9 @@ return array(
 		'title' => 'API',	// IGNORE
 	),
 	'bookmarklet' => array(
-		'documentation' => 'Bu butonu yer imleri araç çubuğunuza sürükleyerek veya sağ tıklayıp “Bağlantıyı yer imlerine ekle” seçeneğini seçerek yer imlerine ekleyin. Eklemek istediğiniz sitedeyken oluşturulan bu “Abone Ol” butonu ile akış ekleyebilirsiniz.',
+		'documentation' => 'Bu butonu yer işaretleri araç çubuğunuza sürükleyerek veya sağ tıklayıp “Bağlantıyı yer işaretlerine ekle” seçeneğini seçerek yer işaretlerine ekleyin. Eklemek istediğiniz sitedeyken oluşturulan bu “Abone Ol” butonu ile akış ekleyebilirsiniz.',
 		'label' => 'Abone ol',
-		'title' => 'Bookmarklet',	// IGNORE
+		'title' => 'Yer işareti',
 	),
 	'category' => array(
 		'_' => 'Kategori',
@@ -29,9 +29,9 @@ return array(
 			'help' => 'Dinamik olarak bu kategoriyi akışla doldurmak için bir link <a href="http://opml.org/" target="_blank">OPML file</a> sağla',
 		),
 		'empty' => 'Boş kategori',
-		'expand' => 'Expand category',	// TODO
+		'expand' => 'Kategoriyi genişlet',
 		'information' => 'Bilgi',
-		'open' => 'Open category',	// TODO
+		'open' => 'Kategoriyi aç',
 		'opml_url' => 'OPML linki',
 		'position' => 'Konumu göster',
 		'position_help' => 'Kategori sıralama düzenini kontrol etmek için',
@@ -57,13 +57,14 @@ return array(
 			'prepend' => 'Mevcut içeriğin öncesine ekle',
 			'replace' => 'Mevcut içerikle değiştir',
 		),
+		'content_retrieval' => 'Content retrieval',	// TODO
 		'css_cookie' => 'Makale içeriğini yüklerken çerez kullan',
 		'css_cookie_help' => 'Örnek: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => 'Dikkat, daha çok zaman gerekir!',
 		'css_path' => 'Makaleleri kendi CSS görünümü ile göster',
 		'css_path_filter' => array(
 			'_' => 'Kaldırılacak elemana ait CSS seçicisi',
-			'help' => 'CSS seçicisi şu şekilde olabilir: <kbd>.footer, .aside, p[data-sanitized-class="menu"]</kbd>',
+			'help' => 'CSS seçicisi şu şekilde olabilir: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Tanım',
 		'empty' => 'Bu akış boş. Lütfen akışın aktif olduğuna emin olun.',
@@ -77,17 +78,17 @@ return array(
 			'_' => 'Eylemi filtrele',
 			'help' => 'Her satıra tek bir arama filtresi yaz. <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">dökümantasyonu incele</a>.',
 		),
-		'http_headers' => 'HTTP Headers',	// TODO
-		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'http_headers' => 'HTTP Başlıkları (Headers)',
+		'http_headers_help' => 'Başlıklar yeni bir satırla ayrılır ve başlığın adı ve değeri iki nokta üst üste ile ayrılır (örneğin: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',
 		'information' => 'Bilgi',
 		'keep_min' => 'En az tutulacak makale sayısı',
 		'kind' => array(
 			'_' => 'Akış kaynağının tipi',
 			'html_json' => array(
-				'_' => 'HTML + XPath + JSON dot notation (JSON in HTML)',	// TODO
+				'_' => 'HTML + XPath + JSON nokta gösterimi (HTML’de JSON)',
 				'xpath' => array(
-					'_' => 'XPath for JSON in HTML',	// TODO
-					'help' => 'Example: <code>//script[@type="application/json"]</code>',	// TODO
+					'_' => 'HTML’de JSON için XPath',
+					'help' => 'Örnek: <code>//script[@type="application/json"]</code>',
 				),
 			),
 			'html_xpath' => array(
@@ -138,7 +139,7 @@ return array(
 				'xpath' => 'XPath:',
 			),
 			'json_dotnotation' => array(
-				'_' => 'JSON (Dotted notation)',	// IGNORE
+				'_' => 'JSON (Noktalı gösterim)',	// IGNORE
 				'feed_title' => array(
 					'_' => 'akış başlığı',
 					'help' => 'Örnek: <code>meta.title</code> ya da sabit bir dizgi: <code>"Benim özel akışım"</code>',
@@ -196,11 +197,12 @@ return array(
 		'moved_category_deleted' => 'Bir kategoriyi silerseniz, içerisindeki akışlar <em>%s</em> içerisine yerleşir.',
 		'mute' => array(
 			'_' => 'sessize al',
-			'state_is_muted' => 'This feed is muted',	// TODO
+			'state_is_muted' => 'Bu akış sessize alındı',
 		),
 		'no_selected' => 'Hiçbir akış seçilmedi.',
 		'number_entries' => '%d makale',
-		'open_feed' => 'Open feed %s',	// TODO
+		'open_feed' => '%s akışını aç',
+		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
 		'priority' => array(
 			'_' => 'Görünürlük',
 			'archived' => 'Gösterme (arşivlenmiş)',
@@ -229,14 +231,14 @@ return array(
 		'title_add' => 'RSS akışı ekle',
 		'ttl' => 'Şu kadar süreden fazla otomatik yenileme yapma',
 		'unicityCriteria' => array(
-			'_' => 'Article unicity criteria',	// TODO
-			'forced' => '<span title="Block the unicity criteria, even when the feed has duplicate articles">forced</span>',	// TODO
-			'help' => 'Relevant for invalid feeds.<br />⚠️ Changing the policy will create duplicates.',	// TODO
-			'id' => 'Standard ID (default)',	// TODO
-			'link' => 'Link',	// TODO
-			'sha1:link_published' => 'Link + Date',	// TODO
-			'sha1:link_published_title' => 'Link + Date + Title',	// TODO
-			'sha1:link_published_title_content' => 'Link + Date + Title + Content',	// TODO
+			'_' => 'Makale birlik kriterleri',
+			'forced' => '<span title="Tekillik kriterini engelle, akışta yinelenen makaleler olsa bile">zorunlu</span>',
+			'help' => 'Geçersiz akışlar için geçerlidir.<br />⚠️ Politikayı değiştirmek, yinelenenlerin oluşmasına neden olur.',
+			'id' => 'Standart Kimlik (varsayılan)',
+			'link' => 'Bağlantı',
+			'sha1:link_published' => 'Bağlantı + Tarih',
+			'sha1:link_published_title' => 'Bağlantı + Tarih + Başlık',
+			'sha1:link_published_title_content' => 'Bağlantı + Tarih + Başlık + İçerik',
 		),
 		'url' => 'Akış URL',
 		'useragent' => 'Bu akışı yüklemek için user agent kullan',
@@ -248,7 +250,7 @@ return array(
 	'import_export' => array(
 		'export' => array(
 			'_' => 'Dışa aktar',
-			'sqlite' => 'Download user database as SQLite',	// TODO
+			'sqlite' => 'Kullanıcı veritabanını SQLite olarak indirin',
 		),
 		'export_labelled' => 'Etiketli makaleleri dışarı aktar',
 		'export_opml' => 'Akış listesini dışarı aktar (OPML)',
@@ -285,6 +287,7 @@ return array(
 		'add_dynamic_opml' => 'Dinamik OPML ekle',
 		'add_feed' => 'Akış ekle',
 		'add_label' => 'Etiket ekle',
+		'add_opml_category' => 'OPML category name',	// TODO
 		'delete_label' => 'Etiket sil',
 		'feed_management' => 'RSS akış yönetimi',
 		'rename_label' => 'Etiketi yeniden adlandır',

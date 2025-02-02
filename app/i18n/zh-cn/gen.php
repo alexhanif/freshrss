@@ -14,10 +14,12 @@ return array(
 	'action' => array(
 		'actualize' => '更新订阅源',
 		'add' => '添加',
-		'back' => '← 返回',
 		'back_to_rss_feeds' => '← 返回订阅源',
 		'cancel' => '取消',
+		'close' => 'Close',	// TODO
 		'create' => '创建',
+		'delete_all_feeds' => 'Delete all feeds',	// TODO
+		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO
 		'delete_muted_feeds' => '删除已暂停的订阅源',
 		'demote' => '撤销管理员',
 		'disable' => '禁用',
@@ -155,6 +157,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE
@@ -209,6 +212,7 @@ return array(
 		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
+		'bluesky' => 'Bluesky',	// TODO
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => '剪贴板',
 		'diaspora' => 'Diaspora*',	// IGNORE

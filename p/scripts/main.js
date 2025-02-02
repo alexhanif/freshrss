@@ -721,7 +721,7 @@ function show_share_menu(el) {
 	const dropdownMenu = div.querySelector('.dropdown-menu');
 
 	if (!dropdownMenu) {
-		const itemId = el.closest('.flux').id;
+		const itemId = el.closest('.flux').dataset.entry;
 		const templateId = 'share_article_template';
 		const id = itemId;
 		const flux_header_el = el.closest('.flux');
@@ -973,8 +973,7 @@ function init_shortcuts() {
 	});
 
 	document.addEventListener('keydown', ev => {
-		if (ev.target.closest('input, textarea') ||
-				ev.ctrlKey || ev.metaKey || (ev.altKey && ev.shiftKey)) {
+		if (ev.ctrlKey || ev.metaKey || (ev.altKey && ev.shiftKey) || ev.target.closest('input, select, textarea')) {
 			return;
 		}
 
@@ -1080,6 +1079,10 @@ function init_shortcuts() {
 			ev.preventDefault();
 			return;
 		}
+		if (ev.key === '?') {
+			window.location.href = context.urls.shortcuts.replace(/&amp;/g, '&');
+			return;
+		}
 
 		if (ev.altKey || ev.shiftKey) {
 			return;
@@ -1096,12 +1099,8 @@ function init_shortcuts() {
 
 			const link_go_website = document.querySelector('.flux.current a.go_website');
 			if (link_go_website) {
-				const newWindow = window.open();
-				if (newWindow) {
-					newWindow.opener = null;
-					newWindow.location = link_go_website.href;
-					ev.preventDefault();
-				}
+				window.open(link_go_website.href, '_blank', 'noopener');
+				ev.preventDefault();
 			}
 			return;
 		}
@@ -1324,8 +1323,25 @@ function init_stream(stream) {
 				req.onloadend = function (e) {
 					checkboxTag.disabled = false;
 					if (tagId == 0) {
+						// new tag is added
 						forceReloadLabelsList = true;
 						loadDynamicTags(checkboxTag.closest('div.dropdown'));
+					} else {
+						// a tag was (un)checked
+						const dropdownmenu_current = ev.target.closest('.dropdown-menu');
+						const flux = ev.target.closest('.flux');
+						const dropdownmenu_all = flux.querySelectorAll('.dynamictags .dropdown-menu');
+						if (dropdownmenu_all.length > 1) {
+							// delete all other tag dropdown menus except the current one
+							dropdownmenu_all.forEach(
+								function (currentValue) {
+									if (currentValue !== dropdownmenu_current) {
+										currentValue.nextElementSibling.remove();
+										currentValue.parentNode.removeChild(currentValue);
+									}
+								}
+							);
+						}
 					}
 				};
 				req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
@@ -1435,7 +1451,7 @@ function loadDynamicTags(div) {
 			label.appendChild(div_stick);
 			li_item0.appendChild(label);
 
-			div.querySelector('.dropdown-menu').appendChild(li_item0);
+			div.querySelector('.dropdown-menu-scrollable').appendChild(li_item0);
 		}
 
 		let html = '';
@@ -1455,14 +1471,14 @@ function loadDynamicTags(div) {
 					(context.anonymous ? '' : 'class="checkboxTag" ') +
 					'name="t_' + tag.id + '"type="checkbox" ' +
 					(context.anonymous ? 'disabled="disabled" ' : '') +
-					(tag.checked ? 'checked="checked" ' : '') + '/> ' + tag.name + '</label></li>';
+					(tag.checked ? 'checked="checked" ' : '') + '/>' + tag.name + '</label></li>';
 				datalist += '<option value="' + tag.name + '"></option>';
 			}
 			if (context.anonymous && nbLabelsChecked === 0) {
 				html += '<li class="item"><span class="emptyLabels">' + context.i18n.labels_empty + '</span></li>';
 			}
 		}
-		div.querySelector('.dropdown-menu').insertAdjacentHTML('beforeend', html);
+		div.querySelector('.dropdown-menu-scrollable').insertAdjacentHTML('beforeend', html);
 		const datalistLabels = document.getElementById('datalist-labels');
 		datalistLabels.innerHTML = ''; // clear before add the (updated) labels list
 		datalistLabels.insertAdjacentHTML('beforeend', datalist);
@@ -1674,7 +1690,7 @@ function closeNotification() {
 function init_notifications() {
 	notification = document.getElementById('notification');
 
-	notification.querySelector('a.close').addEventListener('click', function (ev) {
+	notification.querySelector('.close').addEventListener('click', function (ev) {
 		closeNotification();
 		ev.preventDefault();
 		return false;
@@ -1841,6 +1857,12 @@ let url_load_more = '';
 let load_more = false;
 let box_load_more = null;
 
+function remove_existing_posts() {
+	document.querySelectorAll('.flux, .day').forEach(function (div) {
+		div.remove();
+	});
+}
+
 function load_more_posts() {
 	if (load_more || !url_load_more || !box_load_more) {
 		return;
@@ -1852,6 +1874,11 @@ function load_more_posts() {
 	req.open('GET', url_load_more, true);
 	req.responseType = 'document';
 	req.onload = function (e) {
+		if (context.sort === 'rand') {
+			document.scrollingElement.scrollTop = 0;
+			remove_existing_posts();
+		}
+
 		const html = this.response;
 		const streamFooter = document.getElementById('stream-footer');
 
@@ -2008,6 +2035,7 @@ function init_normal() {
 }
 
 function init_main_beforeDOM() {
+	history.scrollRestoration = 'manual';
 	document.scrollingElement.scrollTop = 0;
 	init_shortcuts();
 	if (['normal', 'grid', 'reader', 'global'].indexOf(context.current_view) >= 0) {

@@ -13,7 +13,7 @@
 .horizontal-list {
 	padding: 0.1rem 0;
 
-	.item {
+	& > .item {
 		&:first-child {
 			padding-left: 0.5rem;
 		}

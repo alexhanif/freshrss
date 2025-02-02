@@ -14,14 +14,16 @@ return array(
 	'action' => array(
 		'actualize' => 'フィードを更新する',
 		'add' => '追加',
-		'back' => '← 戻る',
 		'back_to_rss_feeds' => '← RSSフィードに戻る',
 		'cancel' => 'キャンセル',
+		'close' => 'Close',	// TODO
 		'create' => '作成',
+		'delete_all_feeds' => 'すべてのフィードを削除する',
+		'delete_errored_feeds' => 'エラーのフィードを削除する',
 		'delete_muted_feeds' => 'ミュートにしているフィードを削除する',
 		'demote' => '寄付',
 		'disable' => '無効',
-		'download' => 'Download',	// TODO
+		'download' => 'ダウンロード',
 		'empty' => '空',
 		'enable' => '有効',
 		'export' => 'エクスポート',
@@ -31,7 +33,7 @@ return array(
 		'manage' => '管理',
 		'mark_read' => '既読にする',
 		'menu' => array(
-			'open' => 'Open menu',	// TODO
+			'open' => 'メニューを開く',
 		),
 		'nav_buttons' => array(
 			'next' => '次の記事',
@@ -155,6 +157,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE
@@ -184,7 +187,7 @@ return array(
 		'display' => 'ディスプレイ',
 		'extensions' => '拡張機能',
 		'logs' => 'ログ',
-		'privacy' => 'Privacy',	// TODO
+		'privacy' => 'プライバシー',
 		'queries' => 'ユーザークエリ',
 		'reading' => 'リーディング',
 		'search' => '単語で検索するかハッシュタグで検索する',
@@ -209,6 +212,7 @@ return array(
 		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
+		'bluesky' => 'Bluesky',	// IGNORE
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'クリップボード',
 		'diaspora' => 'Diaspora*',	// IGNORE

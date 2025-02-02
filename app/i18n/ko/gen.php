@@ -14,10 +14,12 @@ return array(
 	'action' => array(
 		'actualize' => '새 글 가져오기',
 		'add' => '추가',
-		'back' => '← 돌아가기',
 		'back_to_rss_feeds' => '← RSS 피드로 돌아가기',
 		'cancel' => '취소',
+		'close' => 'Close',	// TODO
 		'create' => '생성',
+		'delete_all_feeds' => 'Delete all feeds',	// TODO
+		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO
 		'delete_muted_feeds' => '음소거된 피드 삭제',
 		'demote' => '목록 수준 내리기',
 		'disable' => '비활성화',
@@ -155,6 +157,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE
@@ -209,6 +212,7 @@ return array(
 		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
+		'bluesky' => 'Bluesky',	// TODO
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => '클립보드',
 		'diaspora' => 'Diaspora*',	// IGNORE

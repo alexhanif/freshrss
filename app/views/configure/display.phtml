@@ -4,10 +4,6 @@
 	$this->partial('aside_configure');
 ?>
 <main class="post">
-	<div class="link-back-wrapper">
-		<a class="link-back" href="<?= _url('index', 'index') ?>"><?= _t('gen.action.back_to_rss_feeds') ?></a>
-	</div>
-
 	<h1><?= _t('conf.display') ?></h1>
 
 	<form method="post" action="<?= _url('configure', 'display') ?>">
@@ -210,7 +206,9 @@
 							<td><input type="checkbox" name="topline_favorite" value="1"<?=
 								FreshRSS_Context::userConf()->topline_favorite ? ' checked="checked"' : '' ?>
 								data-leave-validation="<?= FreshRSS_Context::userConf()->topline_favorite ?>" /></td>
-							<td><input type="checkbox" disabled="disabled" /></td>
+							<td><input type="checkbox" name="topline_myLabels" value="1"<?=
+								FreshRSS_Context::userConf()->topline_myLabels ? ' checked="checked"' : '' ?>
+								data-leave-validation="<?= FreshRSS_Context::userConf()->topline_myLabels ?>" /></td>
 							<td><input type="checkbox" disabled="disabled" /></td>
 							<td><input type="checkbox" name="topline_sharing" value="1"<?=
 								FreshRSS_Context::userConf()->topline_sharing ? ' checked="checked"' : '' ?>

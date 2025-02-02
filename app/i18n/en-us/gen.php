@@ -14,10 +14,12 @@ return array(
 	'action' => array(
 		'actualize' => 'Update feeds',	// IGNORE
 		'add' => 'Add',	// IGNORE
-		'back' => '← Go back',	// IGNORE
 		'back_to_rss_feeds' => '← Go back to your RSS feeds',	// IGNORE
 		'cancel' => 'Cancel',	// IGNORE
+		'close' => 'Close',	// IGNORE
 		'create' => 'Create',	// IGNORE
+		'delete_all_feeds' => 'Delete all feeds',	// IGNORE
+		'delete_errored_feeds' => 'Delete feeds with errors',	// IGNORE
 		'delete_muted_feeds' => 'Delete muted feeds',	// IGNORE
 		'demote' => 'Demote',	// IGNORE
 		'disable' => 'Disable',	// IGNORE
@@ -155,6 +157,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE
@@ -209,6 +212,7 @@ return array(
 		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
+		'bluesky' => 'Bluesky',	// IGNORE
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'Clipboard',	// IGNORE
 		'diaspora' => 'Diaspora*',	// IGNORE

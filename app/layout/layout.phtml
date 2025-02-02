@@ -49,7 +49,7 @@
 		}
 ?>
 		<link rel="alternate" type="application/rss+xml" title="<?= $this->rss_title ?>" href="<?= Minz_Url::display($url_rss) ?>" />
-<?php } if (FreshRSS_Context::isAll() || FreshRSS_Context::isCategory() || FreshRSS_Context::isFeed()) {
+<?php } if (FreshRSS_Context::isAll() || FreshRSS_Context::isAllAndCategories() || FreshRSS_Context::isAllAndArchived() || FreshRSS_Context::isCategory() || FreshRSS_Context::isFeed()) {
 		$opml_rss = $url_base;
 		$opml_rss['a'] = 'opml';
 		$opml_rss['params']['user'] = Minz_User::name() ?? '';
@@ -84,16 +84,18 @@
 <?php
 	$msg = '';
 	$status = 'closed';
+	$notificationName = '';
 	$notif = Minz_Request::getNotification();
 	if (!empty($notif)) {
 		$msg = $notif['content'];
 		$status = $notif['type'];
+		$notificationName = $notif['notificationName'];
 		invalidateHttpCache();
 	}
 ?>
-<div id="notification" class="notification <?= $status ?>">
-	<span class="msg"><?= $msg ?></span>
-	<a class="close" href=""><?= _i('close') ?></a>
+<div role="dialog" id="notification" class="notification <?= $status ?> <?= $notificationName ?>" aria-describedby="dialogMsg">
+	<span class="msg" id="dialogMsg"><?= $msg ?></span>
+	<button class="close" title="<?= _t('gen.action.close') ?>"><?= _i('close') ?></button>
 </div>
 	</body>
 </html>

@@ -14,10 +14,12 @@ return array(
 	'action' => array(
 		'actualize' => 'Aktualizuj kanały',
 		'add' => 'Dodaj',
-		'back' => '← Wróć',
 		'back_to_rss_feeds' => '← Wróć do subskrybowanych kanałów RSS',
 		'cancel' => 'Anuluj',
+		'close' => 'Close',	// TODO
 		'create' => 'Stwórz',
+		'delete_all_feeds' => 'Delete all feeds',	// TODO
+		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO
 		'delete_muted_feeds' => 'Usuń wyciszone kanały',
 		'demote' => 'Zdegraduj',
 		'disable' => 'Wyłącz',
@@ -155,6 +157,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE
@@ -209,6 +212,7 @@ return array(
 		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
+		'bluesky' => 'Bluesky',	// TODO
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'Schowek',
 		'diaspora' => 'Diaspora*',	// IGNORE

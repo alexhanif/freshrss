@@ -1,9 +1,7 @@
-<IfModule mod_authz_core.c>
-	# Deny files starting with a dot, or without extension (except some), or not in a whitelist of extensions
-	<FilesMatch "^\.|^(?!oidc)[^.]+$|\.(?!css|gif|html|ico|js|php|png|svg|txt|woff|woff2)[^.]*$">
-		Require all denied
-	</FilesMatch>
-</IfModule>
+# If you need custom .htaccess rules, instead of modifying this file,
+# create one in `./i/.htaccess` (in particular for access control such as HTTP Basic Auth),
+# or in `../.htaccess` for other more general rules.
+# See also `../.htaccess.dist` if you cannot set Apache `DocumentRoot` to here (`FreshRSS/p/`) as recommended
 
 <IfModule mod_dir.c>
 	DirectoryIndex	index.php index.html

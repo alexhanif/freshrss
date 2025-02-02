@@ -14,10 +14,12 @@ return array(
 	'action' => array(
 		'actualize' => 'Feeds actualiseren',
 		'add' => 'Toevoegen',
-		'back' => '← Terug',
 		'back_to_rss_feeds' => '← Ga terug naar je RSS feeds',
 		'cancel' => 'Annuleren',
+		'close' => 'Sluiten',
 		'create' => 'Opslaan',
+		'delete_all_feeds' => 'Delete all feeds',	// TODO
+		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO
 		'delete_muted_feeds' => 'Gedempte feeds verwijderen',
 		'demote' => 'Degraderen',
 		'disable' => 'Uitzetten',
@@ -155,6 +157,7 @@ return array(
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE
@@ -209,6 +212,7 @@ return array(
 		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
+		'bluesky' => 'Bluesky',	// TODO
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'Klembord',
 		'diaspora' => 'Diaspora*',	// IGNORE
