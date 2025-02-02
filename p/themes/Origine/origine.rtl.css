@@ -962,12 +962,16 @@ a:hover .icon {
 	border: 1px solid var(--notification-bad-border-color);
 }
 
-.notification.good a.close:hover {
+.notification .close:hover {
 	background-color: var(--notification-close-background-color-hover);
 }
 
-.notification.bad a.close:hover {
-	background-color: var(--notification-close-background-color-hover);
+.notification .close .icon {
+	filter: brightness(1.5);
+}
+
+.notification .close:hover .icon {
+	filter: brightness(0.5);
 }
 
 .notification#actualizeProgress {
@@ -1178,17 +1182,17 @@ a:hover .icon {
 		text-shadow: none;
 	}
 
-	.notification a.close {
+	.notification .close {
 		background-color: transparent;
 		display: block;
 		right: 0;
 	}
 
-	.notification a.close:hover {
+	.notification .close:hover {
 		opacity: 0.5;
 	}
 
-	.notification a.close .icon {
+	.notification .close .icon {
 		display: none;
 	}
 }

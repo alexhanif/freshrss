@@ -16,6 +16,7 @@ return array(
 		'add' => 'Hozzáad',
 		'back_to_rss_feeds' => '← Vissza az RSS hírforrásokhoz',
 		'cancel' => 'Mégsem',
+		'close' => 'Close',	// TODO
 		'create' => 'Létrehoz',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
 		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO

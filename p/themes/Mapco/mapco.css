@@ -985,13 +985,13 @@ main.prompt {
 	background: #f5633e;
 	color: #fff;
 }
-.notification a.close {
-	border-radius: 0 3px 3px 0;
+.notification .close .icon {
+	filter: brightness(3);
 }
-.notification.good a.close:hover {
+.notification.good .close:hover {
 	background: #0c7540;
 }
-.notification.bad a.close:hover {
+.notification.bad .close:hover {
 	background: #73341f;
 }
 .notification#actualizeProgress br {

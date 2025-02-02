@@ -1690,7 +1690,7 @@ function closeNotification() {
 function init_notifications() {
 	notification = document.getElementById('notification');
 
-	notification.querySelector('a.close').addEventListener('click', function (ev) {
+	notification.querySelector('.close').addEventListener('click', function (ev) {
 		closeNotification();
 		ev.preventDefault();
 		return false;

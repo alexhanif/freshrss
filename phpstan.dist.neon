@@ -14,13 +14,13 @@ parameters:
 			- lib/phpgt/*
 			- lib/phpmailer/*
 			- lib/simplepie/*
-			- vendor/*
 		analyseAndScan:
 			- .git/*?
 			- extensions/node_modules?
 			- extensions/symbolic?
 			- extensions/vendor?
 			- node_modules/*?
+			- vendor/*
 	bootstrapFiles:
 		- cli/_cli.php
 		- lib/favicons.php
@@ -36,7 +36,7 @@ parameters:
 		- STDOUT
 		- TMP_PATH
 		- USERS_PATH
-	checkBenevolentUnionTypes: false	# TODO pass
+	checkBenevolentUnionTypes: true
 	checkImplicitMixed: false	# TODO pass
 	checkMissingOverrideMethodAttribute: true
 	checkTooWideReturnTypesInProtectedAndPublicMethods: true

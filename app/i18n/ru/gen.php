@@ -16,6 +16,7 @@ return array(
 		'add' => 'Добавить',
 		'back_to_rss_feeds' => '← Вернуться к вашим RSS-лентам',
 		'cancel' => 'Отменить',
+		'close' => 'Close',	// TODO
 		'create' => 'Создать',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
 		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO

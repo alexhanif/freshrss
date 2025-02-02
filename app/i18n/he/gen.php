@@ -16,6 +16,7 @@ return array(
 		'add' => 'Add',	// TODO
 		'back_to_rss_feeds' => '← חזרה להזנות הRSS שלך',
 		'cancel' => 'ביטול',
+		'close' => 'Close',	// TODO
 		'create' => 'יצירה',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
 		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO
