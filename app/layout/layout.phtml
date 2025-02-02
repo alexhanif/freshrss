@@ -91,9 +91,9 @@
 		invalidateHttpCache();
 	}
 ?>
-<div id="notification" class="notification <?= $status ?>">
-	<span class="msg"><?= $msg ?></span>
-	<a class="close" href=""><?= _i('close') ?></a>
+<div role="dialog" id="notification" class="notification <?= $status ?>" aria-describedby="dialogMsg">
+	<span class="msg" id="dialogMsg"><?= $msg ?></span>
+	<button class="close" title="<?= _t('gen.action.close') ?>"><?= _i('close') ?></button>
 </div>
 	</body>
 </html>

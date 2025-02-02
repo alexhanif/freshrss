@@ -16,6 +16,7 @@ return array(
 		'add' => '추가',
 		'back_to_rss_feeds' => '← RSS 피드로 돌아가기',
 		'cancel' => '취소',
+		'close' => 'Close',	// TODO
 		'create' => '생성',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
 		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO

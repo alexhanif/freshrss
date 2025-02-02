@@ -41,6 +41,7 @@
 
 	--notification-border-color: #eeb;
 	--notification-good-border-color: #0062b7;
+	--notification-good-background-color: #0062b7;
 	--notification-bad-background-color: #fdd;
 	--notification-bad-font-color: #912621;
 	--notification-bad-border-color: #ecc;
@@ -896,14 +897,26 @@ kbd {
 	border-color: var(--notification-good-border-color);
 }
 
+.notification.good .close:hover {
+	background: var(--notification-good-background-color);
+}
+
 .notification.bad {
 	background-color: var(--notification-bad-background-color);
 	color: var(--notification-bad-font-color);
 	border-color: var(--notification-bad-border-color);
 }
 
-.notification.bad a.close:hover {
+.notification.bad .close:hover {
 	background: var(--notification-bad-background-color);
+}
+
+.notification .close .icon {
+	filter: brightness(1);
+}
+
+.notification .close:hover .icon {
+	filter: brightness(2);
 }
 
 .notification a {
@@ -1128,17 +1141,17 @@ kbd {
 		background: var(--background-color-hover);
 	}
 
-	.notification a.close {
+	.notification .close {
 		background: transparent;
 		display: block;
 		left: 0;
 	}
 
-	.notification a.close:hover {
+	.notification .close:hover {
 		opacity: 0.5;
 	}
 
-	.notification a.close .icon {
+	.notification .close .icon {
 		display: none;
 	}
 

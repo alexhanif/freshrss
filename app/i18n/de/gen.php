@@ -16,6 +16,7 @@ return array(
 		'add' => 'Hinzufügen',
 		'back_to_rss_feeds' => '← Zurück zu Ihren RSS-Feeds gehen',
 		'cancel' => 'Abbrechen',
+		'close' => 'Schließen',
 		'create' => 'Erstellen',
 		'delete_all_feeds' => 'Alle Feeds löschen',
 		'delete_errored_feeds' => 'Feeds mit Fehlern löschen',
@@ -176,7 +177,7 @@ return array(
 		'zh-tw' => '正體中文',	// IGNORE
 	),
 	'menu' => array(
-		'about' => 'Über',
+		'about' => 'Info',
 		'account' => 'Account',	// IGNORE
 		'admin' => 'Administration',	// IGNORE
 		'archiving' => 'Archivierung',

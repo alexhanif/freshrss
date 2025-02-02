@@ -16,6 +16,7 @@ return array(
 		'add' => 'Pridať',
 		'back_to_rss_feeds' => '← Späť na vaše RSS kanály',
 		'cancel' => 'Zrušiť',
+		'close' => 'Close',	// TODO
 		'create' => 'Vytvoriť',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
 		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO

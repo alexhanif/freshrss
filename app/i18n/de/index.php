@@ -12,7 +12,7 @@
 
 return array(
 	'about' => array(
-		'_' => 'Über',
+		'_' => 'Info',
 		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',	// IGNORE
 		'bug_reports' => array(
 			'environment_information' => array(
@@ -32,7 +32,7 @@ return array(
 		'github' => '<a href="https://github.com/FreshRSS/FreshRSS/issues">auf GitHub</a>',
 		'license' => 'Lizenz',
 		'project_website' => 'Projekt-Website',
-		'title' => 'Über',
+		'title' => 'Info',
 		'version' => 'Version',	// IGNORE
 	),
 	'feed' => array(

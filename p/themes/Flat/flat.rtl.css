@@ -813,16 +813,24 @@ th {
 	color: #000;
 }
 
-.notification a.close {
+.notification .close {
 	border-radius: 3px 0 0 3px;
 }
 
-.notification.good a.close:hover {
+.notification.good .close:hover {
 	background: #16a085;
 }
 
-.notification.bad a.close:hover {
+.notification .close .icon {
+	filter: brightness(2.5);
+}
+
+.notification.bad .close:hover {
 	background: #c0392b;
+}
+
+.notification .close:hover .icon {
+	filter: brightness(4);
 }
 
 /*=== "Load more" part */
@@ -991,17 +999,17 @@ th {
 		border-radius: 0;
 	}
 
-	.notification a.close {
+	.notification .close {
 		background: transparent;
 		display: block;
 		right: 0;
 	}
 
-	.notification a.close:hover {
+	.notification .close:hover {
 		opacity: 0.5;
 	}
 
-	.notification a.close .icon {
+	.notification .close .icon {
 		display: none;
 	}
 
