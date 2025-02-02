@@ -396,7 +396,7 @@ class Minz_Request {
 		Minz_Session::unlock();
 	}
 
-	public static function setGoodNotification(string $content, string $notificationName = 'xx'): void {
+	public static function setGoodNotification(string $content, string $notificationName = ''): void {
 		self::setNotification('good', $content, $notificationName);
 	}
 
