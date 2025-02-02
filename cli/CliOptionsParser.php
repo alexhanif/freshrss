@@ -24,6 +24,7 @@ abstract class CliOptionsParser {
 
 	private function parseInput(): void {
 		$getoptInputs = $this->getGetoptInputs();
+		// @phpstan-ignore argument.type
 		$this->getoptOutputTransformer(getopt($getoptInputs['short'], $getoptInputs['long']));
 		$this->checkForDeprecatedAliasUse();
 	}

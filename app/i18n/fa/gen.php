@@ -16,6 +16,7 @@ return array(
 		'add' => ' اضافه کنید',
 		'back_to_rss_feeds' => '← به فیدهای RSS خود برگردید',
 		'cancel' => ' لغو',
+		'close' => 'Close',	// TODO
 		'create' => ' ایجاد کنید',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
 		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO

@@ -16,6 +16,7 @@ return array(
 		'add' => 'Ekle',
 		'back_to_rss_feeds' => '← RSS akışlarınız için geri gidin',
 		'cancel' => 'İptal',
+		'close' => 'Close',	// TODO
 		'create' => 'Oluştur',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
 		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO

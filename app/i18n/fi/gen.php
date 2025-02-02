@@ -16,6 +16,7 @@ return array(
 		'add' => 'Lisää',
 		'back_to_rss_feeds' => '← Palaa RSS-syötteisiin',
 		'cancel' => 'Peruuta',
+		'close' => 'Close',	// TODO
 		'create' => 'Luo',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
 		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO

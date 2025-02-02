@@ -16,6 +16,7 @@ return array(
 		'add' => 'Pievienot',
 		'back_to_rss_feeds' => '← Atgriezieties pie RSS barotnēm',
 		'cancel' => 'Atcelt',
+		'close' => 'Close',	// TODO
 		'create' => 'Uztaisīt',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
 		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO

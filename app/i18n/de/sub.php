@@ -259,7 +259,7 @@ return array(
 		'file_to_import' => 'Zu importierende Datei<br />(OPML, JSON oder ZIP)',
 		'file_to_import_no_zip' => 'Zu importierende Datei<br />(OPML oder JSON)',
 		'import' => 'Importieren',
-		'starred_list' => 'Liste der Lieblingsartikel',
+		'starred_list' => 'Liste der Favoritenartikel',
 		'title' => 'Importieren / Exportieren',
 	),
 	'menu' => array(
