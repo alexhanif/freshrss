@@ -66,6 +66,7 @@ return array(
 		'mark_cat_read' => 'סימון קטגוריה כנקראה',
 		'mark_feed_read' => 'סימון הזנה כנקראה',
 		'mark_selection_unread' => 'Mark selection as unread',	// TODO
+		'mylabels' => 'My labels',	// TODO
 		'newer_first' => 'חדשים בראש',
 		'non-starred' => 'הצגת הכל פרט למועדפים',
 		'normal_view' => 'תצוגה רגילה',
@@ -90,7 +91,6 @@ return array(
 		'starred' => 'הצגת מועדפים בלבד',
 		'stats' => 'סטטיסטיקות',
 		'subscription' => 'ניהול הרשמות',
-		'tags' => 'My labels',	// TODO
 		'unread' => 'הצגת מאמרים שלא נקראו בלבד',
 	),
 	'share' => 'שיתוף',
