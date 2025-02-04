@@ -9,32 +9,40 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Allow searching in all feeds, also feeds only visible at category level with `&get=A`, and also those archived with `&get=Z` [#7144](https://github.com/FreshRSS/FreshRSS/pull/7144)
 		* UI accessible from user-query view
 	* Add search operator `intext:` [#7228](https://github.com/FreshRSS/FreshRSS/pull/7228)
+	* New shortcuts for adding user labels to articles [#7274](https://github.com/FreshRSS/FreshRSS/pull/7274)
 	* New *About* page with system information [#7161](https://github.com/FreshRSS/FreshRSS/pull/7161)
 * Bug fixing
 	* Fix regression denying access to app manifest [#7158](https://github.com/FreshRSS/FreshRSS/pull/7158)
+	* Fix unwanted feed description updates [#7269](https://github.com/FreshRSS/FreshRSS/pull/7269)
 	* Ensure no PHP buffer for SQLite download (some setups would first put the file in memory) [#7230](https://github.com/FreshRSS/FreshRSS/pull/7230)
 	* Improve cURL proxy options and fix some constants [#7231](https://github.com/FreshRSS/FreshRSS/pull/7231)
 	* Fix UI of global view unread articles counter [#7247](https://github.com/FreshRSS/FreshRSS/pull/7247)
 	* Hide base theme in carrousel [#7234](https://github.com/FreshRSS/FreshRSS/pull/7234)
 * Deployment
 	* Reduce superfluous Docker builds [#7137](https://github.com/FreshRSS/FreshRSS/pull/7137)
+	* Docker default image (Debian 12 Bookworm) updated to PHP 8.2.26 and Apache 2.4.62
+	* Docker alternative image (Alpine 3.21) updated to PHP 8.3.16
 * UI
 	* Add footer icons to reader view [#7133](https://github.com/FreshRSS/FreshRSS/pull/7133)
 	* Remove local reference to font *Open Sans* to avoid bugs with some local versions [#7215](https://github.com/FreshRSS/FreshRSS/pull/7215)
 	* Improve stats page layout [#7243](https://github.com/FreshRSS/FreshRSS/pull/7243)
 	* Smaller *mark as read* button in mobile view [#5220](https://github.com/FreshRSS/FreshRSS/pull/5220)
-	* Various UI and style improvements: [#7162](https://github.com/FreshRSS/FreshRSS/pull/7162)
+	* Add CSS class to various types of notifications to allow custom styling [#7287](https://github.com/FreshRSS/FreshRSS/pull/7287)
+	* Various UI and style improvements: [#7162](https://github.com/FreshRSS/FreshRSS/pull/7162), [#7268](https://github.com/FreshRSS/FreshRSS/pull/7268)
 Security
 	* Better authorization label for OIDC in the UI [#7264](https://github.com/FreshRSS/FreshRSS/pull/7264)
 	* Allow comments in `force-https.txt` [#7259](https://github.com/FreshRSS/FreshRSS/pull/7259)
 * I18n:
-	* Improve German [#7177](https://github.com/FreshRSS/FreshRSS/pull/7177)
+	* Improve German [#7177](https://github.com/FreshRSS/FreshRSS/pull/7177), [#7275](https://github.com/FreshRSS/FreshRSS/pull/7275), [#7278](https://github.com/FreshRSS/FreshRSS/pull/7278)
 	* Improve Japanese [#7187](https://github.com/FreshRSS/FreshRSS/pull/7187), [#7195](https://github.com/FreshRSS/FreshRSS/pull/7195)
 * Misc.
 	* Improve PHP code [#7191](https://github.com/FreshRSS/FreshRSS/pull/7191), [#7204](https://github.com/FreshRSS/FreshRSS/pull/7204)
-		* Upgrade to PHPStan 2 [#7131](https://github.com/FreshRSS/FreshRSS/pull/7131), [#7164](https://github.com/FreshRSS/FreshRSS/pull/7164), [#7224](https://github.com/FreshRSS/FreshRSS/pull/7224)
+		* Upgrade to PHPStan 2 [#7131](https://github.com/FreshRSS/FreshRSS/pull/7131), [#7164](https://github.com/FreshRSS/FreshRSS/pull/7164), [#7224](https://github.com/FreshRSS/FreshRSS/pull/7224),
+		[#7270](https://github.com/FreshRSS/FreshRSS/pull/7270), [#7281](https://github.com/FreshRSS/FreshRSS/pull/7281), [#7282](https://github.com/FreshRSS/FreshRSS/pull/7282)
 	* Update to CssXPath 1.3.0 (no change) [#7211](https://github.com/FreshRSS/FreshRSS/pull/7211)
-	* Update dev dependencies [#7165](https://github.com/FreshRSS/FreshRSS/pull/7165), [#7166](https://github.com/FreshRSS/FreshRSS/pull/7166), [#7167](https://github.com/FreshRSS/FreshRSS/pull/7167)
+	* Update dev dependencies [#7165](https://github.com/FreshRSS/FreshRSS/pull/7165), [#7166](https://github.com/FreshRSS/FreshRSS/pull/7166), [#7167](https://github.com/FreshRSS/FreshRSS/pull/7167),
+		[#7279](https://github.com/FreshRSS/FreshRSS/pull/7279), [#7280](https://github.com/FreshRSS/FreshRSS/pull/7280), [#7283](https://github.com/FreshRSS/FreshRSS/pull/7283),
+		[#7284](https://github.com/FreshRSS/FreshRSS/pull/7284), [#7285](https://github.com/FreshRSS/FreshRSS/pull/7285)
 	* Update GitHub Actions to Ubuntu 24.04 [#7207](https://github.com/FreshRSS/FreshRSS/pull/7207)
 
 

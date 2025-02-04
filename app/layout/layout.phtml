@@ -84,14 +84,16 @@
 <?php
 	$msg = '';
 	$status = 'closed';
+	$notificationName = '';
 	$notif = Minz_Request::getNotification();
 	if (!empty($notif)) {
 		$msg = $notif['content'];
 		$status = $notif['type'];
+		$notificationName = $notif['notificationName'];
 		invalidateHttpCache();
 	}
 ?>
-<div role="dialog" id="notification" class="notification <?= $status ?>" aria-describedby="dialogMsg">
+<div role="dialog" id="notification" class="notification <?= $status ?> <?= $notificationName ?>" aria-describedby="dialogMsg">
 	<span class="msg" id="dialogMsg"><?= $msg ?></span>
 	<button class="close" title="<?= _t('gen.action.close') ?>"><?= _i('close') ?></button>
 </div>

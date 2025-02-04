@@ -75,7 +75,7 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 			Minz_Translate::reset(FreshRSS_Context::userConf()->language);
 			invalidateHttpCache();
 
-			Minz_Request::good(_t('feedback.conf.updated'), [ 'c' => 'configure', 'a' => 'display' ]);
+			Minz_Request::good(_t('feedback.conf.updated'), [ 'c' => 'configure', 'a' => 'display' ], 'displayAction');
 		}
 
 		$this->view->themes = FreshRSS_Themes::get();

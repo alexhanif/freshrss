@@ -66,6 +66,7 @@ return array(
 		'mark_cat_read' => 'Mark category as read',	// TODO
 		'mark_feed_read' => 'Mark feed as read',	// TODO
 		'mark_selection_unread' => 'Mark selection as unread',	// TODO
+		'mylabels' => 'My labels',	// TODO
 		'newer_first' => 'Newer first',	// TODO
 		'non-starred' => 'Show non-favourites',	// TODO
 		'normal_view' => 'Normal view',	// TODO
@@ -90,7 +91,6 @@ return array(
 		'starred' => 'Show favourites',	// TODO
 		'stats' => 'Statistics',	// TODO
 		'subscription' => 'Subscription management',	// TODO
-		'tags' => 'My labels',	// TODO
 		'unread' => 'Show unread',	// TODO
 	),
 	'share' => 'Share',	// TODO
