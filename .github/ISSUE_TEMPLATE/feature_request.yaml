@@ -18,7 +18,7 @@ body:
       description: "A clear and concise description how you work with FreshRSS. Please support with examples."
     validations:
       required: false
-- type: textarea
+  - type: textarea
     id: description
     attributes:
       label: Describe the solution you’d like
