@@ -84,6 +84,7 @@ return array (
 		'last_entry' => 'end',
 		'collapse_entry' => 'c',
 		'load_more' => 'm',
+		'mylabels' => 'l',
 		'auto_share' => 's',
 		'focus_search' => 'a',
 		'user_filter' => 'u',

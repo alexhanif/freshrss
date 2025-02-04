@@ -159,6 +159,14 @@
 			</div>
 
 			<div class="form-group">
+				<label class="group-name" for="mylabels_shortcut"><?= _t('index.menu.mylabels') ?></label>
+				<div class="group-controls">
+					<input type="text" id="mylabels_shortcut" name="shortcuts[mylabels]" list="keys" value="<?= $s['mylabels'] ?>"
+						data-leave-validation="<?= $s['mylabels'] ?>"/>
+				</div>
+			</div>
+
+			<div class="form-group">
 				<label class="group-name" for="collapse_entry"><?= _t('conf.shortcut.collapse_article') ?></label>
 				<div class="group-controls">
 					<input type="text" id="collapse_entry" name="shortcuts[collapse_entry]" list="keys" value="<?= $s['collapse_entry'] ?>"

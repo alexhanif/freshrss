@@ -53,7 +53,7 @@
 		?>
 		<li id="tags" class="tree-folder category tags<?= $t_active ? ' active' : '' ?>" data-unread="<?= format_number($this->nbUnreadTags) ?>">
 			<a href="<?= _url('index', $actual_view, 'get', 'T') . $state_filter_manual ?>" class="tree-folder-title">
-				<button class="dropdown-toggle" title="<?= _t('sub.category.expand') ?>"><?= _i($t_show ? 'up' : 'down') ?></button><span class="title" title="<?= _t('sub.category.open') ?>" data-unread="<?= format_number($this->nbUnreadTags) ?>"><?= _t('index.menu.tags') ?></span>
+				<button class="dropdown-toggle" title="<?= _t('sub.category.expand') ?>"><?= _i($t_show ? 'up' : 'down') ?></button><span class="title" title="<?= _t('sub.category.open') ?>" data-unread="<?= format_number($this->nbUnreadTags) ?>"><?= _t('index.menu.mylabels') ?></span>
 			</a>
 			<ul class="tree-folder-items<?= $t_show ? ' active' : '' ?>">
 				<?php

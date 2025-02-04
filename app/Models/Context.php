@@ -485,7 +485,7 @@ final class FreshRSS_Context {
 			case 'T':
 				$tagDAO = FreshRSS_Factory::createTagDao();
 				self::$current_get['tags'] = true;
-				self::$name = _t('index.menu.tags');
+				self::$name = _t('index.menu.mylabels');
 				self::$get_unread = $tagDAO->countNotRead();
 				break;
 			default:

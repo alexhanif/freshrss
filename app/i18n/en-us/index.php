@@ -66,6 +66,7 @@ return array(
 		'mark_cat_read' => 'Mark category as read',	// IGNORE
 		'mark_feed_read' => 'Mark feed as read',	// IGNORE
 		'mark_selection_unread' => 'Mark selection as unread',	// IGNORE
+		'mylabels' => 'My labels',	// IGNORE
 		'newer_first' => 'Newer first',	// IGNORE
 		'non-starred' => 'Show non-favorites',
 		'normal_view' => 'Normal view',	// IGNORE
@@ -90,7 +91,6 @@ return array(
 		'starred' => 'Show favorites',
 		'stats' => 'Statistics',	// IGNORE
 		'subscription' => 'Subscription management',	// IGNORE
-		'tags' => 'My labels',	// IGNORE
 		'unread' => 'Show unread',	// IGNORE
 	),
 	'share' => 'Share',	// IGNORE
