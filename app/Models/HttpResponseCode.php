@@ -82,8 +82,8 @@ enum FreshRSS_HttpResponseCode: int {
 		throw new \DomainException("$value is not a valid backing value for enum " . self::class);
 	}
 
-	public static function descriptionFromCode(FreshRSS_HttpResponseCode $enum): ?string {
+	public static function descriptionFromCode(FreshRSS_HttpResponseCode $enum): string {
 		$returnedValue = ucwords(strtolower(str_replace("_", ' ', $enum->name)));
-		return preg_replace('/^Http /', 'HTTP/1.1 ', $returnedValue);
+		return (string)preg_replace('/^Http /', 'HTTP/1.1 ', $returnedValue);
 	}
 }
