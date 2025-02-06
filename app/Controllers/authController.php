@@ -120,7 +120,7 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 
 			if ($nonce === '') {
 				Minz_Log::warning("Invalid session during login for user={$username}, nonce={$nonce}");
-				header('HTTP/1.1 403 Forbidden');
+				header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_403_FORBIDDEN));
 				Minz_Session::_param('POST_to_GET', true);	//Prevent infinite internal redirect
 				Minz_Request::setBadNotification(_t('install.session.nok'));
 				Minz_Request::forward(['c' => 'auth', 'a' => 'login'], false);
@@ -172,7 +172,7 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 				Minz_Request::good(_t('feedback.auth.login.success'), $url);
 			} else {
 				Minz_Log::warning("Password mismatch for user={$username}, nonce={$nonce}, c={$challenge}");
-				header('HTTP/1.1 403 Forbidden');
+				header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_403_FORBIDDEN));
 				Minz_Session::_param('POST_to_GET', true);	//Prevent infinite internal redirect
 				Minz_Request::setBadNotification(_t('feedback.auth.login.invalid'));
 				Minz_Request::forward(['c' => 'auth', 'a' => 'login'], false);

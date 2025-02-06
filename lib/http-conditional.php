@@ -142,13 +142,13 @@ function httpConditional(int $UnixTimeStamp, int $cacheSeconds = 0, int $cachePr
 	}
 
 	if ($is412) { //rfc2616-sec10.html#sec10.4.13
-		header('HTTP/1.1 412 Precondition Failed');
+		header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_412_PRECONDITION_FAILED));
 		header('Cache-Control: private, max-age=0, must-revalidate');
 		header('Content-Type: text/plain');
 		echo "HTTP/1.1 Error 412 Precondition Failed: Precondition request failed positive evaluation\n";
 		return true;
 	} elseif ($is304 && ($nbCond > 0)) { //rfc2616-sec10.html#sec10.3.5
-		header('HTTP/1.0 304 Not Modified');
+		header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_304_NOT_MODIFIED));
 		header('Etag: ' . $etagServer);
 		if ($feedMode) header('Connection: close'); //Comment this line under IIS
 		return true;

@@ -9,8 +9,7 @@ declare(strict_types=1);
 /**
  * The Minz_Error class logs and raises framework errors
  */
-class Minz_Error
-{
+class Minz_Error {
 	public function __construct() {}
 
 	/**

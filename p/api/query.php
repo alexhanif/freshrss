@@ -7,21 +7,21 @@ Minz_Request::init();
 
 $token = Minz_Request::paramString('t');
 if (!ctype_alnum($token)) {
-	header('HTTP/1.1 422 Unprocessable Entity');
+	header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_422_UNPROCESSABLE_ENTITY));
 	header('Content-Type: text/plain; charset=UTF-8');
 	die('Invalid token `t`!' . $token);
 }
 
 $format = Minz_Request::paramString('f');
 if (!in_array($format, ['atom', 'greader', 'html', 'json', 'opml', 'rss'], true)) {
-	header('HTTP/1.1 422 Unprocessable Entity');
+	header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_422_UNPROCESSABLE_ENTITY));
 	header('Content-Type: text/plain; charset=UTF-8');
 	die('Invalid format `f`!');
 }
 
 $user = Minz_Request::paramString('user');
 if (!FreshRSS_user_Controller::checkUsername($user)) {
-	header('HTTP/1.1 422 Unprocessable Entity');
+	header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_422_UNPROCESSABLE_ENTITY));
 	header('Content-Type: text/plain; charset=UTF-8');
 	die('Invalid user!');
 }
@@ -30,7 +30,7 @@ Minz_Session::init('FreshRSS', true);
 
 FreshRSS_Context::initSystem();
 if (!FreshRSS_Context::hasSystemConf() || !FreshRSS_Context::systemConf()->api_enabled) {
-	header('HTTP/1.1 503 Service Unavailable');
+	header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_503_SERVICE_UNAVAILABLE));
 	header('Content-Type: text/plain; charset=UTF-8');
 	die('Service Unavailable!');
 }
@@ -38,7 +38,7 @@ if (!FreshRSS_Context::hasSystemConf() || !FreshRSS_Context::systemConf()->api_e
 FreshRSS_Context::initUser($user);
 if (!FreshRSS_Context::hasUserConf() || !FreshRSS_Context::userConf()->enabled) {
 	usleep(rand(100, 10000));	//Primitive mitigation of scanning for users
-	header('HTTP/1.1 404 Not Found');
+	header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_404_NOT_FOUND));
 	header('Content-Type: text/plain; charset=UTF-8');
 	die('User not found!');
 } else {
@@ -107,7 +107,7 @@ foreach (FreshRSS_Context::userConf()->queries as $raw_query) {
 }
 if ($query === null || $userSearch === null) {
 	usleep(rand(100, 10000));
-	header('HTTP/1.1 404 Not Found');
+	header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_404_NOT_FOUND));
 	header('Content-Type: text/plain; charset=UTF-8');
 	die('User query not found!');
 }
@@ -169,7 +169,7 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Max-Age: 600');
 header('Cache-Control: public, max-age=60');
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
-	header('HTTP/1.1 204 No Content');
+	header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_204_NO_CONTENT));
 	exit();
 }
 

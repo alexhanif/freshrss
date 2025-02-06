@@ -111,14 +111,14 @@ final class GReaderAPI {
 	}
 
 	private static function noContent(): never {
-		header('HTTP/1.1 204 No Content');
+		header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_204_NO_CONTENT));
 		exit();
 	}
 
 	private static function badRequest(): never {
 		Minz_Log::warning(__METHOD__, API_LOG);
 		Minz_Log::debug(__METHOD__ . ' ' . self::debugInfo(), API_LOG);
-		header('HTTP/1.1 400 Bad Request');
+		header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_400_BAD_REQUEST));
 		header('Content-Type: text/plain; charset=UTF-8');
 		die('Bad Request!');
 	}
@@ -126,7 +126,7 @@ final class GReaderAPI {
 	private static function unauthorized(): never {
 		Minz_Log::warning(__METHOD__, API_LOG);
 		Minz_Log::debug(__METHOD__ . ' ' . self::debugInfo(), API_LOG);
-		header('HTTP/1.1 401 Unauthorized');
+		header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_401_UNAUTHORIZED));
 		header('Content-Type: text/plain; charset=UTF-8');
 		header('Google-Bad-Token: true');
 		die('Unauthorized!');
@@ -135,7 +135,7 @@ final class GReaderAPI {
 	private static function internalServerError(): never {
 		Minz_Log::warning(__METHOD__, API_LOG);
 		Minz_Log::debug(__METHOD__ . ' ' . self::debugInfo(), API_LOG);
-		header('HTTP/1.1 500 Internal Server Error');
+		header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_500_INTERNAL_SERVER_ERROR));
 		header('Content-Type: text/plain; charset=UTF-8');
 		die('Internal Server Error!');
 	}
@@ -143,7 +143,7 @@ final class GReaderAPI {
 	private static function notImplemented(): never {
 		Minz_Log::warning(__METHOD__, API_LOG);
 		Minz_Log::debug(__METHOD__ . ' ' . self::debugInfo(), API_LOG);
-		header('HTTP/1.1 501 Not Implemented');
+		header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_501_NOT_IMPLEMENTED));
 		header('Content-Type: text/plain; charset=UTF-8');
 		die('Not Implemented!');
 	}
