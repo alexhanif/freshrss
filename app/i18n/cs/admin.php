@@ -14,9 +14,9 @@ return array(
 	'auth' => array(
 		'allow_anonymous' => 'Povolit anonymní čtení článků výchozího uživatele (%s)',
 		'allow_anonymous_refresh' => 'Povolit anonymní obnovení článků',
-		'api_enabled' => 'Povolit přístup k <abbr>API</abbr> <small>(vyžadováno pro mobilní aplikace)</small>',
+		'api_enabled' => 'Povolit přístup k <abbr>API</abbr> <small>(vyžadováno pro mobilní aplikace and sharing user queries)</small>',	// DIRTY
 		'form' => 'Webový formulář (tradiční, vyžaduje JavaScript)',
-		'http' => 'HTTP (pro pokročilé uživatele s HTTPS)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => 'Žádný (nebezpečné)',
 		'title' => 'Ověřování',
 		'token' => 'Hlavní ověřovací token',
@@ -116,6 +116,7 @@ return array(
 		'description' => 'Popis',
 		'disabled' => 'Zakázáno',
 		'empty_list' => 'Nejsou naistalována žádná rozšíření',
+		'empty_list_help' => 'Check the logs to determine the reason behind the empty extension list.',	// TODO
 		'enabled' => 'Povoleno',
 		'latest' => 'Nainstalováno',
 		'name' => 'Název',
@@ -147,8 +148,9 @@ return array(
 		'main_stream' => 'Všechny kanály',
 		'no_idle' => 'Nejsou žádné nečinné kanály!',
 		'number_entries' => '%d článků',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% ze všech',
-		'repartition' => 'Přerozdělení článků',
+		'repartition' => 'Přerozdělení článků: %s',
 		'status_favorites' => 'Oblíbené',
 		'status_read' => 'Přečtené',
 		'status_total' => 'Celkem',
@@ -205,7 +207,7 @@ return array(
 		'copiedFromURL' => 'update.php zkopírováno z %s do ./data',
 		'current_version' => 'Vaše aktuální verze',
 		'last' => 'Poslední kontrola',
-		'loading' => 'Aktualizuje se...',
+		'loading' => 'Aktualizuje se…',
 		'none' => 'Žádné nové aktualizace',
 		'releaseChannel' => array(
 			'_' => 'Kanál pro vydání',

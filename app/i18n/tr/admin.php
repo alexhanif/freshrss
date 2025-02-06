@@ -14,9 +14,9 @@ return array(
 	'auth' => array(
 		'allow_anonymous' => 'Öntanımlı kullanıcının makalelerinin anonim okunmasına izin ver (%s)',
 		'allow_anonymous_refresh' => 'Anonim makale yenilemesine izin ver',
-		'api_enabled' => '<abbr>API</abbr> erişimine izin ver <small>(mobil uygulamalar için gerekli)</small>',
+		'api_enabled' => '<abbr>API</abbr> erişimine izin ver <small>(mobil uygulamalar için gerekli and sharing user queries)</small>',	// DIRTY
 		'form' => 'Web formu (geleneksel, JavaScript gerektirir)',
-		'http' => 'HTTP (ileri kullanıcılar için, HTTPS)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => 'Hiçbiri (tehlikeli)',
 		'title' => 'Kimlik doğrulama',
 		'token' => 'Ana kimlik doğrulama jetonu',
@@ -116,6 +116,7 @@ return array(
 		'description' => 'Açıklama',
 		'disabled' => 'Pasif',
 		'empty_list' => 'Yüklenmiş eklenti bulunmamaktadır',
+		'empty_list_help' => 'Boş uzantı listesinin arkasındaki nedeni belirlemek için günlükleri kontrol edin.',
 		'enabled' => 'Aktif',
 		'latest' => 'Kuruldu',
 		'name' => 'İsim',
@@ -147,8 +148,9 @@ return array(
 		'main_stream' => 'Ana akış',
 		'no_idle' => 'Boşta akış yok!',
 		'number_entries' => '%d makale',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% toplamın yüzdesi',
-		'repartition' => 'Makale dağılımı',
+		'repartition' => 'Makale dağılımı: %s',
 		'status_favorites' => 'Favoriler',
 		'status_read' => 'Okunmuş',
 		'status_total' => 'Toplam',
@@ -209,7 +211,7 @@ return array(
 		'none' => 'Yeni güncelleme yok',
 		'releaseChannel' => array(
 			'_' => 'Sürüm kanalı',
-			'edge' => 'Rolling release (“edge”)',	// IGNORE
+			'edge' => 'Sürekli güncellenen sürüm (“edge”)',
 			'latest' => 'Stabil sürüm (“latest”)',
 		),
 		'title' => 'Sistem güncelleme',

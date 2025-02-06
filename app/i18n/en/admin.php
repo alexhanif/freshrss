@@ -14,9 +14,9 @@ return array(
 	'auth' => array(
 		'allow_anonymous' => 'Allow anonymous reading of the default user’s articles (%s)',
 		'allow_anonymous_refresh' => 'Allow anonymous refresh of the articles',
-		'api_enabled' => 'Allow <abbr>API</abbr> access <small>(required for mobile apps)</small>',
+		'api_enabled' => 'Allow <abbr>API</abbr> access <small>(required for mobile apps and sharing user queries)</small>',
 		'form' => 'Web form (traditional, requires JavaScript)',
-		'http' => 'HTTP (for advanced users with HTTPS)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',
 		'none' => 'None (dangerous)',
 		'title' => 'Authentication',
 		'token' => 'Master authentication token',
@@ -116,6 +116,7 @@ return array(
 		'description' => 'Description',
 		'disabled' => 'Disabled',
 		'empty_list' => 'There are no installed extensions',
+		'empty_list_help' => 'Check the logs to determine the reason behind the empty extension list.',	// TODO
 		'enabled' => 'Enabled',
 		'latest' => 'Installed',
 		'name' => 'Name',
@@ -147,8 +148,9 @@ return array(
 		'main_stream' => 'Main stream',
 		'no_idle' => 'There are no idle feeds!',
 		'number_entries' => '%d articles',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% of total',
-		'repartition' => 'Articles repartition',
+		'repartition' => 'Articles repartition: %s',
 		'status_favorites' => 'Favourites',
 		'status_read' => 'Read',
 		'status_total' => 'Total',

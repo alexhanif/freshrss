@@ -17,9 +17,9 @@ if (!FreshRSS_Context::hasSystemConf()) {
 }
 FreshRSS_Context::systemConf()->auth_type = 'none';	// avoid necessity to be logged in (not saved!)
 
-//Minz_Log::debug(print_r(array('_SERVER' => $_SERVER, '_GET' => $_GET, '_POST' => $_POST, 'INPUT' => $ORIGINAL_INPUT), true), PSHB_LOG);
+// Minz_Log::debug(print_r(['_SERVER' => $_SERVER, '_GET' => $_GET, '_POST' => $_POST, 'INPUT' => $ORIGINAL_INPUT], true), PSHB_LOG);
 
-$key = isset($_GET['k']) ? substr($_GET['k'], 0, 128) : '';
+$key = isset($_GET['k']) && is_string($_GET['k']) ? substr($_GET['k'], 0, 128) : '';
 if (!ctype_xdigit($key)) {
 	header('HTTP/1.1 422 Unprocessable Entity');
 	die('Invalid feed key format!');
@@ -67,7 +67,7 @@ if (empty($users)) {
 }
 
 if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] === 'subscribe') {
-	$leaseSeconds = empty($_REQUEST['hub_lease_seconds']) ? 0 : (int)$_REQUEST['hub_lease_seconds'];
+	$leaseSeconds = empty($_REQUEST['hub_lease_seconds']) || !is_numeric($_REQUEST['hub_lease_seconds']) ? 0 : (int)$_REQUEST['hub_lease_seconds'];
 	if ($leaseSeconds > 60) {
 		$hubJson['lease_end'] = time() + $leaseSeconds;
 	} else {
@@ -98,6 +98,7 @@ if ($ORIGINAL_INPUT == '') {
 }
 
 $simplePie = customSimplePie();
+$simplePie->enable_cache(false);
 $simplePie->set_raw_data($ORIGINAL_INPUT);
 $simplePie->init();
 unset($ORIGINAL_INPUT);
@@ -133,11 +134,8 @@ foreach ($users as $userFilename) {
 		Minz_ExtensionManager::enableByList(FreshRSS_Context::userConf()->extensions_enabled, 'user');
 		Minz_Translate::reset(FreshRSS_Context::userConf()->language);
 
-		[$updated_feeds, , $nb_new_articles] = FreshRSS_feed_Controller::actualizeFeeds(null, $self, null, $simplePie);
-		if ($nb_new_articles > 0) {
-			FreshRSS_feed_Controller::commitNewEntries();
-		}
-		if ($updated_feeds > 0) {
+		[$nbUpdatedFeeds, ] = FreshRSS_feed_Controller::actualizeFeedsAndCommit(null, $self, null, $simplePie);
+		if ($nbUpdatedFeeds > 0) {
 			$nb++;
 		} else {
 			Minz_Log::warning('Warning: User ' . $username . ' does not subscribe anymore to ' . $self, PSHB_LOG);

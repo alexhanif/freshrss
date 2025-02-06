@@ -40,11 +40,11 @@ class Minz_Request {
 	 * Read the URL parameter
 	 * @param string $key Key name
 	 * @param mixed $default default value, if no parameter is given
-	 * @param bool $specialchars special characters
+	 * @param bool $specialchars `true` to return special characters, `false` (default) to XML-encode them
 	 * @return mixed value of the parameter
 	 * @deprecated use typed versions instead
 	 */
-	public static function param(string $key, $default = false, bool $specialchars = false) {
+	public static function param(string $key, mixed $default = false, bool $specialchars = false): mixed {
 		if (isset(self::$params[$key])) {
 			$p = self::$params[$key];
 			if (is_string($p) || is_array($p)) {
@@ -61,12 +61,42 @@ class Minz_Request {
 		return isset(self::$params[$key]);
 	}
 
-	/** @return array<string|int,string|array<string,string|int|bool>> */
-	public static function paramArray(string $key, bool $specialchars = false): array {
+	/**
+	 * @param bool $plaintext `true` to return special characters without any escaping (unsafe), `false` (default) to XML-encode them
+	 * @return array<string|int,string|array<string,string|int|bool>>
+	 */
+	public static function paramArray(string $key, bool $plaintext = false): array {
 		if (empty(self::$params[$key]) || !is_array(self::$params[$key])) {
 			return [];
 		}
-		return $specialchars ? Minz_Helper::htmlspecialchars_utf8(self::$params[$key]) : self::$params[$key];
+		$result = [];
+		foreach (self::$params[$key] as $k => $v) {
+			if (is_string($v)) {
+				$result[$k] = $v;
+			} elseif (is_array($v)) {
+				$vs = [];
+				foreach ($v as $k2 => $v2) {
+					if (is_string($k2) && (is_string($v2) || is_int($v2) || is_bool($v2))) {
+						$vs[$k2] = $v2;
+					}
+				}
+				$result[$k] = $vs;
+			}
+		}
+		return $plaintext ? $result : Minz_Helper::htmlspecialchars_utf8($result);
+	}
+
+	/**
+	 * @param bool $plaintext `true` to return special characters without any escaping (unsafe), `false` (default) to XML-encode them
+	 * @return list<string>
+	 */
+	public static function paramArrayString(string $key, bool $plaintext = false): array {
+		if (empty(self::$params[$key]) || !is_array(self::$params[$key])) {
+			return [];
+		}
+		$result = array_filter(self::$params[$key], 'is_string');
+		$result = array_values($result);
+		return $plaintext ? $result : Minz_Helper::htmlspecialchars_utf8($result);
 	}
 
 	public static function paramTernary(string $key): ?bool {
@@ -90,6 +120,10 @@ class Minz_Request {
 		return $value;
 	}
 
+	public static function paramIntNull(string $key): ?int {
+		return is_numeric(self::$params[$key] ?? null) ? (int)self::$params[$key] : null;
+	}
+
 	public static function paramInt(string $key): int {
 		if (!empty(self::$params[$key]) && is_numeric(self::$params[$key])) {
 			return (int)self::$params[$key];
@@ -97,18 +131,28 @@ class Minz_Request {
 		return 0;
 	}
 
-	public static function paramString(string $key, bool $specialchars = false): string {
+	/**
+	 * @param bool $plaintext `true` to return special characters without any escaping (unsafe), `false` (default) to XML-encode them
+	 */
+	public static function paramStringNull(string $key, bool $plaintext = false): ?string {
 		if (isset(self::$params[$key])) {
 			$s = self::$params[$key];
 			if (is_string($s)) {
 				$s = trim($s);
-				return $specialchars ? $s : htmlspecialchars($s, ENT_COMPAT, 'UTF-8');
+				return $plaintext ? $s : htmlspecialchars($s, ENT_COMPAT, 'UTF-8');
 			}
 			if (is_int($s) || is_bool($s)) {
 				return (string)$s;
 			}
 		}
-		return '';
+		return null;
+	}
+
+	/**
+	 * @param bool $plaintext `true` to return special characters without any escaping (unsafe), `false` (default) to XML-encode them
+	 */
+	public static function paramString(string $key, bool $plaintext = false): string {
+		return self::paramStringNull($key, $plaintext) ?? '';
 	}
 
 	/**
@@ -117,14 +161,15 @@ class Minz_Request {
 	 * It will return an array where each cell contains one line of a text. The new line
 	 * character is used to break the text into lines. This method is well suited to use
 	 * to split textarea content.
-	 * @param array<string> $default
-	 * @return array<string>
+	 * @param bool $plaintext `true` to return special characters without any escaping (unsafe), `false` (default) to XML-encode them
+	 * @return list<string>
 	 */
-	public static function paramTextToArray(string $key, array $default = []): array {
+	public static function paramTextToArray(string $key, bool $plaintext = false): array {
 		if (isset(self::$params[$key]) && is_string(self::$params[$key])) {
-			return preg_split('/\R/u', self::$params[$key]) ?: [];
+			$result = preg_split('/\R/u', self::$params[$key]) ?: [];
+			return $plaintext ? $result : Minz_Helper::htmlspecialchars_utf8($result);
 		}
-		return $default;
+		return [];
 	}
 
 	public static function defaultControllerName(): string {
@@ -143,7 +188,7 @@ class Minz_Request {
 	}
 
 	/** @return array{c?:string,a?:string,params?:array<string,mixed>} */
-	public static function originalRequest() {
+	public static function originalRequest(): array {
 		return self::$originalRequest;
 	}
 
@@ -188,7 +233,7 @@ class Minz_Request {
 	 * Initialise la Request
 	 */
 	public static function init(): void {
-		self::_params($_GET);
+		self::_params(array_filter($_GET, 'is_string', ARRAY_FILTER_USE_KEY));
 		self::initJSON();
 	}
 
@@ -201,8 +246,8 @@ class Minz_Request {
 	 * Return true if the request is over HTTPS, false otherwise (HTTP)
 	 */
 	public static function isHttps(): bool {
-		$header = $_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '';
-		if ('' != $header) {
+		$header = is_string($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? null) ? $_SERVER['HTTP_X_FORWARDED_PROTO'] : '';
+		if ('' !== $header) {
 			return 'https' === strtolower($header);
 		}
 		return 'on' === ($_SERVER['HTTPS'] ?? '');
@@ -224,34 +269,37 @@ class Minz_Request {
 	}
 
 	private static function extractProtocol(): string {
-		if (self::isHttps()) {
-			return 'https';
-		}
-		return 'http';
+		return self::isHttps() ? 'https' : 'http';
 	}
 
 	private static function extractHost(): string {
-		if ('' != $host = ($_SERVER['HTTP_X_FORWARDED_HOST'] ?? '')) {
+		$host = is_string($_SERVER['HTTP_X_FORWARDED_HOST'] ?? null) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : '';
+		if ($host !== '') {
 			return parse_url("http://{$host}", PHP_URL_HOST) ?: 'localhost';
 		}
-		if ('' != $host = ($_SERVER['HTTP_HOST'] ?? '')) {
+		$host = is_string($_SERVER['HTTP_HOST'] ?? null) ? $_SERVER['HTTP_HOST'] : '';
+		if ($host !== '') {
 			// Might contain a port number, and mind IPv6 addresses
 			return parse_url("http://{$host}", PHP_URL_HOST) ?: 'localhost';
 		}
-		if ('' != $host = ($_SERVER['SERVER_NAME'] ?? '')) {
+		$host = is_string($_SERVER['SERVER_NAME'] ?? null) ? $_SERVER['SERVER_NAME'] : '';
+		if ($host !== '') {
 			return $host;
 		}
 		return 'localhost';
 	}
 
 	private static function extractPort(): int {
-		if ('' != $port = ($_SERVER['HTTP_X_FORWARDED_PORT'] ?? '')) {
+		$port = is_numeric($_SERVER['HTTP_X_FORWARDED_PORT'] ?? null) ? $_SERVER['HTTP_X_FORWARDED_PORT'] : '';
+		if ($port !== '') {
 			return intval($port);
 		}
-		if ('' != $proto = ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '')) {
+		$proto = is_string($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? null) ? $_SERVER['HTTP_X_FORWARDED_PROTO'] : '';
+		if ($proto !== '') {
 			return 'https' === strtolower($proto) ? 443 : 80;
 		}
-		if ('' != $port = ($_SERVER['SERVER_PORT'] ?? '')) {
+		$port = is_numeric($_SERVER['SERVER_PORT'] ?? null) ? $_SERVER['SERVER_PORT'] : '';
+		if ($port !== '') {
 			return intval($port);
 		}
 		return self::isHttps() ? 443 : 80;
@@ -268,15 +316,16 @@ class Minz_Request {
 	}
 
 	private static function extractPrefix(): string {
-		if ('' != $prefix = ($_SERVER['HTTP_X_FORWARDED_PREFIX'] ?? '')) {
+		$prefix = is_string($_SERVER['HTTP_X_FORWARDED_PREFIX'] ?? null) ? $_SERVER['HTTP_X_FORWARDED_PREFIX'] : '';
+		if ($prefix !== '') {
 			return rtrim($prefix, '/ ');
 		}
 		return '';
 	}
 
 	private static function extractPath(): string {
-		$path = $_SERVER['REQUEST_URI'] ?? '';
-		if ($path != '') {
+		$path = is_string($_SERVER['REQUEST_URI'] ?? null) ? $_SERVER['REQUEST_URI'] : '';
+		if ($path !== '') {
 			$path = parse_url($path, PHP_URL_PATH) ?: '';
 			return substr($path, -1) === '/' ? rtrim($path, '/') : dirname($path);
 		}
@@ -330,39 +379,39 @@ class Minz_Request {
 	}
 
 	private static function requestId(): string {
-		if (empty($_GET['rid']) || !ctype_xdigit($_GET['rid'])) {
+		if (!is_string($_GET['rid'] ?? null) || !ctype_xdigit($_GET['rid'])) {
 			$_GET['rid'] = uniqid();
 		}
 		return $_GET['rid'];
 	}
 
-	private static function setNotification(string $type, string $content): void {
+	private static function setNotification(string $type, string $content, string $notificationName = ''): void {
 		Minz_Session::lock();
 		$requests = Minz_Session::paramArray('requests');
 		$requests[self::requestId()] = [
 				'time' => time(),
-				'notification' => [ 'type' => $type, 'content' => $content ],
+				'notification' => [ 'type' => $type, 'content' => $content, 'notificationName' => $notificationName ],
 			];
 		Minz_Session::_param('requests', $requests);
 		Minz_Session::unlock();
 	}
 
-	public static function setGoodNotification(string $content): void {
-		self::setNotification('good', $content);
+	public static function setGoodNotification(string $content, string $notificationName = ''): void {
+		self::setNotification('good', $content, $notificationName);
 	}
 
-	public static function setBadNotification(string $content): void {
-		self::setNotification('bad', $content);
+	public static function setBadNotification(string $content, string $notificationName = ''): void {
+		self::setNotification('bad', $content, $notificationName);
 	}
 
 	/**
 	 * @param $pop true (default) to remove the notification, false to keep it.
-	 * @return array{type:string,content:string}|null
+	 * @return array{type:string,content:string,notificationName:string}|null
 	 */
 	public static function getNotification(bool $pop = true): ?array {
 		$notif = null;
 		Minz_Session::lock();
-		/** @var array<string,array{time:int,notification:array{type:string,content:string}}> */
+		/** @var array<string,array{time:int,notification:array{type:string,content:string,notificationName:string}}> */
 		$requests = Minz_Session::paramArray('requests');
 		if (!empty($requests)) {
 			//Delete abandoned notifications
@@ -387,7 +436,7 @@ class Minz_Request {
 	 * @param bool $redirect If true, uses an HTTP redirection, and if false (default), performs an internal dispatcher redirection.
 	 * @throws Minz_ConfigurationException
 	 */
-	public static function forward($url = [], bool $redirect = false): void {
+	public static function forward(array $url = [], bool $redirect = false): void {
 		if (empty(Minz_Request::originalRequest())) {
 			self::$originalRequest = $url;
 		}
@@ -412,8 +461,8 @@ class Minz_Request {
 	 * @param string $msg notification content
 	 * @param array{c?:string,a?:string,params?:array<string,mixed>} $url url array to where we should be forwarded
 	 */
-	public static function good(string $msg, array $url = []): void {
-		Minz_Request::setGoodNotification($msg);
+	public static function good(string $msg, array $url = [], string $notificationName = ''): void {
+		Minz_Request::setGoodNotification($msg, $notificationName);
 		Minz_Request::forward($url, true);
 	}
 
@@ -422,8 +471,8 @@ class Minz_Request {
 	 * @param string $msg notification content
 	 * @param array{c?:string,a?:string,params?:array<string,mixed>} $url url array to where we should be forwarded
 	 */
-	public static function bad(string $msg, array $url = []): void {
-		Minz_Request::setBadNotification($msg);
+	public static function bad(string $msg, array $url = [], string $notificationName = ''): void {
+		Minz_Request::setBadNotification($msg, $notificationName);
 		Minz_Request::forward($url, true);
 	}
 
@@ -431,7 +480,7 @@ class Minz_Request {
 	 * Allows receiving POST data as application/json
 	 */
 	private static function initJSON(): void {
-		if ('application/json' !== self::extractContentType()) {
+		if (!str_starts_with(self::extractContentType(), 'application/json')) {
 			return;
 		}
 		$ORIGINAL_INPUT = file_get_contents('php://input', false, null, 0, 1048576);
@@ -450,7 +499,8 @@ class Minz_Request {
 	}
 
 	private static function extractContentType(): string {
-		return strtolower(trim($_SERVER['CONTENT_TYPE'] ?? ''));
+		$contentType = is_string($_SERVER['CONTENT_TYPE'] ?? null) ? $_SERVER['CONTENT_TYPE'] : '';
+		return strtolower(trim($contentType));
 	}
 
 	public static function isPost(): bool {
@@ -458,12 +508,13 @@ class Minz_Request {
 	}
 
 	/**
-	 * @return array<string>
+	 * @return list<string>
 	 */
 	public static function getPreferredLanguages(): array {
-		if (preg_match_all('/(^|,)\s*(?P<lang>[^;,]+)/', $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '', $matches) > 0) {
+		$acceptLanguage = is_string($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? null) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : '';
+		if (preg_match_all('/(^|,)\s*(?P<lang>[^;,]+)/', $acceptLanguage, $matches) > 0) {
 			return $matches['lang'];
 		}
-		return array('en');
+		return ['en'];
 	}
 }

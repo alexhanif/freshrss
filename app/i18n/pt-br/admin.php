@@ -14,9 +14,9 @@ return array(
 	'auth' => array(
 		'allow_anonymous' => 'Permitir a leitura anônima dos artigos pelo usuário padrão (%s)',
 		'allow_anonymous_refresh' => 'Permitir atualização anônima dos artigos',
-		'api_enabled' => 'Permitir acesso à <abbr>API</abbr> <small>(Necessáiro para aplicativos móveis)</small>',
+		'api_enabled' => 'Permitir acesso à <abbr>API</abbr> <small>(Necessáiro para aplicativos móveis and sharing user queries)</small>',	// DIRTY
 		'form' => 'Formulário Web(tradicional, Necessita de JavaScript)',
-		'http' => 'HTTP (Para usuários avançados com HTTPS)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => 'Nenhum (Perigoso)',
 		'title' => 'Autenticação',
 		'token' => 'Token de autenticação principal',
@@ -116,6 +116,7 @@ return array(
 		'description' => 'Descrição',
 		'disabled' => 'Desabilitado',
 		'empty_list' => 'Não há extensões instaladas',
+		'empty_list_help' => 'Check the logs to determine the reason behind the empty extension list.',	// TODO
 		'enabled' => 'Habilitada',
 		'latest' => 'Instalado',
 		'name' => 'Nome',
@@ -147,8 +148,9 @@ return array(
 		'main_stream' => 'Stream principal',
 		'no_idle' => 'Não há nenhum feed inativo!',
 		'number_entries' => '%d artigos',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% do total',
-		'repartition' => 'Repartição de artigos',
+		'repartition' => 'Repartição de artigos: %s',
 		'status_favorites' => 'Favoritos',
 		'status_read' => 'Lido',
 		'status_total' => 'Total',	// IGNORE

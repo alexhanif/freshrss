@@ -25,18 +25,9 @@ foreach ($dirs as $dir) {
 }
 
 file_put_contents(DATA_PATH . '/.htaccess', <<<'EOF'
-	# Apache 2.2
-	<IfModule !mod_authz_core.c>
-		Order	Allow,Deny
-		Deny	from all
-		Satisfy	all
-	</IfModule>
+Require all denied
 
-	# Apache 2.4
-	<IfModule mod_authz_core.c>
-		Require all denied
-	</IfModule>
-	EOF
+EOF
 );
 
 accessRights();

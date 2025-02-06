@@ -4,10 +4,6 @@
 	$this->partial('aside_configure');
 ?>
 <main class="post">
-	<div class="link-back-wrapper">
-		<a class="link-back" href="<?= _url('index', 'index') ?>"><?= _t('gen.action.back_to_rss_feeds') ?></a>
-	</div>
-
 	<h1><?= _t('conf.shortcut') ?></h1>
 
 	<datalist id="keys">
@@ -16,7 +12,9 @@
 		<?php } ?>
 	</datalist>
 
-	<?php $s = FreshRSS_Context::userConf()->shortcuts; ?>
+	<?php
+		$s = array_map(static fn(string $string) => htmlspecialchars($string, ENT_COMPAT, 'UTF-8'), FreshRSS_Context::userConf()->shortcuts);
+	?>
 
 	<?php if ([] !== $nonStandard = getNonStandardShortcuts($s)): ?>
 		<p class="alert alert-error">
@@ -157,6 +155,14 @@
 					<input type="text" id="auto_share_shortcut" name="shortcuts[auto_share]" list="keys" value="<?= $s['auto_share'] ?>"
 						data-leave-validation="<?= $s['auto_share'] ?>"/>
 						<p class="help"><?= _i('help') ?> <?= _t('conf.shortcut.auto_share_help') ?></p>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="group-name" for="mylabels_shortcut"><?= _t('index.menu.mylabels') ?></label>
+				<div class="group-controls">
+					<input type="text" id="mylabels_shortcut" name="shortcuts[mylabels]" list="keys" value="<?= $s['mylabels'] ?>"
+						data-leave-validation="<?= $s['mylabels'] ?>"/>
 				</div>
 			</div>
 

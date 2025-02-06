@@ -12,11 +12,8 @@ final class FreshRSS_dotNotation_Util
 	 * https://github.com/laravel/framework/blob/10.x/src/Illuminate/Collections/Arr.php#L302-L337
 	 *
 	 * @param \ArrayAccess<string,mixed>|array<string,mixed>|mixed $array
-	 * @param string|null $key
-	 * @param mixed $default
-	 * @return mixed
 	 */
-	public static function get($array, ?string $key, mixed $default = null) {
+	public static function get($array, ?string $key, mixed $default = null): mixed {
 		if (!static::accessible($array)) {
 			return static::value($default);
 		}
@@ -34,7 +31,7 @@ final class FreshRSS_dotNotation_Util
 		if (static::exists($array, $key)) {
 			return $array[$key];
 		}
-		if (strpos($key, '.') === false) {
+		if (str_contains($key, '.') === false) {
 			return $array[$key] ?? static::value($default);
 		}
 		foreach (explode('.', $key) as $segment) {
@@ -51,20 +48,16 @@ final class FreshRSS_dotNotation_Util
 	 * Get a string from an array using "dot" notation.
 	 *
 	 * @param \ArrayAccess<string,mixed>|array<string,mixed>|mixed $array
-	 * @param string|null $key
 	 */
 	public static function getString($array, ?string $key): ?string {
 		$result = self::get($array, $key, null);
-		return is_string($result) ? $result : null;
+		return is_string($result) || is_bool($result) || is_float($result) || is_int($result) ? (string)$result : null;
 	}
 
 	/**
 	 * Determine whether the given value is array accessible.
-	 *
-	 * @param mixed $value
-	 * @return bool
 	 */
-	private static function accessible($value): bool {
+	private static function accessible(mixed $value): bool {
 		return is_array($value) || $value instanceof \ArrayAccess;
 	}
 
@@ -72,8 +65,7 @@ final class FreshRSS_dotNotation_Util
 	 * Determine if the given key exists in the provided array.
 	 *
 	 * @param \ArrayAccess<string,mixed>|array<string,mixed>|mixed $array
-	 * @param string $key
-	 * @return bool
+	 * @phpstan-assert-if-true \ArrayAccess<string,mixed>|array<string,mixed> $array
 	 */
 	private static function exists($array, string $key): bool {
 		if ($array instanceof \ArrayAccess) {
@@ -85,8 +77,7 @@ final class FreshRSS_dotNotation_Util
 		return false;
 	}
 
-	/** @param mixed $value */
-	private static function value($value): mixed {
+	private static function value(mixed $value): mixed {
 		return $value instanceof Closure ? $value() : $value;
 	}
 
@@ -95,7 +86,7 @@ final class FreshRSS_dotNotation_Util
 	 * mapping fields from the JSON object into RSS equivalents
 	 * according to the dot-separated paths
 	 *
-	 * @param array<string> $jf json feed
+	 * @param array<int|string,mixed> $jf json feed
 	 * @param string $feedSourceUrl the source URL for the feed
 	 * @param array<string,string> $dotNotation dot notation to map JSON into RSS
 	 * @param string $defaultRssTitle Default title of the RSS feed, if not already provided in dotNotation `feedTitle`
