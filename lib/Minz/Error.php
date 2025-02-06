@@ -22,7 +22,10 @@ class Minz_Error {
 	 * @param bool $redirect indicates whether to force redirection (logs will not be transmitted)
 	 * @throws Minz_ConfigurationException
 	 */
-	public static function error(FreshRSS_HttpResponseCode $code, string|array $logs = [], bool $redirect = true): void {
+	public static function error(
+		FreshRSS_HttpResponseCode $code = FreshRSS_HttpResponseCode::HTTP_404_NOT_FOUND,
+		string|array $logs = [],
+		bool $redirect = true): void {
 		$logs = self::processLogs($logs);
 		$error_filename = APP_PATH . '/Controllers/errorController.php';
 
