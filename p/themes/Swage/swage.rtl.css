@@ -821,7 +821,7 @@ form th {
 	text-decoration: none;
 	background: var(--color-background-light-darker);
 }
-#bigMarkAsRead:hover {
+#bigMarkAsRead.big:hover {
 	background-color: var(--color-background-aside);
 	color: var(--color-text-light);
 }

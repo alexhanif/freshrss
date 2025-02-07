@@ -1888,8 +1888,12 @@ a.website:hover .favicon {
 	font-size: 1.25rem;
 }
 
-.bigTick {
+#bigMarkAsRead.big .bigTick {
 	font-size: 4rem;
+}
+
+#bigMarkAsRead.small .bigTick {
+	font-size: 2rem;
 }
 
 /*=== Statistiques */
