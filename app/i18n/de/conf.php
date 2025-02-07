@@ -99,6 +99,7 @@ return array(
 			'previous' => 'Vorherige',
 		),
 	),
+	'mark_read_button' => '„Alle als gelesen markieren“ Button',
 	'privacy' => array(
 		'_' => 'Privatsphäre',
 		'retrieve_extension_list' => 'Erweiterungsliste abrufen',

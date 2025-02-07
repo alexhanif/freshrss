@@ -99,6 +99,7 @@ return array(
 			'previous' => '前へ',
 		),
 	),
+	'mark_read_button' => '“すべてに既読を付ける” button',	// DIRTY
 	'privacy' => array(
 		'_' => 'プライバシー',
 		'retrieve_extension_list' => '拡張機能リストを取得する',

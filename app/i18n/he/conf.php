@@ -99,6 +99,7 @@ return array(
 			'previous' => 'הקודם',
 		),
 	),
+	'mark_read_button' => '“סימון הכל כנקרא” button',	// DIRTY
 	'privacy' => array(
 		'_' => 'Privacy',	// TODO
 		'retrieve_extension_list' => 'Retrieve extension list',	// TODO

@@ -99,6 +99,7 @@ return array(
 			'previous' => 'Sebelumnya',
 		),
 	),
+	'mark_read_button' => '“tandai semua sebagai telah dibaca” button',	// DIRTY
 	'privacy' => array(
 		'_' => 'Privacy',	// TODO
 		'retrieve_extension_list' => 'Retrieve extension list',	// TODO

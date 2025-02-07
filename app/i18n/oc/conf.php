@@ -99,6 +99,7 @@ return array(
 			'previous' => 'Precedent',
 		),
 	),
+	'mark_read_button' => '« o marcar tot coma legit » button',	// DIRTY
 	'privacy' => array(
 		'_' => 'Privacy',	// TODO
 		'retrieve_extension_list' => 'Retrieve extension list',	// TODO

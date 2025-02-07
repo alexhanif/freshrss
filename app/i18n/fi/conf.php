@@ -99,6 +99,7 @@ return array(
 			'previous' => 'Edellinen',
 		),
 	),
+	'mark_read_button' => '“merkitse kaikki luetuiksi” button',	// DIRTY
 	'privacy' => array(
 		'_' => 'Tietosuoja',
 		'retrieve_extension_list' => 'Nouda laajennusluettelo',

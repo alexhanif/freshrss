@@ -99,6 +99,7 @@ return array(
 			'previous' => 'Précédent',
 		),
 	),
+	'mark_read_button' => '« Marquer tout comme lu » button',	// DIRTY
 	'privacy' => array(
 		'_' => 'Vie privée',
 		'retrieve_extension_list' => 'Récupération de la liste des extensions',

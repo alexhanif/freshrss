@@ -99,6 +99,7 @@ return array(
 			'previous' => 'Vorige',
 		),
 	),
+	'mark_read_button' => '„markeer alles als gelezen” button',	// DIRTY
 	'privacy' => array(
 		'_' => 'Privacy',	// TODO
 		'retrieve_extension_list' => 'Retrieve extension list',	// TODO

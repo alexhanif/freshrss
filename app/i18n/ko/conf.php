@@ -99,6 +99,7 @@ return array(
 			'previous' => '이전',
 		),
 	),
+	'mark_read_button' => '“모두 읽음으로 표시” button',	// DIRTY
 	'privacy' => array(
 		'_' => 'Privacy',	// TODO
 		'retrieve_extension_list' => 'Retrieve extension list',	// TODO

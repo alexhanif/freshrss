@@ -99,6 +99,7 @@ return array(
 			'previous' => 'Predošlý',
 		),
 	),
+	'mark_read_button' => '“Označiť všetko ako prečítané” button',	// DIRTY
 	'privacy' => array(
 		'_' => 'Privacy',	// TODO
 		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
