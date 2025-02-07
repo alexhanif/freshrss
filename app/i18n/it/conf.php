@@ -99,7 +99,12 @@ return array(
 			'previous' => 'Precedente',
 		),
 	),
-	'mark_read_button' => '“segna tutto come letto” button',	// DIRTY
+	'mark_read_button' => array(
+		'_' => '“segna tutto come letto” button',	// DIRTY
+		'big' => 'Big',	// TODO
+		'none' => 'None',	// TODO
+		'small' => 'Small',	// TODO
+	),
 	'privacy' => array(
 		'_' => 'Privacy',	// IGNORE
 		'retrieve_extension_list' => 'Recupero dell’elenco delle estensioni',
