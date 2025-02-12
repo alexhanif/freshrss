@@ -33,8 +33,8 @@ return array(
 		'information' => 'Informações',
 		'open' => 'Open category',	// TODO
 		'opml_url' => 'URL de OPML',
-		'position' => 'Posição de exibição',
-		'position_help' => 'Para controlar a ordem de exibição',
+		'position' => 'Posição de visualização',
+		'position_help' => 'Para controlar a ordem de visualização',
 		'title' => 'Título',
 	),
 	'feed' => array(
@@ -48,7 +48,7 @@ return array(
 			'help' => 'Permite acesso a feeds RSS protegidos por HTTP',
 			'http' => 'Autenticação HTTP',
 			'password' => 'Senha HTTP',
-			'username' => 'Usuário HTTP',
+			'username' => 'Utilizador HTTP',
 		),
 		'clear_cache' => 'Sempre limpar o cache',
 		'content_action' => array(
@@ -58,7 +58,7 @@ return array(
 			'replace' => 'Substituir o conteúdo existente',
 		),
 		'content_retrieval' => 'Content retrieval',	// TODO
-		'css_cookie' => 'Usar cookies ao buscar pelo conteúdo de artigos',
+		'css_cookie' => 'Usar cookies ao pesquisa pelo conteúdo de artigos',
 		'css_cookie_help' => 'Exemplo: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => 'Retorna RSS feeds truncados (atenção, requer mais tempo!)',
 		'css_path' => 'Caminho do CSS do artigo no site original',
@@ -68,15 +68,15 @@ return array(
 		),
 		'description' => 'Descrição',
 		'empty' => 'Este feed está vazio. Por favor verifique ele ainda é mantido.',
-		'error' => 'Este feed encontra-se com problema. Por favor verifique se ele ainda está disponível.',	// DIRTY
+		'error' => 'Este feed encontra-se com problema. Por favor verifique que ainda está disponível.',	
 		'export-as-opml' => array(
 			'download' => 'Download',	// IGNORE
-			'help' => 'Arquivo XML (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// DIRTY
+			'help' => 'Arquivo XML (. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">Ver documentação</a>)',
 			'label' => 'Exportar como OPML',
 		),
 		'filteractions' => array(
 			'_' => 'Ações do filtro',
-			'help' => 'Escreva um filtro de pesquisa por linha. Operators <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">see documentation</a>.',	// DIRTY
+			'help' => 'Escreva um filtro de pesquisa por linha. <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">Ver documentação</a>.',	
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
@@ -95,7 +95,7 @@ return array(
 				'_' => 'HTML + XPath (Web scraping)',	// IGNORE
 				'feed_title' => array(
 					'_' => 'Título do Feed',
-					'help' => 'Exemplo: <code>//title</code> ou uma string estática: <code>"Meu feed customizado"</code>',
+					'help' => 'Exemplo: <code>//title</code> ou uma string estática: <code>"Meu feed personalizado"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn>é uma linguagem de consulta padrão para usuários avançados e que o FreshRSS suporta para habilitar o Web scraping.',
 				'item' => array(
@@ -142,12 +142,12 @@ return array(
 				'_' => 'JSON (notação de ponto)',
 				'feed_title' => array(
 					'_' => 'título do feed',
-					'help' => 'Exemplo: <code>meta.title</code> ou uma string estática: <code>"Meu feed customizado"</code>',
+					'help' => 'Exemplo: <code>meta.title</code> ou uma string estática: <code>"Meu feed personalizado"</code>',
 				),
 				'help' => 'Um JSON na notação de ponto usa pontos entre os objetos e colchetes para arrays (e.g. <code>data.items[0].title</code>)',
 				'item' => array(
 					'_' => 'encontrando novidades <strong>itens</strong><br /><small>(mais importante)</small>',
-					'help' => 'Caminho do JSON para o array contendo os itens, e.g. <code>$</code> or <code>newsItems</code>',	// DIRTY
+					'help' => 'Caminho do JSON para o array contendo os itens, e.g. <code>$</code> or <code>Novos Items</code>',
 				),
 				'item_author' => 'autor do item',
 				'item_categories' => 'tags dos itens',
@@ -160,7 +160,7 @@ return array(
 					'help' => 'Exemplo: <code>image</code>',
 				),
 				'item_timeFormat' => array(
-					'_' => 'Formato de data/hora customizado',
+					'_' => 'Formato de data/hora personalizado',
 					'help' => 'Opcional. Um formato suportado por <a href="https://php.net/datetime.createfromformat" target="_blank"><code>DateTime::createFromFormat()</code></a> assim como <code>d-m-Y H:i:s</code>',
 				),
 				'item_timestamp' => array(
@@ -188,7 +188,7 @@ return array(
 			'title' => 'Manutenção',
 		),
 		'max_http_redir' => 'Quantidade máxima de redirecionamentos HTTP',
-		'max_http_redir_help' => 'Defina como 0 ou deixe em branco para desabilitar, -1 para redirecionamentos ilimitados',
+		'max_http_redir_help' => 'Defina como 0 ou deixe em branco para desactivar, -1 para redirecionamentos ilimitados',
 		'method' => array(
 			'_' => 'Método HTTP',
 		),
@@ -225,7 +225,7 @@ return array(
 		),
 		'ssl_verify' => 'Verificar segurança SSL',
 		'stats' => 'Estatísticas',
-		'think_to_add' => 'Você deve adicionar alguns feeds.',
+		'think_to_add' => 'Tem adicionar alguns feeds.',
 		'timeout' => 'Timeout em segundos',
 		'title' => 'Título',
 		'title_add' => 'Adicionar o RSS feed',
@@ -241,7 +241,7 @@ return array(
 			'sha1:link_published_title_content' => 'Link + Date + Title + Content',	// TODO
 		),
 		'url' => 'URL do Feed',
-		'useragent' => 'Defina um usuário para buscar este feed',
+		'useragent' => 'Defina um utilizador para pesquisar este feed',
 		'useragent_help' => 'Exemplo: <kbd>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:86.0)</kbd>',
 		'validator' => 'Verifique a validade do feed',
 		'website' => 'URL do site',
@@ -265,13 +265,13 @@ return array(
 	'menu' => array(
 		'add' => 'Adicionar um feed ou categoria',
 		'import_export' => 'Importar / exportar',
-		'label_management' => 'Gerenciar etiquetas',
+		'label_management' => 'Gerir etiquetas',
 		'stats' => array(
 			'idle' => 'Feeds inativos',
 			'main' => 'Estatísticas principais',
 			'repartition' => 'Repartição de artigos',
 		),
-		'subscription_management' => 'Gerenciamento de inscrições',
+		'subscription_management' => 'Gerir de inscrições',
 		'subscription_tools' => 'Ferramentas de inscrição',
 	),
 	'tag' => array(
@@ -281,15 +281,15 @@ return array(
 		'old_name' => 'Nome antigo',
 	),
 	'title' => array(
-		'_' => 'Gerenciamento de inscrições',
+		'_' => 'Gerir inscrições',
 		'add' => 'Adicionar um feed ou categoria',
 		'add_category' => 'Adicionar uma categoria',
 		'add_dynamic_opml' => 'Adicionar OPML dinâmico',
 		'add_feed' => 'Adicionar um feed',
 		'add_label' => 'Adicionar uma etiqueta',
 		'add_opml_category' => 'OPML category name',	// TODO
-		'delete_label' => 'Deletar uma etiqueta',
-		'feed_management' => 'Gerenciamento dos RSS feeds',
+		'delete_label' => 'Apagar uma etiqueta',
+		'feed_management' => 'Gerir dos RSS feeds',
 		'rename_label' => 'Renomear uma etiqueta',
 		'subscription_tools' => 'Ferramentas de inscrição',
 	),

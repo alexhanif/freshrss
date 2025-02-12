@@ -24,7 +24,7 @@ return array(
 				'version_php' => 'PHP version',	// TODO
 			),
 		),
-		'bugs_reports' => 'Reportar Bugs',
+		'bugs_reports' => 'Reportar Erros',
 		'credits' => 'Créditos',
 		'credits_content' => 'Alguns elementos de design vieram do <a href="http://twitter.github.io/bootstrap/">Bootstrap</a> Embora FreshRRS não utiliza este framework. <a href="https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic">Ícones</a> vieram do <a href="https://www.gnome.org/">GNOME project</a>. <em>Open Sans</em> font police foi criada por <a href="https://fonts.google.com/specimen/Open+Sans">Steve Matteson</a>. FreshRSS é baseado no <a href="https://framagit.org/marienfressinaud/MINZ">Minz</a>, um framework PHP.',
 		'documentation' => 'Documentação',
@@ -71,11 +71,11 @@ return array(
 		'non-starred' => 'Mostrar todos, exceto favoritos',
 		'normal_view' => 'visualização normal',
 		'older_first' => 'Antigos primeiro',
-		'queries' => 'Queries do usuário',
+		'queries' => 'Queries do utilizador',
 		'read' => 'Mostrar apenas lidos',
 		'reader_view' => 'Visualização de leitura',
 		'rss_view' => 'Feed RSS',
-		'search_short' => 'Buscar',
+		'search_short' => 'Pesquisar',
 		'sort' => array(
 			'_' => 'Sorting criteria',	// TODO
 			'date_asc' => 'Publication date 1→9',	// TODO
@@ -90,10 +90,10 @@ return array(
 		),
 		'starred' => 'Mostrar apenas os favoritos',
 		'stats' => 'Estatísticas',
-		'subscription' => 'Gerenciamento de inscrições',
+		'subscription' => 'Gestão de inscrições',
 		'unread' => 'Mostrar apenas os não lidos',
 	),
-	'share' => 'Compartilhar',
+	'share' => 'Partilhar',
 	'tag' => array(
 		'related' => 'Tags relacionadas',
 	),

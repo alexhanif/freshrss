@@ -19,17 +19,17 @@ return array(
 		'reinstall' => 'Reinstale o FreshRSS',
 	),
 	'bdd' => array(
-		'_' => 'Banco de dados',
+		'_' => 'base de dados',
 		'conf' => array(
-			'_' => 'Configuração do banco de dados',
-			'ko' => 'Verifique as informações do seu banco de dados.',
-			'ok' => 'Configurações do banco de dados foram salvas.',
+			'_' => 'Configuração da base de dados',
+			'ko' => 'Verifique as informações do seu base de dados.',
+			'ok' => 'Configurações do base de dados foram salvas.',
 		),
 		'host' => 'Host',	// IGNORE
-		'password' => 'Senha do banco de dados',
+		'password' => 'Senha do base de dados',
 		'prefix' => 'Prefixo da tabela',
-		'type' => 'Tipo do banco de dados',
-		'username' => 'Usuário do banco de dados',
+		'type' => 'Tipo do base de dados',
+		'username' => 'Utilizador do base de dados',
 	),
 	'check' => array(
 		'_' => 'Verificações',
@@ -40,11 +40,11 @@ return array(
 		),
 		'ctype' => array(
 			'nok' => 'Não foi possível encontrar uma biblioteca necessária para verificação do tipo de caractere (php-ctype).',
-			'ok' => 'Você tem a biblioteca necessária para verificação do tipo de caractere (ctype).',
+			'ok' => 'Tem a biblioteca necessária para verificação do tipo de caractere (ctype).',
 		),
 		'curl' => array(
 			'nok' => 'Não foi possível encontrar a biblioteca cURL (php-curl).',
-			'ok' => 'Você tem a biblioteca cURL.',
+			'ok' => 'Tem a biblioteca cURL.',
 		),
 		'data' => array(
 			'nok' => 'Verifique as permissões no diretório <em>%s</em>. O servidor HTTP deve ter direitos para escrever dentro desta pasta.',
@@ -52,7 +52,7 @@ return array(
 		),
 		'dom' => array(
 			'nok' => 'Não foi possível encontrar uma biblioteca necessária para navegar pelo DOM (php-xml).',
-			'ok' => 'Você tem a biblioteca necessária para navegar pelo DOM.',
+			'ok' => 'Tem a biblioteca necessária para navegar pelo DOM.',
 		),
 		'favicons' => array(
 			'nok' => 'Verifique as permissões no diretório <em>%s</em>. O servidor HTTP deve ter direitos para escrever dentro desta pasta.',
@@ -60,27 +60,27 @@ return array(
 		),
 		'fileinfo' => array(
 			'nok' => 'Não foi possível encontrar a biblioteca fileinfo do PHP (fileinfo).',
-			'ok' => 'Você tem a biblioteca fileinfo.',
+			'ok' => 'Tem a biblioteca fileinfo.',
 		),
 		'json' => array(
 			'nok' => 'Não foi possível encontrar JSON (php-json).',
-			'ok' => 'Você tem a extensão JSON.',
+			'ok' => 'Tem a extensão JSON.',
 		),
 		'mbstring' => array(
 			'nok' => 'Não foi possível encontrar a biblioteca recomendada para o Unicode (mbstring).',
-			'ok' => 'Você tem a biblioteca recomendada para o Unicode (mbstring).',
+			'ok' => 'Tem a biblioteca recomendada para o Unicode (mbstring).',
 		),
 		'pcre' => array(
 			'nok' => 'Não foi possível encontrar uma biblioteca necessário para expressões regulares (php-pcre).',
-			'ok' => 'Você tem a biblioteca necessária para expressões regulares (php-pcre).',
+			'ok' => 'Tem a biblioteca necessária para expressões regulares (php-pcre).',
 		),
 		'pdo' => array(
 			'nok' => 'Não foi encontrado o PDO ou um dos drivers suportados (pdo_mysql, pdo_sqlite, pdo_pgsql).',
-			'ok' => 'Você tem o PDO e ao menos um dos drivers suportados (pdo_mysql, pdo_sqlite, pdo_pgsql).',
+			'ok' => 'Tem o PDO e ao menos um dos drivers suportados (pdo_mysql, pdo_sqlite, pdo_pgsql).',
 		),
 		'php' => array(
-			'nok' => 'Sua versão do PHP é %s mas FreshRSS requer ao menos a versão %s.',
-			'ok' => 'Sua versão do PHP é %s, que é compatível com o FreshRSS.',
+			'nok' => 'A versão do PHP é %s mas FreshRSS requer ao menos a versão %s.',
+			'ok' => 'A versão do PHP é %s, que é compatível com o FreshRSS.',
 		),
 		'reload' => 'Verifique novamente',
 		'tmp' => array(
@@ -94,7 +94,7 @@ return array(
 		),
 		'xml' => array(
 			'nok' => 'Não foi possível encontrar a biblioteca necessária para parse o XML.',
-			'ok' => 'Você tem a biblioteca necessária para parse o XML.',
+			'ok' => 'Tem a biblioteca necessária para parse o XML.',
 		),
 	),
 	'conf' => array(
@@ -103,20 +103,20 @@ return array(
 	),
 	'congratulations' => 'Parabéns!',
 	'default_user' => array(
-		'_' => 'Usuário do usuário padrão',
+		'_' => 'Utilizador padrão',
 		'max_char' => 'máximo de 16 caracteres alfanuméricos',
 	),
 	'fix_errors_before' => 'Por favor solucione os erros antes de ir para o próximo passo.',
 	'javascript_is_better' => 'O FreshRSS é mais agradável com o JavaScript ativo',
 	'js' => array(
-		'confirm_reinstall' => 'Você irá perder suas configurações anteriores ao reinstalar o FreshRSS. Você está certo que deseja continuar?',
+		'confirm_reinstall' => 'Vai perder suas configurações anteriores ao reinstalar o FreshRSS. Confirma que pretende continuar?',
 	),
 	'language' => array(
 		'_' => 'Idioma',
 		'choose' => 'Escolha o idioma para o FreshRSS',
 		'defined' => 'O idioma foi definido.',
 	),
-	'missing_applied_migrations' => 'Algo de errado ocorreu; você tem que criar um arquivo vazio <em>%s</em> manualmente.',
+	'missing_applied_migrations' => 'Algo de errado ocorreu; Tem que criar um arquivo vazio <em>%s</em> manualmente.',
 	'ok' => 'O processo de instalação foi um sucesso.',
 	'session' => array(
 		'nok' => 'O servidor parece ter sido configurado incorretamente para os cookies necessários para sessões PHP!',

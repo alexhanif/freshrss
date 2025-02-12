@@ -12,25 +12,25 @@
 
 return array(
 	'access' => array(
-		'denied' => 'Você não tem permissão para acessar esta página',
-		'not_found' => 'Você está buscando por uma página que não existe',
+		'denied' => ' não tem permissão para acessar esta página',
+		'not_found' => ' está a pesquisar por uma página que não existe',
 	),
 	'admin' => array(
 		'optimization_complete' => 'Otimização Completa',
 	),
 	'api' => array(
 		'password' => array(
-			'failed' => 'Sua senha não pode ser modificada',
-			'updated' => 'Sua senha foi alterada com sucesso',
+			'failed' => 'A senha não pode ser modificada',
+			'updated' => 'A senha foi alterada com sucesso',
 		),
 	),
 	'auth' => array(
 		'login' => array(
 			'invalid' => 'Login está incorreto',
-			'success' => 'Você está conectado',
+			'success' => ' está ligado',
 		),
 		'logout' => array(
-			'success' => 'Você está desconectado',
+			'success' => ' está desligado',
 		),
 	),
 	'conf' => array(
@@ -40,25 +40,25 @@ return array(
 		'updated' => 'Configuração foi atualizada',
 	),
 	'extensions' => array(
-		'already_enabled' => '%s já está habilitado',
+		'already_enabled' => '%s já está activado',
 		'cannot_remove' => '%s não pode ser removido',
 		'disable' => array(
-			'ko' => '%s não pode ser desabilitado. <a href="%s">verifique os logs do FreshRSS</a> para detalhes.',
-			'ok' => '%s agora está desabilitado',
+			'ko' => '%s não pode ser desactivado. <a href="%s">verifique os logs do FreshRSS</a> para detalhes.',
+			'ok' => '%s agora está desactivado',
 		),
 		'enable' => array(
-			'ko' => '%s não pode ser habilitado. <a href="%s">verifique os logs do FreshRSS</a> para detalhes.',
-			'ok' => '%s agora está habilitado',
+			'ko' => '%s não pode ser activado. <a href="%s">verifique os logs do FreshRSS</a> para detalhes.',
+			'ok' => '%s agora está activado',
 		),
-		'no_access' => 'Você não tem acesso ao %s',
+		'no_access' => ' não tem acesso ao %s',
 		'not_enabled' => '%s não está habilitado',
 		'not_found' => '%s não existe',
 		'removed' => '%s removido',
 	),
 	'import_export' => array(
 		'export_no_zip_extension' => 'extensão ZIP não está presente em seu servidor. Por favor tente exportar os arquivos um por vez.',
-		'feeds_imported' => 'Seus feeds foram importados e serão atualizados agora / Your feeds have been imported. If you are done importing, you can now click the <i>Update feeds</i> button.',	// DIRTY
-		'feeds_imported_with_errors' => 'Seus feeds foram importados, mas alguns erros ocorreram / Your feeds have been imported, but some errors occurred. If you are done importing, you can now click the <i>Update feeds</i> button.',	// DIRTY
+		'feeds_imported' => 'Seus feeds foram importados e serão atualizados pode clicar no butão<i>atualizar feeds</i>.',	
+		'feeds_imported_with_errors' => 'Seus feeds foram importados, mas alguns erros ocorreram  Carregue no butão <i>atualizar feeds</i>.',	
 		'file_cannot_be_uploaded' => 'Arquivo não pôde ser enviado',
 		'no_zip_extension' => 'extensão ZIP não está presente em seu servidor.',
 		'zip_error' => 'Um erro ocorreu durante a importação do arquivo ZIP.',
@@ -68,51 +68,51 @@ return array(
 		'updated' => 'Seu perfil foi editado com sucesso',
 	),
 	'sub' => array(
-		'actualize' => 'Atualizando',
+		'actualize' => 'A atualizar…',
 		'articles' => array(
 			'marked_read' => 'Os artigos selecionados foram marcados como lidos.',
 			'marked_unread' => 'Os artigos foram marcados como não lidos',
 		),
 		'category' => array(
 			'created' => 'Categoria %s foi criada.',
-			'deleted' => 'Categoria foi deletada.',
-			'emptied' => 'Categoria foi esvaziada',
+			'deleted' => 'Categoria foi apagada.',
+			'emptied' => 'Categoria foi limpa',
 			'error' => 'Categoria não pode ser atualizada',
 			'name_exists' => 'Este nome de categoria já existe.',
-			'no_id' => 'Você precisa especificar um id para a categoria.',
+			'no_id' => ' precisa especificar um id para a categoria.',
 			'no_name' => 'Nome da categoria não pode ser vazio.',
-			'not_delete_default' => 'Você não pode deletar uma categoria vazia!',
+			'not_delete_default' => ' não pode apagar uma categoria vazia!',
 			'not_exist' => 'A categoria não existe!',
-			'over_max' => 'Você atingiu seu limite de categorias (%d)',
+			'over_max' => ' atingiu seu limite de categorias (%d)',
 			'updated' => 'Categoria foi atualizada.',
 		),
 		'feed' => array(
 			'actualized' => '<em>%s</em> foi atualizado',
 			'actualizeds' => 'Os feeds RSS foram atualizados',
 			'added' => 'O feed RSS <em>%s</em> foi adicionado',
-			'already_subscribed' => 'Você já está inscrito no <em>%s</em>',
+			'already_subscribed' => ' já está inscrito no <em>%s</em>',
 			'cache_cleared' => 'O cache do feed <em>%s</em> foi limpo',
-			'deleted' => 'o feed foi deletado',
+			'deleted' => 'o feed foi apagado',
 			'error' => 'O feed não pode ser atualizado',
-			'internal_problem' => 'O feed RSS não pôde ser adicionado. <a href="%s">Verifique os logs do FreshRSS</a> para detalhes. You can try force adding by appending <code>#force_feed</code> to the URL.',	// DIRTY
+			'internal_problem' => 'O feed RSS não pôde ser adicionado. <a href="%s">Verifique os logs do FreshRSS</a> para detalhes. Pode forçar a atualização no link  <code>#force_feed</code> .',	
 			'invalid_url' => 'URL <em>%s</em> é inválida',
 			'n_actualized' => '%d feeds foram atualizados',
-			'n_entries_deleted' => '%d artigos foram deletados',
+			'n_entries_deleted' => '%d artigos foram apagados',
 			'no_refresh' => 'Não há feed para atualizar…',
 			'not_added' => '<em>%s</em> não pode ser atualizado',
 			'not_found' => 'Não foi possível encontrar o feed',
-			'over_max' => 'Você atingiu seu limite de feeds (%d)',
+			'over_max' => ' atingiu seu limite de feeds (%d)',
 			'reloaded' => 'O feed <em>%s</em> foi recarregado',
 			'selector_preview' => array(
 				'http_error' => 'Falha ao carregar o conteúdo do site.',
-				'no_entries' => 'Não há nenhuma entrada nesse feed. Você precisa de pelo menos um artigo para criar uma pré-visualização',
+				'no_entries' => 'Não há nenhuma entrada nesse feed.  precisa de pelo menos um artigo para criar uma pré-visualização',
 				'no_feed' => 'Erro interno (nenhum feed para verificar).',
 				'no_result' => 'O seletor não teve correspondência. Por isso foi exibido o texto do feed original.',
-				'selector_empty' => 'O seletor está vazio. Você precisa definir um para criar uma pré-visualização.',
+				'selector_empty' => 'O seletor está vazio.  precisa definir um para criar uma pré-visualização.',
 			),
 			'updated' => 'Os feeds foram atualizados',
 		),
-		'purge_completed' => 'Limpeza completa (%d artigos deletados)',
+		'purge_completed' => 'Limpeza completa (%d artigos apagados)',
 	),
 	'tag' => array(
 		'created' => 'A Tag “%s” foi criada.',
@@ -131,16 +131,16 @@ return array(
 	),
 	'user' => array(
 		'created' => array(
-			'_' => 'Usuário %s foi criado',
-			'error' => 'Usuário %s não pode ser criado',
+			'_' => 'Utilizador %s foi criado',
+			'error' => 'Utilizador %s não pode ser criado',
 		),
 		'deleted' => array(
-			'_' => 'Usuário %s foi deletado',
-			'error' => 'Usuário %s não pode ser deletado',
+			'_' => 'Utilizador %s foi deletado',
+			'error' => 'Utilizador %s não pode ser deletado',
 		),
 		'updated' => array(
-			'_' => 'O usuário %s foi atualizado com sucesso',
-			'error' => 'O usuário %s não foi atualizado',
+			'_' => 'O Utilizador %s foi atualizado com sucesso',
+			'error' => 'O Utilizador %s não foi atualizado',
 		),
 	),
 );

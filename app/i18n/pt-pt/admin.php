@@ -12,15 +12,15 @@
 
 return array(
 	'auth' => array(
-		'allow_anonymous' => 'Permitir a leitura anônima dos artigos pelo usuário padrão (%s)',
+		'allow_anonymous' => 'Permitir a leitura anônima dos artigos pelo utilizador padrão (%s)',
 		'allow_anonymous_refresh' => 'Permitir atualização anônima dos artigos',
-		'api_enabled' => 'Permitir acesso à <abbr>API</abbr> <small>(Necessáiro para aplicativos móveis and sharing user queries)</small>',	// DIRTY
+		'api_enabled' => 'Permitir acesso à <abbr>API</abbr> <small>(É preciso para aplicações móveis e partilha pesquisas personalizadas)</small>',
 		'form' => 'Formulário Web(tradicional, Necessita de JavaScript)',
 		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => 'Nenhum (Perigoso)',
 		'title' => 'Autenticação',
 		'token' => 'Token de autenticação principal',
-		'token_help' => 'Permite acesso a todos as saídas RSS do usuário bem como atualização dos feeds sem autenticação:',
+		'token_help' => 'Permite acesso a todos as saídas RSS do utilizador bem como atualização dos feeds sem autenticação:',
 		'type' => 'Método de autenticação',
 		'unsafe_autologin' => 'Permitir login automático inseguro usando o seguinte formato: ',
 	),
@@ -30,20 +30,20 @@ return array(
 			'ok' => 'Permissões no diretório cache estão corretos.',
 		),
 		'categories' => array(
-			'nok' => 'Tabela Category está configurada incorretamente.',
-			'ok' => 'Tabela Category está ok.',
+			'nok' => 'Tabela Categoria está configurada incorretamente.',
+			'ok' => 'Tabela Categoria está ok.',
 		),
 		'connection' => array(
-			'nok' => 'Conexão ao banco de dados não pode ser estabelecida.',
-			'ok' => 'Conexão ao banco de dados está ok.',
+			'nok' => 'Ligação ao banco de dados não pode ser estabelecida.',
+			'ok' => 'Ligação ao banco de dados está correcta.',
 		),
 		'ctype' => array(
 			'nok' => 'Não foi possível encontrar uma biblioteca necessária para verificação do tipo de caractere (php-ctype).',
-			'ok' => 'Você tem a biblioteca necessária para verificação do tipo de caractere (ctype).',
+			'ok' => 'A biblioteca necessária para verificação do tipo de caractere (ctype).Foi Encontrada',
 		),
 		'curl' => array(
 			'nok' => 'Não foi possível encontrar a biblioteca cURL (php-curl).',
-			'ok' => 'Você tem a biblioteca cURL.',
+			'ok' => 'Tem a biblioteca cURL.',
 		),
 		'data' => array(
 			'nok' => 'Verifique as permissões no diretório <em>./data</em>. O servidor HTTP deve ter direitos para escrever dentro desta pasta.',
@@ -52,11 +52,11 @@ return array(
 		'database' => 'Instalação do banco de dados',
 		'dom' => array(
 			'nok' => 'Não foi possível encontrar uma biblioteca necessária para navegar pelo DOM (php-xml).',
-			'ok' => 'Você tem a biblioteca necessária para navegar pelo DOM.',
+			'ok' => 'Tem a biblioteca necessária para navegar pelo DOM.',
 		),
 		'entries' => array(
-			'nok' => 'Tabela Entry está configurada incorretamente.',
-			'ok' => 'Tabela Entry está ok.',
+			'nok' => 'Tabela entradas está configurada incorretamente.',
+			'ok' => 'Tabela entradas está correcta.',
 		),
 		'favicons' => array(
 			'nok' => 'Verifique as permissões no diretório <em>./data/favicons</em>. O servidor HTTP deve ter direitos para escrever dentro desta pasta.',
@@ -68,33 +68,33 @@ return array(
 		),
 		'fileinfo' => array(
 			'nok' => 'Não foi possível encontrar a biblioteca fileinfo do PHP (fileinfo).',
-			'ok' => 'Você tem a biblioteca fileinfo.',
+			'ok' => 'Tem a biblioteca fileinfo.',
 		),
 		'files' => 'Instalação de arquivos',
 		'json' => array(
 			'nok' => 'Não foi possível encontrar JSON (php-json).',
-			'ok' => 'Você tem a extensão JSON.',
+			'ok' => 'Tem a extensão JSON.',
 		),
 		'mbstring' => array(
 			'nok' => 'Não foi possível encontrar a biblioteca recomendada para Unicode (mbstring).',
-			'ok' => 'Você tem a biblioteca recomendada para Unicode (mbstring).',
+			'ok' => 'Tem a biblioteca recomendada para Unicode (mbstring).',
 		),
 		'pcre' => array(
 			'nok' => 'Não foi possível encontrar uma biblioteca necessário para expressões regulares (php-pcre).',
-			'ok' => 'Você tem a biblioteca necessária para expressões regulares (php-pcre).',
+			'ok' => 'Tem a biblioteca necessária para expressões regulares (php-pcre).',
 		),
 		'pdo' => array(
 			'nok' => 'Não foi encontrado o PDO ou um dos drivers suportados (pdo_mysql, pdo_sqlite, pdo_pgsql).',
-			'ok' => 'Você tem o PDO e ao menos um dos drivers suportados (pdo_mysql, pdo_sqlite, pdo_pgsql).',
+			'ok' => 'Tem o PDO e ao menos um dos drivers suportados (pdo_mysql, pdo_sqlite, pdo_pgsql).',
 		),
 		'php' => array(
 			'_' => 'Instação do PHP',
-			'nok' => 'Sua versão do PHP é %s mas FreshRSS requer ao menos a versão %s.',
-			'ok' => 'Sua versão do PHP é %s, que é compatível com o FreshRSS.',
+			'nok' => 'A versão do PHP é %s mas FreshRSS requer ao menos a versão %s.',
+			'ok' => 'A versão do PHP é %s, que é compatível com o FreshRSS.',
 		),
 		'tables' => array(
 			'nok' => 'Há uma ou mais tabelas inexistentes no banco de dados.',
-			'ok' => 'As tabelas apropriadas existem no banco de dados.',
+			'ok' => 'As tabelas apropriadas existem no base de dados.',
 		),
 		'title' => 'Verificação de instalação',
 		'tokens' => array(
@@ -107,15 +107,15 @@ return array(
 		),
 		'zip' => array(
 			'nok' => 'Não foi possível localizar a extensão ZIP (php-zip).',
-			'ok' => 'Você tem a extensão ZIP.',
+			'ok' => 'Tem a extensão ZIP.',
 		),
 	),
 	'extensions' => array(
 		'author' => 'Autor',
 		'community' => 'Extensões da comunidade disponíveis',
 		'description' => 'Descrição',
-		'disabled' => 'Desabilitado',
-		'empty_list' => 'Não há extensões instaladas',
+		'disabled' => 'Desactivado',
+		'empty_list' => 'Não existem extensões instaladas',
 		'empty_list_help' => 'Check the logs to determine the reason behind the empty extension list.',	// TODO
 		'enabled' => 'Habilitada',
 		'latest' => 'Instalado',
@@ -123,11 +123,11 @@ return array(
 		'no_configure_view' => 'Esta extensão não pode ser configurada.',
 		'system' => array(
 			'_' => 'Extensões do sistema',
-			'no_rights' => 'Extensões do sistema (Você não tem direitos para isto)',
+			'no_rights' => 'Extensões do sistema (Não tem permissões para isto)',
 		),
 		'title' => 'Extensões',
 		'update' => 'Atualização disponível',
-		'user' => 'Extensões do usuário',
+		'user' => 'Extensões do utilizador',
 		'version' => 'Versão',
 	),
 	'stats' => array(
@@ -171,8 +171,8 @@ return array(
 		),
 		'force_email_validation' => 'Força verificação do endereço de email',
 		'instance-name' => 'Nome da instância',
-		'max-categories' => 'Limite de categorias por usuário',
-		'max-feeds' => 'Limite de Feeds por usuário',
+		'max-categories' => 'Limite de categorias por utilizador',
+		'max-feeds' => 'Limite de Feeds por utilizador',
 		'registration' => array(
 			'number' => 'Máximo número de contas',
 			'select' => array(
@@ -185,9 +185,9 @@ return array(
 			),
 			'status' => array(
 				'disabled' => 'Formulário desabilitado',
-				'enabled' => 'Formulário habilitado',
+				'enabled' => 'Formulário activado',
 			),
-			'title' => 'Formulário de Cadastro de Usuário',
+			'title' => 'Formulário de registo de utilizador',
 		),
 		'sensitive-parameter' => 'Parâmetro sensível. Edite manualmente em <kbd>./data/config.php</kbd>',
 		'tos' => array(
@@ -202,13 +202,13 @@ return array(
 	'update' => array(
 		'_' => 'Atualização do sistema',
 		'apply' => 'Aplicar',
-		'changelog' => 'Registro de alterações',
-		'check' => 'Buscar por novas atualizações',
+		'changelog' => 'Registo de alterações',
+		'check' => 'Pesquisar por novas atualizações',
 		'copiedFromURL' => 'update.php copiado de %s para ./data',
-		'current_version' => 'Sua versão',
+		'current_version' => 'Versão',
 		'last' => 'Última verificação',
-		'loading' => 'Atualizando…',
-		'none' => 'Nenhuma atualização para se aplicar',
+		'loading' => 'A fazer atualização…',
+		'none' => 'Nenhuma atualização disponivel',
 		'releaseChannel' => array(
 			'_' => 'Canal de Release',
 			'edge' => 'Release contínua (“edge”)',
@@ -220,21 +220,21 @@ return array(
 	'user' => array(
 		'admin' => 'Administrador',
 		'article_count' => 'Artigos',
-		'back_to_manage' => '← Voltar para à lista de usuários',
-		'create' => 'Criar novo usuário',
+		'back_to_manage' => '← Voltar para à lista de utilizadores',
+		'create' => 'Criar novo utilizador',
 		'database_size' => 'Tamanho do banco de dados',
 		'email' => 'Endereço de email',
-		'enabled' => 'Habilitado',
+		'enabled' => 'Activado',
 		'feed_count' => 'Feeds',	// IGNORE
 		'is_admin' => 'É administrador',
 		'language' => 'Idioma',
-		'last_user_activity' => 'Última Atividade do Usuário',
-		'list' => 'Lista de usuários',
+		'last_user_activity' => 'Última Atividade do utilizador',
+		'list' => 'Lista de utilizadors',
 		'number' => 'Há %d conta criada',
 		'numbers' => 'Há %d contas criadas',
 		'password_form' => 'Senha<br /><small>(para o login pelo método do formulário)</small>',
 		'password_format' => 'Ao menos 7 caracteres',
-		'title' => 'Gerenciar usuários',
-		'username' => 'Usuário',
+		'title' => 'Gerir utilizadores',
+		'username' => 'utilizador',
 	),
 );
