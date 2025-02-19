@@ -16,4 +16,3 @@ parameters:
 			- app/Models/TagDAO.php
 			- app/Models/Themes.php
 			- app/Services/ImportService.php
-			- app/views/helpers/feed/update.phtml
