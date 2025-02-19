@@ -68,7 +68,7 @@ return array(
 		),
 		'description' => 'Descrição',
 		'empty' => 'Este feed está vazio. Por favor verifique ele ainda é mantido.',
-		'error' => 'Este feed encontra-se com problema. Por favor verifique que ainda está disponível.',	
+		'error' => 'Este feed encontra-se com problema. Por favor verifique que ainda está disponível.',
 		'export-as-opml' => array(
 			'download' => 'Download',	// IGNORE
 			'help' => 'Arquivo XML (. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">Ver documentação</a>)',
@@ -76,7 +76,7 @@ return array(
 		),
 		'filteractions' => array(
 			'_' => 'Ações do filtro',
-			'help' => 'Escreva um filtro de pesquisa por linha. <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">Ver documentação</a>.',	
+			'help' => 'Escreva um filtro de pesquisa por linha. <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">Ver documentação</a>.',
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO

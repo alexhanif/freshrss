@@ -170,7 +170,7 @@ return array(
 		'oc' => 'Occitan',	// IGNORE
 		'pl' => 'Polski',	// IGNORE
 		'pt-pt' => 'Português (Portugal)',	// IGNORE
-		'pt-br' => 'Português (Brasil)',	// IGNORE		
+		'pt-br' => 'Português (Brasil)',	// IGNORE
 		'ru' => 'Русский',	// IGNORE
 		'sk' => 'Slovenčina',	// IGNORE
 		'tr' => 'Türkçe',	// IGNORE
