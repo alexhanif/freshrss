@@ -65,7 +65,9 @@ class FreshRSS_Entry extends Minz_Model {
 		}
 
 		$dao['attributes'] = empty($dao['attributes']) ? [] : json_decode($dao['attributes'], true);
-		if (!is_array($dao['attributes'])) {
+		if (is_array($dao['attributes'])) {
+			$dao['attributes'] = array_filter($dao['attributes'], 'is_string', ARRAY_FILTER_USE_KEY);
+		} else {
 			$dao['attributes'] = [];
 		}
 
@@ -168,7 +170,7 @@ class FreshRSS_Entry extends Minz_Model {
 		return preg_match('/(?P<delim>[\'"])' . preg_quote($link, '/') . '(?P=delim)/', $html) == 1;
 	}
 
-	/** @param array{'url'?:string,'length'?:int,'medium'?:string,'type'?:string} $enclosure */
+	/** @param array{url?:string,length?:int,medium?:string,type?:string} $enclosure */
 	private static function enclosureIsImage(array $enclosure): bool {
 		$elink = $enclosure['url'] ?? '';
 		$length = $enclosure['length'] ?? 0;
@@ -230,15 +232,15 @@ HTML;
 				continue;
 			}
 			$credits = $enclosure['credit'] ?? '';
-			$description = nl2br($enclosure['description'] ?? '', true);
-			$length = $enclosure['length'] ?? 0;
+			$description = is_string($enclosure['description'] ?? null) ? nl2br($enclosure['description'], true) : '';
+			$length = $enclosure['length'] ?? null;
 			$medium = $enclosure['medium'] ?? '';
 			$mime = $enclosure['type'] ?? '';
 			$thumbnails = $enclosure['thumbnails'] ?? null;
 			if (!is_array($thumbnails)) {
 				$thumbnails = [];
 			}
-			$etitle = $enclosure['title'] ?? '';
+			$etitle = is_string($enclosure['title'] ?? null) ? $enclosure['title'] : '';
 
 			$content .= "\n";
 			$content .= '<figure class="enclosure">';
@@ -249,7 +251,7 @@ HTML;
 				}
 			}
 
-			if (self::enclosureIsImage($enclosure)) {
+			if (self::enclosureIsImage(['url' => $elink, 'length' => $length, 'medium' => $medium, 'type' => $mime])) {
 				$content .= '<p class="enclosure-content"><img src="' . $elink . '" alt="" title="' . $etitle . '" /></p>';
 			} elseif ($medium === 'audio' || str_starts_with($mime, 'audio')) {
 				$content .= '<p class="enclosure-content"><audio preload="none" src="' . $elink

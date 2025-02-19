@@ -10,7 +10,7 @@ parameters:
 	excludePaths:
 		analyse:
 			# TODO: Update files below and remove them from this list
-			- app/Models/Entry.php
+			- app/Models/Entry.php	# In progress
 			- app/Models/EntryDAO.php
 			- app/Models/FeedDAO.php
 			- app/Models/TagDAO.php
