@@ -16,7 +16,7 @@ return array(
 		'add' => '追加',
 		'back_to_rss_feeds' => '← RSSフィードに戻る',
 		'cancel' => 'キャンセル',
-		'close' => 'Close',	// TODO
+		'close' => '閉じる',
 		'create' => '作成',
 		'delete_all_feeds' => 'すべてのフィードを削除する',
 		'delete_errored_feeds' => 'エラーのフィードを削除する',
