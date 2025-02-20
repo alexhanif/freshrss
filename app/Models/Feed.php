@@ -886,14 +886,13 @@ class FreshRSS_Feed extends Minz_Model {
 
 				if ($item['title'] != '' || $item['content'] != '' || $item['link'] != '') {
 					// HTML-encoding/escaping of the relevant fields (all except 'content')
-					foreach (['author', 'guid', 'link', 'thumbnail', 'timestamp', 'tags', 'title'] as $key) {
+					foreach (['author', 'guid', 'link', 'thumbnail', 'timestamp', 'title'] as $key) {
 						if (isset($item[$key])) {
-							if (is_string($item[$key]) || is_array($item[$key])) {
-								$item[$key] = Minz_Helper::htmlspecialchars_utf8($item[$key]);
-							} else {
-								unset($item[$key]);
-							}
+							$item[$key] = htmlspecialchars($item[$key], ENT_COMPAT, 'UTF-8');
 						}
+					}
+					if (isset($item['tags'])) {
+						$item['tags'] = Minz_Helper::htmlspecialchars_utf8($item['tags']);
 					}
 					// CDATA protection
 					$item['content'] = str_replace(']]>', ']]&gt;', $item['content']);
