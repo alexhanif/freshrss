@@ -14,7 +14,7 @@ class Minz_Error {
 
 	/**
 	 * Launches an error
-	 * @param FreshRSS_HttpResponseCode $code error type
+	 * @param FreshRSS_HttpResponse $code error type
 	 * @param string|array<'error'|'warning'|'notice',array<string>> $logs error logs broken down by form
 	 *      > $logs['error']
 	 *      > $logs['warning']
@@ -23,7 +23,7 @@ class Minz_Error {
 	 * @throws Minz_ConfigurationException
 	 */
 	public static function error(
-		FreshRSS_HttpResponseCode $code = FreshRSS_HttpResponseCode::HTTP_404_NOT_FOUND,
+		FreshRSS_HttpResponse $code = FreshRSS_HttpResponse::HTTP_404_NOT_FOUND,
 		string|array $logs = [],
 		bool $redirect = true): void {
 		$logs = self::processLogs($logs);

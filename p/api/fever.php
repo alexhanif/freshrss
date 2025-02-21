@@ -22,7 +22,7 @@ FreshRSS_Context::initSystem();
 if (!FreshRSS_Context::hasSystemConf() || !FreshRSS_Context::systemConf()->api_enabled) {
 	Minz_Log::warning('Fever API: service unavailable!');
 	Minz_Log::debug('Fever API: serviceUnavailable() ' . debugInfo(), API_LOG);
-	header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_503_SERVICE_UNAVAILABLE));
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_503_SERVICE_UNAVAILABLE));
 	header('Content-Type: text/plain; charset=UTF-8');
 	die('Service Unavailable!');
 }
@@ -553,7 +553,7 @@ final class FeverAPI
 // refresh is not allowed yet, probably we find a way to support it later
 if (isset($_REQUEST['refresh'])) {
 	Minz_Log::warning('Fever API: Refresh items - notImplemented()', API_LOG);
-	header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_501_NOT_IMPLEMENTED));
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_501_NOT_IMPLEMENTED));
 	header('Content-Type: text/plain; charset=UTF-8');
 	die('Not Implemented!');
 }

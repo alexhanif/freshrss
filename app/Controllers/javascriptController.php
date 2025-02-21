@@ -55,7 +55,7 @@ class FreshRSS_javascript_Controller extends FreshRSS_ActionController {
 
 		$user = $_GET['user'] ?? '';
 		if (!is_string($user) || $user === '') {
-			Minz_Error::error(FreshRSS_HttpResponseCode::HTTP_400_BAD_REQUEST);
+			Minz_Error::error(FreshRSS_HttpResponse::HTTP_400_BAD_REQUEST);
 			return;
 		}
 		FreshRSS_Context::initUser($user);

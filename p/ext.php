@@ -84,12 +84,12 @@ function is_valid_path(string $path): bool {
 }
 
 function sendBadRequestResponse(string $message = null): never {
-	header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_400_BAD_REQUEST));
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_400_BAD_REQUEST));
 	die($message);
 }
 
 function sendNotFoundResponse(): never {
-	header(FreshRSS_HttpResponseCode::descriptionFromCode(FreshRSS_HttpResponseCode::HTTP_404_NOT_FOUND));
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_404_NOT_FOUND));
 	die();
 }
 
