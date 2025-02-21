@@ -786,7 +786,7 @@
 						if (is_null($this->feed->attributeArray('curl_params')) === false && array_key_exists('CURLOPT_POSTFIELDS', $this->feed->attributeArray('curl_params'))) {
 							$attribute = $this->feed->attributeArray('curl_params')[CURLOPT_POSTFIELDS];
 							if (is_string($attribute) === false) {
-								$attributes = '';
+								$attribute = '';
 							}
 						}
 						?>
