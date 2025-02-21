@@ -15,6 +15,7 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Fix regression denying access to app manifest [#7158](https://github.com/FreshRSS/FreshRSS/pull/7158)
 	* Fix unwanted feed description updates [#7269](https://github.com/FreshRSS/FreshRSS/pull/7269)
 	* Ensure no PHP buffer for SQLite download (some setups would first put the file in memory) [#7230](https://github.com/FreshRSS/FreshRSS/pull/7230)
+	* Fix XML encoding regression in HTML+XPath mode [#7345](https://github.com/FreshRSS/FreshRSS/pull/7345)
 	* Improve cURL proxy options and fix some constants [#7231](https://github.com/FreshRSS/FreshRSS/pull/7231)
 	* Fix UI of global view unread articles counter [#7247](https://github.com/FreshRSS/FreshRSS/pull/7247)
 	* Hide base theme in carrousel [#7234](https://github.com/FreshRSS/FreshRSS/pull/7234)
@@ -34,7 +35,7 @@ Security
 	* Allow comments in `force-https.txt` [#7259](https://github.com/FreshRSS/FreshRSS/pull/7259)
 * I18n:
 	* Improve German [#7177](https://github.com/FreshRSS/FreshRSS/pull/7177), [#7275](https://github.com/FreshRSS/FreshRSS/pull/7275), [#7278](https://github.com/FreshRSS/FreshRSS/pull/7278)
-	* Improve Japanese [#7187](https://github.com/FreshRSS/FreshRSS/pull/7187), [#7195](https://github.com/FreshRSS/FreshRSS/pull/7195)
+	* Improve Japanese [#7187](https://github.com/FreshRSS/FreshRSS/pull/7187), [#7195](https://github.com/FreshRSS/FreshRSS/pull/7195), [#7332](https://github.com/FreshRSS/FreshRSS/pull/7332)
 * Misc.
 	* Improve PHP code [#7191](https://github.com/FreshRSS/FreshRSS/pull/7191), [#7204](https://github.com/FreshRSS/FreshRSS/pull/7204)
 		* Upgrade to PHPStan 2 [#7131](https://github.com/FreshRSS/FreshRSS/pull/7131), [#7164](https://github.com/FreshRSS/FreshRSS/pull/7164), [#7224](https://github.com/FreshRSS/FreshRSS/pull/7224),
@@ -42,7 +43,7 @@ Security
 	* Update to CssXPath 1.3.0 (no change) [#7211](https://github.com/FreshRSS/FreshRSS/pull/7211)
 	* Update dev dependencies [#7165](https://github.com/FreshRSS/FreshRSS/pull/7165), [#7166](https://github.com/FreshRSS/FreshRSS/pull/7166), [#7167](https://github.com/FreshRSS/FreshRSS/pull/7167),
 		[#7279](https://github.com/FreshRSS/FreshRSS/pull/7279), [#7280](https://github.com/FreshRSS/FreshRSS/pull/7280), [#7283](https://github.com/FreshRSS/FreshRSS/pull/7283),
-		[#7284](https://github.com/FreshRSS/FreshRSS/pull/7284), [#7285](https://github.com/FreshRSS/FreshRSS/pull/7285)
+		[#7284](https://github.com/FreshRSS/FreshRSS/pull/7284), [#7285](https://github.com/FreshRSS/FreshRSS/pull/7285), [#7347](https://github.com/FreshRSS/FreshRSS/pull/7347)
 	* Update GitHub Actions to Ubuntu 24.04 [#7207](https://github.com/FreshRSS/FreshRSS/pull/7207)
 
 
