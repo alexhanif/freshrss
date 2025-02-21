@@ -782,16 +782,16 @@
 					</select>
 					<div class="stick">
 						<?php
-						$attributes = '';
+						$attribute = '';
 						if (is_null($this->feed->attributeArray('curl_params')) === false && array_key_exists('CURLOPT_POSTFIELDS', $this->feed->attributeArray('curl_params'))) {
-							$attributes = $this->feed->attributeArray('curl_params')[CURLOPT_POSTFIELDS];
-							if (is_string($attributes) === false) {
+							$attribute = $this->feed->attributeArray('curl_params')[CURLOPT_POSTFIELDS];
+							if (is_string($attribute) === false) {
 								$attributes = '';
 							}
 						}
 						?>
 						<input type="text" name="curl_fields" id="curl_fields" value="<?=
-							htmlspecialchars( $attributes, ENT_COMPAT, 'UTF-8')
+							htmlspecialchars($attribute, ENT_COMPAT, 'UTF-8')
 						?>" placeholder="<?= _t('sub.feed.method_postparams') ?>" />
 					</div>
 					<p class="help"><?= _i('help') ?> <?= _t('sub.feed.method_help') ?></p>
