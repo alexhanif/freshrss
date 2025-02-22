@@ -823,7 +823,7 @@
 							  spellcheck="false">
 						<?php
 						$attributesArray = [];
-						if (is_null($this->feed->attributeArray('curl_params')) === false && array_key_exists('CURLOPT_HTTPHEADER', $this->feed->attributeArray('curl_params'))) {
+						if ($this->feed->attributeArray('curl_params') !== null && array_key_exists('CURLOPT_HTTPHEADER', $this->feed->attributeArray('curl_params'))) {
 							$attributesArray = $this->feed->attributeArray('curl_params')[CURLOPT_HTTPHEADER];
 							if (is_array($attributesArray) === false) {
 								$attributesArray = [];
