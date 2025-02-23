@@ -93,6 +93,7 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 				'name' => $feed->name(true),
 				'website' => $feed->website(),
 				'description' => $feed->description(),
+				'priority' => $feed->priority(),
 				'lastUpdate' => 0,
 				'error' => false,
 				'pathEntries' => $feed->pathEntries(),
