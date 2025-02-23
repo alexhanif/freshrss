@@ -11,7 +11,5 @@ parameters:
 		analyse:
 			# TODO: Update files below and remove them from this list
 			- app/Models/EntryDAO.php
-			- app/Models/FeedDAO.php
 			- app/Models/TagDAO.php
-			- app/Models/Themes.php
 			- app/Services/ImportService.php

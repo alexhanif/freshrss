@@ -117,7 +117,9 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 			// Merge existing and import attributes
 			$existingAttributes = $feed_search->attributes();
 			$importAttributes = $feed->attributes();
-			$feed->_attributes(array_replace_recursive($existingAttributes, $importAttributes));
+			$mergedAttributes = array_replace_recursive($existingAttributes, $importAttributes);
+			$mergedAttributes = array_filter($mergedAttributes, 'is_string', ARRAY_FILTER_USE_KEY);
+			$feed->_attributes($mergedAttributes);
 
 			// Update some values of the existing feed using the import
 			$values = [
@@ -382,8 +384,10 @@ SQL;
 			. 'ORDER BY `lastUpdate` '
 			. ($limit < 1 ? '' : 'LIMIT ' . intval($limit));
 		$stm = $this->pdo->query($sql);
-		if ($stm !== false) {
-			return self::daoToFeeds($stm->fetchAll(PDO::FETCH_ASSOC));
+		if ($stm !== false && ($res = $stm->fetchAll(PDO::FETCH_ASSOC)) !== false) {
+			/** @var list<array{id?:int,url?:string,kind?:int,category?:int,name?:string,website?:string,description?:string,lastUpdate?:int,priority?:int,
+			 * pathEntries?:string,httpAuth?:string,error?:int|bool,ttl?:int,attributes?:string,cache_nbUnreads?:int,cache_nbEntries?:int}> $res */
+			return self::daoToFeeds($res);
 		} else {
 			$info = $this->pdo->errorInfo();
 			/** @var array{0:string,1:int,2:string} $info */
@@ -613,6 +617,6 @@ SQL;
 			return -1;
 		}
 		$res = $stm->fetchAll(PDO::FETCH_COLUMN, 0);
-		return (int)($res[0] ?? 0);
+		return is_numeric($res[0] ?? null) ? (int)$res[0] : 0;
 	}
 }
