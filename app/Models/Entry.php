@@ -233,9 +233,9 @@ HTML;
 			}
 			$credits = $enclosure['credit'] ?? '';
 			$description = is_string($enclosure['description'] ?? null) ? nl2br($enclosure['description'], true) : '';
-			$length = $enclosure['length'] ?? null;
-			$medium = $enclosure['medium'] ?? '';
-			$mime = $enclosure['type'] ?? '';
+			$length = is_numeric($enclosure['length'] ?? null) ? (int)$enclosure['length'] : 0;
+			$medium = is_string($enclosure['medium'] ?? null) ? $enclosure['medium'] : '';
+			$mime = is_string($enclosure['type'] ?? null) ? $enclosure['type'] : '';
 			$thumbnails = $enclosure['thumbnails'] ?? null;
 			if (!is_array($thumbnails)) {
 				$thumbnails = [];
@@ -255,12 +255,12 @@ HTML;
 				$content .= '<p class="enclosure-content"><img src="' . $elink . '" alt="" title="' . $etitle . '" /></p>';
 			} elseif ($medium === 'audio' || str_starts_with($mime, 'audio')) {
 				$content .= '<p class="enclosure-content"><audio preload="none" src="' . $elink
-					. ($length == null ? '' : '" data-length="' . (int)$length)
+					. ($length == null ? '' : '" data-length="' . $length)
 					. ($mime == '' ? '' : '" data-type="' . htmlspecialchars($mime, ENT_COMPAT, 'UTF-8'))
 					. '" controls="controls" title="' . $etitle . '"></audio> <a download="" href="' . $elink . '">💾</a></p>';
 			} elseif ($medium === 'video' || str_starts_with($mime, 'video')) {
 				$content .= '<p class="enclosure-content"><video preload="none" src="' . $elink
-					. ($length == null ? '' : '" data-length="' . (int)$length)
+					. ($length == null ? '' : '" data-length="' . $length)
 					. ($mime == '' ? '' : '" data-type="' . htmlspecialchars($mime, ENT_COMPAT, 'UTF-8'))
 					. '" controls="controls" title="' . $etitle . '"></video> <a download="" href="' . $elink . '">💾</a></p>';
 			} else {	//e.g. application, text, unknown
@@ -275,7 +275,9 @@ HTML;
 					$credits = [$credits];
 				}
 				foreach ($credits as $credit) {
-					$content .= '<p class="enclosure-credits">© ' . $credit . '</p>';
+					if (is_string($credit)) {
+						$content .= '<p class="enclosure-credits">© ' . $credit . '</p>';
+					}
 				}
 			}
 			if ($description != '') {
