@@ -35,7 +35,7 @@ Then point your mobile application to the `greader.php` address (e.g. `https://f
 |[lire](https://lireapp.com/)                                                        |iOS, macOS           |Closed Source                                             |
 |[Newsboat 2.24+](https://newsboat.org/)                           |Linux                |[MIT](https://github.com/newsboat/newsboat/blob/master/LICENSE)                                              |
 |[Vienna RSS](http://www.vienna-rss.com/)                           |macOS                |[Apache-2.0](https://github.com/ViennaRSS/vienna-rss/blob/master/LICENCE.md)                                              |
-|[Reeder](https://www.reederapp.com/)                           |macOS, iOS                |Closed Source                                              |
+|[Reeder Classic](https://www.reederapp.com/classic/)           |macOS, iOS                |Closed Source                                              |
 |[FreshRSS-Notify](https://addons.mozilla.org/firefox/addon/freshrss-notify-webextension/)                           |Firefox                |Open Source                                              |
 
 > ℹ️ See a [better table of compatible clients in our main Readme](https://github.com/FreshRSS/FreshRSS/blob/edge/README.md#apis--native-apps).
