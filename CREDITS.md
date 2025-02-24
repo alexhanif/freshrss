@@ -69,6 +69,7 @@ People are sorted by name so please keep this order.
 * [Ed Sandor](https://github.com/ewsandor): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:ewsandor), [Web](https://ewsandor.com)
 * [Edgardo Ramírez](https://github.com/SoldierCorp): [contributors](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:SoldierCorp)
 * [EdJoPaTo](https://github.com/EdJoPaTo): [contributions](https://github.com/FreshRSS/FreshRSS/commits/edge?author=EdJoPaTo)
+* [Elanna Grossman](https://github.com/Karvel): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:Karvel), [Web](https://elanna.me/)
 * [equinoxmatt](https://github.com/equinoxmatt): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:equinoxmatt)
 * [Exerra](https://github.com/Exerra): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:Exerra), [Web](https://exerra.xyz)
 * [fabianski7](https://github.com/fabianski7): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:fabianski7)
