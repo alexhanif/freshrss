@@ -719,8 +719,25 @@ class FreshRSS_Feed extends Minz_Model {
 		}
 
 		$xpath = new DOMXPath($doc);
-		$json = @$xpath->evaluate('normalize-space(' . $xPathToJson . ')');
-		return is_string($json) ? $json : null;
+		$jsons = @$xpath->evaluate($xPathToJson);
+		if ($jsons === false) {
+			return null;
+		}
+		if (is_string($jsons)) {
+			return $jsons;
+		}
+		if ($jsons instanceof DOMNodeList && $jsons->length > 0) {
+			// If the result is a list, then aggregate as a JSON array
+			$result = [];
+			foreach ($jsons as $node) {
+				$json = json_decode($node->textContent, true);
+				if (json_last_error() === JSON_ERROR_NONE && is_array($json)) {
+					$result[] = $json;
+				}
+			}
+			return json_encode($result, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?: null;
+		}
+		return null;
 	}
 
 	public function loadJson(): ?\SimplePie\SimplePie {
