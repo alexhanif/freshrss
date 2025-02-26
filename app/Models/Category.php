@@ -58,9 +58,16 @@ class FreshRSS_Category extends Minz_Model {
 	public function lastUpdate(): int {
 		return $this->lastUpdate;
 	}
-	public function _lastUpdate(int $value): void {
+
+	/**
+	 * @param int|numeric-string $value
+	 * 32-bit systems provide a string and will fail in year 2038
+	 */
+	public function _lastUpdate(int|string $value): void {
+		$value = (int)$value;
 		$this->lastUpdate = $value;
 	}
+
 	public function inError(): bool {
 		return $this->error;
 	}
