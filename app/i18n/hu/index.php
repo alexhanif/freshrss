@@ -16,12 +16,12 @@ return array(
 		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',	// IGNORE
 		'bug_reports' => array(
 			'environment_information' => array(
-				'_' => 'Rendszer információ',	
-				'browser' => 'Böngésző',	
-				'database' => 'Adatbázis',	
-				'server_software' => 'Szerver szoftver',	
-				'version_frss' => 'FreshRSS verzió',	
-				'version_php' => 'PHP verzió',	
+				'_' => 'Rendszer információ',
+				'browser' => 'Böngésző',
+				'database' => 'Adatbázis',
+				'server_software' => 'Szerver szoftver',
+				'version_frss' => 'FreshRSS verzió',
+				'version_php' => 'PHP verzió',
 			),
 		),
 		'bugs_reports' => 'Hiba jelentések',
@@ -38,9 +38,9 @@ return array(
 	'feed' => array(
 		'empty' => 'Nincs megjeleníthető cikk.',
 		'received' => array(
-			'before_yesterday' => 'Tegnapelőtt fogadva',	
-			'today' => 'Ma fogadva',	
-			'yesterday' => 'Tegnap fogadva',	
+			'before_yesterday' => 'Tegnapelőtt fogadva',
+			'today' => 'Ma fogadva',
+			'yesterday' => 'Tegnap fogadva',
 		),
 		'rss_of' => 'RSS hírforrás %s',
 		'title' => 'Minden cikk',
@@ -77,16 +77,16 @@ return array(
 		'rss_view' => 'RSS hírforrás',
 		'search_short' => 'Keresés',
 		'sort' => array(
-			'_' => 'Rendezési sorrend',	
-			'date_asc' => 'Kiadás dátuma 1→9',	
-			'date_desc' => 'Kiadás dátuma 9→1',	
-			'id_asc' => 'Frissen fogadott utoljára',	
-			'id_desc' => 'Frissen fogadott először',	
-			'link_asc' => 'Link A→Z',	
-			'link_desc' => 'Link Z→A',	
-			'rand' => 'Véletlen sorrend',	
-			'title_asc' => 'Cím A→Z',	
-			'title_desc' => 'Cím Z→A',	
+			'_' => 'Rendezési sorrend',
+			'date_asc' => 'Kiadás dátuma 1→9',
+			'date_desc' => 'Kiadás dátuma 9→1',
+			'id_asc' => 'Frissen fogadott utoljára',
+			'id_desc' => 'Frissen fogadott először',
+			'link_asc' => 'Link A→Z',	// TODO
+			'link_desc' => 'Link Z→A',	// TODO
+			'rand' => 'Véletlen sorrend',
+			'title_asc' => 'Cím A→Z',
+			'title_desc' => 'Cím Z→A',
 		),
 		'starred' => 'Kedvencek megjelenítése',
 		'stats' => 'Statisztika',
