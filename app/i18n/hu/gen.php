@@ -16,29 +16,29 @@ return array(
 		'add' => 'Hozzáad',
 		'back_to_rss_feeds' => '← Vissza az RSS hírforrásokhoz',
 		'cancel' => 'Mégsem',
-		'close' => 'Close',	// TODO
+		'close' => 'Bezár',	
 		'create' => 'Létrehoz',
-		'delete_all_feeds' => 'Delete all feeds',	// TODO
-		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO
+		'delete_all_feeds' => 'Minden hírforrás törlése',	
+		'delete_errored_feeds' => 'Hibákkal rendelkező hírforrások törlése',	
 		'delete_muted_feeds' => 'Némított hírforrások törlése',
 		'demote' => 'Lefokoz',
 		'disable' => 'Kikapcsol',
-		'download' => 'Download',	// TODO
+		'download' => 'Letöltés',	
 		'empty' => 'Üres',
 		'enable' => 'Bekapcsol',
-		'export' => 'Export',	// IGNORE
+		'export' => 'Exportálás',	
 		'filter' => 'Szűrő',
-		'import' => 'Import',	// IGNORE
+		'import' => 'Importálás',	
 		'load_default_shortcuts' => 'Alapértelmezett gyorsgombok visszaállítása',
 		'manage' => 'Kezelés',
 		'mark_read' => 'Megjelölés olvasottként',
 		'menu' => array(
-			'open' => 'Open menu',	// TODO
+			'open' => 'Menü megnyitása',	
 		),
 		'nav_buttons' => array(
-			'next' => 'Next article',	// TODO
-			'prev' => 'Previous article',	// TODO
-			'up' => 'Go up',	// TODO
+			'next' => 'Következő cikk',	
+			'prev' => 'Előző cikk',	
+			'up' => 'Ugrás fel',	
 		),
 		'open_url' => 'URL Megnyitása',
 		'promote' => 'Előléptet',
@@ -187,7 +187,7 @@ return array(
 		'display' => 'Megjelenítés',
 		'extensions' => 'Kiegészítők',
 		'logs' => 'Log-ok',
-		'privacy' => 'Privacy',	// TODO
+		'privacy' => 'Adatvédelem',	
 		'queries' => 'Felhasználói lekérdezések',
 		'reading' => 'Olvasás',
 		'search' => 'Szavak vagy #címkék keresése',
@@ -212,7 +212,7 @@ return array(
 		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
-		'bluesky' => 'Bluesky',	// TODO
+		'bluesky' => 'Bluesky',	// IGNORE
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'Clipboard',	// IGNORE
 		'diaspora' => 'Diaspora*',	// IGNORE
