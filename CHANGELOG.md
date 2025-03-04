@@ -1307,6 +1307,7 @@ Security
 * Deployment
 	* Docker default image rebased on Debian 10 Buster, with Apache 2.4.38 and PHP 7.3.19 [#3159](https://github.com/FreshRSS/FreshRSS/pull/3159)
 	* Docker: Alpine image updated to 3.12 with Apache/2.4.46 and PHP 7.3.21 [#3025](https://github.com/FreshRSS/FreshRSS/pull/3025)
+	* Docker: Remove healthcheck [#3161](https://github.com/FreshRSS/FreshRSS/pull/3161)
 	* Update example of Dockerfile [#3108](https://github.com/FreshRSS/FreshRSS/pull/3108)
 * CLI
 	* Re-introduce `--api_password` option (vanished in 1.16.0) [#3179](https://github.com/FreshRSS/FreshRSS/pull/3179)
