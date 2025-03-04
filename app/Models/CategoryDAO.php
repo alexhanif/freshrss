@@ -425,7 +425,6 @@ SQL;
 			if (!empty($previousLine['c_id']) && $line['c_id'] !== $previousLine['c_id']) {
 				// End of the current category, we add it to the $list
 				if (!is_int($previousLine['c_id'])) {
-					fwrite(STDERR, __METHOD__ . ' c_id=' . json_encode($previousLine['c_id']) . ' is ' . gettype($previousLine['c_id']) . "\n");
 					Minz_Log::error(__METHOD__ . ' c_id=' . json_encode($previousLine['c_id']) . ' is ' . gettype($previousLine['c_id']));
 				}
 				$cat = new FreshRSS_Category(
