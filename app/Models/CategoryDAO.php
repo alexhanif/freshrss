@@ -265,7 +265,7 @@ SQL;
 			$aPosition = $a->attributeInt('position');
 			$bPosition = $b->attributeInt('position');
 			if ($aPosition === $bPosition) {
-				return ($a->name() < $b->name()) ? -1 : 1;
+				return strnatcasecmp($a->name(), $b->name());
 			} elseif (null === $aPosition) {
 				return 1;
 			} elseif (null === $bPosition) {
