@@ -20,6 +20,7 @@ return array(
 				'browser' => 'ブラウザ',
 				'database' => 'データベース',
 				'server_software' => 'サーバーソフトウェア',
+				'version_curl' => 'cURL version',	// TODO
 				'version_frss' => 'FreshRSSバージョン',
 				'version_php' => 'PHPバージョン',
 			),

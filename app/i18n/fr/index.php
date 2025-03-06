@@ -20,6 +20,7 @@ return array(
 				'browser' => 'Navigateur',
 				'database' => 'Base de données',
 				'server_software' => 'Serveur Web',
+				'version_curl' => 'Version de cURL',
 				'version_frss' => 'Version de FreshRSS',
 				'version_php' => 'Version de PHP',
 			),

@@ -20,6 +20,7 @@ return array(
 				'browser' => 'Böngésző',
 				'database' => 'Adatbázis',
 				'server_software' => 'Szerver szoftver',
+				'version_curl' => 'cURL version',	// TODO
 				'version_frss' => 'FreshRSS verzió',
 				'version_php' => 'PHP verzió',
 			),
