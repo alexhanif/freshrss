@@ -147,7 +147,7 @@ return array(
 				'help' => 'Um JSON na notação de ponto usa pontos entre os objetos e colchetes para arrays (e.g. <code>data.items[0].title</code>)',
 				'item' => array(
 					'_' => 'encontrando novidades <strong>itens</strong><br /><small>(mais importante)</small>',
-					'help' => 'Caminho do JSON para o array contendo os itens, e.g. <code>$</code> or <code>Novos Items</code>',
+					'help' => 'Caminho do JSON para o array contendo os itens, e.g. <code>$</code> or <code>newsItems</code>',
 				),
 				'item_author' => 'autor do item',
 				'item_categories' => 'tags dos itens',
