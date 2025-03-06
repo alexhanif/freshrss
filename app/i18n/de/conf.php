@@ -107,8 +107,8 @@ return array(
 		'_' => 'Profil-Verwaltung',
 		'api' => array(
 			'_' => 'API-Verwaltung',
-			'api_not_set' => 'Password not set',	// TODO
-			'api_set' => 'Password set',	// TODO
+			'api_not_set' => 'API password not set',	// TODO
+			'api_set' => 'API password set',	// TODO
 			'check_link' => 'API-Status prüfen: <kbd><a href="../api/" target="_blank">%s</a></kbd>',
 			'disabled' => 'Der API-Zugriff ist deaktiviert.',
 			'documentation_link' => 'Siehe die <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">Dokumentation und die Liste der bekannten Apps</a>',
