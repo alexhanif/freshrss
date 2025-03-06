@@ -113,11 +113,11 @@ return array(
 				),
 				'item_thumbnail' => array(
 					'_' => ' تصویر کوچک مورد',
-					'help' => ' مثال: <code>فرزند::img/@src</code>',
+					'help' => ' مثال: <code>descendant::img/@src</code>',
 				),
 				'item_timeFormat' => array(
 					'_' => ' فرمت تاریخ/زمان سفارشی',
-					'help' => ' اختیاری. قالبی که توسط <a href="https://php.net/datetime.createfromformat" target="_blank"><code>DateTime::createFromFormat()</code></a> پشتیبانی می‌شود',
+					'help' => ' اختیاری. قالبی که توسط <a href="https://php.net/datetime.createfromformat" target="_blank"><code>DateTime::createFromFormat()</code></a> پشتیبانی می‌شود',	// DIRTY
 				),
 				'item_timestamp' => array(
 					'_' => ' تاریخ مورد',
@@ -125,15 +125,15 @@ return array(
 				),
 				'item_title' => array(
 					'_' => ' عنوان مورد',
-					'help' => ' به طور خاص از <a href="https://developer.mozilla.org/docs/Web/XPath/Axes" target="_blank">محور XPath</a> <code>فرزند::</code استفاده کنید > مانند <code>فرزند::h2</code>',
+					'help' => ' به طور خاص از <a href="https://developer.mozilla.org/docs/Web/XPath/Axes" target="_blank">محور XPath</a> <code>descendant::</code استفاده کنید > مانند <code>descendant::h2</code>',
 				),
 				'item_uid' => array(
 					'_' => ' شناسه منحصر به فرد مورد',
-					'help' => ' اختیاری. مثال: <code>فرزند::div/@data-uri</code>',
+					'help' => ' اختیاری. مثال: <code>descendant::div/@data-uri</code>',
 				),
 				'item_uri' => array(
 					'_' => ' پیوند مورد (URL)',
-					'help' => ' مثال: <code>فرزند::a/@href</code>',
+					'help' => ' مثال: <code>descendant::a/@href</code>',
 				),
 				'relative' => 'XPath (نسبت به مورد) برای:',
 				'xpath' => ' XPath برای:',

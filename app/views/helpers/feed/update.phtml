@@ -781,8 +781,14 @@
 					?>
 					</select>
 					<div class="stick">
+						<?php
+							$postFields = $this->feed->attributeArray('curl_params')[CURLOPT_POSTFIELDS] ?? '';
+							if (!is_string($postFields)) {
+								$postFields = '';
+							}
+						?>
 						<input type="text" name="curl_fields" id="curl_fields" value="<?=
-							htmlspecialchars($this->feed->attributeArray('curl_params')[CURLOPT_POSTFIELDS] ?? '', ENT_COMPAT, 'UTF-8')
+							htmlspecialchars($postFields, ENT_COMPAT, 'UTF-8')
 						?>" placeholder="<?= _t('sub.feed.method_postparams') ?>" />
 					</div>
 					<p class="help"><?= _i('help') ?> <?= _t('sub.feed.method_help') ?></p>
@@ -810,8 +816,15 @@
 			<div class="form-group">
 				<label class="group-name" for="http_headers"><?= _t('sub.feed.http_headers') ?></label>
 				<div class="group-controls">
+					<?php
+						$httpHeaders = $this->feed->attributeArray('curl_params')[CURLOPT_HTTPHEADER] ?? [];
+						if (!is_array($httpHeaders)) {
+							$httpHeaders = [];
+						}
+						$httpHeaders = array_filter($httpHeaders, 'is_string');
+					?>
 					<textarea class="valid-json" id="http_headers" name="http_headers" rows="3" cols="64" spellcheck="false"><?php
-						foreach ($this->feed->attributeArray('curl_params')[CURLOPT_HTTPHEADER] ?? [] as $header) {
+						foreach ($httpHeaders as $header) {
 							echo htmlspecialchars($header, ENT_NOQUOTES, 'UTF-8'), PHP_EOL;
 						}
 					?></textarea>

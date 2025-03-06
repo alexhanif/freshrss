@@ -63,7 +63,7 @@ class Minz_Request {
 
 	/**
 	 * @param bool $plaintext `true` to return special characters without any escaping (unsafe), `false` (default) to XML-encode them
-	 * @return array<string|int,string|array<string,string|int|bool>>
+	 * @return array<string|int,string|array<int|string,string|int|bool>>
 	 */
 	public static function paramArray(string $key, bool $plaintext = false): array {
 		if (empty(self::$params[$key]) || !is_array(self::$params[$key])) {
@@ -76,7 +76,7 @@ class Minz_Request {
 			} elseif (is_array($v)) {
 				$vs = [];
 				foreach ($v as $k2 => $v2) {
-					if (is_string($k2) && (is_string($v2) || is_int($v2) || is_bool($v2))) {
+					if (is_string($v2) || is_int($v2) || is_bool($v2)) {
 						$vs[$k2] = $v2;
 					}
 				}
