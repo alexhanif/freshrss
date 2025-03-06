@@ -22,15 +22,15 @@ return array(
 		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO
 		'delete_muted_feeds' => 'Excluir feeds silenciados',
 		'demote' => 'Despromover',
-		'disable' => 'Desabilitar',
+		'disable' => 'Desactivar',
 		'download' => 'Download',	// TODO
 		'empty' => 'Vazio',
-		'enable' => 'Habilitar',
+		'enable' => 'Activar',
 		'export' => 'Exportar',
 		'filter' => 'Filtrar',
 		'import' => 'Importar',
 		'load_default_shortcuts' => 'Carregar mais atalhos',
-		'manage' => 'Gerenciar',
+		'manage' => 'Gerir',
 		'mark_read' => 'Marcar como lido',
 		'menu' => array(
 			'open' => 'Open menu',	// TODO
@@ -48,18 +48,18 @@ return array(
 		'rename' => 'Renomear',
 		'see_website' => 'Ver o site',
 		'submit' => 'Enviar',
-		'truncate' => 'Deletar todos os artigos',
+		'truncate' => 'Apagar todos os artigos',
 		'update' => 'Atualizar',
 	),
 	'auth' => array(
 		'accept_tos' => 'Eu aceito os <a href="%s">Termos de serviço</a>.',
 		'email' => 'Endereço de e-mail',
-		'keep_logged_in' => 'Mantenha logado por <small>(%s days)</small>',
+		'keep_logged_in' => 'Mantenha-se ligado por <small>(%s days)</small>',
 		'login' => 'Entrar',
 		'logout' => 'Sair',
 		'password' => array(
 			'_' => 'Senha',
-			'format' => '<small>Ao menos 7 caracteres</small>',
+			'format' => '<small>Pelo menos 7 caracteres</small>',
 		),
 		'registration' => array(
 			'_' => 'Nova conta',
@@ -67,7 +67,7 @@ return array(
 			'title' => 'Criação de conta',
 		),
 		'username' => array(
-			'_' => 'Usuário',
+			'_' => 'Utilizador',
 			'format' => '<small>Máximo 16 caracteres alphanumericos</small>',
 		),
 	),
@@ -137,12 +137,12 @@ return array(
 	),
 	'js' => array(
 		'category_empty' => 'Categoria vazia',
-		'confirm_action' => 'Você tem certeza que deseja efetuar esta ação? Ela não poderá ser cancelada!',
-		'confirm_action_feed_cat' => 'Você tem certeza que deseja efetuar esta ação ? Você irá perder favoritos e queries de usuários. Não poderá ser cancelado!',
+		'confirm_action' => 'Tem certeza que deseja efetuar esta ação? Ela não poderá ser revertida!',
+		'confirm_action_feed_cat' => 'Tem certeza que deseja efetuar esta ação ? vai perder favoritos e pesquisas personalizadas. Não poderá ser revertida!',
 		'feedback' => array(
 			'body_new_articles' => 'Há %%d novos artigos para ler no FreshRSS.',
 			'body_unread_articles' => '(não lido: %%d)',
-			'request_failed' => 'Uma solicitação falhou, isto pode ter sido causado por problemas de conexão com a internet.',
+			'request_failed' => 'Uma solicitação falhou, isto pode ter sido causado por problemas de ligação a internet.',
 			'title_new_articles' => 'FreshRSS: novos artigos!',
 		),
 		'labels_empty' => 'No labels',	// TODO
@@ -189,16 +189,16 @@ return array(
 		'extensions' => 'Extensões',
 		'logs' => 'Logs',	// IGNORE
 		'privacy' => 'Privacy',	// TODO
-		'queries' => 'Queries de usuário',
+		'queries' => 'Queries de utilizador',
 		'reading' => 'Leitura',
 		'search' => 'Procurar por palavras ou #tags',
 		'search_help' => 'See documentation for advanced <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">search parameters</a>',	// TODO
-		'sharing' => 'Compartilhamento',
+		'sharing' => 'Partilhar',
 		'shortcuts' => 'Atalhos',
 		'stats' => 'Estatísticas',
 		'system' => 'Configuração do sistema',
 		'update' => 'Atualização',
-		'user_management' => 'Gerenciamento de usuários',
+		'user_management' => 'Gestão de utilizadores',
 		'user_profile' => 'Perfil',
 	),
 	'period' => array(
@@ -259,6 +259,6 @@ return array(
 	'stream' => array(
 		'load_more' => 'Carregar mais artigos',
 		'mark_all_read' => 'Marcar todos como lidos',
-		'nothing_to_load' => 'Não há mais artigos',
+		'nothing_to_load' => 'Não existem mais artigos',
 	),
 );

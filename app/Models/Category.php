@@ -162,11 +162,14 @@ class FreshRSS_Category extends Minz_Model {
 		if ($this->feeds === null) {
 			$this->feeds = [];
 		}
-		if ($feed->id() !== 0) {
-			$feed->_category($this);
+		$feed->_category($this);
+		if ($feed->id() === 0) {
+			// Feeds created on a dry run do not have an ID
+			$this->feeds[] = $feed;
+		} else {
 			$this->feeds[$feed->id()] = $feed;
-			$this->sortFeeds();
 		}
+		$this->sortFeeds();
 	}
 
 	/**
