@@ -1297,7 +1297,7 @@ a:hover .icon {
 	:root.darkMode_auto .nav_menu .btn.active,
 	:root.darkMode_auto .nav_menu .btn:active,
 	:root.darkMode_auto .nav_menu .dropdown-target:target ~ .btn.dropdown-toggle {
-		background: var(--border-color);
+		background: #292929;
 	}
 
 	:root.darkMode_auto .dropdown-menu {
