@@ -107,12 +107,12 @@ return array(
 		'_' => 'Profile management',
 		'api' => array(
 			'_' => 'External access via API',
+			'api_not_set' => 'Password not set',	// TODO
+			'api_set' => 'Password set',	// TODO
 			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',
 			'disabled' => 'The API access is disabled.',
 			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',
 			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',
-			'api_set' => 'Password set', // TODO
-			'api_not_set' => 'Password not set', // TODO
 		),
 		'delete' => array(
 			'_' => 'Account deletion',
