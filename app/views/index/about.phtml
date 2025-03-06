@@ -27,7 +27,11 @@
 				<dt><?= _t('index.about.bug_reports.environment_information.version_php') ?></dt>
 				<dd><?= htmlspecialchars(PHP_VERSION, ENT_NOQUOTES, 'UTF-8') ?></dd>
 				<dt><?= _t('index.about.bug_reports.environment_information.version_curl') ?></dt>
-				<dd><?= htmlspecialchars(curl_version()['version'], ENT_NOQUOTES, 'UTF-8') ?></dd>
+				<?php
+					$curlVersion = curl_version() ?: [];
+					$curlVersion = is_string($curlVersion['version'] ?? null) ? $curlVersion['version'] : '';
+				?>
+				<dd><?= htmlspecialchars($curlVersion, ENT_NOQUOTES, 'UTF-8') ?></dd>
 				<dt><?= _t('index.about.bug_reports.environment_information.database') ?></dt>
 				<dd><?= htmlspecialchars(FreshRSS_Context::systemConf()->db['type'], ENT_NOQUOTES, 'UTF-8') ?></dd>
 				<?php $databaseDAO = FreshRSS_Factory::createDatabaseDAO(); ?>
