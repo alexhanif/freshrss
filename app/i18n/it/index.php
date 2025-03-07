@@ -20,7 +20,7 @@ return array(
 				'browser' => 'Browser',	// IGNORE
 				'database' => 'Database',	// IGNORE
 				'server_software' => 'Software server',
-				'version_curl' => 'cURL version',	// TODO
+				'version_curl' => 'Versione cURL',
 				'version_frss' => 'Versione FreshRSS',
 				'version_php' => 'Versione PHP',
 			),
