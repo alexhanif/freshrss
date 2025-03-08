@@ -29,9 +29,9 @@ return array(
 			'help' => 'Adj meg egy URL-t az <a href="http://opml.org/" target="_blank">OPML fájlhoz</a> hogy automatikusan kitöltődjön ez a kategória hírforrásokkal',
 		),
 		'empty' => 'Üres kategória',
-		'expand' => 'Expand category',	// TODO
+		'expand' => 'Kategória kinyitása',
 		'information' => 'Információ',
-		'open' => 'Open category',	// TODO
+		'open' => 'Kategória megnyitása',
 		'opml_url' => 'OPML URL',	// IGNORE
 		'position' => 'Megjelenítési pozíció',
 		'position_help' => 'Kategória rendezési sorrend',
@@ -57,7 +57,7 @@ return array(
 			'prepend' => 'Hozzáadás a létező tartalom elé',
 			'replace' => 'Cserélje ki a létező tartalmat',
 		),
-		'content_retrieval' => 'Content retrieval',	// TODO
+		'content_retrieval' => 'Tartalom beszerzése',
 		'css_cookie' => 'Használjon sütiket a cikkek letöltésénél',
 		'css_cookie_help' => 'Példa: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => 'Csonkított RSS hírforrások beszerzése (vigyázz, több időt igényel!)',
@@ -68,27 +68,27 @@ return array(
 		),
 		'description' => 'Leírás',
 		'empty' => 'Ez a hírforrás üres. Ellenőrizd hogy van e tartalom rajta.',
-		'error' => 'Ez a hírforrás nem működik. Ellenőrizd az elérhetőségét.',	// DIRTY
+		'error' => 'Ez a hírforrás nem működik. Ellenőrizd az elérhetőségét.',
 		'export-as-opml' => array(
 			'download' => 'Letöltés',
-			'help' => 'XML fájl (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// DIRTY
+			'help' => 'XML fájl (adat részhalmaz. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">Lásd dokumentáció</a>)',
 			'label' => 'Exportálás OPML formátumban',
 		),
 		'filteractions' => array(
 			'_' => 'Szűrő műveletek',
 			'help' => 'Írj egy szűrőt soronként. Műveletek <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">a dokumentációban</a>.',
 		),
-		'http_headers' => 'HTTP Headers',	// TODO
-		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'http_headers' => 'HTTP Fejlécek',
+		'http_headers_help' => 'A fejléceket újsor választja el, a fejléc nevét és értékét kettőspont választja el (pl: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',
 		'information' => 'Információ',
 		'keep_min' => 'Megtartandó cikkek minimális száma',
 		'kind' => array(
 			'_' => 'Hírforrás típusa',
 			'html_json' => array(
-				'_' => 'HTML + XPath + JSON dot notation (JSON in HTML)',	// TODO
+				'_' => 'HTML + XPath + JSON pont jelölés (JSON a HTML-ben)',
 				'xpath' => array(
-					'_' => 'XPath for JSON in HTML',	// TODO
-					'help' => 'Example: <code>//script[@type="application/json"]</code>',	// TODO
+					'_' => 'XPath JSON-hoz HTML-ben',
+					'help' => 'Példa: <code>//script[@type="application/json"]</code>',
 				),
 			),
 			'html_xpath' => array(
@@ -147,7 +147,7 @@ return array(
 				'help' => 'A JSON pontjelölés pontokat használ az objektumok között és zárójeleket a tömbökhöz (pl. <code>data.items[0].title</code>)',
 				'item' => array(
 					'_' => 'hírek keresése <strong>elemek</strong><br /><small>(legfontosabb)</small>',
-					'help' => 'JSON útvonal az elemeket tartalmazó tömbhöz, pl. <code>$</code> or <code>newsItems</code>',	// DIRTY
+					'help' => 'JSON útvonal az elemeket tartalmazó tömbhöz, pl. <code>$</code> vagy <code>newsItems</code>',
 				),
 				'item_author' => 'elem szerző',
 				'item_categories' => 'elem címkék',
@@ -197,12 +197,12 @@ return array(
 		'moved_category_deleted' => 'Ha kitörölsz egy kategóriát, az alá tartozó hírforrások automatikusan ide kerülnek <em>%s</em>.',
 		'mute' => array(
 			'_' => 'némítás',
-			'state_is_muted' => 'This feed is muted',	// TODO
+			'state_is_muted' => 'Ez a hírforrás némítva van',
 		),
 		'no_selected' => 'Nincsen hírforrás kiválasztva.',
 		'number_entries' => '%d cikkek',
-		'open_feed' => 'Open feed %s',	// TODO
-		'path_entries_conditions' => 'Conditions for content retrieval',	// TODO
+		'open_feed' => 'Hírforrás megnyitása %s',
+		'path_entries_conditions' => 'Tartalom beszerzési feltételek',
 		'priority' => array(
 			'_' => 'Láthatóság',
 			'archived' => 'Ne jelenjen meg (archivált)',
@@ -231,14 +231,14 @@ return array(
 		'title_add' => 'RSS hírforrás hozzáadása',
 		'ttl' => 'Ne frissítsd automatikusan többször mint',
 		'unicityCriteria' => array(
-			'_' => 'Article unicity criteria',	// TODO
-			'forced' => '<span title="Block the unicity criteria, even when the feed has duplicate articles">forced</span>',	// TODO
-			'help' => 'Relevant for invalid feeds.<br />⚠️ Changing the policy will create duplicates.',	// TODO
-			'id' => 'Standard ID (default)',	// TODO
+			'_' => 'Cikk egységességi feltételek',
+			'forced' => '<span title="Blokkolja az egységességi feltételeket, még akkor is, ha a hírcsatorna ismétlődő cikkeket tartalmaz">kényszerít</span>',
+			'help' => 'Érvénytelen hírforrásokra vonatkozik.<br />⚠️ A házirend módosítása duplikációkat fog létrehozni.',
+			'id' => 'Standard ID (alapértelmezés)',
 			'link' => 'Link',	// TODO
-			'sha1:link_published' => 'Link + Date',	// TODO
-			'sha1:link_published_title' => 'Link + Date + Title',	// TODO
-			'sha1:link_published_title_content' => 'Link + Date + Title + Content',	// TODO
+			'sha1:link_published' => 'Link + Dátum',
+			'sha1:link_published_title' => 'Link + Dátum + Cím',
+			'sha1:link_published_title_content' => 'Link + Dátum + Cím + Tartalom',
 		),
 		'url' => 'Hírforrás URL',
 		'useragent' => 'Állíts be egy user agent-et ehhez a hírforráshoz',
@@ -250,7 +250,7 @@ return array(
 	'import_export' => array(
 		'export' => array(
 			'_' => 'Exportálás',
-			'sqlite' => 'Download user database as SQLite',	// TODO
+			'sqlite' => 'Felhasználói adatbázis letöltése SQLite-ként',
 		),
 		'export_labelled' => 'Címkézett cikkek exportálása',
 		'export_opml' => 'Hírforrások listájának exportálása (OPML)',
@@ -287,7 +287,7 @@ return array(
 		'add_dynamic_opml' => 'Dinamikus OPML hozzáadása',
 		'add_feed' => 'Hírforrás hozzáadása',
 		'add_label' => 'Címke hozzáadása',
-		'add_opml_category' => 'OPML category name',	// TODO
+		'add_opml_category' => 'OPML kategória név',
 		'delete_label' => 'Címke törlése',
 		'feed_management' => 'RSS hírforrások kezelése',
 		'rename_label' => 'Címke átnevezése',

@@ -92,14 +92,14 @@ class FreshRSS_Themes extends Minz_Model {
 	}
 
 	public static function title(string $name): string {
-		static $titles = [
+		$titles = [
 			'opml-dyn' => 'sub.category.dynamic_opml',
 		];
 		return $titles[$name] ?? '';
 	}
 
 	public static function alt(string $name): string {
-		static $alts = [
+		$alts = [
 			'add' => '➕',	//✚
 			'all' => '☰',
 			'bookmark-add' => '➕',	//✚

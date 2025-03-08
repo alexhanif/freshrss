@@ -304,8 +304,6 @@ docker compose down --remove-orphans
 Detailed (partial) example of Docker Compose for FreshRSS:
 
 ```yaml
-version: "2.4"
-
 volumes:
   data:
   extensions:
