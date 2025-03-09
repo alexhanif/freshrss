@@ -2,7 +2,31 @@
 
 See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 
-## 2025-0X-XX FreshRSS 1.26.1-dev
+## 2025-03-XX FreshRSS 1.26.1-dev
+
+* Features
+	* Add cURL version to page about system information [#7409](https://github.com/FreshRSS/FreshRSS/pull/7409)
+* Bug fixing
+	* Fix regression with cURL HTTP headers breaking conditional HTTP requests [#7403](https://github.com/FreshRSS/FreshRSS/pull/7403), [FreshRSS/simplepie#33](https://github.com/FreshRSS/simplepie/pull/33)
+	* Fix regression with saving states of user queries [#7400](https://github.com/FreshRSS/FreshRSS/pull/7400)
+	* Fix regression with dynamic OPML [#7394](https://github.com/FreshRSS/FreshRSS/pull/7394)
+	* Fix update of the user’s last activity on login action [#7406](https://github.com/FreshRSS/FreshRSS/pull/7406)
+	* Fix setting category option *Maximum number of articles to keep per feed* [#7416](https://github.com/FreshRSS/FreshRSS/pull/7416)
+	* Fix priority field when processing a new feed from an extension [#7354](https://github.com/FreshRSS/FreshRSS/pull/7354)
+* Deployment
+	* Fix regression with 64-bit timestamps on 32-bit platforms [#7375](https://github.com/FreshRSS/FreshRSS/pull/7375)
+	* Fix back-compatibility with cURL 7.51 (we require cURL 7.52+ for `CURLPROXY_HTTPS`) [#7409](https://github.com/FreshRSS/FreshRSS/pull/7409)
+* UI
+	* Use case-insensitive sort for categories [#7402](https://github.com/FreshRSS/FreshRSS/pull/7402)
+	* Improve dark mode of *Origine* theme [#7413](https://github.com/FreshRSS/FreshRSS/pull/7413)
+	* Added API password indicator [#7340](https://github.com/FreshRSS/FreshRSS/pull/7340)
+* I18n
+	* Fix (es, fa, sk): do not translate XPath code [#7404](https://github.com/FreshRSS/FreshRSS/pull/7404)
+	* Add Portuguese from Portugal [#7329](https://github.com/FreshRSS/FreshRSS/pull/7329)
+	* Improve Hungarian [#7391](https://github.com/FreshRSS/FreshRSS/pull/7391)
+* Misc.
+	* Improve PHP code [#7339](https://github.com/FreshRSS/FreshRSS/pull/7339)
+	* Update dev dependencies [#7386](https://github.com/FreshRSS/FreshRSS/pull/7386), [#7387](https://github.com/FreshRSS/FreshRSS/pull/7387), [#7388](https://github.com/FreshRSS/FreshRSS/pull/7388)
 
 
 ## 2025-02-23 FreshRSS 1.26.0
@@ -23,6 +47,7 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Fix UI of global view unread articles counter [#7247](https://github.com/FreshRSS/FreshRSS/pull/7247)
 	* Hide base theme in carrousel [#7234](https://github.com/FreshRSS/FreshRSS/pull/7234)
 * Deployment
+	* Require cURL 7.52.0+ [#7231](https://github.com/FreshRSS/FreshRSS/pull/7231)
 	* Reduce superfluous Docker builds [#7137](https://github.com/FreshRSS/FreshRSS/pull/7137)
 	* Docker default image (Debian 12 Bookworm) updated to PHP 8.2.26 and Apache 2.4.62
 	* Docker alternative image (Alpine 3.21) updated to PHP 8.3.16

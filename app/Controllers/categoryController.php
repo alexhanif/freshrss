@@ -113,7 +113,7 @@ class FreshRSS_category_Controller extends FreshRSS_ActionController {
 			} else {
 				if (!Minz_Request::paramBoolean('enable_keep_max')) {
 					$keepMax = false;
-				} elseif (($keepMax = Minz_Request::paramInt('keep_max')) !== 0) {
+				} elseif (($keepMax = Minz_Request::paramInt('keep_max')) === 0) {
 					$keepMax = FreshRSS_Feed::ARCHIVING_RETENTION_COUNT_LIMIT;
 				}
 				if (Minz_Request::paramBoolean('enable_keep_period')) {

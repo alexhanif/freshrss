@@ -107,6 +107,8 @@ return array(
 		'_' => 'Profil kezelés',
 		'api' => array(
 			'_' => 'API menedzsment',
+			'api_not_set' => 'API password not set',	// TODO
+			'api_set' => 'API password set',	// TODO
 			'check_link' => 'API státusz ellenőrzése: <kbd><a href="../api/" target="_blank">%s</a></kbd>',
 			'disabled' => 'Az API hozzáférés ki van kapcsolva.',
 			'documentation_link' => 'Lásd az <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">ismert appok dokumentációját és listáját</a>',
