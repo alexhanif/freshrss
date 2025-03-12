@@ -145,7 +145,29 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 			);
 			if ($ok === true) {
 				// Set session parameter to give access to the user.
-				$url = $this->getUrl($username);
+				Minz_Session::_params([
+					Minz_User::CURRENT_USER => $username,
+					'passwordHash' => FreshRSS_Context::userConf()->passwordHash,
+					'csrf' => false,
+				]);
+				FreshRSS_Auth::giveAccess();
+
+				// Set cookie parameter if needed.
+				if (Minz_Request::paramBoolean('keep_logged_in')) {
+					FreshRSS_FormAuth::makeCookie($username, FreshRSS_Context::userConf()->passwordHash);
+				} else {
+					FreshRSS_FormAuth::deleteCookie();
+				}
+
+				Minz_Translate::init(FreshRSS_Context::userConf()->language);
+
+				FreshRSS_UserDAO::touch();
+
+				// All is good, go back to the original request or the index.
+				$url = Minz_Url::unserialize(Minz_Request::paramString('original_request'));
+				if (empty($url)) {
+					$url = [ 'c' => 'index', 'a' => 'index' ];
+				}
 				Minz_Request::good(_t('feedback.auth.login.success'), $url);
 			} else {
 				Minz_Log::warning("Password mismatch for user={$username}, nonce={$nonce}, c={$challenge}");

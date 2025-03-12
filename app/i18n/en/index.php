@@ -20,6 +20,7 @@ return array(
 				'browser' => 'Browser',	// TODO
 				'database' => 'Database',	// TODO
 				'server_software' => 'Server software',	// TODO
+				'version_curl' => 'cURL version',
 				'version_frss' => 'FreshRSS version',	// TODO
 				'version_php' => 'PHP version',	// TODO
 			),
