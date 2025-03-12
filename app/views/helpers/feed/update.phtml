@@ -749,6 +749,7 @@
 				<label class="group-name" for="proxy_type"><?= _t('sub.feed.proxy') ?></label>
 				<div class="group-controls">
 					<select name="proxy_type" id="proxy_type"><?php
+						defined('CURLPROXY_HTTPS') or define('CURLPROXY_HTTPS', 2);	// Compatibility cURL 7.51
 						$type = $curlParams[CURLOPT_PROXYTYPE] ?? '';
 						if ($type === 3) {	// Legacy for NONE
 							$type = -1;

@@ -546,7 +546,12 @@ HTML;
 		$this->date = $value > 1 ? $value : time();
 	}
 
-	public function _lastSeen(int $value): void {
+	/**
+	 * @param int|numeric-string $value
+	 * 32-bit systems provide a string and will fail in year 2038
+	 */
+	public function _lastSeen(int|string $value): void {
+		$value = (int)$value;
 		$this->lastSeen = $value > 0 ? $value : 0;
 	}
 
