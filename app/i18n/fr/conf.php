@@ -107,6 +107,8 @@ return array(
 		'_' => 'Gestion du profil',
 		'api' => array(
 			'_' => 'Gestion de l’API',
+			'api_not_set' => 'Pas de mot de passe API défini',
+			'api_set' => 'Mot de passe API enregistré',
 			'check_link' => 'Vérifier l’état de l’API via : <kbd><a href="../api/" target="_blank">%s</a></kbd>',
 			'disabled' => 'L’accès API est désactivé.',
 			'documentation_link' => 'Voir <a href="https://freshrss.github.io/FreshRSS/fr/users/06_Mobile_access.html" target="_blank">la documentation et une liste d’applications compatibles</a>',

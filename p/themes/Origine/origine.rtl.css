@@ -1297,10 +1297,23 @@ a:hover .icon {
 	:root.darkMode_auto .nav_menu .btn.active,
 	:root.darkMode_auto .nav_menu .btn:active,
 	:root.darkMode_auto .nav_menu .dropdown-target:target ~ .btn.dropdown-toggle {
-		background: var(--border-color);
+		background: #292929;
 	}
 
 	:root.darkMode_auto .dropdown-menu {
 		background-color: #0a0a0a;
+	}
+
+	:root.darkMode_auto .nav_menu {
+		background-color: #141414;
+	}
+
+	:root.darkMode_auto .header {
+		background-color: var(--background-color-light-shadowed);
+	}
+
+	:root.darkMode_auto .btn.active .icon,
+	:root.darkMode_auto .btn:active .icon {
+		filter: brightness(1.4);
 	}
 }

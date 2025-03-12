@@ -170,6 +170,7 @@ return array(
 		'oc' => 'Occitan',
 		'pl' => 'Polski',
 		'pt-br' => 'Português (Brasil)',
+		'pt-pt' => 'Português (Portugal)',
 		'ru' => 'Русский',
 		'sk' => 'Slovenčina',
 		'tr' => 'Türkçe',
