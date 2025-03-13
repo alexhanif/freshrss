@@ -100,10 +100,10 @@ return array(
 		),
 	),
 	'mark_read_button' => array(
-		'_' => '« Marquer tout comme lu » button',	// DIRTY
-		'big' => 'Big',	// TODO
-		'none' => 'None',	// TODO
-		'small' => 'Small',	// TODO
+		'_' => 'Bouton « Marquer tout comme lu »',
+		'big' => 'Gros',
+		'none' => 'Aucun',
+		'small' => 'Petit',
 	),
 	'privacy' => array(
 		'_' => 'Vie privée',

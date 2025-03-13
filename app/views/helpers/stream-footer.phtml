@@ -36,7 +36,7 @@
 		<button id="load_more" type="submit" class="btn" formaction="<?= Minz_Url::display($url_next) ?>"><?= _t('gen.stream.load_more') ?></button>
 	<?php } elseif ($hasAccess) { ?>
 		<?= _t('gen.stream.nothing_to_load') ?>
-		<?php if (FreshRSS_Context::userConf()->mark_read_button != 'none') {
+		<?php if (FreshRSS_Context::userConf()->mark_read_button !== 'none') {
 			$css = '';
 			switch (FreshRSS_Context::userConf()->mark_read_button) {
 				case 'big':
@@ -44,6 +44,7 @@
 					break;
 				case 'small':
 					$css = 'btn small';
+					break;
 			}
 			?>
 			<br />
