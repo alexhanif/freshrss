@@ -312,6 +312,9 @@ class FreshRSS_Import_Service {
 			$feed = Minz_ExtensionManager::callHook('feed_before_insert', $feed);
 
 			if ($dry_run) {
+				if ($feed !== null) {
+					$category->addFeed($feed);
+				}
 				return $feed;
 			}
 

@@ -82,6 +82,11 @@
 				<div class="group-controls">
 					<div class="stick">
 						<input type="password" id="apiPasswordPlain" name="apiPasswordPlain" autocomplete="new-password"
+							<?php if (FreshRSS_Context::userConf()->apiPasswordHash != '') {?>
+								placeholder="<?= _t('conf.profile.api.api_set') ?>"
+							<?php } else {?>
+								placeholder="<?= _t('conf.profile.api.api_not_set') ?>"
+							<?php } ?>
 							pattern=".{7,}" <?= cryptAvailable() ? '' : 'disabled="disabled" ' ?>/>
 						<button type="button" class="btn toggle-password" data-toggle="apiPasswordPlain"><?= _i('key') ?></button>
 					</div>
