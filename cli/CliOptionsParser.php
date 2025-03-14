@@ -84,7 +84,11 @@ abstract class CliOptionsParser {
 		foreach ($this->inputs as $name => $input) {
 			$values = $input['values'] ?? $input['defaultInput'] ?? null;
 			$types = $this->options[$name]->getTypes();
-			if (!empty($values)) {
+
+			if ($this->options[$name]->getValueTaken() === CliOption::VALUE_NONE) {
+				// @phpstan-ignore property.dynamicName
+				$this->$name = $values !== null;
+			} elseif (!empty($values)) {
 				$validValues = [];
 				$typedValues = [];
 
@@ -211,6 +215,7 @@ abstract class CliOptionsParser {
 			$short .= $option->getShortAlias() != null ? $option->getShortAlias() . $getoptNotation[$option->getValueTaken()] : '';
 		}
 
+		syslog(LOG_DEBUG, __METHOD__ . ' ' . json_encode($long) . ' ' . $short);
 		return [
 			'long' => array_filter($long),
 			'short' => $short
