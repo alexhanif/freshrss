@@ -215,7 +215,6 @@ abstract class CliOptionsParser {
 			$short .= $option->getShortAlias() != null ? $option->getShortAlias() . $getoptNotation[$option->getValueTaken()] : '';
 		}
 
-		syslog(LOG_DEBUG, __METHOD__ . ' ' . json_encode($long) . ' ' . $short);
 		return [
 			'long' => array_filter($long),
 			'short' => $short
