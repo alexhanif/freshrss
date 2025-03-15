@@ -99,6 +99,12 @@ return array(
 			'previous' => 'Précédent',
 		),
 	),
+	'mark_read_button' => array(
+		'_' => 'Bouton « Marquer tout comme lu »',
+		'big' => 'Gros',
+		'none' => 'Aucun',
+		'small' => 'Petit',
+	),
 	'privacy' => array(
 		'_' => 'Vie privée',
 		'retrieve_extension_list' => 'Récupération de la liste des extensions',
@@ -118,7 +124,7 @@ return array(
 			'_' => 'Suppression du compte',
 			'warn' => 'Le compte et toutes les données associées vont être supprimées.',
 		),
-		'email' => 'adresse électronique',
+		'email' => 'Adresse électronique',
 		'password_api' => 'Mot de passe API<br /><small>(ex. : pour applis mobiles)</small>',
 		'password_form' => 'Mot de passe<br /><small>(pour connexion par formulaire)</small>',
 		'password_format' => '7 caractères minimum',
