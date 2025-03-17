@@ -164,6 +164,14 @@ and [Fever API](https://freshrss.github.io/FreshRSS/en/developers/06_Fever_API.h
 * [bcrypt.js](https://github.com/dcodeIO/bcrypt.js)
 * [phpQuery](https://github.com/phpquery/phpquery)
 
+# Credits
+
+* Some design elements come from [Bootstrap](http://twitter.github.io/bootstrap/)
+although FreshRSS doesn’t use this framework.
+* [Icons](https://gitlab.gnome.or0g/Archive/gnome-icon-theme-symbolic) come from the [GNOME project](https://www.gnome.org/).
+* *Open Sans* font police has been created by [Steve Matteson](https://fonts.google.com/specimen/Open+Sans).
+* FreshRSS is based on [Minz](https://framagit.org/marienfressinaud/MINZ), a PHP framework.
+
 # Alternatives
 
 If FreshRSS does not suit you for one reason or another, here are alternative solutions to consider:
