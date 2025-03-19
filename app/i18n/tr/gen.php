@@ -235,7 +235,7 @@ return array(
 		'raindrop' => 'Raindrop.io',
 		'reddit' => 'Reddit',
 		'shaarli' => 'Shaarli',
-		'telegram' => 'Telegram'
+		'telegram' => 'Telegram',
 		'twitter' => 'Twitter',
 		'wallabag' => 'wallabag v1',
 		'wallabagv2' => 'wallabag v2',
