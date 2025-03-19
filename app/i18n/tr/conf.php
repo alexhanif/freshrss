@@ -146,8 +146,8 @@ return array(
 			'tags' => 'Etikete göre göster',
 			'type' => 'Tür',
 		),
-		'get_A' => 'Kategorilerinde gösterilenler de dahil tüm beslemeleri göster',	// TODO
-		'get_Z' => 'Arşivlenmişler de dahil tüm beslemeleri göster',	// TODO
+		'get_A' => 'Kategorilerinde gösterilenler de dahil tüm beslemeleri göster',	
+		'get_Z' => 'Arşivlenmişler de dahil tüm beslemeleri göster',	
 		'get_all' => 'Tüm makaleleri göster',
 		'get_all_labels' => 'Herhangi bir etikete sahip makaleleri göster',
 		'get_category' => '“%s” kategorisini göster',

@@ -16,7 +16,7 @@ return array(
 		'add' => 'Ekle',
 		'back_to_rss_feeds' => '← RSS beslemelerinize geri dön',
 		'cancel' => 'İptal et',
-		'close' => 'Kapat',	// TODO
+		'close' => 'Kapat',	
 		'create' => 'Oluştur',
 		'delete_all_feeds' => 'Tüm beslemeleri sil',
 		'delete_errored_feeds' => 'Hatalı beslemeleri sil',

@@ -85,7 +85,7 @@ return array(
 		'kind' => array(
 			'_' => 'Besleme kaynağı türü',
 			'html_json' => array(
-				'_' => 'HTML + XPath + JSON nokta notasyonu (HTML içindeki JSON)',	// TODO
+				'_' => 'HTML + XPath + JSON nokta notasyonu (HTML içindeki JSON)',	
 				'xpath' => array(
 					'_' => 'HTML içindeki JSON için XPath',	
 					'help' => 'Örnek: <code>//script[@type="application/json"]</code>',	
@@ -232,8 +232,8 @@ return array(
 		'ttl' => 'Otomatik yenileme sıklığını şundan fazla yapma',
 		'unicityCriteria' => array(
 			'_' => 'Makale benzersizlik kriteri',
-			'forced' => '<span title="Beslemede yinelenen makaleler olsa bile benzersizlik kriterini zorla">zorlanmış</span>',	// TODO
-			'help' => 'Geçersiz beslemeler için geçerlidir.<br />⚠️ Politikayı değiştirmek kopyalar oluşturur.',	// TODO
+			'forced' => '<span title="Beslemede yinelenen makaleler olsa bile benzersizlik kriterini zorla">zorlanmış</span>',	
+			'help' => 'Geçersiz beslemeler için geçerlidir.<br />⚠️ Politikayı değiştirmek kopyalar oluşturur.',	
 			'id' => 'Standart Kimlik (varsayılan)',
 			'link' => 'Bağlantı',
 			'sha1:link_published' => 'Bağlantı + Tarih',
@@ -250,7 +250,7 @@ return array(
 	'import_export' => array(
 		'export' => array(
 			'_' => 'Dışa Aktar',
-			'sqlite' => 'Kullanıcı veritabanını SQLite olarak indir',	// TODO
+			'sqlite' => 'Kullanıcı veritabanını SQLite olarak indir',	
 		),
 		'export_labelled' => 'Etiketlenmiş makalelerinizi dışa aktarın',
 		'export_opml' => 'Besleme listesini dışa aktar (OPML)',
