@@ -13,7 +13,7 @@
 return array(
 	'api' => array(
 		'documentation' => 'Aşağıdaki URL’yi kopyalayın ve harici bir araçta kullanın.',
-		'title' => 'API',
+		'title' => 'API',	// TODO
 	),
 	'bookmarklet' => array(
 		'documentation' => 'Bu düğmeyi yer imleri çubuğunuza sürükleyin veya sağ tıklayıp “Bu Bağlantıyı Yer İmlerine Ekle” seçeneğini seçin. Ardından abone olmak istediğiniz herhangi bir sayfada “Abone Ol” düğmesine tıklayın.',
@@ -85,10 +85,10 @@ return array(
 		'kind' => array(
 			'_' => 'Besleme kaynağı türü',
 			'html_json' => array(
-				'_' => 'HTML + XPath + JSON nokta notasyonu (HTML içindeki JSON)',	
+				'_' => 'HTML + XPath + JSON nokta notasyonu (HTML içindeki JSON)',
 				'xpath' => array(
-					'_' => 'HTML içindeki JSON için XPath',	
-					'help' => 'Örnek: <code>//script[@type="application/json"]</code>',	
+					'_' => 'HTML içindeki JSON için XPath',
+					'help' => 'Örnek: <code>//script[@type="application/json"]</code>',
 				),
 			),
 			'html_xpath' => array(
@@ -178,7 +178,7 @@ return array(
 			),
 			'jsonfeed' => 'JSON Besleme',
 			'rss' => 'RSS / Atom (varsayılan)',
-			'xml_xpath' => 'XML + XPath',
+			'xml_xpath' => 'XML + XPath',	// TODO
 		),
 		'maintenance' => array(
 			'clear_cache' => 'Önbelleği temizle',
@@ -232,8 +232,8 @@ return array(
 		'ttl' => 'Otomatik yenileme sıklığını şundan fazla yapma',
 		'unicityCriteria' => array(
 			'_' => 'Makale benzersizlik kriteri',
-			'forced' => '<span title="Beslemede yinelenen makaleler olsa bile benzersizlik kriterini zorla">zorlanmış</span>',	
-			'help' => 'Geçersiz beslemeler için geçerlidir.<br />⚠️ Politikayı değiştirmek kopyalar oluşturur.',	
+			'forced' => '<span title="Beslemede yinelenen makaleler olsa bile benzersizlik kriterini zorla">zorlanmış</span>',
+			'help' => 'Geçersiz beslemeler için geçerlidir.<br />⚠️ Politikayı değiştirmek kopyalar oluşturur.',
 			'id' => 'Standart Kimlik (varsayılan)',
 			'link' => 'Bağlantı',
 			'sha1:link_published' => 'Bağlantı + Tarih',
@@ -250,7 +250,7 @@ return array(
 	'import_export' => array(
 		'export' => array(
 			'_' => 'Dışa Aktar',
-			'sqlite' => 'Kullanıcı veritabanını SQLite olarak indir',	
+			'sqlite' => 'Kullanıcı veritabanını SQLite olarak indir',
 		),
 		'export_labelled' => 'Etiketlenmiş makalelerinizi dışa aktarın',
 		'export_opml' => 'Besleme listesini dışa aktar (OPML)',

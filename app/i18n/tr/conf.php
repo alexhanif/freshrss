@@ -146,8 +146,8 @@ return array(
 			'tags' => 'Etikete göre göster',
 			'type' => 'Tür',
 		),
-		'get_A' => 'Kategorilerinde gösterilenler de dahil tüm beslemeleri göster',	
-		'get_Z' => 'Arşivlenmişler de dahil tüm beslemeleri göster',	
+		'get_A' => 'Kategorilerinde gösterilenler de dahil tüm beslemeleri göster',
+		'get_Z' => 'Arşivlenmişler de dahil tüm beslemeleri göster',
 		'get_all' => 'Tüm makaleleri göster',
 		'get_all_labels' => 'Herhangi bir etikete sahip makaleleri göster',
 		'get_category' => '“%s” kategorisini göster',
@@ -297,21 +297,21 @@ return array(
 	'sharing' => array(
 		'_' => 'Paylaşım',
 		'add' => 'Paylaşım yöntemi ekle',
-		'bluesky' => 'Bluesky',
+		'bluesky' => 'Bluesky',	// TODO
 		'deprecated' => 'Bu hizmet kullanımdan kaldırıldı ve FreshRSS’nin <a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="Daha fazla bilgi için belgeleri aç" target="_blank">gelecek bir sürümünde</a> kaldırılacak.',
-		'diaspora' => 'Diaspora*',
+		'diaspora' => 'Diaspora*',	// TODO
 		'email' => 'E-posta',
-		'facebook' => 'Facebook',
+		'facebook' => 'Facebook',	// TODO
 		'more_information' => 'Daha fazla bilgi',
 		'print' => 'Yazdır',
-		'raindrop' => 'Raindrop.io',
+		'raindrop' => 'Raindrop.io',	// TODO
 		'remove' => 'Paylaşım yöntemini kaldır',
-		'shaarli' => 'Shaarli',
+		'shaarli' => 'Shaarli',	// TODO
 		'share_name' => 'Görüntülenecek paylaşım adı',
 		'share_url' => 'Kullanılacak paylaşım URL’si',
 		'title' => 'Paylaşım',
-		'twitter' => 'Twitter',
-		'wallabag' => 'wallabag',
+		'twitter' => 'Twitter',	// TODO
+		'wallabag' => 'wallabag',	// TODO
 	),
 	'shortcut' => array(
 		'_' => 'Kısayollar',
