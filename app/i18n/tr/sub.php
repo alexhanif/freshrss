@@ -87,8 +87,8 @@ return array(
 			'html_json' => array(
 				'_' => 'HTML + XPath + JSON nokta notasyonu (HTML içindeki JSON)',	// TODO
 				'xpath' => array(
-					'_' => 'HTML içindeki JSON için XPath',	// TODO
-					'help' => 'Örnek: <code>//script[@type="application/json"]</code>',	// TODO
+					'_' => 'HTML içindeki JSON için XPath',	
+					'help' => 'Örnek: <code>//script[@type="application/json"]</code>',	
 				),
 			),
 			'html_xpath' => array(
