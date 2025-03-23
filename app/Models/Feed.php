@@ -308,9 +308,15 @@ class FreshRSS_Feed extends Minz_Model {
 	public function _description(string $value): void {
 		$this->description = $value == '' ? '' : $value;
 	}
-	public function _lastUpdate(int $value): void {
-		$this->lastUpdate = $value;
+
+	/**
+	 * @param int|numeric-string $value
+	 * 32-bit systems provide a string and will fail in year 2038
+	 */
+	public function _lastUpdate(int|string $value): void {
+		$this->lastUpdate = (int)$value;
 	}
+
 	public function _priority(int $value): void {
 		$this->priority = $value;
 	}

@@ -95,7 +95,7 @@ return array(
 				'_' => 'HTML + XPath (Web scraping)',	// IGNORE
 				'feed_title' => array(
 					'_' => 'Título de la fuente',
-					'help' => 'Ejemplo: <code>//título</code> o un texto estático: <code>"Mi fuente personalizada"</code>',
+					'help' => 'Ejemplo: <code>//title</code> o un texto estático: <code>"Mi fuente personalizada"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> es un lenguaje de consulta estándar para usuarios avanzados, el cual FreshRSS soporta para habilitar Web scraping',
 				'item' => array(
@@ -113,7 +113,7 @@ return array(
 				),
 				'item_thumbnail' => array(
 					'_' => 'miniatura del elemento',
-					'help' => 'Ejemplo: <code>descendiente::img/@src</code>',
+					'help' => 'Ejemplo: <code>descendant::img/@src</code>',
 				),
 				'item_timeFormat' => array(
 					'_' => 'Formato personalizado de fecha y hora',
@@ -125,15 +125,15 @@ return array(
 				),
 				'item_title' => array(
 					'_' => 'título del elemento',
-					'help' => 'Usar en particular el <a href="https://developer.mozilla.org/docs/Web/XPath/Axes" target="_blank">eje XPath</a> <code>descendiente::</code> como <code>descendiente::h2</code>',
+					'help' => 'Usar en particular el <a href="https://developer.mozilla.org/docs/Web/XPath/Axes" target="_blank">eje XPath</a> <code>descendant::</code> como <code>descendant::h2</code>',
 				),
 				'item_uid' => array(
 					'_' => 'ID único del elemento',
-					'help' => 'Opcional. Ejemplo: <code>descendente::div/@data-uri</code>',
+					'help' => 'Opcional. Ejemplo: <code>descendant::div/@data-uri</code>',
 				),
 				'item_uri' => array(
 					'_' => 'enlace del elemento (URL)',
-					'help' => 'Ejemplo: <code>descendente::a/@href</code>',
+					'help' => 'Ejemplo: <code>descendant::a/@href</code>',
 				),
 				'relative' => 'XPath (relativo al elemento) para:',
 				'xpath' => 'XPath para:',

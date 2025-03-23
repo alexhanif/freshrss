@@ -29,6 +29,7 @@ Then point your mobile application to the `fever.php` address (e.g. `https://fre
 |[Unread](https://apps.apple.com/app/unread-rss-reader/id1252376153)                 |iOS                  |Closed Source                                             |
 |[Reeder Classic](https://www.reederapp.com/classic/)                                |iOS                  |Closed Source                                              |
 |[ReadKit](https://apps.apple.com/app/readkit/id588726889)                           |macOS                |Closed Source                                              |
+|[FreshRSS Python API Client](https://github.com/thiswillbeyourgithub/freshrss_python_api)                           |Python                |[GPLv3](https://github.com/thiswillbeyourgithub/freshrss_python_api)                                              |
 
 ## Features
 

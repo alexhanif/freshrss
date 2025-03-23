@@ -2,7 +2,45 @@
 
 See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 
-## 2025-0X-XX FreshRSS 1.26.1-dev
+## 2025-0X-XX FreshRSS 1.26.2-dev
+
+* Features
+	* Implement JSON string concatenation with & operator [#7414](https://github.com/FreshRSS/FreshRSS/pull/7414)
+* Deployment
+	* Apache: add check for `mod_filter` to ensure that `AddOutputFilterByType` works [#7419](https://github.com/FreshRSS/FreshRSS/pull/7419)
+* UI
+	* New size option for the *Mark as read* button [#7314](https://github.com/FreshRSS/FreshRSS/pull/7314)
+* SimplePie
+	* Merged upstream [#7434](https://github.com/FreshRSS/FreshRSS/pull/7434)
+		* Upstream fix [simplepie#912](https://github.com/simplepie/simplepie/pull/912)
+
+
+## 2025-03-13 FreshRSS 1.26.1
+
+* Features
+	* Add cURL version to page about system information [#7409](https://github.com/FreshRSS/FreshRSS/pull/7409)
+* Bug fixing
+	* Fix regression with cURL HTTP headers breaking conditional HTTP requests [#7403](https://github.com/FreshRSS/FreshRSS/pull/7403), [FreshRSS/simplepie#33](https://github.com/FreshRSS/simplepie/pull/33)
+	* Fix regression with saving states of user queries [#7400](https://github.com/FreshRSS/FreshRSS/pull/7400)
+	* Fix regression with dynamic OPML [#7394](https://github.com/FreshRSS/FreshRSS/pull/7394)
+	* Fix update of the user’s last activity on login action [#7406](https://github.com/FreshRSS/FreshRSS/pull/7406)
+	* Fix setting category option *Maximum number of articles to keep per feed* [#7416](https://github.com/FreshRSS/FreshRSS/pull/7416)
+	* Fix priority field when processing a new feed from an extension [#7354](https://github.com/FreshRSS/FreshRSS/pull/7354)
+* Deployment
+	* Fix regression with 64-bit timestamps on 32-bit platforms [#7375](https://github.com/FreshRSS/FreshRSS/pull/7375)
+	* Fix back-compatibility with cURL 7.51 (we require cURL 7.52+ for `CURLPROXY_HTTPS`) [#7409](https://github.com/FreshRSS/FreshRSS/pull/7409)
+* UI
+	* Use case-insensitive sort for categories [#7402](https://github.com/FreshRSS/FreshRSS/pull/7402)
+	* Improve dark mode of *Origine* theme [#7413](https://github.com/FreshRSS/FreshRSS/pull/7413)
+	* Added API password indicator [#7340](https://github.com/FreshRSS/FreshRSS/pull/7340)
+* I18n
+	* Fix (es, fa, sk): do not translate XPath code [#7404](https://github.com/FreshRSS/FreshRSS/pull/7404)
+	* Fix date bug in Finish [#7423](https://github.com/FreshRSS/FreshRSS/pull/7423)
+	* Add Portuguese from Portugal [#7329](https://github.com/FreshRSS/FreshRSS/pull/7329)
+	* Improve Hungarian [#7391](https://github.com/FreshRSS/FreshRSS/pull/7391)
+* Misc.
+	* Improve PHP code [#7339](https://github.com/FreshRSS/FreshRSS/pull/7339)
+	* Update dev dependencies [#7386](https://github.com/FreshRSS/FreshRSS/pull/7386), [#7387](https://github.com/FreshRSS/FreshRSS/pull/7387), [#7388](https://github.com/FreshRSS/FreshRSS/pull/7388)
 
 
 ## 2025-02-23 FreshRSS 1.26.0
@@ -23,6 +61,7 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Fix UI of global view unread articles counter [#7247](https://github.com/FreshRSS/FreshRSS/pull/7247)
 	* Hide base theme in carrousel [#7234](https://github.com/FreshRSS/FreshRSS/pull/7234)
 * Deployment
+	* Require cURL 7.52.0+ [#7231](https://github.com/FreshRSS/FreshRSS/pull/7231)
 	* Reduce superfluous Docker builds [#7137](https://github.com/FreshRSS/FreshRSS/pull/7137)
 	* Docker default image (Debian 12 Bookworm) updated to PHP 8.2.26 and Apache 2.4.62
 	* Docker alternative image (Alpine 3.21) updated to PHP 8.3.16
@@ -324,7 +363,7 @@ Security
 	* Fix shortcut for clipboard sharing [#6277](https://github.com/FreshRSS/FreshRSS/pull/6277)
 	* Fix user-query filter display [#6421](https://github.com/FreshRSS/FreshRSS/pull/6421)
 * SimplePie
-	* Fix absolutize URL for several cases [#6270](https://github.com/FreshRSS/FreshRSS/pull/6270), [simplepie/#861](https://github.com/simplepie/simplepie/pull/861)
+	* Fix absolutize URL for several cases [#6270](https://github.com/FreshRSS/FreshRSS/pull/6270), [simplepie#861](https://github.com/simplepie/simplepie/pull/861)
 * Security
 	* Replace `iframe` `allow` attribute [#6274](https://github.com/FreshRSS/FreshRSS/pull/6274)
 * Deployment
@@ -1307,6 +1346,7 @@ Security
 * Deployment
 	* Docker default image rebased on Debian 10 Buster, with Apache 2.4.38 and PHP 7.3.19 [#3159](https://github.com/FreshRSS/FreshRSS/pull/3159)
 	* Docker: Alpine image updated to 3.12 with Apache/2.4.46 and PHP 7.3.21 [#3025](https://github.com/FreshRSS/FreshRSS/pull/3025)
+	* Docker: Remove healthcheck [#3161](https://github.com/FreshRSS/FreshRSS/pull/3161)
 	* Update example of Dockerfile [#3108](https://github.com/FreshRSS/FreshRSS/pull/3108)
 * CLI
 	* Re-introduce `--api_password` option (vanished in 1.16.0) [#3179](https://github.com/FreshRSS/FreshRSS/pull/3179)

@@ -99,6 +99,12 @@ return array(
 			'previous' => 'Precedente',
 		),
 	),
+	'mark_read_button' => array(
+		'_' => '“segna tutto come letto” button',	// DIRTY
+		'big' => 'Big',	// TODO
+		'none' => 'None',	// TODO
+		'small' => 'Small',	// TODO
+	),
 	'privacy' => array(
 		'_' => 'Privacy',	// IGNORE
 		'retrieve_extension_list' => 'Recupero dell’elenco delle estensioni',
@@ -107,6 +113,8 @@ return array(
 		'_' => 'Gestione profili',
 		'api' => array(
 			'_' => 'Gestione API',
+			'api_not_set' => 'Password API non impostata',
+			'api_set' => 'Password API impostata',
 			'check_link' => 'Verificare lo stato dell’API tramite: <kbd><a href="../api/" target="_blank">%s</a></kbd>',
 			'disabled' => 'L’accesso all’API è disabilitato.',
 			'documentation_link' => 'Vedi la <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentazione e l’elenco delle applicazioni</a>',

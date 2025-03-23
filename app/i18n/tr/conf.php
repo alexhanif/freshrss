@@ -99,6 +99,12 @@ return array(
 			'previous' => 'Önceki',
 		),
 	),
+	'mark_read_button' => array(
+		'_' => '“Hepsini okundu say” button',	// DIRTY
+		'big' => 'Big',	// TODO
+		'none' => 'None',	// TODO
+		'small' => 'Small',	// TODO
+	),
 	'privacy' => array(
 		'_' => 'Gizlilik',
 		'retrieve_extension_list' => 'Uzantı listesini al',
@@ -107,6 +113,8 @@ return array(
 		'_' => 'Profil yönetimi',
 		'api' => array(
 			'_' => 'API yönetimi',
+			'api_not_set' => 'API password not set',	// TODO
+			'api_set' => 'API password set',	// TODO
 			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// TODO
 			'disabled' => 'The API access is disabled.',	// TODO
 			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
