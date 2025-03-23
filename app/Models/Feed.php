@@ -725,17 +725,17 @@ class FreshRSS_Feed extends Minz_Model {
 		}
 
 		$xpath = new DOMXPath($doc);
-		$jsons = @$xpath->evaluate($xPathToJson);
-		if ($jsons === false) {
+		$jsonFragments = @$xpath->evaluate($xPathToJson);
+		if ($jsonFragments === false) {
 			return null;
 		}
-		if (is_string($jsons)) {
-			return $jsons;
+		if (is_string($jsonFragments)) {
+			return $jsonFragments;
 		}
-		if ($jsons instanceof DOMNodeList && $jsons->length > 0) {
+		if ($jsonFragments instanceof DOMNodeList && $jsonFragments->length > 0) {
 			// If the result is a list, then aggregate as a JSON array
 			$result = [];
-			foreach ($jsons as $node) {
+			foreach ($jsonFragments as $node) {
 				$json = json_decode($node->textContent, true);
 				if (json_last_error() === JSON_ERROR_NONE && is_array($json)) {
 					$result[] = $json;
