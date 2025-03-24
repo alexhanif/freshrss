@@ -183,7 +183,7 @@ The following events are available:
 
 > ℹ️ Note: the `simplepie_*` hooks are only fired for feeds using SimplePie via pull, i.e. normal RSS/Atom feeds. This excludes WebSub (push), and the various HTML or JSON Web scraping methods.
 
-### The JavaScript events
+### JavaScript events
 
 ```javascript
 function use_context() {
