@@ -16,7 +16,7 @@ return array(
 		'allow_anonymous_refresh' => 'Anonymes Aktualisieren der Artikel erlauben',
 		'api_enabled' => '<abbr>API</abbr>-Zugriff erlauben <small>(für mobile Apps und Benutzerabfragen benötigt)</small>',
 		'form' => 'Webformular (traditionell, benötigt JavaScript)',
-		'http' => 'HTTP (HTTPS für erfahrene Benutzer)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => 'Keine (gefährlich)',
 		'title' => 'Authentifizierung',
 		'token' => 'Master-Authentifizierungs-Token',
@@ -116,7 +116,7 @@ return array(
 		'description' => 'Beschreibungen',
 		'disabled' => 'Deaktiviert',
 		'empty_list' => 'Es gibt keine installierte Erweiterung.',
-		'empty_list_help' => 'Siehe Protokolle für weitere Infos, warum die Erweiterungsliste ist.',
+		'empty_list_help' => 'Siehe Protokolle für weitere Infos, warum die Erweiterungsliste leer ist.',
 		'enabled' => 'Aktiviert',
 		'latest' => 'Installiert',
 		'name' => 'Name',	// IGNORE
@@ -148,8 +148,9 @@ return array(
 		'main_stream' => 'Haupt-Feeds',
 		'no_idle' => 'Es gibt keinen inaktiven Feed!',
 		'number_entries' => '%d Artikel',
+		'overview' => 'Übersicht',
 		'percent_of_total' => '% Gesamt',
-		'repartition' => 'Artikel-Verteilung',
+		'repartition' => 'Artikel-Verteilung: %s',
 		'status_favorites' => 'Favoriten',
 		'status_read' => 'Gelesen',
 		'status_total' => 'Gesamt',

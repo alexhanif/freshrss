@@ -35,7 +35,7 @@ class FreshRSS_category_Controller extends FreshRSS_ActionController {
 		$url_redirect = ['c' => 'subscription', 'a' => 'add'];
 
 		$limits = FreshRSS_Context::systemConf()->limits;
-		$this->view->categories = $catDAO->listCategories(false) ?: [];
+		$this->view->categories = $catDAO->listCategories(prePopulateFeeds: false);
 
 		if (count($this->view->categories) >= $limits['max_categories']) {
 			Minz_Request::bad(_t('feedback.sub.category.over_max', $limits['max_categories']), $url_redirect);
@@ -113,7 +113,7 @@ class FreshRSS_category_Controller extends FreshRSS_ActionController {
 			} else {
 				if (!Minz_Request::paramBoolean('enable_keep_max')) {
 					$keepMax = false;
-				} elseif (($keepMax = Minz_Request::paramInt('keep_max')) !== 0) {
+				} elseif (($keepMax = Minz_Request::paramInt('keep_max')) === 0) {
 					$keepMax = FreshRSS_Feed::ARCHIVING_RETENTION_COUNT_LIMIT;
 				}
 				if (Minz_Request::paramBoolean('enable_keep_period')) {
@@ -197,7 +197,6 @@ class FreshRSS_category_Controller extends FreshRSS_ActionController {
 			}
 
 			// Remove related queries.
-			/** @var array<array{'get'?:string,'name'?:string,'order'?:string,'search'?:string,'state'?:int,'url'?:string}> $queries */
 			$queries = remove_query_by_get('c_' . $id, FreshRSS_Context::userConf()->queries);
 			FreshRSS_Context::userConf()->queries = $queries;
 			FreshRSS_Context::userConf()->save();
@@ -239,7 +238,6 @@ class FreshRSS_category_Controller extends FreshRSS_ActionController {
 
 				// Remove related queries
 				foreach ($feeds as $feed) {
-					/** @var array<array{'get'?:string,'name'?:string,'order'?:string,'search'?:string,'state'?:int,'url'?:string}> */
 					$queries = remove_query_by_get('f_' . $feed->id(), FreshRSS_Context::userConf()->queries);
 					FreshRSS_Context::userConf()->queries = $queries;
 				}

@@ -40,7 +40,7 @@ class FreshRSS_Export_Service {
 	public function generateOpml(): array {
 		$view = new FreshRSS_View();
 		$day = date('Y-m-d');
-		$view->categories = $this->category_dao->listCategories(true, true) ?: [];
+		$view->categories = $this->category_dao->listCategories(prePopulateFeeds: true, details: true);
 		$view->excludeMutedFeeds = false;
 
 		return [
@@ -64,16 +64,16 @@ class FreshRSS_Export_Service {
 	 */
 	public function generateStarredEntries(string $type): array {
 		$view = new FreshRSS_View();
-		$view->categories = $this->category_dao->listCategories(true) ?: [];
+		$view->categories = $this->category_dao->listCategories(prePopulateFeeds: true);
 		$day = date('Y-m-d');
 
 		$view->list_title = _t('sub.import_export.starred_list');
 		$view->type = 'starred';
-		$entriesId = $this->entry_dao->listIdsWhere($type, 0, FreshRSS_Entry::STATE_ALL, 'ASC', -1) ?? [];
+		$entriesId = $this->entry_dao->listIdsWhere($type, 0, FreshRSS_Entry::STATE_ALL, order: 'ASC', limit: -1) ?? [];
 		$view->entryIdsTagNames = $this->tag_dao->getEntryIdsTagNames($entriesId);
 		// The following is a streamable query, i.e. must be last
 		$view->entries = $this->entry_dao->listWhere(
-			$type, 0, FreshRSS_Entry::STATE_ALL, 'ASC', -1
+			$type, 0, FreshRSS_Entry::STATE_ALL, order: 'ASC', limit: -1
 		);
 
 		return [
@@ -89,7 +89,7 @@ class FreshRSS_Export_Service {
 	 */
 	public function generateFeedEntries(int $feed_id, int $max_number_entries): ?array {
 		$view = new FreshRSS_View();
-		$view->categories = $this->category_dao->listCategories(true) ?: [];
+		$view->categories = $this->category_dao->listCategories(prePopulateFeeds: true);
 
 		$feed = FreshRSS_Category::findFeed($view->categories, $feed_id);
 		if ($feed === null) {
@@ -103,12 +103,12 @@ class FreshRSS_Export_Service {
 		$view->list_title = _t('sub.import_export.feed_list', $feed->name());
 		$view->type = 'feed/' . $feed->id();
 		$entriesId = $this->entry_dao->listIdsWhere(
-			'f', $feed->id(), FreshRSS_Entry::STATE_ALL, 'ASC', $max_number_entries
+			'f', $feed->id(), FreshRSS_Entry::STATE_ALL, order: 'ASC', limit: $max_number_entries
 		) ?? [];
 		$view->entryIdsTagNames = $this->tag_dao->getEntryIdsTagNames($entriesId);
 		// The following is a streamable query, i.e. must be last
 		$view->entries = $this->entry_dao->listWhere(
-			'f', $feed->id(), FreshRSS_Entry::STATE_ALL, 'ASC', $max_number_entries
+			'f', $feed->id(), FreshRSS_Entry::STATE_ALL, order: 'ASC', limit: $max_number_entries
 		);
 
 		return [
@@ -149,7 +149,7 @@ class FreshRSS_Export_Service {
 
 		// From https://stackoverflow.com/questions/1061710/php-zip-files-on-the-fly
 		$zip_file = tempnam(TMP_PATH, 'zip');
-		if ($zip_file == false) {
+		if ($zip_file === false) {
 			return [$zip_filename, false];
 		}
 		$zip_archive = new ZipArchive();

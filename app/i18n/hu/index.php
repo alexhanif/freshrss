@@ -14,9 +14,18 @@ return array(
 	'about' => array(
 		'_' => 'Névjegy',
 		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',	// IGNORE
+		'bug_reports' => array(
+			'environment_information' => array(
+				'_' => 'Rendszer információ',
+				'browser' => 'Böngésző',
+				'database' => 'Adatbázis',
+				'server_software' => 'Szerver szoftver',
+				'version_curl' => 'cURL version',	// TODO
+				'version_frss' => 'FreshRSS verzió',
+				'version_php' => 'PHP verzió',
+			),
+		),
 		'bugs_reports' => 'Hiba jelentések',
-		'credits' => 'Credits',	// IGNORE
-		'credits_content' => 'Néhány dizájn elem a <a href="http://twitter.github.io/bootstrap/">Bootstrap</a> segítségével működik, habár a FreshRSS nem használja ezt a framework-öt. Az <a href="https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic">Ikonok</a> a <a href="https://www.gnome.org/">GNOME projekt-ből származnak</a>. <em>Open Sans</em> betűtípust készítette <a href="https://fonts.google.com/specimen/Open+Sans">Steve Matteson</a>. A FreshRSS a <a href="https://framagit.org/marienfressinaud/MINZ">Minz</a> PHP keretrendszeren alapul.',
 		'documentation' => 'Dokumentáció',
 		'freshrss_description' => 'A FreshRSS egy saját magunk által host-olható RSS hírgyűjtő és olvasó. Lehetővé teszi hogy kövess és olvass sok híroldalt egy pillantás alatt anélkül hogy mindegyiket meglátogatnád egyesével. A FreshRSS könnyű, gyors, jól konfigurálható, és könnyen használható.',
 		'github' => '<a href="https://github.com/FreshRSS/FreshRSS/issues">GitHub-on</a>',
@@ -27,6 +36,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => 'Nincs megjeleníthető cikk.',
+		'received' => array(
+			'before_yesterday' => 'Tegnapelőtt fogadva',
+			'today' => 'Ma fogadva',
+			'yesterday' => 'Tegnap fogadva',
+		),
 		'rss_of' => 'RSS hírforrás %s',
 		'title' => 'Minden cikk',
 		'title_fav' => 'Kedvencek',
@@ -51,6 +65,7 @@ return array(
 		'mark_cat_read' => 'Kategória megjelölése olvasottként',
 		'mark_feed_read' => 'Hírforrás megjelölése olvasottként',
 		'mark_selection_unread' => 'Kijelöltek olvasatlanná tétele',
+		'mylabels' => 'Címkék',
 		'newer_first' => 'Újabbak elöl',
 		'non-starred' => 'Nem kedvencek megjelenítése',
 		'normal_view' => 'Normál nézet',
@@ -60,10 +75,21 @@ return array(
 		'reader_view' => 'Olvasó nézet',
 		'rss_view' => 'RSS hírforrás',
 		'search_short' => 'Keresés',
+		'sort' => array(
+			'_' => 'Rendezési sorrend',
+			'date_asc' => 'Kiadás dátuma 1→9',
+			'date_desc' => 'Kiadás dátuma 9→1',
+			'id_asc' => 'Frissen fogadott utoljára',
+			'id_desc' => 'Frissen fogadott először',
+			'link_asc' => 'Link A→Z',	// TODO
+			'link_desc' => 'Link Z→A',	// TODO
+			'rand' => 'Véletlen sorrend',
+			'title_asc' => 'Cím A→Z',
+			'title_desc' => 'Cím Z→A',
+		),
 		'starred' => 'Kedvencek megjelenítése',
 		'stats' => 'Statisztika',
 		'subscription' => 'Hírforrások kezelése',
-		'tags' => 'Címkék',
 		'unread' => 'Olvasatlanok megjelenítése',
 	),
 	'share' => 'Megosztás',

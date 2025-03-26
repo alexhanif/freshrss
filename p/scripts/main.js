@@ -53,6 +53,9 @@ var context;
 	context.icons.unread = decodeURIComponent(context.icons.unread);
 	context.extensions = json.extensions;
 }());
+
+const freshrssGlobalContextLoadedEvent = new Event('freshrss:globalContextLoaded');
+document.dispatchEvent(freshrssGlobalContextLoadedEvent);
 // </Global context>
 
 function badAjax(reload) {
@@ -721,7 +724,7 @@ function show_share_menu(el) {
 	const dropdownMenu = div.querySelector('.dropdown-menu');
 
 	if (!dropdownMenu) {
-		const itemId = el.closest('.flux').id;
+		const itemId = el.closest('.flux').dataset.entry;
 		const templateId = 'share_article_template';
 		const id = itemId;
 		const flux_header_el = el.closest('.flux');
@@ -745,6 +748,41 @@ function show_share_menu(el) {
 		div.insertAdjacentHTML('beforeend', template);
 	}
 	return true;
+}
+
+function mylabels(key) {
+	const mylabelsDropdown = document.querySelector('.flux.current.active .dropdown-target[id^="dropdown-labels"]');
+
+	if (!mylabelsDropdown) {
+		return;
+	}
+
+	if (typeof key === 'undefined') {
+		show_labels_menu(mylabelsDropdown);
+	}
+	// Display the mylabels div
+	location.hash = mylabelsDropdown.id;
+	// Force scrolling to the mylabels div
+	const scrollTop = needsScroll(mylabelsDropdown.closest('.horizontal-list'));
+	if (scrollTop !== 0) {
+		if (mylabelsDropdown.closest('.horizontal-list.flux_header')) {
+			mylabelsDropdown.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: "smooth", block: "start" });
+		} else {
+			mylabelsDropdown.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: "smooth", block: "end" });
+		}
+	}
+
+	key = parseInt(key);
+
+	if (key === 0) {
+		mylabelsDropdown.parentElement.querySelector('.dropdown-menu .item .newTag').focus();
+	} else {
+		const mylabelsCheckboxes = mylabelsDropdown.parentElement.querySelectorAll('.dropdown-menu .item .checkboxTag');
+
+		if (key <= mylabelsCheckboxes.length) {
+			mylabelsCheckboxes[key].click();
+		}
+	}
 }
 
 function auto_share(key) {
@@ -987,11 +1025,19 @@ function init_shortcuts() {
 
 		if (location.hash.match(/^#dropdown-/)) {
 			const n = parseInt(k);
-			if (n) {
-				if (location.hash === '#dropdown-query') {
-					user_filter(n);
-				} else {
-					auto_share(n);
+			if (Number.isInteger(n)) {
+				switch (location.hash.substring(0, 15)) {
+					case '#dropdown-query':
+						user_filter(n);
+						break;
+					case '#dropdown-share':
+						auto_share(n);
+						break;
+					case '#dropdown-label':
+						mylabels(n);
+						break;
+					default:
+						return;
 				}
 				ev.preventDefault();
 				return;
@@ -1107,6 +1153,7 @@ function init_shortcuts() {
 		if (k === s.skip_next_entry) { next_entry(true); ev.preventDefault(); return; }
 		if (k === s.skip_prev_entry) { prev_entry(true); ev.preventDefault(); return; }
 		if (k === s.collapse_entry) { collapse_entry(); ev.preventDefault(); return; }
+		if (k === s.mylabels) { mylabels(); ev.preventDefault(); return; }
 		if (k === s.auto_share) { auto_share(); ev.preventDefault(); return; }
 		if (k === s.user_filter) { user_filter(); ev.preventDefault(); return; }
 		if (k === s.load_more) { load_more_posts(); ev.preventDefault(); return; }
@@ -1431,6 +1478,7 @@ function loadDynamicTags(div) {
 			const input_newTag = document.createElement('input');
 			input_newTag.setAttribute('type', 'text');
 			input_newTag.setAttribute('name', 'newTag');
+			input_newTag.setAttribute('class', 'newTag');
 			input_newTag.setAttribute('list', 'datalist-labels');
 			input_newTag.addEventListener('keydown', function (ev) { if (ev.key.toUpperCase() == 'ENTER') { this.parentNode.previousSibling.click(); } });
 
@@ -1690,7 +1738,7 @@ function closeNotification() {
 function init_notifications() {
 	notification = document.getElementById('notification');
 
-	notification.querySelector('a.close').addEventListener('click', function (ev) {
+	notification.querySelector('.close').addEventListener('click', function (ev) {
 		closeNotification();
 		ev.preventDefault();
 		return false;
@@ -1857,6 +1905,12 @@ let url_load_more = '';
 let load_more = false;
 let box_load_more = null;
 
+function remove_existing_posts() {
+	document.querySelectorAll('.flux, .day').forEach(function (div) {
+		div.remove();
+	});
+}
+
 function load_more_posts() {
 	if (load_more || !url_load_more || !box_load_more) {
 		return;
@@ -1868,6 +1922,11 @@ function load_more_posts() {
 	req.open('GET', url_load_more, true);
 	req.responseType = 'document';
 	req.onload = function (e) {
+		if (context.sort === 'rand') {
+			document.scrollingElement.scrollTop = 0;
+			remove_existing_posts();
+		}
+
 		const html = this.response;
 		const streamFooter = document.getElementById('stream-footer');
 

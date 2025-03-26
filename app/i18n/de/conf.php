@@ -15,7 +15,7 @@ return array(
 		'_' => 'Archivierung',
 		'exception' => 'Archivierungsausnahmen',
 		'help' => 'Weitere Optionen sind in den Einstellungen der individuellen Feeds verfügbar.',
-		'keep_favourites' => 'Lieblingsartikel behalten',
+		'keep_favourites' => 'Favoritenartikel behalten',
 		'keep_labels' => 'Artikel mit Label behalten',
 		'keep_max' => 'Maximale Anzahl an Artikeln, die pro Feed behalten werden',
 		'keep_min_by_feed' => 'Minimale Anzahl an Artikeln, die pro Feed behalten werden',
@@ -99,6 +99,12 @@ return array(
 			'previous' => 'Vorherige',
 		),
 	),
+	'mark_read_button' => array(
+		'_' => '„Alle als gelesen markieren“ Button',
+		'big' => 'Big',	// TODO
+		'none' => 'None',	// TODO
+		'small' => 'Small',	// TODO
+	),
 	'privacy' => array(
 		'_' => 'Privatsphäre',
 		'retrieve_extension_list' => 'Erweiterungsliste abrufen',
@@ -107,6 +113,8 @@ return array(
 		'_' => 'Profil-Verwaltung',
 		'api' => array(
 			'_' => 'API-Verwaltung',
+			'api_not_set' => 'API password not set',	// TODO
+			'api_set' => 'API password set',	// TODO
 			'check_link' => 'API-Status prüfen: <kbd><a href="../api/" target="_blank">%s</a></kbd>',
 			'disabled' => 'Der API-Zugriff ist deaktiviert.',
 			'documentation_link' => 'Siehe die <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">Dokumentation und die Liste der bekannten Apps</a>',
@@ -138,6 +146,8 @@ return array(
 			'tags' => 'Nach Labels filtern',
 			'type' => 'Filter-Typ',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'Alle Artikel anzeigen',
 		'get_all_labels' => 'Alle Artikle mit beliebigem Label anzeigen',
 		'get_category' => 'Kategorie „%s“ anzeigen',
@@ -173,14 +183,14 @@ return array(
 		'state_1' => 'Gelesene Artikel anzeigen',
 		'state_2' => 'Ungelesene Artikel anzeigen',
 		'state_3' => 'Alle Artikel anzeigen',
-		'state_4' => 'Lieblingsartikel anzeigen',
-		'state_5' => 'Gelesene Lieblingsartikel anzeigen',
-		'state_6' => 'Ungelesene Lieblingsartikel anzeigen',
-		'state_7' => 'Lieblingsartikel anzeigen',
-		'state_8' => 'Keine Lieblingsartikel anzeigen',
-		'state_9' => 'Gelesene ohne Lieblingsartikel anzeigen',
-		'state_10' => 'Ungelesene ohne Lieblingsartikel anzeigen',
-		'state_11' => 'Keine Lieblingsartikel anzeigen',
+		'state_4' => 'Favoritenartikel anzeigen',
+		'state_5' => 'Gelesene Favoritenartikel anzeigen',
+		'state_6' => 'Ungelesene Favoritenartikel anzeigen',
+		'state_7' => 'Favoritenartikel anzeigen',
+		'state_8' => 'Keine Favoritenartikel anzeigen',
+		'state_9' => 'Gelesene ohne Favoritenartikel anzeigen',
+		'state_10' => 'Ungelesene ohne Favoritenartikel anzeigen',
+		'state_11' => 'Keine Favoritenartikel anzeigen',
 		'state_12' => 'Alle Artikel anzeigen',
 		'state_13' => 'Gelesene Artikel anzeigen',
 		'state_14' => 'Ungelesene Artikel anzeigen',
@@ -259,12 +269,13 @@ return array(
 		'show' => array(
 			'_' => 'Artikel zum Anzeigen',
 			'active_category' => 'Aktive Kategorie',
-			'adaptive' => 'Anzeige anpassen',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => 'Alle Artikel zeigen',
 			'all_categories' => 'Alle Kategorien',
 			'no_category' => 'Keine Kategorie',
 			'remember_categories' => 'Geöffnete Kategorien merken',
 			'unread' => 'Nur ungelesene zeigen',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => 'Auch auf Labels anwenden',
 		'sides_close_article' => 'Klick außerhalb des Artikel-Textes schließt den Artikel',
@@ -288,6 +299,7 @@ return array(
 	'sharing' => array(
 		'_' => 'Teilen',
 		'add' => 'Füge eine Teilen-Dienst hinzu',
+		'bluesky' => 'Bluesky',	// TODO
 		'deprecated' => 'Dieser Dienst ist veraltet und wir in einer <a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="Open documentation for more information" target="_blank">zukünftigen FreshRSS-Version</a> entfernt.',
 		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => 'E-Mail',

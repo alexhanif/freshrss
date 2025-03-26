@@ -3,6 +3,13 @@ includes:
 	- vendor/phpstan/phpstan/conf/bleedingEdge.neon
 
 parameters:
+	level: max
+	checkImplicitMixed: true	# TODO pass
+	strictRules:
+		strictArrayFilter: false	# TODO pass maybe
 	excludePaths:
 		analyse:
 			# TODO: Update files below and remove them from this list
+			- app/Models/EntryDAO.php
+			- app/Models/TagDAO.php
+			- app/Services/ImportService.php

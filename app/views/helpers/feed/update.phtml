@@ -305,7 +305,7 @@
 			</div>
 			<?php
 				$archiving = $this->feed->attributeArray('archiving');
-				/** @var array<'default'?:bool,'keep_period'?:string,'keep_max'?:int,'keep_min'?:int,'keep_favourites'?:bool,'keep_labels'?:bool,'keep_unreads'?:bool>|null $archiving */
+				/** @var array{default?:bool,keep_period?:string,keep_max?:int,keep_min?:int,keep_favourites?:bool,keep_labels?:bool,keep_unreads?:bool}|null $archiving */
 				if (empty($archiving)) {
 					$archiving = [ 'default' => true ];
 				} else {
@@ -740,7 +740,7 @@
 				<div class="group-controls">
 					<input type="text" name="curl_params_useragent" id="curl_params_useragent" class="w100" value="<?=
 						htmlspecialchars((string)($curlParams[CURLOPT_USERAGENT] ?? ''), ENT_COMPAT, 'UTF-8')
-					?>" placeholder="<?= _t('gen.short.blank_to_disable') ?>" />
+					?>" placeholder="<?= _t('gen.short.by_default') ?>" />
 					<p class="help"><?= _i('help') ?> <?= _t('sub.feed.useragent_help') ?></p>
 				</div>
 			</div>
@@ -749,15 +749,21 @@
 				<label class="group-name" for="proxy_type"><?= _t('sub.feed.proxy') ?></label>
 				<div class="group-controls">
 					<select name="proxy_type" id="proxy_type"><?php
+						defined('CURLPROXY_HTTPS') or define('CURLPROXY_HTTPS', 2);	// Compatibility cURL 7.51
 						$type = $curlParams[CURLOPT_PROXYTYPE] ?? '';
-						foreach (['' => '', 3 => 'NONE', 0 => 'HTTP', 2 => 'HTTPS', 4 => 'SOCKS4', 6 => 'SOCKS4A', 5 => 'SOCKS5', 7 => 'SOCKS5H'] as $k => $v) {
+						if ($type === 3) {	// Legacy for NONE
+							$type = -1;
+						}
+						foreach (['' => '', -1 => 'NONE', CURLPROXY_HTTP => 'HTTP', CURLPROXY_HTTPS => 'HTTPS',
+							CURLPROXY_SOCKS4 => 'SOCKS4', CURLPROXY_SOCKS4A => 'SOCKS4A', CURLPROXY_SOCKS5 => 'SOCKS5',
+							CURLPROXY_SOCKS5_HOSTNAME => 'SOCKS5H'] as $k => $v) {
 							echo '<option value="' . $k . ($type === $k ? '" selected="selected' : '' ) . '">' . $v . '</option>';
 						}
 					?>
 					</select>
 					<input type="text" name="curl_params" id="curl_params" value="<?=
 						htmlspecialchars((string)($curlParams[CURLOPT_PROXY] ?? ''), ENT_COMPAT, 'UTF-8')
-					?>" placeholder="<?= _t('gen.short.blank_to_disable') ?>" />
+					?>" placeholder="<?= _t('gen.short.by_default') ?>" />
 					<p class="help"><?= _i('help') ?> <?= _t('sub.feed.proxy_help') ?></p>
 				</div>
 			</div>
@@ -776,8 +782,14 @@
 					?>
 					</select>
 					<div class="stick">
+						<?php
+							$postFields = $this->feed->attributeArray('curl_params')[CURLOPT_POSTFIELDS] ?? '';
+							if (!is_string($postFields)) {
+								$postFields = '';
+							}
+						?>
 						<input type="text" name="curl_fields" id="curl_fields" value="<?=
-							htmlspecialchars($this->feed->attributeArray('curl_params')[CURLOPT_POSTFIELDS] ?? '', ENT_COMPAT, 'UTF-8')
+							htmlspecialchars($postFields, ENT_COMPAT, 'UTF-8')
 						?>" placeholder="<?= _t('sub.feed.method_postparams') ?>" />
 					</div>
 					<p class="help"><?= _i('help') ?> <?= _t('sub.feed.method_help') ?></p>
@@ -805,8 +817,15 @@
 			<div class="form-group">
 				<label class="group-name" for="http_headers"><?= _t('sub.feed.http_headers') ?></label>
 				<div class="group-controls">
+					<?php
+						$httpHeaders = $this->feed->attributeArray('curl_params')[CURLOPT_HTTPHEADER] ?? [];
+						if (!is_array($httpHeaders)) {
+							$httpHeaders = [];
+						}
+						$httpHeaders = array_filter($httpHeaders, 'is_string');
+					?>
 					<textarea class="valid-json" id="http_headers" name="http_headers" rows="3" cols="64" spellcheck="false"><?php
-						foreach ($this->feed->attributeArray('curl_params')[CURLOPT_HTTPHEADER] ?? [] as $header) {
+						foreach ($httpHeaders as $header) {
 							echo htmlspecialchars($header, ENT_NOQUOTES, 'UTF-8'), PHP_EOL;
 						}
 					?></textarea>

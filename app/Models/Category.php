@@ -19,7 +19,7 @@ class FreshRSS_Category extends Minz_Model {
 	private string $name;
 	private int $nbFeeds = -1;
 	private int $nbNotRead = -1;
-	/** @var array<FreshRSS_Feed>|null */
+	/** @var array<int,FreshRSS_Feed>|null where the key is the feed ID */
 	private ?array $feeds = null;
 	/** @var bool|int */
 	private $hasFeedsWithError = false;
@@ -58,15 +58,20 @@ class FreshRSS_Category extends Minz_Model {
 	public function lastUpdate(): int {
 		return $this->lastUpdate;
 	}
-	public function _lastUpdate(int $value): void {
-		$this->lastUpdate = $value;
+
+	/**
+	 * @param int|numeric-string $value
+	 * 32-bit systems provide a string and will fail in year 2038
+	 */
+	public function _lastUpdate(int|string $value): void {
+		$this->lastUpdate = (int)$value;
 	}
+
 	public function inError(): bool {
 		return $this->error;
 	}
 
-	/** @param bool|int $value */
-	public function _error($value): void {
+	public function _error(bool|int $value): void {
 		$this->error = (bool)$value;
 	}
 	public function isDefault(): bool {
@@ -100,7 +105,7 @@ class FreshRSS_Category extends Minz_Model {
 	}
 
 	/**
-	 * @return array<int,FreshRSS_Feed>
+	 * @return array<int,FreshRSS_Feed> where the key is the feed ID
 	 * @throws Minz_ConfigurationNamespaceException
 	 * @throws Minz_PDOConnectionException
 	 */
@@ -142,11 +147,11 @@ class FreshRSS_Category extends Minz_Model {
 	}
 
 	/** @param array<FreshRSS_Feed>|FreshRSS_Feed $values */
-	public function _feeds($values): void {
+	public function _feeds(array|FreshRSS_Feed $values): void {
 		if (!is_array($values)) {
 			$values = [$values];
 		}
-		$this->feeds = $values;
+		$this->feeds = array_values($values);
 		$this->sortFeeds();
 	}
 
@@ -158,7 +163,12 @@ class FreshRSS_Category extends Minz_Model {
 			$this->feeds = [];
 		}
 		$feed->_category($this);
-		$this->feeds[] = $feed;
+		if ($feed->id() === 0) {
+			// Feeds created on a dry run do not have an ID
+			$this->feeds[] = $feed;
+		} else {
+			$this->feeds[$feed->id()] = $feed;
+		}
 		$this->sortFeeds();
 	}
 
@@ -265,7 +275,7 @@ class FreshRSS_Category extends Minz_Model {
 	/**
 	 * Access cached feeds
 	 * @param array<FreshRSS_Category> $categories
-	 * @return array<int,FreshRSS_Feed>
+	 * @return array<int,FreshRSS_Feed> where the key is the feed ID
 	 */
 	public static function findFeeds(array $categories): array {
 		$result = [];

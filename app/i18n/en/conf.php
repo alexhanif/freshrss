@@ -99,6 +99,12 @@ return array(
 			'previous' => 'Previous',
 		),
 	),
+	'mark_read_button' => array(
+		'_' => '“Mark all as read” button',
+		'big' => 'Big',
+		'none' => 'None',
+		'small' => 'Small',
+	),
 	'privacy' => array(
 		'_' => 'Privacy',
 		'retrieve_extension_list' => 'Retrieve extension list',
@@ -107,6 +113,8 @@ return array(
 		'_' => 'Profile management',
 		'api' => array(
 			'_' => 'External access via API',
+			'api_not_set' => 'API password not set',
+			'api_set' => 'API password set',
 			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',
 			'disabled' => 'The API access is disabled.',
 			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',
@@ -138,6 +146,8 @@ return array(
 			'tags' => 'Display by label',
 			'type' => 'Type',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'Display all articles',
 		'get_all_labels' => 'Display articles with any label',
 		'get_category' => 'Display “%s” category',
@@ -259,12 +269,13 @@ return array(
 		'show' => array(
 			'_' => 'Articles to display',
 			'active_category' => 'Active category',
-			'adaptive' => 'Adjust showing',
+			'adaptive' => 'Show unreads if any, all articles otherwise',
 			'all_articles' => 'Show all articles',
 			'all_categories' => 'All categories',
 			'no_category' => 'No category',
 			'remember_categories' => 'Remember open categories',
-			'unread' => 'Show only unread',
+			'unread' => 'Show unreads',
+			'unread_or_favorite' => 'Show unreads and favourites',
 		),
 		'show_fav_unread_help' => 'Applies also on labels',
 		'sides_close_article' => 'Clicking outside of article text area closes the article',
@@ -288,6 +299,7 @@ return array(
 	'sharing' => array(
 		'_' => 'Sharing',
 		'add' => 'Add a sharing method',
+		'bluesky' => 'Bluesky',
 		'deprecated' => 'This service is deprecated and will be removed from FreshRSS in a <a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="Open documentation for more information" target="_blank">future release</a>.',
 		'diaspora' => 'Diaspora*',
 		'email' => 'Email',

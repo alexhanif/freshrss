@@ -88,7 +88,7 @@ return array(
 				'_' => 'HTML + XPath + JSON Punkt-Notation (JSON in HTML)',
 				'xpath' => array(
 					'_' => 'XPath für JSON in HTML',
-					'help' => 'Beispiel: <code>//script[@type="application/json"]</code>',
+					'help' => 'Beispiel: <code>normalize-space(//script[@type="application/json"])</code> (single JSON)<br />or: <code>//script[@type="application/ld+json"]</code> (one JSON object per article)</code>',	// DIRTY
 				),
 			),
 			'html_xpath' => array(
@@ -232,7 +232,7 @@ return array(
 		'ttl' => 'Aktualisiere automatisch nicht öfter als',
 		'unicityCriteria' => array(
 			'_' => 'Einzigartigkeit eines Artikels',
-			'forced' => '<span title="Einzigartikkeit-Einstellungen blockieren, selbst wenn der Feed Duplikat-Artikel hat">Erzwingen/span>',
+			'forced' => '<span title="Einzigartikkeit-Einstellungen blockieren, selbst wenn der Feed Duplikat-Artikel hat">Erzwingen</span>',
 			'help' => 'Relevant für defekte Feeds.<br />⚠️ Änderungen werden Duplikate erzeugen.',
 			'id' => 'Standard ID (Standardeinstellung)',
 			'link' => 'Link',	// IGNORE
@@ -259,7 +259,7 @@ return array(
 		'file_to_import' => 'Zu importierende Datei<br />(OPML, JSON oder ZIP)',
 		'file_to_import_no_zip' => 'Zu importierende Datei<br />(OPML oder JSON)',
 		'import' => 'Importieren',
-		'starred_list' => 'Liste der Lieblingsartikel',
+		'starred_list' => 'Liste der Favoritenartikel',
 		'title' => 'Importieren / Exportieren',
 	),
 	'menu' => array(

@@ -99,6 +99,12 @@ return array(
 			'previous' => ' قبلی',
 		),
 	),
+	'mark_read_button' => array(
+		'_' => '"علامت گذاری همه به عنوان خوانده شده" button',	// DIRTY
+		'big' => 'Big',	// TODO
+		'none' => 'None',	// TODO
+		'small' => 'Small',	// TODO
+	),
 	'privacy' => array(
 		'_' => 'Privacy',	// TODO
 		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
@@ -107,6 +113,8 @@ return array(
 		'_' => ' مدیریت پروفایل',
 		'api' => array(
 			'_' => ' مدیریت API',
+			'api_not_set' => 'API password not set',	// TODO
+			'api_set' => 'API password set',	// TODO
 			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// TODO
 			'disabled' => 'The API access is disabled.',	// TODO
 			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
@@ -138,6 +146,8 @@ return array(
 			'tags' => ' نمایش بر اساس برچسب',
 			'type' => ' نوع',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => ' نمایش همه مقالات',
 		'get_all_labels' => 'Display articles with any label',	// TODO
 		'get_category' => ' دسته «%s» را نمایش دهید',
@@ -259,12 +269,13 @@ return array(
 		'show' => array(
 			'_' => ' مقالات برای نمایش',
 			'active_category' => ' دسته فعال',
-			'adaptive' => ' نمایش را تنظیم کنید',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => ' نمایش همه مقالات',
 			'all_categories' => ' همه دسته ها',
 			'no_category' => ' بدون دسته',
 			'remember_categories' => ' دسته بندی های باز را به خاطر بسپارید',
 			'unread' => ' فقط خوانده نشده را نشان دهد',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => ' روی برچسب ها نیز اعمال می شود',
 		'sides_close_article' => ' با کلیک کردن خارج از ناحیه متن مقاله',
@@ -288,6 +299,7 @@ return array(
 	'sharing' => array(
 		'_' => ' اشتراک گذاری',
 		'add' => ' یک روش اشتراک گذاری اضافه کنید',
+		'bluesky' => 'Bluesky',	// TODO
 		'deprecated' => ' این سرویس منسوخ شده است و در <a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="باز کردن اسناد برای اطلاعات بیشتر" target= از FreshRSS حذف خواهد شد. "_blank">نسخه آینده</a>.',
 		'diaspora' => ' دیاسپورا*',
 		'email' => ' ایمیل',

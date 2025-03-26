@@ -99,6 +99,12 @@ return array(
 			'previous' => 'Předchozí',
 		),
 	),
+	'mark_read_button' => array(
+		'_' => '„označit vše jako přečtené“ button',	// DIRTY
+		'big' => 'Big',	// TODO
+		'none' => 'None',	// TODO
+		'small' => 'Small',	// TODO
+	),
 	'privacy' => array(
 		'_' => 'Privacy',	// TODO
 		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
@@ -107,6 +113,8 @@ return array(
 		'_' => 'Správa profilu',
 		'api' => array(
 			'_' => 'Správa API',
+			'api_not_set' => 'API password not set',	// TODO
+			'api_set' => 'API password set',	// TODO
 			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// TODO
 			'disabled' => 'The API access is disabled.',	// TODO
 			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
@@ -138,6 +146,8 @@ return array(
 			'tags' => 'Zobrazit podle štítku',
 			'type' => 'Typ',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'Zobrazit všechny články',
 		'get_all_labels' => 'Zobrazit články s libovolným štítkem',
 		'get_category' => 'Zobrazit kategorii „%s“',
@@ -259,12 +269,13 @@ return array(
 		'show' => array(
 			'_' => 'Počet zobrazených článků',
 			'active_category' => 'Aktivní kategorie',
-			'adaptive' => 'Vyberte zobrazení',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => 'Zobrazit všechny články',
 			'all_categories' => 'Všechny kategorie',
 			'no_category' => 'Žádná kategorie',
 			'remember_categories' => 'Zapamatovat otevřené kategorie',
 			'unread' => 'Zobrazit pouze nepřečtené',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => 'Použije se také na popisky',
 		'sides_close_article' => 'Kliknutí mimo oblast textu článku zavře článek',
@@ -288,6 +299,7 @@ return array(
 	'sharing' => array(
 		'_' => 'Sdílení',
 		'add' => 'Přidat metodu sdílení',
+		'bluesky' => 'Bluesky',	// TODO
 		'deprecated' => 'Tato služba je zastaralá a bude ze služby FreshRSS odstraněna v <a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="Otevřete dokumentaci pro další informace" target="_blank">budoucím vydání</a>.',
 		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => 'E-mail',

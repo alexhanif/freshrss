@@ -14,9 +14,9 @@ return array(
 	'action' => array(
 		'actualize' => 'Päivitä syötteet',
 		'add' => 'Lisää',
-		'back' => '← Palaa',
 		'back_to_rss_feeds' => '← Palaa RSS-syötteisiin',
 		'cancel' => 'Peruuta',
+		'close' => 'Close',	// TODO
 		'create' => 'Luo',
 		'delete_all_feeds' => 'Delete all feeds',	// TODO
 		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO
@@ -94,7 +94,7 @@ return array(
 		'feb' => 'helmi',
 		'february' => 'helmikuu',
 		'format_date' => 'j\\. %s\\t\\a Y',
-		'format_date_hour' => 'j\\. %s\\t\\a Y klo H\\:i',
+		'format_date_hour' => 'j\\. %s\\t\\a Y \\k\\l\\o H\\:i',
 		'fri' => 'pe',
 		'jan' => 'tammi',
 		'january' => 'tammikuu',
@@ -170,6 +170,7 @@ return array(
 		'oc' => 'Occitan',	// IGNORE
 		'pl' => 'Polski',	// IGNORE
 		'pt-br' => 'Português (Brasil)',	// IGNORE
+		'pt-pt' => 'Português (Portugal)',	// IGNORE
 		'ru' => 'Русский',	// IGNORE
 		'sk' => 'Slovenčina',	// IGNORE
 		'tr' => 'Türkçe',	// IGNORE
@@ -212,6 +213,7 @@ return array(
 		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
+		'bluesky' => 'Bluesky',	// TODO
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'Clipboard',	// IGNORE
 		'diaspora' => 'Diaspora*',	// IGNORE

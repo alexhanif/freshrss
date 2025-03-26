@@ -99,6 +99,12 @@ return array(
 			'previous' => 'Précédent',
 		),
 	),
+	'mark_read_button' => array(
+		'_' => 'Bouton « Marquer tout comme lu »',
+		'big' => 'Gros',
+		'none' => 'Aucun',
+		'small' => 'Petit',
+	),
 	'privacy' => array(
 		'_' => 'Vie privée',
 		'retrieve_extension_list' => 'Récupération de la liste des extensions',
@@ -107,6 +113,8 @@ return array(
 		'_' => 'Gestion du profil',
 		'api' => array(
 			'_' => 'Gestion de l’API',
+			'api_not_set' => 'Pas de mot de passe API défini',
+			'api_set' => 'Mot de passe API enregistré',
 			'check_link' => 'Vérifier l’état de l’API via : <kbd><a href="../api/" target="_blank">%s</a></kbd>',
 			'disabled' => 'L’accès API est désactivé.',
 			'documentation_link' => 'Voir <a href="https://freshrss.github.io/FreshRSS/fr/users/06_Mobile_access.html" target="_blank">la documentation et une liste d’applications compatibles</a>',
@@ -116,7 +124,7 @@ return array(
 			'_' => 'Suppression du compte',
 			'warn' => 'Le compte et toutes les données associées vont être supprimées.',
 		),
-		'email' => 'adresse électronique',
+		'email' => 'Adresse électronique',
 		'password_api' => 'Mot de passe API<br /><small>(ex. : pour applis mobiles)</small>',
 		'password_form' => 'Mot de passe<br /><small>(pour connexion par formulaire)</small>',
 		'password_format' => '7 caractères minimum',
@@ -138,6 +146,8 @@ return array(
 			'tags' => 'Afficher par étiquette',
 			'type' => 'Type',	// IGNORE
 		),
+		'get_A' => 'Tous les flux, y compris ceux limités à leur catégorie',
+		'get_Z' => 'Tous les flux, y compris les archivés',
 		'get_all' => 'Afficher tous les articles',
 		'get_all_labels' => 'Afficher les articles avec une étiquette',
 		'get_category' => 'Afficher la catégorie <em>%s<em>',
@@ -259,12 +269,13 @@ return array(
 		'show' => array(
 			'_' => 'Articles à afficher',
 			'active_category' => 'La catégorie active',
-			'adaptive' => 'Adapter l’affichage',
+			'adaptive' => 'Afficher les non lus s’il y en a, sinon tous les articles',
 			'all_articles' => 'Afficher tous les articles',
 			'all_categories' => 'Toutes les catégories',
 			'no_category' => 'Aucune catégorie',
 			'remember_categories' => 'Se souvenir des catégories dépliées',
 			'unread' => 'Afficher les non lus',
+			'unread_or_favorite' => 'Afficher les non lus et les favoris',
 		),
 		'show_fav_unread_help' => 'S’applique aussi aux étiquettes',
 		'sides_close_article' => 'Cliquer hors de la zone de texte ferme l’article',
@@ -288,6 +299,7 @@ return array(
 	'sharing' => array(
 		'_' => 'Partage',
 		'add' => 'Ajouter une méthode de partage',
+		'bluesky' => 'Bluesky',	// TODO
 		'deprecated' => 'Ce service est obsolète et sera supprimé dans une <a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="Voir la documentation" target="_blank">prochaine version de FreshRSS</a>.',
 		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => 'Courriel',

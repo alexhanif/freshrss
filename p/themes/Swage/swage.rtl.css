@@ -205,7 +205,7 @@ form th {
 }
 .btn {
 	margin: 0;
-	padding: 5px 10px;
+	padding: 0.25rem 0.5rem;
 	background-color: var(--color-background-nav);
 	color: var(--color-text-light);
 	font-size: 0.9rem;
@@ -816,12 +816,12 @@ form th {
 	display: none;
 }
 
-#bigMarkAsRead {
+#bigMarkAsRead.big {
 	text-align: center;
 	text-decoration: none;
 	background: var(--color-background-light-darker);
 }
-#bigMarkAsRead:hover {
+#bigMarkAsRead.big:hover {
 	background-color: var(--color-background-aside);
 	color: var(--color-text-light);
 }
@@ -1140,7 +1140,7 @@ button.as-link {
 #stream.reader .flux::after {
 	border: none;
 }
-#stream.reader .flux .content {
+#stream.reader .flux .flux_content {
 	border-color: var(--color-border-grey);
 }
 #stream.reader .flux .author {

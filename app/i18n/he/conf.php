@@ -99,6 +99,12 @@ return array(
 			'previous' => 'הקודם',
 		),
 	),
+	'mark_read_button' => array(
+		'_' => '“סימון הכל כנקרא” button',	// DIRTY
+		'big' => 'Big',	// TODO
+		'none' => 'None',	// TODO
+		'small' => 'Small',	// TODO
+	),
 	'privacy' => array(
 		'_' => 'Privacy',	// TODO
 		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
@@ -107,6 +113,8 @@ return array(
 		'_' => 'Profile management',	// TODO
 		'api' => array(
 			'_' => 'API management',	// DIRTY
+			'api_not_set' => 'API password not set',	// TODO
+			'api_set' => 'API password set',	// TODO
 			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// TODO
 			'disabled' => 'The API access is disabled.',	// TODO
 			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
@@ -138,6 +146,8 @@ return array(
 			'tags' => 'Display by label',	// TODO
 			'type' => 'Type',	// TODO
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => 'הצגת כל המאמרים',
 		'get_all_labels' => 'Display articles with any label',	// TODO
 		'get_category' => 'הצגת קטגוריה “%s”',
@@ -259,12 +269,13 @@ return array(
 		'show' => array(
 			'_' => 'מאמרים להצגה',
 			'active_category' => 'Active category',	// TODO
-			'adaptive' => 'תצוגה מתעדכנת',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => 'הצגת כל המאמרים',
 			'all_categories' => 'All categories',	// TODO
 			'no_category' => 'No category',	// TODO
 			'remember_categories' => 'Remember open categories',	// TODO
 			'unread' => 'הצגת מאמרים שלא נקראו בלבד',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => 'Applies also on labels',	// TODO
 		'sides_close_article' => 'Clicking outside of article text area closes the article',	// TODO
@@ -288,6 +299,7 @@ return array(
 	'sharing' => array(
 		'_' => 'שיתוף',
 		'add' => 'Add a sharing method',	// TODO
+		'bluesky' => 'Bluesky',	// TODO
 		'deprecated' => 'This service is deprecated and will be removed from FreshRSS in a <a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="Open documentation for more information" target="_blank">future release</a>.',	// TODO
 		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => 'דואר אלקטרוני',

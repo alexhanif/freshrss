@@ -99,6 +99,12 @@ return array(
 			'previous' => '上一页',
 		),
 	),
+	'mark_read_button' => array(
+		'_' => '“全部标记为已读” button',	// DIRTY
+		'big' => 'Big',	// TODO
+		'none' => 'None',	// TODO
+		'small' => 'Small',	// TODO
+	),
 	'privacy' => array(
 		'_' => 'Privacy',	// TODO
 		'retrieve_extension_list' => 'Retrieve extension list',	// TODO
@@ -107,6 +113,8 @@ return array(
 		'_' => '账户管理',
 		'api' => array(
 			'_' => 'API 管理',
+			'api_not_set' => 'API password not set',	// TODO
+			'api_set' => 'API password set',	// TODO
 			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// TODO
 			'disabled' => 'The API access is disabled.',	// TODO
 			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
@@ -138,6 +146,8 @@ return array(
 			'tags' => '按标签显示',
 			'type' => '类型',
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// TODO
+		'get_Z' => 'Show all feeds, also archived ones',	// TODO
 		'get_all' => '显示所有文章',
 		'get_all_labels' => '显示所有打了标签的文章',
 		'get_category' => '显示分类“%s”',
@@ -259,12 +269,13 @@ return array(
 		'show' => array(
 			'_' => '文章显示',
 			'active_category' => '活跃的分类',
-			'adaptive' => '自适应显示',
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// TODO
 			'all_articles' => '显示所有',
 			'all_categories' => '所有分类',
 			'no_category' => '无分类',
 			'remember_categories' => '记住打开的分类',
 			'unread' => '只显示未读',
+			'unread_or_favorite' => 'Show unreads and favourites',	// TODO
 		),
 		'show_fav_unread_help' => '同样适用于标签',
 		'sides_close_article' => '点击文章文本区域外关闭文章',
@@ -288,6 +299,7 @@ return array(
 	'sharing' => array(
 		'_' => '分享',
 		'add' => '添加分享方式',
+		'bluesky' => 'Bluesky',	// TODO
 		'deprecated' => '此功能已被废弃并会在未来的 FreshRSS 版本中移除，详情见 <a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="打开文档获更多信息" target="_blank">说明文档</a>.',
 		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => 'Email',	// IGNORE

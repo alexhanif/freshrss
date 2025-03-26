@@ -99,6 +99,12 @@ return array(
 			'previous' => 'Previous',	// IGNORE
 		),
 	),
+	'mark_read_button' => array(
+		'_' => '“Mark all as read” button',	// IGNORE
+		'big' => 'Big',	// IGNORE
+		'none' => 'None',	// IGNORE
+		'small' => 'Small',	// IGNORE
+	),
 	'privacy' => array(
 		'_' => 'Privacy',	// IGNORE
 		'retrieve_extension_list' => 'Retrieve extension list',	// IGNORE
@@ -107,6 +113,8 @@ return array(
 		'_' => 'Profile management',	// IGNORE
 		'api' => array(
 			'_' => 'API management',	// IGNORE
+			'api_not_set' => 'API password not set',	// IGNORE
+			'api_set' => 'API password set',	// IGNORE
 			'check_link' => 'Check API status via: <kbd><a href="../api/" target="_blank">%s</a></kbd>',	// IGNORE
 			'disabled' => 'The API access is disabled.',	// IGNORE
 			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// IGNORE
@@ -138,6 +146,8 @@ return array(
 			'tags' => 'Display by label',	// IGNORE
 			'type' => 'Type',	// IGNORE
 		),
+		'get_A' => 'Show all feeds, also those shown in their category',	// IGNORE
+		'get_Z' => 'Show all feeds, also archived ones',	// IGNORE
 		'get_all' => 'Display all articles',	// IGNORE
 		'get_all_labels' => 'Display articles with any label',	// IGNORE
 		'get_category' => 'Display “%s” category',	// IGNORE
@@ -259,12 +269,13 @@ return array(
 		'show' => array(
 			'_' => 'Articles to display',	// IGNORE
 			'active_category' => 'Active category',	// IGNORE
-			'adaptive' => 'Adjust showing',	// IGNORE
+			'adaptive' => 'Show unreads if any, all articles otherwise',	// IGNORE
 			'all_articles' => 'Show all articles',	// IGNORE
 			'all_categories' => 'All categories',	// IGNORE
 			'no_category' => 'No category',	// IGNORE
 			'remember_categories' => 'Remember open categories',	// IGNORE
-			'unread' => 'Show only unread',	// IGNORE
+			'unread' => 'Show unreads',	// IGNORE
+			'unread_or_favorite' => 'Show unreads and favorites',	// IGNORE
 		),
 		'show_fav_unread_help' => 'Applies also on labels',	// IGNORE
 		'sides_close_article' => 'Clicking outside of article text area closes the article',	// IGNORE
@@ -288,6 +299,7 @@ return array(
 	'sharing' => array(
 		'_' => 'Sharing',	// IGNORE
 		'add' => 'Add a sharing method',	// IGNORE
+		'bluesky' => 'Bluesky',	// IGNORE
 		'deprecated' => 'This service is deprecated and will be removed from FreshRSS in a <a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="Open documentation for more information" target="_blank">future release</a>.',	// IGNORE
 		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => 'Email',	// IGNORE

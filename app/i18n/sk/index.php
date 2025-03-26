@@ -14,9 +14,18 @@ return array(
 	'about' => array(
 		'_' => 'O FreshRSS',
 		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',	// IGNORE
+		'bug_reports' => array(
+			'environment_information' => array(
+				'_' => 'System information',	// TODO
+				'browser' => 'Browser',	// TODO
+				'database' => 'Database',	// TODO
+				'server_software' => 'Server software',	// TODO
+				'version_curl' => 'cURL version',	// TODO
+				'version_frss' => 'FreshRSS version',	// TODO
+				'version_php' => 'PHP version',	// TODO
+			),
+		),
 		'bugs_reports' => 'Nahlásiť chybu',
-		'credits' => 'Poďakovanie',
-		'credits_content' => 'Niektoré časti vzhľadu pochádzajú z <a href="http://twitter.github.io/bootstrap/">Bootstrap</a>u, aj keď FreshRSS tento framework nepoužíva. <a href="https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic">Ikony</a> sú z <a href="https://www.gnome.org/">GNOME project</a>. Font <em>Open Sans</em> zabezpečil <a href="https://fonts.google.com/specimen/Open+Sans">Steve Matteson</a>. FreshRSS je založený na PHP frameworku <a href="https://framagit.org/marienfressinaud/MINZ">Minz</a>.',
 		'documentation' => 'Dokumentácia',
 		'freshrss_description' => 'FreshRSS je čítačka RSS kanálov, ktorú môžete nasadiť na vlastný server. Ide o jednoduchý a zároveň dobre nastaviteľný nástroj.',
 		'github' => '<a href="https://github.com/FreshRSS/FreshRSS/issues">na GitHub</a>e',
@@ -27,6 +36,11 @@ return array(
 	),
 	'feed' => array(
 		'empty' => 'Žiadne články.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => 'RSS kanál pre %s',
 		'title' => 'Všetky kanály',
 		'title_fav' => 'Obľúbené',
@@ -51,6 +65,7 @@ return array(
 		'mark_cat_read' => 'Označiť kategóriu ako prečítanú',
 		'mark_feed_read' => 'Označiť kanál ako prečítaný',
 		'mark_selection_unread' => 'Označiť označené ako prečítané',
+		'mylabels' => 'Moje nálepky',
 		'newer_first' => 'Novšie hore',
 		'non-starred' => 'Zobraziť všetko okrem obľúbených',
 		'normal_view' => 'Základné zobrazenie',
@@ -60,10 +75,21 @@ return array(
 		'reader_view' => 'Zobrazenie na čítanie',
 		'rss_view' => 'RSS kanál',
 		'search_short' => 'Hľadať',
+		'sort' => array(
+			'_' => 'Sorting criteria',	// TODO
+			'date_asc' => 'Publication date 1→9',	// TODO
+			'date_desc' => 'Publication date 9→1',	// TODO
+			'id_asc' => 'Freshly received last',	// TODO
+			'id_desc' => 'Freshly received first',	// TODO
+			'link_asc' => 'Link A→Z',	// TODO
+			'link_desc' => 'Link Z→A',	// TODO
+			'rand' => 'Random order',	// TODO
+			'title_asc' => 'Title A→Z',	// TODO
+			'title_desc' => 'Title Z→A',	// TODO
+		),
 		'starred' => 'Zobraziť obľúbené',
 		'stats' => 'Štatistiky',
 		'subscription' => 'Správca odberov',
-		'tags' => 'Moje nálepky',
 		'unread' => 'Zobraziť neprečítané',
 	),
 	'share' => 'Zdieľať',

@@ -25,7 +25,7 @@
 	<div class="dropdown-menu">
 		<ul class="dropdown-menu-scrollable scrollbar-thin">
 			<li class="dropdown-header">
-				<?= _t('index.menu.tags') ?>
+				<?= _t('index.menu.mylabels') ?>
 				<?php if (FreshRSS_Auth::hasAccess()) { ?>
 					<a href="<?= _url('tag', 'index') ?>"><?= _i('configure') ?></a>
 				<?php } ?>
@@ -39,7 +39,7 @@
 <main id="stream" class="global<?= $class ?>">
 	<h1 class="title_hidden"><?= _t('conf.reading.view.global') ?></h1>
 <?php
-	$params = $_GET;
+	$params = array_filter($_GET, 'is_string', ARRAY_FILTER_USE_KEY);
 	unset($params['c']);
 	unset($params['a']);
 	$url_base = [

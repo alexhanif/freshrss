@@ -58,7 +58,7 @@ class FreshRSS_Import_Service {
 
 		// Get the categories by names so we can use this array to retrieve
 		// existing categories later.
-		$categories = $this->catDAO->listCategories(false) ?: [];
+		$categories = $this->catDAO->listCategories(prePopulateFeeds: false);
 		$categories_by_names = [];
 		foreach ($categories as $category) {
 			$categories_by_names[$category->name()] = $category;
@@ -149,7 +149,7 @@ class FreshRSS_Import_Service {
 		try {
 			// Create a Feed object and add it in DB
 			$feed = new FreshRSS_Feed($url);
-			$category->addFeed($feed);
+			$feed->_category($category);
 			$feed->_name($name);
 			$feed->_website($website);
 			$feed->_description($description);
@@ -296,6 +296,9 @@ class FreshRSS_Import_Service {
 			}
 			if (isset($feed_elt['frss:CURLOPT_PROXYTYPE'])) {
 				$curl_params[CURLOPT_PROXYTYPE] = (int)$feed_elt['frss:CURLOPT_PROXYTYPE'];
+				if ($curl_params[CURLOPT_PROXYTYPE] === 3) {	// Legacy for NONE
+					$curl_params[CURLOPT_PROXYTYPE] = -1;
+				}
 			}
 			if (isset($feed_elt['frss:CURLOPT_USERAGENT'])) {
 				$curl_params[CURLOPT_USERAGENT] = $feed_elt['frss:CURLOPT_USERAGENT'];
@@ -309,6 +312,9 @@ class FreshRSS_Import_Service {
 			$feed = Minz_ExtensionManager::callHook('feed_before_insert', $feed);
 
 			if ($dry_run) {
+				if ($feed !== null) {
+					$category->addFeed($feed);
+				}
 				return $feed;
 			}
 
@@ -319,6 +325,7 @@ class FreshRSS_Import_Service {
 					$this->lastStatus = false;
 				} else {
 					$feed->_id($id);
+					$category->addFeed($feed);
 					return $feed;
 				}
 			}

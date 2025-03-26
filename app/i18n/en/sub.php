@@ -85,10 +85,10 @@ return array(
 		'kind' => array(
 			'_' => 'Type of feed source',
 			'html_json' => array(
-				'_' => 'HTML + XPath + JSON dot notation (JSON in HTML)',	// TODO
+				'_' => 'HTML + XPath + JSON dot notation (JSON in HTML)',
 				'xpath' => array(
-					'_' => 'XPath for JSON in HTML',	// TODO
-					'help' => 'Example: <code>//script[@type="application/json"]</code>',	// TODO
+					'_' => 'XPath for JSON in HTML',
+					'help' => 'Example: <code>normalize-space(//script[@type="application/json"])</code> (single JSON)<br />or: <code>//script[@type="application/ld+json"]</code> (one JSON object per article)',
 				),
 			),
 			'html_xpath' => array(
@@ -217,7 +217,7 @@ return array(
 			'show_rendered' => 'Show content',
 		),
 		'show' => array(
-			'all' => 'Show all feeds',
+			'all' => 'All feeds',
 			'error' => 'Show only feeds with errors',
 		),
 		'showing' => array(

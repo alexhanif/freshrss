@@ -105,7 +105,7 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 		invalidateHttpCache();
 
 		FreshRSS_View::prependTitle(_t('gen.auth.login') . ' · ');
-		FreshRSS_View::appendScript(Minz_Url::display('/scripts/bcrypt.min.js?' . @filemtime(PUBLIC_PATH . '/scripts/bcrypt.min.js')));
+		FreshRSS_View::appendScript(Minz_Url::display('/scripts/vendor/bcrypt.js?' . @filemtime(PUBLIC_PATH . '/scripts/vendor/bcrypt.js')));
 
 		$limits = FreshRSS_Context::systemConf()->limits;
 		$this->view->cookie_days = (int)round($limits['cookie_duration'] / 86400, 1);
@@ -163,6 +163,8 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 				}
 
 				Minz_Translate::init(FreshRSS_Context::userConf()->language);
+
+				FreshRSS_UserDAO::touch();
 
 				// All is good, go back to the original request or the index.
 				$url = Minz_Url::unserialize(Minz_Request::paramString('original_request'));
@@ -255,7 +257,7 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 			# The trailing slash is necessary so that we don’t redirect to http://.
 			# https://bz.apache.org/bugzilla/show_bug.cgi?id=61355#c13
 		} else {
-			return _url('auth', 'logout') ?: '';
+			return _url('auth', 'logout');
 		}
 	}
 }

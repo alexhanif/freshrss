@@ -14,9 +14,9 @@ return array(
 	'action' => array(
 		'actualize' => 'Update feeds',
 		'add' => 'Add',
-		'back' => '← Go back',
 		'back_to_rss_feeds' => '← Go back to your RSS feeds',
 		'cancel' => 'Cancel',
+		'close' => 'Close',	// TODO
 		'create' => 'Create',
 		'delete_all_feeds' => 'Delete all feeds',
 		'delete_errored_feeds' => 'Delete feeds with errors',
@@ -170,6 +170,7 @@ return array(
 		'oc' => 'Occitan',
 		'pl' => 'Polski',
 		'pt-br' => 'Português (Brasil)',
+		'pt-pt' => 'Português (Portugal)',
 		'ru' => 'Русский',
 		'sk' => 'Slovenčina',
 		'tr' => 'Türkçe',
@@ -212,6 +213,7 @@ return array(
 		'archiveIS' => 'archive.is',
 		'archiveORG' => 'archive.org',
 		'archivePH' => 'archive.ph',
+		'bluesky' => 'Bluesky',
 		'buffer' => 'Buffer',
 		'clipboard' => 'Clipboard',
 		'diaspora' => 'Diaspora*',

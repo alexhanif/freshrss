@@ -7,10 +7,6 @@
 ?>
 
 <main class="post">
-	<div class="link-back-wrapper">
-		<a class="link-back" href="<?= _url('index', 'index') ?>"><?= _t('gen.action.back_to_rss_feeds') ?></a>
-	</div>
-
 	<form method="post" action="<?= _url('user', 'profile') ?>">
 		<input type="hidden" name="_csrf" value="<?= FreshRSS_Auth::csrfToken() ?>" />
 		<h1><?= _t('conf.profile') ?></h1>
@@ -86,6 +82,11 @@
 				<div class="group-controls">
 					<div class="stick">
 						<input type="password" id="apiPasswordPlain" name="apiPasswordPlain" autocomplete="new-password"
+							<?php if (FreshRSS_Context::userConf()->apiPasswordHash != '') {?>
+								placeholder="<?= _t('conf.profile.api.api_set') ?>"
+							<?php } else {?>
+								placeholder="<?= _t('conf.profile.api.api_not_set') ?>"
+							<?php } ?>
 							pattern=".{7,}" <?= cryptAvailable() ? '' : 'disabled="disabled" ' ?>/>
 						<button type="button" class="btn toggle-password" data-toggle="apiPasswordPlain"><?= _i('key') ?></button>
 					</div>
