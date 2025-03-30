@@ -16,8 +16,8 @@
 		<?php endforeach; ?>
 	<?php else: // API public access ?>
 		<?php foreach ($firstTags as $tag): ?>
-		<li class="item tag"><a class="link-tag" href="<?= $this->html_url . '&search=%23' .
-			urlencode(FreshRSS_tag_Controller::escapeForSearch($tag)) ?>" title="<?= _t('gen.action.filter') ?>">#<?= $tag ?></a></li>
+		<li class="item tag"><a class="link-tag" href="<?= $this->html_url . '&search=' .
+			urlencode('#' . FreshRSS_tag_Controller::escapeForSearch($tag)) ?>" title="<?= _t('gen.action.filter') ?>">#<?= $tag ?></a></li>
 		<?php endforeach; ?>
 	<?php endif; ?>
 
@@ -36,8 +36,8 @@
 						<?php endforeach; ?>
 					<?php else: // API public access ?>
 						<?php foreach ($remainingTags as $tag): ?>
-						<li class="item tag"><a class="link-tag" href="<?= $this->html_url . '&search=%23' .
-							urlencode(FreshRSS_tag_Controller::escapeForSearch($tag)) ?>" title="<?= _t('gen.action.filter') ?>">#<?= $tag ?></a></li>
+						<li class="item tag"><a class="link-tag" href="<?= $this->html_url . '&search=' .
+							urlencode('#' . FreshRSS_tag_Controller::escapeForSearch($tag)) ?>" title="<?= _t('gen.action.filter') ?>">#<?= $tag ?></a></li>
 						<?php endforeach; ?>
 					<?php endif; ?>
 				</ul>
