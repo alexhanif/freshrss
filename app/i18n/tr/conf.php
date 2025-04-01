@@ -306,7 +306,7 @@ return array(
 		'print' => 'Yazdır',
 		'raindrop' => 'Raindrop.io',	// IGNORE
 		'remove' => 'Paylaşım yöntemini kaldır',
-		'shaarli' => 'Shaarli',	// TOIGNOREDO
+		'shaarli' => 'Shaarli',	// IGNORE
 		'share_name' => 'Görüntülenecek paylaşım adı',
 		'share_url' => 'Kullanılacak paylaşım URL’si',
 		'title' => 'Paylaşım',
