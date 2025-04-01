@@ -56,8 +56,11 @@ If you want to write a `HelloWorld` extension, the directory name should be `xEx
 
 In the file `freshrss/extensions/xExtension-HelloWorld/extension.php` you need the structure:
 ```php
-class HelloWorldExtension extends Minz_Extension {
-	public function init() {
+final class HelloWorldExtension extends Minz_Extension {
+	#[\Override]
+	public function init(): void {
+		parent::init();
+
 		// your code here
 	}
 }
@@ -136,6 +139,8 @@ final class HelloWorldExtension extends Minz_Extension
 {
 	#[\Override]
 	public function init(): void {
+		parent::init();
+
 		$this->registerHook('entry_before_display', [$this, 'renderEntry']);
 		$this->registerHook('check_url_before_add', [self::class, 'checkUrl']);
 	}
@@ -173,7 +178,28 @@ The following events are available:
 * `nav_menu` (`function() -> string`): will be executed if the navigation was built.
 * `nav_reading_modes` (`function($reading_modes) -> array | null`): **TODO** add documentation.
 * `post_update` (`function(none) -> none`): **TODO** add documentation.
-* `simplepie_before_init` (`function($simplePie, $feed) -> none`): **TODO** add documentation.
+* `simplepie_after_init` (`function(\SimplePie\SimplePie $simplePie, FreshRSS_Feed $feed, bool $result): void`): Triggered after fetching an RSS/Atom feed with SimplePie. Useful for instance to get the HTTP response headers (e.g. `$simplePie->data['headers']`).
+* `simplepie_before_init` (`function(\SimplePie\SimplePie $simplePie, FreshRSS_Feed $feed): void`): Triggered before fetching an RSS/Atom feed with SimplePie.
+
+> ℹ️ Note: the `simplepie_*` hooks are only fired for feeds using SimplePie via pull, i.e. normal RSS/Atom feeds. This excludes WebSub (push), and the various HTML or JSON Web scraping methods.
+
+### JavaScript events
+
+```javascript
+function use_context() {
+	// Something that refers to the window.context
+}
+
+if (document.readyState && document.readyState !== 'loading' && typeof window.context !== 'undefined' && typeof window.context.extensions !== 'undefined') {
+	use_context();
+} else {
+	document.addEventListener('freshrss:globalContextLoaded', use_context, false);
+}
+```
+
+The following events are available:
+
+* `freshrss:globalContextLoaded`: will be dispatched after load the global `context` variable, useful for referencing variables injected with the `js_vars` hook.
 
 ### Injecting CDN content
 

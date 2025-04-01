@@ -14,13 +14,16 @@ return array(
 	'action' => array(
 		'actualize' => 'Aktualizovať kanály',
 		'add' => 'Pridať',
-		'back' => '← Späť',
 		'back_to_rss_feeds' => '← Späť na vaše RSS kanály',
 		'cancel' => 'Zrušiť',
+		'close' => 'Close',	// TODO
 		'create' => 'Vytvoriť',
+		'delete_all_feeds' => 'Delete all feeds',	// TODO
+		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO
 		'delete_muted_feeds' => 'Vymazať stíšené kanály',
 		'demote' => 'Degradovať',
 		'disable' => 'Zakázať',
+		'download' => 'Download',	// TODO
 		'empty' => 'Vyprázdniť',
 		'enable' => 'Povoliť',
 		'export' => 'Exportovať',
@@ -29,6 +32,14 @@ return array(
 		'load_default_shortcuts' => 'Načítať prednastavené klávesové skratky',
 		'manage' => 'Spravovať',
 		'mark_read' => 'Označiť ako prečítané',
+		'menu' => array(
+			'open' => 'Open menu',	// TODO
+		),
+		'nav_buttons' => array(
+			'next' => 'Next article',	// TODO
+			'prev' => 'Previous article',	// TODO
+			'up' => 'Go up',	// TODO
+		),
 		'open_url' => 'Otvoriť URL',
 		'promote' => 'Podporiť',
 		'purge' => 'Vymazať',
@@ -139,13 +150,14 @@ return array(
 		'should_be_activated' => 'Musíte povoliť JavaScript',
 	),
 	'lang' => array(
-		'cz' => 'Čeština',	// IGNORE
+		'cs' => 'Čeština',	// IGNORE
 		'de' => 'Deutsch',	// IGNORE
 		'el' => 'Ελληνικά',	// IGNORE
 		'en' => 'English',	// IGNORE
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE
@@ -158,6 +170,7 @@ return array(
 		'oc' => 'Occitan',	// IGNORE
 		'pl' => 'Polski',	// IGNORE
 		'pt-br' => 'Português (Brasil)',	// IGNORE
+		'pt-pt' => 'Português (Portugal)',	// IGNORE
 		'ru' => 'Русский',	// IGNORE
 		'sk' => 'Slovenčina',	// IGNORE
 		'tr' => 'Türkçe',	// IGNORE
@@ -175,6 +188,7 @@ return array(
 		'display' => 'Zobrazenie',
 		'extensions' => 'Rozšírenia',
 		'logs' => 'Záznamy',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => 'Používateľské dopyty',
 		'reading' => 'Čítanie',
 		'search' => 'Hľadajte slová alebo #značky',
@@ -196,9 +210,10 @@ return array(
 	),
 	'share' => array(
 		'Known' => 'Stránky založené na Known',
+		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
-		'blogotext' => 'Blogotext',	// IGNORE
+		'bluesky' => 'Bluesky',	// TODO
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'Schránka',
 		'diaspora' => 'Diaspora*',	// IGNORE
@@ -220,6 +235,7 @@ return array(
 		'raindrop' => 'Raindrop.io',	// IGNORE
 		'reddit' => 'Reddit',	// IGNORE
 		'shaarli' => 'Shaarli',	// IGNORE
+		'telegram' => 'Telegram',	// IGNORE
 		'twitter' => 'Twitter',	// IGNORE
 		'wallabag' => 'wallabag v1',	// IGNORE
 		'wallabagv2' => 'wallabag v2',	// IGNORE

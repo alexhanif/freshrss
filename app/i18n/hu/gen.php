@@ -14,21 +14,32 @@ return array(
 	'action' => array(
 		'actualize' => 'Hírforrások frissítése',
 		'add' => 'Hozzáad',
-		'back' => '← Vissza',
 		'back_to_rss_feeds' => '← Vissza az RSS hírforrásokhoz',
 		'cancel' => 'Mégsem',
+		'close' => 'Bezár',
 		'create' => 'Létrehoz',
+		'delete_all_feeds' => 'Minden hírforrás törlése',
+		'delete_errored_feeds' => 'Hibákkal rendelkező hírforrások törlése',
 		'delete_muted_feeds' => 'Némított hírforrások törlése',
 		'demote' => 'Lefokoz',
 		'disable' => 'Kikapcsol',
+		'download' => 'Letöltés',
 		'empty' => 'Üres',
 		'enable' => 'Bekapcsol',
-		'export' => 'Export',	// IGNORE
+		'export' => 'Exportálás',
 		'filter' => 'Szűrő',
-		'import' => 'Import',	// IGNORE
+		'import' => 'Importálás',
 		'load_default_shortcuts' => 'Alapértelmezett gyorsgombok visszaállítása',
 		'manage' => 'Kezelés',
 		'mark_read' => 'Megjelölés olvasottként',
+		'menu' => array(
+			'open' => 'Menü megnyitása',
+		),
+		'nav_buttons' => array(
+			'next' => 'Következő cikk',
+			'prev' => 'Előző cikk',
+			'up' => 'Ugrás fel',
+		),
 		'open_url' => 'URL Megnyitása',
 		'promote' => 'Előléptet',
 		'purge' => 'Töröl',
@@ -139,13 +150,14 @@ return array(
 		'should_be_activated' => 'A JavaScript futtatásának engedélyezve kell lennie',
 	),
 	'lang' => array(
-		'cz' => 'Čeština',	// IGNORE
+		'cs' => 'Čeština',	// IGNORE
 		'de' => 'Deutsch',	// IGNORE
 		'el' => 'Ελληνικά',	// IGNORE
 		'en' => 'English',	// IGNORE
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE
@@ -158,6 +170,7 @@ return array(
 		'oc' => 'Occitan',	// IGNORE
 		'pl' => 'Polski',	// IGNORE
 		'pt-br' => 'Português (Brasil)',	// IGNORE
+		'pt-pt' => 'Português (Portugal)',	// IGNORE
 		'ru' => 'Русский',	// IGNORE
 		'sk' => 'Slovenčina',	// IGNORE
 		'tr' => 'Türkçe',	// IGNORE
@@ -175,6 +188,7 @@ return array(
 		'display' => 'Megjelenítés',
 		'extensions' => 'Kiegészítők',
 		'logs' => 'Log-ok',
+		'privacy' => 'Adatvédelem',
 		'queries' => 'Felhasználói lekérdezések',
 		'reading' => 'Olvasás',
 		'search' => 'Szavak vagy #címkék keresése',
@@ -196,9 +210,10 @@ return array(
 	),
 	'share' => array(
 		'Known' => 'Ismert weboldalak',
+		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
-		'blogotext' => 'Blogotext',	// IGNORE
+		'bluesky' => 'Bluesky',	// IGNORE
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'Clipboard',	// IGNORE
 		'diaspora' => 'Diaspora*',	// IGNORE
@@ -220,6 +235,7 @@ return array(
 		'raindrop' => 'Raindrop.io',	// IGNORE
 		'reddit' => 'Reddit',	// IGNORE
 		'shaarli' => 'Shaarli',	// IGNORE
+		'telegram' => 'Telegram',	// IGNORE
 		'twitter' => 'Twitter',	// IGNORE
 		'wallabag' => 'wallabag v1',	// IGNORE
 		'wallabagv2' => 'wallabag v2',	// IGNORE

@@ -21,6 +21,7 @@
 	--background-color-white: #fff;
 	--background-color-grey-light: #fafafa;
 	--background-color-grey: #f4f4f4;
+	--background-color-grey-transparent: #f3f3f3bb;
 	--background-color-grey-hover: #f0f0f0;
 	--background-color-grey-button-active: #eee;
 
@@ -164,7 +165,7 @@ th {
 /*=== Forms */
 .form-group.form-actions {
 	padding: 5px 0;
-	background-color: var(--background-color-grey);
+	background-color: var(--background-color-grey-transparent);
 	border-top: 1px solid var(--border-color-grey-light);
 }
 
@@ -457,8 +458,6 @@ th {
 }
 
 .box .box-title {
-	margin: 0;
-	padding: 5px 10px;
 	background-color: var(--background-color-grey);
 	border-bottom: 1px solid var(--border-color-grey-dark);
 	border-radius: 5px 5px 0 0;
@@ -875,20 +874,15 @@ a.signin {
 }
 
 .content pre {
-	margin: 10px auto;
-	padding: 10px 20px;
-	overflow: auto;
 	background-color: var(--background-color-dark);
 	color: var(--font-color-white);
-	font-size: 0.9rem;
 	border-radius: 3px;
 }
 
 .content code {
-	padding: 2px 5px;
 	background-color: var(--background-color-grey-light);
 	color: var(--font-color-code);
-	border: 1px solid var(--border-color-grey-light);
+	border-color: var(--border-color-grey-light);
 	border-radius: 3px;
 }
 
@@ -935,16 +929,24 @@ a.signin {
 	border: 1px solid var(--notification-bad-border-color);
 }
 
-.notification.good a.close:hover {
+.notification.good .close:hover {
 	background-color: var(--notification-good-border-color);
 }
 
-.notification.bad a.close:hover {
+.notification.bad .close:hover {
 	background-color: var(--notification-bad-border-color);
 }
 
+.notification .close .icon {
+	filter: brightness(1.5);
+}
+
+.notification .close:hover .icon {
+	filter: brightness(0.5);
+}
+
 /*=== "Load more" part */
-#bigMarkAsRead {
+#bigMarkAsRead.big {
 	background-color: var(--background-color-grey-light);
 	color: var(--font-color-grey);
 	text-align: center;
@@ -958,12 +960,8 @@ a.signin {
 
 /*=== Navigation menu (for articles) */
 #nav_entries {
-	margin: 0;
 	background-color: var(--background-color-white);
 	border-top: 1px solid var(--border-color-grey-light);
-	text-align: center;
-	line-height: 3;
-	table-layout: fixed;
 }
 
 #nav_entries .item:hover {
@@ -977,7 +975,7 @@ a.signin {
 	border: none;
 }
 
-#stream.reader .flux .content {
+#stream.reader .flux .flux_content {
 	background-color: var(--background-color-white);
 	border-color: var(--border-color-grey-light);
 }
@@ -1094,17 +1092,17 @@ a.signin {
 		text-shadow: none;
 	}
 
-	.notification a.close {
+	.notification .close {
 		background: transparent;
 		display: block;
 		right: 0;
 	}
 
-	.notification a.close:hover {
+	.notification .close:hover {
 		opacity: 0.5;
 	}
 
-	.notification a.close .icon {
+	.notification .close .icon {
 		display: none;
 	}
 

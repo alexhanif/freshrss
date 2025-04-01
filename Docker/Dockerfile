@@ -1,6 +1,6 @@
 FROM debian:12-slim
 
-ENV TZ UTC
+ENV TZ=UTC
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -37,7 +37,7 @@ LABEL \
 RUN a2dismod -q -f alias autoindex negotiation status && \
 	a2dismod -q auth_openidc && \
 	phpdismod calendar exif ffi ftp gettext mysqli posix readline shmop sockets sysvmsg sysvsem sysvshm xsl && \
-	a2enmod -q deflate expires headers mime remoteip setenvif && \
+	a2enmod -q deflate expires filter headers mime remoteip setenvif && \
 	a2disconf -q '*' && \
 	a2dissite -q '*' && \
 	a2ensite -q 'FreshRSS*'
@@ -51,14 +51,14 @@ RUN sed -r -i "/^\s*(CustomLog|ErrorLog|Listen) /s/^/#/" /etc/apache2/apache2.co
 		su www-data -s /bin/sh -c 'php /var/www/FreshRSS/app/actualize_script.php' \
 		2>> /proc/1/fd/2 > /tmp/FreshRSS.log" > /etc/crontab.freshrss.default
 
-ENV COPY_LOG_TO_SYSLOG On
-ENV COPY_SYSLOG_TO_STDERR On
-ENV CRON_MIN ''
-ENV DATA_PATH ''
-ENV FRESHRSS_ENV ''
-ENV LISTEN ''
-ENV OIDC_ENABLED ''
-ENV TRUSTED_PROXY ''
+ENV COPY_LOG_TO_SYSLOG=On
+ENV COPY_SYSLOG_TO_STDERR=On
+ENV CRON_MIN=''
+ENV DATA_PATH=''
+ENV FRESHRSS_ENV=''
+ENV LISTEN=''
+ENV OIDC_ENABLED=''
+ENV TRUSTED_PROXY=''
 
 ENTRYPOINT ["./Docker/entrypoint.sh"]
 

@@ -14,13 +14,16 @@ return array(
 	'action' => array(
 		'actualize' => 'Aktualizuj kanały',
 		'add' => 'Dodaj',
-		'back' => '← Wróć',
 		'back_to_rss_feeds' => '← Wróć do subskrybowanych kanałów RSS',
 		'cancel' => 'Anuluj',
+		'close' => 'Close',	// TODO
 		'create' => 'Stwórz',
+		'delete_all_feeds' => 'Delete all feeds',	// TODO
+		'delete_errored_feeds' => 'Delete feeds with errors',	// TODO
 		'delete_muted_feeds' => 'Usuń wyciszone kanały',
 		'demote' => 'Zdegraduj',
 		'disable' => 'Wyłącz',
+		'download' => 'Download',	// TODO
 		'empty' => 'Opróżnij',
 		'enable' => 'Włącz',
 		'export' => 'Eksportuj',
@@ -29,6 +32,14 @@ return array(
 		'load_default_shortcuts' => 'Ustaw domyślne skróty',
 		'manage' => 'Ustawienia',
 		'mark_read' => 'Oznacz jako przeczytane',
+		'menu' => array(
+			'open' => 'Open menu',	// TODO
+		),
+		'nav_buttons' => array(
+			'next' => 'Next article',	// TODO
+			'prev' => 'Previous article',	// TODO
+			'up' => 'Go up',	// TODO
+		),
 		'open_url' => 'Otwórz adres',
 		'promote' => 'Awansuj',
 		'purge' => 'Oczyść',
@@ -139,13 +150,14 @@ return array(
 		'should_be_activated' => 'JavaScript musi być włączony',
 	),
 	'lang' => array(
-		'cz' => 'Čeština',	// IGNORE
+		'cs' => 'Čeština',	// IGNORE
 		'de' => 'Deutsch',	// IGNORE
 		'el' => 'Ελληνικά',	// IGNORE
 		'en' => 'English',	// IGNORE
 		'en-us' => 'English (United States)',	// IGNORE
 		'es' => 'Español',	// IGNORE
 		'fa' => 'فارسی',	// IGNORE
+		'fi' => 'Suomi',	// IGNORE
 		'fr' => 'Français',	// IGNORE
 		'he' => 'עברית',	// IGNORE
 		'hu' => 'Magyar',	// IGNORE
@@ -158,6 +170,7 @@ return array(
 		'oc' => 'Occitan',	// IGNORE
 		'pl' => 'Polski',	// IGNORE
 		'pt-br' => 'Português (Brasil)',	// IGNORE
+		'pt-pt' => 'Português (Portugal)',	// IGNORE
 		'ru' => 'Русский',	// IGNORE
 		'sk' => 'Slovenčina',	// IGNORE
 		'tr' => 'Türkçe',	// IGNORE
@@ -175,6 +188,7 @@ return array(
 		'display' => 'Wyświetlanie',
 		'extensions' => 'Rozszerzenia',
 		'logs' => 'Dziennik',
+		'privacy' => 'Privacy',	// TODO
 		'queries' => 'Zapisane zapytania',
 		'reading' => 'Czytanie',
 		'search' => 'Wyszukaj wyrazy lub #tagi',
@@ -196,9 +210,10 @@ return array(
 	),
 	'share' => array(
 		'Known' => 'Strony bazujące na usłudze Known',
+		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
-		'blogotext' => 'Blogotext',	// IGNORE
+		'bluesky' => 'Bluesky',	// TODO
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'Schowek',
 		'diaspora' => 'Diaspora*',	// IGNORE
@@ -220,6 +235,7 @@ return array(
 		'raindrop' => 'Raindrop.io',	// IGNORE
 		'reddit' => 'Reddit',	// IGNORE
 		'shaarli' => 'Shaarli',	// IGNORE
+		'telegram' => 'Telegram',	// IGNORE
 		'twitter' => 'Twitter',	// IGNORE
 		'wallabag' => 'wallabag v1',	// IGNORE
 		'wallabagv2' => 'wallabag v2',	// IGNORE

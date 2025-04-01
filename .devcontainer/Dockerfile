@@ -1,6 +1,6 @@
-FROM alpine:3.18
+FROM alpine:3.21
 
-ENV TZ UTC
+ENV TZ=UTC
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
 RUN apk add --no-cache \
@@ -15,7 +15,7 @@ RUN rm -f /etc/apache2/conf.d/languages.conf /etc/apache2/conf.d/info.conf \
 		/etc/apache2/conf.d/status.conf /etc/apache2/conf.d/userdir.conf && \
 	sed -r -i "/^\s*LoadModule .*mod_(alias|autoindex|negotiation|status).so$/s/^/#/" \
 		/etc/apache2/httpd.conf && \
-	sed -r -i "/^\s*#\s*LoadModule .*mod_(deflate|expires|headers|mime|remoteip|setenvif).so$/s/^\s*#//" \
+	sed -r -i "/^\s*#\s*LoadModule .*mod_(deflate|expires|filter|headers|mime|remoteip|setenvif).so$/s/^\s*#//" \
 		/etc/apache2/httpd.conf && \
 	sed -r -i "/^\s*(CustomLog|ErrorLog|Listen) /s/^/#/" \
 		/etc/apache2/httpd.conf
@@ -23,12 +23,12 @@ RUN rm -f /etc/apache2/conf.d/languages.conf /etc/apache2/conf.d/info.conf \
 RUN adduser --ingroup www-data --disabled-password developer && \
 	echo "developer ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/developer
 
-ENV COPY_LOG_TO_SYSLOG On
-ENV COPY_SYSLOG_TO_STDERR On
-ENV CRON_MIN ''
-ENV DATA_PATH ''
-ENV FRESHRSS_ENV 'development'
-ENV LISTEN '0.0.0.0:8080'
-ENV TRUSTED_PROXY 0
+ENV COPY_LOG_TO_SYSLOG=On
+ENV COPY_SYSLOG_TO_STDERR=On
+ENV CRON_MIN=''
+ENV DATA_PATH=''
+ENV FRESHRSS_ENV='development'
+ENV LISTEN='0.0.0.0:8080'
+ENV TRUSTED_PROXY=0
 
 EXPOSE 8080

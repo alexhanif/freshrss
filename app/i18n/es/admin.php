@@ -14,13 +14,13 @@ return array(
 	'auth' => array(
 		'allow_anonymous' => 'Permitir la lectura anónima de los artículos del usuario por defecto (%s)',
 		'allow_anonymous_refresh' => 'Permitir la actualización anónima de los artículos',
-		'api_enabled' => 'Concederle acceso a la <abbr>API</abbr> <small>(necesario para apps de móvil)</small>',
+		'api_enabled' => 'Concederle acceso a la <abbr>API</abbr> <small>(necesario para apps de móvil and sharing user queries)</small>',	// DIRTY
 		'form' => 'Formulario Web (el más habitual, requiere JavaScript)',
-		'http' => 'HTTP (para usuarios avanzados con HTTPS)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => 'Ninguno (peligroso)',
 		'title' => 'Identificación',
 		'token' => 'Token de autentificación Master',
-		'token_help' => 'Permite el acceso a todas las salidas RSS del usuario así como la actualización de feeds sin autenticación:',
+		'token_help' => 'Permite el acceso a todas las salidas RSS del usuario así como la actualización de fuentes sin autenticación:',
 		'type' => 'Método de identificación',
 		'unsafe_autologin' => 'Permite la identificación automática insegura usando el formato: ',
 	),
@@ -63,8 +63,8 @@ return array(
 			'ok' => 'Los permisos en el directorio favicons son correctos.',
 		),
 		'feeds' => array(
-			'nok' => 'La tabla Feed está configurada de forma incorrecta.',
-			'ok' => 'La tabla Feed está correcta.',
+			'nok' => 'La tabla Fuentes está configurada de forma incorrecta.',
+			'ok' => 'La tabla Fuentes está correcta.',
 		),
 		'fileinfo' => array(
 			'nok' => 'No se ha podido localizar la librería PHP fileinfo (paquete fileinfo).',
@@ -116,6 +116,7 @@ return array(
 		'description' => 'Descripción',
 		'disabled' => 'Desactivado',
 		'empty_list' => 'No hay extensiones instaladas',
+		'empty_list_help' => 'Check the logs to determine the reason behind the empty extension list.',	// TODO
 		'enabled' => 'Activado',
 		'latest' => 'Instalado',
 		'name' => 'Nombre',
@@ -136,7 +137,7 @@ return array(
 		'entry_count' => 'Cómputo total',
 		'entry_per_category' => 'Entradas por categoría',
 		'entry_per_day' => 'Entradas por día (últimos 30 días)',
-		'entry_per_day_of_week' => 'Por día de la semana (mnedia: %.2f mensajes)',
+		'entry_per_day_of_week' => 'Por día de la semana (media: %.2f mensajes)',
 		'entry_per_hour' => 'Por hora (media: %.2f mensajes)',
 		'entry_per_month' => 'Por mes (media: %.2f mensajes)',
 		'entry_repartition' => 'Reparto de entradas',
@@ -147,8 +148,9 @@ return array(
 		'main_stream' => 'Salida principal',
 		'no_idle' => 'No hay fuentes inactivas',
 		'number_entries' => '%d artículos',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% del total',
-		'repartition' => 'Reparto de artículos',
+		'repartition' => 'Reparto de artículos: %s',
 		'status_favorites' => 'Favoritos',
 		'status_read' => 'Leídos',
 		'status_total' => 'Total',	// IGNORE
@@ -223,7 +225,7 @@ return array(
 		'database_size' => 'Tamaño de la base de datos',
 		'email' => 'Dirección de correo electrónico',
 		'enabled' => 'Permitido',
-		'feed_count' => 'Feeds',	// IGNORE
+		'feed_count' => 'Fuentes',
 		'is_admin' => 'Es admin',
 		'language' => 'Idioma',
 		'last_user_activity' => 'Última actividad del usuario',
