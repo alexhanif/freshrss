@@ -78,7 +78,7 @@ function is_valid_path_extension(string $path, string $extensionPath, bool $isSt
  * @return bool true if it can be served, false otherwise.
  */
 function is_valid_path(string $path): bool {
-	return !str_contains($path, '..') && (
+	return !str_contains($path, '..') && !str_starts_with($path, '/') && !str_starts_with($path, '\\') && (
 		is_valid_path_extension($path, CORE_EXTENSIONS_PATH) ||
 		is_valid_path_extension($path, THIRDPARTY_EXTENSIONS_PATH) ||
 		is_valid_path_extension($path, USERS_PATH, false));
