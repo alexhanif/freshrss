@@ -13,7 +13,7 @@
 return array(
 	'about' => array(
 		'_' => 'Hakkında',
-		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',	// TODO
+		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',	// IGNORE
 		'bug_reports' => array(
 			'environment_information' => array(
 				'_' => 'Sistem bilgileri',

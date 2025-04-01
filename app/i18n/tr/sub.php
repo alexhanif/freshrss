@@ -13,7 +13,7 @@
 return array(
 	'api' => array(
 		'documentation' => 'Aşağıdaki URL’yi kopyalayın ve harici bir araçta kullanın.',
-		'title' => 'API',	// TODO
+		'title' => 'API',	// IGNORE
 	),
 	'bookmarklet' => array(
 		'documentation' => 'Bu düğmeyi yer imleri çubuğunuza sürükleyin veya sağ tıklayıp “Bu Bağlantıyı Yer İmlerine Ekle” seçeneğini seçin. Ardından abone olmak istediğiniz herhangi bir sayfada “Abone Ol” düğmesine tıklayın.',
@@ -178,7 +178,7 @@ return array(
 			),
 			'jsonfeed' => 'JSON Besleme',
 			'rss' => 'RSS / Atom (varsayılan)',
-			'xml_xpath' => 'XML + XPath',	// TODO
+			'xml_xpath' => 'XML + XPath',	// IGNORE
 		),
 		'maintenance' => array(
 			'clear_cache' => 'Önbelleği temizle',

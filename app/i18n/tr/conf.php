@@ -297,21 +297,21 @@ return array(
 	'sharing' => array(
 		'_' => 'Paylaşım',
 		'add' => 'Paylaşım yöntemi ekle',
-		'bluesky' => 'Bluesky',	// TODO
+		'bluesky' => 'Bluesky',	// IGNORE
 		'deprecated' => 'Bu hizmet kullanımdan kaldırıldı ve FreshRSS’nin <a href="https://freshrss.github.io/FreshRSS/en/users/08_sharing_services.html" title="Daha fazla bilgi için belgeleri aç" target="_blank">gelecek bir sürümünde</a> kaldırılacak.',
-		'diaspora' => 'Diaspora*',	// TODO
+		'diaspora' => 'Diaspora*',	// IGNORE
 		'email' => 'E-posta',
-		'facebook' => 'Facebook',	// TODO
+		'facebook' => 'Facebook',	// IGNORE
 		'more_information' => 'Daha fazla bilgi',
 		'print' => 'Yazdır',
-		'raindrop' => 'Raindrop.io',	// TODO
+		'raindrop' => 'Raindrop.io',	// IGNORE
 		'remove' => 'Paylaşım yöntemini kaldır',
-		'shaarli' => 'Shaarli',	// TODO
+		'shaarli' => 'Shaarli',	// TOIGNOREDO
 		'share_name' => 'Görüntülenecek paylaşım adı',
 		'share_url' => 'Kullanılacak paylaşım URL’si',
 		'title' => 'Paylaşım',
-		'twitter' => 'Twitter',	// TODO
-		'wallabag' => 'wallabag',	// TODO
+		'twitter' => 'Twitter',	// IGNORE
+		'wallabag' => 'wallabag',	// IGNORE
 	),
 	'shortcut' => array(
 		'_' => 'Kısayollar',
