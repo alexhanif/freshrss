@@ -104,7 +104,7 @@ if (empty(SUPPORTED_TYPES[$file_type]) ||
 }
 
 // Forbid absolute paths and path traversal
-if (str_contains($path, '..') || str_starts_with($file_name, '/') || str_starts_with($file_name, '\\')) {
+if (str_contains($file_name, '..') || str_starts_with($file_name, '/') || str_starts_with($file_name, '\\')) {
 	sendBadRequestResponse('File is not supported.');
 }
 
