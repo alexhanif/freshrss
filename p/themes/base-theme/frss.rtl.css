@@ -670,6 +670,7 @@ input[type="checkbox"]:focus-visible {
 
 .nav-list .item,
 .nav-list .item > a,
+.nav-list .item > .as-link,
 .nav-list .item > span {
 	display: block;
 	overflow: hidden;
