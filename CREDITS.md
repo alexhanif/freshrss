@@ -260,6 +260,7 @@ People are sorted by name so please keep this order.
 * [Wanabo](https://github.com/Wanabo): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:Wanabo)
 * [witchcraze](https://github.com/witchcraze): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:witchcraze)
 * [wtoscer](https://github.com/wtoscer): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:wtoscer)
+* [Holi](https://github.com/mikropsoft): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:mikropsoft) 
 * [xnaas](https://github.com/xnaas): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:xnaas), [Web](https://xnaas.info/)
 * [XtremeOwnage](https://github.com/XtremeOwnage): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:XtremeOwnageDotCom), [Web](https://static.xtremeownage.com/)
 * [Yamakuni](https://github.com/Yamakuni): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:Yamakuni), [Web](https://ofanch.me/)
