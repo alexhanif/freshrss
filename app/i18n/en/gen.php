@@ -46,6 +46,8 @@ return array(
 		'refresh_opml' => 'Refresh OPML',
 		'remove' => 'Remove',
 		'rename' => 'Rename',
+		'report_first_line' => 'I did something and FreshRSS said: ',
+		'report_to_admin' => 'Report to administrator',
 		'see_website' => 'See website',
 		'submit' => 'Submit',
 		'truncate' => 'Delete all articles',
