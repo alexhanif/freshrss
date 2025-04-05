@@ -67,7 +67,8 @@
 		<?php if (FreshRSS_Auth::accessNeedsAction()): ?>
 			<div class="item configure">
 			<?php if (FreshRSS_Auth::hasAccess()): ?>
-				<button class="as-link signout" form="post-csrf" formaction="<?= _url('auth', 'logout') ?>"><?= _t('gen.auth.logout'); ?><?= _i('logout') ?></button>
+				<button class="as-link signout" form="post-csrf" formaction="<?=
+					_url('auth', 'logout') ?>"><?= _t('gen.auth.logout'); ?><?= _i('logout') ?></button>
 			<?php else: ?>
 				<a class="signin" href="<?= Minz_Url::display(['c' => 'auth', 'a' => 'login'], 'html', 'root') ?>">
 					<?= _i('login') ?><?= _t('gen.auth.login') ?>

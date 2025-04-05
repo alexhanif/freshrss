@@ -22,7 +22,8 @@
 					<a href="<?= _url('user', 'profile') ?>"><?= _t('gen.menu.user_profile') ?></a>
 				</li>
 				<li class="item">
-					<button class="as-link signout" form="post-csrf" formaction="<?= FreshRSS_auth_Controller::getLogoutUrl() ?>"><?= _t('gen.auth.logout'); ?><?= _i('logout') ?></button>
+					<button class="as-link signout" form="post-csrf" formaction="<?=
+						FreshRSS_auth_Controller::getLogoutUrl() ?>"><?= _t('gen.auth.logout'); ?><?= _i('logout') ?></button>
 				</li>
 			</ul>
 		</li>
