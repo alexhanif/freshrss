@@ -57,22 +57,21 @@ function is_valid_path(string $path): bool {
 
 function sendBadRequestResponse(?string $message = null): never {
 	header('HTTP/1.1 400 Bad Request');
-	die($message);
+	die($message ?? 'Bad Request!');
 }
 
 function sendNotFoundResponse(): never {
 	header('HTTP/1.1 404 Not Found');
-	die();
+	die('Not Found!');
 }
 
-if (!isset($_GET['f'], $_GET['t']) || !is_string($_GET['f']) || !is_string($_GET['t'])) {
+if (!is_string($_GET['f'] ?? null)) {
 	sendBadRequestResponse('Query string is incomplete.');
 }
 
 $file_name = urldecode($_GET['f']);
-$file_type = $_GET['t'];
-if (empty(FreshRSS_extension_Controller::MIME_TYPES[$file_type]) ||
-	empty(FreshRSS_extension_Controller::MIME_TYPES[pathinfo($file_name, PATHINFO_EXTENSION)])) {
+$file_type = pathinfo($file_name, PATHINFO_EXTENSION);
+if (empty(FreshRSS_extension_Controller::MIME_TYPES[$file_type])) {
 	sendBadRequestResponse('File type is not supported.');
 }
 

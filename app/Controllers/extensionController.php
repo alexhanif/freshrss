@@ -314,7 +314,7 @@ class FreshRSS_extension_Controller extends FreshRSS_ActionController {
 		$extensionName = Minz_Request::paramString('x');
 		$filename = Minz_Request::paramString('f');
 		$mimeType = pathinfo($filename, PATHINFO_EXTENSION);
-		if ($extensionName === '' || $filename === '' || $mimeType === '' || empty(FreshRSS_extension_Controller::MIME_TYPES[$mimeType])) {
+		if ($extensionName === '' || $filename === '' || $mimeType === '' || empty(self::MIME_TYPES[$mimeType])) {
 			header('HTTP/1.1 400 Bad Request');
 			die('Bad Request!');
 		}

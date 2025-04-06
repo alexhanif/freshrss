@@ -206,7 +206,7 @@ abstract class Minz_Extension {
 	 * Return the url for a given file.
 	 *
 	 * @param string $filename name of the file to serve.
-	 * @param ''|'css'|'gif'|'jpg'|'js'|'png'|'svg' $type MIME type of the file to serve. Deprecated: always use the file extension.
+	 * @param '' $type MIME type of the file to serve. Deprecated: always use the file extension.
 	 * @param bool $isStatic indicates if the file is a static file or a user file. Default is static.
 	 * @return string url corresponding to the file.
 	 */
@@ -215,7 +215,7 @@ abstract class Minz_Extension {
 			$dir = basename($this->path);
 			$file_name_url = urlencode("{$dir}/static/{$filename}");
 			$mtime = @filemtime("{$this->path}/static/{$filename}");
-			return Minz_Url::display("/ext.php?f={$file_name_url}&amp;t={$type}&amp;{$mtime}", 'php');
+			return Minz_Url::display("/ext.php?f={$file_name_url}&amp;{$mtime}", 'php');
 		} else {
 			$username = Minz_User::name();
 			if ($username == null) {
