@@ -185,7 +185,7 @@ abstract class Minz_Extension {
 		return file_exists($this->getExtensionUserPath() . '/' . $filename);
 	}
 
-	/** Return the motification time of the user-specific, extension-specific, or null if it does not exist */
+	/** Return the motification time of the user-specific, extension-specific, file or null if it does not exist */
 	final public function mtimeFile(string $filename): ?int {
 		if (!$this->hasFile($filename)) {
 			return null;
@@ -193,7 +193,7 @@ abstract class Minz_Extension {
 		return @filemtime($this->getExtensionUserPath() . '/' . $filename) ?: null;
 	}
 
-	/** Return the user-specific, extension-specific, file content, or null if it does not exist */
+	/** Return the user-specific, extension-specific, file content or null if it does not exist */
 	final public function getFile(string $filename): ?string {
 		if (!$this->hasFile($filename)) {
 			return null;
