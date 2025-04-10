@@ -830,8 +830,13 @@
 								$attributesArray = [];
 							}
 						}
-						foreach ($attributesArray as $header) {
-							/** @var string $header*/
+						$httpHeaders = array_filter($httpHeaders, 'is_string');
+						// Remove headers problematic for security
+						$httpHeaders = array_filter($httpHeaders,
+							fn(string $header) => !preg_match('/^(Remote-User|X-WebAuth-User)\\s*:/i', $header));
+					?>
+					<textarea class="valid-json" id="http_headers" name="http_headers" rows="3" cols="64" spellcheck="false"><?php
+						foreach ($httpHeaders as $header) {
 							echo htmlspecialchars($header, ENT_NOQUOTES, 'UTF-8'), PHP_EOL;
 						}
 						?>

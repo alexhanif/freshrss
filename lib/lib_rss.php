@@ -350,7 +350,7 @@ function customSimplePie(array $attributes = [], array $curl_options = []): \Sim
 	$simplePie->strip_attributes(array_merge($simplePie->strip_attributes, [
 		'autoplay', 'class', 'onload', 'onunload', 'onclick', 'ondblclick', 'onmousedown', 'onmouseup',
 		'onmouseover', 'onmousemove', 'onmouseout', 'onfocus', 'onblur',
-		'onkeypress', 'onkeydown', 'onkeyup', 'onselect', 'onchange', 'seamless', 'sizes', 'srcset']));
+		'onkeypress', 'onkeydown', 'onkeyup', 'onselect', 'onchange', 'seamless', 'sizes', 'srcdoc', 'srcset']));
 	$simplePie->add_attributes([
 		'audio' => ['controls' => 'controls', 'preload' => 'none'],
 		'iframe' => [
@@ -567,7 +567,18 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 
 	curl_setopt_array($ch, FreshRSS_Context::systemConf()->curl_options);
 
-	if (isset($attributes['curl_params']) && is_array($attributes['curl_params'])) {
+	if (is_array($attributes['curl_params'] ?? null)) {
+		$options = $attributes['curl_params'];
+		if (is_array($options[CURLOPT_HTTPHEADER] ?? null)) {
+			// Remove headers problematic for security
+			$options[CURLOPT_HTTPHEADER] = array_filter($options[CURLOPT_HTTPHEADER],
+				fn($header) => is_string($header) && !preg_match('/^(Remote-User|X-WebAuth-User)\\s*:/i', $header));
+			// Add Accept header if it is not set
+			if (preg_grep('/^Accept\\s*:/i', $options[CURLOPT_HTTPHEADER]) === false) {
+				$options[CURLOPT_HTTPHEADER][] = 'Accept: ' . $accept;
+			}
+			$attributes['curl_params'] = $options;
+		}
 		curl_setopt_array($ch, $attributes['curl_params']);
 	}
 
@@ -981,6 +992,7 @@ function errorMessageInfo(string $errorTitle, string $error = ''): string {
 	}
 
 	header("Content-Security-Policy: default-src 'self'");
+	header('Referrer-Policy: same-origin');
 
 	return <<<MSG
 	<!DOCTYPE html><html><header><title>HTTP 500: {$errorTitle}</title></header><body>
