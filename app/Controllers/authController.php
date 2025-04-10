@@ -228,7 +228,7 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 			FreshRSS_Auth::removeAccess();
 			Minz_Request::good(_t('feedback.auth.logout.success'), [ 'c' => 'index', 'a' => 'index' ]);
 		} else {
-			Minz_Error::error(403);
+			Minz_Error::error(FreshRSS_HttpResponse::HTTP_403_FORBIDDEN);
 		}
 	}
 
