@@ -95,7 +95,7 @@ class FreshRSS_Feed extends Minz_Model {
 			$curl_params = $this->attributeArray('curl_params');
 			if (is_array($curl_params)) {
 				// Content provided through a proxy may be completely different
-				$params .= $curl_params[CURLOPT_PROXY] ?? '';
+				$params .= is_string($curl_params[CURLOPT_PROXY] ?? null) ? $curl_params[CURLOPT_PROXY] : '';
 			}
 			$this->hash = hash('crc32b', $salt . $params);
 		}
