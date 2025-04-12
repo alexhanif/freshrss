@@ -97,6 +97,24 @@ class FreshRSS_Feed extends Minz_Model {
 				// Content provided through a proxy may be completely different
 				$params .= is_string($curl_params[CURLOPT_PROXY] ?? null) ? $curl_params[CURLOPT_PROXY] : '';
 			}
+			$this->hash = sha1($salt . $params);
+		}
+		return $this->hash;
+	}
+
+	public function hashFavicon(): string {
+		if ($this->hash == '') {
+			$salt = FreshRSS_Context::systemConf()->salt;
+			$url = $this->website;
+			if (!preg_match('%^https?://.%i', $url)) {
+				$url = $this->url;
+			}
+			$params = $url;
+			$curl_params = $this->attributeArray('curl_params');
+			if (is_array($curl_params)) {
+				// Content provided through a proxy may be completely different
+				$params .= is_string($curl_params[CURLOPT_PROXY] ?? null) ? $curl_params[CURLOPT_PROXY] : '';
+			}
 			$this->hash = hash('crc32b', $salt . $params);
 		}
 		return $this->hash;
@@ -234,15 +252,15 @@ class FreshRSS_Feed extends Minz_Model {
 	public function faviconPrepare(bool $force = false): void {
 		require_once(LIB_PATH . '/favicons.php');
 		$url = $this->website;
-		if ($url == '') {
+		if (!preg_match('%^https?://.%i', $url)) {
 			$url = $this->url;
 		}
-		$txt = FAVICONS_DIR . $this->hash() . '.txt';
+		$txt = FAVICONS_DIR . $this->hashFavicon() . '.txt';
 		if (@file_get_contents($txt) !== $url) {
 			file_put_contents($txt, $url);
 		}
 		if (FreshRSS_Context::$isCli || $force) {
-			$ico = FAVICONS_DIR . $this->hash() . '.ico';
+			$ico = FAVICONS_DIR . $this->hashFavicon() . '.ico';
 			$ico_mtime = @filemtime($ico);
 			$txt_mtime = @filemtime($txt);
 			if ($txt_mtime != false &&
@@ -257,12 +275,15 @@ class FreshRSS_Feed extends Minz_Model {
 	}
 
 	public static function faviconDelete(string $hash): void {
+		if (!ctype_xdigit($hash)) {
+			return;
+		}
 		$path = DATA_PATH . '/favicons/' . $hash;
 		@unlink($path . '.ico');
 		@unlink($path . '.txt');
 	}
 	public function favicon(): string {
-		return Minz_Url::display('/f.php?' . $this->hash());
+		return Minz_Url::display('/f.php?' . $this->hashFavicon());
 	}
 
 	public function _id(int $value): void {
@@ -1043,7 +1064,7 @@ class FreshRSS_Feed extends Minz_Model {
 	}
 
 	private function faviconRebuild(): void {
-		FreshRSS_Feed::faviconDelete($this->hash());
+		FreshRSS_Feed::faviconDelete($this->hashFavicon());
 		$this->faviconPrepare(true);
 	}
 
