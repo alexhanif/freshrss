@@ -91,7 +91,13 @@ class FreshRSS_Feed extends Minz_Model {
 	public function hash(): string {
 		if ($this->hash == '') {
 			$salt = FreshRSS_Context::systemConf()->salt;
-			$this->hash = hash('crc32b', $salt . $this->url);
+			$params = $this->url;
+			$curl_params = $this->attributeArray('curl_params');
+			if (is_array($curl_params)) {
+				// Content provided through a proxy may be completely different
+				$params .= $curl_params[CURLOPT_PROXY] ?? '';
+			}
+			$this->hash = hash('crc32b', $salt . $params);
 		}
 		return $this->hash;
 	}
