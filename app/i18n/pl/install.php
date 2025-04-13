@@ -23,9 +23,9 @@ return array(
 		'conf' => array(
 			'_' => 'Konfiguracja bazy danych',
 			'ko' => 'Sprawdź swoją konfigurację bazy danych.',
-			'ok' => 'Konfiguracja bazy danych została zapisana.'
+			'ok' => 'Konfiguracja bazy danych została zapisana.',
 		),
-		'host' => 'Host', // IGNORE
+		'host' => 'Host',	// IGNORE
 		'password' => 'Hasło',
 		'prefix' => 'Prefiks tabeli',
 		'type' => 'Rodzaj bazy danych',
@@ -95,7 +95,6 @@ return array(
 		'xml' => array(
 			'nok' => 'Nie znaleziono wymaganej biblioteki do przetwarzania XML-a.',
 			'ok' => 'Znaleziono wymaganą bibliotekę do przetwarzania XML-a.',
-
 		),
 	),
 	'conf' => array(

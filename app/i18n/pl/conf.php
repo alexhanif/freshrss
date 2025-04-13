@@ -255,7 +255,7 @@ return array(
 		'read' => array(
 			'article_open_on_website' => 'gdy wiadomość jest otworzona na pierwotnej stronie',
 			'article_viewed' => 'gdy wiadomość jest otworzona',
-			'focus' => 'kiedy ma focus (z wyłączeniem ważnych kanałów)', // DIRTY
+			'focus' => 'kiedy ma focus (z wyłączeniem ważnych kanałów)',	// DIRTY
 			'keep_max_n_unread' => 'Maksymalna liczba nieprzeczytanych wiadomości',
 			'scroll' => 'podczas przewijania (z wyłączeniem ważnych kanałów)',
 			'upon_gone' => 'gdy nie jest już wyświetlana w źródle kanału',
