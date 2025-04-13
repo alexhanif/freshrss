@@ -173,7 +173,7 @@ return array(
 				'_' => 'wyłączone',
 				'title' => 'Udostępnianie',
 			),
-			'greader' => 'Wygenerowany link do udostępniania  JSON-a w standardzie GReader',
+			'greader' => 'Wygenerowany link do udostępniania JSON-a w standardzie GReader',
 			'help' => 'Posłuż się tym odnośnikiem, aby podzielić się zapytaniem',
 			'html' => 'Odnośnik do strony HTML',
 			'opml' => 'Odnośnik do listy kanałów (OPML)',
@@ -261,7 +261,7 @@ return array(
 			'upon_gone' => 'gdy nie jest już wyświetlana w źródle kanału',
 			'upon_reception' => 'po otrzymaniu wiadomości',
 			'when' => 'Oznacz wiadomość jako przeczytaną…',
-			'when_same_title_in_category' => 'jeżeli identyczny tytuł występuje w ostatnich top <i>n</i> najnowszych artykułów kategorii',
+			'when_same_title_in_category' => 'gdy identyczny tytuł już istnieje w <i>n</i> najnowszych wiadomościach kategorii',
 			'when_same_title_in_feed' => 'gdy identyczny tytuł już istnieje w <i>n</i> najnowszych wiadomościach (kanału RSS)',
 		),
 		'show' => array(

@@ -93,7 +93,7 @@ return array(
 			'ok' => 'Twoja wersja PHP (%s) jest kompatybilna z FreshRSS.',
 		),
 		'tables' => array(
-			'nok' => 'W bazie danych brakuje jednej bądź więcej  potrzebnych tabeli.',
+			'nok' => 'W bazie danych brakuje jednej bądź więcej wymaganych tabeli.',
 			'ok' => 'Odpowiednie tabele znajdują się w bazie danych.',
 		),
 		'title' => 'Weryfikacja instalacji',
