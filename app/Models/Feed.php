@@ -63,6 +63,7 @@ class FreshRSS_Feed extends Minz_Model {
 	private int $ttl = self::TTL_DEFAULT;
 	private bool $mute = false;
 	private string $hash = '';
+	private string $hashFavicon = '';
 	private string $lockPath = '';
 	private string $hubUrl = '';
 	private string $selfUrl = '';
@@ -103,21 +104,17 @@ class FreshRSS_Feed extends Minz_Model {
 	}
 
 	public function hashFavicon(): string {
-		if ($this->hash == '') {
+		if ($this->hashFavicon == '') {
 			$salt = FreshRSS_Context::systemConf()->salt;
-			$url = $this->website;
-			if (!preg_match('%^https?://.%i', $url)) {
-				$url = $this->url;
-			}
-			$params = $url;
+			$params = $this->website(fallback: true);
 			$curl_params = $this->attributeArray('curl_params');
 			if (is_array($curl_params)) {
 				// Content provided through a proxy may be completely different
 				$params .= is_string($curl_params[CURLOPT_PROXY] ?? null) ? $curl_params[CURLOPT_PROXY] : '';
 			}
-			$this->hash = hash('crc32b', $salt . $params);
+			$this->hashFavicon = hash('crc32b', $salt . $params);
 		}
-		return $this->hash;
+		return $this->hashFavicon;
 	}
 
 	public function url(bool $includeCredentials = true): string {
@@ -157,10 +154,19 @@ class FreshRSS_Feed extends Minz_Model {
 	public function name(bool $raw = false): string {
 		return $raw || $this->name != '' ? $this->name : (preg_replace('%^https?://(www[.])?%i', '', $this->url) ?? '');
 	}
-	/** @return string HTML-encoded URL of the Web site of the feed */
-	public function website(): string {
-		return $this->website;
+
+	/**
+	 * @param bool $fallback true to return the URL of the feed if the Web site is blank
+	 * @return string HTML-encoded URL of the Web site of the feed
+	 */
+	public function website(bool $fallback = false): string {
+		$url = $this->website;
+		if ($fallback && !preg_match('%^https?://.%i', $url)) {
+			$url = $this->url;
+		}
+		return $url;
 	}
+
 	public function description(): string {
 		return $this->description;
 	}
@@ -249,27 +255,22 @@ class FreshRSS_Feed extends Minz_Model {
 		return $this->nbNotRead;
 	}
 
-	public function faviconPrepare(bool $force = false): void {
+	public function faviconPrepare(): void {
 		require_once(LIB_PATH . '/favicons.php');
-		$url = $this->website;
-		if (!preg_match('%^https?://.%i', $url)) {
-			$url = $this->url;
-		}
+		$url = $this->website(fallback: true);
 		$txt = FAVICONS_DIR . $this->hashFavicon() . '.txt';
 		if (@file_get_contents($txt) !== $url) {
 			file_put_contents($txt, $url);
 		}
-		if (FreshRSS_Context::$isCli || $force) {
-			$ico = FAVICONS_DIR . $this->hashFavicon() . '.ico';
-			$ico_mtime = @filemtime($ico);
-			$txt_mtime = @filemtime($txt);
-			if ($txt_mtime != false &&
-				($ico_mtime == false || $ico_mtime < $txt_mtime || ($ico_mtime < time() - (14 * 86400)))) {
-				// no ico file or we should download a new one.
-				$url = file_get_contents($txt);
-				if ($url == false || !download_favicon($url, $ico)) {
-					touch($ico);
-				}
+		$ico = FAVICONS_DIR . $this->hashFavicon() . '.ico';
+		$ico_mtime = @filemtime($ico);
+		$txt_mtime = @filemtime($txt);
+		if ($txt_mtime != false &&
+			($ico_mtime == false || $ico_mtime < $txt_mtime || ($ico_mtime < time() - (14 * 86400)))) {
+			// no ico file or we should download a new one.
+			$url = file_get_contents($txt);
+			if ($url == false || !download_favicon($url, $ico)) {
+				touch($ico);
 			}
 		}
 	}
@@ -295,6 +296,7 @@ class FreshRSS_Feed extends Minz_Model {
 	 */
 	public function _url(string $value, bool $validate = true): void {
 		$this->hash = '';
+		$this->hashFavicon = '';
 		$url = $value;
 		if ($validate) {
 			$url = checkUrl($url);
@@ -324,6 +326,7 @@ class FreshRSS_Feed extends Minz_Model {
 		$this->name = $value == '' ? '' : trim($value);
 	}
 	public function _website(string $value, bool $validate = true): void {
+		$this->hashFavicon = '';
 		if ($validate) {
 			$value = checkUrl($value);
 		}
@@ -1065,7 +1068,7 @@ class FreshRSS_Feed extends Minz_Model {
 
 	private function faviconRebuild(): void {
 		FreshRSS_Feed::faviconDelete($this->hashFavicon());
-		$this->faviconPrepare(true);
+		$this->faviconPrepare();
 	}
 
 	public function clearCache(): bool {

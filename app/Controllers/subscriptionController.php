@@ -347,7 +347,7 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 				// update url and website values for faviconPrepare
 				$feed->_url($values['url'], false);
 				$feed->_website($values['website'], false);
-				$feed->faviconPrepare(force: true);
+				$feed->faviconPrepare();
 
 				Minz_Request::good(_t('feedback.sub.feed.updated'), $url_redirect);
 			} else {
