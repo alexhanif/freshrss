@@ -255,22 +255,24 @@ class FreshRSS_Feed extends Minz_Model {
 		return $this->nbNotRead;
 	}
 
-	public function faviconPrepare(): void {
+	public function faviconPrepare(bool $force = false): void {
 		require_once(LIB_PATH . '/favicons.php');
 		$url = $this->website(fallback: true);
 		$txt = FAVICONS_DIR . $this->hashFavicon() . '.txt';
 		if (@file_get_contents($txt) !== $url) {
 			file_put_contents($txt, $url);
 		}
-		$ico = FAVICONS_DIR . $this->hashFavicon() . '.ico';
-		$ico_mtime = @filemtime($ico);
-		$txt_mtime = @filemtime($txt);
-		if ($txt_mtime != false &&
-			($ico_mtime == false || $ico_mtime < $txt_mtime || ($ico_mtime < time() - (14 * 86400)))) {
-			// no ico file or we should download a new one.
-			$url = file_get_contents($txt);
-			if ($url == false || !download_favicon($url, $ico)) {
-				touch($ico);
+		if (FreshRSS_Context::$isCli || $force) {
+			$ico = FAVICONS_DIR . $this->hashFavicon() . '.ico';
+			$ico_mtime = @filemtime($ico);
+			$txt_mtime = @filemtime($txt);
+			if ($txt_mtime != false &&
+				($ico_mtime == false || $ico_mtime < $txt_mtime || ($ico_mtime < time() - (14 * 86400)))) {
+				// no ico file or we should download a new one.
+				$url = file_get_contents($txt);
+				if ($url == false || !download_favicon($url, $ico)) {
+					touch($ico);
+				}
 			}
 		}
 	}
@@ -1068,7 +1070,7 @@ class FreshRSS_Feed extends Minz_Model {
 
 	private function faviconRebuild(): void {
 		FreshRSS_Feed::faviconDelete($this->hashFavicon());
-		$this->faviconPrepare();
+		$this->faviconPrepare(true);
 	}
 
 	public function clearCache(): bool {
