@@ -388,7 +388,8 @@ form {
 		font-weight: bold;
 		color: var(--color-text-light);
 
-		a {
+		a,
+		.as-link {
 			padding: 0 5px;
 			position: absolute;
 			right: 5px;
@@ -408,7 +409,8 @@ form {
 		}
 
 		.item {
-			a {
+			a,
+			.as-link {
 				padding: 0 22px;
 
 				&:hover {
@@ -917,7 +919,8 @@ form {
 }
 
 .nav {
-	a {
+	a,
+	.as-link {
 		color: var(--color-text-light);
 	}
 }

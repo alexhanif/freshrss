@@ -95,7 +95,7 @@ html, body {
 }
 
 /*=== Links */
-a {
+a, .as-link, button.as-link {
 	color: var(--font-color-link-general);
 	outline: none;
 }
@@ -325,7 +325,8 @@ th {
 	padding: 0 1rem;
 }
 
-.nav-list a:hover {
+.nav-list a:hover,
+.nav-list .as-link:hover {
 	text-decoration: none;
 }
 

@@ -86,11 +86,11 @@ html, body {
 }
 
 /*=== Links */
-a {
+a, .as-link, button.as-link {
 	color: var(--accent);
 }
 
-a:hover {
+a:hover, .as-link:hover, button.as-link:hover {
 	color: var(--highlight);
 }
 
