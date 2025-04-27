@@ -652,12 +652,14 @@ img.favicon {
 	text-align: center;
 }
 
-.aside.nav-list .nav-section .item.active a {
+.aside.nav-list .nav-section .item.active a,
+.aside.nav-list .nav-section .item.active .as-link {
 	color: var(--highlight);
 	font-weight: bold;
 }
 
-.aside.nav-list .nav-section .item a:hover {
+.aside.nav-list .nav-section .item a:hover,
+.aside.nav-list .nav-section .item .as-link:hover {
 	background-color: var(--main-background);
 	color: var(--text-default);
 	transition: .2s;

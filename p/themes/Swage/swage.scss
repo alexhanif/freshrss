@@ -348,7 +348,8 @@ form {
 			background: var(--color-background-nav-darker);
 			color: var(--color-text-light);
 
-			a {
+			a,
+			.as-link {
 				color: var(--color-text-light);
 			}
 		}
@@ -368,7 +369,8 @@ form {
 		text-align: center;
 	}
 
-	a:hover {
+	a:hover,
+	.as-link:hover {
 		text-decoration: none;
 	}
 }

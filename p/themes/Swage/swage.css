@@ -269,7 +269,8 @@ form th {
 	background: var(--color-background-nav-darker);
 	color: var(--color-text-light);
 }
-.nav-list .item.active a {
+.nav-list .item.active a,
+.nav-list .item.active .as-link {
 	color: var(--color-text-light);
 }
 .nav-list .item > a,
@@ -283,7 +284,8 @@ form th {
 	padding: 3px;
 	text-align: center;
 }
-.nav-list a:hover {
+.nav-list a:hover,
+.nav-list .as-link:hover {
 	text-decoration: none;
 }
 
