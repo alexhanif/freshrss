@@ -23,52 +23,52 @@ if (!empty($cliOptions->errors)) {
 $username = $cliOptions->user;
 
 if ($username === '' && !$cliOptions->allUsers) {
-    fail($cliOptions->usage);
+	fail($cliOptions->usage);
 }
 
 function clearCacheForUser(string $username) {
-    echo "Clearing cache for user $username.\n";
-    
-    $feedDAO = FreshRSS_Factory::createFeedDao($username);
-    $ids = $feedDAO->listFeedsIds();
+	echo "Clearing cache for user $username.\n";
+
+	$feedDAO = FreshRSS_Factory::createFeedDao($username);
+	$ids = $feedDAO->listFeedsIds();
 
 	if (count($ids) === 0) {
 		echo "No feeds found.\n";
 		return;
 	}
 
-    $maxId = max($ids);
-    
-    foreach ($ids as $feedId) {
-        echo "\rfor feed ID: $feedId/$maxId";
-            
-        $feed = $feedDAO->searchById($feedId);
-        if ($feed === null) {
-            echo "\nFeed with ID $feedId not found. Continuing.\n";
-            continue;
-        }
-            
-        $feed->clearCache();
-    }
-        
-    invalidateHttpCache($username);
-    echo "\nDone.\n";
+	$maxId = max($ids);
+
+	foreach ($ids as $feedId) {
+		echo "\rfor feed ID: $feedId/$maxId";
+
+		$feed = $feedDAO->searchById($feedId);
+		if ($feed === null) {
+			echo "\nFeed with ID $feedId not found. Continuing.\n";
+			continue;
+		}
+
+		$feed->clearCache();
+	}
+
+	invalidateHttpCache($username);
+	echo "\nDone.\n";
 }
 
 if ($cliOptions->allUsers) {
-    $users = listUsers();
-    sort($users);
-    if (FreshRSS_Context::systemConf()->default_user !== ''
-    	&& in_array(FreshRSS_Context::systemConf()->default_user, $users, true)) {
-    	array_unshift($users, FreshRSS_Context::systemConf()->default_user);
-    	$users = array_unique($users);
-    }
-    
-    foreach ($users as $username) {
-        clearCacheForUser($username);
-    }
+	$users = listUsers();
+	sort($users);
+	if (FreshRSS_Context::systemConf()->default_user !== ''
+		&& in_array(FreshRSS_Context::systemConf()->default_user, $users, true)) {
+		array_unshift($users, FreshRSS_Context::systemConf()->default_user);
+		$users = array_unique($users);
+	}
 
-    die();
+	foreach ($users as $username) {
+		clearCacheForUser($username);
+	}
+
+	die();
 }
 
 if (!FreshRSS_user_Controller::checkUsername($username)) {
