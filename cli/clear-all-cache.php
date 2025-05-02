@@ -26,7 +26,7 @@ if ($username === '' && !$cliOptions->allUsers) {
 	fail($cliOptions->usage);
 }
 
-function clearCacheForUser(string $username) {
+function clearCacheForUser(string $username): void {
 	echo "Clearing cache for user $username.\n";
 
 	$feedDAO = FreshRSS_Factory::createFeedDao($username);
@@ -64,8 +64,8 @@ if ($cliOptions->allUsers) {
 		$users = array_unique($users);
 	}
 
-	foreach ($users as $username) {
-		clearCacheForUser($username);
+	foreach ($users as $user) {
+		clearCacheForUser($user);
 	}
 
 	die();
