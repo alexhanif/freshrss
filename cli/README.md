@@ -101,6 +101,9 @@ cd /usr/share/FreshRSS
 #  and the number of: 5) categories, 6) feeds, 7) read articles, 8) unread articles, 9) favourites, 10) tags,
 #  11) language, 12) e-mail.
 
+./cli/clear-all-cache.php [--user=<user>] [--all-users]
+# Clear the cache of all feeds for a specific user or all users.
+
 ./cli/import-for-user.php --user username --filename /path/to/file.ext
 # The extension of the file { .json, .opml, .xml, .zip } is used to detect the type of import.
 
