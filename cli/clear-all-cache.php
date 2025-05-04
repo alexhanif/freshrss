@@ -1,6 +1,9 @@
 #!/usr/bin/env php
 <?php
 declare(strict_types=1);
+
+define("COPY_SYSLOG_TO_STDERR", false);
+
 require(__DIR__ . '/_cli.php');
 
 performRequirementCheck(FreshRSS_Context::systemConf()->db['type'] ?? '');
