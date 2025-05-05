@@ -320,7 +320,7 @@ function mark_read(div, only_not_read, asBatch) {
 	if (asRead && asBatch) {
 		mark_read_queue.push(entryId);
 		if (send_mark_read_queue_timeout == 0) {
-			send_mark_read_queue_timeout = setTimeout(function () { send_mark_queue_tick(null); }, 300);
+			send_mark_read_queue_timeout = setTimeout(function () { send_mark_queue_tick(null); }, 1000);
 		}
 	} else {
 		const queue = [entryId];
@@ -2075,6 +2075,10 @@ function init_normal() {
 		const sidebar = document.getElementById('sidebar');
 		if (sidebar) {	// Save sidebar scroll position
 			sessionStorage.setItem('FreshRSS_sidebar_scrollTop', sidebar.scrollTop);
+		}
+		if (mark_read_queue && mark_read_queue.length > 0) {
+			clearTimeout(send_mark_read_queue_timeout);
+			send_mark_queue_tick(null);
 		}
 	};
 }
