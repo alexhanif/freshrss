@@ -63,7 +63,7 @@
 		<meta name="robots" content="noindex,nofollow" />
 <?php } ?>
 	</head>
-	<body class="<?= Minz_Request::actionName() ?> theme-<?= strtolower(str_replace(' ', '-', FreshRSS_Context::userConf()->theme)) ?>">
+	<body class="<?= Minz_Request::actionName() ?> theme-<?= strtolower(preg_replace('/[\s\._]/', '-', FreshRSS_Context::userConf()->theme)) ?>">
 <?php
 	if (!Minz_Request::paramBoolean('ajax')) {
 		flush();
