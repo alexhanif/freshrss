@@ -219,23 +219,23 @@ function send_mark_read_queue(queue, asRead, callback) {
 		}
 		return;
 	}
-	const req = new XMLHttpRequest();
-	req.open('POST', '.?c=entry&a=read' + (asRead ? '' : '&is_read=0'), true);
-	req.responseType = 'json';
-	req.onerror = function (e) {
-		for (let i = queue.length - 1; i >= 0; i--) {
-			delete pending_entries['flux_' + queue[i]];
+	fetch('.?c=entry&a=read' + (asRead ? '' : '&is_read=0'), {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json; charset=UTF-8"
+		},
+		body: JSON.stringify({
+			ajax: true,
+			_csrf: context.csrf,
+			id: queue,
+		}),
+		keepalive: true
+	}).then(resp => {
+		if (!resp.ok) {
+			return Promise.reject(resp);
 		}
-		badAjax(this.status == 403);
-	};
-	req.onload = function (e) {
-		if (this.status != 200) {
-			return req.onerror(e);
-		}
-		const json = xmlHttpRequestJson(this);
-		if (!json) {
-			return req.onerror(e);
-		}
+		return resp.json();
+	}).then(json => {
 		for (let i = queue.length - 1; i >= 0; i--) {
 			const div = document.getElementById('flux_' + queue[i]);
 			const myIcons = context.icons;
@@ -280,13 +280,12 @@ function send_mark_read_queue(queue, asRead, callback) {
 		if (callback) {
 			callback();
 		}
-	};
-	req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-	req.send(JSON.stringify({
-		ajax: true,
-		_csrf: context.csrf,
-		id: queue,
-	}));
+	}).catch(resp => {
+		for (let i = queue.length - 1; i >= 0; i--) {
+			delete pending_entries['flux_' + queue[i]];
+		}
+		badAjax(resp.status == 403);
+	});
 }
 
 let send_mark_read_queue_timeout = 0;
@@ -2071,16 +2070,18 @@ function init_normal() {
 	init_actualize();
 	faviconNbUnread();
 
-	window.onbeforeunload = function (e) {
-		const sidebar = document.getElementById('sidebar');
-		if (sidebar) {	// Save sidebar scroll position
-			sessionStorage.setItem('FreshRSS_sidebar_scrollTop', sidebar.scrollTop);
+	document.addEventListener("visibilitychange", () => {
+		if (document.visibilityState === "hidden") {
+			const sidebar = document.getElementById('sidebar');
+			if (sidebar) {	// Save sidebar scroll position
+				sessionStorage.setItem('FreshRSS_sidebar_scrollTop', sidebar.scrollTop);
+			}
+			if (mark_read_queue && mark_read_queue.length > 0) {
+				clearTimeout(send_mark_read_queue_timeout);
+				send_mark_queue_tick(null);
+			}
 		}
-		if (mark_read_queue && mark_read_queue.length > 0) {
-			clearTimeout(send_mark_read_queue_timeout);
-			send_mark_queue_tick(null);
-		}
-	};
+	});
 }
 
 function init_main_beforeDOM() {
