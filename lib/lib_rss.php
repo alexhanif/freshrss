@@ -1,10 +1,6 @@
 <?php
 declare(strict_types=1);
 
-if (version_compare(PHP_VERSION, FRESHRSS_MIN_PHP_VERSION, '<')) {
-	die(sprintf('FreshRSS error: FreshRSS requires PHP %s+!', FRESHRSS_MIN_PHP_VERSION));
-}
-
 if (!function_exists('mb_strcut')) {
 	function mb_strcut(string $str, int $start, ?int $length = null, string $encoding = 'UTF-8'): string {
 		return substr($str, $start, $length) ?: '';
@@ -813,6 +809,12 @@ function checkTrustedIP(): bool {
 }
 
 function httpAuthUser(bool $onlyTrusted = true): string {
+	$auths = array_intersect_key($_SERVER, ['REMOTE_USER' => '', 'REDIRECT_REMOTE_USER' => '', 'HTTP_REMOTE_USER' => '', 'HTTP_X_WEBAUTH_USER' => '']);
+	if (count($auths) > 1) {
+		Minz_Log::warning('Multiple HTTP authentication headers!');
+		return '';
+	}
+
 	if (!empty($_SERVER['REMOTE_USER']) && is_string($_SERVER['REMOTE_USER'])) {
 		return $_SERVER['REMOTE_USER'];
 	}
@@ -914,6 +916,14 @@ function check_install_database(): array {
 function recursive_unlink(string $dir): bool {
 	if (!is_dir($dir)) {
 		return true;
+	}
+
+	if (is_link($dir)) {
+		if (PHP_OS_FAMILY === "Windows") {
+			return rmdir($dir);
+		}
+
+		return unlink($dir);
 	}
 
 	$files = array_diff(scandir($dir) ?: [], ['.', '..']);
