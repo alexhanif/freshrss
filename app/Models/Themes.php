@@ -23,7 +23,7 @@ class FreshRSS_Themes extends Minz_Model {
 			$theme_id = rawurlencode($theme_dir);
 			$theme = self::get_infos($theme_id);
 			if (is_array($theme) && trim($theme['name']) !== '') {
-				$list[$theme['id']] = $theme;
+				$list[$theme_id] = $theme;
 			}
 		}
 		return $list;
