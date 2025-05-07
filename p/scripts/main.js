@@ -351,18 +351,21 @@ function mark_favorite(div) {
 	}
 	pending_entries[div.id] = true;
 
-	const icon = a.querySelector('img');
-	const originalIcon = icon.getAttribute('src');
-
-	icon.src = '../themes/icons/spinner.svg';
-	icon.classList.add('spinner');
+	let originalIcon;
+	div.querySelectorAll('a.bookmark > .icon').forEach(icon => {
+		originalIcon = icon.src;
+		icon.src = context.icons.spinner;
+		icon.classList.add('spinner');
+	});
 
 	const req = new XMLHttpRequest();
 	req.open('POST', url, true);
 	req.responseType = 'json';
 	req.onerror = function (e) {
-		icon.src = originalIcon;
-		icon.classList.remove('spinner');
+		div.querySelectorAll('a.bookmark > .icon').forEach(icon => {
+			icon.src = originalIcon;
+			icon.classList.remove('spinner');
+		});
 		delete pending_entries[div.id];
 		badAjax(this.status == 403);
 	};
@@ -374,7 +377,6 @@ function mark_favorite(div) {
 		if (!json) {
 			return req.onerror(e);
 		}
-		icon.classList.remove('spinner');
 		let inc = 0;
 		if (div.classList.contains('favorite')) {
 			div.classList.remove('favorite');
