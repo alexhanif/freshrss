@@ -118,6 +118,10 @@ p.help .icon,
 	filter: brightness(.6) contrast(1.2);
 }
 
+.spinner {
+	filter: invert(1) brightness(2) !important;
+}
+
 /*=== Forms */
 legend {
 	border-bottom: 1px solid var(--dark-border-color);

@@ -274,6 +274,10 @@ th {
 	box-shadow: none;
 }
 
+.spinner {
+	filter: invert(1) brightness(2) !important;
+}
+
 /*=== switches */
 .switch.active {
 	background-color: var(--contrast-background-color);
