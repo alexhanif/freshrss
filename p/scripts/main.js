@@ -352,6 +352,7 @@ function mark_favorite(div) {
 	pending_entries[div.id] = true;
 
 	const icon = a.querySelector('img');
+	const originalIcon = icon.getAttribute('src');
 	setTimeout(() => {
 		if (pending_entries[div.id]) {
 			icon.src = '../themes/icons/spinner.svg';
@@ -363,7 +364,7 @@ function mark_favorite(div) {
 	req.open('POST', url, true);
 	req.responseType = 'json';
 	req.onerror = function (e) {
-		icon.src = icon.alt === '☆' ? '../themes/icons/non-starred.svg' : '../themes/icons/starred.svg';
+		icon.src = originalIcon;
 		icon.classList.remove('spinner');
 		delete pending_entries[div.id];
 		badAjax(this.status == 403);
