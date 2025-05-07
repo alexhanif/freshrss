@@ -353,12 +353,9 @@ function mark_favorite(div) {
 
 	const icon = a.querySelector('img');
 	const originalIcon = icon.getAttribute('src');
-	setTimeout(() => {
-		if (pending_entries[div.id]) {
-			icon.src = '../themes/icons/spinner.svg';
-			icon.classList.add('spinner');
-		}
-	}, 200);
+
+	icon.src = '../themes/icons/spinner.svg';
+	icon.classList.add('spinner');
 
 	const req = new XMLHttpRequest();
 	req.open('POST', url, true);
