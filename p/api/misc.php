@@ -1,5 +1,9 @@
 <?php
 declare(strict_types=1);
+/**
+ * API entry point for FreshRSS extensions on
+ * `/api/misc.php/Extension%20name/` or `/api/misc.php?ext=Extension%20name`
+ */
 
 require(__DIR__ . '/../../constants.php');
 require(LIB_PATH . '/lib_rss.php');	//Includes class autoloader
@@ -45,14 +49,16 @@ if ($extensionName === '') {
 Minz_Session::init('FreshRSS', volatile: true);
 
 FreshRSS_Context::initSystem();
-if (!FreshRSS_Context::hasSystemConf() ||
+if (
+	!FreshRSS_Context::hasSystemConf() ||
 	!FreshRSS_Context::systemConf()->api_enabled ||
-	empty(FreshRSS_Context::systemConf()->extensions_enabled[$extensionName])) {
+	empty(FreshRSS_Context::systemConf()->extensions_enabled[$extensionName])
+) {
 	serviceUnavailable();
 }
 
 // Only enable the extension that is being called
-FreshRSS_Context::systemConf()->extensions_enabled = [ $extensionName => true ];
+FreshRSS_Context::systemConf()->extensions_enabled = [$extensionName => true];
 Minz_ExtensionManager::init();
 
 Minz_Translate::init();
