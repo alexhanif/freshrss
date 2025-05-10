@@ -361,7 +361,13 @@ function mark_favorite(div) {
 	}
 	pending_entries[div.id] = true;
 
+	let originalIcon;
+
 	div.querySelectorAll('a.bookmark > .icon').forEach(icon => {
+		originalIcon = {
+			src: icon.getAttribute('src'),
+			alt: icon.getAttribute('alt')
+		};
 		icon.src = context.icons.spinner;
 		icon.alt = '⏳';
 		icon.classList.add('spinner');
@@ -372,7 +378,8 @@ function mark_favorite(div) {
 	req.responseType = 'json';
 	req.onerror = function (e) {
 		div.querySelectorAll('a.bookmark > .icon').forEach(icon => {
-			icon.outerHTML = div.classList.contains('not_read') ? context.icons.unread : context.icons.read;
+			icon.src = originalIcon.src;
+			icon.alt = originalIcon.alt;
 		});
 		delete pending_entries[div.id];
 		badAjax(this.status == 403);
