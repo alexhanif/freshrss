@@ -165,7 +165,3 @@ input:focus {
 #btn-add > img {
 	filter: brightness(0.75);
 }
-
-.spinner {
-	filter: invert(1) brightness(2) !important;
-}

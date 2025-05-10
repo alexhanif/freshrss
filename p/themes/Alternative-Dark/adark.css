@@ -275,7 +275,10 @@ th {
 }
 
 .spinner {
-	filter: invert(1) brightness(2) !important;
+	filter: invert(1);
+}
+a:hover > .spinner {
+	filter: invert(1) brightness(2);
 }
 
 /*=== switches */

@@ -119,7 +119,10 @@ p.help .icon,
 }
 
 .spinner {
-	filter: invert(1) brightness(2) !important;
+	filter: invert(1) brightness(.6) contrast(1.2);
+}
+.bookmark:hover > .spinner {
+	filter: invert(1) brightness(1.1);
 }
 
 /*=== Forms */
