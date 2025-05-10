@@ -121,8 +121,13 @@ p.help .icon,
 .spinner {
 	filter: invert(1) brightness(.6) contrast(1.2);
 }
+
 .bookmark:hover > .spinner {
 	filter: invert(1) brightness(1.1);
+}
+
+a:hover .icon.spinner {
+	filter: invert(1) brightness(1.5);
 }
 
 /*=== Forms */
