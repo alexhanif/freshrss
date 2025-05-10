@@ -4,13 +4,43 @@ declare(strict_types=1);
 require(__DIR__ . '/../../constants.php');
 require(LIB_PATH . '/lib_rss.php');	//Includes class autoloader
 
-function serviceUnavailable(): void {
+function badRequest(): never {
+	header('HTTP/1.1 400 Bad Request');
+	header('Content-Type: text/plain; charset=UTF-8');
+	die('Bad Request!');
+}
+
+function serviceUnavailable(): never {
 	header('HTTP/1.1 503 Service Unavailable');
 	header('Content-Type: text/plain; charset=UTF-8');
 	die('Service Unavailable!');
 }
 
-$extensionName = is_string($_GET['ext'] ?? null) ? $_GET['ext'] : null;
+$extensionName = is_string($_GET['ext'] ?? null) ? $_GET['ext'] : '';
+
+if ($extensionName === '') {
+	$pathInfo = '';
+	if (empty($_SERVER['PATH_INFO']) || !is_string($_SERVER['PATH_INFO'] ?? null)) {
+		if (!empty($_SERVER['ORIG_PATH_INFO']) && is_string($_SERVER['ORIG_PATH_INFO'])) {
+			// Compatibility https://php.net/reserved.variables.server
+			$pathInfo = $_SERVER['ORIG_PATH_INFO'];
+		}
+	} else {
+		$pathInfo = $_SERVER['PATH_INFO'];
+	}
+	$pathInfo = rawurldecode($pathInfo);
+	$pathInfo = preg_replace('%^(/api)?(/misc\.php)?%', '', $pathInfo);	//Discard common errors
+	if ($pathInfo !== '' && is_string($pathInfo)) {
+		$pathInfos = explode('/', $pathInfo, limit: 3);
+		if (count($pathInfos) > 1) {
+			$extensionName = $pathInfos[1];
+		}
+	}
+}
+
+if ($extensionName === '') {
+	badRequest();
+}
 
 Minz_Session::init('FreshRSS', volatile: true);
 
