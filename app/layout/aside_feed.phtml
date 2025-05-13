@@ -9,9 +9,15 @@
 			$class = ' state_unread';
 		}
 
-	$state_filter_manual = Minz_Request::paramString('state');
-	if ($state_filter_manual !== '') {
-		$state_filter_manual = '&state=' . $state_filter_manual;
+	$state_filter_manual = '';
+	if (($s = Minz_Request::paramString('state')) !== '') {
+		$state_filter_manual .= '&state=' . $s;
+	}
+	if (($s = Minz_Request::paramString('sort')) !== '') {
+		$state_filter_manual .= '&sort=' . $s;
+	}
+	if (($s = Minz_Request::paramString('order')) !== '') {
+		$state_filter_manual .= '&order=' . $s;
 	}
 ?>
 <nav class="nav aside aside_feed<?= $class ?>" id="aside_feed">
