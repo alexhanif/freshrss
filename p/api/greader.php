@@ -5,6 +5,7 @@ declare(strict_types=1);
 == Description ==
 Server-side API compatible with Google Reader API layer 2
 	for the FreshRSS project https://freshrss.org
+FreshRSS-specific information is prefixed with 'frss:'
 
 == Credits ==
 * 2014-03: Released by Alexandre Alapetite https://alexandre.alapetite.fr
@@ -354,6 +355,13 @@ final class GReaderAPI {
 					'url' => htmlspecialchars_decode($feed->url(), ENT_QUOTES),
 					'htmlUrl' => htmlspecialchars_decode($feed->website(), ENT_QUOTES),
 					'iconUrl' => $faviconsUrl . $feed->hashFavicon(),
+					'frss:priority' => match ($feed->priority()) {
+						FreshRSS_Feed::PRIORITY_MAIN_STREAM => 'main',
+						FreshRSS_Feed::PRIORITY_IMPORTANT => 'important',
+						FreshRSS_Feed::PRIORITY_CATEGORY => 'category',
+						FreshRSS_Feed::PRIORITY_ARCHIVED => 'archived',	// Not returned by the API, so should never happen
+						default => 'main',
+					},
 				];
 			}
 		}
