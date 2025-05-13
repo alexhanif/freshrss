@@ -10,13 +10,13 @@
 	}
 
 	$state_filter_manual = '';
-	if (($s = Minz_Request::paramString('state')) !== '' && ctype_digit($s)) {
+	if (($s = Minz_Request::paramString('state', plaintext: true)) !== '' && ctype_digit($s)) {
 		$state_filter_manual .= '&state=' . $s;
 	}
-	if (($s = Minz_Request::paramString('sort')) !== '' && ctype_alpha($s)) {
+	if (($s = Minz_Request::paramString('sort', plaintext: true)) !== '' && ctype_alpha($s)) {
 		$state_filter_manual .= '&sort=' . $s;
 	}
-	if (($s = Minz_Request::paramString('order')) !== '' && ctype_alpha($s)) {
+	if (($s = Minz_Request::paramString('order', plaintext: true)) !== '' && ctype_alpha($s)) {
 		$state_filter_manual .= '&order=' . $s;
 	}
 ?>
