@@ -279,6 +279,10 @@ final class GReaderAPI {
 		$tags = [
 			['id' => 'user/-/state/com.google/starred'],
 			// ['id' => 'user/-/state/com.google/broadcast', 'sortid' => '2']
+			['id' => 'user/-/state/com.google/reading-list'],
+			['id' => 'user/-/state/org.freshrss/main'],
+			['id' => 'user/-/state/org.freshrss/important'],
+			// ['id' => 'user/-/state/org.freshrss/archived'],
 		];
 		$categoryDAO = FreshRSS_Factory::createCategoryDao();
 		$categories = $categoryDAO->listCategories(prePopulateFeeds: false, details: false);
@@ -583,8 +587,8 @@ final class GReaderAPI {
 	}
 
 	/**
-	 * @param 'A'|'c'|'f'|'s' $type
-	 * @return array{'A'|'c'|'f'|'s'|'t',int,int,FreshRSS_BooleanSearch}
+	 * @param 'A'|'a'|'c'|'f'|'i'|'s' $type
+	 * @return array{'A'|'a'|'c'|'f'|'i'|'s'|'t',int,int,FreshRSS_BooleanSearch}
 	 */
 	private static function streamContentsFilters(string $type, int|string $streamId,
 		string $filter_target, string $exclude_target, int $start_time, int $stop_time): array {
@@ -665,6 +669,8 @@ final class GReaderAPI {
 			'feed' => 'f',
 			'label' => 'c',
 			'reading-list' => 'A',
+			'main' => 'a',
+			'important' => 'i',
 			default => 'A',
 		};
 
@@ -1095,8 +1101,8 @@ final class GReaderAPI {
 									$count, $order, $filter_target, $exclude_target, $continuation);
 							} elseif (isset($pathInfos[8], $pathInfos[9]) && $pathInfos[6] === 'user') {
 								if ($pathInfos[8] === 'state') {
-									if ($pathInfos[9] === 'com.google' && isset($pathInfos[10])) {
-										if ($pathInfos[10] === 'reading-list' || $pathInfos[10] === 'starred') {
+									if (in_array($pathInfos[9], ['com.google', 'org.freshrss'], true) && isset($pathInfos[10])) {
+										if (in_array($pathInfos[10], ['reading-list', 'starred', 'main', 'important'], true)) {
 											$include_target = '';
 											self::streamContents($pathInfos[10], $include_target, $start_time, $stop_time, $count, $order,
 												$filter_target, $exclude_target, $continuation);
