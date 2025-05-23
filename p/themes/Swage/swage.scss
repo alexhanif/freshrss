@@ -4,7 +4,7 @@
 //colors
 
 $color_text:	#181621;
-$color_light:	#fcfcfc;
+$color_light:	#f5f3f3;
 $color_nav:		#0062be;
 $color_aside:	#22303d;
 $color_alert:	#fa8052;
@@ -105,6 +105,18 @@ body {
 	font-family: Helvetica, Arial, sans-serif;
 }
 
+body:not(.normal) nav.configure a.dropdown-toggle {
+	margin-left: 4px;
+}
+
+#slider-content #feed_update fieldset .form-group:last-child {
+	margin-bottom: 0.4rem;
+}
+
+.configure.open-slider > .icon {
+	filter: brightness(0.4);
+}
+
 a {
 	color: var(--color-text-nav);
 	outline: none;
@@ -173,6 +185,10 @@ select {
 	}
 }
 
+input, select, textarea {
+	max-width: 85vw;
+}
+
 select {
 	padding-top: 7px;
 	padding-bottom: 8px;
@@ -212,6 +228,9 @@ form {
 	}
 }
 
+main.post > div.form-group.form-actions > div.group-controls > ul > li > a {
+	margin-left: 1rem;
+}
 
 .form-group {
 	padding: 5px;
@@ -259,6 +278,7 @@ form {
 	}
 
 	&.configure-feeds {
+		margin: 0.5rem 0 1rem 0.2rem;
 
 		@extend %aside-width;
 	}
@@ -382,6 +402,12 @@ form {
 	border: none;
 	background-color: var(--color-background-nav-darker);
 
+	.item > a,
+	.item > .as-link,
+	.item > span {
+		width: 96% !important;
+	}
+
 	.dropdown-header {
 		cursor: default;
 		padding: 0.5rem 10px 0.5rem 10px;
@@ -390,9 +416,10 @@ form {
 
 		a,
 		.as-link {
-			padding: 0 5px;
+			padding: 0.1rem 0.3rem 0.3rem 0.3rem;
 			position: absolute;
 			right: 5px;
+			margin-top: -3px;
 
 			&:hover {
 				background-color: var(--color-background-nav);
@@ -475,6 +502,10 @@ form {
 	padding-top: 1rem;
 	padding-bottom: 0.25rem;
 
+	a {
+		padding: 0;
+	}
+
 	.stick.search {
 		width: 100%;
 
@@ -482,14 +513,10 @@ form {
 			width: 100%;
 			border: 0;
 		}
-	}
-}
 
-.labels,
-.tags,
-.share {
-	.dropdown-menu {
-		right: auto;
+		.btn:hover {
+			filter: brightness(0.9);
+		}
 	}
 }
 
@@ -497,6 +524,10 @@ form {
 .item.separator {
 	border-top-color: var(--color-border-light-darker);
 	cursor: default;
+}
+
+li.item.separator {
+	padding-top: 0.4rem;
 }
 
 .alert {
@@ -598,6 +629,14 @@ form {
 	> h1.title > a {
 		color: var(--color_text);
 	}
+}
+
+main.post .drop-section li.item.feed a .icon {
+	filter: brightness(0.4);
+}
+
+main.post .drop-section li.item.feed a:hover .icon {
+	filter: invert(56%) sepia(87%) saturate(1185%) hue-rotate(327deg) brightness(104%) contrast(96%);
 }
 
 .box {
@@ -820,6 +859,10 @@ form {
 	}
 }
 
+#aside_feed > ul > li:first-child {
+	margin-top: 0.4rem;
+}
+
 .aside_feed {
 	.category .title:not([data-unread="0"])::after {
 		margin: 0.5rem 0 0 0;
@@ -843,6 +886,10 @@ form {
 		font-size: 0.8em;
 		font-style: italic;
 	}
+}
+
+.toggle_aside {
+	margin-bottom: 1rem;
 }
 
 .reader {
@@ -1168,6 +1215,73 @@ a.signin {
 		}
 	}
 
+	.horizontal-list {
+		.dropdown {
+			position: inherit !important;
+		}
+	}
+
+	#nav_menu_sort,
+	#nav_menu_sort .dropdown-menu,
+	#nav_menu_sort .dropdown,
+	#toggle-order {
+		position: fixed !important;
+		right: 0;
+	}
+
+	#nav_menu_sort .dropdown-menu,
+	#nav_menu_read_all .dropdown-menu,
+	#dropdown-search-wrapper .dropdown-menu,
+	#nav_menu_queries .dropdown-menu {
+		top: 4.4rem;
+	}
+
+	#nav_menu_sort .dropdown-menu,
+	#nav_menu_read_all .dropdown-menu,
+	#nav_menu_actions .dropdown-menu {
+		position: fixed;
+	}
+
+	#dropdown-search-wrapper .dropdown-menu span {
+		text-wrap: wrap;
+	}
+
+	main.global {
+		margin: 1rem;
+	}
+
+	body:not(.normal):not(.reader):not(.global) .nav_menu {
+		height: 2.2rem;
+	}
+
+	nav.configure a.dropdown-toggle {
+		position: fixed;
+		top: 0;
+		right: 0;
+	}
+
+	body.repartition {
+		.nav_menu {
+			position: fixed;
+			height: 3rem !important;
+		}
+
+		main.post {
+			margin-top: 4rem;
+		}
+
+		.nav_menu .btn {
+			display: block;
+		}
+
+		.nav_menu #feed_select {
+			padding: 0;
+			display: block;
+			margin-left: 5rem;
+			margin-bottom: 0.5rem;
+		}
+	}
+
 	.form-group .group-name {
 		padding-bottom: 0;
 		text-align: left;
@@ -1371,12 +1485,8 @@ a.signin {
 		top: 0;
 	}
 
-	a#actualize,
-	a#toggle-order {
-		right: 0;
-	}
-
 	a#actualize {
+		right: 0;
 		top: 0;
 	}
 
@@ -1391,19 +1501,13 @@ a.signin {
 	}
 
 	div#nav_menu_views {
-		right: 50px;
+		right: 32px;
 	}
 }
 
 @media (max-width: 410px) {
 	.nav_menu .stick {
 		margin: 0;
-	}
-}
-
-@media (max-width: 374px) {
-	#nav_menu_views {
-		display: none;
 	}
 }
 
@@ -1492,7 +1596,6 @@ button.as-link {
 #nav_menu_read_all {
 	ul.dropdown-menu {
 		right: 0;
-		left: auto;
 
 		&::after {
 			display: none;
