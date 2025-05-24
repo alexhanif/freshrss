@@ -85,8 +85,8 @@ body {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-body:not(.normal) nav.configure a.dropdown-toggle {
-  margin-right: 4px;
+body:not(.normal):not(.reader) nav.configure a.dropdown-toggle {
+  margin-right: 0.25rem;
 }
 
 #slider-content #feed_update fieldset .form-group:last-child {
@@ -187,10 +187,6 @@ form th {
   content: url(../Swage/icons/error.svg);
 }
 
-main.post > div.form-group.form-actions > div.group-controls > ul > li > a {
-  margin-right: 1rem;
-}
-
 .form-group {
   padding: 5px;
   border: 1px solid transparent;
@@ -205,8 +201,8 @@ main.post > div.form-group.form-actions > div.group-controls > ul > li > a {
   background-color: var(--color-background-light-darker-transparent);
   border-top: 3px solid var(--color-border-light-darker);
 }
-.form-group.form-actions .btn {
-  margin: 0 10px;
+.form-group.form-actions .btn, .form-group.form-actions a {
+  margin-right: 1rem;
 }
 .form-group .group-name {
   padding: 10px 0;
@@ -656,8 +652,8 @@ main.post .drop-section li.item.feed a:hover .icon {
 }
 
 .aside {
-  padding: 35px 0;
   background-color: var(--color-background-aside);
+  padding-top: 2.5rem;
 }
 .aside.aside_feed .tree {
   margin: 0 0 50px;
@@ -703,6 +699,10 @@ main.post .drop-section li.item.feed a:hover .icon {
 
 .toggle_aside {
   margin-bottom: 1rem;
+}
+
+.aside:target .toggle_aside {
+  border-bottom: 1px solid var(--frss-border-color);
 }
 
 .reader .aside .toggle_aside {
@@ -957,6 +957,25 @@ a.signin {
   background: var(--color-background-dark);
 }
 
+body.reader #nav_menu_toggle_aside {
+  margin-top: -2px;
+  height: 32px;
+}
+body.reader nav.aside_feed > a.toggle_aside {
+  text-align: center;
+}
+body.reader .header {
+  display: none;
+}
+body.reader .aside:target {
+  width: 231px;
+  padding-top: 0;
+}
+
+main.global {
+  margin: 1rem;
+}
+
 @media (max-width: 840px) {
   body:not(.formLogin, .register) .header .item .title {
     display: none;
@@ -968,7 +987,7 @@ a.signin {
   #nav_menu_sort .dropdown-menu,
   #nav_menu_sort .dropdown,
   #toggle-order {
-    position: fixed !important;
+    position: fixed;
     left: 0;
   }
   #nav_menu_sort .dropdown-menu,
@@ -985,16 +1004,18 @@ a.signin {
   #dropdown-search-wrapper .dropdown-menu span {
     text-wrap: wrap;
   }
-  main.global {
-    margin: 1rem;
+  body:not(.normal):not(.reader) nav.configure a.dropdown-toggle {
+    position: fixed;
+    top: 0;
   }
   body:not(.normal):not(.reader):not(.global) .nav_menu {
     height: 2.2rem;
   }
-  nav.configure a.dropdown-toggle {
-    position: fixed;
-    top: 0;
+  body:not(.normal):not(.reader):not(.global) nav.configure a.dropdown-toggle {
     left: 0;
+  }
+  body:not(.normal):not(.reader).global nav.configure a.dropdown-toggle {
+    left: 2.4rem;
   }
   body.repartition .nav_menu {
     position: fixed;
@@ -1072,7 +1093,7 @@ a.signin {
     margin-left: auto;
   }
   .aside:target {
-    width: 78%;
+    width: 78% !important;
     z-index: 1000;
   }
   #slider .toggle_aside {
@@ -1164,7 +1185,6 @@ a.signin {
   }
   form#mark-read-menu,
   a#actualize,
-  a#toggle-order,
   div#nav_menu_actions,
   div#nav_menu_views {
     position: absolute;
@@ -1260,9 +1280,6 @@ button.as-link {
   display: initial !important;
 }
 
-#nav_menu_read_all ul.dropdown-menu {
-  left: 0;
-}
 #nav_menu_read_all ul.dropdown-menu::after {
   display: none;
 }

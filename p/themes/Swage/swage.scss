@@ -105,8 +105,8 @@ body {
 	font-family: Helvetica, Arial, sans-serif;
 }
 
-body:not(.normal) nav.configure a.dropdown-toggle {
-	margin-left: 4px;
+body:not(.normal):not(.reader) nav.configure a.dropdown-toggle {
+	margin-left: 0.25rem;
 }
 
 #slider-content #feed_update fieldset .form-group:last-child {
@@ -228,10 +228,6 @@ form {
 	}
 }
 
-main.post > div.form-group.form-actions > div.group-controls > ul > li > a {
-	margin-left: 1rem;
-}
-
 .form-group {
 	padding: 5px;
 	border: 1px solid transparent;
@@ -247,8 +243,8 @@ main.post > div.form-group.form-actions > div.group-controls > ul > li > a {
 		background-color: var(--color-background-light-darker-transparent);
 		border-top: 3px solid var(--color-border-light-darker);
 
-		.btn {
-			margin: 0 10px;
+		.btn, a {
+			margin-left: 1rem;
 		}
 	}
 
@@ -821,8 +817,8 @@ main.post .drop-section li.item.feed a:hover .icon {
 }
 
 .aside {
-	padding: 35px 0;
 	background-color: var(--color-background-aside);
+	padding-top: 2.5rem;
 
 	@extend %aside-width;
 
@@ -890,6 +886,10 @@ main.post .drop-section li.item.feed a:hover .icon {
 
 .toggle_aside {
 	margin-bottom: 1rem;
+}
+
+.aside:target .toggle_aside {
+	border-bottom: 1px solid var(--frss-border-color);
 }
 
 .reader {
@@ -1206,6 +1206,30 @@ a.signin {
 	}
 }
 
+body.reader {
+	#nav_menu_toggle_aside {
+		margin-top: -2px;
+		height: 32px;
+	}
+
+	nav.aside_feed > a.toggle_aside {
+		text-align: center;
+	}
+
+	.header {
+		display: none;
+	}
+
+	.aside:target {
+		width: 231px;
+		padding-top: 0;
+	}
+}
+
+main.global {
+	margin: 1rem;
+}
+
 @media (max-width: 840px) {
 	body:not(.formLogin, .register) {
 		.header {
@@ -1225,7 +1249,7 @@ a.signin {
 	#nav_menu_sort .dropdown-menu,
 	#nav_menu_sort .dropdown,
 	#toggle-order {
-		position: fixed !important;
+		position: fixed;
 		right: 0;
 	}
 
@@ -1246,18 +1270,27 @@ a.signin {
 		text-wrap: wrap;
 	}
 
-	main.global {
-		margin: 1rem;
-	}
+	body:not(.normal):not(.reader) {
+		nav.configure a.dropdown-toggle {
+			position: fixed;
+			top: 0;
+		}
 
-	body:not(.normal):not(.reader):not(.global) .nav_menu {
-		height: 2.2rem;
-	}
+		&:not(.global) {
+			.nav_menu {
+				height: 2.2rem;
+			}
 
-	nav.configure a.dropdown-toggle {
-		position: fixed;
-		top: 0;
-		right: 0;
+			nav.configure a.dropdown-toggle {
+				right: 0;
+			}
+		}
+
+		&.global {
+			nav.configure a.dropdown-toggle {
+				right: 2.4rem;
+			}
+		}
 	}
 
 	body.repartition {
@@ -1357,7 +1390,7 @@ a.signin {
 		}
 
 		&:target {
-			width: 78%;
+			width: 78% !important;
 			z-index: 1000;
 		}
 	}
@@ -1474,7 +1507,6 @@ a.signin {
 
 	form#mark-read-menu,
 	a#actualize,
-	a#toggle-order,
 	div#nav_menu_actions,
 	div#nav_menu_views {
 		position: absolute;
@@ -1595,8 +1627,6 @@ button.as-link {
 
 #nav_menu_read_all {
 	ul.dropdown-menu {
-		right: 0;
-
 		&::after {
 			display: none;
 		}
