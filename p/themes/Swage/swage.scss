@@ -105,8 +105,54 @@ body {
 	font-family: Helvetica, Arial, sans-serif;
 }
 
-body:not(.normal):not(.reader) nav.configure a.dropdown-toggle {
+body:not(.normal):not(.reader) nav.configure a.dropdown-toggle,
+li.tree-folder span.title {
 	margin-left: 0.25rem;
+}
+
+body.normal, body.reader, body.global, body.about {
+	a.signin {
+		position: absolute;
+		top: 0.5rem;
+		right: 1.8rem;
+		text-wrap: nowrap;
+		transform: scale(1.5);
+
+		.icon {
+			filter: brightness(3);
+		}
+	}
+}
+
+:root:not(.logged_in) body.about {
+	.header {
+		div.item.title {
+			text-align: left;
+
+			.logo {
+				filter: brightness(1);
+			}
+		}
+
+		.item.configure {
+			position: relative;
+			right: 0;
+			top: 0.2rem;
+		}
+	}
+
+	a.signin {
+		position: absolute;
+		color: black;
+
+		.icon {
+			filter: brightness(1);
+		}
+	}
+
+	main > h1:first-child {
+		margin-top: 2rem;
+	}
 }
 
 #slider-content #feed_update fieldset .form-group:last-child {
@@ -274,7 +320,7 @@ form {
 	}
 
 	&.configure-feeds {
-		margin: 0.5rem 0 1rem 0.2rem;
+		margin: 0.5rem 0 1rem 0.3rem;
 
 		@extend %aside-width;
 	}
@@ -876,10 +922,10 @@ main.post .drop-section li.item.feed a:hover .icon {
 	}
 
 	.about {
-		padding: 1rem;
+		margin: 0.2rem 0 1rem 0;
 		display: block;
-		text-align: center;
 		font-size: 0.8em;
+		text-align: center;
 		font-style: italic;
 	}
 }
@@ -1216,10 +1262,6 @@ body.reader {
 		text-align: center;
 	}
 
-	.header {
-		display: none;
-	}
-
 	.aside:target {
 		width: 231px;
 		padding-top: 0;
@@ -1230,12 +1272,33 @@ main.global {
 	margin: 1rem;
 }
 
+.dropdown .dropdown-section:last-child > ul:first-child {
+	margin-top: 0.4rem;
+}
+
+.labels {
+	span.emptyLabels {
+		color: white;
+		margin-left: 1rem;
+	}
+
+	ul.dropdown-menu-scrollable > li:nth-child(3) {
+		margin-top: 0.5rem;
+	}
+}
+
 @media (max-width: 840px) {
 	body:not(.formLogin, .register) {
 		.header {
 			.item .title {
 				display: none;
 			}
+		}
+	}
+
+	body.normal, body.reader, body.global {
+		a.signin {
+			right: 0;
 		}
 	}
 

@@ -85,8 +85,42 @@ body {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-body:not(.normal):not(.reader) nav.configure a.dropdown-toggle {
+body:not(.normal):not(.reader) nav.configure a.dropdown-toggle,
+li.tree-folder span.title {
   margin-left: 0.25rem;
+}
+
+body.normal a.signin, body.reader a.signin, body.global a.signin, body.about a.signin {
+  position: absolute;
+  top: 0.5rem;
+  right: 1.8rem;
+  text-wrap: nowrap;
+  transform: scale(1.5);
+}
+body.normal a.signin .icon, body.reader a.signin .icon, body.global a.signin .icon, body.about a.signin .icon {
+  filter: brightness(3);
+}
+
+:root:not(.logged_in) body.about .header div.item.title {
+  text-align: left;
+}
+:root:not(.logged_in) body.about .header div.item.title .logo {
+  filter: brightness(1);
+}
+:root:not(.logged_in) body.about .header .item.configure {
+  position: relative;
+  right: 0;
+  top: 0.2rem;
+}
+:root:not(.logged_in) body.about a.signin {
+  position: absolute;
+  color: black;
+}
+:root:not(.logged_in) body.about a.signin .icon {
+  filter: brightness(1);
+}
+:root:not(.logged_in) body.about main > h1:first-child {
+  margin-top: 2rem;
 }
 
 #slider-content #feed_update fieldset .form-group:last-child {
@@ -220,7 +254,7 @@ form th {
   margin-top: 0;
 }
 .stick.configure-feeds {
-  margin: 0.5rem 0 1rem 0.2rem;
+  margin: 0.5rem 0 1rem 0.3rem;
 }
 
 .btn {
@@ -690,8 +724,8 @@ main.post .drop-section li.item.feed a:hover .icon {
   left: 2px;
 }
 .aside_feed .about {
-  padding: 1rem;
   display: block;
+  margin: 0.2rem 0 1rem 0;
   text-align: center;
   font-size: 0.8em;
   font-style: italic;
@@ -964,9 +998,6 @@ body.reader #nav_menu_toggle_aside {
 body.reader nav.aside_feed > a.toggle_aside {
   text-align: center;
 }
-body.reader .header {
-  display: none;
-}
 body.reader .aside:target {
   width: 231px;
   padding-top: 0;
@@ -976,9 +1007,24 @@ main.global {
   margin: 1rem;
 }
 
+.dropdown .dropdown-section:last-child > ul:first-child {
+  margin-top: 0.4rem;
+}
+
+.labels span.emptyLabels {
+  color: white;
+  margin-left: 1rem;
+}
+.labels ul.dropdown-menu-scrollable > li:nth-child(3) {
+  margin-top: 0.5rem;
+}
+
 @media (max-width: 840px) {
   body:not(.formLogin, .register) .header .item .title {
     display: none;
+  }
+  body.normal a.signin, body.reader a.signin, body.global a.signin {
+    right: 0;
   }
   .horizontal-list .dropdown {
     position: inherit !important;

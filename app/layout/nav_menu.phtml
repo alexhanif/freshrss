@@ -9,7 +9,6 @@
 		</div>
 	<?php } ?>
 
-	<?php if (FreshRSS_Auth::hasAccess()) { ?>
 	<div id="nav_menu_actions" class="group">
 		<?php
 			$states = [
@@ -65,6 +64,7 @@
 			<a class="dropdown-close" href="#close">❌</a>
 		</div>
 
+		<?php if (FreshRSS_Auth::hasAccess()) { ?>
 		<div id="nav_menu_queries" class="dropdown">
 			<div id="dropdown-query" class="dropdown-target"></div>
 
@@ -181,8 +181,8 @@
 			<a class="dropdown-close" href="#close">❌</a>
 		</div>
 		</form>
+		<?php } ?>
 	</div>
-	<?php } ?>
 
 	<?php $url_output = Minz_Request::currentRequest(); ?>
 	<div id="nav_menu_views" class="group">
