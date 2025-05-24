@@ -980,7 +980,13 @@ final class GReaderAPI {
 				}
 			}
 		} elseif ($streamId === 'user/-/state/com.google/reading-list') {
-			$entryDAO->markReadEntries($olderThanId, false);
+			$entryDAO->markReadEntries($olderThanId);
+		} elseif ($streamId === 'user/-/state/com.google/starred') {
+			$entryDAO->markReadEntries($olderThanId, onlyFavorites: true);
+		} elseif ($streamId === 'user/-/state/org.freshrss/main') {
+			$entryDAO->markReadEntries($olderThanId, priorityMin: FreshRSS_Feed::PRIORITY_MAIN_STREAM);
+		} elseif ($streamId === 'user/-/state/org.freshrss/important') {
+			$entryDAO->markReadEntries($olderThanId, priorityMin: FreshRSS_Feed::PRIORITY_IMPORTANT);
 		} else {
 			self::badRequest();
 		}
