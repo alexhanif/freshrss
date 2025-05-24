@@ -1156,12 +1156,12 @@ HTML;
 			} elseif ($mode === 'freshrss') {
 				$item['origin']['feedUrl'] = htmlspecialchars_decode($feed->url());
 			}
-			if ($feed()->priority() >= FreshRSS_Feed::PRIORITY_MAIN_STREAM) {
+			if ($feed->priority() >= FreshRSS_Feed::PRIORITY_MAIN_STREAM) {
 				$item['categories'][] = 'user/-/state/org.freshrss/main';
-				if ($feed()->priority() >= FreshRSS_Feed::PRIORITY_IMPORTANT) {
+				if ($feed->priority() >= FreshRSS_Feed::PRIORITY_IMPORTANT) {
 					$item['categories'][] = 'user/-/state/org.freshrss/important';
 				}
-			} elseif ($feed()->priority() <= FreshRSS_Feed::PRIORITY_ARCHIVED) {
+			} elseif ($feed->priority() <= FreshRSS_Feed::PRIORITY_ARCHIVED) {
 				$item['categories'][] = 'user/-/state/org.freshrss/archived';
 			}
 		}

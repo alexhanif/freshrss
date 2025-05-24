@@ -587,8 +587,8 @@ final class GReaderAPI {
 	}
 
 	/**
-	 * @param 'A'|'a'|'c'|'f'|'i'|'s' $type
-	 * @return array{'A'|'a'|'c'|'f'|'i'|'s'|'t',int,int,FreshRSS_BooleanSearch}
+	 * @param 'A'|'a'|'c'|'f'|'i'|'S' $type
+	 * @return array{'A'|'a'|'c'|'f'|'i'|'S'|'t',int,int,FreshRSS_BooleanSearch}
 	 */
 	private static function streamContentsFilters(string $type, int|string $streamId,
 		string $filter_target, string $exclude_target, int $start_time, int $stop_time): array {
@@ -665,7 +665,7 @@ final class GReaderAPI {
 		header('Content-Type: application/json; charset=UTF-8');
 
 		$type = match ($path) {
-			'starred' => 's',
+			'starred' => 'S',
 			'feed' => 'f',
 			'label' => 'c',
 			'reading-list' => 'A',
@@ -724,7 +724,11 @@ final class GReaderAPI {
 		if ($streamId === 'user/-/state/com.google/reading-list') {
 			$type = 'A';
 		} elseif ($streamId === 'user/-/state/com.google/starred') {
-			$type = 's';
+			$type = 'S';
+		} elseif ($streamId === 'user/-/state/org.freshrss/main') {
+			$type = 'a';
+		} elseif ($streamId === 'user/-/state/org.freshrss/important') {
+			$type = 'i';
 		} elseif (str_starts_with($streamId, 'feed/')) {
 			$type = 'f';
 			$streamId = substr($streamId, 5);
