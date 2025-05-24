@@ -101,6 +101,15 @@ body.normal a.signin .icon, body.reader a.signin .icon, body.global a.signin .ic
   filter: brightness(3);
 }
 
+:root.controller_feed body.add .header div.item.title .logo {
+  filter: brightness(1);
+  top: 1rem;
+  transform: scale(1.2);
+}
+:root.controller_feed body.add main {
+  margin-top: 2.5rem;
+}
+
 :root:not(.logged_in) body.about .header div.item.title {
   text-align: left;
 }
@@ -724,10 +733,10 @@ main.post .drop-section li.item.feed a:hover .icon {
   left: 2px;
 }
 .aside_feed .about {
-  display: block;
   margin: 0.2rem 0 1rem 0;
-  text-align: center;
+  display: block;
   font-size: 0.8em;
+  text-align: center;
   font-style: italic;
 }
 

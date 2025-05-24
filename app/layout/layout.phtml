@@ -2,7 +2,7 @@
 	declare(strict_types=1);
 	/** @var FreshRSS_View $this */
 	FreshRSS::preLayout();
-	$class = [];
+	$class = ['controller_' . Minz_Request::controllerName()];
 	$dir = '';
 	if (_t('gen.dir') === 'rtl') {
 		$dir = ' dir="rtl"';

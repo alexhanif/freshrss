@@ -124,6 +124,17 @@ body.normal, body.reader, body.global, body.about {
 	}
 }
 
+:root.controller_feed body.add {
+	.header div.item.title .logo {
+		filter: brightness(1);
+		top: 1rem;
+		transform: scale(1.2);
+	}
+	main {
+		margin-top: 2.5rem;
+	}
+}
+
 :root:not(.logged_in) body.about {
 	.header {
 		div.item.title {
