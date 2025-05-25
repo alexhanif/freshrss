@@ -110,25 +110,55 @@ li.tree-folder span.title {
 	margin-left: 0.25rem;
 }
 
-body.normal, body.reader, body.global, body.about {
+body.normal, body.reader, body.global, body.about,
+:root.file_query body {
 	a.signin {
 		position: absolute;
 		top: 0.5rem;
 		right: 1.8rem;
 		text-wrap: nowrap;
 		transform: scale(1.5);
+	}
+}
 
-		.icon {
-			filter: brightness(3);
+body.normal, body.reader, body.global, body.about {
+	a.signin > .icon {
+		filter: brightness(3);
+	}
+}
+
+:root.file_query {
+	.nav-pagination {
+		margin-top: 6rem;
+	}
+
+	ul.pagination {
+		a {
+			padding: 0 0.2rem 0 0.2rem;
 		}
+	}
+
+	a.signin {
+		color: black;
+		position: fixed;
+	}
+
+	.view-rss > .icon {
+		filter: brightness(0);
 	}
 }
 
 :root.controller_feed body.add {
-	.header div.item.title .logo {
-		filter: brightness(1);
-		top: 1rem;
-		transform: scale(1.2);
+	.header div.item.title {
+		.logo {
+			transform: scale(1.2);
+			filter: brightness(1);
+			top: 1rem;
+		}
+	}
+
+	nav.item.configure {
+		position: static;
 	}
 
 	main {
@@ -136,13 +166,19 @@ body.normal, body.reader, body.global, body.about {
 	}
 }
 
-:root:not(.logged_in) body.about {
+:root:not(.logged_in) body.about, :root.file_query body {
 	.header {
 		div.item.title {
 			text-align: left;
 
-			.logo {
-				filter: brightness(1);
+			a {
+				position: absolute;
+				top: 0.2rem;
+				left: 1rem;
+
+				.logo {
+					filter: brightness(1);
+				}
 			}
 		}
 
@@ -1345,7 +1381,7 @@ main.global {
 		text-wrap: wrap;
 	}
 
-	body:not(.normal):not(.reader) {
+	body:not(.normal):not(.reader):not(.add) {
 		nav.configure a.dropdown-toggle {
 			position: fixed;
 			top: 0;

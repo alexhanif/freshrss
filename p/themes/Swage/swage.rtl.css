@@ -90,45 +90,69 @@ li.tree-folder span.title {
   margin-right: 0.25rem;
 }
 
-body.normal a.signin, body.reader a.signin, body.global a.signin, body.about a.signin {
+body.normal a.signin, body.reader a.signin, body.global a.signin, body.about a.signin,
+:root.file_query body a.signin {
   position: absolute;
   top: 0.5rem;
   left: 1.8rem;
   text-wrap: nowrap;
   transform: scale(1.5);
 }
-body.normal a.signin .icon, body.reader a.signin .icon, body.global a.signin .icon, body.about a.signin .icon {
+
+body.normal a.signin > .icon, body.reader a.signin > .icon, body.global a.signin > .icon, body.about a.signin > .icon {
   filter: brightness(3);
 }
 
+:root.file_query .nav-pagination {
+  margin-top: 6rem;
+}
+:root.file_query ul.pagination a {
+  padding: 0 0.2rem 0 0.2rem;
+}
+:root.file_query a.signin {
+  color: black;
+  position: fixed;
+}
+:root.file_query .view-rss > .icon {
+  filter: brightness(0);
+}
+
 :root.controller_feed body.add .header div.item.title .logo {
+  transform: scale(1.2);
   filter: brightness(1);
   top: 1rem;
-  transform: scale(1.2);
+}
+:root.controller_feed body.add nav.item.configure {
+  position: static;
 }
 :root.controller_feed body.add main {
   margin-top: 2.5rem;
 }
 
-:root:not(.logged_in) body.about .header div.item.title {
+:root:not(.logged_in) body.about .header div.item.title, :root.file_query body .header div.item.title {
   text-align: right;
 }
-:root:not(.logged_in) body.about .header div.item.title .logo {
+:root:not(.logged_in) body.about .header div.item.title a, :root.file_query body .header div.item.title a {
+  position: absolute;
+  top: 0.2rem;
+  right: 1rem;
+}
+:root:not(.logged_in) body.about .header div.item.title a .logo, :root.file_query body .header div.item.title a .logo {
   filter: brightness(1);
 }
-:root:not(.logged_in) body.about .header .item.configure {
+:root:not(.logged_in) body.about .header .item.configure, :root.file_query body .header .item.configure {
   position: relative;
   left: 0;
   top: 0.2rem;
 }
-:root:not(.logged_in) body.about a.signin {
+:root:not(.logged_in) body.about a.signin, :root.file_query body a.signin {
   position: absolute;
   color: black;
 }
-:root:not(.logged_in) body.about a.signin .icon {
+:root:not(.logged_in) body.about a.signin .icon, :root.file_query body a.signin .icon {
   filter: brightness(1);
 }
-:root:not(.logged_in) body.about main > h1:first-child {
+:root:not(.logged_in) body.about main > h1:first-child, :root.file_query body main > h1:first-child {
   margin-top: 2rem;
 }
 
@@ -1059,17 +1083,17 @@ main.global {
   #dropdown-search-wrapper .dropdown-menu span {
     text-wrap: wrap;
   }
-  body:not(.normal):not(.reader) nav.configure a.dropdown-toggle {
+  body:not(.normal):not(.reader):not(.add) nav.configure a.dropdown-toggle {
     position: fixed;
     top: 0;
   }
-  body:not(.normal):not(.reader):not(.global) .nav_menu {
+  body:not(.normal):not(.reader):not(.add):not(.global) .nav_menu {
     height: 2.2rem;
   }
-  body:not(.normal):not(.reader):not(.global) nav.configure a.dropdown-toggle {
+  body:not(.normal):not(.reader):not(.add):not(.global) nav.configure a.dropdown-toggle {
     left: 0;
   }
-  body:not(.normal):not(.reader).global nav.configure a.dropdown-toggle {
+  body:not(.normal):not(.reader):not(.add).global nav.configure a.dropdown-toggle {
     left: 2.4rem;
   }
   body.repartition .nav_menu {
