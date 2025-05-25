@@ -6,7 +6,7 @@
 	if (Minz_Request::controllerName() !== '') {
 		$class[] = 'controller_' . Minz_Request::controllerName();
 	} else {
-		$class[] = 'file_' . pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
+		$class[] = 'file_' . pathinfo($_SERVER['SCRIPT_NAME'] ?? '', PATHINFO_FILENAME);
 	}
 	$dir = '';
 	if (_t('gen.dir') === 'rtl') {
