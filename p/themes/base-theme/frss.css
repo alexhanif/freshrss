@@ -502,10 +502,6 @@ td.numeric {
 }
 
 /*=== Buttons */
-button[disabled]:hover {
-	cursor: not-allowed;
-}
-
 .stick,
 .group {
 	display: inline-flex;
@@ -2476,20 +2472,6 @@ html.slider-active {
 		width: 100%;
 		border-bottom: 1px solid var(--frss-border-color);
 		text-align: center;
-	}
-
-
-	body:not(.normal):not(.reader):not(.global) .aside {
-		overflow-y: scroll;
-	}
-
-	nav.configure > .dropdown li.item.dropdown-section:last-child,
-	nav#aside_feed > ul li.item.nav-section:last-child {
-		margin-bottom: 6rem;
-	}
-
-	.form-advanced-title {
-		text-align: left;
 	}
 
 	.aside .feed .item-title {
