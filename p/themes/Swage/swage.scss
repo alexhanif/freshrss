@@ -68,6 +68,10 @@ $color_hover:	#fff;
 	border: 2px solid var(--color-border-grey);
 	padding-left: 8px;
 }
+%input:focus {
+	border: 2px solid var(--color-background-dark);
+	outline: none;
+}
 
 %invalid {
 	padding-left: 5px;
@@ -136,6 +140,19 @@ body.normal, body.reader, body.global, body.about {
 		a {
 			padding: 0 0.2rem 0 0.2rem;
 		}
+	}
+
+	.header > * {
+		z-index: 20;
+	}
+
+	.header > div.item.search {
+		display: flex;
+		justify-content: center;
+		position: relative;
+		top: 0.4rem;
+		left: 2rem;
+		z-index: 10;
 	}
 
 	a.signin {
@@ -254,20 +271,12 @@ textarea {
 	height: 100px;
 
 	@extend %input;
-
-	&:focus {
-		border-color: var(--color-border-nav);
-	}
 }
 
 input,
 select {
 
 	@extend %input;
-
-	&:focus {
-		border-color: var(--color-border-nav);
-	}
 
 	&:invalid {
 
