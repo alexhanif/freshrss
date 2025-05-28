@@ -277,7 +277,7 @@ input.long {
 
 input, select, textarea {
 	display: inline-block;
-	max-width: 100%;
+	max-width: 85vw;
 	font-size: 0.8rem;
 	box-sizing: border-box;
 }
@@ -2478,8 +2478,7 @@ html.slider-active {
 		text-align: center;
 	}
 
-
-	body:not(.normal):not(.reader):not(.global) .aside {
+	.aside:not(.aside_feed) {
 		overflow-y: scroll;
 	}
 
