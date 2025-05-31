@@ -318,7 +318,7 @@ function freshrss_already_installed(): bool {
 
 /** @return array<string,string> */
 function checkStep2(): array {
-	$conf = is_writable(join_path(DATA_PATH, 'config.php'));
+	$conf = touch(DATA_PATH . '/config.php');	// is_writable() is not reliable for a folder on NFS
 
 	$bd = Minz_Session::paramString('bd_type') != '';
 	$conn = Minz_Session::paramString('bd_error') == '';
@@ -341,7 +341,7 @@ function checkStep3(): array {
 	if ($defaultUser === '') {
 		$defaultUser = Minz_Session::paramString('default_user') == '' ? '' : Minz_Session::paramString('default_user');
 	}
-	$data = is_writable(USERS_PATH . '/' . $defaultUser . '/config.php');
+	$data = touch(USERS_PATH . '/' . $defaultUser . '/config.php');	// is_writable() is not reliable for a folder on NFS
 
 	return [
 		'conf' => $conf ? 'ok' : 'ko',
