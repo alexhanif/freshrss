@@ -1022,12 +1022,6 @@ main.post .drop-section li.item.feed a:hover .icon {
 	}
 }
 
-.prompt {
-	input {
-		margin: 5px auto;
-	}
-}
-
 #global {
 	height: 100vh;
 }
@@ -1268,7 +1262,7 @@ main.post .drop-section li.item.feed a:hover .icon {
 
 	.header {
 		background-color: var(--color-background-nav);
-		height: 35px;
+		height: 2.4rem;
 		position: relative;
 
 		> .item {
@@ -1276,15 +1270,30 @@ main.post .drop-section li.item.feed a:hover .icon {
 				padding: 8px;
 				width: auto;
 				position: absolute;
-				right: 0;
+				right: 1rem;
+				transform: scale(1.5);
 				white-space: nowrap;
-				bottom: 0;
+				bottom: 0.2rem;
 
 				.icon {
 					filter: brightness(3);
 				}
 			}
 		}
+	}
+}
+
+.controller_error div.alert-error {
+	margin-top: 3rem;
+}
+
+body.register {
+	overflow-x: hidden;
+
+	form div:last-child > a {
+		float: right;
+		position: relative;
+		right: 0.2rem;
 	}
 }
 
