@@ -65,7 +65,6 @@ function init_crypto_form() {
 						const s = bcrypt.hashSync(document.getElementById('passwordPlain').value, json.salt1);
 						const c = bcrypt.hashSync(json.nonce + s, strong ? bcrypt.genSaltSync(4) : poormanSalt());
 						document.getElementById('challenge').value = c;
-						submit_button.disabled = false;
 						if (!s || !c) {
 							openNotification('Crypto error!', 'bad');
 						} else {
@@ -73,13 +72,13 @@ function init_crypto_form() {
 							crypto_form.submit();
 						}
 					} catch (ex) {
-						submit_button.disabled = false;
 						openNotification('Crypto exception! ' + ex, 'bad');
 					}
 				}
 			} else {
 				req.onerror();
 			}
+			submit_button.disabled = false;
 		};
 
 		req.send();
