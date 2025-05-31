@@ -33,7 +33,7 @@ function init_crypto_form() {
 
 	forgetOpenCategories();
 
-	const submit_button = document.getElementById('loginButton');
+	const submit_button = crypto_form.querySelector('[type="submit"]');
 	if (submit_button) {
 		submit_button.disabled = false;
 	}
@@ -45,11 +45,6 @@ function init_crypto_form() {
 			return false;
 		}
 		submit_button.disabled = true;
-
-		if (document.getElementById('challenge').value)	{
-			// Already computed
-			return true;
-		}
 
 		const req = new XMLHttpRequest();
 		req.open('GET', './?c=javascript&a=nonce&user=' + document.getElementById('username').value, true);
@@ -70,6 +65,7 @@ function init_crypto_form() {
 						const s = bcrypt.hashSync(document.getElementById('passwordPlain').value, json.salt1);
 						const c = bcrypt.hashSync(json.nonce + s, strong ? bcrypt.genSaltSync(4) : poormanSalt());
 						document.getElementById('challenge').value = c;
+						submit_button.disabled = false;
 						if (!s || !c) {
 							openNotification('Crypto error!', 'bad');
 						} else {
@@ -77,6 +73,7 @@ function init_crypto_form() {
 							crypto_form.submit();
 						}
 					} catch (ex) {
+						submit_button.disabled = false;
 						openNotification('Crypto exception! ' + ex, 'bad');
 					}
 				}
