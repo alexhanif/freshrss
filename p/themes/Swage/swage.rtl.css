@@ -1042,6 +1042,7 @@ a.signin {
 }
 .log-item.log-debug {
   background: var(--color-background-dark);
+  color: var(--color-text-light);
 }
 
 body.reader #nav_menu_toggle_aside {
