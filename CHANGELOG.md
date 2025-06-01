@@ -2,7 +2,7 @@
 
 See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 
-## 2025-0X-XX FreshRSS 1.26.3-dev
+## 2025-06-XX FreshRSS 1.26.3-dev
 
 * Features
 	* Keep sort and order criteria during navigation [#7585](https://github.com/FreshRSS/FreshRSS/pull/7585)
@@ -16,7 +16,7 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Move PHP minimum version check [#7560](https://github.com/FreshRSS/FreshRSS/pull/7560)
 * Security
 	* Fix encoding of themes [#7565](https://github.com/FreshRSS/FreshRSS/pull/7565)
-	* Fix .htaccess.dist for access to `/scripts/vendor/` [#7598](https://github.com/FreshRSS/FreshRSS/pull/7598)
+	* Fix `.htaccess.dist` for access to `/scripts/vendor/` [#7598](https://github.com/FreshRSS/FreshRSS/pull/7598)
 * SimplePie
 	* Strip more HTML deprecated styles attributes: `bgcolor, text, background, link, alink, vlink` [#7606](https://github.com/FreshRSS/FreshRSS/pull/7606)
 * UI

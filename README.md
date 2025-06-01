@@ -70,7 +70,7 @@ FreshRSS comes with absolutely no warranty.
 
 # [Installation](https://freshrss.github.io/FreshRSS/en/admins/03_Installation.html)
 
-The latest stable release can be found [here](https://github.com/FreshRSS/FreshRSS/releases/latest). New versions are released every two to three months.
+The latest stable release can be found [on GitHub](https://github.com/FreshRSS/FreshRSS/releases/latest). New versions are released every two to three months.
 
 If you want a rolling release with the newest features, or want to help testing or developing the next stable version, you can use [the `edge` branch](https://github.com/FreshRSS/FreshRSS/tree/edge/).
 
