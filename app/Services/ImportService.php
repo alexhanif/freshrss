@@ -41,6 +41,7 @@ class FreshRSS_Import_Service {
 		$opml_array = [];
 		try {
 			$libopml = new \marienfressinaud\LibOpml\LibOpml(false);
+			/** @var array{body:array<array<mixed>>} $opml_array */
 			$opml_array = $libopml->parseString($opml_file);
 		} catch (\marienfressinaud\LibOpml\Exception $e) {
 			self::log($e->getMessage());
@@ -441,7 +442,7 @@ class FreshRSS_Import_Service {
 			];
 		}
 
-		if (isset($outline['@outlines'])) {
+		if (is_array($outline['@outlines'] ?? null)) {
 			// The outline has children, it’s probably a category
 			if (!empty($outline['text']) && is_string($outline['text'])) {
 				$category_name = $outline['text'];
