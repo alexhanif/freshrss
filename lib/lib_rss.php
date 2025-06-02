@@ -368,11 +368,11 @@ function customSimplePie(array $attributes = [], array $curl_options = []): \Sim
 		'iframe' => 'src',
 		'img' => [
 			'longdesc',
-			'src'
+			'src',
 		],
 		'image' => [
 			'longdesc',
-			'src'
+			'src',
 		],
 		'input' => 'src',
 		'ins' => 'cite',
