@@ -18,7 +18,11 @@
 
 	<?php if (!$this->onlyFeedsWithError && $this->signalError) { ?>
 		<div>
-			<a class="btn btn-icon-text" href="<?= _url('subscription', 'index', 'error', '1') ?>"><?= _i('look') ?> <?= _t('sub.feed.show.error') ?></a>
+			<form>
+				<input type="hidden" name="c" value="subscription" />
+				<input type="hidden" name="error" value="1" />
+				<button class="btn btn-icon-text"><?= _i('look') ?> <?= _t('sub.feed.show.error') ?></button>
+			</form>
 		</div>
 	<?php } ?>
 
