@@ -50,6 +50,7 @@ return array(
 			'password' => 'HTTP-Passwort',
 			'username' => 'HTTP-Nutzername',
 		),
+		'change_favicon' => 'Change...',	// TODO
 		'clear_cache' => 'Nicht cachen (für defekte Feeds)',
 		'content_action' => array(
 			'_' => 'Behandlung von Feed-Inhalt beim Herunterladen von Artikelinhalt',
@@ -80,6 +81,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// IGNORE
 		'http_headers_help' => 'Headers werden durch einen Zeilenumbruch getrennt. Name und Wert des Headers werden per Doppelpunkt getrennt (z.B: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',
+		'icon' => 'Icon',	// TODO
 		'information' => 'Informationen',
 		'keep_min' => 'Minimale Anzahl an Artikeln, die behalten wird',
 		'kind' => array(
@@ -212,6 +214,7 @@ return array(
 		),
 		'proxy' => 'Verwende einen Proxy, um den Feed abzuholen',
 		'proxy_help' => 'Wähle ein Protokoll (z.B. SOCKS5) und einen Proxy mit Port (z.B. <kbd>127.0.0.1:1080</kbd> or <kbd>username:password@127.0.0.1:1080</kbd>)',	// DIRTY
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => 'Quellcode anzeigen',
 			'show_rendered' => 'Inhalt anzeigen',

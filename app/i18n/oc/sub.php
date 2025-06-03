@@ -50,6 +50,7 @@ return array(
 			'password' => 'Senhal HTTP',
 			'username' => 'Identificant HTTP',
 		),
+		'change_favicon' => 'Change...',	// TODO
 		'clear_cache' => 'Totjorn escafar lo cache',
 		'content_action' => array(
 			'_' => 'Accion sul contengut en recuperant lo contengut de l’article',
@@ -80,6 +81,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => 'Informacions',
 		'keep_min' => 'Nombre minimum d’articles de servar',
 		'kind' => array(
@@ -212,6 +214,7 @@ return array(
 		),
 		'proxy' => 'Definir un servidor proxy per trapar aqueste flux',
 		'proxy_help' => 'Seleccionatz un protocòl (ex : SOCKS5) e picatz l’adreça del proxy (ex : <kbd>127.0.0.1:1080</kbd> or <kbd>username:password@127.0.0.1:1080</kbd>)',	// DIRTY
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => 'Veire lo còdi font',
 			'show_rendered' => 'Veire lo contengut',

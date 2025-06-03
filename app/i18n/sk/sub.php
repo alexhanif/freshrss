@@ -50,6 +50,7 @@ return array(
 			'password' => 'Heslo pre HTTP',
 			'username' => 'Používateľské meno pre HTTP',
 		),
+		'change_favicon' => 'Change...',	// TODO
 		'clear_cache' => 'Vždy vymazať vyrovnávaciu pamäť',
 		'content_action' => array(
 			'_' => 'Akcia obsahu pri sťahovaní obsahu článku',
@@ -80,6 +81,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => 'Informácia',
 		'keep_min' => 'Minimálny počet článkov na uchovanie',
 		'kind' => array(
@@ -212,6 +214,7 @@ return array(
 		),
 		'proxy' => 'Na sťahovanie tohto kanálu nastaviť proxy',
 		'proxy_help' => 'Vyberte protokol (napr.: SOCKS5) a zadajte adresu proxy servera (napr.: <kbd>127.0.0.1:1080</kbd> or <kbd>username:password@127.0.0.1:1080</kbd>)',	// DIRTY
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => 'Zobraziť zdrojový kód',
 			'show_rendered' => 'Zobraziť obsah',

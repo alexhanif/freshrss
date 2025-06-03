@@ -50,6 +50,7 @@ return array(
 			'password' => 'HTTP parole',
 			'username' => 'HTTP lietotājvārds',
 		),
+		'change_favicon' => 'Change...',	// TODO
 		'clear_cache' => 'Vienmēr iztīrīt kešatmiņu',
 		'content_action' => array(
 			'_' => 'Satura darbība, kad tiek iegūts raksta saturs',
@@ -80,6 +81,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => 'Informācija',
 		'keep_min' => 'Minimālais saglabājamo izstrādājumu skaits',
 		'kind' => array(
@@ -212,6 +214,7 @@ return array(
 		),
 		'proxy' => 'Iestatīt starpniekserveri šīs plūsmas iegūšanai',
 		'proxy_help' => 'Izvēlieties protokolu (piemēram, SOCKS5) un ievadiet starpniekservera adresi (piemēram, <kbd>127.0.0.0.1:1080</kbd>).',
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => 'Rādīt avota kodu',
 			'show_rendered' => 'Rādīt saturu',

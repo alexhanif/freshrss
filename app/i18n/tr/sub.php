@@ -50,6 +50,7 @@ return array(
 			'password' => 'HTTP parolası',
 			'username' => 'HTTP kullanıcı adı',
 		),
+		'change_favicon' => 'Change...',	// TODO
 		'clear_cache' => 'Önbelleği her zaman temizle',
 		'content_action' => array(
 			'_' => 'Makale içeriği getirilirken içerik eylemi',
@@ -80,6 +81,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Başlıkları',
 		'http_headers_help' => 'Başlıklar yeni bir satırla ayrılır ve bir başlığın adı ile değeri iki nokta üst üste ile ayrılır (örneğin: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',
+		'icon' => 'Icon',	// TODO
 		'information' => 'Bilgi',
 		'keep_min' => 'Saklanacak minimum makale sayısı',
 		'kind' => array(
@@ -212,6 +214,7 @@ return array(
 		),
 		'proxy' => 'Bu beslemeyi almak için bir proxy ayarlayın',
 		'proxy_help' => 'Bir protokol seçin (örneğin: SOCKS5) ve proxy adresini girin (örneğin: <kbd>127.0.0.1:1080</kbd> veya <kbd>kullanıcıadı:parola@127.0.0.1:1080</kbd>).',
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => 'Kaynak kodu göster',
 			'show_rendered' => 'İçeriği göster',

@@ -144,6 +144,50 @@ function init_archiving(parent) {
 	});
 }
 
+function init_update_feed() {
+	const feed_update = document.querySelector("div.post#feed_update");
+	if (!feed_update) {
+		return;
+	}
+	const feedId = feed_update.dataset.feedId;
+	const faviconUpload = feed_update.querySelector('#favicon-upload');
+	const resetFavicon = feed_update.querySelector("#reset-favicon");
+	const favicon = feed_update.querySelector('.favicon');
+
+	faviconUpload.onchange = function() {
+		if (faviconUpload.files.length === 0) {
+			return;
+		}
+
+		const resetField = feed_update.querySelector('input[name="resetFavicon"]');
+		if (resetField)  {
+			resetField.remove();
+		}
+		resetFavicon.disabled = false;
+		favicon.src = URL.createObjectURL(faviconUpload.files[0]);
+	}
+	resetFavicon.onclick = function(e) {
+		e.preventDefault();
+		if (resetFavicon.disabled) {
+			return;
+		}
+
+		fetch('.?c=javascript&a=originalIconUrl&id=' + feedId).then(resp => {
+			if (!resp.ok) {
+				return;
+			}
+
+			return resp.text();
+		}).then(text => {
+			faviconUpload.value = ''; // Clear uploaded favicon
+			resetFavicon.insertAdjacentHTML('afterend', '<input type="hidden" name="resetFavicon" value="1" />');
+			resetFavicon.disabled = true;
+
+			favicon.src = text;
+		});
+	}
+}
+
 // <slider>
 const freshrssSliderLoadEvent = new Event('freshrss:slider-load');
 
@@ -169,6 +213,7 @@ function open_slider_listener(ev) {
 				slider.classList.add('active');
 				slider.scrollTop = 0;
 				slider_content.innerHTML = this.response.body.innerHTML;
+				init_update_feed();
 				slider_content.querySelectorAll('form').forEach(function (f) {
 					f.insertAdjacentHTML('afterbegin', '<input type="hidden" name="slider" value="1" />');
 				});
@@ -308,6 +353,7 @@ function init_extra_afterDOM() {
 		init_select_observers();
 		init_configuration_alert();
 		init_2stateButton();
+		init_update_feed();
 
 		const slider = document.getElementById('slider');
 		if (slider) {

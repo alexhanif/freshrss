@@ -50,6 +50,7 @@ return array(
 			'password' => 'HTTP password',	// IGNORE
 			'username' => 'HTTP username',	// IGNORE
 		),
+		'change_favicon' => 'Change...',	// TODO
 		'clear_cache' => 'Always clear cache',	// IGNORE
 		'content_action' => array(
 			'_' => 'Content action when fetching the article content',	// IGNORE
@@ -80,6 +81,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// IGNORE
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// IGNORE
+		'icon' => 'Icon',	// TODO
 		'information' => 'Information',	// IGNORE
 		'keep_min' => 'Minimum number of articles to keep',	// IGNORE
 		'kind' => array(
@@ -212,6 +214,7 @@ return array(
 		),
 		'proxy' => 'Set a proxy for fetching this feed',	// IGNORE
 		'proxy_help' => 'Select a protocol (e.g: SOCKS5) and enter the proxy address (e.g: <kbd>127.0.0.1:1080</kbd> or <kbd>username:password@127.0.0.1:1080</kbd>)',	// IGNORE
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => 'Show source code',	// IGNORE
 			'show_rendered' => 'Show content',	// IGNORE

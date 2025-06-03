@@ -5,7 +5,7 @@
 		return;
 	}
 ?>
-<div class="post" id="feed_update">
+<div class="post" id="feed_update" data-feed-id="<?= $this->feed->id() ?>">
 	<h1><?= $this->feed->name() ?></h1>
 
 	<div>
@@ -35,7 +35,7 @@
 		}
 	}
 	?>
-	<form method="post" action="<?= $url ?>" autocomplete="off">
+	<form method="post" action="<?= $url ?>" autocomplete="off" enctype="multipart/form-data">
 		<input type="hidden" name="_csrf" value="<?= FreshRSS_Auth::csrfToken() ?>" />
 		<fieldset>
 			<legend><?= _t('sub.feed.information') ?></legend>
@@ -81,6 +81,15 @@
 					</option>
 					<?php } ?>
 					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="group-name"><?= _t('sub.feed.icon') ?></label>
+				<div class="group-controls">
+					<img class="favicon upload" src="<?= $this->feed->favicon() ?>" alt="✇" loading="lazy" />
+					<input id="favicon-upload" name="newFavicon" type="file" accept="image/*">
+					<label for="favicon-upload" class="btn"><?= _t('sub.feed.change_favicon') ?></label>
+					<button id="reset-favicon" class="btn"<?= $this->feed->customFavicon() ? '' : ' disabled'?>><?= _t('sub.feed.reset_favicon') ?></button>
 				</div>
 			</div>
 			<div class="form-group">

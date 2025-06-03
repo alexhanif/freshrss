@@ -281,7 +281,7 @@ SQL;
 	public function listCategories(bool $prePopulateFeeds = true, bool $details = false): array {
 		if ($prePopulateFeeds) {
 			$sql = 'SELECT c.id AS c_id, c.name AS c_name, c.kind AS c_kind, c.`lastUpdate` AS c_last_update, c.error AS c_error, c.attributes AS c_attributes, '
-				. ($details ? 'f.* ' : 'f.id, f.name, f.url, f.kind, f.website, f.priority, f.error, f.attributes, f.`cache_nbEntries`, f.`cache_nbUnreads`, f.ttl ')
+				. ($details ? 'f.* ' : 'f.id, f.name, f.url, f.kind, f.website, f.priority, f.error, f.attributes, f.`cache_nbEntries`, f.`cache_nbUnreads`, f.ttl, f.customFavicon ')
 				. 'FROM `_category` c '
 				. 'LEFT OUTER JOIN `_feed` f ON f.category=c.id '
 				. 'WHERE f.priority >= :priority '
@@ -291,7 +291,7 @@ SQL;
 			$values = [ ':priority' => FreshRSS_Feed::PRIORITY_CATEGORY ];
 			if ($stm !== false && $stm->execute($values) && ($res = $stm->fetchAll(PDO::FETCH_ASSOC)) !== false) {
 				/** @var list<array{c_name:string,c_id:int,c_kind:int,c_last_update:int,c_error:int|bool,c_attributes?:string,
-				 * 	id?:int,name?:string,url?:string,kind?:int,category?:int,website?:string,priority?:int,error?:int|bool,attributes?:string,cache_nbEntries?:int,cache_nbUnreads?:int,ttl?:int}> $res */
+				 * 	id?:int,name?:string,url?:string,kind?:int,category?:int,website?:string,priority?:int,error?:int|bool,attributes?:string,cache_nbEntries?:int,cache_nbUnreads?:int,ttl?:int,customFavicon?:int|bool}> $res */
 				return self::daoToCategoriesPrepopulated($res);
 			} else {
 				$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();

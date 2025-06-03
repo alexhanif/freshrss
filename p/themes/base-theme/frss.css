@@ -205,6 +205,11 @@ img.favicon {
 	vertical-align: middle;
 }
 
+img.favicon.upload {
+	transform: scale(1.5);
+	margin-left: 0.3rem;
+}
+
 .content_thin figure,
 .content_medium figure {
 	margin: 8px 0px;
@@ -501,7 +506,18 @@ td.numeric {
 	}
 }
 
+input#favicon-upload {
+	display: none;
+}
+
 /*=== Buttons */
+button[disabled] {
+	opacity: 0.7;
+}
+button[disabled]:hover {
+	cursor: not-allowed !important;
+}
+
 .stick,
 .group {
 	display: inline-flex;

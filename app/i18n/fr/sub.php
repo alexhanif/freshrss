@@ -50,6 +50,7 @@ return array(
 			'password' => 'Mot de passe HTTP',
 			'username' => 'Identifiant HTTP',
 		),
+		'change_favicon' => 'Change...',	// TODO
 		'clear_cache' => 'Toujours vider le cache',
 		'content_action' => array(
 			'_' => 'Action à effectuer pour la réception du contenu des articles',
@@ -80,6 +81,7 @@ return array(
 		),
 		'http_headers' => 'Entêtes HTTP',
 		'http_headers_help' => 'Un entête HTTP par ligne, avec le nom et la valeur séparés par un deux-points (ex. : <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',
+		'icon' => 'Icon',	// TODO
 		'information' => 'Informations',
 		'keep_min' => 'Nombre minimum d’articles à conserver',
 		'kind' => array(
@@ -212,6 +214,7 @@ return array(
 		),
 		'proxy' => 'Utiliser un proxy pour télécharger ce flux',
 		'proxy_help' => 'Sélectionner un protocole (ex : SOCKS5) et entrer l’adresse du proxy (ex. : <kbd>127.0.0.1:1080</kbd> ou <kbd>utilisateur:mot-de-passe@127.0.0.1:1080</kbd>)',
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => 'Afficher le code source',
 			'show_rendered' => 'Afficher le contenu',

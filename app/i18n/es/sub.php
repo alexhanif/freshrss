@@ -50,6 +50,7 @@ return array(
 			'password' => 'Contraseña HTTP',
 			'username' => 'Nombre de usuario HTTP',
 		),
+		'change_favicon' => 'Change...',	// TODO
 		'clear_cache' => 'Borrar siempre la memoria caché',
 		'content_action' => array(
 			'_' => 'Acción de contenido al obtener el contenido del artículo',
@@ -80,6 +81,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// IGNORE
 		'http_headers_help' => 'Los Headers son separados por un salto de linea, y el nombre y valor de un Header son separados con dos puntos (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',
+		'icon' => 'Icon',	// TODO
 		'information' => 'Información',
 		'keep_min' => 'Número mínimo de artículos a conservar',
 		'kind' => array(
@@ -212,6 +214,7 @@ return array(
 		),
 		'proxy' => 'Establecer un proxy para obtener esta fuente',
 		'proxy_help' => 'Seleccione un protocolo (e.g: SOCKS5) e introduzca la dirección del proxy (e.g: <kbd>127.0.0.1:1080</kbd> o <kbd>username:password@127.0.0.1:1080</kbd>)',
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => 'Mostrar código fuente',
 			'show_rendered' => 'Mostrar contenido',

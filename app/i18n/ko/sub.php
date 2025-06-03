@@ -50,6 +50,7 @@ return array(
 			'password' => 'HTTP 암호',
 			'username' => 'HTTP 사용자 이름',
 		),
+		'change_favicon' => 'Change...',	// TODO
 		'clear_cache' => '항상 캐시 지우기',
 		'content_action' => array(
 			'_' => '글 콘텐츠를 가져올 때의 동작',
@@ -80,6 +81,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => '정보',
 		'keep_min' => '최소 유지 글 개수',
 		'kind' => array(
@@ -212,6 +214,7 @@ return array(
 		),
 		'proxy' => '이 피드를 가져올 때 사용할 프록시 설정',
 		'proxy_help' => '프로토콜 선택 (예: SOCKS5) 그리고 프록시 주소 입력 (예: <kbd>127.0.0.1:1080</kbd> 혹은 <kbd>username:password@127.0.0.1:1080</kbd>)',
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => '소스코드 표시',
 			'show_rendered' => '콘텐츠 표시',

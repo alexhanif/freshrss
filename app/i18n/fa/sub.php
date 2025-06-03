@@ -50,6 +50,7 @@ return array(
 			'password' => ' رمز عبور HTTP',
 			'username' => ' نام کاربری HTTP',
 		),
+		'change_favicon' => 'Change...',	// TODO
 		'clear_cache' => ' همیشه حافظه پنهان را پاک کنید',
 		'content_action' => array(
 			'_' => ' اقدام محتوا هنگام واکشی محتوای مقاله',
@@ -80,6 +81,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => ' اطلاعات',
 		'keep_min' => ' حداقل تعداد مقالات برای نگهداری',
 		'kind' => array(
@@ -212,6 +214,7 @@ return array(
 		),
 		'proxy' => ' یک پروکسی برای واکشی این فید تنظیم کنید',
 		'proxy_help' => ' یک پروتکل (به عنوان مثال: SOCKS5) انتخاب کنید و آدرس پراکسی را وارد کنید (به عنوان مثال: <kbd>127.0.0.1:1080</kbd> or <kbd>username:password@127.0.0.1:1080</kbd>)',	// DIRTY
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => ' نمایش کد منبع',
 			'show_rendered' => 'نمایش محتوا',

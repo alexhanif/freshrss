@@ -50,6 +50,7 @@ return array(
 			'password' => 'HTTP heslo',
 			'username' => 'HTTP uživatelské jméno',
 		),
+		'change_favicon' => 'Change...',	// TODO
 		'clear_cache' => 'Vždy vymazat mezipaměť',
 		'content_action' => array(
 			'_' => 'Akce obsahu při načítání obsahu článku',
@@ -80,6 +81,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => 'Informace',
 		'keep_min' => 'Minimální počet článků pro ponechání',
 		'kind' => array(
@@ -212,6 +214,7 @@ return array(
 		),
 		'proxy' => 'Nastavete proxy pro načítání tohoto kanálu',
 		'proxy_help' => 'Vyberte protokol (např.: SOCKS5) a zadejte adresu proxy (např.: <kbd>127.0.0.1:1080</kbd> nebo <kbd>username:password@127.0.0.1:1080</kbd>)',
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => 'Zobrazit zdrojový kód',
 			'show_rendered' => 'Zobrazit obsah',

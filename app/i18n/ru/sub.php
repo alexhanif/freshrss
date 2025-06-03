@@ -50,6 +50,7 @@ return array(
 			'password' => 'Пароль HTTP',
 			'username' => 'Имя пользователя HTTP',
 		),
+		'change_favicon' => 'Change...',	// TODO
 		'clear_cache' => 'Всегда очищать кэш',
 		'content_action' => array(
 			'_' => 'Действие с содержимым, когда извлекается содержимое статьи',
@@ -80,6 +81,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => 'Информация',
 		'keep_min' => 'Оставлять статей не менее',
 		'kind' => array(
@@ -212,6 +214,7 @@ return array(
 		),
 		'proxy' => 'Указать прокси для извлечения этой ленты',
 		'proxy_help' => 'Выберите протокол (например, SOCKS5) и введите адрес прокси (например, <kbd>127.0.0.1:1080</kbd> или <kbd>username:password@127.0.0.1:1080</kbd>)',	// DIRTY
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => 'Показать исходный код',
 			'show_rendered' => 'Показать содержимое',

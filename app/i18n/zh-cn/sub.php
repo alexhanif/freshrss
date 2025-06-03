@@ -50,6 +50,7 @@ return array(
 			'password' => 'HTTP 密码',
 			'username' => 'HTTP 用户名',
 		),
+		'change_favicon' => 'Change...',	// TODO
 		'clear_cache' => '总是清除缓存',
 		'content_action' => array(
 			'_' => '获取原文后的操作',
@@ -80,6 +81,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => '信息',
 		'keep_min' => '至少保存的文章数',
 		'kind' => array(
@@ -212,6 +214,7 @@ return array(
 		),
 		'proxy' => '获取订阅源时的代理',
 		'proxy_help' => '选择协议（例：SOCKS5）和代理地址（例：<kbd>127.0.0.1:1080</kbd> 或者 <kbd>username:password@127.0.0.1:1080</kbd>）',
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => '显示源码',
 			'show_rendered' => '显示内容',
