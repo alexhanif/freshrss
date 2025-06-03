@@ -381,7 +381,7 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 				}
 				move_uploaded_file($favicon_path, FAVICONS_DIR . $feed->hashFavicon() . '.ico');
 				Minz_Request::good(_t('feedback.sub.feed.updated'), $url_redirect);
-			} else if ($values['url'] != '' && $feedDAO->updateFeed($id, $values) !== false) {
+			} elseif ($values['url'] != '' && $feedDAO->updateFeed($id, $values) !== false) {
 				$feed->_categoryId($values['category']);
 				// update url and website values for faviconPrepare
 				$feed->_url($values['url'], false);

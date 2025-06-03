@@ -11,7 +11,7 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 		try {
 			if ($name === 'kind') {	//v1.20.0
 				return $this->pdo->exec('ALTER TABLE `_feed` ADD COLUMN kind SMALLINT DEFAULT 0') !== false;
-			} else if ($name === 'customFavicon') { //v1.27.0
+			} elseif ($name === 'customFavicon') { //v1.27.0
 				return $this->pdo->exec('ALTER TABLE `_feed` ADD COLUMN customFavicon SMALLINT DEFAULT 0') !== false;
 			}
 		} catch (Exception $e) {

@@ -154,19 +154,19 @@ function init_update_feed() {
 	const resetFavicon = feed_update.querySelector("#reset-favicon");
 	const favicon = feed_update.querySelector('.favicon');
 
-	faviconUpload.onchange = function() {
+	faviconUpload.onchange = function () {
 		if (faviconUpload.files.length === 0) {
 			return;
 		}
 
 		const resetField = feed_update.querySelector('input[name="resetFavicon"]');
-		if (resetField)  {
+		if (resetField) {
 			resetField.remove();
 		}
 		resetFavicon.disabled = false;
 		favicon.src = URL.createObjectURL(faviconUpload.files[0]);
-	}
-	resetFavicon.onclick = function(e) {
+	};
+	resetFavicon.onclick = function (e) {
 		e.preventDefault();
 		if (resetFavicon.disabled) {
 			return;
@@ -185,7 +185,7 @@ function init_update_feed() {
 
 			favicon.src = text;
 		});
-	}
+	};
 }
 
 // <slider>

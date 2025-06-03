@@ -514,6 +514,7 @@ input#favicon-upload {
 button[disabled] {
 	opacity: 0.7;
 }
+
 button[disabled]:hover {
 	cursor: not-allowed !important;
 }
