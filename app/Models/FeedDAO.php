@@ -312,7 +312,7 @@ SQL;
 		if ($stm !== false) {
 			while (is_array($row = $stm->fetch(PDO::FETCH_ASSOC))) {
 				/** @var array{id:int,url:string,kind:int,category:int,name:string,website:string,description:string,lastUpdate:int,priority?:int,
-				 *	pathEntries?:string,httpAuth:string,error:int|bool,ttl?:int,attributes?:string} $row */
+				 *	pathEntries?:string,httpAuth:string,error:int|bool,ttl?:int,customFavicon:int|bool,attributes?:string} $row */
 				yield $row;
 			}
 		} else {

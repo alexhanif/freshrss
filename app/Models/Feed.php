@@ -113,7 +113,7 @@ class FreshRSS_Feed extends Minz_Model {
 			$salt = FreshRSS_Context::systemConf()->salt;
 			$params = '';
 			if ($this->customFavicon()) {
-				$params = $this->id . Minz_User::name() ?? '';
+				$params = $this->id . Minz_User::name();
 			} else {
 				$params = $this->website(fallback: true);
 				$curl_params = $this->attributeArray('curl_params');
