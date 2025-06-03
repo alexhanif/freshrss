@@ -370,7 +370,7 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 			if ($favicon_uploaded && !$resetFavicon) {
 				require_once(LIB_PATH . '/favicons.php');
 				$contents = file_get_contents(is_string($favicon_path) ? $favicon_path : '');
-				if (!isImgMime($contents)) {
+				if (!isImgMime(is_string($contents) ? $contents : '')) {
 					Minz_Request::bad(_t('feedback.sub.feed.error'), $url_redirect);
 					return;
 				}
