@@ -292,7 +292,7 @@ SQL;
 										f.`cache_nbEntries`,
 										f.`cache_nbUnreads`,
 										f.ttl,
-										f.customFavicon ')
+										f.`customFavicon` ')
 				. 'FROM `_category` c '
 				. 'LEFT OUTER JOIN `_feed` f ON f.category=c.id '
 				. 'WHERE f.priority >= :priority '
