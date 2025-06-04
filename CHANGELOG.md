@@ -2656,4 +2656,4 @@ Security
 
 ## Older
 
-[See older changes (in French)](./CHANGELOG-old.md)
+[See older changes (in French)](./docs/CHANGELOG-old.md)
