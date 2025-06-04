@@ -27,6 +27,8 @@ class FreshRSS_CategoryDAO extends Minz_ModelPdo {
 				return $this->pdo->exec('ALTER TABLE `_category` ADD COLUMN `lastUpdate` BIGINT DEFAULT 0') !== false;
 			} elseif ($name === 'error') {	//v1.20.0
 				return $this->pdo->exec('ALTER TABLE `_category` ADD COLUMN error SMALLINT DEFAULT 0') !== false;
+			} elseif ($name === 'customFavicon') { //v1.27.0
+				return $this->pdo->exec('ALTER TABLE `_feed` ADD COLUMN `customFavicon` SMALLINT DEFAULT 0') !== false;
 			} elseif ('attributes' === $name) {	//v1.15.0
 				$ok = $this->pdo->exec('ALTER TABLE `_category` ADD COLUMN attributes TEXT') !== false;
 
@@ -90,7 +92,7 @@ class FreshRSS_CategoryDAO extends Minz_ModelPdo {
 		if (isset($errorInfo[0])) {
 			if ($errorInfo[0] === FreshRSS_DatabaseDAO::ER_BAD_FIELD_ERROR || $errorInfo[0] === FreshRSS_DatabaseDAOPGSQL::UNDEFINED_COLUMN) {
 				$errorLines = explode("\n", (string)$errorInfo[2], 2);	// The relevant column name is on the first line, other lines are noise
-				foreach (['kind', 'lastUpdate', 'error', 'attributes'] as $column) {
+				foreach (['kind', 'lastUpdate', 'error', 'attributes', 'customFavicon'] as $column) {
 					if (stripos($errorLines[0], $column) !== false) {
 						return $this->addColumn($column);
 					}
