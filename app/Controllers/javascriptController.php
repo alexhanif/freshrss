@@ -89,6 +89,11 @@ class FreshRSS_javascript_Controller extends FreshRSS_ActionController {
 	public function originalIconUrlAction(): void {
 		header('Content-Type: text/plain');
 
+		if (!FreshRSS_Auth::hasAccess()) {
+			Minz_Error::error(403);
+			return;
+		}
+
 		$id = Minz_Request::paramInt('id');
 		if ($id === 0) {
 			Minz_Error::error(400);
