@@ -845,7 +845,7 @@ HTML;
 	 * @param string $url Overridden URL. Will default to the entry URL.
 	 * @throws Minz_Exception
 	 */
-	public function getContentByParsing(string $url = '', int $maxRedirs = 3): string {
+	public function getContentByParsing(string $url = '', int $maxRedirs = 4, bool $redirected = false, bool $reloadAction = false): string {
 		$url = $url ?: htmlspecialchars_decode($this->link(), ENT_QUOTES);
 		$feed = $this->feed();
 		if ($url === '' || $feed === null || $feed->pathEntries() === '') {
@@ -872,23 +872,36 @@ HTML;
 		}
 
 		$cachePath = $feed->cacheFilename($url . '#' . $feed->pathEntries());
-		$html = httpGet($url, $cachePath, 'html', $feed->attributes(), $feed->curlOptions());
+		$response = httpGet($url, $cachePath, 'html', $feed->attributes(), $feed->curlOptions());
+		$html = $response['body'];
 		if (strlen($html) > 0) {
 			$doc = new DOMDocument();
 			$doc->loadHTML($html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING);
 			$xpath = new DOMXPath($doc);
 
+			// Follow redirections
 			if ($maxRedirs > 0) {
-				//Follow any HTML redirection
+				if ($url !== $response['effective_url']) {
+					return $this->getContentByParsing($response['effective_url'], $maxRedirs - $response['redirect_count'], redirected: true, reloadAction: $reloadAction);
+				}
 				$metas = $xpath->query('//meta[@content]') ?: [];
 				foreach ($metas as $meta) {
 					if ($meta instanceof DOMElement && strtolower(trim($meta->getAttribute('http-equiv'))) === 'refresh') {
 						$refresh = preg_replace('/^[0-9.; ]*\s*(url\s*=)?\s*/i', '', trim($meta->getAttribute('content')));
 						$refresh = is_string($refresh) ? \SimplePie\Misc::absolutize_url($refresh, $url) : false;
 						if ($refresh != false && $refresh !== $url) {
-							return $this->getContentByParsing($refresh, $maxRedirs - 1);
+							return $this->getContentByParsing($refresh, $maxRedirs - 1, redirected: true, reloadAction: $reloadAction);
 						}
 					}
+				}
+			}
+
+			// Update entry URL after following all redirects
+			if ($redirected && !$response['fail']) {
+				$entryDAO = FreshRSS_Factory::createEntryDao();
+				$this->_link(htmlspecialchars($url, ENT_QUOTES));
+				if (!$reloadAction && $entryDAO->updateEntry($this->toArray()) === false) {
+					return '';
 				}
 			}
 
@@ -972,7 +985,7 @@ HTML;
 			} else {
 				try {
 					// The article is not yet in the database, so let’s fetch it
-					$fullContent = $this->getContentByParsing();
+					$fullContent = $this->getContentByParsing(reloadAction: true);
 					if ('' !== $fullContent) {
 						$fullContent = "<!-- FULLCONTENT start //-->{$fullContent}<!-- FULLCONTENT end //-->";
 						$originalContent = $this->originalContent();

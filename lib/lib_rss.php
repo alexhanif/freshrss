@@ -511,8 +511,9 @@ function enforceHttpEncoding(string $html, string $contentType = ''): string {
  * @param string $type {html,json,opml,xml}
  * @param array<string,mixed> $attributes
  * @param array<int,mixed> $curl_options
+ * @return array<string,mixed>
  */
-function httpGet(string $url, string $cachePath, string $type = 'html', array $attributes = [], array $curl_options = []): string {
+function httpGet(string $url, string $cachePath, string $type = 'html', array $attributes = [], array $curl_options = []): array {
 	$limits = FreshRSS_Context::systemConf()->limits;
 	$feed_timeout = empty($attributes['timeout']) || !is_numeric($attributes['timeout']) ? 0 : intval($attributes['timeout']);
 
@@ -521,7 +522,7 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 		$body = @file_get_contents($cachePath);
 		if ($body != false) {
 			syslog(LOG_DEBUG, 'FreshRSS uses cache for ' . \SimplePie\Misc::url_remove_credentials($url));
-			return $body;
+			return ['body' => $body, 'effective_url' => $url, 'redirect_count' => 0, 'fail' => false];
 		}
 	}
 
@@ -553,7 +554,7 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 	// TODO: Implement HTTP 1.1 conditional GET If-Modified-Since
 	$ch = curl_init();
 	if ($ch === false) {
-		return '';
+		return ['body' => '', 'effective_url' => '', 'redirect_count' => 0, 'fail' => true];
 	}
 	curl_setopt_array($ch, [
 		CURLOPT_URL => $url,
@@ -598,10 +599,14 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 	$body = curl_exec($ch);
 	$c_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 	$c_content_type = '' . curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+	$c_effective_url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+	$c_redirect_count = curl_getinfo($ch, CURLINFO_REDIRECT_COUNT);
 	$c_error = curl_error($ch);
 	curl_close($ch);
 
-	if ($c_status != 200 || $c_error != '' || $body === false) {
+	$fail = $c_status != 200 || $c_error != '' || $body === false;
+
+	if ($fail) {
 		Minz_Log::warning('Error fetching content: HTTP code ' . $c_status . ': ' . $c_error . ' ' . $url);
 		$body = '';
 		// TODO: Implement HTTP 410 Gone
@@ -618,7 +623,7 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 		Minz_Log::warning("Error saving cache $cachePath for $url");
 	}
 
-	return $body;
+	return ['body' => $body, 'effective_url' => $c_effective_url, 'redirect_count' => $c_redirect_count, 'fail' => $fail];
 }
 
 /**
