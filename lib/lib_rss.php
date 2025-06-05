@@ -511,7 +511,7 @@ function enforceHttpEncoding(string $html, string $contentType = ''): string {
  * @param string $type {html,json,opml,xml}
  * @param array<string,mixed> $attributes
  * @param array<int,mixed> $curl_options
- * @return array<string,mixed>
+ * @return array{body:string,effective_url:string,redirect_count:int,fail:bool}
  */
 function httpGet(string $url, string $cachePath, string $type = 'html', array $attributes = [], array $curl_options = []): array {
 	$limits = FreshRSS_Context::systemConf()->limits;
