@@ -882,7 +882,12 @@ HTML;
 			// Follow redirections
 			if ($maxRedirs > 0) {
 				if ($url !== $response['effective_url']) {
-					return $this->getContentByParsing($response['effective_url'], $maxRedirs - $response['redirect_count'], redirected: true, reloadAction: $reloadAction);
+					return $this->getContentByParsing(
+						$response['effective_url'],
+						$maxRedirs - $response['redirect_count'],
+						redirected: true,
+						reloadAction: $reloadAction
+					);
 				}
 				$metas = $xpath->query('//meta[@content]') ?: [];
 				foreach ($metas as $meta) {
