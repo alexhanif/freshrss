@@ -11,8 +11,6 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 		try {
 			if ($name === 'kind') {	//v1.20.0
 				return $this->pdo->exec('ALTER TABLE `_feed` ADD COLUMN kind SMALLINT DEFAULT 0') !== false;
-			} elseif ($name === 'customFavicon') { //v1.27.0
-				return $this->pdo->exec('ALTER TABLE `_feed` ADD COLUMN `customFavicon` SMALLINT DEFAULT 0') !== false;
 			}
 		} catch (Exception $e) {
 			Minz_Log::error(__METHOD__ . ' error: ' . $e->getMessage());
@@ -25,7 +23,7 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 		if (isset($errorInfo[0])) {
 			if ($errorInfo[0] === FreshRSS_DatabaseDAO::ER_BAD_FIELD_ERROR || $errorInfo[0] === FreshRSS_DatabaseDAOPGSQL::UNDEFINED_COLUMN) {
 				$errorLines = explode("\n", (string)$errorInfo[2], 2);	// The relevant column name is on the first line, other lines are noise
-				foreach (['kind', 'customFavicon'] as $column) {
+				foreach (['kind'] as $column) {
 					if (str_contains($errorLines[0], $column)) {
 						return $this->addColumn($column);
 					}
@@ -175,9 +173,6 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 		$stm = $this->pdo->prepare($sql);
 
 		foreach ($valuesTmp as $v) {
-			if ($v === false) {
-				$v = 0;
-			}
 			$values[] = $v;
 		}
 		$values[] = $id;
@@ -301,18 +296,18 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 	}
 
 	/** @return Traversable<array{id:int,url:string,kind:int,category:int,name:string,website:string,description:string,lastUpdate:int,priority?:int,
-	 * 	pathEntries?:string,httpAuth:string,error:int|bool,ttl?:int,customFavicon:int|bool,attributes?:string}> */
+	 * 	pathEntries?:string,httpAuth:string,error:int|bool,ttl?:int,attributes?:string}> */
 	public function selectAll(): Traversable {
 		$sql = <<<'SQL'
 SELECT id, url, kind, category, name, website, description, `lastUpdate`,
-	priority, `pathEntries`, `httpAuth`, error, ttl, `customFavicon`, attributes
+	priority, `pathEntries`, `httpAuth`, error, ttl, attributes
 FROM `_feed`
 SQL;
 		$stm = $this->pdo->query($sql);
 		if ($stm !== false) {
 			while (is_array($row = $stm->fetch(PDO::FETCH_ASSOC))) {
 				/** @var array{id:int,url:string,kind:int,category:int,name:string,website:string,description:string,lastUpdate:int,priority?:int,
-				 *	pathEntries?:string,httpAuth:string,error:int|bool,ttl?:int,customFavicon:int|bool,attributes?:string} $row */
+				 *	pathEntries?:string,httpAuth:string,error:int|bool,ttl?:int,attributes?:string} $row */
 				yield $row;
 			}
 		} else {
@@ -603,7 +598,6 @@ SQL;
 			$myFeed->_httpAuth(base64_decode($dao['httpAuth'] ?? '', true) ?: '');
 			$myFeed->_error($dao['error'] ?? 0);
 			$myFeed->_ttl($dao['ttl'] ?? FreshRSS_Feed::TTL_DEFAULT);
-			$myFeed->_customFavicon($dao['customFavicon'] ?? 0);
 			$myFeed->_attributes($dao['attributes'] ?? '');
 			$myFeed->_nbNotRead($dao['cache_nbUnreads'] ?? -1);
 			$myFeed->_nbEntries($dao['cache_nbEntries'] ?? -1);

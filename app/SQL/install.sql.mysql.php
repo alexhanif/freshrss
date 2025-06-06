@@ -30,7 +30,6 @@ CREATE TABLE IF NOT EXISTS `_feed` (
 	`httpAuth` VARCHAR(1024) CHARACTER SET latin1 COLLATE latin1_bin DEFAULT NULL,
 	`error` BOOLEAN DEFAULT 0,
 	`ttl` INT NOT NULL DEFAULT 0,	-- v0.7.3
-	`customFavicon` BOOLEAN DEFAULT 0,
 	`attributes` TEXT,	-- v1.11.0
 	`cache_nbEntries` INT DEFAULT 0,	-- v0.7
 	`cache_nbUnreads` INT DEFAULT 0,	-- v0.7

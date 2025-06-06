@@ -107,7 +107,7 @@ class FreshRSS_javascript_Controller extends FreshRSS_ActionController {
 			return;
 		}
 
-		$feed->_customFavicon(false);
+		$feed->_attribute('customFavicon', false);
 		$this->view->favicon = $feed->favicon();
 	}
 }

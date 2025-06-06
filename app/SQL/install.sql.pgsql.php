@@ -27,7 +27,6 @@ CREATE TABLE IF NOT EXISTS `_feed` (
 	"httpAuth" VARCHAR(1024) DEFAULT NULL,
 	"error" SMALLINT DEFAULT 0,
 	"ttl" INT NOT NULL DEFAULT 0,
-	"customFavicon" SMALLINT DEFAULT 0,
 	"attributes" TEXT,	-- v1.11.0
 	"cache_nbEntries" INT DEFAULT 0,
 	"cache_nbUnreads" INT DEFAULT 0,

@@ -27,8 +27,6 @@ class FreshRSS_CategoryDAO extends Minz_ModelPdo {
 				return $this->pdo->exec('ALTER TABLE `_category` ADD COLUMN `lastUpdate` BIGINT DEFAULT 0') !== false;
 			} elseif ($name === 'error') {	//v1.20.0
 				return $this->pdo->exec('ALTER TABLE `_category` ADD COLUMN error SMALLINT DEFAULT 0') !== false;
-			} elseif ($name === 'customFavicon') { //v1.27.0
-				return $this->pdo->exec('ALTER TABLE `_feed` ADD COLUMN `customFavicon` SMALLINT DEFAULT 0') !== false;
 			} elseif ('attributes' === $name) {	//v1.15.0
 				$ok = $this->pdo->exec('ALTER TABLE `_category` ADD COLUMN attributes TEXT') !== false;
 
@@ -92,7 +90,7 @@ class FreshRSS_CategoryDAO extends Minz_ModelPdo {
 		if (isset($errorInfo[0])) {
 			if ($errorInfo[0] === FreshRSS_DatabaseDAO::ER_BAD_FIELD_ERROR || $errorInfo[0] === FreshRSS_DatabaseDAOPGSQL::UNDEFINED_COLUMN) {
 				$errorLines = explode("\n", (string)$errorInfo[2], 2);	// The relevant column name is on the first line, other lines are noise
-				foreach (['kind', 'lastUpdate', 'error', 'attributes', 'customFavicon'] as $column) {
+				foreach (['kind', 'lastUpdate', 'error', 'attributes'] as $column) {
 					if (str_contains($errorLines[0], $column)) {
 						return $this->addColumn($column);
 					}
@@ -293,8 +291,7 @@ SQL;
 										f.attributes,
 										f.`cache_nbEntries`,
 										f.`cache_nbUnreads`,
-										f.ttl,
-										f.`customFavicon` ')
+										f.ttl ')
 				. 'FROM `_category` c '
 				. 'LEFT OUTER JOIN `_feed` f ON f.category=c.id '
 				. 'WHERE f.priority >= :priority '
@@ -304,7 +301,7 @@ SQL;
 			$values = [ ':priority' => FreshRSS_Feed::PRIORITY_CATEGORY ];
 			if ($stm !== false && $stm->execute($values) && ($res = $stm->fetchAll(PDO::FETCH_ASSOC)) !== false) {
 				/** @var list<array{c_name:string,c_id:int,c_kind:int,c_last_update:int,c_error:int|bool,c_attributes?:string,
-				 * 	id?:int,name?:string,url?:string,kind?:int,category?:int,website?:string,priority?:int,error?:int|bool,attributes?:string,cache_nbEntries?:int,cache_nbUnreads?:int,ttl?:int,customFavicon?:int|bool}> $res */
+				 * 	id?:int,name?:string,url?:string,kind?:int,category?:int,website?:string,priority?:int,error?:int|bool,attributes?:string,cache_nbEntries?:int,cache_nbUnreads?:int,ttl?:int}> $res */
 				return self::daoToCategoriesPrepopulated($res);
 			} else {
 				$info = $stm === false ? $this->pdo->errorInfo() : $stm->errorInfo();

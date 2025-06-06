@@ -64,7 +64,6 @@ class FreshRSS_Feed extends Minz_Model {
 	private bool $mute = false;
 	private string $hash = '';
 	private string $hashFavicon = '';
-	private bool $customFavicon = false;
 	private string $lockPath = '';
 	private string $hubUrl = '';
 	private string $selfUrl = '';
@@ -112,7 +111,7 @@ class FreshRSS_Feed extends Minz_Model {
 		if ($this->hashFavicon == '' || $skipCache) {
 			$salt = FreshRSS_Context::systemConf()->salt;
 			$params = '';
-			if ($this->customFavicon()) {
+			if ($this->attributeBoolean('customFavicon')) {
 				$params = $this->id . Minz_User::name();
 			} else {
 				$params = $this->website(fallback: true);
@@ -244,10 +243,6 @@ class FreshRSS_Feed extends Minz_Model {
 		return $this->ttl;
 	}
 
-	public function customFavicon(): bool {
-		return $this->customFavicon;
-	}
-
 	public function mute(): bool {
 		return $this->mute;
 	}
@@ -271,7 +266,7 @@ class FreshRSS_Feed extends Minz_Model {
 
 	public function faviconPrepare(bool $force = false): void {
 		require_once(LIB_PATH . '/favicons.php');
-		if ($this->customFavicon()) {
+		if ($this->attributeBoolean('customFavicon')) {
 			return;
 		}
 		$url = $this->website(fallback: true);
@@ -387,9 +382,6 @@ class FreshRSS_Feed extends Minz_Model {
 		$value = min($value, 100_000_000);
 		$this->ttl = abs($value);
 		$this->mute = $value < self::TTL_DEFAULT;
-	}
-	public function _customFavicon(bool|int $value): void {
-		$this->customFavicon = (bool) $value;
 	}
 
 	public function _nbNotRead(int $value): void {
@@ -1089,7 +1081,7 @@ class FreshRSS_Feed extends Minz_Model {
 	}
 
 	private function faviconRebuild(): void {
-		if ($this->customFavicon()) {
+		if ($this->attributeBoolean('customFavicon')) {
 			return;
 		}
 		FreshRSS_Feed::faviconDelete($this->hashFavicon());
