@@ -880,15 +880,12 @@ HTML;
 			$xpath = new DOMXPath($doc);
 
 			// Follow redirections
+			if ($url !== $response['effective_url']) {
+				$maxRedirs -= $response['redirect_count'];
+				$url = $response['effective_url'];
+				$redirected = true;
+			}
 			if ($maxRedirs > 0) {
-				if ($url !== $response['effective_url']) {
-					return $this->getContentByParsing(
-						$response['effective_url'],
-						$maxRedirs - $response['redirect_count'],
-						redirected: true,
-						reloadAction: $reloadAction
-					);
-				}
 				$metas = $xpath->query('//meta[@content]') ?: [];
 				foreach ($metas as $meta) {
 					if ($meta instanceof DOMElement && strtolower(trim($meta->getAttribute('http-equiv'))) === 'refresh') {
@@ -904,7 +901,7 @@ HTML;
 			// Update entry URL after following all redirects
 			if ($redirected && !$response['fail']) {
 				$entryDAO = FreshRSS_Factory::createEntryDao();
-				$this->_link(htmlspecialchars($url, ENT_QUOTES));
+				$this->_link(htmlspecialchars($url, ENT_COMPAT, 'UTF-8'));
 				if (!$reloadAction && $entryDAO->updateEntry($this->toArray()) === false) {
 					return '';
 				}
