@@ -124,7 +124,6 @@ class FreshRSS_DatabaseDAO extends Minz_ModelPdo {
 			'httpAuth',
 			'error',
 			'ttl',
-			'checkFavicon',
 			'attributes',
 			'cache_nbEntries',
 			'cache_nbUnreads',
