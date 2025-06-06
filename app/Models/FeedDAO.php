@@ -26,7 +26,7 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 			if ($errorInfo[0] === FreshRSS_DatabaseDAO::ER_BAD_FIELD_ERROR || $errorInfo[0] === FreshRSS_DatabaseDAOPGSQL::UNDEFINED_COLUMN) {
 				$errorLines = explode("\n", (string)$errorInfo[2], 2);	// The relevant column name is on the first line, other lines are noise
 				foreach (['kind', 'customFavicon'] as $column) {
-					if (stripos($errorLines[0], $column) !== false) {
+					if (str_contains($errorLines[0], $column)) {
 						return $this->addColumn($column);
 					}
 				}
