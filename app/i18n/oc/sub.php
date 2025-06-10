@@ -50,7 +50,7 @@ return array(
 			'password' => 'Senhal HTTP',
 			'username' => 'Identificant HTTP',
 		),
-		'change_favicon' => 'Change...',	// TODO
+		'change_favicon' => 'Change…',	// TODO
 		'clear_cache' => 'Totjorn escafar lo cache',
 		'content_action' => array(
 			'_' => 'Accion sul contengut en recuperant lo contengut de l’article',

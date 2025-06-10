@@ -50,7 +50,7 @@ return array(
 			'password' => 'HTTP 암호',
 			'username' => 'HTTP 사용자 이름',
 		),
-		'change_favicon' => 'Change...',	// TODO
+		'change_favicon' => 'Change…',	// TODO
 		'clear_cache' => '항상 캐시 지우기',
 		'content_action' => array(
 			'_' => '글 콘텐츠를 가져올 때의 동작',

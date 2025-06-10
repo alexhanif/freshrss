@@ -50,7 +50,7 @@ return array(
 			'password' => 'HTTP パスワード',
 			'username' => 'HTTP ユーザー名',
 		),
-		'change_favicon' => 'Change...',	// TODO
+		'change_favicon' => 'Change…',	// TODO
 		'clear_cache' => '常にキャッシュをクリアする',
 		'content_action' => array(
 			'_' => '記事のコンテンツを取得するときの動作',

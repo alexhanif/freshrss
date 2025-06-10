@@ -50,7 +50,7 @@ return array(
 			'password' => 'HTTP password',	// IGNORE
 			'username' => 'HTTP username',	// IGNORE
 		),
-		'change_favicon' => 'Change...',	// IGNORE
+		'change_favicon' => 'Change…',	// IGNORE
 		'clear_cache' => 'Always clear cache',	// IGNORE
 		'content_action' => array(
 			'_' => 'Content action when fetching the article content',	// IGNORE

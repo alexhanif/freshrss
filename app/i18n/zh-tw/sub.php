@@ -50,7 +50,7 @@ return array(
 			'password' => 'HTTP 密碼',
 			'username' => 'HTTP 用戶名',
 		),
-		'change_favicon' => 'Change...',	// TODO
+		'change_favicon' => 'Change…',	// TODO
 		'clear_cache' => '總是清除暫存',
 		'content_action' => array(
 			'_' => '獲取原文後的操作',

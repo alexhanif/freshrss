@@ -50,7 +50,7 @@ return array(
 			'password' => 'HTTP heslo',
 			'username' => 'HTTP uživatelské jméno',
 		),
-		'change_favicon' => 'Change...',	// TODO
+		'change_favicon' => 'Change…',	// TODO
 		'clear_cache' => 'Vždy vymazat mezipaměť',
 		'content_action' => array(
 			'_' => 'Akce obsahu při načítání obsahu článku',

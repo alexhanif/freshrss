@@ -50,7 +50,7 @@ return array(
 			'password' => 'Password HTTP',
 			'username' => 'Nome utente HTTP',
 		),
-		'change_favicon' => 'Change...',	// TODO
+		'change_favicon' => 'Change…',	// TODO
 		'clear_cache' => 'Cancella sempre la cache',
 		'content_action' => array(
 			'_' => 'Azione da effettuare quando viene recuperato il contenuto di un articolo',

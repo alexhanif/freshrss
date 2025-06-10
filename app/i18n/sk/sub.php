@@ -50,7 +50,7 @@ return array(
 			'password' => 'Heslo pre HTTP',
 			'username' => 'Používateľské meno pre HTTP',
 		),
-		'change_favicon' => 'Change...',	// TODO
+		'change_favicon' => 'Change…',	// TODO
 		'clear_cache' => 'Vždy vymazať vyrovnávaciu pamäť',
 		'content_action' => array(
 			'_' => 'Akcia obsahu pri sťahovaní obsahu článku',

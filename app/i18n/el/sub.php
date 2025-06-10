@@ -50,7 +50,7 @@ return array(
 			'password' => 'HTTP password',	// TODO
 			'username' => 'HTTP username',	// TODO
 		),
-		'change_favicon' => 'Change...',	// TODO
+		'change_favicon' => 'Change…',	// TODO
 		'clear_cache' => 'Always clear cache',	// TODO
 		'content_action' => array(
 			'_' => 'Content action when fetching the article content',	// TODO

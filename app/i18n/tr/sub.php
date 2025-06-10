@@ -50,7 +50,7 @@ return array(
 			'password' => 'HTTP parolası',
 			'username' => 'HTTP kullanıcı adı',
 		),
-		'change_favicon' => 'Change...',	// TODO
+		'change_favicon' => 'Change…',	// TODO
 		'clear_cache' => 'Önbelleği her zaman temizle',
 		'content_action' => array(
 			'_' => 'Makale içeriği getirilirken içerik eylemi',

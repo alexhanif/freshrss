@@ -50,7 +50,7 @@ return array(
 			'password' => 'HTTP jelszó',
 			'username' => 'HTTP felhasználónév',
 		),
-		'change_favicon' => 'Change...',	// TODO
+		'change_favicon' => 'Change…',	// TODO
 		'clear_cache' => 'Mindig törölje a cache-t',
 		'content_action' => array(
 			'_' => 'Tartalom művelet, amikor cikk tartalma beszerzésre kerül',

@@ -50,7 +50,7 @@ return array(
 			'password' => ' رمز عبور HTTP',
 			'username' => ' نام کاربری HTTP',
 		),
-		'change_favicon' => 'Change...',	// TODO
+		'change_favicon' => 'Change…',	// TODO
 		'clear_cache' => ' همیشه حافظه پنهان را پاک کنید',
 		'content_action' => array(
 			'_' => ' اقدام محتوا هنگام واکشی محتوای مقاله',

@@ -50,7 +50,7 @@ return array(
 			'password' => 'HTTP wachtwoord',
 			'username' => 'HTTP gebruikers naam',
 		),
-		'change_favicon' => 'Change...',	// TODO
+		'change_favicon' => 'Change…',	// TODO
 		'clear_cache' => 'Cache altijd leegmaken',
 		'content_action' => array(
 			'_' => 'Inhoudsactie bij ophalen artikelinhoud',
