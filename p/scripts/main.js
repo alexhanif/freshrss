@@ -431,8 +431,12 @@ const freshrssOpenArticleEvent = document.createEvent('Event');
 freshrssOpenArticleEvent.initEvent('freshrss:openArticle', true, true);
 
 function loadLazyImages(rootElement) {
-	rootElement.querySelectorAll('img[data-original], iframe[data-original]').forEach(function (el) {
-		el.src = el.getAttribute('data-original');
+	rootElement.querySelectorAll('img[data-original], iframe[data-original], video[data-original]').forEach(function (el) {
+		if (el.tagName === 'VIDEO') {
+			el.poster = el.getAttribute('data-original');
+		} else {
+			el.src = el.getAttribute('data-original');
+		}
 		el.removeAttribute('data-original');
 	});
 }

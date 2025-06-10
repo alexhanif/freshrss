@@ -199,6 +199,7 @@ SQL;
 
 		$stm = $this->pdo->query($sql);
 		if ($stm !== false && ($res = $stm->fetchAll(PDO::FETCH_ASSOC)) !== false) {
+			/** @var list<array{id:int,name:string,unreads:int}> $res */
 			return self::daoToTags($res);
 		} else {
 			$info = $this->pdo->errorInfo();
@@ -236,6 +237,7 @@ SQL;
 		$stm = $this->pdo->query($sql);
 		if ($stm !== false) {
 			$res = $stm->fetchAll(PDO::FETCH_ASSOC);
+			/** @var list<array{count:int|numeric-string}> $res */
 			return (int)$res[0]['count'];
 		}
 		$info = $this->pdo->errorInfo();
@@ -334,6 +336,7 @@ SQL;
 		if ($stm !== false && $stm->execute($values) && ($lines = $stm->fetchAll(PDO::FETCH_ASSOC)) !== false) {
 			$result = [];
 			foreach ($lines as $line) {
+				/** @var array{id:int,name:string,checked:bool|int} $line */
 				$result[] = [
 					'id' => (int)($line['id']),
 					'name' => $line['name'],

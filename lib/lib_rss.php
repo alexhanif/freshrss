@@ -368,7 +368,11 @@ function customSimplePie(array $attributes = [], array $curl_options = []): \Sim
 		'iframe' => 'src',
 		'img' => [
 			'longdesc',
-			'src'
+			'src',
+		],
+		'image' => [
+			'longdesc',
+			'src',
 		],
 		'input' => 'src',
 		'ins' => 'cite',
@@ -632,16 +636,20 @@ function validateEmailAddress(string $email): bool {
 
 /**
  * Add support of image lazy loading
- * Move content from src attribute to data-original
+ * Move content from src/poster attribute to data-original
  * @param string $content is the text we want to parse
  */
 function lazyimg(string $content): string {
 	return preg_replace([
-			'/<((?:img|iframe)[^>]+?)src="([^"]+)"([^>]*)>/i',
-			"/<((?:img|iframe)[^>]+?)src='([^']+)'([^>]*)>/i",
+			'/<((?:img|image|iframe)[^>]+?)src="([^"]+)"([^>]*)>/i',
+			"/<((?:img|image|iframe)[^>]+?)src='([^']+)'([^>]*)>/i",
+			'/<((?:video)[^>]+?)poster="([^"]+)"([^>]*)>/i',
+			"/<((?:video)[^>]+?)poster='([^']+)'([^>]*)>/i",
 		], [
 			'<$1src="' . Minz_Url::display('/themes/icons/grey.gif') . '" data-original="$2"$3>',
 			"<$1src='" . Minz_Url::display('/themes/icons/grey.gif') . "' data-original='$2'$3>",
+			'<$1poster="' . Minz_Url::display('/themes/icons/grey.gif') . '" data-original="$2"$3>',
+			"<$1poster='" . Minz_Url::display('/themes/icons/grey.gif') . "' data-original='$2'$3>",
 		],
 		$content
 	) ?? '';
