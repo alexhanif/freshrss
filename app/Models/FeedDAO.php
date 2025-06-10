@@ -336,12 +336,12 @@ SQL;
 	public function searchByUrl(string $url): ?FreshRSS_Feed {
 		$sql = 'SELECT * FROM `_feed` WHERE url=:url';
 		$res = $this->fetchAssoc($sql, [':url' => $url]);
-		if (!is_array($res) || empty($res[0])) {
+		if (!is_array($res)) {
 			return null;
 		}
 		/** @var list<array{id:int,url:string,kind:int,category:int,name:string,website:string,description:string,lastUpdate:int,priority:int,
 		 * 	pathEntries:string,httpAuth:string,error:int,ttl:int,attributes?:string,cache_nbUnreads:int,cache_nbEntries:int}> $res */
-		return current(self::daoToFeeds($res)) ?: null;
+		return empty($res[0]) ? null : (current(self::daoToFeeds($res)) ?: null);
 	}
 
 	/** @return list<int> */
