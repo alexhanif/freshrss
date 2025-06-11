@@ -299,7 +299,11 @@ class FreshRSS_Feed extends Minz_Model {
 	}
 	public function favicon(): string {
 		$hash = $this->hashFavicon();
-		return Minz_Url::display('/f.php?h=' . $hash . '&t=' . @filemtime(DATA_PATH . '/favicons/' . $hash . '.ico'));
+		$url = '/f.php?h=' . $hash;
+		if ($this->attributeBoolean('customFavicon')) {
+			$url .= '&t=' . @filemtime(DATA_PATH . '/favicons/' . $hash . '.ico');
+		}
+		return Minz_Url::display($url);
 	}
 
 	public function _id(int $value): void {
