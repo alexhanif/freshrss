@@ -171,6 +171,14 @@ p {
 	margin: 1rem 0 0.5rem;
 }
 
+p.error {
+	color: var(--frss-font-color-error);
+}
+
+p.error:empty {
+	display: none;
+}
+
 p.help, .prompt p.help {
 	margin: 0.25rem 0 0.5rem;
 	text-align: right;
@@ -512,7 +520,8 @@ input#favicon-upload {
 
 /*=== Buttons */
 button[disabled] {
-	opacity: 0.7;
+	opacity: 0.5;
+	color: #a6a6a6;
 }
 
 button[disabled]:hover {

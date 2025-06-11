@@ -90,6 +90,7 @@
 					<input id="favicon-upload" name="newFavicon" type="file" accept="image/*">
 					<label for="favicon-upload" class="btn"><?= _t('sub.feed.change_favicon') ?></label>
 					<button id="reset-favicon" class="btn"<?= $this->feed->attributeBoolean('customFavicon') ? '' : ' disabled'?>><?= _t('sub.feed.reset_favicon') ?></button>
+					<p id="favicon-error" class="error"></p>
 				</div>
 			</div>
 			<div class="form-group">

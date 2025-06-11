@@ -298,7 +298,8 @@ class FreshRSS_Feed extends Minz_Model {
 		@unlink($path . '.txt');
 	}
 	public function favicon(): string {
-		return Minz_Url::display('/f.php?' . $this->hashFavicon());
+		$hash = $this->hashFavicon();
+		return Minz_Url::display('/f.php?h=' . $hash . '&t=' . @filemtime(DATA_PATH . '/favicons/' . $hash . '.ico'));
 	}
 
 	public function _id(int $value): void {

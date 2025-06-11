@@ -12,6 +12,12 @@ function poormanSalt() {	// If crypto.getRandomValues is not available
 	return text;
 }
 
+function htmlEntityDecode(s) {
+	const textarea = document.createElement('textarea');
+	textarea.innerHTML = s;
+	return textarea.value;
+}
+
 function forgetOpenCategories() {
 	localStorage.removeItem('FreshRSS_open_categories');
 }
@@ -152,12 +158,21 @@ function init_update_feed() {
 	const feedId = feed_update.dataset.feedId;
 	const faviconUpload = feed_update.querySelector('#favicon-upload');
 	const resetFavicon = feed_update.querySelector("#reset-favicon");
+	const faviconError = feed_update.querySelector("#favicon-error");
 	const favicon = feed_update.querySelector('.favicon');
 
 	faviconUpload.onchange = function () {
 		if (faviconUpload.files.length === 0) {
 			return;
 		}
+
+		const max_size = 1 * 1024 * 1024; // 1 MB
+		if (faviconUpload.files[0].size > max_size) {
+			faviconError.innerHTML = htmlEntityDecode(context.i18n.favicon_size_exceeded);
+			resetFavicon.click();
+			return;
+		}
+		faviconError.innerHTML = '';
 
 		const resetField = feed_update.querySelector('input[name="resetFavicon"]');
 		if (resetField) {
