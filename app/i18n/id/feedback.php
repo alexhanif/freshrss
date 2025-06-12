@@ -95,8 +95,8 @@ return array(
 			'deleted' => 'Feed has been deleted',	// TODO
 			'error' => 'Feed cannot be updated',	// TODO
 			'favicon' => array(
-				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>',	// TODO
-				'unsupported_format' => 'Unsupported image file format',	// TODO
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
 			),
 			'internal_problem' => 'The newsfeed could not be added. <a href="%s">Check FreshRSS logs</a> for details. You can try force adding by appending <code>#force_feed</code> to the URL.',	// TODO
 			'invalid_url' => 'URL <em>%s</em> is invalid',	// TODO

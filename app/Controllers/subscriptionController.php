@@ -370,9 +370,9 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 
 			if ($favicon_uploaded && !$resetFavicon) {
 				require_once(LIB_PATH . '/favicons.php');
-				$max_size = 1 * 1024 * 1024; // 1 MB
+				$max_size = FreshRSS_Context::systemConf()->limits['max_favicon_upload_size'];
 				if ($favicon_size > $max_size) {
-					Minz_Request::bad(_t('feedback.sub.feed.favicon.too_large', '1 MB'), $url_redirect);
+					Minz_Request::bad(_t('feedback.sub.feed.favicon.too_large', format_bytes($max_size)), $url_redirect);
 					return;
 				}
 				$contents = file_get_contents(is_string($favicon_path) ? $favicon_path : '');

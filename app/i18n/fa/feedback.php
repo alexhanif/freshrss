@@ -95,8 +95,8 @@ return array(
 			'deleted' => ' فید حذف شده است',
 			'error' => ' فید را نمی توان به روز کرد',
 			'favicon' => array(
-				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>',	// TODO
-				'unsupported_format' => 'Unsupported image file format',	// TODO
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
 			),
 			'internal_problem' => ' فید خبری اضافه نشد. برای جزئیات <a href="%s">گزارش‌های FreshRSS</a> را بررسی کنید. می‌توانید با اضافه کردن <code>#force_feed</code> به URL',
 			'invalid_url' => ' URL <em>%s</em> نامعتبر است',

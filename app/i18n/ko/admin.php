@@ -169,6 +169,10 @@ return array(
 			'help' => '초',
 			'number' => '로그인 유지 시간',
 		),
+		'custom-favicon' => array(
+			'help' => 'in megabytes',	// TODO
+			'max-upload-size' => 'Max favicon upload size',	// TODO
+		),
 		'force_email_validation' => '이메일 주소 확인 강제화',
 		'instance-name' => '인스턴스 이름',
 		'max-categories' => '사용자별 카테고리 개수 제한',

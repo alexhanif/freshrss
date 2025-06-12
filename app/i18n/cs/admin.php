@@ -169,6 +169,10 @@ return array(
 			'help' => 'v sekundách',
 			'number' => 'Trvání ponechání přihlášení',
 		),
+		'custom-favicon' => array(
+			'help' => 'in megabytes',	// TODO
+			'max-upload-size' => 'Max favicon upload size',	// TODO
+		),
 		'force_email_validation' => 'Vynutit ověření e-mailové adresy',
 		'instance-name' => 'Název instance',
 		'max-categories' => 'Maximální počet kategorií na uživatele',

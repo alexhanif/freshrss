@@ -169,6 +169,10 @@ return array(
 			'help' => 'w sekundach',
 			'number' => 'Czas przez który użytkownik pozostanie zalogowany',
 		),
+		'custom-favicon' => array(
+			'help' => 'w megabajtach',
+			'max-upload-size' => 'Maksymalny rozmiar przesyłanej ikony',
+		),
 		'force_email_validation' => 'Wymuś weryfikację adresu e-mail',
 		'instance-name' => 'Nazwa instancji',
 		'max-categories' => 'Maksymalna liczba kategorii na użytkownika',

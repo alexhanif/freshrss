@@ -95,8 +95,8 @@ return array(
 			'deleted' => 'o feed foi apagado',
 			'error' => 'O feed não pode ser atualizado',
 			'favicon' => array(
-				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>',	// TODO
-				'unsupported_format' => 'Unsupported image file format',	// TODO
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
 			),
 			'internal_problem' => 'O feed RSS não pôde ser adicionado. <a href="%s">Verifique os logs do FreshRSS</a> para detalhes. Pode forçar a atualização no link <code>#force_feed</code> .',
 			'invalid_url' => 'URL <em>%s</em> é inválida',

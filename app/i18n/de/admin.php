@@ -169,6 +169,10 @@ return array(
 			'help' => 'in Sekunden',
 			'number' => 'Eingeloggt bleiben für',
 		),
+		'custom-favicon' => array(
+			'help' => 'in megabytes',	// TODO
+			'max-upload-size' => 'Max favicon upload size',	// TODO
+		),
 		'force_email_validation' => 'E-Mail Adressvalidierung erzwingen',
 		'instance-name' => 'Bezeichnung',
 		'max-categories' => 'Anzahl erlaubter Kategorien pro Benutzer',

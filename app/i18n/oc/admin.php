@@ -169,6 +169,10 @@ return array(
 			'help' => 'en segondas',
 			'number' => 'Durada de téner d’ésser connectat',
 		),
+		'custom-favicon' => array(
+			'help' => 'in megabytes',	// TODO
+			'max-upload-size' => 'Max favicon upload size',	// TODO
+		),
 		'force_email_validation' => 'Forçar la validacion de las adreças electronicas',
 		'instance-name' => 'Nom de l’instància',
 		'max-categories' => 'Limita de categoria per utilizaire',

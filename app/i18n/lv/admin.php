@@ -169,6 +169,10 @@ return array(
 			'help' => 'sekundēs',
 			'number' => 'Pieteikšanās ilgums',
 		),
+		'custom-favicon' => array(
+			'help' => 'in megabytes',	// TODO
+			'max-upload-size' => 'Max favicon upload size',	// TODO
+		),
 		'force_email_validation' => 'Piespiedu e-pasta adreses validēšana',
 		'instance-name' => 'Instances nosaukums',
 		'max-categories' => 'Maksimālais kategoriju skaits vienam lietotājam',

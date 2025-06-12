@@ -95,8 +95,8 @@ return array(
 			'deleted' => '피드가 삭제되었습니다',
 			'error' => '피드를 변경할 수 없습니다',
 			'favicon' => array(
-				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>',	// TODO
-				'unsupported_format' => 'Unsupported image file format',	// TODO
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
 			),
 			'internal_problem' => 'RSS 피드를 추가할 수 없습니다. 자세한 내용은 <a href="%s">FreshRSS 로그</a>를 참고하세요. <code>#force_feed</code>를 URL에 추가하여 강제로 추가 시도 할 수 있습니다.',
 			'invalid_url' => 'URL (<em>%s</em>)이 유효하지 않습니다',

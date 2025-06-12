@@ -95,8 +95,8 @@ return array(
 			'deleted' => 'Kanál byl odstraněn',
 			'error' => 'Kanál nelze aktualizovat',
 			'favicon' => array(
-				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>',	// TODO
-				'unsupported_format' => 'Unsupported image file format',	// TODO
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
 			),
 			'internal_problem' => 'Informační kanál nelze přidat. Pro podrobnosti <a href="%s">zkontrolujte protokoly FreshRSS</a>. Můžete zkusit vynucení přidání připojením <code>#force_feed</code> k adrese URL.',
 			'invalid_url' => 'Adresa URL <em>%s</em> je neplatná',

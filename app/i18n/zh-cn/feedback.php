@@ -95,8 +95,8 @@ return array(
 			'deleted' => '已删除订阅源',
 			'error' => '订阅源更新失败',
 			'favicon' => array(
-				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>',	// TODO
-				'unsupported_format' => 'Unsupported image file format',	// TODO
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
 			),
 			'internal_problem' => '订阅源添加失败，<a href="%s">检查 FreshRSS 日志</a> 查看详情。你可以在 URL 后添加 <code>#force_feed</code> 尝试强制添加。',
 			'invalid_url' => 'URL <em>%s</em> 无效',

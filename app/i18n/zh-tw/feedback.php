@@ -95,8 +95,8 @@ return array(
 			'deleted' => '已刪除訂閱源',
 			'error' => '訂閱源更新失敗',
 			'favicon' => array(
-				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>',	// TODO
-				'unsupported_format' => 'Unsupported image file format',	// TODO
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
 			),
 			'internal_problem' => '訂閱源添加失敗。<a href="%s">檢查 FreshRSS 日誌</a> 查看詳情。你可以在地址連結後附加 <code>#force_feed</code> 從而嘗試強制添加。',
 			'invalid_url' => '地址鏈接 <em>%s</em> 無效',

@@ -166,8 +166,7 @@ function init_update_feed() {
 			return;
 		}
 
-		const max_size = 1 * 1024 * 1024; // 1 MB
-		if (faviconUpload.files[0].size > max_size) {
+		if (faviconUpload.files[0].size > context.max_favicon_upload_size) {
 			faviconError.innerHTML = htmlEntityDecode(context.i18n.favicon_size_exceeded);
 			resetFavicon.click();
 			return;

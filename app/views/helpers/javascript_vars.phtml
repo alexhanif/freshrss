@@ -30,6 +30,7 @@ echo htmlspecialchars(json_encode([
 			'extra.js' => @filemtime(PUBLIC_PATH . '/scripts/extra.js'),
 			'feed.js' => @filemtime(PUBLIC_PATH . '/scripts/feed.js'),
 		],
+		'max_favicon_upload_size' => FreshRSS_Context::systemConf()->limits['max_favicon_upload_size'],
 		'version' => FRESHRSS_VERSION,
 	],
 	'shortcuts' => [
@@ -73,7 +74,7 @@ echo htmlspecialchars(json_encode([
 		'notif_request_failed' => _t('gen.js.feedback.request_failed'),
 		'category_empty' => _t('gen.js.category_empty'),
 		'labels_empty' => _t('gen.js.labels_empty'),
-		'favicon_size_exceeded' => _t('feedback.sub.feed.favicon.too_large', '1 MB'),
+		'favicon_size_exceeded' => _t('feedback.sub.feed.favicon.too_large', format_bytes(FreshRSS_Context::systemConf()->limits['max_favicon_upload_size'])),
 		'language' => FreshRSS_Context::userConf()->language,
 	],
 	'icons' => [

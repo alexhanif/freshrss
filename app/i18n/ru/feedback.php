@@ -95,8 +95,8 @@ return array(
 			'deleted' => 'Лента удалена',
 			'error' => 'Лента не может быть изменена',
 			'favicon' => array(
-				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>',	// TODO
-				'unsupported_format' => 'Unsupported image file format',	// TODO
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
 			),
 			'internal_problem' => 'Новостная лента не может быть добавлена. <a href="%s">Проверьте логи FreshRSS</a> для подробностей. Вы можете попробовать принудительно добавить ленту, добавив <code>#force_feed</code> к URL.',
 			'invalid_url' => 'URL <em>%s</em> неверный',

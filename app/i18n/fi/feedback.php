@@ -95,8 +95,8 @@ return array(
 			'deleted' => 'Syöte on poistettu',
 			'error' => 'Syötteen päivitys ei onnistu',
 			'favicon' => array(
-				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>',	// TODO
-				'unsupported_format' => 'Unsupported image file format',	// TODO
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
 			),
 			'internal_problem' => 'Uutissyötettä ei voinut lisätä. Lisätietoja on <a href="%s">FreshRSS-lokeissa</a>. Voit yrittää pakottaa lisäämisen liittämällä tekstin <code>#force_feed</code> URL-osoitteen loppuun.',
 			'invalid_url' => 'URL-osoite <em>%s</em> on virheellinen',
