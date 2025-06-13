@@ -12,6 +12,4 @@ final class FreshRSS_ViewJavascript extends FreshRSS_View {
 
 	public string $nonce;
 	public string $salt1;
-
-	public string $favicon;
 }

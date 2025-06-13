@@ -85,29 +85,4 @@ class FreshRSS_javascript_Controller extends FreshRSS_ActionController {
 		$this->view->nonce = sha1('' . mt_rand());
 		Minz_Session::_param('nonce', $this->view->nonce);
 	}
-
-	public function originalIconUrlAction(): void {
-		header('Content-Type: text/plain');
-
-		if (!FreshRSS_Auth::hasAccess()) {
-			Minz_Error::error(403);
-			return;
-		}
-
-		$id = Minz_Request::paramInt('id');
-		if ($id === 0) {
-			Minz_Error::error(400);
-			return;
-		}
-
-		$feedDAO = FreshRSS_Factory::createFeedDao();
-		$feed = $feedDAO->searchById($id);
-		if ($feed === null) {
-			Minz_Error::error(404);
-			return;
-		}
-
-		$feed->_attribute('customFavicon', false);
-		$this->view->favicon = $feed->favicon();
-	}
 }
