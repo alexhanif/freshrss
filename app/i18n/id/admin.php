@@ -169,10 +169,6 @@ return array(
 			'help' => 'dalam detik',
 			'number' => 'Durasi untuk terus masuk',
 		),
-		'custom-favicon' => array(
-			'help' => 'in megabytes',	// TODO
-			'max-upload-size' => 'Max favicon upload size',	// TODO
-		),
 		'force_email_validation' => 'Paksa verifikasi alamat surel',
 		'instance-name' => 'Nama peladen',
 		'max-categories' => 'Jumlah kategori maksimal per pengguna',

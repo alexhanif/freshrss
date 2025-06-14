@@ -169,10 +169,6 @@ return array(
 			'help' => 'v sekundách',
 			'number' => 'Dobra, počas ktorej ste prihlásený',
 		),
-		'custom-favicon' => array(
-			'help' => 'in megabytes',	// TODO
-			'max-upload-size' => 'Max favicon upload size',	// TODO
-		),
 		'force_email_validation' => 'Vynútiť overenie e-mailovej adresy',
 		'instance-name' => 'Názov inštancie',
 		'max-categories' => 'Limit počtu kategórií pre používateľa',

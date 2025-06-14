@@ -169,10 +169,6 @@ return array(
 			'help' => 'sekunteina',
 			'number' => 'Sisäänkirjauksen kesto',
 		),
-		'custom-favicon' => array(
-			'help' => 'in megabytes',	// TODO
-			'max-upload-size' => 'Max favicon upload size',	// TODO
-		),
 		'force_email_validation' => 'Pakota sähköpostiosoitteen vahvistus',
 		'instance-name' => 'Instanssin nimi',
 		'max-categories' => 'Luokkien enimmäismäärä käyttäjää kohti',

@@ -169,10 +169,6 @@ return array(
 			'help' => 'in seconds',
 			'number' => 'Duration to keep logged in',
 		),
-		'custom-favicon' => array(
-			'help' => 'in megabytes',
-			'max-upload-size' => 'Max favicon upload size',
-		),
 		'force_email_validation' => 'Force email address validation',
 		'instance-name' => 'Instance name',
 		'max-categories' => 'Max number of categories per user',

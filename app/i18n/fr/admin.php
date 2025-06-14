@@ -169,10 +169,6 @@ return array(
 			'help' => 'en secondes',
 			'number' => 'Durée avant expiration de la session',
 		),
-		'custom-favicon' => array(
-			'help' => 'in megabytes',	// TODO
-			'max-upload-size' => 'Max favicon upload size',	// TODO
-		),
 		'force_email_validation' => 'Forcer la validation des adresses email',
 		'instance-name' => 'Nom de l’instance',
 		'max-categories' => 'Limite de catégories par utilisateur',

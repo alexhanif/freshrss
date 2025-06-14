@@ -169,10 +169,6 @@ return array(
 			'help' => ' در ثانیه',
 			'number' => ' مدت زمان ورود به سیستم',
 		),
-		'custom-favicon' => array(
-			'help' => 'in megabytes',	// TODO
-			'max-upload-size' => 'Max favicon upload size',	// TODO
-		),
 		'force_email_validation' => ' اعتبارسنجی آدرس ایمیل اجباری',
 		'instance-name' => ' نام نمونه',
 		'max-categories' => ' حداکثر تعداد دسته ها برای هر کاربر',

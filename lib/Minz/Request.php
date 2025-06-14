@@ -131,13 +131,6 @@ class Minz_Request {
 		return 0;
 	}
 
-	public static function paramFloat(string $key): float {
-		if (!empty(self::$params[$key]) && is_numeric(self::$params[$key])) {
-			return (float)self::$params[$key];
-		}
-		return 0;
-	}
-
 	/**
 	 * @param bool $plaintext `true` to return special characters without any escaping (unsafe), `false` (default) to XML-encode them
 	 */

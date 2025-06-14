@@ -169,10 +169,6 @@ return array(
 			'help' => 'saniye cinsinden',
 			'number' => 'Oturum açık kalma süresi',
 		),
-		'custom-favicon' => array(
-			'help' => 'in megabytes',	// TODO
-			'max-upload-size' => 'Max favicon upload size',	// TODO
-		),
 		'force_email_validation' => 'E-posta adresi doğrulamasını zorunlu kıl',
 		'instance-name' => 'Örnek adı',
 		'max-categories' => 'Kullanıcı başına maksimum kategori sayısı',
