@@ -193,6 +193,21 @@ function init_update_feed() {
 
 		favicon.src = favicon.dataset.originalIcon;
 	};
+
+	// Discard the icon change when the "Cancel" button is clicked
+	feed_update.querySelectorAll('[type="reset"]').forEach(cancelBtn => {
+		cancelBtn.addEventListener('click', () => {
+			const resetField = feed_update.querySelector('input[name="resetFavicon"]');
+			if (resetField) {
+				resetField.remove();
+			}
+			faviconUpload.value = ''; // Clear uploaded favicon
+			favicon.src = favicon.dataset.initialSrc;
+
+			const isCustomFavicon = favicon.getAttribute('src') !== favicon.dataset.originalIcon;
+			resetFavicon.disabled = !isCustomFavicon;
+		});
+	});
 }
 
 // <slider>

@@ -97,7 +97,7 @@
 				?>
 				<label class="group-name"><?= _t('sub.feed.icon') ?></label>
 				<div class="group-controls">
-					<img class="favicon upload" src="<?= $currentIconUrl ?>" data-original-icon="<?= $originalIconUrl ?>" alt="✇" loading="lazy" />
+					<img class="favicon upload" src="<?= $currentIconUrl ?>" data-initial-src="<?= $currentIconUrl ?>" data-original-icon="<?= $originalIconUrl ?>" alt="✇" loading="lazy" />
 					<input id="favicon-upload" name="newFavicon" type="file" accept="image/*" />
 					<label for="favicon-upload" class="btn"><?= _t('sub.feed.change_favicon') ?></label>
 					<button id="reset-favicon" class="btn"<?= $this->feed->attributeBoolean('customFavicon') ? '' : ' disabled'?>><?= _t('sub.feed.reset_favicon') ?></button>
