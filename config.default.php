@@ -127,7 +127,7 @@ return [
 		'max_registrations' => 1,
 
 		# Max amount of bytes that are allowed for upload of custom favicon
-		'max_favicon_upload_size' => 1 * 1024 * 1024, # 1 MB
+		'max_favicon_upload_size' => 1048576,	# 1 MiB
 	],
 
 	# Options used by cURL when making HTTP requests, e.g. when the SimplePie library retrieves feeds.
