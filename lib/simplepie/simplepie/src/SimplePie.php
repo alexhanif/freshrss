@@ -2093,7 +2093,7 @@ class SimplePie
                 } catch (HttpException $th) {
                     // If the file connection has an error, set SimplePie::error to that and quit
                     $this->error = $th->getMessage();
-                    $this->status_code = $th->getCode();	// FreshRSS https://github.com/simplepie/simplepie/pull/905
+                    $this->status_code = $th->getCode(); // FreshRSS https://github.com/simplepie/simplepie/pull/905
 
                     return !empty($this->data);
                 }
