@@ -155,6 +155,18 @@ function init_update_feed() {
 	const faviconError = feed_update.querySelector("#favicon-error");
 	const favicon = feed_update.querySelector('.favicon');
 
+	function discardIconChange() {
+		const resetField = feed_update.querySelector('input[name="resetFavicon"]');
+		if (resetField) {
+			resetField.remove();
+		}
+		faviconUpload.value = ''; // Clear uploaded favicon
+		favicon.src = favicon.dataset.initialSrc;
+
+		const isCustomFavicon = favicon.getAttribute('src') !== favicon.dataset.originalIcon;
+		resetFavicon.disabled = !isCustomFavicon;
+	}
+
 	faviconUpload.onchange = function () {
 		if (faviconUpload.files.length === 0) {
 			return;
@@ -162,7 +174,7 @@ function init_update_feed() {
 
 		if (faviconUpload.files[0].size > context.max_favicon_upload_size) {
 			faviconError.innerHTML = context.i18n.favicon_size_exceeded;
-			resetFavicon.click();
+			discardIconChange();
 			return;
 		}
 		faviconError.innerHTML = '';
@@ -181,6 +193,7 @@ function init_update_feed() {
 			return;
 		}
 
+		faviconError.innerHTML = '';
 		faviconUpload.value = ''; // Clear uploaded favicon
 		resetFavicon.insertAdjacentHTML('afterend', '<input type="hidden" name="resetFavicon" value="1" />');
 		resetFavicon.disabled = true;
@@ -191,15 +204,8 @@ function init_update_feed() {
 	// Discard the icon change when the "Cancel" button is clicked
 	feed_update.querySelectorAll('[type="reset"]').forEach(cancelBtn => {
 		cancelBtn.addEventListener('click', () => {
-			const resetField = feed_update.querySelector('input[name="resetFavicon"]');
-			if (resetField) {
-				resetField.remove();
-			}
-			faviconUpload.value = ''; // Clear uploaded favicon
-			favicon.src = favicon.dataset.initialSrc;
-
-			const isCustomFavicon = favicon.getAttribute('src') !== favicon.dataset.originalIcon;
-			resetFavicon.disabled = !isCustomFavicon;
+			discardIconChange();
+			faviconError.innerHTML = '';
 		});
 	});
 }
