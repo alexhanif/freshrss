@@ -4,7 +4,7 @@ declare(strict_types=1);
 $mark = FreshRSS_Context::userConf()->mark_when;
 $s = FreshRSS_Context::userConf()->shortcuts;
 $extData = Minz_ExtensionManager::callHook('js_vars', []);
-echo htmlspecialchars(json_encode([
+echo json_encode([
 	'context' => [
 		'anonymous' => !FreshRSS_Auth::hasAccess(),
 		'auto_remove_article' => !!FreshRSS_Context::isAutoRemoveAvailable(),
@@ -83,4 +83,4 @@ echo htmlspecialchars(json_encode([
 		'spinner' => '../themes/icons/spinner.svg',
 	],
 	'extensions' => $extData,
-], JSON_UNESCAPED_UNICODE) ?: '', ENT_NOQUOTES, 'UTF-8');
+], JSON_UNESCAPED_UNICODE | JSON_HEX_TAG);
