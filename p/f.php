@@ -53,5 +53,8 @@ if (!httpConditional($ico_mtime, mt_rand(14, 21) * 86400, 2)) {
 	$ico_content_type = contentType($ico);
 	header('Content-Type: ' . $ico_content_type);
 	header('Content-Disposition: inline; filename="' . $id . '.ico"');
+	if (isset($_GET['t'])) {
+		header('Cache-Control: immutable');
+	}
 	readfile($ico);
 }

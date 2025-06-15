@@ -525,7 +525,7 @@ button[disabled] {
 }
 
 button[disabled]:hover {
-	cursor: not-allowed !important;
+	cursor: not-allowed;
 }
 
 .stick,
