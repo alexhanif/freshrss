@@ -374,7 +374,7 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 					return;
 				}
 				try {
-					$feed->setCustomFavicon(tmpPath: $favicon_path, values: $values);
+					$feed->setCustomFavicon(tmpPath: is_string($favicon_path) ? $favicon_path : '', values: $values);
 				} catch (FreshRSS_UnsupportedImageFormat_Exception $_) {
 					Minz_Request::bad(_t('feedback.sub.feed.favicon.unsupported_format'), $url_redirect);
 					return;
