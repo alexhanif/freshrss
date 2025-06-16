@@ -145,20 +145,24 @@ function init_archiving(parent) {
 }
 
 function init_update_feed() {
-	const feed_update = document.querySelector("div.post#feed_update");
+	const feed_update = document.querySelector('div.post#feed_update');
 	if (!feed_update) {
 		return;
 	}
 
 	const faviconUpload = feed_update.querySelector('#favicon-upload');
-	const resetFavicon = feed_update.querySelector("#reset-favicon");
-	const faviconError = feed_update.querySelector("#favicon-error");
+	const resetFavicon = feed_update.querySelector('#reset-favicon');
+	const faviconError = feed_update.querySelector('#favicon-error');
+	const faviconExt = feed_update.querySelector('#favicon-ext');
 	const favicon = feed_update.querySelector('.favicon');
 
 	function discardIconChange() {
 		const resetField = feed_update.querySelector('input[name="resetFavicon"]');
 		if (resetField) {
 			resetField.remove();
+		}
+		if (faviconExt) {
+			faviconExt.style = '';
 		}
 		faviconUpload.value = ''; // Clear uploaded favicon
 		favicon.src = favicon.dataset.initialSrc;
@@ -177,6 +181,9 @@ function init_update_feed() {
 			discardIconChange();
 			return;
 		}
+		if (faviconExt) {
+			faviconExt.style.display = 'none';
+		}
 		faviconError.innerHTML = '';
 
 		const resetField = feed_update.querySelector('input[name="resetFavicon"]');
@@ -193,6 +200,9 @@ function init_update_feed() {
 			return;
 		}
 
+		if (faviconExt) {
+			faviconExt.style.display = 'none';
+		}
 		faviconError.innerHTML = '';
 		faviconUpload.value = ''; // Clear uploaded favicon
 		resetFavicon.insertAdjacentHTML('afterend', '<input type="hidden" name="resetFavicon" value="1" />');

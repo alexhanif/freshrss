@@ -328,10 +328,8 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 			$favicon_uploaded = $favicon_path !== '';
 
 			$resetFavicon = Minz_Request::paramBoolean('resetFavicon');
-			if ($resetFavicon && $feed->attributeBoolean('customFavicon')) {
-				FreshRSS_Feed::faviconDelete($feed->hashFavicon());
-				$feed->_attribute('customFavicon', false);
-				$feed->resetFaviconHash();
+			if ($resetFavicon) {
+				$feed->resetCustomFavicon();
 			}
 
 			$values = [
@@ -375,18 +373,15 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 					Minz_Request::bad(_t('feedback.sub.feed.favicon.too_large', format_bytes($max_size)), $url_redirect);
 					return;
 				}
-				$contents = file_get_contents(is_string($favicon_path) ? $favicon_path : '');
-				if (!isImgMime(is_string($contents) ? $contents : '')) {
+				try {
+					$feed->setCustomFavicon(tmpPath: $favicon_path, values: $values);
+				} catch (FreshRSS_UnsupportedImageFormat_Exception $_) {
 					Minz_Request::bad(_t('feedback.sub.feed.favicon.unsupported_format'), $url_redirect);
 					return;
-				}
-				$feed->_attribute('customFavicon', true);
-				$values['attributes'] = $feed->attributes();
-				if (!$feedDAO->updateFeed($id, $values)) {
+				} catch (FreshRSS_Feed_Exception $_) {
 					Minz_Request::bad(_t('feedback.sub.feed.error'), $url_redirect);
 					return;
 				}
-				move_uploaded_file(is_string($favicon_path) ? $favicon_path : '', FAVICONS_DIR . $feed->hashFavicon() . '.ico');
 				Minz_Request::good(_t('feedback.sub.feed.updated'), $url_redirect);
 			} elseif ($values['url'] != '' && $feedDAO->updateFeed($id, $values) !== false) {
 				$feed->_categoryId($values['category']);

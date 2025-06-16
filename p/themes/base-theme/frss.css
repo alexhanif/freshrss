@@ -179,6 +179,10 @@ p.error:empty {
 	display: none;
 }
 
+p#favicon-ext {
+	text-decoration: underline;
+}
+
 p.help, .prompt p.help {
 	margin: 0.25rem 0 0.5rem;
 	text-align: left;

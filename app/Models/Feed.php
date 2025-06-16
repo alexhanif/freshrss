@@ -92,12 +92,7 @@ class FreshRSS_Feed extends Minz_Model {
 	public function hash(): string {
 		if ($this->hash == '') {
 			$salt = FreshRSS_Context::systemConf()->salt;
-			$params = $this->url;
-			$curl_params = $this->attributeArray('curl_params');
-			if (is_array($curl_params)) {
-				// Content provided through a proxy may be completely different
-				$params .= is_string($curl_params[CURLOPT_PROXY] ?? null) ? $curl_params[CURLOPT_PROXY] : '';
-			}
+			$params = $this->url . $this->proxyParam();
 			$this->hash = sha1($salt . $params);
 		}
 		return $this->hash;
@@ -107,19 +102,98 @@ class FreshRSS_Feed extends Minz_Model {
 		$this->hashFavicon(skipCache: true);
 	}
 
+	public function proxyParam(): string {
+		$curl_params = $this->attributeArray('curl_params');
+		if (is_array($curl_params)) {
+			// Content provided through a proxy may be completely different
+			return is_string($curl_params[CURLOPT_PROXY] ?? null) ? $curl_params[CURLOPT_PROXY] : '';
+		}
+		return '';
+	}
+
+	/**
+	* Resets the custom favicon to the default one. Also deletes the favicon when allowed by extension.
+	*
+	* @param array|null &$values An array of values for `updateFeed()`. Can be also used when calling `updateFeed()` manually.
+	* @param bool $updateFeed Whether `updateFeed()` should be called immediately. If false, it must be handled manually.
+	*
+	* @return void
+	*
+	* @throws FreshRSS_Feed_Exception
+	*/
+	public function resetCustomFavicon(?array &$values = null, bool $updateFeed = true) {
+		if (!$this->attributeBoolean('customFavicon')) {
+			return;
+		}
+		if (!$this->attributeBoolean('customFaviconDisallowDel')) {
+			FreshRSS_Feed::faviconDelete($this->hashFavicon());
+		}
+		$this->_attribute('customFavicon', false);
+		$this->_attribute('customFaviconExt', '');
+		$this->_attribute('customFaviconDisallowDel', false);
+		if (isset($values)) {
+			$values['attributes'] = $this->attributes();
+			$feedDAO = FreshRSS_Factory::createFeedDao();
+			if ($updateFeed && !$feedDAO->updateFeed($this->id(), $values)) {
+				throw new FreshRSS_Feed_Exception();
+			}
+		}
+		$this->resetFaviconHash();
+	}
+
+	/**
+	* Set a custom favicon for the feed.
+	*
+	* @param string $contents Contents of the favicon file. Optional if $tmpPath is set.
+	* @param string $tmpPath Use only when handling file uploads. (value from `tmp_name` goes here)
+	* @param array|null &$values An array of values for `updateFeed()`. Can be also used when calling `updateFeed()` manually.
+	* @param bool $updateFeed Whether `updateFeed()` should be called immediately. If false, it must be handled manually.
+	* @param string $extName The extension name of the calling extension. Advised to use so that users can know which extension modified the icon
+	* @param bool $disallowDelete Whether the icon can be later deleted when it's being reset. Intended for use by extensions.
+	*
+	* @return void
+	*
+	* @throws FreshRSS_UnsupportedImageFormat_Exception
+	* @throws FreshRSS_Feed_Exception
+	*/
+	public function setCustomFavicon(string $contents = '', string $tmpPath = '', ?array &$values = null, bool $updateFeed = true, string $extName = '', bool $disallowDelete = false) {
+		if ($contents === '' && $tmpPath !== '') {
+			$contents = file_get_contents($tmpPath);
+		}
+
+		if (!isImgMime($contents)) {
+			throw new FreshRSS_UnsupportedImageFormat_Exception();
+		}
+
+		$this->_attribute('customFavicon', true);
+		$this->_attribute('customFaviconExt', $extName);
+		$this->_attribute('customFaviconDisallowDel', $disallowDelete);
+		if (isset($values)) {
+			$values['attributes'] = $this->attributes();
+			$feedDAO = FreshRSS_Factory::createFeedDao();
+			if ($updateFeed && !$feedDAO->updateFeed($this->id(), $values)) {
+				throw new FreshRSS_Feed_Exception();
+			}
+		}
+
+		$newPath = FAVICONS_DIR . $this->hashFavicon(skipCache: true) . '.ico';
+		if ($tmpPath !== '') {
+			move_uploaded_file($tmpPath, $newPath);
+			return;
+		}
+		file_put_contents($newPath, $contents);
+	}
+
 	public function hashFavicon(bool $skipCache = false): string {
 		if ($this->hashFavicon == '' || $skipCache) {
 			$salt = FreshRSS_Context::systemConf()->salt;
 			$params = '';
 			if ($this->attributeBoolean('customFavicon')) {
-				$params = $this->id . Minz_User::name();
+				$current = $this->id . Minz_User::name();
+				$hookParams = Minz_ExtensionManager::callHook('custom_favicon_hash', $this);
+				$params = isset($hookParams) ? $hookParams : $current;
 			} else {
-				$params = $this->website(fallback: true);
-				$curl_params = $this->attributeArray('curl_params');
-				if (is_array($curl_params)) {
-					// Content provided through a proxy may be completely different
-					$params .= is_string($curl_params[CURLOPT_PROXY] ?? null) ? $curl_params[CURLOPT_PROXY] : '';
-				}
+				$params = $this->website(fallback: true) . $this->proxyParam();
 			}
 			$this->hashFavicon = hash('crc32b', $salt . $params);
 		}
@@ -300,7 +374,9 @@ class FreshRSS_Feed extends Minz_Model {
 	public function favicon(): string {
 		$hash = $this->hashFavicon();
 		$url = '/f.php?h=' . $hash;
-		if ($this->attributeBoolean('customFavicon')) {
+		if ($this->attributeBoolean('customFavicon')
+			// when the below attribute is set, icon won't be changing frequently so cache buster is not needed
+			&& !$this->attributeBoolean('customFaviconDisallowDel')) {
 			$url .= '&t=' . @filemtime(DATA_PATH . '/favicons/' . $hash . '.ico');
 		}
 		return Minz_Url::display($url);

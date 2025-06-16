@@ -102,6 +102,10 @@ final class Minz_ExtensionManager {
 			'list' => [],
 			'signature' => 'PassArguments',
 		],
+		'custom_favicon_hash' => [ // function(FreshRSS_Feed $feed): ?string
+			'list' => [],
+			'signature' => 'PassArguments',
+		],
 	];
 
 	/** Remove extensions and hooks from a previous initialisation */
@@ -362,7 +366,10 @@ final class Minz_ExtensionManager {
 			return self::callOneToOne($hook_name, $args[0] ?? null);
 		} elseif ($signature === 'PassArguments') {
 			foreach (self::$hook_list[$hook_name]['list'] as $function) {
-				call_user_func($function, ...$args);
+				$result = call_user_func($function, ...$args);
+				if (isset($result)) {
+					return $result;
+				}
 			}
 		} elseif ($signature === 'NoneToString') {
 			return self::callHookString($hook_name);

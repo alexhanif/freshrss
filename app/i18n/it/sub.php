@@ -75,6 +75,7 @@ return array(
 			'help' => 'File XML (sottoinsieme di dati. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">Leggi la documentazione</a>)',
 			'label' => 'Esporta come OPML',
 		),
+		'favicon_changed_by_ext' => 'The icon has been set by the <b>%s</b> extension.',	// TODO
 		'filteractions' => array(
 			'_' => 'Azioni di filtro',
 			'help' => 'Scrivi un filtro di ricerca per riga. Per li operatori <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">vedi la documentazione</a>.',

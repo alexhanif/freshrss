@@ -1005,7 +1005,7 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 
 		if ($feedDAO->deleteFeed($feed_id)) {
 			// TODO: Delete old favicon (non-custom)
-			if ($feed->attributeBoolean('customFavicon')) {
+			if ($feed->attributeBoolean('customFavicon') && !$feed->attributeBoolean('customFaviconDisallowDel')) {
 				FreshRSS_Feed::faviconDelete($feed->hashFavicon());
 			}
 
