@@ -40,6 +40,30 @@
 		<fieldset>
 			<legend><?= _t('sub.feed.information') ?></legend>
 			<div class="form-group">
+				<?php
+					$currentIconUrl = $this->feed->favicon();
+					$originalIconUrl = '';
+					if ($this->feed->attributeBoolean('customFavicon')) {
+						$this->feed->_attribute('customFavicon', false);
+						$this->feed->resetFaviconHash();
+					}
+					$originalIconUrl = $this->feed->favicon();
+					$this->feed->_attribute('customFavicon', $currentIconUrl !== $originalIconUrl);
+					$this->feed->resetFaviconHash();
+				?>
+				<label class="group-name"><?= _t('sub.feed.icon') ?></label>
+				<div class="group-controls">
+					<img class="favicon upload" src="<?= $currentIconUrl ?>" data-initial-src="<?= $currentIconUrl ?>" data-original-icon="<?= $originalIconUrl ?>" alt="✇" loading="lazy" />
+					<input id="favicon-upload" name="newFavicon" type="file" accept="image/*" />
+					<label for="favicon-upload" class="btn"><?= _t('sub.feed.change_favicon') ?></label>
+					<button id="reset-favicon" class="btn"<?= $this->feed->attributeBoolean('customFavicon') ? '' : ' disabled'?>><?= _t('sub.feed.reset_favicon') ?></button>
+					<?php if (!empty($this->feed->attributeString('customFaviconExt'))) { ?>
+						<p id="favicon-ext"><?= _t('sub.feed.favicon_changed_by_ext', htmlspecialchars($this->feed->attributeString('customFaviconExt'), ENT_NOQUOTES, 'UTF-8')) ?></p>
+					<?php } ?>
+					<p id="favicon-error" class="error"></p>
+				</div>
+			</div>
+			<div class="form-group">
 				<label class="group-name" for="name"><?= _t('sub.feed.title') ?></label>
 				<div class="group-controls">
 					<input type="text" name="name" id="name" class="w100" value="<?= $this->feed->name(true) ?>" required="required" />
@@ -81,30 +105,6 @@
 					</option>
 					<?php } ?>
 					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<?php
-					$currentIconUrl = $this->feed->favicon();
-					$originalIconUrl = '';
-					if ($this->feed->attributeBoolean('customFavicon')) {
-						$this->feed->_attribute('customFavicon', false);
-						$this->feed->resetFaviconHash();
-					}
-					$originalIconUrl = $this->feed->favicon();
-					$this->feed->_attribute('customFavicon', $currentIconUrl !== $originalIconUrl);
-					$this->feed->resetFaviconHash();
-				?>
-				<label class="group-name"><?= _t('sub.feed.icon') ?></label>
-				<div class="group-controls">
-					<img class="favicon upload" src="<?= $currentIconUrl ?>" data-initial-src="<?= $currentIconUrl ?>" data-original-icon="<?= $originalIconUrl ?>" alt="✇" loading="lazy" />
-					<input id="favicon-upload" name="newFavicon" type="file" accept="image/*" />
-					<label for="favicon-upload" class="btn"><?= _t('sub.feed.change_favicon') ?></label>
-					<button id="reset-favicon" class="btn"<?= $this->feed->attributeBoolean('customFavicon') ? '' : ' disabled'?>><?= _t('sub.feed.reset_favicon') ?></button>
-					<?php if (!empty($this->feed->attributeString('customFaviconExt'))) { ?>
-						<p id="favicon-ext"><?= _t('sub.feed.favicon_changed_by_ext', htmlspecialchars($this->feed->attributeString('customFaviconExt'), ENT_NOQUOTES, 'UTF-8')) ?></p>
-					<?php } ?>
-					<p id="favicon-error" class="error"></p>
 				</div>
 			</div>
 			<div class="form-group">
