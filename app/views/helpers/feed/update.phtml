@@ -102,7 +102,7 @@
 					<label for="favicon-upload" class="btn"><?= _t('sub.feed.change_favicon') ?></label>
 					<button id="reset-favicon" class="btn"<?= $this->feed->attributeBoolean('customFavicon') ? '' : ' disabled'?>><?= _t('sub.feed.reset_favicon') ?></button>
 					<?php if (!empty($this->feed->attributeString('customFaviconExt'))) { ?>
-						<p id="favicon-ext"><?= _t('sub.feed.favicon_changed_by_ext', $this->feed->attributeString('customFaviconExt')) ?></p>
+						<p id="favicon-ext"><?= _t('sub.feed.favicon_changed_by_ext', htmlspecialchars($this->feed->attributeString('customFaviconExt'), ENT_NOQUOTES, 'UTF-8')) ?></p>
 					<?php } ?>
 					<p id="favicon-error" class="error"></p>
 				</div>
