@@ -189,6 +189,12 @@ return [
 		'form' => 'simple',
 		'method' => 'GET',
 	],
+	'readeck' => [
+		'url' => '~URL~/api/bookmarks?url=~LINK~',  
+		'transform' => [],  
+		'form' => 'advanced',  
+		'method' => 'POST',  
+	],
 	'reddit' => [
 		'url' => 'https://www.reddit.com/submit?url=~LINK~',
 		'transform' => ['rawurlencode'],

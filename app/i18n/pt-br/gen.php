@@ -233,6 +233,7 @@ return array(
 		'pocket' => 'Pocket',	// IGNORE
 		'print' => 'Imprimir',
 		'raindrop' => 'Raindrop.io',	// IGNORE
+		'readeck' => 'Readeck', // IGNORE
 		'reddit' => 'Reddit',	// IGNORE
 		'shaarli' => 'Shaarli',	// IGNORE
 		'telegram' => 'Telegram',	// IGNORE
