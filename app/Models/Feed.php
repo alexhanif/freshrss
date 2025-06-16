@@ -207,7 +207,7 @@ class FreshRSS_Feed extends Minz_Model {
 			} else {
 				$params = $this->website(fallback: true) . $this->proxyParam();
 			}
-			$this->hashFavicon = hash('crc32b', $salt . is_string($params) ? $params : '');
+			$this->hashFavicon = hash('crc32b', $salt . (is_string($params) ? $params : ''));
 		}
 		return $this->hashFavicon;
 	}
