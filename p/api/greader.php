@@ -332,7 +332,6 @@ final class GReaderAPI {
 			self::internalServerError();
 		}
 		header('Content-Type: application/json; charset=UTF-8');
-		$salt = FreshRSS_Context::systemConf()->salt;
 		$faviconsUrl = Minz_Url::display('/f.php?', '', true);
 		$faviconsUrl = str_replace('/api/greader.php/reader/api/0/subscription', '', $faviconsUrl);	//Security if base_url is not set properly
 		$subscriptions = [];
@@ -353,7 +352,7 @@ final class GReaderAPI {
 					//'firstitemmsec' => 0,
 					'url' => htmlspecialchars_decode($feed->url(), ENT_QUOTES),
 					'htmlUrl' => htmlspecialchars_decode($feed->website(), ENT_QUOTES),
-					'iconUrl' => $faviconsUrl . hash('crc32b', $salt . $feed->url()),
+					'iconUrl' => $faviconsUrl . $feed->hashFavicon(),
 				];
 			}
 		}
@@ -396,11 +395,15 @@ final class GReaderAPI {
 				}
 			}
 			$c_name = htmlspecialchars($c_name, ENT_COMPAT, 'UTF-8');
-			$categoryDAO = FreshRSS_Factory::createCategoryDao();
-			$cat = $categoryDAO->searchByName($c_name);
-			$addCatId = $cat === null ? 0 : $cat->id();
-			if ($addCatId === 0) {
-				$addCatId = $categoryDAO->addCategory(['name' => $c_name]) ?: FreshRSS_CategoryDAO::DEFAULTCATEGORYID;
+			if (in_array($c_name, ['', 'Uncategorized', _t('gen.short.default_category')], true)) {
+				$addCatId = FreshRSS_CategoryDAO::DEFAULTCATEGORYID;
+			} else {
+				$categoryDAO = FreshRSS_Factory::createCategoryDao();
+				$cat = $categoryDAO->searchByName($c_name);
+				$addCatId = $cat === null ? 0 : $cat->id();
+				if ($addCatId === 0) {
+					$addCatId = $categoryDAO->addCategory(['name' => $c_name]) ?: FreshRSS_CategoryDAO::DEFAULTCATEGORYID;
+				}
 			}
 		} elseif (str_starts_with($remove, 'user/-/label/')) {
 			$addCatId = FreshRSS_CategoryDAO::DEFAULTCATEGORYID;
@@ -576,7 +579,7 @@ final class GReaderAPI {
 
 	/**
 	 * @param 'A'|'c'|'f'|'s' $type
-	 * @phpstan-return array{'A'|'c'|'f'|'s'|'t',int,int,FreshRSS_BooleanSearch}
+	 * @return array{'A'|'c'|'f'|'s'|'t',int,int,FreshRSS_BooleanSearch}
 	 */
 	private static function streamContentsFilters(string $type, int|string $streamId,
 		string $filter_target, string $exclude_target, int $start_time, int $stop_time): array {
@@ -586,19 +589,19 @@ final class GReaderAPI {
 					$feedDAO = FreshRSS_Factory::createFeedDao();
 					$streamId = htmlspecialchars($streamId, ENT_COMPAT, 'UTF-8');
 					$feed = $feedDAO->searchByUrl($streamId);
-					$streamId = $feed == null ? 0 : $feed->id();
+					$streamId = $feed === null ? -1 : $feed->id();
 				}
 				break;
 			case 'c':	//category or label
 				$categoryDAO = FreshRSS_Factory::createCategoryDao();
 				$streamId = htmlspecialchars((string)$streamId, ENT_COMPAT, 'UTF-8');
 				$cat = $categoryDAO->searchByName($streamId);
-				if ($cat != null) {
+				if ($cat !== null) {
 					$streamId = $cat->id();
 				} else {
 					$tagDAO = FreshRSS_Factory::createTagDao();
 					$tag = $tagDAO->searchByName($streamId);
-					if ($tag != null) {
+					if ($tag !== null) {
 						$type = 't';
 						$streamId = $tag->id();
 					} else {
@@ -1095,7 +1098,12 @@ final class GReaderAPI {
 										}
 									}
 								} elseif ($pathInfos[8] === 'label') {
-									$include_target = $pathInfos[9];
+									$include_target = empty($_SERVER['REQUEST_URI']) || !is_string($_SERVER['REQUEST_URI']) ? '' : $_SERVER['REQUEST_URI'];
+									if (preg_match('#/reader/api/0/stream/contents/user/[^/+]/label/([A-Za-z0-9\'!*()%$_.~+-]+)#', $include_target, $matches)) {
+										$include_target = urldecode($matches[1]);
+									} else {
+										$include_target = $pathInfos[9];
+									}
 									self::streamContents($pathInfos[8], $include_target, $start_time, $stop_time,
 										$count, $order, $filter_target, $exclude_target, $continuation);
 								}

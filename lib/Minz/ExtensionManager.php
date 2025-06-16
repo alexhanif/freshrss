@@ -22,6 +22,10 @@ final class Minz_ExtensionManager {
 	 * @var array<string,array{'list':array<callable>,'signature':'NoneToNone'|'NoneToString'|'OneToOne'|'PassArguments'}>
 	 */
 	private static array $hook_list = [
+		'api_misc' => [	// function(): void
+			'list' => [],
+			'signature' => 'NoneToNone',
+		],
 		'check_url_before_add' => [	// function($url) -> Url | null
 			'list' => [],
 			'signature' => 'OneToOne',
@@ -268,7 +272,13 @@ final class Minz_ExtensionManager {
 				spl_autoload_register([$ext, 'autoload']);
 			}
 			$ext->enable();
-			$ext->init();
+			try {
+				$ext->init();
+			} catch (Minz_Exception $e) {	// @phpstan-ignore catch.neverThrown (Thrown by extensions)
+				Minz_Log::warning('Error while enabling extension ' . $ext->getName() . ': ' . $e->getMessage());
+				$ext->disable();
+				unset(self::$ext_list_enabled[$ext_name]);
+			}
 		}
 	}
 
@@ -422,5 +432,19 @@ final class Minz_ExtensionManager {
 		foreach (self::$hook_list[$hook_name]['list'] ?? [] as $function) {
 			call_user_func($function);
 		}
+	}
+
+	/**
+	 * Call a hook which takes no argument and returns nothing.
+	 * Same as callHookVoid but only calls the first extension.
+	 *
+	 * @param string $hook_name is the hook to call.
+	 */
+	public static function callHookUnique(string $hook_name): bool {
+		foreach (self::$hook_list[$hook_name]['list'] ?? [] as $function) {
+			call_user_func($function);
+			return true;
+		}
+		return false;
 	}
 }

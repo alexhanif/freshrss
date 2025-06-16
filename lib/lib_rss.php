@@ -1,10 +1,6 @@
 <?php
 declare(strict_types=1);
 
-if (version_compare(PHP_VERSION, FRESHRSS_MIN_PHP_VERSION, '<')) {
-	die(sprintf('FreshRSS error: FreshRSS requires PHP %s+!', FRESHRSS_MIN_PHP_VERSION));
-}
-
 if (!function_exists('mb_strcut')) {
 	function mb_strcut(string $str, int $start, ?int $length = null, string $encoding = 'UTF-8'): string {
 		return substr($str, $start, $length) ?: '';
@@ -348,9 +344,12 @@ function customSimplePie(array $attributes = [], array $curl_options = []): \Sim
 	]);
 	$simplePie->rename_attributes(['id', 'class']);
 	$simplePie->strip_attributes(array_merge($simplePie->strip_attributes, [
-		'autoplay', 'class', 'onload', 'onunload', 'onclick', 'ondblclick', 'onmousedown', 'onmouseup',
-		'onmouseover', 'onmousemove', 'onmouseout', 'onfocus', 'onblur',
-		'onkeypress', 'onkeydown', 'onkeyup', 'onselect', 'onchange', 'seamless', 'sizes', 'srcset']));
+		'alink', 'autoplay', 'background', 'bgcolor', 'class', 'form', 'formaction',
+		'link', 'onblur', 'onchange', 'onclick', 'ondblclick', 'onfocus',
+		'onkeydown', 'onkeypress', 'onkeyup', 'onload', 'onmousedown', 'onmousemove',
+		'onmouseout', 'onmouseover', 'onmouseup', 'onselect', 'onunload',
+		'seamless', 'sizes', 'srcdoc', 'srcset', 'text', 'vlink',
+	]));
 	$simplePie->add_attributes([
 		'audio' => ['controls' => 'controls', 'preload' => 'none'],
 		'iframe' => [
@@ -369,7 +368,11 @@ function customSimplePie(array $attributes = [], array $curl_options = []): \Sim
 		'iframe' => 'src',
 		'img' => [
 			'longdesc',
-			'src'
+			'src',
+		],
+		'image' => [
+			'longdesc',
+			'src',
 		],
 		'input' => 'src',
 		'ins' => 'cite',
@@ -567,7 +570,18 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 
 	curl_setopt_array($ch, FreshRSS_Context::systemConf()->curl_options);
 
-	if (isset($attributes['curl_params']) && is_array($attributes['curl_params'])) {
+	if (is_array($attributes['curl_params'] ?? null)) {
+		$options = $attributes['curl_params'];
+		if (is_array($options[CURLOPT_HTTPHEADER] ?? null)) {
+			// Remove headers problematic for security
+			$options[CURLOPT_HTTPHEADER] = array_filter($options[CURLOPT_HTTPHEADER],
+				fn($header) => is_string($header) && !preg_match('/^(Remote-User|X-WebAuth-User)\\s*:/i', $header));
+			// Add Accept header if it is not set
+			if (preg_grep('/^Accept\\s*:/i', $options[CURLOPT_HTTPHEADER]) === false) {
+				$options[CURLOPT_HTTPHEADER][] = 'Accept: ' . $accept;
+			}
+			$attributes['curl_params'] = $options;
+		}
 		curl_setopt_array($ch, $attributes['curl_params']);
 	}
 
@@ -622,16 +636,20 @@ function validateEmailAddress(string $email): bool {
 
 /**
  * Add support of image lazy loading
- * Move content from src attribute to data-original
+ * Move content from src/poster attribute to data-original
  * @param string $content is the text we want to parse
  */
 function lazyimg(string $content): string {
 	return preg_replace([
-			'/<((?:img|iframe)[^>]+?)src="([^"]+)"([^>]*)>/i',
-			"/<((?:img|iframe)[^>]+?)src='([^']+)'([^>]*)>/i",
+			'/<((?:img|image|iframe)[^>]+?)src="([^"]+)"([^>]*)>/i',
+			"/<((?:img|image|iframe)[^>]+?)src='([^']+)'([^>]*)>/i",
+			'/<((?:video)[^>]+?)poster="([^"]+)"([^>]*)>/i',
+			"/<((?:video)[^>]+?)poster='([^']+)'([^>]*)>/i",
 		], [
 			'<$1src="' . Minz_Url::display('/themes/icons/grey.gif') . '" data-original="$2"$3>',
 			"<$1src='" . Minz_Url::display('/themes/icons/grey.gif') . "' data-original='$2'$3>",
+			'<$1poster="' . Minz_Url::display('/themes/icons/grey.gif') . '" data-original="$2"$3>',
+			"<$1poster='" . Minz_Url::display('/themes/icons/grey.gif') . "' data-original='$2'$3>",
 		],
 		$content
 	) ?? '';
@@ -639,11 +657,9 @@ function lazyimg(string $content): string {
 
 /** @return numeric-string */
 function uTimeString(): string {
-	$t = @gettimeofday();
-	$sec = is_numeric($t['sec']) ? (int)$t['sec'] : 0;
-	$usec = is_numeric($t['usec']) ? (int)$t['usec'] : 0;
-	$result = ((string)$sec) . str_pad((string)$usec, 6, '0', STR_PAD_LEFT);
-	return ctype_digit($result) ? $result : '0';
+	$t = gettimeofday();
+	// @phpstan-ignore return.type
+	return ((string)$t['sec']) . str_pad((string)$t['usec'], 6, '0', STR_PAD_LEFT);
 }
 
 function invalidateHttpCache(string $username = ''): bool {
@@ -801,6 +817,12 @@ function checkTrustedIP(): bool {
 }
 
 function httpAuthUser(bool $onlyTrusted = true): string {
+	$auths = array_intersect_key($_SERVER, ['REMOTE_USER' => '', 'REDIRECT_REMOTE_USER' => '', 'HTTP_REMOTE_USER' => '', 'HTTP_X_WEBAUTH_USER' => '']);
+	if (count($auths) > 1) {
+		Minz_Log::warning('Multiple HTTP authentication headers!');
+		return '';
+	}
+
 	if (!empty($_SERVER['REMOTE_USER']) && is_string($_SERVER['REMOTE_USER'])) {
 		return $_SERVER['REMOTE_USER'];
 	}
@@ -904,6 +926,14 @@ function recursive_unlink(string $dir): bool {
 		return true;
 	}
 
+	if (is_link($dir)) {
+		if (PHP_OS_FAMILY === "Windows") {
+			return rmdir($dir);
+		}
+
+		return unlink($dir);
+	}
+
 	$files = array_diff(scandir($dir) ?: [], ['.', '..']);
 	foreach ($files as $filename) {
 		$filename = $dir . '/' . $filename;
@@ -981,6 +1011,7 @@ function errorMessageInfo(string $errorTitle, string $error = ''): string {
 	}
 
 	header("Content-Security-Policy: default-src 'self'");
+	header('Referrer-Policy: same-origin');
 
 	return <<<MSG
 	<!DOCTYPE html><html><header><title>HTTP 500: {$errorTitle}</title></header><body>

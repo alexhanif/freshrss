@@ -63,6 +63,7 @@ class FreshRSS_Feed extends Minz_Model {
 	private int $ttl = self::TTL_DEFAULT;
 	private bool $mute = false;
 	private string $hash = '';
+	private string $hashFavicon = '';
 	private string $lockPath = '';
 	private string $hubUrl = '';
 	private string $selfUrl = '';
@@ -91,9 +92,29 @@ class FreshRSS_Feed extends Minz_Model {
 	public function hash(): string {
 		if ($this->hash == '') {
 			$salt = FreshRSS_Context::systemConf()->salt;
-			$this->hash = hash('crc32b', $salt . $this->url);
+			$params = $this->url;
+			$curl_params = $this->attributeArray('curl_params');
+			if (is_array($curl_params)) {
+				// Content provided through a proxy may be completely different
+				$params .= is_string($curl_params[CURLOPT_PROXY] ?? null) ? $curl_params[CURLOPT_PROXY] : '';
+			}
+			$this->hash = sha1($salt . $params);
 		}
 		return $this->hash;
+	}
+
+	public function hashFavicon(): string {
+		if ($this->hashFavicon == '') {
+			$salt = FreshRSS_Context::systemConf()->salt;
+			$params = $this->website(fallback: true);
+			$curl_params = $this->attributeArray('curl_params');
+			if (is_array($curl_params)) {
+				// Content provided through a proxy may be completely different
+				$params .= is_string($curl_params[CURLOPT_PROXY] ?? null) ? $curl_params[CURLOPT_PROXY] : '';
+			}
+			$this->hashFavicon = hash('crc32b', $salt . $params);
+		}
+		return $this->hashFavicon;
 	}
 
 	public function url(bool $includeCredentials = true): string {
@@ -133,10 +154,19 @@ class FreshRSS_Feed extends Minz_Model {
 	public function name(bool $raw = false): string {
 		return $raw || $this->name != '' ? $this->name : (preg_replace('%^https?://(www[.])?%i', '', $this->url) ?? '');
 	}
-	/** @return string HTML-encoded URL of the Web site of the feed */
-	public function website(): string {
-		return $this->website;
+
+	/**
+	 * @param bool $fallback true to return the URL of the feed if the Web site is blank
+	 * @return string HTML-encoded URL of the Web site of the feed
+	 */
+	public function website(bool $fallback = false): string {
+		$url = $this->website;
+		if ($fallback && !preg_match('%^https?://.%i', $url)) {
+			$url = $this->url;
+		}
+		return $url;
 	}
+
 	public function description(): string {
 		return $this->description;
 	}
@@ -227,16 +257,13 @@ class FreshRSS_Feed extends Minz_Model {
 
 	public function faviconPrepare(bool $force = false): void {
 		require_once(LIB_PATH . '/favicons.php');
-		$url = $this->website;
-		if ($url == '') {
-			$url = $this->url;
-		}
-		$txt = FAVICONS_DIR . $this->hash() . '.txt';
+		$url = $this->website(fallback: true);
+		$txt = FAVICONS_DIR . $this->hashFavicon() . '.txt';
 		if (@file_get_contents($txt) !== $url) {
 			file_put_contents($txt, $url);
 		}
 		if (FreshRSS_Context::$isCli || $force) {
-			$ico = FAVICONS_DIR . $this->hash() . '.ico';
+			$ico = FAVICONS_DIR . $this->hashFavicon() . '.ico';
 			$ico_mtime = @filemtime($ico);
 			$txt_mtime = @filemtime($txt);
 			if ($txt_mtime != false &&
@@ -251,12 +278,15 @@ class FreshRSS_Feed extends Minz_Model {
 	}
 
 	public static function faviconDelete(string $hash): void {
+		if (!ctype_xdigit($hash)) {
+			return;
+		}
 		$path = DATA_PATH . '/favicons/' . $hash;
 		@unlink($path . '.ico');
 		@unlink($path . '.txt');
 	}
 	public function favicon(): string {
-		return Minz_Url::display('/f.php?' . $this->hash());
+		return Minz_Url::display('/f.php?' . $this->hashFavicon());
 	}
 
 	public function _id(int $value): void {
@@ -268,6 +298,7 @@ class FreshRSS_Feed extends Minz_Model {
 	 */
 	public function _url(string $value, bool $validate = true): void {
 		$this->hash = '';
+		$this->hashFavicon = '';
 		$url = $value;
 		if ($validate) {
 			$url = checkUrl($url);
@@ -297,6 +328,7 @@ class FreshRSS_Feed extends Minz_Model {
 		$this->name = $value == '' ? '' : trim($value);
 	}
 	public function _website(string $value, bool $validate = true): void {
+		$this->hashFavicon = '';
 		if ($validate) {
 			$value = checkUrl($value);
 		}
@@ -308,9 +340,15 @@ class FreshRSS_Feed extends Minz_Model {
 	public function _description(string $value): void {
 		$this->description = $value == '' ? '' : $value;
 	}
-	public function _lastUpdate(int $value): void {
-		$this->lastUpdate = $value;
+
+	/**
+	 * @param int|numeric-string $value
+	 * 32-bit systems provide a string and will fail in year 2038
+	 */
+	public function _lastUpdate(int|string $value): void {
+		$this->lastUpdate = (int)$value;
 	}
+
 	public function _priority(int $value): void {
 		$this->priority = $value;
 	}
@@ -719,8 +757,25 @@ class FreshRSS_Feed extends Minz_Model {
 		}
 
 		$xpath = new DOMXPath($doc);
-		$json = @$xpath->evaluate('normalize-space(' . $xPathToJson . ')');
-		return is_string($json) ? $json : null;
+		$jsonFragments = @$xpath->evaluate($xPathToJson);
+		if ($jsonFragments === false) {
+			return null;
+		}
+		if (is_string($jsonFragments)) {
+			return $jsonFragments;
+		}
+		if ($jsonFragments instanceof DOMNodeList && $jsonFragments->length > 0) {
+			// If the result is a list, then aggregate as a JSON array
+			$result = [];
+			foreach ($jsonFragments as $node) {
+				$json = json_decode($node->textContent, true);
+				if (json_last_error() === JSON_ERROR_NONE && is_array($json)) {
+					$result[] = $json;
+				}
+			}
+			return json_encode($result, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?: null;
+		}
+		return null;
 	}
 
 	public function loadJson(): ?\SimplePie\SimplePie {
@@ -886,10 +941,13 @@ class FreshRSS_Feed extends Minz_Model {
 
 				if ($item['title'] != '' || $item['content'] != '' || $item['link'] != '') {
 					// HTML-encoding/escaping of the relevant fields (all except 'content')
-					foreach (['author', 'guid', 'link', 'thumbnail', 'timestamp', 'tags', 'title'] as $key) {
-						if (!empty($item[$key]) && is_string($item[$key])) {
-							$item[$key] = Minz_Helper::htmlspecialchars_utf8($item[$key]);
+					foreach (['author', 'guid', 'link', 'thumbnail', 'timestamp', 'title'] as $key) {
+						if (isset($item[$key])) {
+							$item[$key] = htmlspecialchars($item[$key], ENT_COMPAT, 'UTF-8');
 						}
+					}
+					if (isset($item['tags'])) {
+						$item['tags'] = Minz_Helper::htmlspecialchars_utf8($item['tags']);
 					}
 					// CDATA protection
 					$item['content'] = str_replace(']]>', ']]&gt;', $item['content']);
@@ -1011,7 +1069,7 @@ class FreshRSS_Feed extends Minz_Model {
 	}
 
 	private function faviconRebuild(): void {
-		FreshRSS_Feed::faviconDelete($this->hash());
+		FreshRSS_Feed::faviconDelete($this->hashFavicon());
 		$this->faviconPrepare(true);
 	}
 

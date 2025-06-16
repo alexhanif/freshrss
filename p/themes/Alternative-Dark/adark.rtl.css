@@ -209,7 +209,7 @@ th {
 
 .btn {
 	margin: 0;
-	padding: 5px 10px;
+	padding: 0.25rem 0.5rem;
 	background: var(--background-color-dark);
 	color: var(--font-color-middle);
 	font-size: 0.9rem;
@@ -274,6 +274,18 @@ th {
 	box-shadow: none;
 }
 
+.spinner {
+	filter: invert(1);
+}
+
+a:hover > .spinner {
+	filter: invert(1) brightness(2);
+}
+
+.flux .item.manage .read:hover .icon.spinner {
+	filter: invert(1) grayscale(0.8) brightness(1.7);
+}
+
 /*=== switches */
 .switch.active {
 	background-color: var(--contrast-background-color);
@@ -295,25 +307,30 @@ th {
 	line-height: 2.5;
 }
 
-.nav-list .item a {
+.nav-list .item a,
+.nav-list .item .as-link {
 	color: var(--font-color-middle);
 }
 
-.nav-list .item a:hover {
+.nav-list .item a:hover,
+.nav-list .item .as-link:hover {
 	background-color: var(--background-color-hover);
 	color: var(--font-color-light);
 }
 
-.nav-list .item.active a {
+.nav-list .item.active a,
+.nav-list .item.active .as-link {
 	background-color: var(--background-color-dark);
 	color: var(--font-color-light);
 }
 
-.nav-list .item > a {
+.nav-list .item > a,
+.nav-list .item > .as-link {
 	padding: 0 1rem;
 }
 
-.nav-list a:hover {
+.nav-list a:hover,
+.nav-list .as-link:hover {
 	text-decoration: none;
 }
 
@@ -369,8 +386,11 @@ th {
 	margin-bottom: 0.5rem;
 }
 
+.dropdown-menu .item > a:focus,
 .dropdown-menu .item > a:hover,
+.dropdown-menu .item > button:focus:not([disabled]),
 .dropdown-menu .item > button:hover:not([disabled]),
+.dropdown-menu .item > label:focus:not(.noHover),
 .dropdown-menu .item > label:hover:not(.noHover) {
 	background: var(--background-color-hover);
 	color: var(--font-color-light);
@@ -924,7 +944,7 @@ kbd {
 }
 
 /*=== "Load more" part */
-#bigMarkAsRead {
+#bigMarkAsRead.big {
 	background: var(--background-color-dark);
 	color: var(--font-color-contrast);
 	text-align: center;

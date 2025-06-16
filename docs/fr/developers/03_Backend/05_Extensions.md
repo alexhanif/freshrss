@@ -171,9 +171,9 @@ Your class will benefit from four methods to redefine:
 	`getName()`, `getEntrypoint()`, `getPath()` (allows you to retrieve the
 	path to your extension), `getAuthor()`, `getDescription()`,
 	`getVersion()`, `getType()`.
-* `getFileUrl($filename, $type)` will return the URL to a file in the
-	`static` directory. The first parameter is the name of the file (without
-	`static /`), the second is the type of file to be used (`css` or `js`).
+* `getFileUrl(string $filename, bool $isStatic = true): string` will return the URL to a file in the `static` directory.
+	The first parameter is the name of the file (without `static/`).
+	Set `$isStatic` to true for user-independent files, and to `false` for files saved in a user’s own directory.
 * `registerController($base_name)` will tell Minz to take into account the
 	given controller in the routing system. The controller must be located in
 	your `Controllers` directory, the name of the file must be `<base_name>Controller.php` and the name of the
@@ -218,6 +218,8 @@ final class HelloWorldExtension extends Minz_Extension
 
 The following events are available:
 
+* `api_misc` (`function(): void`) : permet aux extensions d’avoir leur propre point d’accès API
+	sur `/api/misc.php/Nom%20Extension/` ou `/api/misc.php?ext=Nom%20Extension`.
 * `check_url_before_add` (`function($url) -> Url | null`): will be executed
 	every time a URL is added. The URL itself will be passed as
 	parameter. This way a website known to have feeds which doesn’t advertise
