@@ -7,6 +7,7 @@
 	--frss-font-color-grey-dark: #666;
 	--frss-font-color-grey-light: #aaa;
 	--frss-font-color-light: #fff;
+	--frss-font-color-disabled: #a6a6a6;
 	--frss-background-color-error-transparent: #ff000040;
 	--frss-font-color-error: #f00;
 
@@ -218,8 +219,8 @@ img.favicon {
 }
 
 img.favicon.upload {
-	transform: scale(1.5);
-	margin-right: 0.3rem;
+	width: 2rem;
+	height: 2rem;
 }
 
 .content_thin figure,
@@ -525,10 +526,10 @@ input#favicon-upload {
 /*=== Buttons */
 button[disabled] {
 	opacity: 0.5;
-	color: #a6a6a6;
+	color: var(--frss-font-color-disabled);
 }
 
-button[disabled]:hover {
+button[disabled]:hover, input[disabled]:hover {
 	cursor: not-allowed;
 }
 
