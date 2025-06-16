@@ -367,7 +367,7 @@ final class Minz_ExtensionManager {
 		} elseif ($signature === 'PassArguments') {
 			foreach (self::$hook_list[$hook_name]['list'] as $function) {
 				$result = call_user_func($function, ...$args);
-				if (isset($result)) {
+				if ($result !== null) {
 					return $result;
 				}
 			}

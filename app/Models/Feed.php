@@ -114,11 +114,8 @@ class FreshRSS_Feed extends Minz_Model {
 	/**
 	* Resets the custom favicon to the default one. Also deletes the favicon when allowed by extension.
 	*
-	*
-	* @param array{url?:string,kind?:int,category?:int,name?:string,website?: string,description?:string,lastUpdate?:int,priority?:int,
-	* pathEntries?:string,httpAuth?:string,error?:int,ttl?:int,attributes?:string | array<string, mixed>
-	* }|null
-	* &$values An array of values for `updateFeed()`. Can be also used when calling `updateFeed()` manually.
+	* @param array{'url'?:string,'kind'?:int,'category'?:int,'name'?:string,'website'?:string,'description'?:string,'lastUpdate'?:int,'priority'?:int,
+	* 	'pathEntries'?:string,'httpAuth'?:string,'error'?:int,'ttl'?:int,'attributes'?:string|array<string,mixed>} &$values &$values
 	*
 	* @param bool $updateFeed Whether `updateFeed()` should be called immediately. If false, it must be handled manually.
 	*
@@ -152,10 +149,8 @@ class FreshRSS_Feed extends Minz_Model {
 	* @param string $contents Contents of the favicon file. Optional if $tmpPath is set.
 	* @param string $tmpPath Use only when handling file uploads. (value from `tmp_name` goes here)
 	*
-	* @param array{url?:string,kind?:int,category?:int,name?:string,website?: string,description?:string,lastUpdate?:int,priority?:int,
-	* pathEntries?:string,httpAuth?:string,error?:int,ttl?:int,attributes?:string | array<string, mixed>
-	* }|null
-	* &$values An array of values for `updateFeed()`. Can be also used when calling `updateFeed()` manually.
+	* @param array{'url'?:string,'kind'?:int,'category'?:int,'name'?:string,'website'?:string,'description'?:string,'lastUpdate'?:int,'priority'?:int,
+	* 	'pathEntries'?:string,'httpAuth'?:string,'error'?:int,'ttl'?:int,'attributes'?:string|array<string,mixed>} &$values &$values
 	*
 	* @param bool $updateFeed Whether `updateFeed()` should be called immediately. If false, it must be handled manually.
 	* @param string $extName The extension name of the calling extension. Advised to use so that users can know which extension modified the icon
@@ -212,7 +207,7 @@ class FreshRSS_Feed extends Minz_Model {
 			} else {
 				$params = $this->website(fallback: true) . $this->proxyParam();
 			}
-			$this->hashFavicon = hash('crc32b', $salt . $params);
+			$this->hashFavicon = hash('crc32b', $salt . is_string($params) ? $params : '');
 		}
 		return $this->hashFavicon;
 	}
