@@ -133,7 +133,7 @@ class FreshRSS_Feed extends Minz_Model {
 		$this->_attribute('customFavicon', false);
 		$this->_attribute('customFaviconExt', '');
 		$this->_attribute('customFaviconDisallowDel', false);
-		if (isset($values)) {
+		if ($values !== null) {
 			$values['attributes'] = $this->attributes();
 			$feedDAO = FreshRSS_Factory::createFeedDao();
 			if ($updateFeed && !$feedDAO->updateFeed($this->id(), $values)) {
@@ -180,7 +180,7 @@ class FreshRSS_Feed extends Minz_Model {
 		$this->_attribute('customFavicon', true);
 		$this->_attribute('customFaviconExt', $extName);
 		$this->_attribute('customFaviconDisallowDel', $disallowDelete);
-		if (isset($values)) {
+		if ($values !== null) {
 			$values['attributes'] = $this->attributes();
 			$feedDAO = FreshRSS_Factory::createFeedDao();
 			if ($updateFeed && !$feedDAO->updateFeed($this->id(), $values)) {
