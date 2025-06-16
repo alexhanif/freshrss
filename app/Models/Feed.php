@@ -156,7 +156,14 @@ class FreshRSS_Feed extends Minz_Model {
 	* @throws FreshRSS_UnsupportedImageFormat_Exception
 	* @throws FreshRSS_Feed_Exception
 	*/
-	public function setCustomFavicon(string $contents = '', string $tmpPath = '', ?array &$values = null, bool $updateFeed = true, string $extName = '', bool $disallowDelete = false) {
+	public function setCustomFavicon(
+		string $contents = '',
+		string $tmpPath = '',
+		?array &$values = null,
+		bool $updateFeed = true,
+		string $extName = '',
+		bool $disallowDelete = false
+	) {
 		if ($contents === '' && $tmpPath !== '') {
 			$contents = file_get_contents($tmpPath);
 		}
