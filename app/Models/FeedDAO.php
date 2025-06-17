@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+require_once __DIR__ . '/FeedHelper.php';
+
 class FreshRSS_FeedDAO extends Minz_ModelPdo {
 
 	protected function addColumn(string $name): bool {
@@ -83,11 +85,12 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 
 	public function addFeedObject(FreshRSS_Feed $feed): int|false {
 		// Add feed only if we don’t find it in DB
-		$feed_search = $this->searchByUrl($feed->url());
+		$normalized_url = FeedHelper::normalizeUrl($feed->url());
+$feed_search = $this->searchByUrl($normalized_url);
 		if ($feed_search === null) {
 			$values = [
 				'id' => $feed->id(),
-				'url' => $feed->url(),
+				'url' => FeedHelper::normalizeUrl($feed->url()),
 				'kind' => $feed->kind(),
 				'category' => $feed->categoryId(),
 				'name' => $feed->name(true),
@@ -150,6 +153,7 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 		if (isset($valuesTmp['name'])) {
 			$valuesTmp['name'] = mb_strcut(trim($valuesTmp['name']), 0, FreshRSS_DatabaseDAO::LENGTH_INDEX_UNICODE, 'UTF-8');
 		}
+		$valuesTmp['url'] = FeedHelper::normalizeUrl($valuesTmp['url']);
 		if (isset($valuesTmp['url'])) {
 			$valuesTmp['url'] = safe_ascii($valuesTmp['url']);
 		}
@@ -334,6 +338,7 @@ SQL;
 	}
 
 	public function searchByUrl(string $url): ?FreshRSS_Feed {
+	$url = FeedHelper::normalizeUrl($url);
 		$sql = 'SELECT * FROM `_feed` WHERE url=:url';
 		$res = $this->fetchAssoc($sql, [':url' => $url]);
 		if (!is_array($res)) {
