@@ -156,7 +156,7 @@ class FreshRSS_Feed extends Minz_Model {
 	* @param string $extName The extension name of the calling extension. Advised to use so that users can know which extension modified the icon
 	* @param bool $disallowDelete Whether the icon can be later deleted when it's being reset. Intended for use by extensions.
 	*
-	* @return void
+	* @return string Path where the favicon can be found. Useful for checking if the favicon already exists, before downloading it for example.
 	*
 	* @throws FreshRSS_UnsupportedImageFormat_Exception
 	* @throws FreshRSS_Feed_Exception
