@@ -203,7 +203,7 @@ class FreshRSS_Feed extends Minz_Model {
 			if ($this->attributeBoolean('customFavicon')) {
 				$current = $this->id . Minz_User::name();
 				$hookParams = Minz_ExtensionManager::callHook('custom_favicon_hash', $this);
-				$params = isset($hookParams) ? $hookParams : $current;
+				$params = $hookParams !== null ? $hookParams : $current;
 			} else {
 				$params = $this->website(fallback: true) . $this->proxyParam();
 			}
