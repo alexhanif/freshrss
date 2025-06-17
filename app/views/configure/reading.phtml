@@ -23,8 +23,8 @@
 						}
 						foreach ($viewModes as $mode):
 						?>
-							<option value="<?= htmlspecialchars($mode->id()) ?>"<?= FreshRSS_Context::userConf()->view_mode === $mode->id() ? ' selected="selected"' : '' ?>>
-								<?= htmlspecialchars($mode->name()) ?>
+							<option value="<?= htmlspecialchars($mode->id(), ENT_COMPAT, 'UTF-8') ?>"<?= FreshRSS_Context::userConf()->view_mode === $mode->id() ? ' selected="selected"' : '' ?>>
+								<?= htmlspecialchars($mode->name(), ENT_NOQUOTES, 'UTF-8') ?>
 							</option>
 						<?php endforeach; ?>
 					</select>
