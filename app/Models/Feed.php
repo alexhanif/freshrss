@@ -168,12 +168,13 @@ class FreshRSS_Feed extends Minz_Model {
 		bool $updateFeed = true,
 		string $extName = '',
 		bool $disallowDelete = false
-	) {
+	): string {
 		if ($contents === '' && $tmpPath !== '') {
 			$contents = file_get_contents($tmpPath);
 		}
 
-		if (!isImgMime(is_string($contents) ? $contents : '')) {
+		$attributesOnly = $contents === '' && $tmpPath === '';
+		if (!$attributesOnly && !isImgMime(is_string($contents) ? $contents : '')) {
 			throw new FreshRSS_UnsupportedImageFormat_Exception();
 		}
 
@@ -188,12 +189,15 @@ class FreshRSS_Feed extends Minz_Model {
 			}
 		}
 
+		require_once(LIB_PATH . '/favicons.php');
 		$newPath = FAVICONS_DIR . $this->hashFavicon(skipCache: true) . '.ico';
 		if ($tmpPath !== '') {
 			move_uploaded_file($tmpPath, $newPath);
-			return;
+		} elseif ($contents !== '') {
+			file_put_contents($newPath, $contents);
 		}
-		file_put_contents($newPath, $contents);
+
+		return $newPath;
 	}
 
 	public function hashFavicon(bool $skipCache = false): string {
