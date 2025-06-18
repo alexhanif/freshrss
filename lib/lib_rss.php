@@ -1010,7 +1010,7 @@ function errorMessageInfo(string $errorTitle, string $error = ''): string {
 		$details = "<pre>{$details}</pre>";
 	}
 
-	header("Content-Security-Policy: default-src 'self'");
+	header("Content-Security-Policy: default-src 'self'; frame-ancestors 'none'");
 	header('Referrer-Policy: same-origin');
 
 	return <<<MSG
