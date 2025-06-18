@@ -153,10 +153,11 @@ class FreshRSS_Feed extends Minz_Model {
 	* 	'pathEntries'?:string,'httpAuth'?:string,'error'?:int,'ttl'?:int,'attributes'?:string|array<string,mixed>} &$values &$values
 	*
 	* @param bool $updateFeed Whether `updateFeed()` should be called immediately. If false, it must be handled manually.
-	* @param string $extName The extension name of the calling extension. Advised to use so that users can know which extension modified the icon
+	* @param string $extName The extension name of the calling extension. Advised to use so that users can know which extension modified the icon, as well as to avoid changing icons that shouldn't be
 	* @param bool $disallowDelete Whether the icon can be later deleted when it's being reset. Intended for use by extensions.
+	* @param bool $overrideCustomIcon Whether a custom favicon set by a user can be overridden.
 	*
-	* @return string Path where the favicon can be found. Useful for checking if the favicon already exists, before downloading it for example.
+	* @return string|null Path where the favicon can be found. Useful for checking if the favicon already exists, before downloading it for example.
 	*
 	* @throws FreshRSS_UnsupportedImageFormat_Exception
 	* @throws FreshRSS_Feed_Exception
@@ -167,8 +168,9 @@ class FreshRSS_Feed extends Minz_Model {
 		?array &$values = null,
 		bool $updateFeed = true,
 		string $extName = '',
-		bool $disallowDelete = false
-	): string {
+		bool $disallowDelete = false,
+		bool $overrideCustomIcon = false
+	): ?string {
 		if ($contents === '' && $tmpPath !== '') {
 			$contents = file_get_contents($tmpPath);
 		}
@@ -178,9 +180,27 @@ class FreshRSS_Feed extends Minz_Model {
 			throw new FreshRSS_UnsupportedImageFormat_Exception();
 		}
 
+		$oldHash = '';
+		$oldDisallowDelete = false;
+		if ($this->attributeBoolean('customFavicon')) {
+			/* If $overrideCustomFavicon is true, custom favicons set by extensions can be overridden,
+			 * but not ones explicitly set by the user */
+			if (!$overrideCustomIcon && empty($this->attributeString('customFaviconExt'))) {
+				return null;
+			}
+			$oldHash = $this->hashFavicon(skipCache: true);
+			$oldDisallowDelete = $this->attributeBoolean('customFaviconDisallowDel');
+		}
 		$this->_attribute('customFavicon', true);
 		$this->_attribute('customFaviconExt', $extName);
 		$this->_attribute('customFaviconDisallowDel', $disallowDelete);
+
+		require_once(LIB_PATH . '/favicons.php');
+		$newPath = FAVICONS_DIR . $this->hashFavicon(skipCache: true) . '.ico';
+		if ($attributesOnly && !file_exists($newPath)) {
+			$updateFeed = false;
+		}
+
 		if ($values !== null) {
 			$values['attributes'] = $this->attributes();
 			$feedDAO = FreshRSS_Factory::createFeedDao();
@@ -189,12 +209,14 @@ class FreshRSS_Feed extends Minz_Model {
 			}
 		}
 
-		require_once(LIB_PATH . '/favicons.php');
-		$newPath = FAVICONS_DIR . $this->hashFavicon(skipCache: true) . '.ico';
 		if ($tmpPath !== '') {
 			move_uploaded_file($tmpPath, $newPath);
 		} elseif ($contents !== '') {
 			file_put_contents($newPath, $contents);
+		}
+
+		if ($oldHash !== '' && !$oldDisallowDelete) {
+			FreshRSS_Feed::faviconDelete($oldHash);
 		}
 
 		return $newPath;
