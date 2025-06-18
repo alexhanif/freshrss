@@ -153,7 +153,7 @@ class FreshRSS_Feed extends Minz_Model {
 	* 	'pathEntries'?:string,'httpAuth'?:string,'error'?:int,'ttl'?:int,'attributes'?:string|array<string,mixed>} &$values &$values
 	*
 	* @param bool $updateFeed Whether `updateFeed()` should be called immediately. If false, it must be handled manually.
-	* @param string $extName The extension name of the calling extension. Advised to use so that users can know which extension modified the icon, as well as to avoid changing icons that shouldn't be
+	* @param string $extName The extension name of the calling extension.
 	* @param bool $disallowDelete Whether the icon can be later deleted when it's being reset. Intended for use by extensions.
 	* @param bool $overrideCustomIcon Whether a custom favicon set by a user can be overridden.
 	*
