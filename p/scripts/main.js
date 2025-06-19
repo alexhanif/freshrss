@@ -282,6 +282,10 @@ function send_mark_read_queue(queue, asRead, callback) {
 		}
 	}).catch(resp => {
 		for (let i = queue.length - 1; i >= 0; i--) {
+			const div = document.getElementById('flux_' + queue[i]);
+			div.querySelectorAll('a.read > .icon').forEach(icon => {
+				icon.outerHTML = div.classList.contains('not_read') ? context.icons.unread : context.icons.read;
+			});
 			delete pending_entries['flux_' + queue[i]];
 		}
 		badAjax(resp.status == 403);
