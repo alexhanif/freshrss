@@ -124,8 +124,7 @@ class FreshRSS_Feed extends Minz_Model {
 	* @throws FreshRSS_Feed_Exception
 	*/
 	public function resetCustomFavicon(?array &$values = null, bool $updateFeed = true) {
-		$this->customFaviconExt();
-		if (!$this->attributeBoolean('customFavicon')) {
+		if (!$this->customFavicon()) {
 			return;
 		}
 		if (!$this->attributeBoolean('customFaviconDisallowDel')) {
@@ -183,11 +182,10 @@ class FreshRSS_Feed extends Minz_Model {
 
 		$oldHash = '';
 		$oldDisallowDelete = false;
-		$customFaviconExt = $this->customFaviconExt();
-		if ($this->attributeBoolean('customFavicon')) {
+		if ($this->customFavicon()) {
 			/* If $overrideCustomFavicon is true, custom favicons set by extensions can be overridden,
 			 * but not ones explicitly set by the user */
-			if (!$overrideCustomIcon && $customFaviconExt !== null) {
+			if (!$overrideCustomIcon && $this->customFaviconExt() === null) {
 				return null;
 			}
 			$oldHash = $this->hashFavicon(skipCache: true);
@@ -228,7 +226,6 @@ class FreshRSS_Feed extends Minz_Model {
 	* Checks if the feed has a custom favicon set by an extension.
 	* Additionally, it also checks if the extension that set the icon is still enabled
 	* And if not, it resets attributes related to custom favicons.
-	* Must be called before $this->attributeBoolean('customFavicon') if relevant.
 	*
 	* @return string|null The name of the extension that set the icon.
 	*/
@@ -243,12 +240,16 @@ class FreshRSS_Feed extends Minz_Model {
 		return $customFaviconExt;
 	}
 
+	public function customFavicon(): bool {
+		$this->customFaviconExt();
+		return $this->attributeBoolean('customFavicon') ?? false;
+	}
+
 	public function hashFavicon(bool $skipCache = false): string {
 		if ($this->hashFavicon == '' || $skipCache) {
 			$salt = FreshRSS_Context::systemConf()->salt;
 			$params = '';
-			$customFaviconExt = $this->customFaviconExt();
-			if ($this->attributeBoolean('customFavicon')) {
+			if ($this->customFavicon()) {
 				$current = $this->id . Minz_User::name();
 				$hookParams = Minz_ExtensionManager::callHook('custom_favicon_hash', $this);
 				$params = $hookParams !== null ? $hookParams : $current;
@@ -400,7 +401,7 @@ class FreshRSS_Feed extends Minz_Model {
 
 	public function faviconPrepare(bool $force = false): void {
 		require_once(LIB_PATH . '/favicons.php');
-		if ($this->attributeBoolean('customFavicon')) {
+		if ($this->customFavicon()) {
 			return;
 		}
 		$url = $this->website(fallback: true);
@@ -434,7 +435,7 @@ class FreshRSS_Feed extends Minz_Model {
 	public function favicon(): string {
 		$hash = $this->hashFavicon();
 		$url = '/f.php?h=' . $hash;
-		if ($this->attributeBoolean('customFavicon')
+		if ($this->customFavicon()
 			// when the below attribute is set, icon won't be changing frequently so cache buster is not needed
 			&& !$this->attributeBoolean('customFaviconDisallowDel')) {
 			$url .= '&t=' . @filemtime(DATA_PATH . '/favicons/' . $hash . '.ico');
@@ -1222,7 +1223,7 @@ class FreshRSS_Feed extends Minz_Model {
 	}
 
 	private function faviconRebuild(): void {
-		if ($this->attributeBoolean('customFavicon')) {
+		if ($this->customFavicon()) {
 			return;
 		}
 		FreshRSS_Feed::faviconDelete($this->hashFavicon());
