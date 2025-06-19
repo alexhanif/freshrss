@@ -30,6 +30,10 @@ final class Minz_ExtensionManager {
 			'list' => [],
 			'signature' => 'OneToOne',
 		],
+		'custom_favicon_hash' => [ // function(FreshRSS_Feed $feed): ?string
+			'list' => [],
+			'signature' => 'PassArguments',
+		],
 		'entries_favorite' => [	// function(array $ids, bool $is_favorite): void
 			'list' => [],
 			'signature' => 'PassArguments',
@@ -99,10 +103,6 @@ final class Minz_ExtensionManager {
 			'signature' => 'PassArguments',
 		],
 		'simplepie_before_init' => [	// function(\SimplePie\SimplePie $simplePie, FreshRSS_Feed $feed): void
-			'list' => [],
-			'signature' => 'PassArguments',
-		],
-		'custom_favicon_hash' => [ // function(FreshRSS_Feed $feed): ?string
 			'list' => [],
 			'signature' => 'PassArguments',
 		],
@@ -453,5 +453,14 @@ final class Minz_ExtensionManager {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Check if a extension is enabled
+	 *
+	 * @param string $ext_name is the extension's name as provided in metadata.json
+	 */
+	public static function isExtensionEnabled(string $ext_name): bool {
+		return isset(self::$ext_list_enabled[$ext_name]);
 	}
 }
