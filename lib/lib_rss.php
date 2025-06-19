@@ -508,6 +508,46 @@ function enforceHttpEncoding(string $html, string $contentType = ''): string {
 }
 
 /**
+ * Set an HTML base URL to the HTML content.
+ * @param string $html the raw downloaded HTML content
+ * @param string $href the HTML base URL
+ * @return string an HTML string
+ */
+function enforceHtmlBase(string $html, string $href): string {
+	$doc = new DOMDocument();
+	$doc->loadHTML($html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING);
+	if ($doc->documentElement === null) {
+		return '';
+	}
+	$xpath = new DOMXPath($doc);
+	$bases = $xpath->evaluate('//base');
+	if ($bases instanceof DOMNodeList && $bases->length > 0) {
+		foreach ($bases as $base) {
+			if ($base instanceof DOMElement) {
+				$base->setAttribute('href', $href);
+			}
+		}
+	} else {
+		$base = $doc->createElement('base');
+		if ($base === false) {
+			return $html;
+		}
+		$base->setAttribute('href', $href);
+		$head = null;
+		$heads = $xpath->evaluate('//head');
+		if ($heads instanceof DOMNodeList && $heads->length > 0) {
+			$head = $heads->item(0);
+		}
+		if ($head instanceof DOMElement) {
+			$head->insertBefore($base, $head->firstChild);
+		} else {
+			$doc->insertBefore($base, $doc->documentElement->firstChild);
+		}
+	}
+	return $doc->saveHTML() ?: $html;
+}
+
+/**
  * @param string $type {html,json,opml,xml}
  * @param array<string,mixed> $attributes
  * @param array<int,mixed> $curl_options
@@ -605,7 +645,6 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 	curl_close($ch);
 
 	$fail = $c_status != 200 || $c_error != '' || $body === false;
-
 	if ($fail) {
 		Minz_Log::warning('Error fetching content: HTTP code ' . $c_status . ': ' . $c_error . ' ' . $url);
 		$body = '';
@@ -616,6 +655,7 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 		$body = trim($body, " \n\r\t\v");	// Do not trim \x00 to avoid breaking a BOM
 		if ($type !== 'json') {
 			$body = enforceHttpEncoding($body, $c_content_type);
+			$body = enforceHtmlBase($body, $c_effective_url);
 		}
 	}
 
