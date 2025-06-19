@@ -50,6 +50,7 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 			'default-src' => "'self'",
 			'frame-src' => '*',
 			'img-src' => '* data:',
+			'frame-ancestors' => "'none'",
 			'media-src' => '*',
 		]);
 
@@ -138,6 +139,7 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 			'default-src' => "'self'",
 			'frame-src' => '*',
 			'img-src' => '* data:',
+			'frame-ancestors' => "'none'",
 			'media-src' => '*',
 		]);
 	}
