@@ -16,7 +16,12 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 	}
 
 	public static function userExists(string $username): bool {
-		return @file_exists(USERS_PATH . '/' . $username . '/config.php');
+		$config_path = USERS_PATH . '/' . $username . '/config.php';
+		if (!file_exists($config_path) && file_exists($config_path . '.bak.php')) {
+			Minz_Log::warning('Config for user ' . $username . ' not found. Attempting to restore from backup.', ADMIN_LOG);
+			copy($config_path . '.bak.php', $config_path);
+		}
+		return @file_exists($config_path);
 	}
 
 	/** @param array<string,mixed> $userConfigUpdated */
