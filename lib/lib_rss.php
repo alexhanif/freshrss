@@ -508,7 +508,7 @@ function enforceHttpEncoding(string $html, string $contentType = ''): string {
 }
 
 /**
- * Set an HTML base URL to the HTML content.
+ * Set an HTML base URL to the HTML content if there is none.
  * @param string $html the raw downloaded HTML content
  * @param string $href the HTML base URL
  * @return string an HTML string
@@ -521,13 +521,7 @@ function enforceHtmlBase(string $html, string $href): string {
 	}
 	$xpath = new DOMXPath($doc);
 	$bases = $xpath->evaluate('//base');
-	if ($bases instanceof DOMNodeList && $bases->length > 0) {
-		foreach ($bases as $base) {
-			if ($base instanceof DOMElement) {
-				$base->setAttribute('href', $href);
-			}
-		}
-	} else {
+	if (!($bases instanceof DOMNodeList) || $bases->length === 0) {
 		$base = $doc->createElement('base');
 		if ($base === false) {
 			return $html;
