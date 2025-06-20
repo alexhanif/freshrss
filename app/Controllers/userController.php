@@ -19,7 +19,9 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 		$config_path = USERS_PATH . '/' . $username . '/config.php';
 		if (!@file_exists($config_path) && @file_exists($config_path . '.bak.php')) {
 			Minz_Log::warning('Config for user ' . $username . ' not found. Attempting to restore from backup.', ADMIN_LOG);
-			copy($config_path . '.bak.php', $config_path);
+			if (!copy($config_path . '.bak.php', $config_path)) {
+				@unlink($config_path);
+			}
 		}
 		return @file_exists($config_path);
 	}
