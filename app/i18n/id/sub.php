@@ -231,8 +231,8 @@ return array(
 		'title_add' => 'Tambah umpan RSS',
 		'ttl' => 'Jangan perbarui secara otomatis lebih banyak daripada',
 		'unicityCriteria' => array(
-			'_' => 'Article unicity criteria',	// TODO
-			'forced' => '<span title="Block the unicity criteria, even when the feed has duplicate articles">forced</span>',	// TODO
+			'_' => 'Kriteria Keunikan Artikel',
+			'forced' => '<span title="Blokir kriteria keunikan meski umpan memiliki artikel duplikat">paksa</span>',
 			'help' => 'Relevan untuk umpan yang tidak valid.<br />⚠️ Mengubah ini akan membuat artikel duplikat.',
 			'id' => 'ID standar (baku)',
 			'link' => 'Tautan',
