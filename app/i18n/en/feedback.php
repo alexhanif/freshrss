@@ -50,7 +50,7 @@ return array(
 			'ko' => '%s cannot be enabled. <a href="%s">Check FreshRSS logs</a> for details.',
 			'ok' => '%s is now enabled',
 		),
-		'Invalid view mode “%s”! Fall back to “Normal view”.',
+		'invalid_view_mode' => 'Invalid view mode “%s”! Fall back to “Normal view”.',
 		'no_access' => 'You have no access on %s',
 		'not_enabled' => '%s is not enabled',
 		'not_found' => '%s does not exist',

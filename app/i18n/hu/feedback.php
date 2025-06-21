@@ -50,7 +50,7 @@ return array(
 			'ko' => 'A(z) %s nem kapcsolható be. <a href="%s">nézd meg a FreshRSS log-okat</a> a részletekért.',
 			'ok' => 'A(z) %s bekapcsolása sikeres',
 		),
-		'Invalid view mode “%s”! Fall back to “Normal view”.',	// TODO
+		'invalid_view_mode' => 'Invalid view mode “%s”! Fall back to “Normal view”.',	// TODO
 		'no_access' => 'Nincs hozzáférésed ehhez: %s',
 		'not_enabled' => 'A(z) %s nincs bekapcsolva',
 		'not_found' => 'A(z) %s nem létezik',
