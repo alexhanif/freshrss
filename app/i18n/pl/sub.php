@@ -75,6 +75,7 @@ return array(
 			'help' => 'Plik XML (podzbiór danych. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">Zobacz dokumentację</a>)',
 			'label' => 'Eksportuj OPML',
 		),
+		'ext_favicon' => 'Ustaw automatycznie',
 		'favicon_changed_by_ext' => 'Ikona została ustawiona przez rozszerzenie <b>%s</b>.',
 		'filteractions' => array(
 			'_' => 'Akcje filtrowania',

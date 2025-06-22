@@ -75,6 +75,7 @@ return array(
 			'help' => 'XML dosyası (veri alt kümesi. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">Belgelere bakın</a>)',
 			'label' => 'OPML olarak dışa aktar',
 		),
+		'ext_favicon' => 'Set automatically',	// TODO
 		'favicon_changed_by_ext' => 'The icon has been set by the <b>%s</b> extension.',	// TODO
 		'filteractions' => array(
 			'_' => 'Filtre eylemleri',

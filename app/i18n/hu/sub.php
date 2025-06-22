@@ -75,6 +75,7 @@ return array(
 			'help' => 'XML fájl (adat részhalmaz. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">Lásd dokumentáció</a>)',
 			'label' => 'Exportálás OPML formátumban',
 		),
+		'ext_favicon' => 'Set automatically',	// TODO
 		'favicon_changed_by_ext' => 'The icon has been set by the <b>%s</b> extension.',	// TODO
 		'filteractions' => array(
 			'_' => 'Szűrő műveletek',

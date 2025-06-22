@@ -75,6 +75,7 @@ return array(
 			'help' => 'XML file (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',
 			'label' => 'Export as OPML',
 		),
+		'ext_favicon' => 'Set automatically',
 		'favicon_changed_by_ext' => 'The icon has been set by the <b>%s</b> extension.',
 		'filteractions' => array(
 			'_' => 'Filter actions',

@@ -167,6 +167,10 @@ h6 {
 	display: none !important;
 }
 
+.hidden {
+	display: none;
+}
+
 /*=== Paragraphs */
 p {
 	margin: 1rem 0 0.5rem;

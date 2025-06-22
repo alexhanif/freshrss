@@ -5,7 +5,7 @@
 		return;
 	}
 ?>
-<div class="post" id="feed_update">
+<div class="post" id="feed_update" data-feed-id="<?= $this->feed->id() ?>">
 	<h1><?= $this->feed->name() ?></h1>
 
 	<div>
@@ -50,6 +50,7 @@
 					$originalIconUrl = $this->feed->favicon();
 					$this->feed->_attribute('customFavicon', $currentIconUrl !== $originalIconUrl);
 					$this->feed->resetFaviconHash();
+					$ext_url = Minz_ExtensionManager::callHook('custom_favicon_btn_url', $this->feed);
 				?>
 				<label class="group-name"><?= _t('sub.feed.icon') ?></label>
 				<div class="group-controls">
@@ -57,9 +58,10 @@
 					<input id="favicon-upload" name="newFavicon" type="file" accept="image/*" />
 					<label for="favicon-upload" class="btn"><?= _t('sub.feed.change_favicon') ?></label>
 					<button id="reset-favicon" class="btn"<?= $this->feed->customFavicon() ? '' : ' disabled'?>><?= _t('sub.feed.reset_favicon') ?></button>
-					<?php if ($this->feed->customFaviconExt() !== null) { ?>
-						<p id="favicon-ext"><?= _t('sub.feed.favicon_changed_by_ext', htmlspecialchars($this->feed->customFaviconExt(), ENT_NOQUOTES, 'UTF-8')) ?></p>
+					<?php if ($ext_url !== null) { ?>
+						<button id="favicon-ext-btn" class="btn" data-extension-url="<?= $ext_url ?>"><?= _t('sub.feed.ext_favicon') ?></button>
 					<?php } ?>
+					<p id="favicon-ext" class="<?= $this->feed->customFaviconExt() ?: 'hidden' ?>"><?= _t('sub.feed.favicon_changed_by_ext', htmlspecialchars($this->feed->customFaviconExt() ?? '', ENT_NOQUOTES, 'UTF-8')) ?></p>
 					<p id="favicon-error" class="error"></p>
 				</div>
 			</div>

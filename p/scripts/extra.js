@@ -154,17 +154,26 @@ function init_update_feed() {
 	const resetFavicon = feed_update.querySelector('#reset-favicon');
 	const faviconError = feed_update.querySelector('#favicon-error');
 	const faviconExt = feed_update.querySelector('#favicon-ext');
+	const extension = faviconExt.querySelector('b');
+	const faviconExtBtn = feed_update.querySelector('#favicon-ext-btn');
 	const favicon = feed_update.querySelector('.favicon');
 
+	function clearUploadedIcon() {
+		faviconUpload.value = '';
+	}
 	function discardIconChange() {
 		const resetField = feed_update.querySelector('input[name="resetFavicon"]');
 		if (resetField) {
 			resetField.remove();
 		}
-		if (faviconExt) {
-			faviconExt.style = '';
+		if (faviconExtBtn) {
+			faviconExtBtn.disabled = false;
+			extension.innerText = extension.dataset.initialExt ?? extension.innerText;
 		}
-		faviconUpload.value = ''; // Clear uploaded favicon
+		if (extension.innerText == '') {
+			faviconExt.classList.add('hidden');
+		}
+		clearUploadedIcon();
 		favicon.src = favicon.dataset.initialSrc;
 
 		const isCustomFavicon = favicon.getAttribute('src') !== favicon.dataset.originalIcon;
@@ -181,9 +190,11 @@ function init_update_feed() {
 			discardIconChange();
 			return;
 		}
-		if (faviconExt) {
-			faviconExt.style.display = 'none';
+		if (faviconExtBtn) {
+			faviconExtBtn.disabled = false;
+			extension.innerText = extension.dataset.initialExt ?? extension.innerText;
 		}
+		faviconExt.classList.add('hidden');
 		faviconError.innerHTML = '';
 
 		const resetField = feed_update.querySelector('input[name="resetFavicon"]');
@@ -199,12 +210,14 @@ function init_update_feed() {
 		if (resetFavicon.disabled) {
 			return;
 		}
-
-		if (faviconExt) {
-			faviconExt.style.display = 'none';
+		if (faviconExtBtn) {
+			faviconExtBtn.disabled = false;
+			extension.innerText = extension.dataset.initialExt ?? extension.innerText;
 		}
+
+		faviconExt.classList.add('hidden');
 		faviconError.innerHTML = '';
-		faviconUpload.value = ''; // Clear uploaded favicon
+		clearUploadedIcon();
 		resetFavicon.insertAdjacentHTML('afterend', '<input type="hidden" name="resetFavicon" value="1" />');
 		resetFavicon.disabled = true;
 
@@ -218,6 +231,55 @@ function init_update_feed() {
 			faviconError.innerHTML = '';
 		});
 	});
+
+	if (faviconExtBtn) {
+		faviconExtBtn.onclick = function (e) {
+			e.preventDefault();
+			faviconExtBtn.disabled = true;
+			fetch(faviconExtBtn.dataset.extensionUrl, {
+				method: "POST",
+				body: new URLSearchParams({
+					'_csrf': context.csrf,
+					'extBtn': true,
+					'id': feed_update.dataset.feedId
+				}),
+			}).then(resp => {
+				if (!resp.ok) {
+					faviconExtBtn.disabled = false;
+					return Promise.reject(resp);
+				}
+				return resp.json();
+			}).then(json => {
+				clearUploadedIcon();
+				resetFavicon.disabled = false;
+				faviconError.innerHTML = '';
+				faviconExt.classList.remove('hidden');
+				extension.dataset.initialExt = extension.innerText;
+				extension.innerText = json.extName;
+				favicon.src = json.iconUrl;
+			});
+		};
+		faviconExtBtn.form.onsubmit = async function (e) {
+			// The button was clicked if it's disabled
+			if (faviconExtBtn.disabled) {
+				e.preventDefault();
+				faviconExtBtn.form.querySelectorAll('[type="submit"]').forEach(el => {
+					el.disabled = true;
+				});
+				await fetch(faviconExtBtn.dataset.extensionUrl, {
+					method: "POST",
+					body: new URLSearchParams({
+						'_csrf': context.csrf,
+						'extBtn': true,
+						'updateIcon': true,
+						'id': feed_update.dataset.feedId
+					}),
+				});
+				faviconExtBtn.form.onsubmit = null;
+				faviconExtBtn.form.submit();
+			}
+		};
+	}
 }
 
 // <slider>
