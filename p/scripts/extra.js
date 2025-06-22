@@ -251,6 +251,10 @@ function init_update_feed() {
 				return resp.json();
 			}).then(json => {
 				clearUploadedIcon();
+				const resetField = feed_update.querySelector('input[name="resetFavicon"]');
+				if (resetField) {
+					resetField.remove();
+				}
 				resetFavicon.disabled = false;
 				faviconError.innerHTML = '';
 				faviconExt.classList.remove('hidden');
