@@ -66,7 +66,7 @@
 	</head>
 	<body class="<?= Minz_Request::actionName() ?>">
 <?php
-	if (!Minz_Request::paramBoolean('ajax')) {
+	if (!Minz_Request::isAjax()) {
 		flush();
 		$this->partial('header');
 	}

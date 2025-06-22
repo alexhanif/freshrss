@@ -649,7 +649,7 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 			Minz_Error::error(404);
 		}
 
-		if (Minz_Request::paramBoolean('ajax')) {
+		if (Minz_Request::isAjax()) {
 			$this->view->_layout(null);
 		}
 

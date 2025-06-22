@@ -83,7 +83,7 @@ class FreshRSS_category_Controller extends FreshRSS_ActionController {
 	 * This action updates the given category.
 	 */
 	public function updateAction(): void {
-		if (Minz_Request::paramBoolean('ajax')) {
+		if (Minz_Request::isAjax()) {
 			$this->view->_layout(null);
 		}
 
@@ -279,7 +279,7 @@ class FreshRSS_category_Controller extends FreshRSS_ActionController {
 
 			$ok = $category->refreshDynamicOpml();
 
-			if (Minz_Request::paramBoolean('ajax')) {
+			if (Minz_Request::isAjax()) {
 				Minz_Request::setGoodNotification(_t('feedback.sub.category.updated'));
 				$this->view->_layout(null);
 			} else {

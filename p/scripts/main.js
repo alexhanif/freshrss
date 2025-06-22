@@ -1383,7 +1383,8 @@ function init_stream(stream) {
 				checkboxTag.disabled = true;
 
 				const req = new XMLHttpRequest();
-				req.open('POST', './?c=tag&a=tagEntry&ajax=1', true);
+				req.open('POST', './?c=tag&a=tagEntry', true);
+				req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 				req.responseType = 'json';
 				req.onerror = function (e) {
 					checkboxTag.checked = !isChecked;
@@ -1588,7 +1589,8 @@ function refreshFeed(feeds, feeds_count) {
 		if (feeds_processed === feeds_count) {
 			// Empty request to commit new articles
 			const req2 = new XMLHttpRequest();
-			req2.open('POST', './?c=feed&a=actualize&id=-1&ajax=1', true);
+			req2.open('POST', './?c=feed&a=actualize&id=-1', true);
+			req2.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 			req2.onloadend = function (e) {
 				delayedFunction(function () { location.reload(); });
 			};
@@ -1613,7 +1615,8 @@ function refreshFeeds(json) {
 	if (!json.feeds || json.feeds.length === 0) {
 		// Empty request to commit new articles
 		const req2 = new XMLHttpRequest();
-		req2.open('POST', './?c=feed&a=actualize&id=-1&ajax=1', true);
+		req2.open('POST', './?c=feed&a=actualize&id=-1', true);
+		req2.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 		req2.onloadend = function (e) {
 			context.ajax_loading = false;
 		};

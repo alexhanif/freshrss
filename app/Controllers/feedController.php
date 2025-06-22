@@ -909,7 +909,7 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 			}
 		}
 
-		if (Minz_Request::paramBoolean('ajax')) {
+		if (Minz_Request::isAjax()) {
 			// Most of the time, ajax request is for only one feed. But since
 			// there are several parallel requests, we should return that there
 			// are several updated feeds.

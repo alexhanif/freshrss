@@ -23,7 +23,7 @@ class FreshRSS_entry_Controller extends FreshRSS_ActionController {
 		}
 
 		// If ajax request, we do not print layout
-		$this->ajax = Minz_Request::paramBoolean('ajax');
+		$this->ajax = Minz_Request::isAjax();
 		if ($this->ajax) {
 			$this->view->_layout(null);
 			Minz_Request::_param('ajax');

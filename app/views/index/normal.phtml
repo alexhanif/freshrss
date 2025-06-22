@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 /** @var FreshRSS_View $this */
-if (!Minz_Request::paramBoolean('ajax')) {
+if (!Minz_Request::isAjax()) {
 	$this->partial('aside_feed');
 	$this->partial('nav_menu');
 }

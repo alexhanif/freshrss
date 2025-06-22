@@ -172,6 +172,10 @@ class Minz_Request {
 		return [];
 	}
 
+	public static function isAjax(): bool {
+		return isset($_SERVER['HTTP_X_REQUESTED_WITH']);
+	}
+
 	public static function defaultControllerName(): string {
 		return self::$default_controller_name;
 	}

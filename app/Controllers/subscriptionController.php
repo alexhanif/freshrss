@@ -87,7 +87,7 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 	 * Default values are empty strings unless specified.
 	 */
 	public function feedAction(): void {
-		if (Minz_Request::paramBoolean('ajax')) {
+		if (Minz_Request::isAjax()) {
 			$this->view->_layout(null);
 		} else {
 			FreshRSS_View::appendScript(Minz_Url::display('/scripts/feed.js?' . @filemtime(PUBLIC_PATH . '/scripts/feed.js')));

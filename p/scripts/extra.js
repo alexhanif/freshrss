@@ -160,8 +160,9 @@ function open_slider_listener(ev) {
 			const req = new XMLHttpRequest();
 			slider_content.innerHTML = '';
 			slider.classList.add('sliding');
-			const ahref = a.href + '&ajax=1#slider';
+			const ahref = a.href + '#slider';
 			req.open('GET', ahref, true);
+			req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 			req.responseType = 'document';
 			req.onload = function (e) {
 				location.href = '#slider'; // close menu/dropdown

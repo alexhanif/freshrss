@@ -364,7 +364,7 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 	 * applied to the selected query.
 	 */
 	public function queryAction(): void {
-		if (Minz_Request::paramBoolean('ajax')) {
+		if (Minz_Request::isAjax()) {
 			$this->view->_layout(null);
 		}
 

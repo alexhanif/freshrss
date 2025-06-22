@@ -110,7 +110,7 @@ class FreshRSS_extension_Controller extends FreshRSS_ActionController {
 	 *   handleConfigureAction() method (POST request).
 	 */
 	public function configureAction(): void {
-		if (Minz_Request::paramBoolean('ajax')) {
+		if (Minz_Request::isAjax()) {
 			$this->view->_layout(null);
 		} elseif (Minz_Request::paramBoolean('slider')) {
 			$this->indexAction();

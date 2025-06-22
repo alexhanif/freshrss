@@ -19,7 +19,7 @@ class FreshRSS_tag_Controller extends FreshRSS_ActionController {
 	#[\Override]
 	public function firstAction(): void {
 		// If ajax request, we do not print layout
-		$this->ajax = Minz_Request::paramBoolean('ajax');
+		$this->ajax = Minz_Request::isAjax();
 		if ($this->ajax) {
 			$this->view->_layout(null);
 		}
@@ -89,7 +89,7 @@ class FreshRSS_tag_Controller extends FreshRSS_ActionController {
 	 * This action updates the given tag.
 	 */
 	public function updateAction(): void {
-		if (Minz_Request::paramBoolean('ajax')) {
+		if (Minz_Request::isAjax()) {
 			$this->view->_layout(null);
 		}
 
