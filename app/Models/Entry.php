@@ -1160,6 +1160,14 @@ HTML;
 			} elseif ($mode === 'freshrss') {
 				$item['origin']['feedUrl'] = htmlspecialchars_decode($feed->url());
 			}
+			if ($feed->priority() >= FreshRSS_Feed::PRIORITY_MAIN_STREAM) {
+				$item['categories'][] = 'user/-/state/org.freshrss/main';
+				if ($feed->priority() >= FreshRSS_Feed::PRIORITY_IMPORTANT) {
+					$item['categories'][] = 'user/-/state/org.freshrss/important';
+				}
+			} elseif ($feed->priority() <= FreshRSS_Feed::PRIORITY_ARCHIVED) {
+				$item['categories'][] = 'user/-/state/org.freshrss/archived';
+			}
 		}
 		foreach ($this->enclosures() as $enclosure) {
 			if (!empty($enclosure['url'])) {

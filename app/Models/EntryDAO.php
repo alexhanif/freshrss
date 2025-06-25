@@ -1253,7 +1253,7 @@ SQL;
 	}
 
 	/**
-	 * @param 'a'|'A'|'i'|'s'|'S'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
+	 * @param 'a'|'A'|'c'|'f'|'i'|'s'|'S'|'ST'|'t'|'T'|'Z' $type
 	 * @param int $id category/feed/tag ID
 	 * @param numeric-string $id_min
 	 * @param numeric-string $id_max
@@ -1337,7 +1337,7 @@ SQL;
 	}
 
 	/**
-	 * @param 'a'|'A'|'s'|'S'|'i'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
+	 * @param 'a'|'A'|'c'|'f'|'i'|'s'|'S'|'ST'|'t'|'T'|'Z' $type
 	 * @param int $id category/feed/tag ID
 	 * @param numeric-string $id_min
 	 * @param numeric-string $id_max
@@ -1384,7 +1384,7 @@ SQL;
 	}
 
 	/**
-	 * @param 'a'|'A'|'s'|'S'|'i'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
+	 * @param 'a'|'A'|'c'|'f'|'i'|'s'|'S'|'ST'|'t'|'T'|'Z' $type
 	 * @param int $id category/feed/tag ID
 	 * @param numeric-string $id_min
 	 * @param numeric-string $id_max
@@ -1450,7 +1450,7 @@ SQL;
 	}
 
 	/**
-	 * @param 'a'|'A'|'s'|'S'|'c'|'f'|'t'|'T'|'ST'|'Z' $type
+	 * @param 'a'|'A'|'c'|'f'|'i'|'s'|'S'|'ST'|'t'|'T'|'Z' $type
 	 * @param int $id category/feed/tag ID
 	 * @param numeric-string $id_min
 	 * @param numeric-string $id_max

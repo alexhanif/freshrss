@@ -5,6 +5,7 @@ declare(strict_types=1);
 == Description ==
 Server-side API compatible with Google Reader API layer 2
 	for the FreshRSS project https://freshrss.org
+FreshRSS-specific information is prefixed with 'frss:'
 
 == Credits ==
 * 2014-03: Released by Alexandre Alapetite https://alexandre.alapetite.fr
@@ -278,6 +279,10 @@ final class GReaderAPI {
 		$tags = [
 			['id' => 'user/-/state/com.google/starred'],
 			// ['id' => 'user/-/state/com.google/broadcast', 'sortid' => '2']
+			['id' => 'user/-/state/com.google/reading-list'],
+			['id' => 'user/-/state/org.freshrss/main'],
+			['id' => 'user/-/state/org.freshrss/important'],
+			// ['id' => 'user/-/state/org.freshrss/archived'],
 		];
 		$categoryDAO = FreshRSS_Factory::createCategoryDao();
 		$categories = $categoryDAO->listCategories(prePopulateFeeds: false, details: false);
@@ -353,6 +358,13 @@ final class GReaderAPI {
 					'url' => htmlspecialchars_decode($feed->url(), ENT_QUOTES),
 					'htmlUrl' => htmlspecialchars_decode($feed->website(), ENT_QUOTES),
 					'iconUrl' => $faviconsUrl . $feed->hashFavicon(),
+					'frss:priority' => match ($feed->priority()) {
+						FreshRSS_Feed::PRIORITY_MAIN_STREAM => 'main',
+						FreshRSS_Feed::PRIORITY_IMPORTANT => 'important',
+						FreshRSS_Feed::PRIORITY_CATEGORY => 'category',
+						FreshRSS_Feed::PRIORITY_ARCHIVED => 'archived',	// Not returned by the API, so should never happen
+						default => 'main',
+					},
 				];
 			}
 		}
@@ -578,8 +590,8 @@ final class GReaderAPI {
 	}
 
 	/**
-	 * @param 'A'|'c'|'f'|'s' $type
-	 * @return array{'A'|'c'|'f'|'s'|'t',int,int,FreshRSS_BooleanSearch}
+	 * @param 'A'|'a'|'c'|'f'|'i'|'S' $type
+	 * @return array{'A'|'a'|'c'|'f'|'i'|'S'|'t',int,int,FreshRSS_BooleanSearch}
 	 */
 	private static function streamContentsFilters(string $type, int|string $streamId,
 		string $filter_target, string $exclude_target, int $start_time, int $stop_time): array {
@@ -656,10 +668,12 @@ final class GReaderAPI {
 		header('Content-Type: application/json; charset=UTF-8');
 
 		$type = match ($path) {
-			'starred' => 's',
+			'starred' => 'S',
 			'feed' => 'f',
 			'label' => 'c',
 			'reading-list' => 'A',
+			'main' => 'a',
+			'important' => 'i',
 			default => 'A',
 		};
 
@@ -713,7 +727,11 @@ final class GReaderAPI {
 		if ($streamId === 'user/-/state/com.google/reading-list') {
 			$type = 'A';
 		} elseif ($streamId === 'user/-/state/com.google/starred') {
-			$type = 's';
+			$type = 'S';
+		} elseif ($streamId === 'user/-/state/org.freshrss/main') {
+			$type = 'a';
+		} elseif ($streamId === 'user/-/state/org.freshrss/important') {
+			$type = 'i';
 		} elseif (str_starts_with($streamId, 'feed/')) {
 			$type = 'f';
 			$streamId = substr($streamId, 5);
@@ -965,7 +983,13 @@ final class GReaderAPI {
 				}
 			}
 		} elseif ($streamId === 'user/-/state/com.google/reading-list') {
-			$entryDAO->markReadEntries($olderThanId, false);
+			$entryDAO->markReadEntries($olderThanId);
+		} elseif ($streamId === 'user/-/state/com.google/starred') {
+			$entryDAO->markReadEntries($olderThanId, onlyFavorites: true);
+		} elseif ($streamId === 'user/-/state/org.freshrss/main') {
+			$entryDAO->markReadEntries($olderThanId, priorityMin: FreshRSS_Feed::PRIORITY_MAIN_STREAM);
+		} elseif ($streamId === 'user/-/state/org.freshrss/important') {
+			$entryDAO->markReadEntries($olderThanId, priorityMin: FreshRSS_Feed::PRIORITY_IMPORTANT);
 		} else {
 			self::badRequest();
 		}
@@ -1090,8 +1114,8 @@ final class GReaderAPI {
 									$count, $order, $filter_target, $exclude_target, $continuation);
 							} elseif (isset($pathInfos[8], $pathInfos[9]) && $pathInfos[6] === 'user') {
 								if ($pathInfos[8] === 'state') {
-									if ($pathInfos[9] === 'com.google' && isset($pathInfos[10])) {
-										if ($pathInfos[10] === 'reading-list' || $pathInfos[10] === 'starred') {
+									if (in_array($pathInfos[9], ['com.google', 'org.freshrss'], true) && isset($pathInfos[10])) {
+										if (in_array($pathInfos[10], ['reading-list', 'starred', 'main', 'important'], true)) {
 											$include_target = '';
 											self::streamContents($pathInfos[10], $include_target, $start_time, $stop_time, $count, $order,
 												$filter_target, $exclude_target, $continuation);
