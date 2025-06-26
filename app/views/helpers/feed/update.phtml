@@ -58,7 +58,7 @@
 					<input id="favicon-upload" name="newFavicon" type="file" accept="image/*" />
 					<label for="favicon-upload" class="btn"><?= _t('sub.feed.change_favicon') ?></label>
 					<button id="reset-favicon" class="btn"<?= $this->feed->customFavicon() ? '' : ' disabled'?>><?= _t('sub.feed.reset_favicon') ?></button>
-					<?php if ($ext_url !== null) { ?>
+					<?php if (is_string($ext_url)) { ?>
 						<button id="favicon-ext-btn" class="btn" data-extension-url="<?= $ext_url ?>"><?= _t('sub.feed.ext_favicon') ?></button>
 					<?php } ?>
 					<p id="favicon-ext" class="<?= $this->feed->customFaviconExt() ?: 'hidden' ?>"><?= _t('sub.feed.favicon_changed_by_ext', htmlspecialchars($this->feed->customFaviconExt() ?? '', ENT_NOQUOTES, 'UTF-8')) ?></p>
