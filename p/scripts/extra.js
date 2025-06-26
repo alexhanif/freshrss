@@ -240,7 +240,7 @@ function init_update_feed() {
 				method: "POST",
 				body: new URLSearchParams({
 					'_csrf': context.csrf,
-					'extBtn': true,
+					'extAction': 'query_icon_info',
 					'id': feed_update.dataset.feedId
 				}),
 			}).then(resp => {
@@ -274,8 +274,7 @@ function init_update_feed() {
 					method: "POST",
 					body: new URLSearchParams({
 						'_csrf': context.csrf,
-						'extBtn': true,
-						'updateIcon': true,
+						'extAction': 'update_icon',
 						'id': feed_update.dataset.feedId
 					}),
 				});

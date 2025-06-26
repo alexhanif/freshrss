@@ -30,11 +30,11 @@ final class Minz_ExtensionManager {
 			'list' => [],
 			'signature' => 'OneToOne',
 		],
-		'custom_favicon_btn_url' => [ // function(FreshRSS_Feed $feed): string|null
+		'custom_favicon_btn_url' => [ // function(FreshRSS_Feed $feed): string | null
 			'list' => [],
 			'signature' => 'PassArguments',
 		],
-		'custom_favicon_hash' => [ // function(FreshRSS_Feed $feed): string|null
+		'custom_favicon_hash' => [ // function(FreshRSS_Feed $feed): string | null
 			'list' => [],
 			'signature' => 'PassArguments',
 		],
