@@ -1387,7 +1387,6 @@ SQL;
 			// For keyset pagination
 			$sql .= ', e0.id ' . $order;
 		}
-		syslog(LOG_DEBUG, 'SQL: ' . $sql . ' with values: ' . json_encode($values));
 		$stm = $this->pdo->prepare($sql);
 		if ($stm !== false && $stm->execute($values)) {
 			return $stm;
