@@ -918,7 +918,7 @@ SQL;
 			}
 
 			if ($filter->getCategoryIds() !== null) {
-				$sub_search .= 'AND id_feed IN (SELECT f.id FROM `_feed` f WHERE f.category IN (';
+				$sub_search .= 'AND ' . $alias . 'id_feed IN (SELECT f.id FROM `_feed` f WHERE f.category IN (';
 				foreach ($filter->getCategoryIds() as $category_id) {
 					$sub_search .= '?,';
 					$values[] = $category_id;
@@ -927,7 +927,7 @@ SQL;
 				$sub_search .= ') ';
 			}
 			if ($filter->getNotCategoryIds() !== null) {
-				$sub_search .= 'AND id_feed NOT IN (SELECT f.id FROM `_feed` f WHERE f.category IN (';
+				$sub_search .= 'AND ' . $alias . 'id_feed NOT IN (SELECT f.id FROM `_feed` f WHERE f.category IN (';
 				foreach ($filter->getNotCategoryIds() as $category_id) {
 					$sub_search .= '?,';
 					$values[] = $category_id;
