@@ -110,6 +110,10 @@ final class Minz_ExtensionManager {
 			'list' => [],
 			'signature' => 'PassArguments',
 		],
+		'view_modes' => [	// function($viewModes = array) -> array | null
+			'list' => [],
+			'signature' => 'OneToOne',
+		],
 	];
 
 	/** Remove extensions and hooks from a previous initialisation */
