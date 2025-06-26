@@ -368,7 +368,7 @@ class SearchTest extends PHPUnit\Framework\TestCase {
 			],
 			[
 				'c:1 OR c:2,3',
-				' (id_feed IN (SELECT f.id FROM `_feed` f WHERE f.category IN (?) ) OR (id_feed IN (SELECT f.id FROM `_feed` f WHERE f.category IN (?,?) ) ',
+				' (e.id_feed IN (SELECT f.id FROM `_feed` f WHERE f.category IN (?)) ) OR (e.id_feed IN (SELECT f.id FROM `_feed` f WHERE f.category IN (?,?)) ) ',
 				[1, 2, 3]
 			],
 			[
