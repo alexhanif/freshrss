@@ -924,7 +924,7 @@ SQL;
 					$values[] = $category_id;
 				}
 				$sub_search = rtrim($sub_search, ',');
-				$sub_search .= ') ';
+				$sub_search .= ')) ';
 			}
 			if ($filter->getNotCategoryIds() !== null) {
 				$sub_search .= 'AND ' . $alias . 'id_feed NOT IN (SELECT f.id FROM `_feed` f WHERE f.category IN (';
@@ -933,7 +933,7 @@ SQL;
 					$values[] = $category_id;
 				}
 				$sub_search = rtrim($sub_search, ',');
-				$sub_search .= ') ';
+				$sub_search .= ')) ';
 			}
 
 			if ($filter->getLabelIds() !== null) {
@@ -1387,6 +1387,7 @@ SQL;
 			// For keyset pagination
 			$sql .= ', e0.id ' . $order;
 		}
+		syslog(LOG_DEBUG, 'SQL: ' . $sql . ' with values: ' . json_encode($values));
 		$stm = $this->pdo->prepare($sql);
 		if ($stm !== false && $stm->execute($values)) {
 			return $stm;
