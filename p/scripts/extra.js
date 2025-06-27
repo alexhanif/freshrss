@@ -185,6 +185,7 @@ function init_update_feed() {
 			return;
 		}
 
+		faviconExt.classList.add('hidden');
 		if (faviconUpload.files[0].size > context.max_favicon_upload_size) {
 			faviconError.innerHTML = context.i18n.favicon_size_exceeded;
 			discardIconChange();
@@ -194,7 +195,6 @@ function init_update_feed() {
 			faviconExtBtn.disabled = false;
 			extension.innerText = extension.dataset.initialExt ?? extension.innerText;
 		}
-		faviconExt.classList.add('hidden');
 		faviconError.innerHTML = '';
 
 		const resetField = feed_update.querySelector('input[name="resetFavicon"]');
@@ -227,8 +227,9 @@ function init_update_feed() {
 	// Discard the icon change when the "Cancel" button is clicked
 	feed_update.querySelectorAll('[type="reset"]').forEach(cancelBtn => {
 		cancelBtn.addEventListener('click', () => {
-			discardIconChange();
+			faviconExt.classList.remove('hidden');
 			faviconError.innerHTML = '';
+			discardIconChange();
 		});
 	});
 
@@ -264,8 +265,10 @@ function init_update_feed() {
 			});
 		};
 		faviconExtBtn.form.onsubmit = async function (e) {
-			// The button was clicked if it's disabled
-			if (faviconExtBtn.disabled) {
+			const extChanged = faviconExtBtn.disabled;
+			const isSubmit = !e.submitter.hasAttribute('formaction');
+
+			if (extChanged && isSubmit) {
 				e.preventDefault();
 				faviconExtBtn.form.querySelectorAll('[type="submit"]').forEach(el => {
 					el.disabled = true;
