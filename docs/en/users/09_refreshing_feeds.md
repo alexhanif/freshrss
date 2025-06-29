@@ -60,7 +60,7 @@ Special parameters to configure the script - all parameters can be combined:
 
 - Header `X-Requested-With` (e.g. `XMLHttpRequest`)
 <https://freshrss.example.net/i/?c=feed&a=actualize>
-Only a status site is returned and not a complete website. Example: "OK"
+When set, only a status site is returned and not a complete website. Example: "OK"
 
 - Parameter `maxFeeds`
 <https://freshrss.example.net/i/?c=feed&a=actualize&maxFeeds=30>
