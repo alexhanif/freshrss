@@ -58,8 +58,8 @@ To do so, you need to create a scheduled task, which need to call a specific URL
 
 Special parameters to configure the script - all parameters can be combined:
 
-- Parameter `ajax`
-<https://freshrss.example.net/i/?c=feed&a=actualize&ajax=1>
+- Header `X-Requested-With` (e.g. `XMLHttpRequest`)
+<https://freshrss.example.net/i/?c=feed&a=actualize>
 Only a status site is returned and not a complete website. Example: "OK"
 
 - Parameter `maxFeeds`
@@ -80,7 +80,7 @@ You can target a specific user by adding their username to the query string, wit
 
 The scheduled task syntax should look as follows:
 
-<https://freshrss.example.net/i/?c=feed&a=actualize&maxFeeds=10&ajax=1&user=someone&token=my-token>
+<https://freshrss.example.net/i/?c=feed&a=actualize&maxFeeds=10&user=someone&token=my-token>
 
 Alternatively, but not recommended, if you configure the application to allow anonymous reading, you can also allow anonymous users to update feeds (“Allow anonymous refresh of the articles”), and that does not require a token.
 
@@ -93,18 +93,18 @@ If your FreshRSS instance is using HTTP authentication, you’ll need to provide
 **Note:** This method is discouraged as your credentials are stored in plain text.
 
 ```cron
-0 * * * * curl -u alice:password123 'https://freshrss.example.net/i/?c=feed&a=actualize&maxFeeds=10&ajax=1&user=alice'
+0 * * * * curl -u alice:password123 -H 'X-Requested-With: XMLHttpRequest' 'https://freshrss.example.net/i/?c=feed&a=actualize&maxFeeds=10&user=alice'
 ```
 
 On some systems, that syntax might also work:
 
-<https://alice:password123@freshrss.example.net/i/?c=feed&a=actualize&maxFeeds=10&ajax=1&user=alice>
+<https://alice:password123@freshrss.example.net/i/?c=feed&a=actualize&maxFeeds=10&user=alice>
 
 ### For No authentication (None)
 
 If your FreshRSS instance uses no authentication (public instance, default user):
 
-<https://freshrss.example.net/i/?c=feed&a=actualize&maxFeeds=10&ajax=1>
+<https://freshrss.example.net/i/?c=feed&a=actualize&maxFeeds=10>
 
 ## Feed configuration of “Do not automatically refresh more often than”
 
