@@ -77,8 +77,16 @@ return array(
 		'search_short' => 'Zoeken',
 		'sort' => array(
 			'_' => 'Sorteercriteria',
+			'c' => array(
+				'name_asc' => 'Category, feed titles A→Z',	// TODO
+				'name_desc' => 'Category, feed titles Z→A',	// TODO
+			),
 			'date_asc' => 'Publicatiedatum 1→9',
 			'date_desc' => 'Publicatiedatum 9→1',
+			'f' => array(
+				'name_asc' => 'Feed title A→Z',	// TODO
+				'name_desc' => 'Feed title Z→A',	// TODO
+			),
 			'id_asc' => 'Nieuw ontvangen laatst',
 			'id_desc' => 'Nieuw ontvangen eerst',
 			'link_asc' => 'Link A→Z',	// IGNORE
