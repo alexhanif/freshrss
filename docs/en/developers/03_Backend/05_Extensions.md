@@ -164,6 +164,8 @@ final class HelloWorldExtension extends Minz_Extension
 
 The following events are available:
 
+* `api_misc` (`function(): void`): to allow extensions to have own API endpoint
+	on `/api/misc.php/Extension%20Name/` or `/api/misc.php?ext=Extension%20Name`.
 * `check_url_before_add` (`function($url) -> Url | null`): will be executed every time a URL is added. The URL itself will be passed as parameter. This way a website known to have feeds which doesn’t advertise it in the header can still be automatically supported.
 * `entry_auto_read` (`function(FreshRSS_Entry $entry, string $why): void`): Triggered when an entry is automatically marked as read. The *why* parameter supports the rules {`filter`, `upon_reception`, `same_title_in_feed`}.
 * `entry_auto_unread` (`function(FreshRSS_Entry $entry, string $why): void`): Triggered when an entry is automatically marked as unread. The *why* parameter supports the rules {`updated_article`}.
@@ -182,6 +184,7 @@ The following events are available:
 * `post_update` (`function(none) -> none`): **TODO** add documentation.
 * `simplepie_after_init` (`function(\SimplePie\SimplePie $simplePie, FreshRSS_Feed $feed, bool $result): void`): Triggered after fetching an RSS/Atom feed with SimplePie. Useful for instance to get the HTTP response headers (e.g. `$simplePie->data['headers']`).
 * `simplepie_before_init` (`function(\SimplePie\SimplePie $simplePie, FreshRSS_Feed $feed): void`): Triggered before fetching an RSS/Atom feed with SimplePie.
+* `view_modes` (`function(array<FreshRSS_ViewMode> $viewModes): array|null`): Allow extensions to register additional view modes than *normal*, *reader*, *global*.
 
 > ℹ️ Note: the `simplepie_*` hooks are only fired for feeds using SimplePie via pull, i.e. normal RSS/Atom feeds. This excludes WebSub (push), and the various HTML or JSON Web scraping methods.
 

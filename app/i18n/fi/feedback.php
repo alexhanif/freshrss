@@ -50,6 +50,7 @@ return array(
 			'ko' => 'Laajennusta %s ei voi ottaa käyttöön. Lisätietoja on <a href="%s">FreshRSS-lokeissa</a>.',
 			'ok' => '%s on nyt otettu käyttöön',
 		),
+		'invalid_view_mode' => 'Invalid view mode “%s”! Fall back to “Normal view”.',	// TODO
 		'no_access' => 'Sinulla ei ole laajennuksen %s käyttöoikeutta',
 		'not_enabled' => 'Laajennus %s ei ole käytössä',
 		'not_found' => 'Laajennusta %s ei ole',
