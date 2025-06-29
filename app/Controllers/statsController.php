@@ -103,7 +103,7 @@ class FreshRSS_stats_Controller extends FreshRSS_ActionController {
 		$id = Minz_Request::paramInt('id');
 		$ajax = Minz_Request::isAjax();
 		if ($ajax) {
-			$url_redirect = ['c' => 'subscription', 'a' => 'feed', 'params' => ['id' => (string)$id, 'from' => 'stats', 'ajax' => (string)$ajax]];
+			$url_redirect = ['c' => 'subscription', 'a' => 'feed', 'params' => ['id' => (string)$id, 'from' => 'stats']];
 		} else {
 			$url_redirect = ['c' => 'subscription', 'a' => 'feed', 'params' => ['id' => (string)$id, 'from' => 'stats']];
 		}

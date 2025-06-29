@@ -12,8 +12,8 @@ $begin_date = date_create('now');
 // Set the header params ($_GET) to call the FRSS application.
 $_GET['c'] = 'feed';
 $_GET['a'] = 'actualize';
-$_GET['ajax'] = 1;
 $_GET['maxFeeds'] = PHP_INT_MAX;
+$_SERVER['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest';
 $_SERVER['HTTP_HOST'] = '';
 
 $app = new FreshRSS();

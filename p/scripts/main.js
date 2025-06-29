@@ -221,6 +221,7 @@ function send_mark_read_queue(queue, asRead, callback) {
 	}
 	const req = new XMLHttpRequest();
 	req.open('POST', '.?c=entry&a=read' + (asRead ? '' : '&is_read=0'), true);
+	req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 	req.responseType = 'json';
 	req.onerror = function (e) {
 		for (let i = queue.length - 1; i >= 0; i--) {
@@ -287,7 +288,6 @@ function send_mark_read_queue(queue, asRead, callback) {
 	};
 	req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
 	req.send(JSON.stringify({
-		ajax: true,
 		_csrf: context.csrf,
 		id: queue,
 	}));
@@ -375,6 +375,7 @@ function mark_favorite(div) {
 
 	const req = new XMLHttpRequest();
 	req.open('POST', url, true);
+	req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 	req.responseType = 'json';
 	req.onerror = function (e) {
 		div.querySelectorAll('a.bookmark > .icon').forEach(icon => {
@@ -422,7 +423,6 @@ function mark_favorite(div) {
 	};
 	req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
 	req.send(JSON.stringify({
-		ajax: true,
 		_csrf: context.csrf,
 	}));
 }
@@ -1429,7 +1429,6 @@ function init_stream(stream) {
 					name_tag: tagId == 0 ? tagName : '',
 					id_entry: entryId,
 					checked: isChecked,
-					ajax: 1,
 				}));
 			}
 		}

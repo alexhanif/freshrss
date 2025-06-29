@@ -201,7 +201,6 @@ class Minz_Request {
 	 * @return array{c:string,a:string,params:array<string,mixed>}
 	 */
 	public static function modifiedCurrentRequest(?array $extraParams = null): array {
-		unset(self::$params['ajax']);
 		$currentRequest = self::currentRequest();
 		if (null !== $extraParams) {
 			$currentRequest['params'] = array_merge($currentRequest['params'], $extraParams);

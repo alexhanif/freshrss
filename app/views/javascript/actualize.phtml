@@ -5,7 +5,7 @@ declare(strict_types=1);
 $categories = [];
 foreach ($this->categories as $category) {
 	$categories[] = [
-		'url' => Minz_Url::display(['c' => 'category', 'a' => 'refreshOpml', 'params' => ['id' => $category->id(), 'ajax' => '1']], 'php'),
+		'url' => Minz_Url::display(['c' => 'category', 'a' => 'refreshOpml', 'params' => ['id' => $category->id()]], 'php'),
 		'title' => $category->name(),
 	];
 }
@@ -13,7 +13,7 @@ foreach ($this->categories as $category) {
 $feeds = [];
 foreach ($this->feeds as $feed) {
 	$feeds[] = [
-		'url' => Minz_Url::display(['c' => 'feed', 'a' => 'actualize', 'params' => ['id' => $feed->id(), 'ajax' => '1']], 'php'),
+		'url' => Minz_Url::display(['c' => 'feed', 'a' => 'actualize', 'params' => ['id' => $feed->id()]], 'php'),
 		'title' => $feed->name(),
 	];
 }
