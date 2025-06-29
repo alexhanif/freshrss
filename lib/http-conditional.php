@@ -105,7 +105,7 @@ function httpConditional(int $UnixTimeStamp, int $cacheSeconds = 0, int $cachePr
 		$_sessionMode = $session;
 		$myQuery .= print_r($_SESSION, true) . session_name() . '=' . session_id();
 	}
-	$isAjax = is_string($_SERVER['HTTP_X_AJAX'] ?? null);
+	$isAjax = isset($_SERVER['HTTP_X_AJAX']);
 	$etagServer = '"' . md5($scriptName . $myQuery . '#' . $dateLastModif . strval($isAjax)) . '"';
 
 	// @phpstan-ignore booleanNot.alwaysTrue
