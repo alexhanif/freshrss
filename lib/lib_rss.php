@@ -857,7 +857,7 @@ function checkTrustedIP(): bool {
 
 function httpAuthUser(bool $onlyTrusted = true): string {
 	$check_array = array_intersect_key($_SERVER, array_flip(['REMOTE_USER', 'REDIRECT_REMOTE_USER', 'HTTP_REMOTE_USER', 'HTTP_X_WEBAUTH_USER']));
-	$auths = array_filter(array_unique($check_array));
+	$auths = array_unique($check_array);
 	if (count($auths) > 1) {
 		Minz_Log::warning('Multiple HTTP authentication headers!');
 		return '';
