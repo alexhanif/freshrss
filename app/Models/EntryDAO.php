@@ -917,6 +917,25 @@ SQL;
 				$sub_search .= ') ';
 			}
 
+			if ($filter->getCategoryIds() !== null) {
+				$sub_search .= 'AND ' . $alias . 'id_feed IN (SELECT f.id FROM `_feed` f WHERE f.category IN (';
+				foreach ($filter->getCategoryIds() as $category_id) {
+					$sub_search .= '?,';
+					$values[] = $category_id;
+				}
+				$sub_search = rtrim($sub_search, ',');
+				$sub_search .= ')) ';
+			}
+			if ($filter->getNotCategoryIds() !== null) {
+				$sub_search .= 'AND ' . $alias . 'id_feed NOT IN (SELECT f.id FROM `_feed` f WHERE f.category IN (';
+				foreach ($filter->getNotCategoryIds() as $category_id) {
+					$sub_search .= '?,';
+					$values[] = $category_id;
+				}
+				$sub_search = rtrim($sub_search, ',');
+				$sub_search .= ')) ';
+			}
+
 			if ($filter->getLabelIds() !== null) {
 				if ($filter->getLabelIds() === '*') {
 					$sub_search .= 'AND EXISTS (SELECT et.id_tag FROM `_entrytag` et WHERE et.id_entry = ' . $alias . 'id) ';

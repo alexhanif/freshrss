@@ -16,9 +16,17 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 	 */
 	public function indexAction(): void {
 		$preferred_output = FreshRSS_Context::userConf()->view_mode;
+		$viewMode = FreshRSS_ViewMode::getAllModes()[$preferred_output] ?? null;
+
+		// Fallback to 'normal' if the preferred mode was not found
+		if ($viewMode === null) {
+			Minz_Request::setBadNotification(_t('feedback.extensions.invalid_view_mode', $preferred_output));
+			$viewMode = FreshRSS_ViewMode::getAllModes()['normal'];
+		}
+
 		Minz_Request::forward([
-			'c' => 'index',
-			'a' => $preferred_output,
+			'c' => $viewMode->controller(),
+			'a' => $viewMode->action(),
 		]);
 	}
 
