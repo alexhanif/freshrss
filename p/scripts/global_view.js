@@ -13,7 +13,7 @@ function load_panel(link) {
 
 	const req = new XMLHttpRequest();
 	req.open('GET', link, true);
-	req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+	req.setRequestHeader('X-Ajax', 1);
 	req.responseType = 'document';
 	req.onload = function (e) {
 		if (this.status != 200) {

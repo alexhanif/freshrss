@@ -221,7 +221,7 @@ function send_mark_read_queue(queue, asRead, callback) {
 	}
 	const req = new XMLHttpRequest();
 	req.open('POST', '.?c=entry&a=read' + (asRead ? '' : '&is_read=0'), true);
-	req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+	req.setRequestHeader('X-Ajax', 1);
 	req.responseType = 'json';
 	req.onerror = function (e) {
 		for (let i = queue.length - 1; i >= 0; i--) {
@@ -375,7 +375,7 @@ function mark_favorite(div) {
 
 	const req = new XMLHttpRequest();
 	req.open('POST', url, true);
-	req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+	req.setRequestHeader('X-Ajax', 1);
 	req.responseType = 'json';
 	req.onerror = function (e) {
 		div.querySelectorAll('a.bookmark > .icon').forEach(icon => {
@@ -1384,7 +1384,7 @@ function init_stream(stream) {
 
 				const req = new XMLHttpRequest();
 				req.open('POST', './?c=tag&a=tagEntry', true);
-				req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+				req.setRequestHeader('X-Ajax', 1);
 				req.responseType = 'json';
 				req.onerror = function (e) {
 					checkboxTag.checked = !isChecked;
@@ -1576,7 +1576,7 @@ function refreshFeed(feeds, feeds_count) {
 	}
 	const req = new XMLHttpRequest();
 	req.open('POST', feed.url, true);
-	req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+	req.setRequestHeader('X-Ajax', 1);
 	req.onloadend = function (e) {
 		feeds_processed++;
 		if (this.status != 200) {
@@ -1590,7 +1590,7 @@ function refreshFeed(feeds, feeds_count) {
 			// Empty request to commit new articles
 			const req2 = new XMLHttpRequest();
 			req2.open('POST', './?c=feed&a=actualize&id=-1', true);
-			req2.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+			req2.setRequestHeader('X-Ajax', 1);
 			req2.onloadend = function (e) {
 				delayedFunction(function () { location.reload(); });
 			};
@@ -1616,7 +1616,7 @@ function refreshFeeds(json) {
 		// Empty request to commit new articles
 		const req2 = new XMLHttpRequest();
 		req2.open('POST', './?c=feed&a=actualize&id=-1', true);
-		req2.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+		req2.setRequestHeader('X-Ajax', 1);
 		req2.onloadend = function (e) {
 			context.ajax_loading = false;
 		};

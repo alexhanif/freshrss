@@ -58,7 +58,7 @@ To do so, you need to create a scheduled task, which need to call a specific URL
 
 Special parameters to configure the script - all parameters can be combined:
 
-- Header `X-Requested-With` (e.g. `XMLHttpRequest`)
+- Header `X-Ajax`
 <https://freshrss.example.net/i/?c=feed&a=actualize>
 When set, only a status site is returned and not a complete website. Example: "OK"
 
@@ -93,7 +93,7 @@ If your FreshRSS instance is using HTTP authentication, you’ll need to provide
 **Note:** This method is discouraged as your credentials are stored in plain text.
 
 ```cron
-0 * * * * curl -u alice:password123 -H 'X-Requested-With: XMLHttpRequest' 'https://freshrss.example.net/i/?c=feed&a=actualize&maxFeeds=10&user=alice'
+0 * * * * curl -u alice:password123 -H 'X-Ajax: 1' 'https://freshrss.example.net/i/?c=feed&a=actualize&maxFeeds=10&user=alice'
 ```
 
 On some systems, that syntax might also work:

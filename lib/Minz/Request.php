@@ -173,7 +173,7 @@ class Minz_Request {
 	}
 
 	public static function isAjax(): bool {
-		return isset($_SERVER['HTTP_X_REQUESTED_WITH']);
+		return isset($_SERVER['HTTP_X_AJAX']);
 	}
 
 	public static function defaultControllerName(): string {
