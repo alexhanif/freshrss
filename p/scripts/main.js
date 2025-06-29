@@ -1576,6 +1576,7 @@ function refreshFeed(feeds, feeds_count) {
 	}
 	const req = new XMLHttpRequest();
 	req.open('POST', feed.url, true);
+	req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 	req.onloadend = function (e) {
 		feeds_processed++;
 		if (this.status != 200) {
