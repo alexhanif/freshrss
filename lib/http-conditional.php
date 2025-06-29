@@ -105,7 +105,8 @@ function httpConditional(int $UnixTimeStamp, int $cacheSeconds = 0, int $cachePr
 		$_sessionMode = $session;
 		$myQuery .= print_r($_SESSION, true) . session_name() . '=' . session_id();
 	}
-	$etagServer = '"' . md5($scriptName . $myQuery . '#' . $dateLastModif . ($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '')) . '"';
+	$requestedWith = is_string($_SERVER['HTTP_X_REQUESTED_WITH'] ?? null) ? $_SERVER['HTTP_X_REQUESTED_WITH'] : '';
+	$etagServer = '"' . md5($scriptName . $myQuery . '#' . $dateLastModif . $requestedWith) . '"';
 
 	// @phpstan-ignore booleanNot.alwaysTrue
 	if ((!$is412) && is_string($_SERVER['HTTP_IF_MATCH'] ?? null)) { //rfc2616-sec14.html#sec14.24
