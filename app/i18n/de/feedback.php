@@ -95,6 +95,10 @@ return array(
 			'cache_cleared' => '<em>%s</em> Zwischenspeicher wurde geleert',
 			'deleted' => 'Der Feed ist gelöscht worden',
 			'error' => 'Der Feed kann nicht aktualisiert werden',
+			'favicon' => array(
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
+			),
 			'internal_problem' => 'Der RSS-Feed konnte nicht hinzugefügt werden. Für Details <a href="%s">prüfen Sie die FreshRSS-Protokolle</a>. Mit <code>#force_feed</code> am Ende der Feed-URL kann das Hinzufügen erzwungen werden.',
 			'invalid_url' => 'Die URL <em>%s</em> ist ungültig',
 			'n_actualized' => 'Die %d Feeds sind aktualisiert worden',

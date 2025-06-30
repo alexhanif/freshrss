@@ -95,6 +95,10 @@ return array(
 			'cache_cleared' => 'Pamięć podręczna kanału <em>%s</em> została wyczyszczona',
 			'deleted' => 'Kanał został usunięty',
 			'error' => 'Nie udało się zaktualizować kanału',
+			'favicon' => array(
+				'too_large' => 'Przesłana ikona jest zbyt wielka. Maksymalny rozmiar pliku to <em>%s</em>.',
+				'unsupported_format' => 'Nieobsługiwany format pliku obrazka!',
+			),
 			'internal_problem' => 'Wystąpił błąd podczas dodawania kanału. <a href="%s">Sprawdź dziennik</a> w celu uzyskania szczegółowych informacji. Można spróbować wymusić dodanie kanału przez dodanie <code>#force_feed</code> na końcu adresu URL.',
 			'invalid_url' => 'Adres URL <em>%s</em> nie jest prawidłowy',
 			'n_actualized' => 'Liczba zaktualizowanych kanałów: %d',

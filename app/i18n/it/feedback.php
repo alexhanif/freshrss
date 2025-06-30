@@ -95,6 +95,10 @@ return array(
 			'cache_cleared' => 'La cache di <em>%s</em> è stata svuotata',
 			'deleted' => 'Feed cancellato',
 			'error' => 'Feed non aggiornato',
+			'favicon' => array(
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
+			),
 			'internal_problem' => 'Feed RSS non aggiunto. <a href="%s">Verifica i log</a> per dettagli. Puoi provare l’aggiunta forzata aggiungendo <code>#force_feed</code> all’URL.',
 			'invalid_url' => 'URL <em>%s</em> non valido',
 			'n_actualized' => '%d feed aggiornati',

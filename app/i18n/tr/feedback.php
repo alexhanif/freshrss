@@ -95,6 +95,10 @@ return array(
 			'cache_cleared' => '<em>%s</em> önbelleği temizlendi',
 			'deleted' => 'Besleme silindi',
 			'error' => 'Besleme güncellenemedi',
+			'favicon' => array(
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
+			),
 			'internal_problem' => 'Haber akışı eklenemedi. Ayrıntılar için <a href="%s">FreshRSS günlüklerini kontrol edin</a>. URL’ye <code>#force_feed</code> ekleyerek zorla eklemeyi deneyebilirsiniz.',
 			'invalid_url' => '<em>%s</em> URL’si geçersiz',
 			'n_actualized' => '%d besleme güncellendi',

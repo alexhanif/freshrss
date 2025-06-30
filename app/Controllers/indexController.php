@@ -57,7 +57,7 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 		$this->_csp([
 			'default-src' => "'self'",
 			'frame-src' => '*',
-			'img-src' => '* data:',
+			'img-src' => '* data: blob:',
 			'frame-ancestors' => "'none'",
 			'media-src' => '*',
 		]);
@@ -146,7 +146,7 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 		$this->_csp([
 			'default-src' => "'self'",
 			'frame-src' => '*',
-			'img-src' => '* data:',
+			'img-src' => '* data: blob:',
 			'frame-ancestors' => "'none'",
 			'media-src' => '*',
 		]);

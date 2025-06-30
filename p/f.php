@@ -14,7 +14,7 @@ function show_default_favicon(int $cacheSeconds = 3600): void {
 	}
 }
 
-$id = $_SERVER['QUERY_STRING'] ?? '0';
+$id = $_GET['h'] ?? '0';
 if (!is_string($id) || !ctype_xdigit($id)) {
 	$id = '0';
 }
@@ -53,5 +53,8 @@ if (!httpConditional($ico_mtime, mt_rand(14, 21) * 86400, 2)) {
 	$ico_content_type = contentType($ico);
 	header('Content-Type: ' . $ico_content_type);
 	header('Content-Disposition: inline; filename="' . $id . '.ico"');
+	if (isset($_GET['t'])) {
+		header('Cache-Control: immutable');
+	}
 	readfile($ico);
 }
