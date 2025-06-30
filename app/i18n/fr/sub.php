@@ -75,8 +75,8 @@ return array(
 			'help' => 'Fichier XML (données partielles. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">Voir documentation</a>)',
 			'label' => 'Exporter en OPML',
 		),
-		'ext_favicon' => 'Set automatically',	// TODO
-		'favicon_changed_by_ext' => 'The icon has been set by the <b>%s</b> extension.',	// TODO
+		'ext_favicon' => 'Définie automatiquement',
+		'favicon_changed_by_ext' => 'L’icône a été définie par l’extension <b>%s</b>.',
 		'filteractions' => array(
 			'_' => 'Filtres d’action',
 			'help' => 'Écrivez une recherche par ligne. Voir la <a href="https://freshrss.github.io/FreshRSS/fr/users/03_Main_view.html#gr%C3%A2ce-au-champ-de-recherche" target="_blank">documentation des opérateurs</a>.',
