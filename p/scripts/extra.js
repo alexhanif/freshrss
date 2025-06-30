@@ -238,9 +238,9 @@ function init_update_feed() {
 			e.preventDefault();
 			faviconExtBtn.disabled = true;
 			fetch(faviconExtBtn.dataset.extensionUrl, {
-				method: "POST",
+				method: 'POST',
 				headers: {
-					"Content-Type": "application/json; charset=utf-8"
+					'Content-Type': 'application/json; charset=utf-8'
 				},
 				body: JSON.stringify({
 					'_csrf': context.csrf,
@@ -277,9 +277,9 @@ function init_update_feed() {
 					el.disabled = true;
 				});
 				await fetch(faviconExtBtn.dataset.extensionUrl, {
-					method: "POST",
+					method: 'POST',
 					headers: {
-						"Content-Type": "application/json; charset=utf-8"
+						'Content-Type': 'application/json; charset=utf-8'
 					},
 					body: JSON.stringify({
 						'_csrf': context.csrf,
