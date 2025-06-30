@@ -239,7 +239,10 @@ function init_update_feed() {
 			faviconExtBtn.disabled = true;
 			fetch(faviconExtBtn.dataset.extensionUrl, {
 				method: "POST",
-				body: new URLSearchParams({
+				headers: {
+					"Content-Type": "application/json; charset=utf-8"
+				},
+				body: JSON.stringify({
 					'_csrf': context.csrf,
 					'extAction': 'query_icon_info',
 					'id': feed_update.dataset.feedId
@@ -275,7 +278,10 @@ function init_update_feed() {
 				});
 				await fetch(faviconExtBtn.dataset.extensionUrl, {
 					method: "POST",
-					body: new URLSearchParams({
+					headers: {
+						"Content-Type": "application/json; charset=utf-8"
+					},
+					body: JSON.stringify({
 						'_csrf': context.csrf,
 						'extAction': 'update_icon',
 						'id': feed_update.dataset.feedId
