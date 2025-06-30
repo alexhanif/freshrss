@@ -245,7 +245,7 @@ function init_update_feed() {
 				body: JSON.stringify({
 					'_csrf': context.csrf,
 					'extAction': 'query_icon_info',
-					'id': feed_update.dataset.feedId
+					'id': +feed_update.dataset.feedId
 				}),
 			}).then(resp => {
 				if (!resp.ok) {
@@ -284,7 +284,7 @@ function init_update_feed() {
 					body: JSON.stringify({
 						'_csrf': context.csrf,
 						'extAction': 'update_icon',
-						'id': feed_update.dataset.feedId
+						'id': +feed_update.dataset.feedId
 					}),
 				});
 				faviconExtBtn.form.onsubmit = null;
