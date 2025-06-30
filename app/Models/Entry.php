@@ -642,6 +642,12 @@ HTML;
 				if ($ok && $filter->getNotFeedIds() !== null) {
 					$ok &= !in_array($this->feedId, $filter->getNotFeedIds(), true);
 				}
+				if ($ok && $filter->getCategoryIds() !== null) {
+					$ok &= in_array($this->feed()?->categoryId(), $filter->getCategoryIds(), true);
+				}
+				if ($ok && $filter->getNotCategoryIds() !== null) {
+					$ok &= !in_array($this->feed()?->categoryId(), $filter->getNotCategoryIds(), true);
+				}
 				if ($ok && $filter->getAuthor() !== null) {
 					foreach ($filter->getAuthor() as $author) {
 						$ok &= stripos(implode(';', $this->authors), $author) !== false;
