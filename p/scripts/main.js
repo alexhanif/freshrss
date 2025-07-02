@@ -431,8 +431,12 @@ const freshrssOpenArticleEvent = document.createEvent('Event');
 freshrssOpenArticleEvent.initEvent('freshrss:openArticle', true, true);
 
 function loadLazyImages(rootElement) {
-	rootElement.querySelectorAll('img[data-original], iframe[data-original]').forEach(function (el) {
-		el.src = el.getAttribute('data-original');
+	rootElement.querySelectorAll('img[data-original], iframe[data-original], video[data-original]').forEach(function (el) {
+		if (el.tagName === 'VIDEO') {
+			el.poster = el.getAttribute('data-original');
+		} else {
+			el.src = el.getAttribute('data-original');
+		}
 		el.removeAttribute('data-original');
 	});
 }
@@ -1029,11 +1033,6 @@ function init_column_categories() {
 function init_shortcuts() {
 	Object.keys(context.shortcuts).forEach(function (k) {
 		context.shortcuts[k] = (context.shortcuts[k] || '').toUpperCase();
-		if (context.shortcuts[k].indexOf('&') >= 0) {
-			// Decode potential HTML entities <'&">
-			const parser = new DOMParser();
-			context.shortcuts[k] = parser.parseFromString(context.shortcuts[k], 'text/html').documentElement.textContent;
-		}
 	});
 
 	document.addEventListener('keydown', ev => {
@@ -1152,7 +1151,7 @@ function init_shortcuts() {
 			return;
 		}
 		if (ev.key === '?') {
-			window.location.href = context.urls.shortcuts.replace(/&amp;/g, '&');
+			window.location.href = context.urls.shortcuts;
 			return;
 		}
 

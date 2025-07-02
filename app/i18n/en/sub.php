@@ -50,6 +50,7 @@ return array(
 			'password' => 'HTTP password',
 			'username' => 'HTTP username',
 		),
+		'change_favicon' => 'Change…',
 		'clear_cache' => 'Always clear cache',
 		'content_action' => array(
 			'_' => 'Content action when fetching the article content',
@@ -74,12 +75,15 @@ return array(
 			'help' => 'XML file (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',
 			'label' => 'Export as OPML',
 		),
+		'ext_favicon' => 'Set automatically',
+		'favicon_changed_by_ext' => 'The icon has been set by the <b>%s</b> extension.',
 		'filteractions' => array(
 			'_' => 'Filter actions',
 			'help' => 'Write one search filter per line. Operators <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">see documentation</a>.',
 		),
 		'http_headers' => 'HTTP Headers',
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',
+		'icon' => 'Icon',
 		'information' => 'Information',
 		'keep_min' => 'Minimum number of articles to keep',
 		'kind' => array(
@@ -212,6 +216,7 @@ return array(
 		),
 		'proxy' => 'Set a proxy for fetching this feed',
 		'proxy_help' => 'Select a protocol (e.g: SOCKS5) and enter the proxy address (e.g: <kbd>127.0.0.1:1080</kbd> or <kbd>username:password@127.0.0.1:1080</kbd>)',
+		'reset_favicon' => 'Reset to default',
 		'selector_preview' => array(
 			'show_raw' => 'Show source code',
 			'show_rendered' => 'Show content',
