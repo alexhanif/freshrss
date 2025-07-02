@@ -136,7 +136,7 @@ return array(
 		'title' => 'Rozszerzenia',
 		'user' => 'Rozszerzenia użytkownika',
 		'version' => 'Wersja',
-		'version_installed' => 'Version %s installed',	// TODO
+		'version_installed' => 'Zainstalowana jest wersja %s',
 	),
 	'stats' => array(
 		'_' => 'Statystyki',
