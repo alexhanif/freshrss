@@ -59,13 +59,13 @@ return array(
 		'not_found' => 'Rozszerzenie %s nie istnieje',
 		'removed' => 'Rozszerzenie %s zostało usunięte',
 		'update_all' => array(
-			'failed_list' => 'Failed extensions: %s',	// TODO
-			'none' => 'All extensions are up to date',	// TODO
-			'ok' => '%d extensions updated successfully',	// TODO
-			'partial' => '%d extensions updated, %d failed',	// TODO
+			'failed_list' => 'Nieudane instalacje: %s',
+			'none' => 'Wszystkie rozszerzenia są aktualne',
+			'ok' => 'Pomyślnie zaktualizowano %d rozszerzeń',
+			'partial' => 'Zaktualizowano %d rozszerzeń, aczkolwiek %d się nie powiodło',
 		),
-		'update_failed' => '%s update failed',	// TODO
-		'updated' => '%s has been updated successfully',	// TODO
+		'update_failed' => 'Aktualizacja %s się nie powiodła',
+		'updated' => 'Aktualizacja %s powiodła się pomyślnie!',
 	),
 	'import_export' => array(
 		'export_no_zip_extension' => 'Rozszerzenie ZIP nie jest dostępne na serwerze. Spróbuj eksportować pliki pojedynczo.',
