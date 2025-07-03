@@ -119,6 +119,14 @@ return array(
 		'empty_list_help' => 'Sprawdź dziennik, aby ustalić powód pustej listy rozszerzeń.',
 		'enabled' => 'Włączone',
 		'latest' => 'Zainstalowane',
+		'manage' => array(
+			'actions' => 'Akcje',
+			'install_extension' => 'Zainstaluj',
+			'install_update' => 'Zaktualizuj',
+			'update_available_detailed' => 'Zainstalowana jest wersja %s, dostępna aktualizacja do wersji %s',
+			'update_count' => 'Zaktualizuj %d rozszerzeń',
+			'view_release' => 'Zobacz wydanie',
+		),
 		'name' => 'Nazwa',
 		'no_configure_view' => 'To rozszerzenie nie jest konfigurowalne.',
 		'system' => array(
@@ -126,9 +134,9 @@ return array(
 			'no_rights' => 'Rozszerzenie systemowe (brak uprawnień)',
 		),
 		'title' => 'Rozszerzenia',
-		'update' => 'Dostępna jest aktualizacja',
 		'user' => 'Rozszerzenia użytkownika',
 		'version' => 'Wersja',
+		'version_installed' => 'Zainstalowana jest wersja %s',
 	),
 	'stats' => array(
 		'_' => 'Statystyki',

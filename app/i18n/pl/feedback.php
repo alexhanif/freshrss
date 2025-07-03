@@ -50,11 +50,22 @@ return array(
 			'ko' => 'Rozszerzenie %s nie może zostać włączone. <a href="%s">Sprawdź dziennik</a> w celu uzyskania szczegółowych informacji.',
 			'ok' => 'Rozszerzenie %s zostało włączone',
 		),
-		'invalid_view_mode' => 'Invalid view mode “%s”! Fall back to “Normal view”.',	// TODO
+		'install_failed' => 'Instalacja %s się nie powiodła',
+		'install_failed_rate_limited_generic' => 'Instalacja %s się nie powiodła z powodu wyczerpania limitu żądań. Proszę spróbować póżniej.',
+		'installed' => 'Pomyślnie zainstalowano %s',
+		'invalid_view_mode' => 'Nieprawidłowy tryb widoku “%s”! Powrót do widoku normalnego.',
 		'no_access' => 'Brak dostępu do %s',
 		'not_enabled' => 'Rozszerzenie %s nie jest włączone',
 		'not_found' => 'Rozszerzenie %s nie istnieje',
 		'removed' => 'Rozszerzenie %s zostało usunięte',
+		'update_all' => array(
+			'failed_list' => 'Nieudane instalacje: %s',
+			'none' => 'Wszystkie rozszerzenia są aktualne',
+			'ok' => 'Pomyślnie zaktualizowano %d rozszerzeń',
+			'partial' => 'Zaktualizowano %d rozszerzeń, aczkolwiek %d się nie powiodło',
+		),
+		'update_failed' => 'Aktualizacja %s się nie powiodła',
+		'updated' => 'Aktualizacja %s powiodła się pomyślnie!',
 	),
 	'import_export' => array(
 		'export_no_zip_extension' => 'Rozszerzenie ZIP nie jest dostępne na serwerze. Spróbuj eksportować pliki pojedynczo.',

@@ -119,6 +119,14 @@ return array(
 		'empty_list_help' => 'Check the logs to determine the reason behind the empty extension list.',	// TODO
 		'enabled' => 'Enabled',
 		'latest' => 'Installed',
+		'manage' => array(
+			'actions' => 'Actions',
+			'install_extension' => 'Install',
+			'install_update' => 'Update',
+			'update_available_detailed' => 'Version %s installed, update to %s available',
+			'update_count' => 'Update %d extension(s)',
+			'view_release' => 'View release',
+		),
 		'name' => 'Name',
 		'no_configure_view' => 'This extension cannot be configured.',
 		'system' => array(
@@ -126,9 +134,9 @@ return array(
 			'no_rights' => 'System extension (you do not have the required permissions)',
 		),
 		'title' => 'Extensions',
-		'update' => 'Update available',
 		'user' => 'User extensions',
 		'version' => 'Version',
+		'version_installed' => 'Version %s installed',
 	),
 	'stats' => array(
 		'_' => 'Statistics',

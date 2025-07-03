@@ -119,6 +119,14 @@ return array(
 		'empty_list_help' => 'Siehe Protokolle für weitere Infos, warum die Erweiterungsliste leer ist.',
 		'enabled' => 'Aktiviert',
 		'latest' => 'Installiert',
+		'manage' => array(
+			'actions' => 'Aktionnen',
+			'install_extension' => 'Installieren',
+			'install_update' => 'Aktualisieren',
+			'update_available_detailed' => 'Version %s ist installiert, Version %s ist verfügbar',
+			'update_count' => 'Aktualisiere %d Erweiterung(en)',
+			'view_release' => 'Release anzeigen',
+		),
 		'name' => 'Name',	// IGNORE
 		'no_configure_view' => 'Diese Erweiterung kann nicht konfiguriert werden.',
 		'system' => array(
@@ -126,9 +134,9 @@ return array(
 			'no_rights' => 'System-Erweiterung (Sie haben keine Berechtigung dafür)',
 		),
 		'title' => 'Erweiterungen',
-		'update' => 'Update verfügbar',
 		'user' => 'Benutzer-Erweiterungen',
 		'version' => 'Version',	// IGNORE
+		'version_installed' => 'Version %s installiert',
 	),
 	'stats' => array(
 		'_' => 'Statistiken',

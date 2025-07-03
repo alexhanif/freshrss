@@ -8,7 +8,22 @@ There are some "official" extensions (supported and published by the FreshRSS de
 
 Most known extensions are listed in the front end: see configuration menu `Configuration/Extensions`.
 
-## How to install
+## How to install and update
+
+### Recommended: From the Web Interface
+
+The easiest way to install and manage extensions is through the FreshRSS user interface. This method handles downloading, unpacking, and placing the files in the correct location automatically.
+
+1. Navigate to `Configuration > Extensions`.
+2. Browse the list of "Community Extensions" to find new extensions.
+
+* **To install:** Simply click the `Install` button next to the desired extension in the `Action` column. FreshRSS will handle the download and installation automatically.
+* **To update a single extension:** If an update is available for an extension you have already installed, an `Update` button will appear next to it in the `Action` column.
+* **To update all extensions:** If any installed extension(s) have an available update, an `Update all` button will be displayed at the top of the "Community Extensions" section. Clicking this will update all outdated extensions in a single step.
+
+### Manual Installation
+
+For extensions that are not in the community list, or if you prefer to install them manually, you can place the extension files directly on your server.
 
 Upload the folder (f.e. `CustomCSS`) of your chosen extension into your `./extensions` directory.
 
