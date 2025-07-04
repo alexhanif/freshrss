@@ -14,12 +14,14 @@ $cliOptions = new class extends CliOptionsParser {
 	public bool $displayResult;
 	public bool $help;
 	public bool $displayReport;
+	public bool $generateReadme;
 
 	public function __construct() {
 		$this->addOption('language', (new CliOption('language', 'l'))->typeOfArrayOfString());
 		$this->addOption('displayResult', (new CliOption('display-result', 'd'))->withValueNone());
 		$this->addOption('help', (new CliOption('help', 'h'))->withValueNone());
 		$this->addOption('displayReport', (new CliOption('display-report', 'r'))->withValueNone());
+		$this->addOption('generateReadme', (new CliOption('generate-readme', 'g'))->withValueNone());
 		parent::__construct();
 	}
 };
@@ -43,6 +45,7 @@ if (isset($cliOptions->language)) {
 $isValidated = true;
 $result = [];
 $report = [];
+$percentage = [];
 
 foreach ($languages as $language) {
 	if ($language === $i18nData::REFERENCE_LANGUAGE) {
@@ -53,6 +56,7 @@ foreach ($languages as $language) {
 	$isValidated = $i18nValidator->validate() && $isValidated;
 
 	$report[$language] = sprintf('%-5s - %s', $language, $i18nValidator->displayReport());
+	$percentage[$language] = $i18nValidator->displayReport(percentage_only: true);
 	$result[$language] = $i18nValidator->displayResult();
 }
 
@@ -68,6 +72,73 @@ if ($cliOptions->displayReport) {
 	foreach ($report as $value) {
 		echo $value;
 	}
+}
+
+function writeToReadme(string $readmePath, string $markdownImgStr): void {
+	$readme = file_get_contents($readmePath);
+	if ($readme === false) {
+		echo 'Error: ' . $readmePath . ' not found', PHP_EOL;
+		exit(1);
+	}
+	if (file_put_contents($readmePath, preg_replace('/<translations>(.*?)<\/translations>/s', <<<EOF
+	<translations>
+
+	$markdownImgStr
+
+	</translations>
+	EOF, $readme)) === false) {
+		echo 'Error: fail while writing to ' . $readmePath, PHP_EOL;
+		exit(1);
+	}
+	echo 'Successfully written translation status into ' . $readmePath, PHP_EOL;
+}
+
+if ($cliOptions->generateReadme) {
+	$markdownImgStr = '';
+	foreach ($percentage as $lang => $value) {
+		$percentageInt = intval(rtrim($value, '%'));
+		$color = 'green';
+		if ($percentageInt < 90) {
+			$color = 'gold';
+		}
+		if ($percentageInt < 70) {
+			$color = 'darkred';
+		}
+		$value = urlencode($value);
+		$flag = glob(__DIR__ . '/flags/' . $lang . '.*');
+		if ($flag === false || !isset($flag[0])) {
+			echo 'Error: Unable to find flag for ' . $lang, PHP_EOL;
+			exit(1);
+		}
+		$mimeType = '';
+		switch (pathinfo($flag[0], PATHINFO_EXTENSION)) {
+			case 'png':
+				$mimeType = 'image/png';
+				break;
+			case 'svg';
+				$mimeType = 'image/svg+xml';
+				break;
+			default:
+				echo 'Error: Unable to determine mime type for ' . $flag[0], PHP_EOL;
+				exit(1);
+		}
+		$contents = file_get_contents($flag[0]);
+		if ($contents === false) {
+			echo 'Error: Unable to open ' . $contents, PHP_EOL;
+			exit(1);
+		}
+		$b64 = base64_encode($contents);
+		$ghSearchUrl = 'https://github.com/search?q=' . urlencode("repo:FreshRSS/FreshRSS path:app/i18n/$lang /(TODO|DIRTY)$/");
+		$markdownImgStr .= "[![$lang](https://img.shields.io/badge/$value-$color?style=flat-square&logo=data:$mimeType;base64,$b64)]($ghSearchUrl) ";
+	}
+	// In case we're located in ./cli/
+	if (!file_exists('constants.php')) {
+		chdir('..');
+	}
+	foreach (array_merge(['README.md'], glob('README.*.md') ?: []) as $readmePath) {
+		writeToReadme($readmePath, rtrim($markdownImgStr));
+	}
+	exit();
 }
 
 if (!$isValidated) {
