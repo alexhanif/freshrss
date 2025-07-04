@@ -115,7 +115,7 @@ if ($cliOptions->generateReadme) {
 			case 'png':
 				$mimeType = 'image/png';
 				break;
-			case 'svg';
+			case 'svg':
 				$mimeType = 'image/svg+xml';
 				break;
 			default:
