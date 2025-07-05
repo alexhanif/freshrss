@@ -25,12 +25,10 @@ $ico = FAVICONS_DIR . $id . '.ico';
 $ico_mtime = @filemtime($ico) ?: 0;
 $txt_mtime = @filemtime($txt) ?: 0;
 
-if ($ico_mtime == false || $ico_mtime < $txt_mtime || ($ico_mtime < time() - (mt_rand(15, 20) * 86400))) {
+$is_custom_favicon = $ico_mtime != false && $txt_mtime == false;
+
+if (($ico_mtime == false || $ico_mtime < $txt_mtime || ($ico_mtime < time() - (mt_rand(15, 20) * 86400))) && !$is_custom_favicon) {
 	if ($txt_mtime == false) {
-		// If there is a .ico file, it's a custom icon - we don't want to display the default one.
-		if ($ico_mtime != false) {
-			goto displayIcon;
-		}
 		show_default_favicon(1800);
 		exit();
 	}
@@ -51,8 +49,6 @@ if ($ico_mtime == false || $ico_mtime < $txt_mtime || ($ico_mtime < time() - (mt
 		touch($ico);
 	}
 }
-
-displayIcon:
 
 header("Content-Security-Policy: default-src 'none'; frame-ancestors 'none'; img-src 'self'; style-src 'self';");
 if (!httpConditional($ico_mtime, mt_rand(14, 21) * 86400, 2)) {
