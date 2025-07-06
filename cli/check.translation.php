@@ -125,7 +125,7 @@ if ($cliOptions->generateReadme) {
 		}
 		$ext = pathinfo($flag[0], PATHINFO_EXTENSION);
 		if (!in_array($ext, $supportedFormats, true)) {
-			echo 'Error: ' . $flag[0] . ' uses unsupported format .' . $ext. '. Supported formats include: ' . implode(', ', $supportedFormats), PHP_EOL;
+			echo 'Error: ' . $flag[0] . ' uses unsupported format .' . $ext . '. Supported formats include: ' . implode(', ', $supportedFormats), PHP_EOL;
 			exit(1);
 		}
 		$contents = file_get_contents($flag[0]);
