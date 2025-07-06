@@ -111,12 +111,15 @@ if ($cliOptions->generateReadme) {
 			exit(1);
 		}
 		$mimeType = '';
-		switch (pathinfo($flag[0], PATHINFO_EXTENSION)) {
+		$ext = pathinfo($flag[0], PATHINFO_EXTENSION);
+		switch ($ext) {
 			case 'png':
 				$mimeType = 'image/png';
 				break;
 			case 'svg':
 				$mimeType = 'image/svg+xml';
+				break;
+			case 'txt': // For flags written as a single Unicode character
 				break;
 			default:
 				echo 'Error: Unable to determine mime type for ' . $flag[0], PHP_EOL;
@@ -129,7 +132,10 @@ if ($cliOptions->generateReadme) {
 		}
 		$b64 = base64_encode($contents);
 		$ghSearchUrl = 'https://github.com/search?q=' . urlencode("repo:FreshRSS/FreshRSS path:app/i18n/$lang /(TODO|DIRTY)$/");
-		$markdownImgStr .= "[![$lang](https://img.shields.io/badge/$value-$color?style=flat-square&logo=data:$mimeType;base64,$b64)]($ghSearchUrl) ";
+		if ($ext === 'txt') {
+			$value = trim($contents) . $value;
+		}
+		$markdownImgStr .= "[![$lang](https://img.shields.io/badge/$value-$color?style=flat-square" . ($ext !== 'txt' ? "&logo=data:$mimeType;base64,$b64" : '') . ")]($ghSearchUrl) ";
 	}
 	// In case we're located in ./cli/
 	if (!file_exists('constants.php')) {
