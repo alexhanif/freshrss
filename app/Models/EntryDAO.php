@@ -123,9 +123,9 @@ SQL;
 	protected function autoUpdateDb(array $errorInfo): bool {
 		if (isset($errorInfo[0])) {
 			if ($errorInfo[0] === FreshRSS_DatabaseDAO::ER_BAD_FIELD_ERROR || $errorInfo[0] === FreshRSS_DatabaseDAOPGSQL::UNDEFINED_COLUMN) {
-				$errorLines = explode("\n", (string)$errorInfo[2], 2);	// The relevant column name is on the first line, other lines are noise
+				$errorLines = explode("\n", $errorInfo[2], 2);	// The relevant column name is on the first line, other lines are noise
 				foreach (['attributes'] as $column) {
-					if (stripos($errorLines[0], $column) !== false) {
+					if (str_contains($errorLines[0], $column)) {
 						return $this->addColumn($column);
 					}
 				}
@@ -134,7 +134,7 @@ SQL;
 		if (isset($errorInfo[1])) {
 			// May be a string or an int
 			if ($errorInfo[1] == FreshRSS_DatabaseDAO::ER_DATA_TOO_LONG) {
-				if (stripos((string)$errorInfo[2], 'content_bin') !== false) {
+				if (str_contains($errorInfo[2], 'content_bin')) {
 					return $this->updateToMediumBlob();	//v1.15.0
 				}
 			}
@@ -915,6 +915,25 @@ SQL;
 				}
 				$sub_search = rtrim($sub_search, ',');
 				$sub_search .= ') ';
+			}
+
+			if ($filter->getCategoryIds() !== null) {
+				$sub_search .= 'AND ' . $alias . 'id_feed IN (SELECT f.id FROM `_feed` f WHERE f.category IN (';
+				foreach ($filter->getCategoryIds() as $category_id) {
+					$sub_search .= '?,';
+					$values[] = $category_id;
+				}
+				$sub_search = rtrim($sub_search, ',');
+				$sub_search .= ')) ';
+			}
+			if ($filter->getNotCategoryIds() !== null) {
+				$sub_search .= 'AND ' . $alias . 'id_feed NOT IN (SELECT f.id FROM `_feed` f WHERE f.category IN (';
+				foreach ($filter->getNotCategoryIds() as $category_id) {
+					$sub_search .= '?,';
+					$values[] = $category_id;
+				}
+				$sub_search = rtrim($sub_search, ',');
+				$sub_search .= ')) ';
 			}
 
 			if ($filter->getLabelIds() !== null) {

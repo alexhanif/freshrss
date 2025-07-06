@@ -50,6 +50,7 @@ return array(
 			'password' => 'HTTP パスワード',
 			'username' => 'HTTP ユーザー名',
 		),
+		'change_favicon' => 'Change…',	// TODO
 		'clear_cache' => '常にキャッシュをクリアする',
 		'content_action' => array(
 			'_' => '記事のコンテンツを取得するときの動作',
@@ -74,12 +75,15 @@ return array(
 			'help' => 'XMLファイル (データのサブセット。<a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">ドキュメントを参照してください</a>。)',
 			'label' => 'OPMLとしてエクスポート',
 		),
+		'ext_favicon' => 'Set automatically',	// TODO
+		'favicon_changed_by_ext' => 'The icon has been set by the <b>%s</b> extension.',	// TODO
 		'filteractions' => array(
 			'_' => 'フィルターアクション',
 			'help' => '1行に1つの検索フィルターを設定してください。演算子は<a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">ドキュメントを参照してください</a>。',
 		),
 		'http_headers' => 'HTTPヘッダ',
 		'http_headers_help' => 'ヘッダは開業で区切られ、ヘッダの名前と値はコロンで区切られます (例: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',
+		'icon' => 'Icon',	// TODO
 		'information' => 'インフォメーション',
 		'keep_min' => '最小数の記事は保持されます',
 		'kind' => array(
@@ -212,6 +216,7 @@ return array(
 		),
 		'proxy' => 'フィードを取得するときのプロキシ',
 		'proxy_help' => 'プロトコルを選択し (例: SOCKS5) プロキシアドレスを入力してください (例: <kbd>127.0.0.1:1080</kbd> や <kbd>username:password@127.0.0.1:1080</kbd>)',
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => 'ソースコードを表示する',
 			'show_rendered' => 'コンテンツを表示する',
