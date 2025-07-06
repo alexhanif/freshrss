@@ -119,7 +119,7 @@ if ($cliOptions->generateReadme) {
 		}
 		$supported_formats = ['txt', 'svg'];
 		$ext = pathinfo($flag[0], PATHINFO_EXTENSION);
-		if (!in_array($ext, $supported_formats)) {
+		if (!in_array($ext, $supported_formats, true)) {
 			echo 'Error: ' . $flag[0] . ' uses unsupported format .' . $ext, PHP_EOL;
 			exit(1);
 		}
