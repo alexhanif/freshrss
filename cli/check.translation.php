@@ -135,7 +135,9 @@ if ($cliOptions->generateReadme) {
 		if ($ext === 'txt') {
 			$value = trim($contents) . $value;
 		}
-		$markdownImgStr .= "[![$lang](https://img.shields.io/badge/$value-$color?style=flat-square" . ($ext !== 'txt' ? "&logo=data:$mimeType;base64,$b64" : '') . ")]($ghSearchUrl) ";
+		$markdownImgStr .=
+			"[![$lang](https://img.shields.io/badge/$value-$color?style=flat-square" .
+			($ext !== 'txt' ? "&logo=data:$mimeType;base64,$b64" : '') . ")]($ghSearchUrl) ";
 	}
 	// In case we're located in ./cli/
 	if (!file_exists('constants.php')) {
