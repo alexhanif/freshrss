@@ -96,7 +96,7 @@ function writeToReadme(string $readmePath, string $markdownImgStr): void {
 function embedSvg(string $contents): string {
 	return preg_replace(
 		'/<svg\s+(?:(?:[^>]*?)(xmlns=["\'][^"\']+["\']))?(?:(?:[^>]*?)(viewBox=["\'][^"\']+["\']))?(?:[^>]*?)>/i',
-		'<svg \1 \2 width="16" height="16" x="5" y="2">',
+		'<svg \1 \2 width="16" height="16" x="9" y="2">',
 		$contents
 	) ?? '';
 }
@@ -132,7 +132,7 @@ if ($cliOptions->generateReadme) {
 		$genPath = __DIR__ . '/flags/gen/' . $lang . '.svg';
 		$template = '';
 		if ($ext === 'txt') {
-			$value = trim($contents) . ' ' . $value;
+			$value = trim($contents) . ' ' . $percentageInt . '%';
 			$template = <<<EOF
 			<svg xmlns="http://www.w3.org/2000/svg" width="70" height="20">
 				<g fill="white" font-size="12" font-family="Verdana" text-anchor="middle">
@@ -142,6 +142,7 @@ if ($cliOptions->generateReadme) {
 			</svg>
 			EOF;
 		} else {
+			$value = $percentageInt . '%';
 			$contents = embedSvg($contents);
 			$template = <<<EOF
 			<svg xmlns="http://www.w3.org/2000/svg" width="70" height="20">
@@ -150,7 +151,7 @@ if ($cliOptions->generateReadme) {
 					<!-- embedded SVG -->
 					$contents
 					<!-- end of embedded SVG -->
-					<text x="45" y="14">$value</text>
+					<text x="43" y="14">$value</text>
 				</g>
 			</svg>
 			EOF;
