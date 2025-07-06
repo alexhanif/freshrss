@@ -95,6 +95,10 @@ return array(
 			'cache_cleared' => '<em>%s</em> cache has been cleared',
 			'deleted' => 'Feed has been deleted',
 			'error' => 'Feed cannot be updated',
+			'favicon' => array(
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',
+				'unsupported_format' => 'Unsupported image file format!',
+			),
 			'internal_problem' => 'The newsfeed could not be added. <a href="%s">Check FreshRSS logs</a> for details. You can try force adding by appending <code>#force_feed</code> to the URL.',
 			'invalid_url' => 'URL <em>%s</em> is invalid',
 			'n_actualized' => '%d feeds have been updated',

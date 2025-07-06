@@ -50,6 +50,7 @@ return array(
 			'password' => 'HTTP jelszó',
 			'username' => 'HTTP felhasználónév',
 		),
+		'change_favicon' => 'Change…',	// TODO
 		'clear_cache' => 'Mindig törölje a cache-t',
 		'content_action' => array(
 			'_' => 'Tartalom művelet, amikor cikk tartalma beszerzésre kerül',
@@ -74,12 +75,15 @@ return array(
 			'help' => 'XML fájl (adat részhalmaz. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">Lásd dokumentáció</a>)',
 			'label' => 'Exportálás OPML formátumban',
 		),
+		'ext_favicon' => 'Set automatically',	// TODO
+		'favicon_changed_by_ext' => 'The icon has been set by the <b>%s</b> extension.',	// TODO
 		'filteractions' => array(
 			'_' => 'Szűrő műveletek',
 			'help' => 'Írj egy szűrőt soronként. Műveletek <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">a dokumentációban</a>.',
 		),
 		'http_headers' => 'HTTP Fejlécek',
 		'http_headers_help' => 'A fejléceket újsor választja el, a fejléc nevét és értékét kettőspont választja el (pl: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',
+		'icon' => 'Icon',	// TODO
 		'information' => 'Információ',
 		'keep_min' => 'Megtartandó cikkek minimális száma',
 		'kind' => array(
@@ -212,6 +216,7 @@ return array(
 		),
 		'proxy' => 'Állíts be egy proxy-t a hírforráshoz ',
 		'proxy_help' => 'Válassz egy protokollt (pl.: SOCKS5) és add meg a proxy címét (pl.: <kbd>127.0.0.1:1080</kbd> vagy <kbd>felhasználónév:jelszó@127.0.0.1:1080</kbd>)',
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => 'Forráskód mutatása',
 			'show_rendered' => 'Tartalom mutatása',

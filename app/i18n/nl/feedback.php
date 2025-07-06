@@ -95,6 +95,10 @@ return array(
 			'cache_cleared' => '<em>%s</em> cache verwijderd',
 			'deleted' => 'Feed verwijderd',
 			'error' => 'Feed kan niet worden vernieuwd',
+			'favicon' => array(
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
+			),
 			'internal_problem' => 'De feed kon niet worden toegevoegd. <a href="%s">Controleer de FreshRSS-logbestanden</a> voor details. Toevoegen forceren kan worden geprobeerd door <code>#force_feed</code> aan de URL toe te voegen.',
 			'invalid_url' => 'URL <em>%s</em> is ongeldig',
 			'n_actualized' => '%d feeds zijn vernieuwd',

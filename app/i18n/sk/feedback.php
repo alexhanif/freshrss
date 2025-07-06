@@ -95,6 +95,10 @@ return array(
 			'cache_cleared' => '<em>%s</em> vyrovnávacia pamäť bola vymazaná',
 			'deleted' => 'Kanál bol vymazaný',
 			'error' => 'Kanál sa nepodarilo aktualizovať',
+			'favicon' => array(
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
+			),
 			'internal_problem' => 'Kanál sa nepodarilo pridať. <a href="%s">Prečítajte si záznamy FreshRSS</a>, ak chcete poznať podrobnosti. Skúste pridať kanál pomocou <code>#force_feed</code> v odkaze (URL).',
 			'invalid_url' => 'Odkaz <em>%s</em> je neplatný',
 			'n_actualized' => 'Počet aktualizovaných kanálov: %d',

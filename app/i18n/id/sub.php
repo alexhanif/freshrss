@@ -50,6 +50,7 @@ return array(
 			'password' => 'Kata sandi HTTP',
 			'username' => 'Nama pengguna HTTP',
 		),
+		'change_favicon' => 'Change…',	// TODO
 		'clear_cache' => 'Selalu bersihkan tembolok',
 		'content_action' => array(
 			'_' => 'Yang dilakukan ketika mengambil konten artikel',
@@ -74,12 +75,15 @@ return array(
 			'help' => 'Berkas XML (subset data. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">Lihat dokumentasi</a>)',
 			'label' => 'Unduh dalam bentuk OPML',
 		),
+		'ext_favicon' => 'Set automatically',	// TODO
+		'favicon_changed_by_ext' => 'The icon has been set by the <b>%s</b> extension.',	// TODO
 		'filteractions' => array(
 			'_' => 'Tindakan penyaringan',
 			'help' => 'Tulis satu penyaringan pencarian per baris. Operator <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">lihat dokumentasi</a>.',
 		),
 		'http_headers' => 'Tajuk HTTP',
 		'http_headers_help' => 'Tajuk dipisahkan dengan baris baru dan nama dan nilai dari tajuk dipisahkan dengan titik dua (contoh: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',
+		'icon' => 'Icon',	// TODO
 		'information' => 'Informasi',
 		'keep_min' => 'Jumlah minimum artikel yang harus disimpan',
 		'kind' => array(
@@ -212,6 +216,7 @@ return array(
 		),
 		'proxy' => 'Atur proksi untuk mengambil umpan ini',
 		'proxy_help' => 'Pilih protokol (contoh: SOCKS5) dan masukkan alamat proksi (contoh: <kbd>127.0.0.1:1080</kbd> atau <kbd>username:password@127.0.0.1:1080</kbd>)',
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => 'Tampilkan kode sumber',
 			'show_rendered' => 'Tampilkan konten',

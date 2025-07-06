@@ -30,6 +30,14 @@ final class Minz_ExtensionManager {
 			'list' => [],
 			'signature' => 'OneToOne',
 		],
+		'custom_favicon_btn_url' => [ // function(FreshRSS_Feed $feed): string | null
+			'list' => [],
+			'signature' => 'PassArguments',
+		],
+		'custom_favicon_hash' => [ // function(FreshRSS_Feed $feed): string | null
+			'list' => [],
+			'signature' => 'PassArguments',
+		],
 		'entries_favorite' => [	// function(array $ids, bool $is_favorite): void
 			'list' => [],
 			'signature' => 'PassArguments',
@@ -366,7 +374,10 @@ final class Minz_ExtensionManager {
 			return self::callOneToOne($hook_name, $args[0] ?? null);
 		} elseif ($signature === 'PassArguments') {
 			foreach (self::$hook_list[$hook_name]['list'] as $function) {
-				call_user_func($function, ...$args);
+				$result = call_user_func($function, ...$args);
+				if ($result !== null) {
+					return $result;
+				}
 			}
 		} elseif ($signature === 'NoneToString') {
 			return self::callHookString($hook_name);
@@ -450,5 +461,14 @@ final class Minz_ExtensionManager {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Check if a extension is enabled
+	 *
+	 * @param string $ext_name is the extension's name as provided in metadata.json
+	 */
+	public static function isExtensionEnabled(string $ext_name): bool {
+		return isset(self::$ext_list_enabled[$ext_name]);
 	}
 }

@@ -95,6 +95,10 @@ return array(
 			'cache_cleared' => '<em>%s</em> se ha borrado la caché',
 			'deleted' => 'Fuente eliminada',
 			'error' => 'No es posible actualizar la fuente',
+			'favicon' => array(
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
+			),
 			'internal_problem' => 'No ha sido posible agregar la fuente RSS. <a href="%s">Revisa el registro de FreshRSS </a> para más información. Puedes probar de forzarlo añadiendo la etiqueta <code>#force_feed</code> a la URL.',
 			'invalid_url' => 'La URL <em>%s</em> es inválida',
 			'n_actualized' => 'Se han actualizado %d fuentes',
