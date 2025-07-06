@@ -50,6 +50,7 @@ return array(
 			'ko' => '%s tidak dapat diaktifkan. <a href="%s">Periksa log FreshRSS</a> untuk informasi lebih lanjut.',
 			'ok' => '%s telah diaktifkan',
 		),
+		'invalid_view_mode' => 'Mode tampilan tidak valid “%s”! Balik ke “Tampilan normal”.',
 		'no_access' => 'Anda tidak memiliki akses ke %s',
 		'not_enabled' => '%s tidak diaktifkan',
 		'not_found' => '%s tidak ada',
@@ -94,6 +95,10 @@ return array(
 			'cache_cleared' => 'Tembolok <em>%s</em> telah dikosongkan',
 			'deleted' => 'Umpan telah dihapus',
 			'error' => 'Umpan tidak dapat diperbarui',
+			'favicon' => array(
+				'too_large' => 'Ikon yang diunggah terlalu besar. Ukuran maksimal berkas adalah <em>%s</em>.',
+				'unsupported_format' => 'Format gambar tidak didukung!',
+			),
 			'internal_problem' => 'Umpan tidak dapat ditambahkan. <a href="%s">Periksa log FreshRSS</a> untuk informasi lebih lanjut. Anda bisa memaksa penambahan dengan menambahkan <code>#force_feed</code> ke URL.',
 			'invalid_url' => 'URL <em>%s</em> tidak valid',
 			'n_actualized' => '%d umpan telah diperbarui',
