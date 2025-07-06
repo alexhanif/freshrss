@@ -93,6 +93,14 @@ function writeToReadme(string $readmePath, string $markdownImgStr): void {
 	echo 'Successfully written translation status into ' . $readmePath, PHP_EOL;
 }
 
+function embedSvg(string $contents): string {
+	return preg_replace(
+		'/<svg\s+(?:(?:[^>]*?)(xmlns=["\'][^"\']+["\']))?(?:(?:[^>]*?)(viewBox=["\'][^"\']+["\']))?(?:[^>]*?)>/i',
+		'<svg \1 \2 width="16" height="16" x="5" y="2">',
+		$contents
+	) ?? '';
+}
+
 if ($cliOptions->generateReadme) {
 	$markdownImgStr = '';
 	foreach ($percentage as $lang => $value) {
@@ -134,22 +142,25 @@ if ($cliOptions->generateReadme) {
 		$genPath = __DIR__ . '/flags/gen/' . $lang . '.svg';
 		$template = '';
 		if ($ext === 'txt') {
-			$value = trim($contents) . $value;
+			$value = trim($contents) . ' ' . $value;
 			$template = <<<EOF
-			<svg xmlns="http://www.w3.org/2000/svg">
-				<g fill="white" font-size="11" font-family="Verdana" text-anchor="middle">
-					<rect rx="3" width="60" height="20" fill="$color" />
-					<text x="30" y="14">$value</text>
+			<svg xmlns="http://www.w3.org/2000/svg" width="70" height="20">
+				<g fill="white" font-size="12" font-family="Verdana" text-anchor="middle">
+					<rect rx="3" width="70" height="20" fill="$color" />
+					<text x="34" y="14">$value</text>
 				</g>
 			</svg>
 			EOF;
 		} else {
+			$contents = embedSvg($contents);
 			$template = <<<EOF
-			<svg xmlns="http://www.w3.org/2000/svg">
-				<g fill="white" font-size="11" font-family="Verdana" text-anchor="middle">
-					<rect rx="3" width="65" height="20" fill="$color" />
-					<image x="7" y="2" width="16" height="16" href="../$lang.$ext" />
-					<text x="42" y="14">$value</text>
+			<svg xmlns="http://www.w3.org/2000/svg" width="70" height="20">
+				<g fill="white" font-size="12" font-family="Verdana" text-anchor="middle">
+					<rect rx="3" width="70" height="20" fill="$color" />
+					<!-- embedded SVG -->
+					$contents
+					<!-- end of embedded SVG -->
+					<text x="45" y="14">$value</text>
 				</g>
 			</svg>
 			EOF;
