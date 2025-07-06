@@ -61,10 +61,10 @@ return array(
 		'css_cookie' => 'Gunakan kuki ketika mengambil konten artikel',
 		'css_cookie_help' => 'Contoh: <kbd>foo=bar; gdpr_consent=true; cookie=value</kbd>',
 		'css_help' => 'Mengambil bagian artikel sesuai CSS yang dimasukkan (awas, memerlukan lebih banyak waktu!)',
-		'css_path' => 'Selektor CSS artikel di situs aslinya',
+		'css_path' => 'Pemilihan CSS artikel di situs aslinya',
 		'css_path_filter' => array(
-			'_' => 'Selektor CSS artikel untuk konten yang akan dihapus',
-			'help' => 'Selektor CSS bisa juga berupa daftar seperti: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
+			'_' => 'Pemilihan CSS artikel untuk konten yang akan dihapus',
+			'help' => 'Pemilihan CSS bisa juga berupa daftar seperti: <kbd>footer, aside, p[data-sanitized-class~="menu"]</kbd>',
 		),
 		'description' => 'Deskripsi',
 		'empty' => 'Umpan ini kosong. Periksa apakah umpan ini masih ada',
@@ -92,12 +92,12 @@ return array(
 				),
 			),
 			'html_xpath' => array(
-				'_' => 'HTML + XPath (Web scraping)',	// IGNORE
+				'_' => 'HTML + XPath (Pengorekan web)',
 				'feed_title' => array(
 					'_' => 'judul umpan',
 					'help' => 'Contoh: <code>//title</code> atau kata statis: <code>"Umpan Saya"</code>',
 				),
-				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> adalah bahasa kueri standar untuk pengguna tingkat lanjut dan yang mana FreshRSS dukung untuk web scraping.',
+				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> adalah bahasa kueri standar untuk pengguna tingkat lanjut dan yang mana FreshRSS dukung untuk dikorek.',
 				'item' => array(
 					'_' => 'mencari <strong>item</strong> artikel<br /><small>(paling penting)</small>',
 					'help' => 'Contoh: <code>//div[@class="news-item"]</code>',
@@ -184,7 +184,7 @@ return array(
 			'clear_cache' => 'Bersihkan tembolok',
 			'clear_cache_help' => 'Bersihkan tembolok untuk umpan ini.',
 			'reload_articles' => 'Muat ulang artikel',
-			'reload_articles_help' => 'Muat ulang artikel sesuai angka yang dimasukkan dan ambil konten lengkap jika selektor diberikan.',
+			'reload_articles_help' => 'Muat ulang artikel sesuai angka yang dimasukkan dan ambil konten lengkap jika pemilihan diberikan.',
 			'title' => 'Pemeliharaan',
 		),
 		'max_http_redir' => 'Maksimum pengalihan HTTP',
@@ -231,7 +231,7 @@ return array(
 		'title_add' => 'Tambah umpan RSS',
 		'ttl' => 'Jangan perbarui secara otomatis lebih banyak daripada',
 		'unicityCriteria' => array(
-			'_' => 'Kriteria Keunikan Artikel',
+			'_' => 'Kriteria keunikan artikel',
 			'forced' => '<span title="Blokir kriteria keunikan meski umpan memiliki artikel duplikat">paksa</span>',
 			'help' => 'Relevan untuk umpan yang tidak valid.<br />⚠️ Mengubah ini akan membuat artikel duplikat.',
 			'id' => 'ID standar (baku)',
