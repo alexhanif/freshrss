@@ -117,27 +117,17 @@ if ($cliOptions->generateReadme) {
 			echo 'Error: Unable to find flag for ' . $lang, PHP_EOL;
 			exit(1);
 		}
-		$mimeType = '';
+		$supported_formats = ['txt', 'svg'];
 		$ext = pathinfo($flag[0], PATHINFO_EXTENSION);
-		switch ($ext) {
-			case 'png':
-				$mimeType = 'image/png';
-				break;
-			case 'svg':
-				$mimeType = 'image/svg+xml';
-				break;
-			case 'txt': // For flags written as a single Unicode character
-				break;
-			default:
-				echo 'Error: Unable to determine mime type for ' . $flag[0], PHP_EOL;
-				exit(1);
+		if (!in_array($ext, $supported_formats)) {
+			echo 'Error: ' . $flag[0] . ' uses unsupported format .' . $ext, PHP_EOL;
+			exit(1);
 		}
 		$contents = file_get_contents($flag[0]);
 		if ($contents === false) {
 			echo 'Error: Unable to open ' . $contents, PHP_EOL;
 			exit(1);
 		}
-		$b64 = base64_encode($contents);
 		$ghSearchUrl = 'https://github.com/search?q=' . urlencode("repo:FreshRSS/FreshRSS path:app/i18n/$lang /(TODO|DIRTY)$/");
 		$genPath = __DIR__ . '/flags/gen/' . $lang . '.svg';
 		$template = '';
