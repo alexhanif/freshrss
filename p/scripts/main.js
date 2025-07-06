@@ -212,84 +212,88 @@ function removeArticle(div) {
 const pending_entries = {};
 let mark_read_queue = [];
 
-function send_mark_read_queue(queue, asRead, callback) {
+async function send_mark_read_queue(queue, asRead, callback) {
 	if (!queue || queue.length === 0) {
 		if (callback) {
 			callback();
 		}
 		return;
 	}
-	fetch('.?c=entry&a=read' + (asRead ? '' : '&is_read=0'), {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json; charset=UTF-8"
-		},
-		body: JSON.stringify({
-			ajax: true,
-			_csrf: context.csrf,
-			id: queue,
-		}),
-		keepalive: true
-	}).then(resp => {
+	let json;
+	try {
+		const resp = await fetch('.?c=entry&a=read' + (asRead ? '' : '&is_read=0'), {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json; charset=UTF-8'
+			},
+			body: JSON.stringify({
+				ajax: true,
+				_csrf: context.csrf,
+				id: queue,
+			}),
+			keepalive: true
+		});
 		if (!resp.ok) {
-			return Promise.reject(resp);
-		}
-		return resp.json();
-	}).then(json => {
-		for (let i = queue.length - 1; i >= 0; i--) {
-			const div = document.getElementById('flux_' + queue[i]);
-			const myIcons = context.icons;
-			let inc = 0;
-			if (div.classList.contains('not_read')) {
-				div.classList.remove('not_read');
-				div.querySelectorAll('a.read').forEach(function (a) {
-					a.href = a.href.replace('&is_read=0', '') + '&is_read=1';
+			for (let i = queue.length - 1; i >= 0; i--) {
+				const div = document.getElementById('flux_' + queue[i]);
+				div.querySelectorAll('a.read > .icon').forEach(icon => {
+					icon.outerHTML = div.classList.contains('not_read') ? context.icons.unread : context.icons.read;
 				});
-				div.querySelectorAll('a.read > .icon').forEach(function (img) { img.outerHTML = myIcons.read; });
-				inc--;
-				if (context.auto_remove_article) {
-					removeArticle(div);
-				}
-			} else {
-				div.classList.add('not_read');
-				div.classList.add('keep_unread');	// Split for IE11
-				div.querySelectorAll('a.read').forEach(function (a) {
-					a.href = a.href.replace('&is_read=1', '');
-				});
-				div.querySelectorAll('a.read > .icon').forEach(function (img) { img.outerHTML = myIcons.unread; });
-				inc++;
+				delete pending_entries['flux_' + queue[i]];
 			}
-			const feed_link = div.querySelector('.website > a, a.website');
-			if (feed_link) {
-				const feed_url = feed_link.href;
-				const feed_id = feed_url.substr(feed_url.lastIndexOf('f_'));
-				incUnreadsFeed(div, feed_id, inc);
-			}
-			delete pending_entries['flux_' + queue[i]];
+			badAjax(resp.status == 403);
+			return;
 		}
-		faviconNbUnread();
-		if (json.tags) {
-			const tagIds = Object.keys(json.tags);
-			for (let i = tagIds.length - 1; i >= 0; i--) {
-				const tagId = tagIds[i];
-				incUnreadsTag(tagId, (asRead ? -1 : 1) * json.tags[tagId].length);
-			}
-		}
-		toggle_bigMarkAsRead_button();
-		onScroll();
-		if (callback) {
-			callback();
-		}
-	}).catch(resp => {
-		for (let i = queue.length - 1; i >= 0; i--) {
-			const div = document.getElementById('flux_' + queue[i]);
-			div.querySelectorAll('a.read > .icon').forEach(icon => {
-				icon.outerHTML = div.classList.contains('not_read') ? context.icons.unread : context.icons.read;
+		json = await resp.json();
+	} catch (e) {
+		console.error(e.message);
+		badAjax();
+		return;
+	}
+	for (let i = queue.length - 1; i >= 0; i--) {
+		const div = document.getElementById('flux_' + queue[i]);
+		const myIcons = context.icons;
+		let inc = 0;
+		if (div.classList.contains('not_read')) {
+			div.classList.remove('not_read');
+			div.querySelectorAll('a.read').forEach(function (a) {
+				a.href = a.href.replace('&is_read=0', '') + '&is_read=1';
 			});
-			delete pending_entries['flux_' + queue[i]];
+			div.querySelectorAll('a.read > .icon').forEach(function (img) { img.outerHTML = myIcons.read; });
+			inc--;
+			if (context.auto_remove_article) {
+				removeArticle(div);
+			}
+		} else {
+			div.classList.add('not_read');
+			div.classList.add('keep_unread');	// Split for IE11
+			div.querySelectorAll('a.read').forEach(function (a) {
+				a.href = a.href.replace('&is_read=1', '');
+			});
+			div.querySelectorAll('a.read > .icon').forEach(function (img) { img.outerHTML = myIcons.unread; });
+			inc++;
 		}
-		badAjax(resp.status == 403);
-	});
+		const feed_link = div.querySelector('.website > a, a.website');
+		if (feed_link) {
+			const feed_url = feed_link.href;
+			const feed_id = feed_url.substr(feed_url.lastIndexOf('f_'));
+			incUnreadsFeed(div, feed_id, inc);
+		}
+		delete pending_entries['flux_' + queue[i]];
+	}
+	faviconNbUnread();
+	if (json.tags) {
+		const tagIds = Object.keys(json.tags);
+		for (let i = tagIds.length - 1; i >= 0; i--) {
+			const tagId = tagIds[i];
+			incUnreadsTag(tagId, (asRead ? -1 : 1) * json.tags[tagId].length);
+		}
+	}
+	toggle_bigMarkAsRead_button();
+	onScroll();
+	if (callback) {
+		callback();
+	}
 }
 
 let send_mark_read_queue_timeout = 0;
