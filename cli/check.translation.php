@@ -87,7 +87,7 @@ function writeToReadme(string $readmePath, string $markdownImgStr): void {
 
 	</translations>
 	EOF, $readme)) === false) {
-		echo 'Error: fail while writing to ' . $readmePath, PHP_EOL;
+		echo 'Error: Fail while writing to ' . $readmePath, PHP_EOL;
 		exit(1);
 	}
 	echo 'Successfully written translation status into ' . $readmePath, PHP_EOL;
@@ -104,7 +104,6 @@ if ($cliOptions->generateReadme) {
 		if ($percentageInt < 70) {
 			$color = 'darkred';
 		}
-		$value = urlencode($value);
 		$flag = glob(__DIR__ . '/flags/' . $lang . '.*');
 		if ($flag === false || !isset($flag[0])) {
 			echo 'Error: Unable to find flag for ' . $lang, PHP_EOL;
@@ -132,12 +131,34 @@ if ($cliOptions->generateReadme) {
 		}
 		$b64 = base64_encode($contents);
 		$ghSearchUrl = 'https://github.com/search?q=' . urlencode("repo:FreshRSS/FreshRSS path:app/i18n/$lang /(TODO|DIRTY)$/");
+		$genPath = __DIR__ . '/flags/gen/' . $lang . '.svg';
+		$template = '';
 		if ($ext === 'txt') {
 			$value = trim($contents) . $value;
+			$template = <<<EOF
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<g fill="white" font-size="11" font-family="Verdana" text-anchor="middle">
+					<rect rx="3" width="60" height="20" fill="$color" />
+					<text x="30" y="14">$value</text>
+				</g>
+			</svg>
+			EOF;
+		} else {
+			$template = <<<EOF
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<g fill="white" font-size="11" font-family="Verdana" text-anchor="middle">
+					<rect rx="3" width="65" height="20" fill="$color" />
+					<image x="7" y="2" width="16" height="16" href="../$lang.$ext" />
+					<text x="42" y="14">$value</text>
+				</g>
+			</svg>
+			EOF;
 		}
-		$markdownImgStr .=
-			"[![$lang](https://img.shields.io/badge/$value-$color?style=flat-square" .
-			($ext !== 'txt' ? "&logo=data:$mimeType;base64,$b64" : '') . ")]($ghSearchUrl) ";
+		if (file_put_contents($genPath, $template) === false) {
+			echo 'Error: Fail while generating flag for ' . $lang, PHP_EOL;
+			exit(1);
+		}
+		$markdownImgStr .= "[![$lang](./cli/flags/gen/$lang.svg)]($ghSearchUrl) ";
 	}
 	// In case we're located in ./cli/
 	if (!file_exists('constants.php')) {
