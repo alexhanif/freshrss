@@ -160,6 +160,7 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 			Minz_Request::good(_t('feedback.conf.updated'), [ 'c' => 'configure', 'a' => 'reading' ]);
 		}
 
+		$this->view->viewModes = FreshRSS_ViewMode::getAllModes();
 		FreshRSS_View::prependTitle(_t('conf.reading.title') . ' · ');
 	}
 
@@ -178,7 +179,7 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 		FreshRSS_View::appendScript(Minz_Url::display('/scripts/draggable.js?' . @filemtime(PUBLIC_PATH . '/scripts/draggable.js')));
 
 		if (Minz_Request::isPost()) {
-			$share = $_POST['share'] ?? null;
+			$share = $_POST['share'] ?? [];
 			if (is_array($share)) {
 				$share = array_filter($share, fn($value, $key): bool =>
 					is_int($key) && is_array($value) &&

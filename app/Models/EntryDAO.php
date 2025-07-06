@@ -43,7 +43,7 @@ class FreshRSS_EntryDAO extends Minz_ModelPdo {
 	protected static function sqlRegex(string $expression, string $regex, array &$values): string {
 		// The implementation of this function is solely for MySQL and MariaDB
 		static $databaseDAOMySQL = null;
-		if ($databaseDAOMySQL === null) {
+		if (!($databaseDAOMySQL instanceof FreshRSS_DatabaseDAO)) {
 			$databaseDAOMySQL = new FreshRSS_DatabaseDAO();
 		}
 
@@ -123,9 +123,9 @@ SQL;
 	protected function autoUpdateDb(array $errorInfo): bool {
 		if (isset($errorInfo[0])) {
 			if ($errorInfo[0] === FreshRSS_DatabaseDAO::ER_BAD_FIELD_ERROR || $errorInfo[0] === FreshRSS_DatabaseDAOPGSQL::UNDEFINED_COLUMN) {
-				$errorLines = explode("\n", (string)$errorInfo[2], 2);	// The relevant column name is on the first line, other lines are noise
+				$errorLines = explode("\n", $errorInfo[2], 2);	// The relevant column name is on the first line, other lines are noise
 				foreach (['attributes'] as $column) {
-					if (stripos($errorLines[0], $column) !== false) {
+					if (str_contains($errorLines[0], $column)) {
 						return $this->addColumn($column);
 					}
 				}
@@ -134,7 +134,7 @@ SQL;
 		if (isset($errorInfo[1])) {
 			// May be a string or an int
 			if ($errorInfo[1] == FreshRSS_DatabaseDAO::ER_DATA_TOO_LONG) {
-				if (stripos((string)$errorInfo[2], 'content_bin') !== false) {
+				if (str_contains($errorInfo[2], 'content_bin')) {
 					return $this->updateToMediumBlob();	//v1.15.0
 				}
 			}
@@ -205,6 +205,8 @@ SQL;
 			return true;
 		} else {
 			$info = $this->addEntryPrepared == false ? $this->pdo->errorInfo() : $this->addEntryPrepared->errorInfo();
+			/** @var array{id:string,guid:string,title:string,author:string,content:string,link:string,date:int,lastSeen:int,hash:string,
+			 * 	is_read:bool|int|null,is_favorite:bool|int|null,id_feed:int,tags:string,attributes?:null|string|array<string,mixed>} $valuesTmp */
 			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				$this->addEntryPrepared = null;
@@ -315,6 +317,8 @@ SQL;
 			return true;
 		} else {
 			$info = $this->updateEntryPrepared == false ? $this->pdo->errorInfo() : $this->updateEntryPrepared->errorInfo();
+			/** @var array{id:string,guid:string,title:string,author:string,content:string,link:string,date:int,lastSeen:int,hash:string,
+			 * 	is_read:bool|int|null,is_favorite:bool|int|null,id_feed:int,tags:string,attributes:array<string,mixed>} $valuesTmp */
 			/** @var array{0:string,1:int,2:string} $info */
 			if ($this->autoUpdateDb($info)) {
 				return $this->updateEntry($valuesTmp);
@@ -913,6 +917,25 @@ SQL;
 				$sub_search .= ') ';
 			}
 
+			if ($filter->getCategoryIds() !== null) {
+				$sub_search .= 'AND ' . $alias . 'id_feed IN (SELECT f.id FROM `_feed` f WHERE f.category IN (';
+				foreach ($filter->getCategoryIds() as $category_id) {
+					$sub_search .= '?,';
+					$values[] = $category_id;
+				}
+				$sub_search = rtrim($sub_search, ',');
+				$sub_search .= ')) ';
+			}
+			if ($filter->getNotCategoryIds() !== null) {
+				$sub_search .= 'AND ' . $alias . 'id_feed NOT IN (SELECT f.id FROM `_feed` f WHERE f.category IN (';
+				foreach ($filter->getNotCategoryIds() as $category_id) {
+					$sub_search .= '?,';
+					$values[] = $category_id;
+				}
+				$sub_search = rtrim($sub_search, ',');
+				$sub_search .= ')) ';
+			}
+
 			if ($filter->getLabelIds() !== null) {
 				if ($filter->getLabelIds() === '*') {
 					$sub_search .= 'AND EXISTS (SELECT et.id_tag FROM `_entrytag` et WHERE et.id_entry = ' . $alias . 'id) ';
@@ -1461,7 +1484,9 @@ SQL;
 		[$values, $sql] = $this->sqlListWhere($type, $id, $state, $filters, id_min: $id_min, id_max: $id_max, order: $order,
 			continuation_id: $continuation_id, continuation_value: $continuation_value, limit: $limit, offset: $offset);
 		$stm = $this->pdo->prepare($sql);
-		if ($stm !== false && $stm->execute($values) && ($res = $stm->fetchAll(PDO::FETCH_COLUMN, 0)) !== false) {
+		if ($stm !== false && $stm->execute($values)) {
+			/** @var list<int|numeric-string> $res */
+			$res = $stm->fetchAll(PDO::FETCH_COLUMN, 0);
 			$res = array_map('strval', $res);
 			/** @var list<numeric-string> $res */
 			return $res;
@@ -1496,6 +1521,7 @@ SQL;
 		if ($stm !== false && $stm->execute($values)) {
 			$rows = $stm->fetchAll(PDO::FETCH_ASSOC);
 			foreach ($rows as $row) {
+				/** @var array{guid:string,hex_hash:string} $row */
 				$result[$row['guid']] = $row['hex_hash'];
 			}
 			return $result;

@@ -4,12 +4,19 @@ includes:
 
 parameters:
 	level: max
-	checkImplicitMixed: true	# TODO pass
 	strictRules:
-		strictArrayFilter: false	# TODO pass maybe
+		strictArrayFilter: true	# TODO pass
 	excludePaths:
 		analyse:
 			# TODO: Update files below and remove them from this list
-			- app/Models/EntryDAO.php
-			- app/Models/TagDAO.php
-			- app/Services/ImportService.php
+			- app/Controllers/configureController.php
+			- app/Controllers/feedController.php
+			- app/Controllers/subscriptionController.php
+			- app/Models/Entry.php
+			- app/Models/UserQuery.php
+			- cli/CliOption.php
+			- cli/CliOptionsParser.php
+			- cli/create-user.php
+			- cli/reconfigure.php
+			- cli/update-user.php
+			- lib/Minz/Migrator.php

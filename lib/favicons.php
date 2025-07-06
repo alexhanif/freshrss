@@ -12,12 +12,12 @@ function isImgMime(string $content): bool {
 	if (!extension_loaded('fileinfo')) {
 		return true;
 	}
-	$isImage = true;
-	/** @var finfo $fInfo */
 	$fInfo = finfo_open(FILEINFO_MIME_TYPE);
-	/** @var string $content */
+	if ($fInfo === false) {
+		return true;
+	}
 	$content = finfo_buffer($fInfo, $content);
-	$isImage = strpos($content, 'image') !== false;
+	$isImage = str_contains($content ?: '', 'image');
 	finfo_close($fInfo);
 	return $isImage;
 }
