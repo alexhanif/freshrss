@@ -148,7 +148,7 @@ return array(
 					'_' => 'judul umpan',
 					'help' => 'Contoh: <code>meta.title</code> atau kata statis: <code>"Umpan Saya"</code>',
 				),
-				'help' => 'Notasi dot JSON menggunakan dot (titik) antara objek dan kurung untuk array (contoh <code>data.items[0].title</code>)',
+				'help' => 'Notasi dot JSON menggunakan dot (titik) antara objek dan kurung untuk array. Contoh <code>data.items[0].title</code>',
 				'item' => array(
 					'_' => 'mencari <strong>item</strong> artikel<br /><small>(paling penting)</small>',
 					'help' => 'Jalur JSON ke array yang mengandung item tersebut, contoh: <code>$</code> atau <code>newsItems</code>',

@@ -27,7 +27,7 @@ return array(
 		'empty' => 'Kosongkan',
 		'enable' => 'Aktifkan',
 		'export' => 'Ekspor',
-		'filter' => 'Filter',
+		'filter' => 'Filter',	// TODO
 		'import' => 'Impor',
 		'load_default_shortcuts' => 'Muat pintasan baku',
 		'manage' => 'Kelola',
@@ -72,7 +72,7 @@ return array(
 		),
 	),
 	'date' => array(
-		'Apr' => '\\A\\p\\r\\i\\l',
+		'Apr' => '\\A\\p\\r\\i\\l',	// TODO
 		'Aug' => '\\A\\g\\u\\s\\t\\u\\s',
 		'Dec' => '\\D\\e\\s\\e\\m\\b\\e\\r',
 		'Feb' => '\\F\\e\\b\\r\\u\\a\\r\\i',
@@ -81,11 +81,11 @@ return array(
 		'Jun' => '\\J\\u\\n\\i',
 		'Mar' => '\\M\\a\\r\\e\\t',
 		'May' => '\\M\\e\\i',
-		'Nov' => '\\N\\o\\v\\e\\m\\b\\e\\r',
+		'Nov' => '\\N\\o\\v\\e\\m\\b\\e\\r',	// TODO
 		'Oct' => '\\O\\k\\t\\o\\b\\e\\r',
-		'Sep' => '\\S\\e\\p\\t\\e\\m\\b\\e\\r',
-		'apr' => 'Apr.',
-		'april' => 'April',
+		'Sep' => '\\S\\e\\p\\t\\e\\m\\b\\e\\r',	// TODO
+		'apr' => 'Apr.',	// TODO
+		'april' => 'April',	// TODO
 		'aug' => 'Agu.',
 		'august' => 'Agustus',
 		'before_yesterday' => 'Sebelum kemarin',
@@ -117,12 +117,12 @@ return array(
 		'mon' => 'Bln',
 		'month' => 'bulan',
 		'nov' => 'Nov.',	// IGNORE
-		'november' => 'November',
+		'november' => 'November',	// TODO
 		'oct' => 'Okt.',
 		'october' => 'Oktober',
 		'sat' => 'Sbt',
 		'sep' => 'Sept.',	// IGNORE
-		'september' => 'September',
+		'september' => 'September',	// TODO
 		'sun' => 'Mng',
 		'thu' => 'Kms',
 		'today' => 'Hari ini',

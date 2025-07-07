@@ -80,7 +80,7 @@ return array(
 			'emptied' => 'Kategori telah dikosongkan',
 			'error' => 'Kategori tidak dapat diperbarui',
 			'name_exists' => 'Nama kategori sudah ada.',
-			'no_id' => 'You must specify the id of the category.',
+			'no_id' => 'You must specify the id of the category.',	// TODO
 			'no_name' => 'Nama kategori tidak boleh kosong.',
 			'not_delete_default' => 'Tidak dapat menghapus kategori baku!',
 			'not_exist' => 'Kategori ini tidak ada!',
