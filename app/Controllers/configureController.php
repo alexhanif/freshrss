@@ -47,7 +47,10 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 		if (Minz_Request::isPost()) {
 			FreshRSS_Context::userConf()->language = Minz_Request::paramString('language') ?: 'en';
 			FreshRSS_Context::userConf()->timezone = Minz_Request::paramString('timezone');
-			FreshRSS_Context::userConf()->theme = Minz_Request::paramString('theme') ?: FreshRSS_Themes::$defaultTheme;
+			$theme = Minz_Request::paramString('theme') ?: FreshRSS_Themes::$defaultTheme;
+			if (FreshRSS_Themes::exists($theme)) {
+				FreshRSS_Context::userConf()->theme = $theme;
+			}
 			FreshRSS_Context::userConf()->darkMode = Minz_Request::paramString('darkMode') ?: 'auto';
 			FreshRSS_Context::userConf()->content_width = Minz_Request::paramString('content_width') ?: 'thin';
 			FreshRSS_Context::userConf()->topline_read = Minz_Request::paramBoolean('topline_read');
