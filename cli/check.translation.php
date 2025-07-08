@@ -230,6 +230,7 @@ DESCRIPTION
 	-h, --help		display this help and exit.
 	-l, --language=LANG	filter by LANG.
 	-r, --display-report	display completion report.
+	-g, --generate-readme	generate readme for translation status.
 
 HELP;
 	exit();
