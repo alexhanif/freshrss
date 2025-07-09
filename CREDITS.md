@@ -242,6 +242,7 @@ People are sorted by name so please keep this order.
 * [Stunkymonkey](https://github.com/Stunkymonkey): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:Stunkymonkey)
 * [stysebae](https://github.com/stysebae): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:stysebae)
 * [subic](https://github.com/subic): [contributions](https://github.com/FreshRSS/documentation/pulls?q=is:pr+author:subic)
+* [Tarow](https://github.com/tarow): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:tarow)
 * [Tealk](https://github.com/Tealk): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:Tealk), [Web](https://rollenspiel.monster/)
 * [Tets42](https://github.com/Tets42): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:Tets42)
 * [the7thNightmare](https://github.com/the7thNightmare): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:the7thNightmare)
