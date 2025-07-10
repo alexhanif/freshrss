@@ -37,6 +37,7 @@ function xmlHttpRequestJson(req) {
 // <Global context>
 /* eslint-disable no-var */
 var context;
+var prevTitle;
 /* eslint-enable no-var */
 
 (function parseJsonVars() {
@@ -155,9 +156,10 @@ function incUnreadsFeed(article, feed_id, nb) {
 		}
 	}
 
-	let isCurrentView = false;
 	// Update unread: title
-	document.title = document.title.replace(/^((?:\([\s0-9]+\) )?)/, function (m, p1) {
+	let isCurrentView = false;
+	const currentTitle = prevTitle || document.title;
+	const newTitle = currentTitle.replace(/^((?:\([\s0-9]+\) )?)/, function (m, p1) {
 		const feed = document.getElementById(feed_id);
 		if (article || (feed && feed.closest('.active'))) {
 			isCurrentView = true;
@@ -169,6 +171,11 @@ function incUnreadsFeed(article, feed_id, nb) {
 			return p1;
 		}
 	});
+	if (prevTitle) {
+		prevTitle = newTitle;
+	} else {
+		document.title = newTitle;
+	}
 	return isCurrentView;
 }
 
@@ -1232,24 +1239,79 @@ function init_stream(stream) {
 
 		el = ev.target.closest('.item.share > button[data-type="print"]');
 		if (el) {	// Print
-			const tmp_window = window.open();
-			for (let i = 0; i < document.styleSheets.length; i++) {
-				tmp_window.document.writeln('<link href="' + document.styleSheets[i].href + '" rel="stylesheet" type="text/css" />');
-			}
+			const html = document.documentElement;
+			const head = document.head.cloneNode(true);
+			head.querySelectorAll('script').forEach(js => js.remove());
+
 			const flux_content = el.closest('.flux_content');
 			let content_el = null;
 			if (flux_content) {
-				content_el = el.closest('.flux_content').querySelector('.content');
+				content_el = el.closest('.flux_content').querySelector('.content').cloneNode(true);
 			}
 			if (content_el === null) {
-				content_el = el.closest('.flux').querySelector('.flux_content .content');
+				content_el = el.closest('.flux').querySelector('.flux_content .content').cloneNode(true);
 			}
+
+			content_el.querySelectorAll('a').forEach(link => {
+				// Avoid leaking the instance URL in PDFs
+				if (link.href.startsWith(location.origin)) {
+					link.removeAttribute('href');
+				}
+			});
+
+			const articleTitle = content_el.querySelector('.title a').innerText;
+			prevTitle = document.title;
+
+			// Chrome uses the parent's title to get the PDF save filename
+			document.title = articleTitle;
+
+			// Firefox uses the iframe's title to get the PDF save filename
+			// Note: Firefox Mobile saves PDFs with a filename that looks like: `temp[19 random digits].PDF` regardless of title
+			head.querySelector('title').innerText = articleTitle;
+
 			loadLazyImages(content_el);
-			tmp_window.document.writeln(content_el.innerHTML);
-			tmp_window.document.close();
-			tmp_window.focus();
-			tmp_window.print();
-			tmp_window.close();
+
+			const print_frame = document.createElement('iframe');
+			print_frame.style.display = 'none';
+			print_frame.srcdoc = `
+			<!DOCTYPE html>
+			<html class="${html.getAttribute('class')}">
+			<head>
+				${head.innerHTML}
+			</head>
+			<body>
+				${content_el.outerHTML}
+			</body>
+			</html>
+			`;
+			document.body.prepend(print_frame);
+
+			const tmp_window = print_frame.contentWindow;
+			tmp_window.onload = () => tmp_window.print();
+
+			function afterPrint() {
+				print_frame.remove();
+				document.title = prevTitle;
+				prevTitle = '';
+
+				window.removeEventListener('focus', afterPrint);
+				window.removeEventListener('mouseover', afterPrint);
+			}
+
+			tmp_window.onafterprint = () => {
+				const isFirefoxMobile = navigator.userAgent.includes('Firefox') && navigator.userAgent.includes('Mobile');
+				if (isFirefoxMobile) {
+					// Setting location.hash here crashes the tab on Firefox Mobile
+					return;
+				}
+				// Required for `mouseover` to trigger after print dialog is no longer open
+				location.hash = 'close';
+			};
+
+			// `afterprint` works correctly only on Chrome Desktop, so this is done instead
+			window.addEventListener('focus', afterPrint);
+			window.addEventListener('mouseover', afterPrint); // Required for Chrome Desktop
+
 			return false;
 		}
 
