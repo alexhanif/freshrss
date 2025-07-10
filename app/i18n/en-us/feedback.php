@@ -95,6 +95,10 @@ return array(
 			'cache_cleared' => '<em>%s</em> cache has been cleared',	// IGNORE
 			'deleted' => 'Feed has been deleted',	// IGNORE
 			'error' => 'Feed cannot be updated',	// IGNORE
+			'favicon' => array(
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// IGNORE
+				'unsupported_format' => 'Unsupported image file format!',	// IGNORE
+			),
 			'internal_problem' => 'The newsfeed could not be added. <a href="%s">Check FreshRSS logs</a> for details. You can try force adding by appending <code>#force_feed</code> to the URL.',	// IGNORE
 			'invalid_url' => 'URL <em>%s</em> is invalid',	// IGNORE
 			'n_actualized' => '%d feeds have been updated',	// IGNORE

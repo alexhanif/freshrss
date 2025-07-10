@@ -95,6 +95,10 @@ return array(
 			'cache_cleared' => 'Le cache de <em>%s</em> a été vidée.',
 			'deleted' => 'Le flux a été supprimé.',
 			'error' => 'Une erreur est survenue',
+			'favicon' => array(
+				'too_large' => 'L’icône téléversée est trop grosse ! La taille maximale du fichier est de <em>%s</em>.',
+				'unsupported_format' => 'Format d’image non pris en charge !',
+			),
 			'internal_problem' => 'Le flux ne peut pas être ajouté. <a href="%s">Consulter les logs de FreshRSS</a> pour plus de détails. Vous pouvez essayer de forcer l’ajout par addition de <code>#force_feed</code> à l’URL.',
 			'invalid_url' => 'L’url <em>%s</em> est invalide.',
 			'n_actualized' => '%d flux ont été mis à jour.',

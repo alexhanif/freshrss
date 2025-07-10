@@ -5,7 +5,7 @@
 		return;
 	}
 ?>
-<div class="post" id="feed_update">
+<div class="post" id="feed_update" data-feed-id="<?= $this->feed->id() ?>">
 	<h1><?= $this->feed->name() ?></h1>
 
 	<div>
@@ -35,10 +35,38 @@
 		}
 	}
 	?>
-	<form method="post" action="<?= $url ?>" autocomplete="off">
+	<form method="post" action="<?= $url ?>" autocomplete="off" enctype="multipart/form-data">
 		<input type="hidden" name="_csrf" value="<?= FreshRSS_Auth::csrfToken() ?>" />
 		<fieldset>
 			<legend><?= _t('sub.feed.information') ?></legend>
+			<div class="form-group">
+				<?php
+					$currentIconUrl = $this->feed->favicon();
+					$originalIconUrl = '';
+					if ($this->feed->customFavicon()) {
+						$this->feed->_attribute('customFavicon', false);
+						$this->feed->resetFaviconHash();
+					}
+					$originalIconUrl = $this->feed->favicon();
+					$this->feed->_attribute('customFavicon', $currentIconUrl !== $originalIconUrl);
+					$this->feed->resetFaviconHash();
+					$ext_url = Minz_ExtensionManager::callHook('custom_favicon_btn_url', $this->feed);
+				?>
+				<label class="group-name"><?= _t('sub.feed.icon') ?></label>
+				<div class="group-controls">
+					<img class="favicon upload" src="<?= $currentIconUrl ?>" data-initial-src="<?= $currentIconUrl ?>" data-original-icon="<?= $originalIconUrl ?>" alt="✇" loading="lazy" />
+					<div class="favicon-controls">
+						<input id="favicon-upload" name="newFavicon" type="file" accept="image/*" />
+						<label for="favicon-upload" class="btn"><?= _t('sub.feed.change_favicon') ?></label>
+						<button id="reset-favicon" class="btn"<?= $this->feed->customFavicon() ? '' : ' disabled="disabled"'?>><?= _t('sub.feed.reset_favicon') ?></button>
+						<?php if (is_string($ext_url)) { ?>
+							<button id="favicon-ext-btn" class="btn" data-extension-url="<?= htmlspecialchars(html_entity_decode($ext_url), ENT_COMPAT, 'UTF-8') ?>"><?= _t('sub.feed.ext_favicon') ?></button>
+						<?php } ?>
+					</div>
+					<p id="favicon-ext" class="<?= $this->feed->customFaviconExt() !== null ? '' : 'hidden' ?>"><?= _t('sub.feed.favicon_changed_by_ext', htmlspecialchars($this->feed->customFaviconExt() ?? '', ENT_NOQUOTES, 'UTF-8')) ?></p>
+					<p id="favicon-error" class="error"></p>
+				</div>
+			</div>
 			<div class="form-group">
 				<label class="group-name" for="name"><?= _t('sub.feed.title') ?></label>
 				<div class="group-controls">

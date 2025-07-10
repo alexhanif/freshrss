@@ -4,7 +4,7 @@ declare(strict_types=1);
 $mark = FreshRSS_Context::userConf()->mark_when;
 $s = FreshRSS_Context::userConf()->shortcuts;
 $extData = Minz_ExtensionManager::callHook('js_vars', []);
-echo htmlspecialchars(json_encode([
+echo json_encode([
 	'context' => [
 		'anonymous' => !FreshRSS_Auth::hasAccess(),
 		'auto_remove_article' => !!FreshRSS_Context::isAutoRemoveAvailable(),
@@ -30,6 +30,7 @@ echo htmlspecialchars(json_encode([
 			'extra.js' => @filemtime(PUBLIC_PATH . '/scripts/extra.js'),
 			'feed.js' => @filemtime(PUBLIC_PATH . '/scripts/feed.js'),
 		],
+		'max_favicon_upload_size' => FreshRSS_Context::systemConf()->limits['max_favicon_upload_size'],
 		'version' => FRESHRSS_VERSION,
 	],
 	'shortcuts' => [
@@ -73,6 +74,7 @@ echo htmlspecialchars(json_encode([
 		'notif_request_failed' => _t('gen.js.feedback.request_failed'),
 		'category_empty' => _t('gen.js.category_empty'),
 		'labels_empty' => _t('gen.js.labels_empty'),
+		'favicon_size_exceeded' => _t('feedback.sub.feed.favicon.too_large', format_bytes(FreshRSS_Context::systemConf()->limits['max_favicon_upload_size'])),
 		'language' => FreshRSS_Context::userConf()->language,
 	],
 	'icons' => [
@@ -81,4 +83,4 @@ echo htmlspecialchars(json_encode([
 		'spinner' => '../themes/icons/spinner.svg',
 	],
 	'extensions' => $extData,
-], JSON_UNESCAPED_UNICODE) ?: '', ENT_NOQUOTES, 'UTF-8');
+], JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP);

@@ -998,8 +998,16 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 	public static function deleteFeed(int $feed_id): bool {
 		FreshRSS_UserDAO::touch();
 		$feedDAO = FreshRSS_Factory::createFeedDao();
+		$feed = $feedDAO->searchById($feed_id);
+		if ($feed === null) {
+			return false;
+		}
+
 		if ($feedDAO->deleteFeed($feed_id)) {
-			// TODO: Delete old favicon
+			// TODO: Delete old favicon (non-custom)
+			if ($feed->customFavicon() && !$feed->attributeBoolean('customFaviconDisallowDel')) {
+				FreshRSS_Feed::faviconDelete($feed->hashFavicon());
+			}
 
 			// Remove related queries
 			$queries = remove_query_by_get('f_' . $feed_id, FreshRSS_Context::userConf()->queries);

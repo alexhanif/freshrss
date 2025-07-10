@@ -95,6 +95,10 @@ return array(
 			'cache_cleared' => '<em>%s</em> cache has been cleared',	// TODO
 			'deleted' => 'ההזנה נמחקה',
 			'error' => 'Feed cannot be updated',	// TODO
+			'favicon' => array(
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
+			),
 			'internal_problem' => 'אין אפשרות להוסיף את ההזנה. <a href="%s">בדקו את הלוגים</a> לפרטים. You can try force adding by appending <code>#force_feed</code> to the URL.',	// DIRTY
 			'invalid_url' => 'URL <em>%s</em> אינו תקין',
 			'n_actualized' => '%d הזנות עודכנו',

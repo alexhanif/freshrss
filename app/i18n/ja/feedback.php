@@ -95,6 +95,10 @@ return array(
 			'cache_cleared' => '<em>%s</em>キャッシュは作られました',
 			'deleted' => 'フィードは消去されました',
 			'error' => 'フィードを更新することができません',
+			'favicon' => array(
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
+			),
 			'internal_problem' => 'newsfeedを追加することはできません。<a href="%s">FreshRSSログの詳細を</a>確かめてください。強制的に追加することを試せます <code>#force_feed</code>このURLを確認ください。',
 			'invalid_url' => 'URL <em>%s</em>は無効です',
 			'n_actualized' => '%d フィードはアップデートされました',
