@@ -12,7 +12,7 @@ $ORIGINAL_INPUT = file_get_contents('php://input', false, null, 0, MAX_PAYLOAD) 
 
 FreshRSS_Context::initSystem();
 if (!FreshRSS_Context::hasSystemConf()) {
-	header('HTTP/1.1 500 Internal Server Error');
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_500_INTERNAL_SERVER_ERROR));
 	die('Invalid system init!');
 }
 FreshRSS_Context::systemConf()->auth_type = 'none';	// avoid necessity to be logged in (not saved!)
@@ -21,7 +21,7 @@ FreshRSS_Context::systemConf()->auth_type = 'none';	// avoid necessity to be log
 
 $key = isset($_GET['k']) && is_string($_GET['k']) ? substr($_GET['k'], 0, 128) : '';
 if (!ctype_xdigit($key)) {
-	header('HTTP/1.1 422 Unprocessable Entity');
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_422_UNPROCESSABLE_ENTITY));
 	die('Invalid feed key format!');
 }
 chdir(PSHB_PATH);
@@ -33,7 +33,7 @@ if ($canonical === false) {
 		exit($_REQUEST['hub_challenge'] ?? '');
 	}
 	// https://github.com/w3c/websub/issues/106 , https://w3c.github.io/websub/#content-distribution
-	header('HTTP/1.1 410 Gone');
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_410_GONE));
 	Minz_Log::warning('Warning: Feed key not found!: ' . $key, PSHB_LOG);
 	die('Feed key not found!');
 }
@@ -41,21 +41,21 @@ $canonical = trim($canonical);
 $canonicalHash = sha1($canonical);
 $hubFile = @file_get_contents('feeds/' . $canonicalHash . '/!hub.json');
 if ($hubFile === false) {
-	header('HTTP/1.1 410 Gone');
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_410_GONE));
 	unlink('keys/' . $key . '.txt');
 	Minz_Log::error('Error: Feed info not found!: ' . $canonical, PSHB_LOG);
 	die('Feed info not found!');
 }
 $hubJson = json_decode($hubFile, true);
 if (!is_array($hubJson) || empty($hubJson['key']) || $hubJson['key'] !== $key) {
-	header('HTTP/1.1 500 Internal Server Error');
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_500_INTERNAL_SERVER_ERROR));
 	Minz_Log::error('Error: Invalid key cross-check!: ' . $key, PSHB_LOG);
 	die('Invalid key cross-check!');
 }
 chdir('feeds/' . $canonicalHash);
 $users = glob('*.txt', GLOB_NOSORT);
 if (empty($users)) {
-	header('HTTP/1.1 410 Gone');
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_410_GONE));
 	Minz_Log::warning('Warning: Nobody subscribes to this feed anymore!: ' . $canonical, PSHB_LOG);
 	unlink('../../keys/' . $key . '.txt');
 	$feed = new FreshRSS_Feed($canonical);
@@ -87,13 +87,13 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] === 'unsubscribe') {
 		header('Connection: close');
 		exit($_REQUEST['hub_challenge'] ?? '');
 	} else {
-		header('HTTP/1.1 422 Unprocessable Entity');
+		header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_422_UNPROCESSABLE_ENTITY));
 		die('We did not ask to unsubscribe!');
 	}
 }
 
 if ($ORIGINAL_INPUT == '') {
-	header('HTTP/1.1 422 Unprocessable Entity');
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_422_UNPROCESSABLE_ENTITY));
 	die('Missing XML payload!');
 }
 
@@ -150,7 +150,7 @@ $simplePie->__destruct();	//http://simplepie.org/wiki/faq/i_m_getting_memory_lea
 unset($simplePie);
 
 if ($nb === 0) {
-	header('HTTP/1.1 410 Gone');
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_410_GONE));
 	Minz_Log::warning('Warning: Nobody subscribes to this feed anymore after all!: ' . $self, PSHB_LOG);
 	die('Nobody subscribes to this feed anymore after all!');
 } elseif (!empty($hubJson['error'])) {

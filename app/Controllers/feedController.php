@@ -23,7 +23,7 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 			$allow_anonymous_refresh = FreshRSS_Context::systemConf()->allow_anonymous_refresh;
 			if ($action !== 'actualize' ||
 					!($allow_anonymous_refresh || $token_is_ok)) {
-				Minz_Error::error(403);
+				Minz_Error::error(FreshRSS_HttpResponse::HTTP_403_FORBIDDEN);
 			}
 		}
 	}
@@ -539,8 +539,7 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 			} catch (FreshRSS_Feed_Exception $e) {
 				Minz_Log::warning($e->getMessage());
 				$feedDAO->updateLastUpdate($feed->id(), true);
-				if ($e->getCode() === 410) {
-					// HTTP 410 Gone
+				if ($e->getCode() === FreshRSS_HttpResponse::HTTP_410_GONE->value) {
 					Minz_Log::warning('Muting gone feed: ' . $feed->url(false));
 					$feedDAO->mute($feed->id(), true);
 				}
@@ -991,7 +990,7 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 			Minz_Log::notice('Moved feed `' . $feed_id . '` in the category `' . $cat_id . '`');
 		} else {
 			Minz_Log::warning('Cannot move feed `' . $feed_id . '` in the category `' . $cat_id . '`');
-			Minz_Error::error(404);
+			Minz_Error::error();
 		}
 	}
 

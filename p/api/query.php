@@ -7,21 +7,21 @@ Minz_Request::init();
 
 $token = Minz_Request::paramString('t');
 if (!ctype_alnum($token)) {
-	header('HTTP/1.1 422 Unprocessable Entity');
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_422_UNPROCESSABLE_ENTITY));
 	header('Content-Type: text/plain; charset=UTF-8');
 	die('Invalid token `t`!' . $token);
 }
 
 $format = Minz_Request::paramString('f');
 if (!in_array($format, ['atom', 'greader', 'html', 'json', 'opml', 'rss'], true)) {
-	header('HTTP/1.1 422 Unprocessable Entity');
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_422_UNPROCESSABLE_ENTITY));
 	header('Content-Type: text/plain; charset=UTF-8');
 	die('Invalid format `f`!');
 }
 
 $user = Minz_Request::paramString('user');
 if (!FreshRSS_user_Controller::checkUsername($user)) {
-	header('HTTP/1.1 422 Unprocessable Entity');
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_422_UNPROCESSABLE_ENTITY));
 	header('Content-Type: text/plain; charset=UTF-8');
 	die('Invalid user!');
 }
@@ -30,7 +30,7 @@ Minz_Session::init('FreshRSS', true);
 
 FreshRSS_Context::initSystem();
 if (!FreshRSS_Context::hasSystemConf() || !FreshRSS_Context::systemConf()->api_enabled) {
-	header('HTTP/1.1 503 Service Unavailable');
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_503_SERVICE_UNAVAILABLE));
 	header('Content-Type: text/plain; charset=UTF-8');
 	die('Service Unavailable!');
 }
@@ -38,7 +38,7 @@ if (!FreshRSS_Context::hasSystemConf() || !FreshRSS_Context::systemConf()->api_e
 FreshRSS_Context::initUser($user);
 if (!FreshRSS_Context::hasUserConf() || !FreshRSS_Context::userConf()->enabled) {
 	usleep(rand(100, 10000));	//Primitive mitigation of scanning for users
-	header('HTTP/1.1 404 Not Found');
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_404_NOT_FOUND));
 	header('Content-Type: text/plain; charset=UTF-8');
 	die('User not found!');
 } else {
@@ -107,7 +107,7 @@ foreach (FreshRSS_Context::userConf()->queries as $raw_query) {
 }
 if ($query === null || $userSearch === null) {
 	usleep(rand(100, 10000));
-	header('HTTP/1.1 404 Not Found');
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_404_NOT_FOUND));
 	header('Content-Type: text/plain; charset=UTF-8');
 	die('User query not found!');
 }
@@ -119,7 +119,7 @@ try {
 	Minz_Request::_param('search', $userSearch->getRawInput());	// Restore user search
 	$view->entries = FreshRSS_index_Controller::listEntriesByContext();
 } catch (Minz_Exception) {
-	Minz_Error::error(400, 'Bad user query!');
+	Minz_Error::error(FreshRSS_HttpResponse::HTTP_400_BAD_REQUEST, 'Bad user query!');
 	die();
 }
 
@@ -131,7 +131,7 @@ switch ($type) {
 	case 'c':	// Category
 		$cat = FreshRSS_Context::categories()[$id] ?? null;
 		if ($cat === null) {
-			Minz_Error::error(404, "Category {$id} not found!");
+			Minz_Error::error(logs: "Category {$id} not found!");
 			die();
 		}
 		$view->categories = [$cat->id() => $cat];
@@ -139,7 +139,7 @@ switch ($type) {
 	case 'f':	// Feed
 		$feed = FreshRSS_Category::findFeed(FreshRSS_Context::categories(), $id);
 		if ($feed === null) {
-			Minz_Error::error(404, "Feed {$id} not found!");
+			Minz_Error::error(logs: "Feed {$id} not found!");
 			die();
 		}
 		$view->feeds = [ $feed ];
@@ -169,7 +169,7 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Max-Age: 600');
 header('Cache-Control: public, max-age=60');
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
-	header('HTTP/1.1 204 No Content');
+	header(FreshRSS_HttpResponse::description(FreshRSS_HttpResponse::HTTP_204_NO_CONTENT));
 	exit();
 }
 
@@ -186,7 +186,7 @@ if (in_array($format, ['rss', 'atom'], true)) {
 	$view->_path('helpers/export/articles.phtml');
 } elseif ($format === 'opml') {
 	if (!$query->safeForOpml()) {
-		Minz_Error::error(404, 'OPML not allowed for this user query!');
+		Minz_Error::error(logs: 'OPML not allowed for this user query!');
 		die();
 	}
 	header('Content-Type: application/xml; charset=utf-8');
