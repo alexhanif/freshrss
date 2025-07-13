@@ -20,7 +20,7 @@
 	<?php
 		foreach ($this->entries as $entry):
 			$this->entry = $entry;
-			$this->feed = $this->feeds[$entry->feedId()] ??
+			$this->feed = $this->feeds[0] ??
 				FreshRSS_Category::findFeed($this->categories, $entry->feedId()) ??
 				FreshRSS_Feed::default();
 	?>
