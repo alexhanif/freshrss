@@ -14,10 +14,19 @@
 				<label class="group-name" for="view_mode"><?= _t('conf.reading.view.default') ?></label>
 				<div class="group-controls">
 					<select name="view_mode" id="view_mode" data-leave-validation="<?= FreshRSS_Context::userConf()->view_mode ?>">
-						<option value="normal"<?= FreshRSS_Context::userConf()->view_mode === 'normal' ? ' selected="selected"' : '' ?>><?= _t('conf.reading.view.normal') ?></option>
-						<option value="grid"<?= FreshRSS_Context::userConf()->view_mode === 'grid' ? ' selected="selected"' : '' ?>><?= _t('conf.reading.view.grid') ?></option>
-						<option value="reader"<?= FreshRSS_Context::userConf()->view_mode === 'reader' ? ' selected="selected"' : '' ?>><?= _t('conf.reading.view.reader') ?></option>
-						<option value="global"<?= FreshRSS_Context::userConf()->view_mode === 'global' ? ' selected="selected"' : '' ?>><?= _t('conf.reading.view.global') ?></option>
+						<?php
+						/** @var FreshRSS_View $this */
+						/** @var list<FreshRSS_ViewMode>|null $viewModes */
+						$viewModes = isset($this->viewModes) && is_array($this->viewModes) ? $this->viewModes : null;
+						if ($viewModes === null) {
+							$viewModes = FreshRSS_ViewMode::getAllModes();
+						}
+						foreach ($viewModes as $mode):
+						?>
+							<option value="<?= htmlspecialchars($mode->id(), ENT_COMPAT, 'UTF-8') ?>"<?= FreshRSS_Context::userConf()->view_mode === $mode->id() ? ' selected="selected"' : '' ?>>
+								<?= htmlspecialchars($mode->name(), ENT_NOQUOTES, 'UTF-8') ?>
+							</option>
+						<?php endforeach; ?>
 					</select>
 				</div>
 			</div>
@@ -53,6 +62,17 @@
 						<?= _t('conf.reading.auto_load_more') ?>
 						<noscript> — <strong><?= _t('gen.js.should_be_activated') ?></strong></noscript>
 					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="group-name" for="mark_read_button"><?= _t('conf.mark_read_button') ?></label>
+				<div class="group-controls">
+					<select name="mark_read_button" id="mark_read_button" data-leave-validation="<?= FreshRSS_Context::userConf()->mark_read_button ?>">
+						<option value="big"<?= FreshRSS_Context::userConf()->mark_read_button === 'big' ? ' selected="selected"' : '' ?>><?= _t('conf.mark_read_button.big') ?></option>
+						<option value="small"<?= FreshRSS_Context::userConf()->mark_read_button === 'small' ? ' selected="selected"' : '' ?>><?= _t('conf.mark_read_button.small') ?></option>
+						<option value="none"<?= FreshRSS_Context::userConf()->mark_read_button === 'none' ? ' selected="selected"' : '' ?>><?= _t('conf.mark_read_button.none') ?></option>
+					</select>
 				</div>
 			</div>
 

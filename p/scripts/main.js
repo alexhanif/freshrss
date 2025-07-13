@@ -53,6 +53,9 @@ var context;
 	context.icons.unread = decodeURIComponent(context.icons.unread);
 	context.extensions = json.extensions;
 }());
+
+const freshrssGlobalContextLoadedEvent = new Event('freshrss:globalContextLoaded');
+document.dispatchEvent(freshrssGlobalContextLoadedEvent);
 // </Global context>
 
 function badAjax(reload) {
@@ -221,6 +224,10 @@ function send_mark_read_queue(queue, asRead, callback) {
 	req.responseType = 'json';
 	req.onerror = function (e) {
 		for (let i = queue.length - 1; i >= 0; i--) {
+			const div = document.getElementById('flux_' + queue[i]);
+			div.querySelectorAll('a.read > .icon').forEach(icon => {
+				icon.outerHTML = div.classList.contains('not_read') ? context.icons.unread : context.icons.read;
+			});
 			delete pending_entries['flux_' + queue[i]];
 		}
 		badAjax(this.status == 403);
@@ -312,6 +319,12 @@ function mark_read(div, only_not_read, asBatch) {
 	}
 	pending_entries[div.id] = true;
 
+	div.querySelectorAll('a.read > .icon').forEach(icon => {
+		icon.src = context.icons.spinner;
+		icon.alt = '⏳';
+		icon.classList.add('spinner');
+	});
+
 	const asRead = div.classList.contains('not_read');
 	const entryId = div.id.replace(/^flux_/, '');
 	if (asRead && asBatch) {
@@ -348,10 +361,26 @@ function mark_favorite(div) {
 	}
 	pending_entries[div.id] = true;
 
+	let originalIcon;
+
+	div.querySelectorAll('a.bookmark > .icon').forEach(icon => {
+		originalIcon = {
+			src: icon.getAttribute('src'),
+			alt: icon.getAttribute('alt')
+		};
+		icon.src = context.icons.spinner;
+		icon.alt = '⏳';
+		icon.classList.add('spinner');
+	});
+
 	const req = new XMLHttpRequest();
 	req.open('POST', url, true);
 	req.responseType = 'json';
 	req.onerror = function (e) {
+		div.querySelectorAll('a.bookmark > .icon').forEach(icon => {
+			icon.src = originalIcon.src;
+			icon.alt = originalIcon.alt;
+		});
 		delete pending_entries[div.id];
 		badAjax(this.status == 403);
 	};
@@ -402,8 +431,12 @@ const freshrssOpenArticleEvent = document.createEvent('Event');
 freshrssOpenArticleEvent.initEvent('freshrss:openArticle', true, true);
 
 function loadLazyImages(rootElement) {
-	rootElement.querySelectorAll('img[data-original], iframe[data-original]').forEach(function (el) {
-		el.src = el.getAttribute('data-original');
+	rootElement.querySelectorAll('img[data-original], iframe[data-original], video[data-original]').forEach(function (el) {
+		if (el.tagName === 'VIDEO') {
+			el.poster = el.getAttribute('data-original');
+		} else {
+			el.src = el.getAttribute('data-original');
+		}
 		el.removeAttribute('data-original');
 	});
 }
@@ -747,6 +780,41 @@ function show_share_menu(el) {
 	return true;
 }
 
+function mylabels(key) {
+	const mylabelsDropdown = document.querySelector('.flux.current.active .dropdown-target[id^="dropdown-labels"]');
+
+	if (!mylabelsDropdown) {
+		return;
+	}
+
+	if (typeof key === 'undefined') {
+		show_labels_menu(mylabelsDropdown);
+	}
+	// Display the mylabels div
+	location.hash = mylabelsDropdown.id;
+	// Force scrolling to the mylabels div
+	const scrollTop = needsScroll(mylabelsDropdown.closest('.horizontal-list'));
+	if (scrollTop !== 0) {
+		if (mylabelsDropdown.closest('.horizontal-list.flux_header')) {
+			mylabelsDropdown.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: "smooth", block: "start" });
+		} else {
+			mylabelsDropdown.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: "smooth", block: "end" });
+		}
+	}
+
+	key = parseInt(key);
+
+	if (key === 0) {
+		mylabelsDropdown.parentElement.querySelector('.dropdown-menu .item .newTag').focus();
+	} else {
+		const mylabelsCheckboxes = mylabelsDropdown.parentElement.querySelectorAll('.dropdown-menu .item .checkboxTag');
+
+		if (key <= mylabelsCheckboxes.length) {
+			mylabelsCheckboxes[key].click();
+		}
+	}
+}
+
 function auto_share(key) {
 	const share = document.querySelector('.flux.current.active .dropdown-target[id^="dropdown-share"]');
 	if (!share) {
@@ -965,11 +1033,6 @@ function init_column_categories() {
 function init_shortcuts() {
 	Object.keys(context.shortcuts).forEach(function (k) {
 		context.shortcuts[k] = (context.shortcuts[k] || '').toUpperCase();
-		if (context.shortcuts[k].indexOf('&') >= 0) {
-			// Decode potential HTML entities <'&">
-			const parser = new DOMParser();
-			context.shortcuts[k] = parser.parseFromString(context.shortcuts[k], 'text/html').documentElement.textContent;
-		}
 	});
 
 	document.addEventListener('keydown', ev => {
@@ -987,11 +1050,19 @@ function init_shortcuts() {
 
 		if (location.hash.match(/^#dropdown-/)) {
 			const n = parseInt(k);
-			if (n) {
-				if (location.hash === '#dropdown-query') {
-					user_filter(n);
-				} else {
-					auto_share(n);
+			if (Number.isInteger(n)) {
+				switch (location.hash.substring(0, 15)) {
+					case '#dropdown-query':
+						user_filter(n);
+						break;
+					case '#dropdown-share':
+						auto_share(n);
+						break;
+					case '#dropdown-label':
+						mylabels(n);
+						break;
+					default:
+						return;
 				}
 				ev.preventDefault();
 				return;
@@ -1080,7 +1151,7 @@ function init_shortcuts() {
 			return;
 		}
 		if (ev.key === '?') {
-			window.location.href = context.urls.shortcuts.replace(/&amp;/g, '&');
+			window.location.href = context.urls.shortcuts;
 			return;
 		}
 
@@ -1107,6 +1178,7 @@ function init_shortcuts() {
 		if (k === s.skip_next_entry) { next_entry(true); ev.preventDefault(); return; }
 		if (k === s.skip_prev_entry) { prev_entry(true); ev.preventDefault(); return; }
 		if (k === s.collapse_entry) { collapse_entry(); ev.preventDefault(); return; }
+		if (k === s.mylabels) { mylabels(); ev.preventDefault(); return; }
 		if (k === s.auto_share) { auto_share(); ev.preventDefault(); return; }
 		if (k === s.user_filter) { user_filter(); ev.preventDefault(); return; }
 		if (k === s.load_more) { load_more_posts(); ev.preventDefault(); return; }
@@ -1431,6 +1503,7 @@ function loadDynamicTags(div) {
 			const input_newTag = document.createElement('input');
 			input_newTag.setAttribute('type', 'text');
 			input_newTag.setAttribute('name', 'newTag');
+			input_newTag.setAttribute('class', 'newTag');
 			input_newTag.setAttribute('list', 'datalist-labels');
 			input_newTag.addEventListener('keydown', function (ev) { if (ev.key.toUpperCase() == 'ENTER') { this.parentNode.previousSibling.click(); } });
 

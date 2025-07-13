@@ -22,9 +22,21 @@ final class Minz_ExtensionManager {
 	 * @var array<string,array{'list':array<callable>,'signature':'NoneToNone'|'NoneToString'|'OneToOne'|'PassArguments'}>
 	 */
 	private static array $hook_list = [
+		'api_misc' => [	// function(): void
+			'list' => [],
+			'signature' => 'NoneToNone',
+		],
 		'check_url_before_add' => [	// function($url) -> Url | null
 			'list' => [],
 			'signature' => 'OneToOne',
+		],
+		'custom_favicon_btn_url' => [ // function(FreshRSS_Feed $feed): string | null
+			'list' => [],
+			'signature' => 'PassArguments',
+		],
+		'custom_favicon_hash' => [ // function(FreshRSS_Feed $feed): string | null
+			'list' => [],
+			'signature' => 'PassArguments',
 		],
 		'entries_favorite' => [	// function(array $ids, bool $is_favorite): void
 			'list' => [],
@@ -97,6 +109,10 @@ final class Minz_ExtensionManager {
 		'simplepie_before_init' => [	// function(\SimplePie\SimplePie $simplePie, FreshRSS_Feed $feed): void
 			'list' => [],
 			'signature' => 'PassArguments',
+		],
+		'view_modes' => [	// function($viewModes = array) -> array | null
+			'list' => [],
+			'signature' => 'OneToOne',
 		],
 	];
 
@@ -268,7 +284,13 @@ final class Minz_ExtensionManager {
 				spl_autoload_register([$ext, 'autoload']);
 			}
 			$ext->enable();
-			$ext->init();
+			try {
+				$ext->init();
+			} catch (Minz_Exception $e) {	// @phpstan-ignore catch.neverThrown (Thrown by extensions)
+				Minz_Log::warning('Error while enabling extension ' . $ext->getName() . ': ' . $e->getMessage());
+				$ext->disable();
+				unset(self::$ext_list_enabled[$ext_name]);
+			}
 		}
 	}
 
@@ -352,7 +374,10 @@ final class Minz_ExtensionManager {
 			return self::callOneToOne($hook_name, $args[0] ?? null);
 		} elseif ($signature === 'PassArguments') {
 			foreach (self::$hook_list[$hook_name]['list'] as $function) {
-				call_user_func($function, ...$args);
+				$result = call_user_func($function, ...$args);
+				if ($result !== null) {
+					return $result;
+				}
 			}
 		} elseif ($signature === 'NoneToString') {
 			return self::callHookString($hook_name);
@@ -422,5 +447,28 @@ final class Minz_ExtensionManager {
 		foreach (self::$hook_list[$hook_name]['list'] ?? [] as $function) {
 			call_user_func($function);
 		}
+	}
+
+	/**
+	 * Call a hook which takes no argument and returns nothing.
+	 * Same as callHookVoid but only calls the first extension.
+	 *
+	 * @param string $hook_name is the hook to call.
+	 */
+	public static function callHookUnique(string $hook_name): bool {
+		foreach (self::$hook_list[$hook_name]['list'] ?? [] as $function) {
+			call_user_func($function);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Check if a extension is enabled
+	 *
+	 * @param string $ext_name is the extension's name as provided in metadata.json
+	 */
+	public static function isExtensionEnabled(string $ext_name): bool {
+		return isset(self::$ext_list_enabled[$ext_name]);
 	}
 }

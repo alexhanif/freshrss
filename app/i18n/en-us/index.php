@@ -20,13 +20,12 @@ return array(
 				'browser' => 'Browser',	// IGNORE
 				'database' => 'Database',	// IGNORE
 				'server_software' => 'Server software',	// IGNORE
+				'version_curl' => 'cURL version',	// IGNORE
 				'version_frss' => 'FreshRSS version',	// IGNORE
 				'version_php' => 'PHP version',	// IGNORE
 			),
 		),
 		'bugs_reports' => 'Bug reports',	// IGNORE
-		'credits' => 'Credits',	// IGNORE
-		'credits_content' => 'Some design elements come from <a href="http://twitter.github.io/bootstrap/">Bootstrap</a> although FreshRSS doesn’t use this framework. <a href="https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic">Icons</a> come from the <a href="https://www.gnome.org/">GNOME project</a>. <em>Open Sans</em> font police has been created by <a href="https://fonts.google.com/specimen/Open+Sans">Steve Matteson</a>. FreshRSS is based on <a href="https://framagit.org/marienfressinaud/MINZ">Minz</a>, a PHP framework.',	// IGNORE
 		'documentation' => 'Documentation',	// IGNORE
 		'freshrss_description' => 'FreshRSS is a self-hostable RSS aggregator and reader. It allows you to read and follow several news websites at a glance without the need to browse from one website to another. FreshRSS is lightweight, configurable, and easy to use.',	// IGNORE
 		'github' => '<a href="https://github.com/FreshRSS/FreshRSS/issues">on GitHub</a>',	// IGNORE
@@ -67,6 +66,7 @@ return array(
 		'mark_cat_read' => 'Mark category as read',	// IGNORE
 		'mark_feed_read' => 'Mark feed as read',	// IGNORE
 		'mark_selection_unread' => 'Mark selection as unread',	// IGNORE
+		'mylabels' => 'My labels',	// IGNORE
 		'newer_first' => 'Newer first',	// IGNORE
 		'non-starred' => 'Show non-favorites',
 		'normal_view' => 'Normal view',	// IGNORE
@@ -91,7 +91,6 @@ return array(
 		'starred' => 'Show favorites',
 		'stats' => 'Statistics',	// IGNORE
 		'subscription' => 'Subscription management',	// IGNORE
-		'tags' => 'My labels',	// IGNORE
 		'unread' => 'Show unread',	// IGNORE
 	),
 	'share' => 'Share',	// IGNORE

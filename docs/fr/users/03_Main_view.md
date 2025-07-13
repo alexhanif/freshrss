@@ -205,6 +205,7 @@ the search field.
 Il est possible d’utiliser le champ de recherche pour raffiner les résultats :
 
 * par ID de flux : `f:123` ou plusieurs flux (*ou*) : `f:123,234,345`
+* by ID de catégorie : `c:23` ou plusieurs catégories (*ou*): `c:23,34,45`
 * par auteur : `author:nom` ou `author:'nom composé'`
 * par titre : `intitle:mot` ou `intitle:'mot composé'`
 * par texte (contenu) : `intext:mot` ou `intext:'mot composé'`
@@ -243,6 +244,11 @@ Il est possible d’utiliser le champ de recherche pour raffiner les résultats 
 		* `date:PT30M/` (depuis trente minutes)
 		* `date:PT90S/` (depuis 90 secondes)
 		* `date:P1DT1H/` (depuis un jour et une heure)
+	* Depuis le plus ancien jusqu’à une période donnée avant maintenant :
+		* `!date:P1M` (plus ancien qu’un mois avant maintenant, en utilisant une négation)
+			* Note : la syntaxe ~~`date:/P1M`~~ n’est pas supportée
+	* Les contraintes de date peuvent être combinées :
+		* `date:P1Y !date:P1M` (depuis un an avant maintenant jusqu’à un mois avant maintenant)
 * par date de publication, avec la même syntaxe : `pubdate:<date-interval>`
 * par ID d’étiquette : `L:12` ou de plusieurs étiquettes : `L:12,13,14` ou avec n’importe quelle étiquette : `L:*`
 * par nom d’étiquette : `label:étiquette`, `label:"mon étiquette"` ou d’une étiquette parmi une liste (*ou*) : `labels:"mon étiquette,mon autre étiquette"`

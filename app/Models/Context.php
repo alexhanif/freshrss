@@ -56,12 +56,10 @@ final class FreshRSS_Context {
 
 	/**
 	 * @deprecated Will be made `private`; use `FreshRSS_Context::systemConf()` instead.
-	 * @internal
 	 */
 	public static ?FreshRSS_SystemConfiguration $system_conf = null;
 	/**
 	 * @deprecated Will be made `private`; use `FreshRSS_Context::userConf()` instead.
-	 * @internal
 	 */
 	public static ?FreshRSS_UserConfiguration $user_conf = null;
 
@@ -485,7 +483,7 @@ final class FreshRSS_Context {
 			case 'T':
 				$tagDAO = FreshRSS_Factory::createTagDao();
 				self::$current_get['tags'] = true;
-				self::$name = _t('index.menu.tags');
+				self::$name = _t('index.menu.mylabels');
 				self::$get_unread = $tagDAO->countNotRead();
 				break;
 			default:

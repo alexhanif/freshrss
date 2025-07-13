@@ -125,6 +125,9 @@ return [
 		#   0 for an unlimited number of accounts
 		#   1 is to not allow user registrations (1 is corresponding to the admin account)
 		'max_registrations' => 1,
+
+		# Max amount of bytes that are allowed for upload of custom favicon
+		'max_favicon_upload_size' => 1048576,	# 1 MiB
 	],
 
 	# Options used by cURL when making HTTP requests, e.g. when the SimplePie library retrieves feeds.

@@ -98,7 +98,7 @@ server {
 		fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
 		fastcgi_split_path_info ^(.+\.php)(/.*)$;
 		# By default, the variable PATH_INFO is not set under PHP-FPM
-		# But FreshRSS API greader.php need it. If you have a “Bad Request” error, double check this var!
+		# But FreshRSS APIs greader.php and misc.php need it. If you have a “Bad Request” error, double check this var!
 		# NOTE: the separate $path_info variable is required. For more details, see:
 		# https://trac.nginx.org/nginx/ticket/321
 		set $path_info $fastcgi_path_info;

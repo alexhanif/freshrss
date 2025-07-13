@@ -46,6 +46,7 @@ It is possible to filter articles by their content by inputting a string in the 
 You can use the search field to further refine results:
 
 * by feed ID: `f:123` or multiple feed IDs (*or*): `f:123,234,345`
+* by category ID: `c:23` or multiple category IDs (*or*): `c:23,34,45`
 * by author: `author:name` or `author:'composed name'`
 * by title: `intitle:keyword` or `intitle:'composed keyword'`
 * by text (content): `intext:keyword` or `intext:'composed keyword'`
@@ -84,6 +85,11 @@ You can use the search field to further refine results:
 		* `date:PT30M/` (past thirty minutes)
 		* `date:PT90S/` (past ninety seconds)
 		* `date:P1DT1H/` (past one day and one hour)
+	* From the oldest until some time before now:
+		* `!date:P1M` (older than one month before now, using a negation)
+			* Note: the syntax ~~`date:/P1M`~~ is not supported
+	* Date constraints may be combined:
+		* `date:P1Y !date:P1M` (from one year before now until one month before now)
 * by date of publication, using the same format: `pubdate:<date-interval>`
 * by custom label ID `L:12` or multiple label IDs: `L:12,13,14` or with any label: `L:*`
 * by custom label name `label:label`, `label:"my label"` or any label name from a list (*or*): `labels:"my label,my other label"`

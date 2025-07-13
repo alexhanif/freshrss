@@ -16,7 +16,18 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 	}
 
 	public static function userExists(string $username): bool {
-		return @file_exists(USERS_PATH . '/' . $username . '/config.php');
+		$config_path = USERS_PATH . '/' . $username . '/config.php';
+		if (@file_exists($config_path)) {
+			return true;
+		} elseif (@file_exists($config_path . '.bak.php')) {
+			Minz_Log::warning('Config for user “' . $username . '” not found. Attempting to restore from backup.', ADMIN_LOG);
+			if (!copy($config_path . '.bak.php', $config_path)) {
+				@unlink($config_path);
+				return false;
+			}
+			return @file_exists($config_path);
+		}
+		return false;
 	}
 
 	/** @param array<string,mixed> $userConfigUpdated */
@@ -97,7 +108,7 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 
 		FreshRSS_View::prependTitle(_t('conf.profile.title') . ' · ');
 
-		FreshRSS_View::appendScript(Minz_Url::display('/scripts/bcrypt.min.js?' . @filemtime(PUBLIC_PATH . '/scripts/bcrypt.min.js')));
+		FreshRSS_View::appendScript(Minz_Url::display('/scripts/vendor/bcrypt.js?' . @filemtime(PUBLIC_PATH . '/scripts/vendor/bcrypt.js')));
 
 		if (Minz_Request::isPost() && Minz_User::name() != null) {
 			$old_email = FreshRSS_Context::userConf()->mail_login;

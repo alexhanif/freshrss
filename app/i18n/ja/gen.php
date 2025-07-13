@@ -16,7 +16,7 @@ return array(
 		'add' => '追加',
 		'back_to_rss_feeds' => '← RSSフィードに戻る',
 		'cancel' => 'キャンセル',
-		'close' => 'Close',	// TODO
+		'close' => '閉じる',
 		'create' => '作成',
 		'delete_all_feeds' => 'すべてのフィードを削除する',
 		'delete_errored_feeds' => 'エラーのフィードを削除する',
@@ -170,6 +170,7 @@ return array(
 		'oc' => 'Occitan',	// IGNORE
 		'pl' => 'Polski',	// IGNORE
 		'pt-br' => 'Português (Brasil)',	// IGNORE
+		'pt-pt' => 'Português (Portugal)',	// IGNORE
 		'ru' => 'Русский',	// IGNORE
 		'sk' => 'Slovenčina',	// IGNORE
 		'tr' => 'Türkçe',	// IGNORE

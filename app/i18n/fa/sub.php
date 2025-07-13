@@ -50,6 +50,7 @@ return array(
 			'password' => ' رمز عبور HTTP',
 			'username' => ' نام کاربری HTTP',
 		),
+		'change_favicon' => 'Change…',	// TODO
 		'clear_cache' => ' همیشه حافظه پنهان را پاک کنید',
 		'content_action' => array(
 			'_' => ' اقدام محتوا هنگام واکشی محتوای مقاله',
@@ -74,12 +75,15 @@ return array(
 			'help' => 'XML file (data subset. <a href="https://freshrss.github.io/FreshRSS/en/developers/OPML.html" target="_blank">See documentation</a>)',	// TODO
 			'label' => 'Export as OPML',	// TODO
 		),
+		'ext_favicon' => 'Set automatically',	// TODO
+		'favicon_changed_by_ext' => 'The icon has been set by the <b>%s</b> extension.',	// TODO
 		'filteractions' => array(
 			'_' => ' اعمال فیلتر',
 			'help' => ' در هر خط یک فیلتر جستجو بنویسید. اپراتورها <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">مستندات را ببینید</a>.',
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => ' اطلاعات',
 		'keep_min' => ' حداقل تعداد مقالات برای نگهداری',
 		'kind' => array(
@@ -88,7 +92,7 @@ return array(
 				'_' => 'HTML + XPath + JSON dot notation (JSON in HTML)',	// TODO
 				'xpath' => array(
 					'_' => 'XPath for JSON in HTML',	// TODO
-					'help' => 'Example: <code>//script[@type="application/json"]</code>',	// TODO
+					'help' => 'Example: <code>normalize-space(//script[@type="application/json"])</code> (single JSON)<br />or: <code>//script[@type="application/ld+json"]</code> (one JSON object per article)',	// TODO
 				),
 			),
 			'html_xpath' => array(
@@ -113,11 +117,11 @@ return array(
 				),
 				'item_thumbnail' => array(
 					'_' => ' تصویر کوچک مورد',
-					'help' => ' مثال: <code>فرزند::img/@src</code>',
+					'help' => ' مثال: <code>descendant::img/@src</code>',
 				),
 				'item_timeFormat' => array(
 					'_' => ' فرمت تاریخ/زمان سفارشی',
-					'help' => ' اختیاری. قالبی که توسط <a href="https://php.net/datetime.createfromformat" target="_blank"><code>DateTime::createFromFormat()</code></a> پشتیبانی می‌شود',
+					'help' => ' اختیاری. قالبی که توسط <a href="https://php.net/datetime.createfromformat" target="_blank"><code>DateTime::createFromFormat()</code></a> پشتیبانی می‌شود',	// DIRTY
 				),
 				'item_timestamp' => array(
 					'_' => ' تاریخ مورد',
@@ -125,15 +129,15 @@ return array(
 				),
 				'item_title' => array(
 					'_' => ' عنوان مورد',
-					'help' => ' به طور خاص از <a href="https://developer.mozilla.org/docs/Web/XPath/Axes" target="_blank">محور XPath</a> <code>فرزند::</code استفاده کنید > مانند <code>فرزند::h2</code>',
+					'help' => ' به طور خاص از <a href="https://developer.mozilla.org/docs/Web/XPath/Axes" target="_blank">محور XPath</a> <code>descendant::</code استفاده کنید > مانند <code>descendant::h2</code>',
 				),
 				'item_uid' => array(
 					'_' => ' شناسه منحصر به فرد مورد',
-					'help' => ' اختیاری. مثال: <code>فرزند::div/@data-uri</code>',
+					'help' => ' اختیاری. مثال: <code>descendant::div/@data-uri</code>',
 				),
 				'item_uri' => array(
 					'_' => ' پیوند مورد (URL)',
-					'help' => ' مثال: <code>فرزند::a/@href</code>',
+					'help' => ' مثال: <code>descendant::a/@href</code>',
 				),
 				'relative' => 'XPath (نسبت به مورد) برای:',
 				'xpath' => ' XPath برای:',
@@ -212,6 +216,7 @@ return array(
 		),
 		'proxy' => ' یک پروکسی برای واکشی این فید تنظیم کنید',
 		'proxy_help' => ' یک پروتکل (به عنوان مثال: SOCKS5) انتخاب کنید و آدرس پراکسی را وارد کنید (به عنوان مثال: <kbd>127.0.0.1:1080</kbd> or <kbd>username:password@127.0.0.1:1080</kbd>)',	// DIRTY
+		'reset_favicon' => 'Reset to default',	// TODO
 		'selector_preview' => array(
 			'show_raw' => ' نمایش کد منبع',
 			'show_rendered' => 'نمایش محتوا',

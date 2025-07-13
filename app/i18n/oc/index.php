@@ -20,13 +20,12 @@ return array(
 				'browser' => 'Browser',	// TODO
 				'database' => 'Database',	// TODO
 				'server_software' => 'Server software',	// TODO
+				'version_curl' => 'cURL version',	// TODO
 				'version_frss' => 'FreshRSS version',	// TODO
 				'version_php' => 'PHP version',	// TODO
 			),
 		),
 		'bugs_reports' => 'Senhalament de problèmas',
-		'credits' => 'Crèdits',
-		'credits_content' => 'Unes elements de l’estil venon del <a href="http://twitter.github.io/bootstrap/">projècte Bootstrap</a> encara que FreshRSS utilize pas aqueste framework. Las <a href="https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic">icònas</a> venon del <a href="https://www.gnome.org/">projècte GNOME</a>. La polissa <em>Open Sans</em> utilizada foguèt creada per en <a href="https://fonts.google.com/specimen/Open+Sans">Steve Matteson</a>. FreshRSS es basat sus <a href="https://framagit.org/marienfressinaud/MINZ">Minz</a>, un framework PHP.',
 		'documentation' => 'Documentation',	// TODO
 		'freshrss_description' => 'FreshRSS es un agregador de fluxes RSS per l’auto-albergar tal. Sa tòca es d’èsser leugièr e de bon utilizar de prima abòrd mas tanben d’èsser potent e parametrable.',
 		'github' => '<a href="https://github.com/FreshRSS/FreshRSS/issues">sus GitHub</a>',
@@ -67,6 +66,7 @@ return array(
 		'mark_cat_read' => 'Marcar la categoria coma legida',
 		'mark_feed_read' => 'Marcar lo flux coma legit',
 		'mark_selection_unread' => 'Marcar la seleccion coma pas legida',
+		'mylabels' => 'Mas etiquetas',
 		'newer_first' => 'Mai recents en primièr',
 		'non-starred' => 'Mostrar los pas favorits',
 		'normal_view' => 'Vista normala',
@@ -91,7 +91,6 @@ return array(
 		'starred' => 'Mostrar los favorits',
 		'stats' => 'Estatisticas',
 		'subscription' => 'Gestion dels abonaments',
-		'tags' => 'Mas etiquetas',
 		'unread' => 'Mostar los pas legits',
 	),
 	'share' => 'Partejar',

@@ -99,6 +99,12 @@ return array(
 			'previous' => '前へ',
 		),
 	),
+	'mark_read_button' => array(
+		'_' => '“すべてに既読を付ける” button',	// DIRTY
+		'big' => 'Big',	// TODO
+		'none' => 'None',	// TODO
+		'small' => 'Small',	// TODO
+	),
 	'privacy' => array(
 		'_' => 'プライバシー',
 		'retrieve_extension_list' => '拡張機能リストを取得する',
@@ -107,6 +113,8 @@ return array(
 		'_' => 'プロフィール',
 		'api' => array(
 			'_' => 'API管理',
+			'api_not_set' => 'API password not set',	// TODO
+			'api_set' => 'API password set',	// TODO
 			'check_link' => 'APIステータスを確認する: <kbd><a href="../api/" target="_blank">%s</a></kbd>',
 			'disabled' => 'APIアクセスは無効です。',
 			'documentation_link' => '既知のアプリの一覧は<a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">ドキュメント</a>を参照してください',
