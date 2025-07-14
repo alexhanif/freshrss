@@ -137,6 +137,10 @@ if ($cliOptions->generateReadme) {
 				exit(1);
 			}
 			$unicodeFlag = $i18nGen['flag'];
+			if ($lang !== 'en' && $unicodeFlag === '🇬🇧') {
+				echo 'Error: Wrong Unicode flag for language ' . $lang, PHP_EOL;
+				exit(1);
+			}
 			$value = $unicodeFlag . ' ' . $percentageInt . '%';
 			$template .= <<<EOF
 			<svg xmlns="http://www.w3.org/2000/svg" width="70" height="20">
