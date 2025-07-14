@@ -131,6 +131,7 @@ return array(
 		'yesterday' => '어제',
 	),
 	'dir' => 'ltr',	// IGNORE
+	'flag' => '🇰🇷',
 	'freshrss' => array(
 		'_' => 'FreshRSS',	// IGNORE
 		'about' => '정보',
@@ -213,7 +214,7 @@ return array(
 		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
-		'bluesky' => 'Bluesky',	// TODO
+		'bluesky' => 'Bluesky',	// IGNORE
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => '클립보드',
 		'diaspora' => 'Diaspora*',	// IGNORE

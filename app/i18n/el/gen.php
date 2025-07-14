@@ -131,6 +131,7 @@ return array(
 		'yesterday' => 'Yesterday',	// TODO
 	),
 	'dir' => 'ltr',	// TODO
+	'flag' => '🇬🇷',
 	'freshrss' => array(
 		'_' => 'FreshRSS',	// TODO
 		'about' => 'About FreshRSS',	// TODO
@@ -213,7 +214,7 @@ return array(
 		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// TODO
-		'bluesky' => 'Bluesky',	// TODO
+		'bluesky' => 'Bluesky',	// IGNORE
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'Clipboard',	// TODO
 		'diaspora' => 'Diaspora*',	// TODO
