@@ -59,7 +59,7 @@ return array(
 		'bookmark_query' => 'Markah pencarian saat ini',
 		'favorites' => 'Favorit (%s)',
 		'global_view' => 'Tampilan Global',
-		'important' => 'Umpan penting',
+		'important' => 'Umpan Penting',
 		'main_stream' => 'Bagian Utama',
 		'mark_all_read' => 'Tandai semua sebagai sudah dibaca',
 		'mark_cat_read' => 'Tandai kategori sebagai sudah dibaca',
