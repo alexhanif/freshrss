@@ -131,6 +131,7 @@ return array(
 		'yesterday' => '昨日',
 	),
 	'dir' => 'ディレクトリ',
+	'flag' => '🇯🇵',
 	'freshrss' => array(
 		'_' => 'FreshRSS',	// IGNORE
 		'about' => 'FreshRSSについて',

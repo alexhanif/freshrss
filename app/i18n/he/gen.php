@@ -131,6 +131,7 @@ return array(
 		'yesterday' => 'אתמול',
 	),
 	'dir' => 'rtl',
+	'flag' => '🇮🇱',
 	'freshrss' => array(
 		'_' => 'FreshRSS',	// TODO
 		'about' => 'אודות FreshRSS',
@@ -213,7 +214,7 @@ return array(
 		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
-		'bluesky' => 'Bluesky',	// TODO
+		'bluesky' => 'Bluesky',	// IGNORE
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'Clipboard',	// TODO
 		'diaspora' => 'Diaspora*',	// IGNORE
