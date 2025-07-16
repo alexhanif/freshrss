@@ -463,6 +463,10 @@ class FreshRSS_Feed extends Minz_Model {
 		$this->url = $url;
 	}
 
+	public function _selfUrl(string $value): void {
+		$this->selfUrl = $value;
+	}
+
 	public function _kind(int $value): void {
 		$this->kind = $value;
 	}
