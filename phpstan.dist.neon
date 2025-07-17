@@ -37,7 +37,7 @@ parameters:
 		- TMP_PATH
 		- USERS_PATH
 	checkBenevolentUnionTypes: true
-	checkImplicitMixed: false	# TODO pass
+	checkImplicitMixed: true
 	checkMissingOverrideMethodAttribute: true
 	checkTooWideReturnTypesInProtectedAndPublicMethods: true
 	reportAnyTypeWideningInVarTag: true

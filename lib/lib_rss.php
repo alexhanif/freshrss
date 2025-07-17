@@ -368,7 +368,11 @@ function customSimplePie(array $attributes = [], array $curl_options = []): \Sim
 		'iframe' => 'src',
 		'img' => [
 			'longdesc',
-			'src'
+			'src',
+		],
+		'image' => [
+			'longdesc',
+			'src',
 		],
 		'input' => 'src',
 		'ins' => 'cite',
@@ -504,11 +508,46 @@ function enforceHttpEncoding(string $html, string $contentType = ''): string {
 }
 
 /**
+ * Set an HTML base URL to the HTML content if there is none.
+ * @param string $html the raw downloaded HTML content
+ * @param string $href the HTML base URL
+ * @return string an HTML string
+ */
+function enforceHtmlBase(string $html, string $href): string {
+	$doc = new DOMDocument();
+	$doc->loadHTML($html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING);
+	if ($doc->documentElement === null) {
+		return '';
+	}
+	$xpath = new DOMXPath($doc);
+	$bases = $xpath->evaluate('//base');
+	if (!($bases instanceof DOMNodeList) || $bases->length === 0) {
+		$base = $doc->createElement('base');
+		if ($base === false) {
+			return $html;
+		}
+		$base->setAttribute('href', $href);
+		$head = null;
+		$heads = $xpath->evaluate('//head');
+		if ($heads instanceof DOMNodeList && $heads->length > 0) {
+			$head = $heads->item(0);
+		}
+		if ($head instanceof DOMElement) {
+			$head->insertBefore($base, $head->firstChild);
+		} else {
+			$doc->documentElement->insertBefore($base, $doc->documentElement->firstChild);
+		}
+	}
+	return $doc->saveHTML() ?: $html;
+}
+
+/**
  * @param string $type {html,json,opml,xml}
  * @param array<string,mixed> $attributes
  * @param array<int,mixed> $curl_options
+ * @return array{body:string,effective_url:string,redirect_count:int,fail:bool}
  */
-function httpGet(string $url, string $cachePath, string $type = 'html', array $attributes = [], array $curl_options = []): string {
+function httpGet(string $url, string $cachePath, string $type = 'html', array $attributes = [], array $curl_options = []): array {
 	$limits = FreshRSS_Context::systemConf()->limits;
 	$feed_timeout = empty($attributes['timeout']) || !is_numeric($attributes['timeout']) ? 0 : intval($attributes['timeout']);
 
@@ -517,7 +556,7 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 		$body = @file_get_contents($cachePath);
 		if ($body != false) {
 			syslog(LOG_DEBUG, 'FreshRSS uses cache for ' . \SimplePie\Misc::url_remove_credentials($url));
-			return $body;
+			return ['body' => $body, 'effective_url' => $url, 'redirect_count' => 0, 'fail' => false];
 		}
 	}
 
@@ -549,7 +588,7 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 	// TODO: Implement HTTP 1.1 conditional GET If-Modified-Since
 	$ch = curl_init();
 	if ($ch === false) {
-		return '';
+		return ['body' => '', 'effective_url' => '', 'redirect_count' => 0, 'fail' => true];
 	}
 	curl_setopt_array($ch, [
 		CURLOPT_URL => $url,
@@ -594,10 +633,13 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 	$body = curl_exec($ch);
 	$c_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 	$c_content_type = '' . curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+	$c_effective_url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+	$c_redirect_count = curl_getinfo($ch, CURLINFO_REDIRECT_COUNT);
 	$c_error = curl_error($ch);
 	curl_close($ch);
 
-	if ($c_status != 200 || $c_error != '' || $body === false) {
+	$fail = $c_status != 200 || $c_error != '' || $body === false;
+	if ($fail) {
 		Minz_Log::warning('Error fetching content: HTTP code ' . $c_status . ': ' . $c_error . ' ' . $url);
 		$body = '';
 		// TODO: Implement HTTP 410 Gone
@@ -607,6 +649,7 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 		$body = trim($body, " \n\r\t\v");	// Do not trim \x00 to avoid breaking a BOM
 		if ($type !== 'json') {
 			$body = enforceHttpEncoding($body, $c_content_type);
+			$body = enforceHtmlBase($body, $c_effective_url);
 		}
 	}
 
@@ -614,7 +657,7 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 		Minz_Log::warning("Error saving cache $cachePath for $url");
 	}
 
-	return $body;
+	return ['body' => $body, 'effective_url' => $c_effective_url, 'redirect_count' => $c_redirect_count, 'fail' => $fail];
 }
 
 /**
@@ -632,16 +675,20 @@ function validateEmailAddress(string $email): bool {
 
 /**
  * Add support of image lazy loading
- * Move content from src attribute to data-original
+ * Move content from src/poster attribute to data-original
  * @param string $content is the text we want to parse
  */
 function lazyimg(string $content): string {
 	return preg_replace([
-			'/<((?:img|iframe)[^>]+?)src="([^"]+)"([^>]*)>/i',
-			"/<((?:img|iframe)[^>]+?)src='([^']+)'([^>]*)>/i",
+			'/<((?:img|image|iframe)[^>]+?)src="([^"]+)"([^>]*)>/i',
+			"/<((?:img|image|iframe)[^>]+?)src='([^']+)'([^>]*)>/i",
+			'/<((?:video)[^>]+?)poster="([^"]+)"([^>]*)>/i',
+			"/<((?:video)[^>]+?)poster='([^']+)'([^>]*)>/i",
 		], [
 			'<$1src="' . Minz_Url::display('/themes/icons/grey.gif') . '" data-original="$2"$3>',
 			"<$1src='" . Minz_Url::display('/themes/icons/grey.gif') . "' data-original='$2'$3>",
+			'<$1poster="' . Minz_Url::display('/themes/icons/grey.gif') . '" data-original="$2"$3>',
+			"<$1poster='" . Minz_Url::display('/themes/icons/grey.gif') . "' data-original='$2'$3>",
 		],
 		$content
 	) ?? '';
@@ -809,7 +856,7 @@ function checkTrustedIP(): bool {
 }
 
 function httpAuthUser(bool $onlyTrusted = true): string {
-	$auths = array_intersect_key($_SERVER, ['REMOTE_USER' => '', 'REDIRECT_REMOTE_USER' => '', 'HTTP_REMOTE_USER' => '', 'HTTP_X_WEBAUTH_USER' => '']);
+	$auths = array_unique(array_intersect_key($_SERVER, ['REMOTE_USER' => '', 'REDIRECT_REMOTE_USER' => '', 'HTTP_REMOTE_USER' => '', 'HTTP_X_WEBAUTH_USER' => '']));
 	if (count($auths) > 1) {
 		Minz_Log::warning('Multiple HTTP authentication headers!');
 		return '';
@@ -1002,7 +1049,7 @@ function errorMessageInfo(string $errorTitle, string $error = ''): string {
 		$details = "<pre>{$details}</pre>";
 	}
 
-	header("Content-Security-Policy: default-src 'self'");
+	header("Content-Security-Policy: default-src 'self'; frame-ancestors 'none'");
 	header('Referrer-Policy: same-origin');
 
 	return <<<MSG

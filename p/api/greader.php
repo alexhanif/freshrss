@@ -610,7 +610,7 @@ final class GReaderAPI {
 				}
 				break;
 		}
-		$streamId = (int)$streamId;
+		$streamId = is_numeric($streamId) ? (int)$streamId : 0;
 
 		$state = match ($filter_target) {
 			'user/-/state/com.google/read' => FreshRSS_Entry::STATE_READ,
@@ -712,8 +712,18 @@ final class GReaderAPI {
 		$type = 'A';
 		if ($streamId === 'user/-/state/com.google/reading-list') {
 			$type = 'A';
+			$streamId = '';
 		} elseif ($streamId === 'user/-/state/com.google/starred') {
 			$type = 's';
+			$streamId = '';
+		} elseif ($streamId === 'user/-/state/com.google/read') {
+			$filter_target = $streamId;
+			$type = 'A';
+			$streamId = '';
+		} elseif ($streamId === 'user/-/state/com.google/unread') {
+			$filter_target = $streamId;
+			$type = 'A';
+			$streamId = '';
 		} elseif (str_starts_with($streamId, 'feed/')) {
 			$type = 'f';
 			$streamId = substr($streamId, 5);
@@ -965,7 +975,13 @@ final class GReaderAPI {
 				}
 			}
 		} elseif ($streamId === 'user/-/state/com.google/reading-list') {
-			$entryDAO->markReadEntries($olderThanId, false);
+			$entryDAO->markReadEntries($olderThanId, onlyFavorites: false);
+		} elseif ($streamId === 'user/-/state/com.google/starred') {
+			$entryDAO->markReadEntries($olderThanId, onlyFavorites: true);
+		} elseif ($streamId === 'user/-/state/com.google/read') {
+			$entryDAO->markReadEntries($olderThanId, state: FreshRSS_Entry::STATE_READ);
+		} elseif ($streamId === 'user/-/state/com.google/unread') {
+			$entryDAO->markReadEntries($olderThanId, state: FreshRSS_Entry::STATE_NOT_READ);
 		} else {
 			self::badRequest();
 		}

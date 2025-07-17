@@ -50,6 +50,7 @@ return array(
 			'ko' => '%s nevar būt ieslēgts. <a href="%s">Pārbaudiet FreshRSS žurnālu</a> priekš papildu informācijas.',
 			'ok' => '%s ir tagad ieslēgts',
 		),
+		'invalid_view_mode' => 'Invalid view mode “%s”! Fall back to “Normal view”.',	// TODO
 		'no_access' => 'Jums nav piekļuves %s',
 		'not_enabled' => '%s nav ieslēgts',
 		'not_found' => '%s nēeksistē',
@@ -94,6 +95,10 @@ return array(
 			'cache_cleared' => '<em>%s</em> kešatmiņa tika iztukšota',
 			'deleted' => 'Barortne tika izdzēsta',
 			'error' => 'Barotne nevar būt atjaunināta',
+			'favicon' => array(
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
+			),
 			'internal_problem' => 'Barotni nevarēja pievienot. <a href="%s">Apskataties FreshRSS žurnālu</a> priekš papildus informācijas. Jūs varat izmēģināt piespiedu pievienošanu, URL pievienojot <code>#force_feed</code>.',
 			'invalid_url' => 'URL <em>%s</em> ir nepareizs',
 			'n_actualized' => '%d barotnes tika atjaunotas',

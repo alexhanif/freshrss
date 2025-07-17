@@ -50,6 +50,7 @@ return array(
 			'ko' => '%s não pode ser activado. <a href="%s">verifique os logs do FreshRSS</a> para detalhes.',
 			'ok' => '%s agora está activado',
 		),
+		'invalid_view_mode' => 'Invalid view mode “%s”! Fall back to “Normal view”.',	// TODO
 		'no_access' => ' não tem acesso ao %s',
 		'not_enabled' => '%s não está habilitado',
 		'not_found' => '%s não existe',
@@ -94,6 +95,10 @@ return array(
 			'cache_cleared' => 'O cache do feed <em>%s</em> foi limpo',
 			'deleted' => 'o feed foi apagado',
 			'error' => 'O feed não pode ser atualizado',
+			'favicon' => array(
+				'too_large' => 'Uploaded icon is too large. The maximum file size is <em>%s</em>.',	// TODO
+				'unsupported_format' => 'Unsupported image file format!',	// TODO
+			),
 			'internal_problem' => 'O feed RSS não pôde ser adicionado. <a href="%s">Verifique os logs do FreshRSS</a> para detalhes. Pode forçar a atualização no link <code>#force_feed</code> .',
 			'invalid_url' => 'URL <em>%s</em> é inválida',
 			'n_actualized' => '%d feeds foram atualizados',
