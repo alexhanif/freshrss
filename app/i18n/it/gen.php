@@ -131,6 +131,7 @@ return array(
 		'yesterday' => 'Ieri',
 	),
 	'dir' => 'ltr',	// IGNORE
+	'flag' => '🇮🇹',
 	'freshrss' => array(
 		'_' => 'Feed RSS Reader',
 		'about' => 'Informazioni',

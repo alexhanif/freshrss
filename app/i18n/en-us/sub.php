@@ -255,7 +255,7 @@ return array(
 	'import_export' => array(
 		'export' => array(
 			'_' => 'Export',	// IGNORE
-			'sqlite' => 'Download user database as SQLite',	// TODO
+			'sqlite' => 'Download user database as SQLite',	// IGNORE
 		),
 		'export_labelled' => 'Export your labeled articles',
 		'export_opml' => 'Export list of feeds (OPML)',	// IGNORE

@@ -131,6 +131,7 @@ return array(
 		'yesterday' => 'Dün',
 	),
 	'dir' => 'ltr',	// IGNORE
+	'flag' => '🇹🇷',
 	'freshrss' => array(
 		'_' => 'FreshRSS',	// IGNORE
 		'about' => 'FreshRSS Hakkında',

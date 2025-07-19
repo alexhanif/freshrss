@@ -393,12 +393,14 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 	}
 
 	/**
+	 * @param \SimplePie\SimplePie|null $simplePiePush Used by WebSub (PubSubHubbub) to push updates
+	 * @param string $selfUrl Used by WebSub (PubSubHubbub) to override the feed URL
 	 * @return array{0:int,1:FreshRSS_Feed|null,2:int,3:array<FreshRSS_Feed>} Number of updated feeds, first feed or null, number of new articles,
 	 * 	list of feeds for which a cache refresh is needed
 	 * @throws FreshRSS_BadUrl_Exception
 	 */
 	public static function actualizeFeeds(?int $feed_id = null, ?string $feed_url = null, ?int $maxFeeds = null,
-		?\SimplePie\SimplePie $simplePiePush = null): array {
+		?\SimplePie\SimplePie $simplePiePush = null, string $selfUrl = ''): array {
 		if (function_exists('set_time_limit')) {
 			@set_time_limit(300);
 		}
@@ -422,6 +424,9 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 		if ($feed_id !== null || $feed_url !== null) {
 			$feed = $feed_id !== null ? $feedDAO->searchById($feed_id) : $feedDAO->searchByUrl($feed_url);
 			if ($feed !== null && $feed->id() > 0) {
+				if ($selfUrl !== '') {
+					$feed->_selfUrl($selfUrl);
+				}
 				$feeds[] = $feed;
 				$feed_id = $feed->id();
 			}
@@ -692,22 +697,19 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 				$feedProperties['attributes'] = $feed->attributes();
 			}
 
-			if ($pubsubhubbubEnabledGeneral && $feed->hubUrl() !== '' && $feed->selfUrl() !== '') {	//selfUrl has priority for WebSub
-				if ($feed->selfUrl() !== $url) {	// https://github.com/pubsubhubbub/PubSubHubbub/wiki/Moving-Feeds-or-changing-Hubs
-					$selfUrl = checkUrl($feed->selfUrl());
-					if ($selfUrl != false) {
-						Minz_Log::debug('WebSub unsubscribe ' . $feed->url(false));
-						if (!$feed->pubSubHubbubSubscribe(false)) {	//Unsubscribe
-							Minz_Log::warning('Error while WebSub unsubscribing from ' . $feed->url(false));
-						}
-						$feed->_url($selfUrl, false);
-						Minz_Log::notice('Feed ' . $url . ' canonical address moved to ' . $feed->url(false));
-						$feedDAO->updateFeed($feed->id(), ['url' => $feed->url()]);
-					}
+			if ($feed->url() !== $url) {	// HTTP 301 Moved Permanently
+				Minz_Log::warning('Feed ' . \SimplePie\Misc::url_remove_credentials($url) .
+					' moved permanently to ' . $feed->url(includeCredentials: false));
+				$feedProperties['url'] = $feed->url();
+			} elseif ($simplePiePush !== null && $selfUrl !== '' && $selfUrl !== $feed->url()) {	// selfUrl has priority for WebSub
+				// https://github.com/pubsubhubbub/PubSubHubbub/wiki/Moving-Feeds-or-changing-Hubs
+				Minz_Log::debug('WebSub unsubscribe ' . $feed->url(includeCredentials: false));
+				if (!$feed->pubSubHubbubSubscribe(false)) {	//Unsubscribe
+					Minz_Log::warning('Error while WebSub unsubscribing from ' . $feed->url(includeCredentials: false));
 				}
-			} elseif ($feed->url() !== $url) {	// HTTP 301 Moved Permanently
-				Minz_Log::notice('Feed ' . \SimplePie\Misc::url_remove_credentials($url) .
-					' moved permanently to ' .  \SimplePie\Misc::url_remove_credentials($feed->url(false)));
+				$feed->_url($selfUrl);
+				Minz_Log::warning('Feed ' . \SimplePie\Misc::url_remove_credentials($url) .
+					' canonical address moved to ' . $feed->url(includeCredentials: false));
 				$feedProperties['url'] = $feed->url();
 			}
 
@@ -826,14 +828,17 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 	}
 
 	/**
+	 * @param \SimplePie\SimplePie|null $simplePiePush Used by WebSub (PubSubHubbub) to push updates
+	 * @param string $selfUrl Used by WebSub (PubSubHubbub) to override the feed URL
 	 * @return array{0:int,1:FreshRSS_Feed|null,2:int,3:array<FreshRSS_Feed>} Number of updated feeds, first feed or null, number of new articles,
 	 * 	list of feeds for which a cache refresh is needed
 	 * @throws FreshRSS_BadUrl_Exception
 	 */
 	public static function actualizeFeedsAndCommit(?int $feed_id = null, ?string $feed_url = null, ?int $maxFeeds = null,
-		?SimplePie\SimplePie $simplePiePush = null): array {
+		?SimplePie\SimplePie $simplePiePush = null, string $selfUrl = ''): array {
 		$entryDAO = FreshRSS_Factory::createEntryDao();
-		[$nbUpdatedFeeds, $feed, $nbNewArticles, $feedsCacheToRefresh] = FreshRSS_feed_Controller::actualizeFeeds($feed_id, $feed_url, $maxFeeds, $simplePiePush);
+		[$nbUpdatedFeeds, $feed, $nbNewArticles, $feedsCacheToRefresh] =
+			FreshRSS_feed_Controller::actualizeFeeds($feed_id, $feed_url, $maxFeeds, $simplePiePush, $selfUrl);
 		if ($nbNewArticles > 0) {
 			$entryDAO->beginTransaction();
 			FreshRSS_feed_Controller::commitNewEntries();
