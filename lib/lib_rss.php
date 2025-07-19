@@ -535,7 +535,7 @@ function enforceHtmlBase(string $html, string $href): string {
 		if ($head instanceof DOMElement) {
 			$head->insertBefore($base, $head->firstChild);
 		} else {
-			$doc->insertBefore($base, $doc->documentElement->firstChild);
+			$doc->documentElement->insertBefore($base, $doc->documentElement->firstChild);
 		}
 	}
 	return $doc->saveHTML() ?: $html;
