@@ -131,6 +131,7 @@ return array(
 		'yesterday' => 'Yesterday',
 	),
 	'dir' => 'ltr',
+	'flag' => '🇬🇧',
 	'freshrss' => array(
 		'_' => 'FreshRSS',
 		'about' => 'About FreshRSS',

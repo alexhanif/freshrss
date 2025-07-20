@@ -131,6 +131,7 @@ return array(
 		'yesterday' => 'Wczorajsze',
 	),
 	'dir' => 'ltr',	// IGNORE
+	'flag' => '🇵🇱',
 	'freshrss' => array(
 		'_' => 'FreshRSS',	// IGNORE
 		'about' => 'O oprogramowaniu FreshRSS',
