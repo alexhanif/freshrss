@@ -1286,31 +1286,29 @@ function init_stream(stream) {
 			`;
 			document.body.prepend(print_frame);
 
-			const tmp_window = print_frame.contentWindow;
-			tmp_window.onload = () => tmp_window.print();
-
 			function afterPrint() {
 				print_frame.remove();
 				document.title = prevTitle;
 				prevTitle = '';
 
 				window.removeEventListener('focus', afterPrint);
-				window.removeEventListener('mouseover', afterPrint);
 			}
 
-			tmp_window.onafterprint = () => {
-				const isFirefoxMobile = navigator.userAgent.includes('Firefox') && navigator.userAgent.includes('Mobile');
-				if (isFirefoxMobile) {
-					// Setting location.hash here crashes the tab on Firefox Mobile
-					return;
-				}
-				// Required for `mouseover` to trigger after print dialog is no longer open
-				location.hash = 'close';
+			print_frame.onload = () => {
+				const tmp_window = print_frame.contentWindow;
+
+				// Needed for Chrome
+				tmp_window.matchMedia('print').onchange = (e) => {
+					// UA check is needed to not trigger on Chrome Mobile
+					if (!e.matches && !navigator.userAgent.includes('Mobi')) {
+						afterPrint();
+					}
+				};
+				tmp_window.print();
 			};
 
-			// `afterprint` works correctly only on Chrome Desktop, so this is done instead
+			// Needed for Firefox and Chrome Mobile
 			window.addEventListener('focus', afterPrint);
-			window.addEventListener('mouseover', afterPrint); // Required for Chrome Desktop
 
 			return false;
 		}

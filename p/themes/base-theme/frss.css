@@ -2788,7 +2788,11 @@ html.slider-active {
 
 		@top-left { content: ''; }
 
+		@top-right { content: ''; }
+
 		@bottom-left { content: ''; }
+
+		@bottom-right { content: ''; }
 	}
 
 	.header, .aside,
