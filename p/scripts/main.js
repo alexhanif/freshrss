@@ -1262,6 +1262,8 @@ function init_stream(stream) {
 				}
 			});
 
+			content_el.querySelectorAll('details').forEach(el => el.setAttribute('open', 'open'));
+
 			const articleTitle = content_el.querySelector('.title a').innerText;
 			prevTitle = document.title;
 
