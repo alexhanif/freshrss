@@ -62,9 +62,9 @@ return array(
 			'format' => '<small>7 caractères minimum</small>',
 		),
 		'reauth' => array(
-			'header' => 'Reauthentication is required',	// TODO
-			'tip' => 'You won’t be asked to sign in again for <u>%d minutes</u>',	// TODO
-			'title' => 'Reauthentication',	// TODO
+			'header' => 'Une réauthentification est requise',
+			'tip' => 'La réauthentification sera valide pendant <u>%d minutes</u>',
+			'title' => 'Réauthentification',
 		),
 		'registration' => array(
 			'_' => 'Nouveau compte',
