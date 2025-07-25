@@ -59,6 +59,13 @@ return [
 	#		and in particular not protect `/FreshRSS/p/api/` if you would like to use the API (different login system).
 	'auth_type' => 'form',
 
+	# Whether reauthentication is required for performing sensitive actions e.g. promoting a user or applying an update
+	'reauth_required' => true,
+
+	# Time before asking for reauth
+	#    Default: 1200s (20 min)
+	'reauth_time' => 1200,
+
 	# When using http_auth, automatically register any unknown user
 	'http_auth_auto_register' => true,
 

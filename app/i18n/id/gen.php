@@ -61,6 +61,11 @@ return array(
 			'_' => 'Kata sandi',
 			'format' => '<small>Paling tidak 7 karakter</small>',
 		),
+		'reauth' => array(
+			'header' => 'Reauthentication is required',	// TODO
+			'tip' => 'You won’t be asked to sign in again for <u>%d minutes</u>',	// TODO
+			'title' => 'Reauthentication',	// TODO
+		),
 		'registration' => array(
 			'_' => 'Akun baru',
 			'ask' => 'Buat akun?',

@@ -270,6 +270,10 @@ class FreshRSS_update_Controller extends FreshRSS_ActionController {
 			Minz_Request::forward(['c' => 'update'], true);
 		}
 
+		if (FreshRSS_Auth::requestReauth()) {
+			return;
+		}
+
 		if (Minz_Request::paramBoolean('post_conf')) {
 			if (self::isGit()) {
 				$res = !self::hasGitUpdate();

@@ -61,6 +61,11 @@ return array(
 			'_' => 'パスワード',
 			'format' => '<small>最低７文字必要です</small>',
 		),
+		'reauth' => array(
+			'header' => 'Reauthentication is required',	// TODO
+			'tip' => 'You won’t be asked to sign in again for <u>%d minutes</u>',	// TODO
+			'title' => 'Reauthentication',	// TODO
+		),
 		'registration' => array(
 			'_' => '新規アカウント',
 			'ask' => 'アカウントを作りますか?',

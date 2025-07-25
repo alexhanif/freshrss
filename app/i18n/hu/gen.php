@@ -61,6 +61,11 @@ return array(
 			'_' => 'Jelszó',
 			'format' => '<small>Legalább 7 karakter hosszú</small>',
 		),
+		'reauth' => array(
+			'header' => 'Reauthentication is required',	// TODO
+			'tip' => 'You won’t be asked to sign in again for <u>%d minutes</u>',	// TODO
+			'title' => 'Reauthentication',	// TODO
+		),
 		'registration' => array(
 			'_' => 'Új fiók',
 			'ask' => 'Létrehoz egy új fiókot?',

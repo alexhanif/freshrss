@@ -61,6 +61,11 @@ return array(
 			'_' => 'Senhal',
 			'format' => '<small>Almens 7 caractèrs</small>',
 		),
+		'reauth' => array(
+			'header' => 'Reauthentication is required',	// TODO
+			'tip' => 'You won’t be asked to sign in again for <u>%d minutes</u>',	// TODO
+			'title' => 'Reauthentication',	// TODO
+		),
 		'registration' => array(
 			'_' => 'Compte nòu',
 			'ask' => 'Crear un compte?',

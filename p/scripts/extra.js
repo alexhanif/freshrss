@@ -314,6 +314,11 @@ function open_slider_listener(ev) {
 			req.open('GET', ahref, true);
 			req.responseType = 'document';
 			req.onload = function (e) {
+				if (this.status === 403) {
+					// Redirect to reauth page (or fail if session expired)
+					location.href = a.href;
+					return;
+				}
 				location.href = '#slider'; // close menu/dropdown
 				document.documentElement.classList.add('slider-active');
 				slider.classList.add('active');
