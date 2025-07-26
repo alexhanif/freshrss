@@ -18,6 +18,8 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Fix multiple authentication HTTP headers [#7703](https://github.com/FreshRSS/FreshRSS/pull/7703)
 	* Fix HTML queries with a single feed [#7730](https://github.com/FreshRSS/FreshRSS/pull/7730)
 	* WebSub: only perform a redirection when coming from WebSub [#7738](https://github.com/FreshRSS/FreshRSS/pull/7738)
+	* Include enclosures in entries’ hash [#7719](https://github.com/FreshRSS/FreshRSS/pull/7719)
+		* Negative side-effect: users of the option to *automatically mark updated articles as unread* will once have some articles with enclosures re-appear as unread
 	* Fix cancellation of slider exit UI [#7705](https://github.com/FreshRSS/FreshRSS/pull/7705)
 	* Honor *disable update* on update page [#7733](https://github.com/FreshRSS/FreshRSS/pull/7733)
 	* Fix no registration limit setting [#7751](https://github.com/FreshRSS/FreshRSS/pull/7751)
