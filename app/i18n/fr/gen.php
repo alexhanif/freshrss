@@ -131,6 +131,7 @@ return array(
 		'yesterday' => 'Hier',
 	),
 	'dir' => 'ltr',	// IGNORE
+	'flag' => '🇫🇷',
 	'freshrss' => array(
 		'_' => 'FreshRSS',	// IGNORE
 		'about' => 'À propos de FreshRSS',
@@ -213,7 +214,7 @@ return array(
 		'archiveIS' => 'archive.is',	// IGNORE
 		'archiveORG' => 'archive.org',	// IGNORE
 		'archivePH' => 'archive.ph',	// IGNORE
-		'bluesky' => 'Bluesky',	// TODO
+		'bluesky' => 'Bluesky',	// IGNORE
 		'buffer' => 'Buffer',	// IGNORE
 		'clipboard' => 'Presse-papier',
 		'diaspora' => 'Diaspora*',	// IGNORE

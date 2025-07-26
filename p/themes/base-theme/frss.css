@@ -299,7 +299,7 @@ input.long {
 
 input, select, textarea {
 	display: inline-block;
-	max-width: 100%;
+	max-width: 85vw;
 	font-size: 0.8rem;
 	box-sizing: border-box;
 }
@@ -2511,6 +2511,23 @@ html.slider-active {
 		width: 100%;
 		border-bottom: 1px solid var(--frss-border-color);
 		text-align: center;
+	}
+
+	.aside:not(.aside_feed) {
+		overflow-y: scroll;
+	}
+
+	nav.configure > .dropdown li.item.dropdown-section:last-child,
+	nav#aside_feed > ul li.item.nav-section:last-child {
+		margin-bottom: 6rem;
+	}
+
+	#dropdown-search-wrapper .dropdown-menu span {
+		text-wrap: wrap;
+	}
+
+	.form-advanced-title {
+		text-align: left;
 	}
 
 	.aside .feed .item-title {

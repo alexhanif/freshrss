@@ -4,6 +4,48 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 
 ## 2025-0X-XX FreshRSS 1.26.4-dev
 
+* Features
+	* Add sort by category title, or by feed title [#7702](https://github.com/FreshRSS/FreshRSS/pull/7702)
+	* Add search operator `c:` for categories like `c:23,34` or `!c:45,56` [#7696](https://github.com/FreshRSS/FreshRSS/pull/7696)
+	* Custom feed favicons [#7646](https://github.com/FreshRSS/FreshRSS/pull/7646), [#7704](https://github.com/FreshRSS/FreshRSS/pull/7704), [#7717](https://github.com/FreshRSS/FreshRSS/pull/7717)
+	* Automatically restore user configuration from backup [#7682](https://github.com/FreshRSS/FreshRSS/pull/7682)
+	* API add support for states in `s` parameter of `streamId` [#7695](https://github.com/FreshRSS/FreshRSS/pull/7695)
+* Extensions
+	* Add API endpoint for extensions [#7576](https://github.com/FreshRSS/FreshRSS/pull/7576)
+	* Expose the reading modes for extensions [#7668](https://github.com/FreshRSS/FreshRSS/pull/7668), [#7688](https://github.com/FreshRSS/FreshRSS/pull/7688)
+* Bug fixing
+	* Fix redirections when scraping from HTML [#7654](https://github.com/FreshRSS/FreshRSS/pull/7654), [#7741](https://github.com/FreshRSS/FreshRSS/pull/7741)
+	* Fix multiple authentication HTTP headers [#7703](https://github.com/FreshRSS/FreshRSS/pull/7703)
+	* Fix HTML queries with a single feed [#7730](https://github.com/FreshRSS/FreshRSS/pull/7730)
+	* WebSub: only perform a redirection when coming from WebSub [#7738](https://github.com/FreshRSS/FreshRSS/pull/7738)
+	* Fix cancellation of slider exit UI [#7705](https://github.com/FreshRSS/FreshRSS/pull/7705)
+	* Honor *disable update* on update page [#7733](https://github.com/FreshRSS/FreshRSS/pull/7733)
+	* Fix no registration limit setting [#7751](https://github.com/FreshRSS/FreshRSS/pull/7751)
+* SimplePie
+	* Fix propagation of HTTP error codes [#7670](https://github.com/FreshRSS/FreshRSS/pull/7670)
+	* Fix support for XML feeds with HTML entities [#7689](https://github.com/FreshRSS/FreshRSS/pull/7689), [simplepie#915](https://github.com/simplepie/simplepie/pull/915)
+	* Fix feeds encoded in UTF-16LE [#7691](https://github.com/FreshRSS/FreshRSS/pull/7691), [simplepie#916](https://github.com/simplepie/simplepie/pull/916)
+	* Sync upstream [#7706](https://github.com/FreshRSS/FreshRSS/pull/7706)
+* Deployment
+	* Docker alternative image updated to Alpine 3.22 with PHP 8.3.23 and Apache 2.4.64 [#7740](https://github.com/FreshRSS/FreshRSS/pull/7740), [#7740](https://github.com/FreshRSS/FreshRSS/pull/7740)
+	* Docker: interpolate `FRESHRSS_INSTALL` and `FRESHRSS_USER` variables [#7725](https://github.com/FreshRSS/FreshRSS/pull/7725)
+	* Test for database PDO typing support during install (relevant for MySQL / MariaDB with obsolete driver) [#7651](https://github.com/FreshRSS/FreshRSS/pull/7651)
+* Security
+	* Add `Content-Security-Policy: frame-ancestors` [#7677](https://github.com/FreshRSS/FreshRSS/pull/7677)
+	* Disallow setting non-existent theme [#7722](https://github.com/FreshRSS/FreshRSS/pull/7722)
+* UI
+	* Improve *mark as read* request showing popup due to `onbeforeunload` [#7554](https://github.com/FreshRSS/FreshRSS/pull/7554)
+	* Fix lazy-loading for `<video poster="...">` and `<image>` [#7636](https://github.com/FreshRSS/FreshRSS/pull/7636)
+	* Update `chart.js` to 4.5.0 [#7752](https://github.com/FreshRSS/FreshRSS/pull/7752)
+	* Various UI and style improvements: [#7616](https://github.com/FreshRSS/FreshRSS/pull/7616)
+* I18n
+	* Show translation status in README [#7715](https://github.com/FreshRSS/FreshRSS/pull/7715)
+	* Improve Indonesian [#7654](https://github.com/FreshRSS/FreshRSS/pull/7654), [#7721](https://github.com/FreshRSS/FreshRSS/pull/7721)
+* Misc.
+	* Improve PHP code [#7642](https://github.com/FreshRSS/FreshRSS/pull/7642), [#7665](https://github.com/FreshRSS/FreshRSS/pull/7665)
+	* Update dev dependencies [#7708](https://github.com/FreshRSS/FreshRSS/pull/7708), [#7709](https://github.com/FreshRSS/FreshRSS/pull/7709), [#7710](https://github.com/FreshRSS/FreshRSS/pull/7710),
+		[#7711](https://github.com/FreshRSS/FreshRSS/pull/7711)
+
 
 ## 2025-06-02 FreshRSS 1.26.3
 

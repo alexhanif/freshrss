@@ -131,6 +131,7 @@ return array(
 		'yesterday' => 'Tegnap',
 	),
 	'dir' => 'ltr',	// IGNORE
+	'flag' => '🇭🇺',
 	'freshrss' => array(
 		'_' => 'FreshRSS',	// IGNORE
 		'about' => 'FreshRSS névjegy',

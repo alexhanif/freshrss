@@ -142,7 +142,7 @@ switch ($type) {
 			Minz_Error::error(404, "Feed {$id} not found!");
 			die();
 		}
-		$view->feeds = [ $feed ];
+		$view->feeds = [$id => $feed];
 		$view->categories = [];
 		break;
 	default:
