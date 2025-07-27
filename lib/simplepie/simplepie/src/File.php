@@ -127,7 +127,7 @@ class File implements Response
                 curl_setopt($fp, CURLOPT_URL, $url);
                 curl_setopt($fp, CURLOPT_HEADER, 1);
                 curl_setopt($fp, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt($fp, CURLOPT_FAILONERROR, 1);
+                // curl_setopt($fp, CURLOPT_FAILONERROR, 1); // FreshRSS removed to retrieve headers even on HTTP errors
                 curl_setopt($fp, CURLOPT_TIMEOUT, $timeout);
                 curl_setopt($fp, CURLOPT_CONNECTTIMEOUT, $timeout);
                 // curl_setopt($fp, CURLOPT_REFERER, \SimplePie\Misc::url_remove_credentials($url)); // FreshRSS removed
@@ -141,7 +141,7 @@ class File implements Response
                 if (curl_errno($fp) === 23 || curl_errno($fp) === 61) {
                     $this->error = 'cURL error ' . curl_errno($fp) . ': ' . curl_error($fp); // FreshRSS
                     $this->status_code = curl_getinfo($fp, CURLINFO_HTTP_CODE); // FreshRSS
-                    $this->on_http_response();
+                    $this->on_http_response($responseHeaders);
                     $this->error = null; // FreshRSS
                     curl_setopt($fp, CURLOPT_ENCODING, 'none');
                     $responseHeaders = curl_exec($fp);
@@ -150,9 +150,9 @@ class File implements Response
                 if (curl_errno($fp)) {
                     $this->error = 'cURL error ' . curl_errno($fp) . ': ' . curl_error($fp);
                     $this->success = false;
-                    $this->on_http_response();
+                    $this->on_http_response($responseHeaders);
                 } else {
-                    $this->on_http_response();
+                    $this->on_http_response($responseHeaders);
                     // Use the updated url provided by curl_getinfo after any redirects.
                     if ($info = curl_getinfo($fp)) {
                         $this->url = $info['url'];
@@ -188,7 +188,7 @@ class File implements Response
                 if (!$fp) {
                     $this->error = 'fsockopen error: ' . $errstr;
                     $this->success = false;
-                    $this->on_http_response();
+                    $this->on_http_response(false);
                 } else {
                     stream_set_timeout($fp, $timeout);
                     if (isset($url_parts['path'])) {
@@ -229,7 +229,7 @@ class File implements Response
                             $this->set_headers($parser->headers);
                             $this->body = $parser->body;
                             $this->status_code = $parser->status_code;
-                            $this->on_http_response();
+                            $this->on_http_response($responseHeaders);
                             if ((in_array($this->status_code, [300, 301, 302, 303, 307]) || $this->status_code > 307 && $this->status_code < 400) && ($locationHeader = $this->get_header_line('location')) !== '' && $this->redirects < $redirects) {
                                 $this->redirects++;
                                 $location = \SimplePie\Misc::absolutize_url($locationHeader, $url);
@@ -271,12 +271,12 @@ class File implements Response
                         } else {
                             $this->error = 'Could not parse'; // FreshRSS
                             $this->success = false; // FreshRSS
-                            $this->on_http_response();
+                            $this->on_http_response($responseHeaders);
                         }
                     } else {
                         $this->error = 'fsocket timed out';
                         $this->success = false;
-                        $this->on_http_response();
+                        $this->on_http_response($responseHeaders);
                     }
                     fclose($fp);
                 }
@@ -291,7 +291,7 @@ class File implements Response
                 $this->body = $filebody;
                 $this->status_code = 200;
             }
-            $this->on_http_response();
+            $this->on_http_response($filebody);
         }
         if ($this->success) {
             // (Leading) whitespace may cause XML parsing errors so we trim it,
@@ -303,9 +303,10 @@ class File implements Response
     /**
      * Event to allow inheriting classes to e.g. log the HTTP responses.
      * Triggered just after an HTTP response is received.
+     * @param string|false $response The raw HTTP response headers and body, or false in case of failure (as returned by curl_exec()).
      * FreshRSS.
      */
-    protected function on_http_response(): void
+    protected function on_http_response(string|false $response): void
     {
     }
 
