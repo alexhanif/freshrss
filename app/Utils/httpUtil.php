@@ -55,11 +55,15 @@ final class FreshRSS_http_Util {
 		} else {
 			$retryAfter = \SimplePie\Misc::parse_date($retryAfter) ?: (time() + 3600);
 		}
-		// Extract the domain from the URL
+
 		$domain = parse_url($url, PHP_URL_HOST);
 		if (!is_string($domain) || $domain === '') {
 			return 0;
 		}
+
+		$limits = FreshRSS_Context::systemConf()->limits;
+		$retryAfter = min($retryAfter, time() + max(3600, $limits['retry_after_max'] ?? 0));
+
 		@mkdir(self::RETRY_AFTER_PATH);
 		if (!touch(self::RETRY_AFTER_PATH . $domain . '.txt', $retryAfter)) {
 			Minz_Log::error('Failed to set Retry-After for ' . $domain);
