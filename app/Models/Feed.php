@@ -554,7 +554,7 @@ class FreshRSS_Feed extends Minz_Model {
 			} else {
 				if (($retryAfter = FreshRSS_http_Util::getRetryAfter($this->url)) > 0) {
 					throw new FreshRSS_Feed_Exception('For that domain, will first retry after ' . date('c', $retryAfter) .
-						'. ' . $this->url(includeCredentials: false), code: 429);
+						'. ' . $this->url(includeCredentials: false), code: 503);
 				}
 				$simplePie = customSimplePie($this->attributes(), $this->curlOptions());
 				$url = htmlspecialchars_decode($this->url, ENT_QUOTES);
@@ -577,6 +577,8 @@ class FreshRSS_Feed extends Minz_Model {
 				if ($simplePieResult === false || $simplePie->get_hash() === '' || !empty($simplePie->error())) {
 					if ($simplePie->status_code() === 429) {
 						$errorMessage = 'HTTP 429 Too Many Requests, for the same domain.';
+					} elseif ($simplePie->status_code() === 503) {
+						$errorMessage = 'HTTP 503 Service Unavailable, for the domain.';
 					} else {
 						$errorMessage = $simplePie->error();
 						if (empty($errorMessage)) {

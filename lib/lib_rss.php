@@ -657,9 +657,13 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 	if ($fail) {
 		$body = '';
 		Minz_Log::warning('Error fetching content: HTTP code ' . $c_status . ': ' . $c_error . ' ' . $url);
-		if ($c_status === 429) {
+		if (in_array($c_status, [429, 503], true)) {
 			$retryAfter = FreshRSS_http_Util::setRetryAfter($url, $headers['retry-after'] ?? '');
-			$errorMessage = 'HTTP 429 Too Many Requests, for the same domain [' . \SimplePie\Misc::url_remove_credentials($url) . '].';
+			if ($c_status === 429) {
+				$errorMessage = 'HTTP 429 Too Many Requests, for the same domain [' . \SimplePie\Misc::url_remove_credentials($url) . '].';
+			} elseif ($c_status === 503) {
+				$errorMessage = 'HTTP 503 Service Unavailable, for the domain [' . \SimplePie\Misc::url_remove_credentials($url) . '].';
+			}
 			if ($retryAfter > 0) {
 				$errorMessage .= ' We may retry after ' . date('c', $retryAfter);
 			}

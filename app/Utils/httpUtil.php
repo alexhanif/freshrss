@@ -47,7 +47,7 @@ final class FreshRSS_http_Util {
 	}
 
 	/**
-	 * Store the HTTP Retry-After header value of an HTTP 429 Too Many Requests response.
+	 * Store the HTTP Retry-After header value of an HTTP `429 Too Many Requests` or `503 Service Unavailable` response.
 	 */
 	public static function setRetryAfter(string $url, string $retryAfter): int {
 		if (ctype_digit($retryAfter)) {

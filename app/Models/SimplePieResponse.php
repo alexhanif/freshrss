@@ -7,7 +7,7 @@ final class FreshRSS_SimplePieResponse extends \SimplePie\File
 	protected function on_http_response(string|false $response = ''): void {
 		syslog(LOG_INFO, 'FreshRSS SimplePie GET ' . $this->get_status_code() . ' ' . \SimplePie\Misc::url_remove_credentials($this->get_final_requested_uri()));
 
-		if ($this->get_status_code() === 429) {
+		if (in_array($this->get_status_code(), [429, 503], true)) {
 			$parser = new \SimplePie\HTTP\Parser(is_string($response) ? $response : '');
 			if ($parser->parse()) {
 				$headers = $parser->headers;
