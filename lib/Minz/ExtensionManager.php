@@ -26,6 +26,10 @@ final class Minz_ExtensionManager {
 			'list' => [],
 			'signature' => 'NoneToNone',
 		],
+		'before_login_btn' => [ // function(): string
+			'list'  => [],
+			'signature' => 'NoneToString',
+		],
 		'check_url_before_add' => [	// function($url) -> Url | null
 			'list' => [],
 			'signature' => 'OneToOne',
