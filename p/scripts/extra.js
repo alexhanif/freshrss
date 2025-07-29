@@ -39,6 +39,19 @@ function init_crypto_form() {
 	}
 
 	crypto_form.onsubmit = function (e) {
+		let challenge = crypto_form.querySelector('#challenge');
+		if (!challenge) {
+			crypto_form.querySelectorAll('[data-challenge-if-not-empty] input[type="password"]').forEach(el => {
+				if (el.value !== '' && !challenge) {
+					crypto_form.insertAdjacentHTML('beforeend', '<input type="hidden" id="challenge" name="challenge" />');
+					challenge = crypto_form.querySelector('#challenge');
+				}
+			});
+			if (!challenge) {
+				return true;
+			}
+		}
+
 		e.preventDefault();
 
 		if (!submit_button) {
@@ -64,7 +77,7 @@ function init_crypto_form() {
 						const strong = window.Uint32Array && window.crypto && (typeof window.crypto.getRandomValues === 'function');
 						const s = bcrypt.hashSync(document.getElementById('passwordPlain').value, json.salt1);
 						const c = bcrypt.hashSync(json.nonce + s, strong ? bcrypt.genSaltSync(4) : poormanSalt());
-						document.getElementById('challenge').value = c;
+						challenge.value = c;
 						if (!s || !c) {
 							openNotification('Crypto error!', 'bad');
 						} else {

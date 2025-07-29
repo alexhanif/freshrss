@@ -51,6 +51,9 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 		if ($passwordPlain != '') {
 			$passwordHash = FreshRSS_password_Util::hash($passwordPlain);
 			$userConfig->passwordHash = $passwordHash;
+			if ($user === Minz_User::name()) {
+				FreshRSS_Context::userConf()->passwordHash = $passwordHash;
+			}
 		}
 
 		foreach ($userConfigUpdated as $configName => $configValue) {
@@ -69,18 +72,16 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 		}
 
 		if (Minz_Request::isPost()) {
-			$passwordPlain = Minz_Request::paramString('newPasswordPlain', true);
-			Minz_Request::_param('newPasswordPlain');	//Discard plain-text password ASAP
-			$_POST['newPasswordPlain'] = '';
-
 			$username = Minz_Request::paramString('username');
-			$ok = self::updateUser($username, null, $passwordPlain, [
+			$newPasswordPlain = Minz_User::name() !== $username ? Minz_Request::paramString('newPasswordPlain', true) : '';
+
+			$ok = self::updateUser($username, null, $newPasswordPlain, [
 				'token' => Minz_Request::paramString('token') ?: null,
 			]);
 
 			if ($ok) {
 				$isSelfUpdate = Minz_User::name() === $username;
-				if ($passwordPlain == '' || !$isSelfUpdate) {
+				if ($newPasswordPlain == '' || !$isSelfUpdate) {
 					Minz_Request::good(_t('feedback.user.updated', $username), ['c' => 'user', 'a' => 'manage']);
 				} else {
 					Minz_Request::good(_t('feedback.profile.updated'), ['c' => 'index', 'a' => 'index']);
@@ -114,9 +115,41 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 			$old_email = FreshRSS_Context::userConf()->mail_login;
 
 			$email = Minz_Request::paramString('email');
-			$passwordPlain = Minz_Request::paramString('newPasswordPlain', true);
-			Minz_Request::_param('newPasswordPlain');	//Discard plain-text password ASAP
-			$_POST['newPasswordPlain'] = '';
+
+			$challenge = Minz_Request::paramString('challenge');
+			$newPasswordPlain = '';
+			if ($challenge !== '') {
+				$username = Minz_User::name();
+				$nonce = Minz_Session::paramString('nonce');
+
+				$newPasswordPlain = Minz_Request::paramString('newPasswordPlain', plaintext: true);
+				$confirmPasswordPlain = Minz_Request::paramString('confirmPasswordPlain', plaintext: true);
+
+				if (!FreshRSS_FormAuth::checkCredentials(
+					$username, FreshRSS_Context::userConf()->passwordHash, $nonce, $challenge
+					) || strlen($newPasswordPlain) < 7) {
+					Minz_Session::_param('open', true); // Auto-expand `change password` section
+					Minz_Request::bad(
+						_t('feedback.auth.login.invalid'),
+						['c' => 'user', 'a' => 'profile']
+					);
+					return;
+				}
+
+				if ($newPasswordPlain !== $confirmPasswordPlain) {
+					Minz_Session::_param('open', true); // Auto-expand `change password` section
+					Minz_Request::bad(
+						_t('feedback.profile.passwords_dont_match'),
+						['c' => 'user', 'a' => 'profile']
+					);
+					return;
+				}
+
+				ini_set('session.use_cookies', '1');
+				Minz_Session::lock();
+				Minz_Session::regenerateID();
+				Minz_Session::unlock();
+			}
 
 			if (FreshRSS_Context::systemConf()->force_email_validation && empty($email)) {
 				Minz_Request::bad(
@@ -135,7 +168,7 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 			$ok = self::updateUser(
 				Minz_User::name(),
 				$email,
-				$passwordPlain,
+				$newPasswordPlain,
 				[
 					'token' => Minz_Request::paramString('token'),
 				]
@@ -146,7 +179,7 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 			if ($ok) {
 				if (FreshRSS_Context::systemConf()->force_email_validation && $email !== $old_email) {
 					Minz_Request::good(_t('feedback.profile.updated'), ['c' => 'user', 'a' => 'validateEmail']);
-				} elseif ($passwordPlain == '') {
+				} elseif ($newPasswordPlain == '') {
 					Minz_Request::good(_t('feedback.profile.updated'), ['c' => 'user', 'a' => 'profile']);
 				} else {
 					Minz_Request::good(_t('feedback.profile.updated'), ['c' => 'index', 'a' => 'index']);
