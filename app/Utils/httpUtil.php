@@ -50,18 +50,18 @@ final class FreshRSS_http_Util {
 	 * Store the HTTP Retry-After header value of an HTTP `429 Too Many Requests` or `503 Service Unavailable` response.
 	 */
 	public static function setRetryAfter(string $url, string $retryAfter): int {
-		if (ctype_digit($retryAfter)) {
-			$retryAfter = time() + (int)$retryAfter;
-		} else {
-			$retryAfter = \SimplePie\Misc::parse_date($retryAfter) ?: (time() + 3600);
-		}
-
 		$domain = parse_url($url, PHP_URL_HOST);
 		if (!is_string($domain) || $domain === '') {
 			return 0;
 		}
 
 		$limits = FreshRSS_Context::systemConf()->limits;
+		if (ctype_digit($retryAfter)) {
+			$retryAfter = time() + (int)$retryAfter;
+		} else {
+			$retryAfter = \SimplePie\Misc::parse_date($retryAfter) ?:
+				(time() + max(600, $limits['retry_after_default'] ?? 0));
+		}
 		$retryAfter = min($retryAfter, time() + max(3600, $limits['retry_after_max'] ?? 0));
 
 		@mkdir(self::RETRY_AFTER_PATH);
