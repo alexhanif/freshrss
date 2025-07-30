@@ -54,8 +54,8 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 		}
 
 		foreach ($userConfigUpdated as $configName => $configValue) {
-			if ($configValue !== null) {
-				$userConfig->_param($configName, $configValue);
+			if ($configName !== '' && $configValue !== null) {
+				$userConfig->_attribute($configName, $configValue);
 			}
 		}
 
@@ -624,7 +624,12 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 			return;
 		}
 
-		$userConfig->_param($field, $value);
+		if ($field === '') {
+			Minz_Error::error(400, 'Invalid field name');
+			return;
+		}
+
+		$userConfig->_attribute($field, $value);
 
 		$ok = $userConfig->save();
 		FreshRSS_UserDAO::touch($username);
