@@ -576,9 +576,9 @@ class FreshRSS_Feed extends Minz_Model {
 
 				if ($simplePieResult === false || $simplePie->get_hash() === '' || !empty($simplePie->error())) {
 					if ($simplePie->status_code() === 429) {
-						$errorMessage = 'HTTP 429 Too Many Requests, for the same domain.';
+						$errorMessage = 'HTTP 429 Too Many Requests!';
 					} elseif ($simplePie->status_code() === 503) {
-						$errorMessage = 'HTTP 503 Service Unavailable, for the domain.';
+						$errorMessage = 'HTTP 503 Service Unavailable!';
 					} else {
 						$errorMessage = $simplePie->error();
 						if (empty($errorMessage)) {
