@@ -226,7 +226,7 @@ async function send_mark_read_queue(queue, asRead, callback) {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=UTF-8',
-        'X-Ajax': 1
+				'X-Ajax': '1',
 			},
 			body: JSON.stringify({
 				ajax: true,
@@ -381,7 +381,7 @@ function mark_favorite(div) {
 
 	const req = new XMLHttpRequest();
 	req.open('POST', url, true);
-	req.setRequestHeader('X-Ajax', 1);
+	req.setRequestHeader('X-Ajax', '1');
 	req.responseType = 'json';
 	req.onerror = function (e) {
 		div.querySelectorAll('a.bookmark > .icon').forEach(icon => {
@@ -1385,7 +1385,7 @@ function init_stream(stream) {
 
 				const req = new XMLHttpRequest();
 				req.open('POST', './?c=tag&a=tagEntry', true);
-				req.setRequestHeader('X-Ajax', 1);
+				req.setRequestHeader('X-Ajax', '1');
 				req.responseType = 'json';
 				req.onerror = function (e) {
 					checkboxTag.checked = !isChecked;
@@ -1577,7 +1577,7 @@ function refreshFeed(feeds, feeds_count) {
 	}
 	const req = new XMLHttpRequest();
 	req.open('POST', feed.url, true);
-	req.setRequestHeader('X-Ajax', 1);
+	req.setRequestHeader('X-Ajax', '1');
 	req.onloadend = function (e) {
 		feeds_processed++;
 		if (this.status != 200) {
@@ -1591,7 +1591,7 @@ function refreshFeed(feeds, feeds_count) {
 			// Empty request to commit new articles
 			const req2 = new XMLHttpRequest();
 			req2.open('POST', './?c=feed&a=actualize&id=-1', true);
-			req2.setRequestHeader('X-Ajax', 1);
+			req2.setRequestHeader('X-Ajax', '1');
 			req2.onloadend = function (e) {
 				delayedFunction(function () { location.reload(); });
 			};
@@ -1617,7 +1617,7 @@ function refreshFeeds(json) {
 		// Empty request to commit new articles
 		const req2 = new XMLHttpRequest();
 		req2.open('POST', './?c=feed&a=actualize&id=-1', true);
-		req2.setRequestHeader('X-Ajax', 1);
+		req2.setRequestHeader('X-Ajax', '1');
 		req2.onloadend = function (e) {
 			context.ajax_loading = false;
 		};

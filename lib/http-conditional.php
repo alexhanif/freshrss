@@ -105,8 +105,8 @@ function httpConditional(int $UnixTimeStamp, int $cacheSeconds = 0, int $cachePr
 		$_sessionMode = $session;
 		$myQuery .= print_r($_SESSION, true) . session_name() . '=' . session_id();
 	}
-	$isAjax = isset($_SERVER['HTTP_X_AJAX']);
-	$etagServer = '"' . md5($scriptName . $myQuery . '#' . $dateLastModif . intval($isAjax)) . '"';
+	$isAjax = is_string($_SERVER['HTTP_X_AJAX'] ?? null) ? $_SERVER['HTTP_X_AJAX'] : ''; // FreshRSS
+	$etagServer = '"' . md5($scriptName . $myQuery . '#' . $dateLastModif . $isAjax) . '"';
 
 	// @phpstan-ignore booleanNot.alwaysTrue
 	if ((!$is412) && is_string($_SERVER['HTTP_IF_MATCH'] ?? null)) { //rfc2616-sec14.html#sec14.24
