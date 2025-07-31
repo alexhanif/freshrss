@@ -30,11 +30,6 @@ class FreshRSS_Auth {
 				'csrf' => false,
 			]);
 		}
-		$sid = Minz_Session::paramString('sid');
-		if ($sid === '') {
-			$sid = bin2hex(random_bytes(10));
-			Minz_Session::_param('sid', $sid);
-		}
 
 		if (self::$login_ok && self::giveAccess()) {
 			return self::$login_ok;
@@ -170,7 +165,6 @@ class FreshRSS_Auth {
 		self::$login_ok = false;
 		Minz_Session::_params([
 			'loginOk' => false,
-			'sid' => false,
 			'lastReauth' => false,
 			'csrf' => false,
 			'REMOTE_USER' => false,
@@ -272,19 +266,13 @@ class FreshRSS_Auth {
 				exit();
 			}
 
-			$sid = Minz_Session::paramString('sid');
-
-			$payload = Minz_Url::serialize([
-				'returnTo' => $redirect ?? Minz_Request::currentRequest(),
-			]);
-			$signature = hash_hmac('sha256', $payload, $sid);
+			$redirect = Minz_Url::serialize($redirect ?? Minz_Request::currentRequest());
 
 			Minz_Request::forward([
 				'c' => 'auth',
 				'a' => 'reauth',
 				'params' => [
-					'p' => $payload,
-					's' => $signature,
+					'r' => $redirect,
 				],
 			], true);
 

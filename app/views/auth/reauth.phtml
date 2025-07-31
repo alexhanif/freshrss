@@ -18,9 +18,6 @@
 			<input type="hidden" id="challenge" name="challenge" />
 			<noscript><strong><?= _t('gen.js.should_be_activated') ?></strong></noscript>
 		</div>
-		<?php if (!empty($this->errorMessage)): ?>
-		<p class="error"><?= $this->errorMessage ?></p>
-		<?php endif ?>
 		<?php
 			$reauth_time = FreshRSS_Context::systemConf()->reauth_time;
 		?>

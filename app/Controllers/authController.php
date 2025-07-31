@@ -228,20 +228,10 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 			Minz_Error::error(403);
 			return;
 		}
-		$sid = Minz_Session::paramString('sid');
-		$payload = Minz_Request::paramString('p');
-		$signature = Minz_Request::paramString('s');
-		if (!hash_equals(
-			hash_hmac('sha256', $payload, $sid),
-			$signature
-			)) {
-			Minz_Error::error(400);
-			return;
-		}
-		/** @var array{returnTo:array{c?: string, a?: string, params?: array<string, mixed>}} $data */
-		$data = Minz_Url::unserialize($payload);
+		/** @var array{c?: string, a?: string, params?: array<string, mixed>} $redirect */
+		$redirect = Minz_Url::unserialize(Minz_Request::paramString('r'));
 		if (!FreshRSS_Auth::needsReauth()) {
-			Minz_Request::forward($data['returnTo'], true);
+			Minz_Request::forward($redirect, true);
 			return;
 		}
 		if (Minz_Request::isPost()) {
@@ -251,10 +241,10 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 			if (!FreshRSS_FormAuth::checkCredentials(
 				$username, FreshRSS_Context::userConf()->passwordHash, $nonce, $challenge
 				)) {
-				$this->view->errorMessage = _t('feedback.auth.login.invalid');
+				Minz_Request::setBadNotification(_t('feedback.auth.login.invalid'));
 			} else {
 				Minz_Session::_param('lastReauth', time());
-				Minz_Request::forward($data['returnTo'], true);
+				Minz_Request::forward($redirect, true);
 				return;
 			}
 		}

@@ -354,10 +354,6 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 			Minz_Error::error(403);
 		}
 
-		if (FreshRSS_Auth::hasAccess('admin') && FreshRSS_Auth::requestReauth()) {
-			return;
-		}
-
 		FreshRSS_View::prependTitle(_t('index.log.title') . ' · ');
 
 		if (Minz_Request::isPost()) {
