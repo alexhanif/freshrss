@@ -22,7 +22,7 @@ class FreshRSS_javascript_Controller extends FreshRSS_ActionController {
 		if (!FreshRSS_Auth::hasAccess() && !(
 			FreshRSS_Context::systemConf()->allow_anonymous
 			&& FreshRSS_Context::systemConf()->allow_anonymous_refresh
-		)) {
+			)) {
 			Minz_Error::error(403);
 			return;
 		}
