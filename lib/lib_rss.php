@@ -348,7 +348,8 @@ function customSimplePie(array $attributes = [], array $curl_options = []): \Sim
 		'link', 'onblur', 'onchange', 'onclick', 'ondblclick', 'onfocus',
 		'onkeydown', 'onkeypress', 'onkeyup', 'onload', 'onmousedown', 'onmousemove',
 		'onmouseout', 'onmouseover', 'onmouseup', 'onselect', 'onunload',
-		'seamless', 'sizes', 'srcdoc', 'srcset', 'text', 'vlink',
+		'seamless', 'sizes', 'srcdoc', 'srcset', 'text', 'vlink', 'referrerpolicy', 'ping',
+		'target', 'rel', 'name', 'download', 'attributionsrc',
 	]));
 	$simplePie->add_attributes([
 		'audio' => ['controls' => 'controls', 'preload' => 'none'],
