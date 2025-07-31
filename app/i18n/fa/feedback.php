@@ -66,6 +66,7 @@ return array(
 	),
 	'profile' => array(
 		'error' => ' نمایه شما قابل تغییر نیست',
+		'passwords_dont_match' => 'Passwords don’t match',	// TODO
 		'updated' => ' نمایه شما اصلاح شده است',
 	),
 	'sub' => array(

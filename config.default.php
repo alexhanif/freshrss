@@ -110,10 +110,14 @@ return [
 		# Especially important for multi-user setups.
 		# Might be overridden by HTTP response headers.
 		'cache_duration' => 800,
-		# Minimal cache duration (in seconds), overriding HTTP response headers `Cache-Control` and `Expires`,
+		# Minimal cache duration (in seconds), overriding HTTP response headers `Cache-Control` and `Expires`.
 		'cache_duration_min' => 60,
-		# Maximal cache duration (in seconds), overriding HTTP response headers `Cache-Control` and `Expires`,
+		# Maximal cache duration (in seconds), overriding HTTP response headers `Cache-Control` and `Expires`.
 		'cache_duration_max' => 86400,
+		# Default rate limit duration (in seconds), when HTTP response header `Retry-After` is absent.
+		'retry_after_default' => 1500,
+		# Maximal rate limit duration (in seconds), overriding HTTP response header `Retry-After`.
+		'retry_after_max' => 172800,
 
 		# SimplePie HTTP request timeout in seconds.
 		'timeout' => 20,

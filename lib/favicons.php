@@ -24,15 +24,24 @@ function isImgMime(string $content): bool {
 
 /** @param array<int,int|bool|string> $curlOptions */
 function downloadHttp(string &$url, array $curlOptions = []): string {
+	if (($retryAfter = FreshRSS_http_Util::getRetryAfter($url)) > 0) {
+		Minz_Log::warning('For that domain, will first retry favicon after ' . date('c', $retryAfter) . '. ' . \SimplePie\Misc::url_remove_credentials($url));
+		return '';
+	}
+
 	syslog(LOG_INFO, 'FreshRSS Favicon GET ' . $url);
 	$url2 = checkUrl($url);
 	if ($url2 == false) {
 		return '';
 	}
 	$url = $url2;
-	/** @var CurlHandle $ch */
+
 	$ch = curl_init($url);
+	if ($ch === false) {
+		return '';
+	}
 	curl_setopt_array($ch, [
+			CURLOPT_HEADER => true,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_TIMEOUT => 15,
 			CURLOPT_USERAGENT => FRESHRSS_USERAGENT,
@@ -50,18 +59,37 @@ function downloadHttp(string &$url, array $curlOptions = []): string {
 	curl_setopt_array($ch, $curlOptions);
 
 	$response = curl_exec($ch);
-	if (!is_string($response)) {
-		$response = '';
-	}
-	$info = curl_getinfo($ch);
+	$c_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	$c_effective_url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
 	curl_close($ch);
-	if (!empty($info['url'])) {
-		$url2 = checkUrl($info['url']);
-		if ($url2 != false) {
-			$url = $url2;	//Possible redirect
+
+	$parser = new \SimplePie\HTTP\Parser(is_string($response) ? $response : '');
+	if ($parser->parse()) {
+		$headers = $parser->headers;
+		$body = $parser->body;
+	} else {
+		$headers = [];
+		$body = false;
+	}
+
+	if (in_array($c_status, [429, 503], true)) {
+		$retryAfter = FreshRSS_http_Util::setRetryAfter($url, $headers['retry-after'] ?? '');
+		if ($c_status === 429) {
+			$errorMessage = 'HTTP 429 Too Many Requests! Searching favicon [' . \SimplePie\Misc::url_remove_credentials($url) . ']';
+		} elseif ($c_status === 503) {
+			$errorMessage = 'HTTP 503 Service Unavailable! Searching favicon [' . \SimplePie\Misc::url_remove_credentials($url) . ']';
+		}
+		if ($retryAfter > 0) {
+			$errorMessage .= ' We may retry after ' . date('c', $retryAfter);
 		}
 	}
-	return is_array($info) && $info['http_code'] == 200 ? $response : '';
+
+	$url2 = checkUrl($c_effective_url);
+	if ($url2 != false) {
+		$url = $url2;	//Possible redirect
+	}
+
+	return $c_status === 200 && is_string($body) ? $body : '';
 }
 
 function searchFavicon(string &$url): string {
@@ -75,7 +103,6 @@ function searchFavicon(string &$url): string {
 	$xpath = new DOMXPath($dom);
 	$links = $xpath->query('//link[@href][translate(@rel, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz")="shortcut icon"'
 		. ' or translate(@rel, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz")="icon"]');
-
 	if (!($links instanceof DOMNodeList)) {
 		return '';
 	}

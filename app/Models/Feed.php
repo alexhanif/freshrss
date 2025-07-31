@@ -552,6 +552,10 @@ class FreshRSS_Feed extends Minz_Model {
 					Minz_Exception::ERROR
 				);
 			} else {
+				if (($retryAfter = FreshRSS_http_Util::getRetryAfter($this->url)) > 0) {
+					throw new FreshRSS_Feed_Exception('For that domain, will first retry after ' . date('c', $retryAfter) .
+						'. ' . $this->url(includeCredentials: false), code: 503);
+				}
 				$simplePie = customSimplePie($this->attributes(), $this->curlOptions());
 				$url = htmlspecialchars_decode($this->url, ENT_QUOTES);
 				if (str_ends_with($url, '#force_feed')) {
@@ -571,15 +575,21 @@ class FreshRSS_Feed extends Minz_Model {
 				Minz_ExtensionManager::callHook('simplepie_after_init', $simplePie, $this, $simplePieResult);
 
 				if ($simplePieResult === false || $simplePie->get_hash() === '' || !empty($simplePie->error())) {
-					$errorMessage = $simplePie->error();
-					if (empty($errorMessage)) {
-						$errorMessage = '';
-					} elseif (is_array($errorMessage)) {
-						$errorMessage = json_encode($errorMessage, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_LINE_TERMINATORS) ?: '';
+					if ($simplePie->status_code() === 429) {
+						$errorMessage = 'HTTP 429 Too Many Requests!';
+					} elseif ($simplePie->status_code() === 503) {
+						$errorMessage = 'HTTP 503 Service Unavailable!';
+					} else {
+						$errorMessage = $simplePie->error();
+						if (empty($errorMessage)) {
+							$errorMessage = '';
+						} elseif (is_array($errorMessage)) {
+							$errorMessage = json_encode($errorMessage, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_LINE_TERMINATORS) ?: '';
+						}
 					}
 					throw new FreshRSS_Feed_Exception(
 						($errorMessage == '' ? 'Unknown error for feed' : $errorMessage) .
-							' [' . \SimplePie\Misc::url_remove_credentials($this->url) . ']',
+							' [' . $this->url(includeCredentials: false) . ']',
 						$simplePie->status_code()
 					);
 				}
@@ -701,7 +711,7 @@ class FreshRSS_Feed extends Minz_Model {
 		}
 
 		if ($invalidGuids > 0) {
-			Minz_Log::warning("Feed has {$invalidGuids} invalid GUIDs: " . $this->url);
+			Minz_Log::warning("Feed has {$invalidGuids} invalid GUIDs: " . $this->url(includeCredentials: false));
 			if (!$this->attributeBoolean('unicityCriteriaForced') && $invalidGuids > round($invalidGuidsTolerance * count($items))) {
 				$unicityCriteria = $this->attributeString('unicityCriteria');
 				if ($this->attributeBoolean('hasBadGuids')) {	// Legacy
@@ -719,7 +729,8 @@ class FreshRSS_Feed extends Minz_Model {
 				if ($newUnicityCriteria !== $unicityCriteria) {
 					$this->_attribute('hasBadGuids', null);	// Remove legacy
 					$this->_attribute('unicityCriteria', $newUnicityCriteria);
-					Minz_Log::warning('Feed unicity policy degraded (' . ($unicityCriteria ?: 'id') . ' → ' . $newUnicityCriteria . '): ' . $this->url);
+					Minz_Log::warning('Feed unicity policy degraded (' . ($unicityCriteria ?: 'id') . ' → ' . $newUnicityCriteria . '): ' .
+						$this->url(includeCredentials: false));
 					return $this->loadGuids($simplePie, $invalidGuidsTolerance);
 				}
 			}
@@ -1167,7 +1178,7 @@ class FreshRSS_Feed extends Minz_Model {
 			$affected = $feedDAO->markAsReadNotSeen($this->id(), $minLastSeen);
 		}
 		if ($affected > 0) {
-			Minz_Log::debug(__METHOD__ . " $affected items" . ($upstreamIsEmpty ? ' (all)' : '') . ' [' . $this->url(false) . ']');
+			Minz_Log::debug(__METHOD__ . " $affected items" . ($upstreamIsEmpty ? ' (all)' : '') . ' [' . $this->url(includeCredentials: false) . ']');
 		}
 		return $affected;
 	}
