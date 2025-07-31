@@ -231,25 +231,25 @@ class Minz_Configuration {
 	 * @return array<int|string,mixed>|null
 	 */
 	public function attributeArray(string $key): ?array {
-		$a = self::param($key, null);
+		$a = $this->data[$key] ?? null;
 		return is_array($a) ? $a : null;
 	}
 
 	/** @param non-empty-string $key */
 	public function attributeBool(string $key): ?bool {
-		$a = self::param($key, null);
+		$a = $this->data[$key] ?? null;
 		return is_bool($a) ? $a : null;
 	}
 
 	/** @param non-empty-string $key */
 	public function attributeInt(string $key): ?int {
-		$a = self::param($key, null);
+		$a = $this->data[$key] ?? null;
 		return is_numeric($a) ? (int)$a : null;
 	}
 
 	/** @param non-empty-string $key */
 	public function attributeString(string $key): ?string {
-		$a = self::param($key, null);
+		$a = $this->data[$key] ?? null;
 		return is_string($a) ? $a : null;
 	}
 
