@@ -83,7 +83,9 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 		switch ($kind) {
 			case FreshRSS_Feed::KIND_RSS:
 			case FreshRSS_Feed::KIND_RSS_FORCED:
-				$feed->load(true);	//Throws FreshRSS_Feed_Exception, Minz_FileNotExistException
+				if ($feed->load(loadDetails: true) === null) {	// Throws FreshRSS_Feed_Exception, Minz_FileNotExistException
+					throw new FreshRSS_FeedNotAdded_Exception($url);
+				}
 				break;
 			case FreshRSS_Feed::KIND_HTML_XPATH:
 			case FreshRSS_Feed::KIND_XML_XPATH:
@@ -345,7 +347,7 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 			$this->view->feed = new FreshRSS_Feed($url);
 			try {
 				// We try to get more information about the feed.
-				$this->view->feed->load(true);
+				$this->view->feed->load(loadDetails: true);
 				$this->view->load_ok = true;
 			} catch (Exception) {
 				$this->view->load_ok = false;

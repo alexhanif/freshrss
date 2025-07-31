@@ -120,13 +120,16 @@ return array(
 			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
 			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
 		),
+		'change_password' => 'Change password',	// TODO
+		'confirm_new_password' => 'Confirm new password',	// TODO
+		'current_password' => 'Current password<br /><small>(for the Web-form login method)</small>',	// TODO
 		'delete' => array(
 			'_' => 'Account deletion',	// TODO
 			'warn' => 'Your account and all related data will be deleted.',	// TODO
 		),
 		'email' => 'Email address',	// TODO
+		'new_password' => 'New password',	// TODO
 		'password_api' => 'סיסמת API<br /><small>(לדוגמה ליישומים סלולריים)</small>',
-		'password_form' => 'סיסמה<br /><small>(לשימוש בטפוס ההרשמה)</small>',
 		'password_format' => 'At least 7 characters',	// TODO
 		'title' => 'Profile',	// TODO
 	),

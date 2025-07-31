@@ -564,6 +564,11 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 		cleanCache(CLEANCACHE_HOURS);
 	}
 
+	if (($retryAfter = FreshRSS_http_Util::getRetryAfter($url)) > 0) {
+		Minz_Log::warning('For that domain, will first retry after ' . date('c', $retryAfter) . '. ' . \SimplePie\Misc::url_remove_credentials($url));
+		return ['body' => '', 'effective_url' => $url, 'redirect_count' => 0, 'fail' => true];
+	}
+
 	if (FreshRSS_Context::systemConf()->simplepie_syslog_enabled) {
 		syslog(LOG_INFO, 'FreshRSS GET ' . $type . ' ' . \SimplePie\Misc::url_remove_credentials($url));
 	}
@@ -597,6 +602,7 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 		CURLOPT_CONNECTTIMEOUT => $feed_timeout > 0 ? $feed_timeout : $limits['timeout'],
 		CURLOPT_TIMEOUT => $feed_timeout > 0 ? $feed_timeout : $limits['timeout'],
 		CURLOPT_MAXREDIRS => 4,
+		CURLOPT_HEADER => true,
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_FOLLOWLOCATION => true,
 		CURLOPT_ENCODING => '',	//Enable all encodings
@@ -630,7 +636,7 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 
 	curl_setopt_array($ch, $curl_options);
 
-	$body = curl_exec($ch);
+	$response = curl_exec($ch);
 	$c_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 	$c_content_type = '' . curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
 	$c_effective_url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
@@ -638,10 +644,30 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 	$c_error = curl_error($ch);
 	curl_close($ch);
 
+	$parser = new \SimplePie\HTTP\Parser(is_string($response) ? $response : '');
+	if ($parser->parse()) {
+		$headers = $parser->headers;
+		$body = $parser->body;
+	} else {
+		$headers = [];
+		$body = false;
+	}
+
 	$fail = $c_status != 200 || $c_error != '' || $body === false;
 	if ($fail) {
-		Minz_Log::warning('Error fetching content: HTTP code ' . $c_status . ': ' . $c_error . ' ' . $url);
 		$body = '';
+		Minz_Log::warning('Error fetching content: HTTP code ' . $c_status . ': ' . $c_error . ' ' . $url);
+		if (in_array($c_status, [429, 503], true)) {
+			$retryAfter = FreshRSS_http_Util::setRetryAfter($url, $headers['retry-after'] ?? '');
+			if ($c_status === 429) {
+				$errorMessage = 'HTTP 429 Too Many Requests! [' . \SimplePie\Misc::url_remove_credentials($url) . ']';
+			} elseif ($c_status === 503) {
+				$errorMessage = 'HTTP 503 Service Unavailable! [' . \SimplePie\Misc::url_remove_credentials($url) . ']';
+			}
+			if ($retryAfter > 0) {
+				$errorMessage .= ' We may retry after ' . date('c', $retryAfter);
+			}
+		}
 		// TODO: Implement HTTP 410 Gone
 	} elseif (!is_string($body) || strlen($body) === 0) {
 		$body = '';

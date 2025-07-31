@@ -61,6 +61,11 @@ return array(
 			'_' => '密碼',
 			'format' => '<small>至少 7 個字元</small>',
 		),
+		'reauth' => array(
+			'header' => 'Reauthentication is required',	// TODO
+			'tip' => 'You won’t be asked to sign in again for <u>%d minutes</u>',	// TODO
+			'title' => 'Reauthentication',	// TODO
+		),
 		'registration' => array(
 			'_' => '新使用者',
 			'ask' => '創建新使用者？',

@@ -120,13 +120,16 @@ return array(
 			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
 			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
 		),
+		'change_password' => 'Change password',	// TODO
+		'confirm_new_password' => 'Confirm new password',	// TODO
+		'current_password' => 'Current password<br /><small>(for the Web-form login method)</small>',	// TODO
 		'delete' => array(
 			'_' => 'Konta dzēšana',
 			'warn' => 'Jūsu konts un visi saistītie dati tiks dzēsti..',
 		),
 		'email' => 'E-pasta adrese',
+		'new_password' => 'New password',	// TODO
 		'password_api' => 'API parole<br /><small>(piem., priekš mobilajām lietotnēm)</small>',
-		'password_form' => 'Parole<br /><small>(Web-formas pieteikšanās metodei)</small>',
 		'password_format' => 'Vismaz 7 rakstzīmes',
 		'title' => 'Profils',
 	),
