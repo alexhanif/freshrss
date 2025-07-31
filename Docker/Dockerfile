@@ -1,4 +1,4 @@
-FROM debian:12-slim
+FROM debian:trixie-slim
 
 ENV TZ=UTC
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
