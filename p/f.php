@@ -39,6 +39,12 @@ if (($ico_mtime == false || $ico_mtime < $txt_mtime || ($ico_mtime < time() - (m
 		show_default_favicon(1800);
 		exit();
 	}
+
+	FreshRSS_Context::initSystem();
+	if (!FreshRSS_Context::hasSystemConf()) {
+		header('HTTP/1.1 500 Internal Server Error');
+		die('Invalid system init!');
+	}
 	if (!download_favicon($url, $ico)) {
 		// Download failed
 		if ($ico_mtime == false) {
