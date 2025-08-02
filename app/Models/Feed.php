@@ -176,6 +176,8 @@ class FreshRSS_Feed extends Minz_Model {
 		}
 
 		$attributesOnly = $contents === null && $tmpPath === '';
+
+		require_once(LIB_PATH . '/favicons.php');
 		if (!$attributesOnly && !isImgMime(is_string($contents) ? $contents : '')) {
 			throw new FreshRSS_UnsupportedImageFormat_Exception();
 		}
@@ -195,7 +197,6 @@ class FreshRSS_Feed extends Minz_Model {
 		$this->_attribute('customFaviconExt', $extName);
 		$this->_attribute('customFaviconDisallowDel', $disallowDelete);
 
-		require_once(LIB_PATH . '/favicons.php');
 		$newPath = FAVICONS_DIR . $this->hashFavicon(skipCache: true) . '.ico';
 		if ($attributesOnly && !file_exists($newPath)) {
 			$updateFeed = false;
@@ -404,7 +405,12 @@ class FreshRSS_Feed extends Minz_Model {
 		if ($this->customFavicon()) {
 			return;
 		}
-		$url = $this->website(fallback: true);
+		$url = $this->website(fallback: false);
+		if ($url === '' || $url === $this->url) {
+			// Get root URL from the feed URL
+			$url = preg_replace('%^(https?://[^/]+).*$%i', '$1/', $this->url) ?? $this->url;
+		}
+
 		$txt = FAVICONS_DIR . $this->hashFavicon() . '.txt';
 		if (@file_get_contents($txt) !== $url) {
 			file_put_contents($txt, $url);

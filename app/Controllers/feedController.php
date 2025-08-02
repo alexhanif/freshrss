@@ -722,11 +722,13 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 					$feed->_name($name);
 					$feedProperties['name'] = $feed->name(false);
 				}
-				if (trim($feed->website()) === '') {
+				if ($feed->website() === '' || $feed->website() === $feed->url()) {
 					$website = html_only_entity_decode($simplePie->get_link());
-					$feed->_website($website == '' ? $feed->url() : $website);
-					$feedProperties['website'] = $feed->website();
-					$feed->faviconPrepare();
+					if ($website !== $feed->website()) {
+						$feed->_website($website);
+						$feedProperties['website'] = $feed->website();
+						$feed->faviconPrepare();
+					}
 				}
 				if (trim($feed->description()) === '') {
 					$description = html_only_entity_decode($simplePie->get_description());

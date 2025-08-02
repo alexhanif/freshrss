@@ -22,81 +22,14 @@ function isImgMime(string $content): bool {
 	return $isImage;
 }
 
-/** @param array<int,int|bool|string> $curlOptions */
-function downloadHttp(string &$url, array $curlOptions = []): string {
-	if (($retryAfter = FreshRSS_http_Util::getRetryAfter($url)) > 0) {
-		Minz_Log::warning('For that domain, will first retry favicon after ' . date('c', $retryAfter) . '. ' . \SimplePie\Misc::url_remove_credentials($url));
-		return '';
-	}
-
-	syslog(LOG_INFO, 'FreshRSS Favicon GET ' . $url);
-	$url2 = checkUrl($url);
-	if ($url2 == false) {
-		return '';
-	}
-	$url = $url2;
-
-	$ch = curl_init($url);
-	if ($ch === false) {
-		return '';
-	}
-	curl_setopt_array($ch, [
-			CURLOPT_HEADER => true,
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_TIMEOUT => 15,
-			CURLOPT_USERAGENT => FRESHRSS_USERAGENT,
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_ENCODING => '',	//Enable all encodings
-			//CURLOPT_VERBOSE => 1,	// To debug sent HTTP headers
-		]);
-
-	FreshRSS_Context::initSystem();
-	if (FreshRSS_Context::hasSystemConf()) {
-		curl_setopt_array($ch, FreshRSS_Context::systemConf()->curl_options);
-	}
-
-	curl_setopt_array($ch, $curlOptions);
-
-	$response = curl_exec($ch);
-	$c_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-	$c_effective_url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
-	curl_close($ch);
-
-	$parser = new \SimplePie\HTTP\Parser(is_string($response) ? $response : '');
-	if ($parser->parse()) {
-		$headers = $parser->headers;
-		$body = $parser->body;
-	} else {
-		$headers = [];
-		$body = false;
-	}
-
-	if (in_array($c_status, [429, 503], true)) {
-		$retryAfter = FreshRSS_http_Util::setRetryAfter($url, $headers['retry-after'] ?? '');
-		if ($c_status === 429) {
-			$errorMessage = 'HTTP 429 Too Many Requests! Searching favicon [' . \SimplePie\Misc::url_remove_credentials($url) . ']';
-		} elseif ($c_status === 503) {
-			$errorMessage = 'HTTP 503 Service Unavailable! Searching favicon [' . \SimplePie\Misc::url_remove_credentials($url) . ']';
-		}
-		if ($retryAfter > 0) {
-			$errorMessage .= ' We may retry after ' . date('c', $retryAfter);
-		}
-	}
-
-	$url2 = checkUrl($c_effective_url);
-	if ($url2 != false) {
-		$url = $url2;	//Possible redirect
-	}
-
-	return $c_status === 200 && is_string($body) ? $body : '';
+function faviconCachePath(string $url): string {
+	return CACHE_PATH . '/' . sha1($url) . '.ico';
 }
 
-function searchFavicon(string &$url): string {
+function searchFavicon(string $url): string {
 	$dom = new DOMDocument();
-	$html = downloadHttp($url);
-
-	if ($html == '' || !@$dom->loadHTML($html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING)) {
+	['body' => $html, 'effective_url' => $effective_url, 'fail' => $fail] = httpGet($url, cachePath: CACHE_PATH . '/' . sha1($url) . '.html', type: 'html');
+	if ($fail || $html === '' || !@$dom->loadHTML($html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING)) {
 		return '';
 	}
 
@@ -110,14 +43,14 @@ function searchFavicon(string &$url): string {
 	// Use the base element for relative paths, if there is one
 	$baseElements = $xpath->query('//base[@href]');
 	$baseElement = ($baseElements !== false && $baseElements->length > 0) ? $baseElements->item(0) : null;
-	$baseUrl = ($baseElement instanceof DOMElement) ? $baseElement->getAttribute('href') : $url;
+	$baseUrl = ($baseElement instanceof DOMElement) ? $baseElement->getAttribute('href') : $effective_url;
 
 	foreach ($links as $link) {
 		if (!$link instanceof DOMElement) {
 			continue;
 		}
 		$href = trim($link->getAttribute('href'));
-		$urlParts = parse_url($url);
+		$urlParts = parse_url($effective_url);
 
 		// Handle protocol-relative URLs by adding the current URL's scheme
 		if (substr($href, 0, 2) === '//') {
@@ -133,7 +66,9 @@ function searchFavicon(string &$url): string {
 		if ($iri == false) {
 			return '';
 		}
-		$favicon = downloadHttp($iri, [CURLOPT_REFERER => $url]);
+		$favicon = httpGet($iri, faviconCachePath($iri), 'ico', curl_options: [
+			CURLOPT_REFERER => $effective_url,
+		])['body'];
 		if (isImgMime($favicon)) {
 			return $favicon;
 		}
@@ -152,7 +87,9 @@ function download_favicon(string $url, string $dest): bool {
 		}
 		if ($favicon == '') {
 			$link = $rootUrl . 'favicon.ico';
-			$favicon = downloadHttp($link, [CURLOPT_REFERER => $url]);
+			$favicon = httpGet($link, faviconCachePath($link), 'ico', curl_options: [
+				CURLOPT_REFERER => $url,
+			])['body'];
 			if (!isImgMime($favicon)) {
 				$favicon = '';
 			}
