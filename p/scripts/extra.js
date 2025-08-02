@@ -325,7 +325,7 @@ function open_slider_listener(ev) {
 			slider.classList.add('sliding');
 			const ahref = a.href + '#slider';
 			req.open('GET', ahref, true);
-			req.setRequestHeader('X-Ajax', '1');
+			req.setRequestHeader('X-Requested-With', 'FreshRSS');
 			req.responseType = 'document';
 			req.onload = function (e) {
 				if (this.status === 403) {

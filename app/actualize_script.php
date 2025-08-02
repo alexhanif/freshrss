@@ -13,7 +13,7 @@ $begin_date = date_create('now');
 $_GET['c'] = 'feed';
 $_GET['a'] = 'actualize';
 $_GET['maxFeeds'] = PHP_INT_MAX;
-$_SERVER['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest';
+$_SERVER['HTTP_X_REQUESTED_WITH'] = 'FreshRSS';
 $_SERVER['HTTP_HOST'] = '';
 
 $app = new FreshRSS();

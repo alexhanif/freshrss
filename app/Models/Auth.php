@@ -260,7 +260,7 @@ class FreshRSS_Auth {
 	 */
 	public static function requestReauth(?array $redirect = null): bool {
 		if (self::needsReauth()) {
-			if (Minz_Request::paramBoolean('ajax')) {
+			if (Minz_Request::isAjax()) {
 				// Send 403 and exit instead of redirect with Minz_Error::error()
 				header('HTTP/1.1 403 Forbidden');
 				exit();

@@ -173,7 +173,7 @@ class Minz_Request {
 	}
 
 	public static function isAjax(): bool {
-		return isset($_SERVER['HTTP_X_AJAX']);
+		return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'FreshRSS';
 	}
 
 	public static function defaultControllerName(): string {
