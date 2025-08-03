@@ -337,6 +337,7 @@ function open_slider_listener(ev) {
 				slider.classList.add('active');
 				slider.scrollTop = 0;
 				slider_content.innerHTML = this.response.body.innerHTML;
+				data_auto_leave_validation(slider);
 				init_update_feed();
 				slider_content.querySelectorAll('form').forEach(function (f) {
 					f.insertAdjacentHTML('afterbegin', '<input type="hidden" name="slider" value="1" />');
@@ -437,6 +438,30 @@ function data_leave_validation(parent, excludeForm = null) {
 	return true;
 }
 
+/**
+ * Automatically sets the `data-leave-validation` attribute for input, textarea, select elements for a given parent
+ */
+function data_auto_leave_validation(parent) {
+	parent.querySelectorAll('[data-auto-leave-validation] *').forEach(el => {
+		if (!((el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') &&
+					!el.hasAttribute('data-leave-validation'))) {
+			return;
+		}
+
+		if (el.type === 'checkbox' || el.type === 'radio') {
+			el.dataset.leaveValidation = +el.checked;
+		} else if (el.type !== 'hidden') {
+			el.dataset.leaveValidation = el.value;
+		}
+
+		if (el.tagName === 'TEXTAREA') {
+			el.dataset.leaveValidation = el.textContent;
+		} else if (el.tagName === 'SELECT') {
+			el.dataset.leaveValidation = el.querySelector('option[selected]').value;
+		}
+	});
+}
+
 function init_2stateButton() {
 	const btns = document.getElementsByClassName('btn-state1');
 	Array.prototype.forEach.call(btns, function (el) {
@@ -477,6 +502,8 @@ function init_extra_afterDOM() {
 		init_configuration_alert();
 		init_2stateButton();
 		init_update_feed();
+
+		data_auto_leave_validation(document.body);
 
 		const slider = document.getElementById('slider');
 		if (slider) {
