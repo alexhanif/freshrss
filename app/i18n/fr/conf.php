@@ -293,6 +293,7 @@ return array(
 		'view' => array(
 			'default' => 'Vue par défaut',
 			'global' => 'Vue globale',
+			'grid' => 'Grid view',	// TODO
 			'normal' => 'Vue normale',
 			'reader' => 'Vue lecture',
 		),

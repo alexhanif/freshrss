@@ -293,6 +293,7 @@ return array(
 		'view' => array(
 			'default' => 'Výchozí zobrazení',
 			'global' => 'Zobrazení přehledu',
+			'grid' => 'Grid view',	// TODO
 			'normal' => 'Normální zobrazení',
 			'reader' => 'Zobrazení pro čtení',
 		),

@@ -949,7 +949,7 @@ function loadJs(name) {
 }
 
 function init_column_categories() {
-	if (context.current_view !== 'normal' && context.current_view !== 'reader') {
+	if (context.current_view !== 'normal' && context.current_view !== 'grid' && context.current_view !== 'reader') {
 		return;
 	}
 
@@ -2123,7 +2123,7 @@ function init_main_beforeDOM() {
 	history.scrollRestoration = 'manual';
 	document.scrollingElement.scrollTop = 0;
 	init_shortcuts();
-	if (['normal', 'reader', 'global'].indexOf(context.current_view) >= 0) {
+	if (['normal', 'grid', 'reader', 'global'].indexOf(context.current_view) >= 0) {
 		init_normal();
 	}
 }

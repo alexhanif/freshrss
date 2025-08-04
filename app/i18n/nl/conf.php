@@ -293,6 +293,7 @@ return array(
 		'view' => array(
 			'default' => 'Standaard weergave',
 			'global' => 'Globale weergave',
+			'grid' => 'Grid view',	// TODO
 			'normal' => 'Normale weergave',
 			'reader' => 'Lees weergave',
 		),
