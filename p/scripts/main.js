@@ -2034,6 +2034,12 @@ function init_confirm_action() {
 			return confirm(str_confirmation);
 		}
 	};
+	const slider = document.getElementById('slider');
+	if (slider) {
+		slider.addEventListener('freshrss:slider-load', function (e) {
+			slider.querySelectorAll('button.confirm').forEach(function (b) { b.disabled = false; });
+		});
+	}
 	document.querySelectorAll('button.confirm').forEach(function (b) { b.disabled = false; });
 }
 
