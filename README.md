@@ -173,6 +173,12 @@ and [Fever API](https://freshrss.github.io/FreshRSS/en/developers/06_Fever_API.h
 * Some [icons](https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic) come from the [GNOME project](https://www.gnome.org/)
 * Fonts: [*Open Sans*](https://fonts.google.com/specimen/Open+Sans), [*Lato*](https://www.latofonts.com/lato-free-fonts/), [*Spectral*](https://github.com/productiontype/spectral)
 
+# Migration
+
+If you come from another feed reader you might want to migrate your categories, feeds and articles to FreshRSS.
+
+* Tiny Tiny RSS (TT-RSS): there is an [exporter](https://github.com/robertdahlem/export_ttrss) for TT-RSS, that supports FreshRSS's native import format.
+
 # Alternatives
 
 If FreshRSS does not suit you for one reason or another, here are alternative solutions to consider:
