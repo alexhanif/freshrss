@@ -6,7 +6,7 @@
 <main class="post">
 	<h1><?= _t('admin.system') ?></h1>
 
-	<form method="post" action="<?= _url('configure', 'system') ?>">
+	<form method="post" action="<?= _url('configure', 'system') ?>" data-auto-leave-validation="1">
 		<input type="hidden" name="_csrf" value="<?= FreshRSS_Auth::csrfToken() ?>" />
 
 		<div class="form-group">

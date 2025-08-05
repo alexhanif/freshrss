@@ -5,7 +5,7 @@
 ?>
 <main class="post">
 	<h1><?= _t('gen.menu.authentication') ?></h1>
-	<form method="post" action="<?= _url('auth', 'index') ?>">
+	<form method="post" action="<?= _url('auth', 'index') ?>" data-auto-leave-validation="1">
 		<input type="hidden" name="_csrf" value="<?= FreshRSS_Auth::csrfToken() ?>" />
 
 		<div class="form-group">

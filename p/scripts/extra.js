@@ -439,12 +439,12 @@ function data_leave_validation(parent, excludeForm = null) {
 }
 
 /**
- * Automatically sets the `data-leave-validation` attribute for input, textarea, select elements for a given parent
+ * Automatically sets the `data-leave-validation` attribute for input, textarea, select elements for a given parent, if it's not set already.
+ * Ignores elements with the `data-no-leave-validation` attribute set.
  */
 function data_auto_leave_validation(parent) {
-	parent.querySelectorAll('[data-auto-leave-validation] *').forEach(el => {
-		if (!((el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') &&
-					!el.hasAttribute('data-leave-validation'))) {
+	parent.querySelectorAll('[data-auto-leave-validation] input, textarea, select').forEach(el => {
+		if (el.dataset.leaveValidation || el.dataset.noLeaveValidation) {
 			return;
 		}
 
@@ -452,12 +452,6 @@ function data_auto_leave_validation(parent) {
 			el.dataset.leaveValidation = +el.checked;
 		} else if (el.type !== 'hidden') {
 			el.dataset.leaveValidation = el.value;
-		}
-
-		if (el.tagName === 'TEXTAREA') {
-			el.dataset.leaveValidation = el.textContent;
-		} else if (el.tagName === 'SELECT') {
-			el.dataset.leaveValidation = el.querySelector('option[selected]').value;
 		}
 	});
 }
