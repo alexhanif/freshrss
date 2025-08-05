@@ -241,16 +241,15 @@ return array(
 			'help' => 'Olennainen virheellisille syötteille.<br />⚠️ Käytännön muuttaminen luo kaksoiskappaleita.',
 			'id' => 'Perustunnus (oletus)',
 			'link' => 'Linkki',
-			'sha1:content' => 'Content',	// TODO
-			'sha1:content_published' => 'Content + Date',	// TODO
+			'sha1:content' => 'Sisältö',
+			'sha1:content_published' => 'Sisältö + päiväys',
 			'sha1:link_published' => 'Linkki + päiväys',
 			'sha1:link_published_title' => 'Linkki + päiväys + otsikko',
 			'sha1:link_published_title_content' => 'Linkki + päiväys + otsikko + sisältö',
-			'sha1:title' => array(
-				'_' => 'Title',	// TODO
-			),
-			'sha1:title_published' => 'Title + Date',	// TODO
-			'sha1:title_published_content' => 'Title + Date + Content',	// TODO
+			'sha1:published' => 'Päiväys',
+			'sha1:title' => 'Otsikko',
+			'sha1:title_published' => 'Otsikko + päiväys',
+			'sha1:title_published_content' => 'Otsikko + päiväys + sisältö',
 		),
 		'url' => 'Syötteen URL-osoite',
 		'useragent' => 'Määritä syötteen noutamiseen käytettävä käyttäjäagentti',

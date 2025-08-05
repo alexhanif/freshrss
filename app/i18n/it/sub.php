@@ -241,16 +241,15 @@ return array(
 			'help' => 'Rilevante per i feed non validi.<br />⚠️ La modifica del criterio creerà dei duplicati.',
 			'id' => 'Standard ID (default)',	// IGNORE
 			'link' => 'Link',	// IGNORE
-			'sha1:content' => 'Content',	// TODO
-			'sha1:content_published' => 'Content + Date',	// TODO
+			'sha1:content' => 'Contenuto',
+			'sha1:content_published' => 'Contenuto + Data',
 			'sha1:link_published' => 'Link + Data',
 			'sha1:link_published_title' => 'Link + Data + Titolo',
 			'sha1:link_published_title_content' => 'Link + Data + Titolo + Contenuto',
-			'sha1:title' => array(
-				'_' => 'Title',	// TODO
-			),
-			'sha1:title_published' => 'Title + Date',	// TODO
-			'sha1:title_published_content' => 'Title + Date + Content',	// TODO
+			'sha1:published' => 'Data',
+			'sha1:title' => 'Titolo',
+			'sha1:title_published' => 'Titolo + Data',
+			'sha1:title_published_content' => 'Titolo + Data + Contenuto',
 		),
 		'url' => 'URL del feed',
 		'useragent' => 'Imposta lo user agent per recuperare questo feed',

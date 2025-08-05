@@ -241,16 +241,15 @@ return array(
 			'help' => 'Relevan untuk umpan yang tidak valid.<br />⚠️ Mengubah ini akan membuat artikel duplikat.',
 			'id' => 'ID standar (baku)',
 			'link' => 'Tautan',
-			'sha1:content' => 'Content',	// TODO
-			'sha1:content_published' => 'Content + Date',	// TODO
+			'sha1:content' => 'Konten',
+			'sha1:content_published' => 'Konten + Tanggal',
 			'sha1:link_published' => 'Tautan + Tanggal',
 			'sha1:link_published_title' => 'Tautan + Tanggal + Judul',
 			'sha1:link_published_title_content' => 'Tautan + Tanggal + Judul + Konten',
-			'sha1:title' => array(
-				'_' => 'Title',	// TODO
-			),
-			'sha1:title_published' => 'Title + Date',	// TODO
-			'sha1:title_published_content' => 'Title + Date + Content',	// TODO
+			'sha1:published' => 'Tanggal',
+			'sha1:title' => 'Judul',
+			'sha1:title_published' => 'Judul + Tanggal',
+			'sha1:title_published_content' => 'Judul + Tanggal + Konten',
 		),
 		'url' => 'URL umpan',
 		'useragent' => 'Atur UA (user agent) untuk mengambil umpan ini',

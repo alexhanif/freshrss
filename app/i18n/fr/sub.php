@@ -246,9 +246,8 @@ return array(
 			'sha1:link_published' => 'Lien + Date',
 			'sha1:link_published_title' => 'Lien + Date + Titre',
 			'sha1:link_published_title_content' => 'Lien + Date + Titre + Contenu',
-			'sha1:title' => array(
-				'_' => 'Titre',
-			),
+			'sha1:published' => 'Date',	// IGNORE
+			'sha1:title' => 'Titre',
 			'sha1:title_published' => 'Titre + Date',
 			'sha1:title_published_content' => 'Titre + Date + Contenu',
 		),

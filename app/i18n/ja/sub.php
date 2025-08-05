@@ -246,9 +246,8 @@ return array(
 			'sha1:link_published' => 'リンク + 日付',
 			'sha1:link_published_title' => 'リンク + 日付 + タイトル',
 			'sha1:link_published_title_content' => 'リンク + 日付 + タイトル + コンテンツ',
-			'sha1:title' => array(
-				'_' => 'Title',	// TODO
-			),
+			'sha1:published' => 'Date',	// TODO
+			'sha1:title' => 'Title',	// TODO
 			'sha1:title_published' => 'Title + Date',	// TODO
 			'sha1:title_published_content' => 'Title + Date + Content',	// TODO
 		),

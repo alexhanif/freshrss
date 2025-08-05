@@ -246,9 +246,8 @@ return array(
 			'sha1:link_published' => 'Link + Date',	// TODO
 			'sha1:link_published_title' => 'Link + Date + Title',	// TODO
 			'sha1:link_published_title_content' => 'Link + Date + Title + Content',	// TODO
-			'sha1:title' => array(
-				'_' => 'Title',	// TODO
-			),
+			'sha1:published' => 'Date',	// TODO
+			'sha1:title' => 'Title',	// TODO
 			'sha1:title_published' => 'Title + Date',	// TODO
 			'sha1:title_published_content' => 'Title + Date + Content',	// TODO
 		),

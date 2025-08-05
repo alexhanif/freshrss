@@ -241,16 +241,15 @@ return array(
 			'help' => 'Geçersiz beslemeler için geçerlidir.<br />⚠️ Politikayı değiştirmek kopyalar oluşturur.',
 			'id' => 'Standart Kimlik (varsayılan)',
 			'link' => 'Bağlantı',
-			'sha1:content' => 'Content',	// TODO
-			'sha1:content_published' => 'Content + Date',	// TODO
+			'sha1:content' => 'İçerik',
+			'sha1:content_published' => 'İçerik + Tarih',
 			'sha1:link_published' => 'Bağlantı + Tarih',
 			'sha1:link_published_title' => 'Bağlantı + Tarih + Başlık',
 			'sha1:link_published_title_content' => 'Bağlantı + Tarih + Başlık + İçerik',
-			'sha1:title' => array(
-				'_' => 'Title',	// TODO
-			),
-			'sha1:title_published' => 'Title + Date',	// TODO
-			'sha1:title_published_content' => 'Title + Date + Content',	// TODO
+			'sha1:published' => 'Tarih',
+			'sha1:title' => 'Başlık',
+			'sha1:title_published' => 'Başlık + Tarih',
+			'sha1:title_published_content' => 'Başlık + Tarih + İçerik',
 		),
 		'url' => 'Besleme URL’si',
 		'useragent' => 'Bu beslemeyi almak için kullanıcı aracısını ayarlayın',
