@@ -11,11 +11,18 @@ if [ "$(id -u)" -ne 0 ]; then
 	exit 3
 fi
 
+# If specified, only modify the data and extension dirs
+if [ "${1:-}" = "--only-userdirs" ]; then
+	to_update="./data ./extensions"
+else
+	to_update="."
+fi
+
 # Based on group access
-chown -R :www-data .
+chown -R :www-data $to_update
 
 # Read files, and directory traversal
-chmod -R g+rX .
+chmod -R g+rX $to_update
 
 # Write access
 mkdir -p ./data/users/_/
