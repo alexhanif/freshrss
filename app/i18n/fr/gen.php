@@ -61,6 +61,11 @@ return array(
 			'_' => 'Mot de passe',
 			'format' => '<small>7 caractères minimum</small>',
 		),
+		'reauth' => array(
+			'header' => 'Une réauthentification est requise',
+			'tip' => 'La réauthentification sera valide pendant <u>%d minutes</u>',
+			'title' => 'Réauthentification',
+		),
 		'registration' => array(
 			'_' => 'Nouveau compte',
 			'ask' => 'Créer un compte ?',

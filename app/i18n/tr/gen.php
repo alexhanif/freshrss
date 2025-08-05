@@ -61,6 +61,11 @@ return array(
 			'_' => 'Parola',
 			'format' => '<small>En az 7 karakter</small>',
 		),
+		'reauth' => array(
+			'header' => 'Reauthentication is required',	// TODO
+			'tip' => 'You won’t be asked to sign in again for <u>%d minutes</u>',	// TODO
+			'title' => 'Reauthentication',	// TODO
+		),
 		'registration' => array(
 			'_' => 'Yeni hesap',
 			'ask' => 'Hesap oluştur?',

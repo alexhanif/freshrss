@@ -61,6 +61,11 @@ return array(
 			'_' => 'Password',
 			'format' => '<small>At least 7 characters</small>',
 		),
+		'reauth' => array(
+			'header' => 'Reauthentication is required',
+			'tip' => 'You won’t be asked to sign in again for <u>%d minutes</u>',
+			'title' => 'Reauthentication',
+		),
 		'registration' => array(
 			'_' => 'New account',
 			'ask' => 'Create an account?',

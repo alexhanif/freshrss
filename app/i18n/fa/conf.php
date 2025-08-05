@@ -120,13 +120,16 @@ return array(
 			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">documentation and list of known apps</a>',	// TODO
 			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// TODO
 		),
+		'change_password' => 'Change password',	// TODO
+		'confirm_new_password' => 'Confirm new password',	// TODO
+		'current_password' => 'Current password<br /><small>(for the Web-form login method)</small>',	// TODO
 		'delete' => array(
 			'_' => ' حذف اکانت',
 			'warn' => ' حساب شما و تمام داده های مرتبط حذف خواهد شد.',
 		),
 		'email' => ' آدرس ایمیل',
+		'new_password' => 'New password',	// TODO
 		'password_api' => ' رمز عبور API<br /><small>(مثلاً برای برنامه های تلفن همراه)</small>',
-		'password_form' => ' رمز عبور<br /><small>(برای روش ورود به فرم وب)</small>',
 		'password_format' => ' حداقل 7 کاراکتر',
 		'title' => ' نمایه',
 	),

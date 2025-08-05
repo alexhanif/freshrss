@@ -61,6 +61,11 @@ return array(
 			'_' => 'Contraseña',
 			'format' => '<small>Mínimo de 7 caracteres</small>',
 		),
+		'reauth' => array(
+			'header' => 'Reauthentication is required',	// TODO
+			'tip' => 'You won’t be asked to sign in again for <u>%d minutes</u>',	// TODO
+			'title' => 'Reauthentication',	// TODO
+		),
 		'registration' => array(
 			'_' => 'Nueva cuenta',
 			'ask' => '¿Crear una cuenta?',

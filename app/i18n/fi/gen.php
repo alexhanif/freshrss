@@ -61,6 +61,11 @@ return array(
 			'_' => 'Salasana',
 			'format' => '<small>Vähintään 7 merkkiä</small>',
 		),
+		'reauth' => array(
+			'header' => 'Reauthentication is required',	// TODO
+			'tip' => 'You won’t be asked to sign in again for <u>%d minutes</u>',	// TODO
+			'title' => 'Reauthentication',	// TODO
+		),
 		'registration' => array(
 			'_' => 'Uusi tili',
 			'ask' => 'Haluatko luoda tilin?',

@@ -61,6 +61,11 @@ return array(
 			'_' => 'Wachtwoord',
 			'format' => '<small>Ten minste 7 tekens</small>',
 		),
+		'reauth' => array(
+			'header' => 'Reauthentication is required',	// TODO
+			'tip' => 'You won’t be asked to sign in again for <u>%d minutes</u>',	// TODO
+			'title' => 'Reauthentication',	// TODO
+		),
 		'registration' => array(
 			'_' => 'Nieuw account',
 			'ask' => 'Maak een account?',

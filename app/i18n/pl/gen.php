@@ -61,6 +61,11 @@ return array(
 			'_' => 'Hasło',
 			'format' => '<small>przynajmniej 7 znaków</small>',
 		),
+		'reauth' => array(
+			'header' => 'Wymagane ponowne logowanie',
+			'tip' => 'Nie będziesz proszony o ponowne logowanie przez <u>%d minut</u>',
+			'title' => 'Ponowne logowanie',
+		),
 		'registration' => array(
 			'_' => 'Tworzenie konta',
 			'ask' => 'Nie masz konta?',

@@ -481,8 +481,9 @@ HTML;
 
 	public function hash(): string {
 		if ($this->hash === '') {
+			$attributes = empty($this->attributeArray('enclosures')) ? '' : json_encode($this->attributes(), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 			//Do not include $this->date because it may be automatically generated when lacking
-			$this->hash = md5($this->link . $this->title . $this->authors(true) . $this->originalContent() . $this->tags(true));
+			$this->hash = md5($this->link . $this->title . $this->authors(true) . $this->originalContent() . $this->tags(true) . $attributes);
 		}
 		return $this->hash;
 	}

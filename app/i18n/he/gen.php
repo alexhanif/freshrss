@@ -61,6 +61,11 @@ return array(
 			'_' => 'סיסמה',
 			'format' => '<small>At least 7 characters</small>',	// TODO
 		),
+		'reauth' => array(
+			'header' => 'Reauthentication is required',	// TODO
+			'tip' => 'You won’t be asked to sign in again for <u>%d minutes</u>',	// TODO
+			'title' => 'Reauthentication',	// TODO
+		),
 		'registration' => array(
 			'_' => 'New account',	// TODO
 			'ask' => 'Create an account?',	// TODO

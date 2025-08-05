@@ -61,6 +61,11 @@ return array(
 			'_' => '암호',
 			'format' => '<small>7 글자 이상이어야 합니다</small>',
 		),
+		'reauth' => array(
+			'header' => 'Reauthentication is required',	// TODO
+			'tip' => 'You won’t be asked to sign in again for <u>%d minutes</u>',	// TODO
+			'title' => 'Reauthentication',	// TODO
+		),
 		'registration' => array(
 			'_' => '새 계정',
 			'ask' => '새 계정을 만들까요?',

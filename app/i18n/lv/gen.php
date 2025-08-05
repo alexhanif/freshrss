@@ -61,6 +61,11 @@ return array(
 			'_' => 'Parole',
 			'format' => '<small>Vismaz 7 rakstzīmes</small>',
 		),
+		'reauth' => array(
+			'header' => 'Reauthentication is required',	// TODO
+			'tip' => 'You won’t be asked to sign in again for <u>%d minutes</u>',	// TODO
+			'title' => 'Reauthentication',	// TODO
+		),
 		'registration' => array(
 			'_' => 'Jauns konts',
 			'ask' => 'Uztaisīt kontu?',
