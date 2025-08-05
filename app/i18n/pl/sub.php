@@ -241,9 +241,16 @@ return array(
 			'help' => 'Istotne dla niezgodnych kanałów.<br />⚠️ Wprowadzenie zmian w polityce utworzy duplikaty.',
 			'id' => 'standardowe ID (domyślne)',
 			'link' => 'odnośnik',
+			'sha1:content' => 'Content',	// TODO
+			'sha1:content_published' => 'Content + Date',	// TODO
 			'sha1:link_published' => 'odnośnik + data',
 			'sha1:link_published_title' => 'odnośnik + data + tytuł',
 			'sha1:link_published_title_content' => 'odnośnik + data + tytuł + zawartość',
+			'sha1:title' => array(
+				'_' => 'Title',	// TODO
+			),
+			'sha1:title_published' => 'Title + Date',	// TODO
+			'sha1:title_published_content' => 'Title + Date + Content',	// TODO
 		),
 		'url' => 'Adres kanału',
 		'useragent' => 'Ciąg user agent używany podczas pobierania kanału',

@@ -241,9 +241,16 @@ return array(
 			'help' => 'Érvénytelen hírforrásokra vonatkozik.<br />⚠️ A házirend módosítása duplikációkat fog létrehozni.',
 			'id' => 'Standard ID (alapértelmezés)',
 			'link' => 'Link',	// TODO
+			'sha1:content' => 'Content',	// TODO
+			'sha1:content_published' => 'Content + Date',	// TODO
 			'sha1:link_published' => 'Link + Dátum',
 			'sha1:link_published_title' => 'Link + Dátum + Cím',
 			'sha1:link_published_title_content' => 'Link + Dátum + Cím + Tartalom',
+			'sha1:title' => array(
+				'_' => 'Title',	// TODO
+			),
+			'sha1:title_published' => 'Title + Date',	// TODO
+			'sha1:title_published_content' => 'Title + Date + Content',	// TODO
 		),
 		'url' => 'Hírforrás URL',
 		'useragent' => 'Állíts be egy user agent-et ehhez a hírforráshoz',

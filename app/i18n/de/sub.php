@@ -241,9 +241,16 @@ return array(
 			'help' => 'Relevant für defekte Feeds.<br />⚠️ Änderungen werden Duplikate erzeugen.',
 			'id' => 'Standard ID (Standardeinstellung)',
 			'link' => 'Link',	// IGNORE
+			'sha1:content' => 'Content',	// TODO
+			'sha1:content_published' => 'Content + Date',	// TODO
 			'sha1:link_published' => 'Link + Datum',
 			'sha1:link_published_title' => 'Link + Datum + Titel',
 			'sha1:link_published_title_content' => 'Link + Datum + Titel + Inhalt',
+			'sha1:title' => array(
+				'_' => 'Title',	// TODO
+			),
+			'sha1:title_published' => 'Title + Date',	// TODO
+			'sha1:title_published_content' => 'Title + Date + Content',	// TODO
 		),
 		'url' => 'Feed-URL',
 		'useragent' => 'Browser User Agent für den Abruf des Feeds verwenden',
