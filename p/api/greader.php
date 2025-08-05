@@ -332,7 +332,7 @@ final class GReaderAPI {
 			self::internalServerError();
 		}
 		header('Content-Type: application/json; charset=UTF-8');
-		$faviconsUrl = Minz_Url::display('/f.php?', '', true);
+		$faviconsUrl = Minz_Url::display('/f.php?h=', '', true);
 		$faviconsUrl = str_replace('/api/greader.php/reader/api/0/subscription', '', $faviconsUrl);	//Security if base_url is not set properly
 		$subscriptions = [];
 
