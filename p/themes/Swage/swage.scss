@@ -107,27 +107,25 @@ html,
 body {
 	color: var(--color-text-dark);
 	font-family: Helvetica, Arial, sans-serif;
+	overflow-x: hidden;
 }
 
-body:not(.normal):not(.reader) nav.configure a.dropdown-toggle,
+body:not(.normal):not(.reader):not(.reauth) nav.configure a.dropdown-toggle,
 li.tree-folder span.title {
 	margin-left: 0.25rem;
 }
 
-body.normal, body.reader, body.global, body.about,
-:root.file_query body {
+body.normal, body.reader, body.global {
 	a.signin {
 		position: absolute;
 		top: 0.5rem;
 		right: 1.8rem;
 		text-wrap: nowrap;
 		transform: scale(1.5);
-	}
-}
 
-body.normal, body.reader, body.global, body.about {
-	a.signin > .icon {
-		filter: brightness(3);
+		.icon {
+			filter: brightness(3);
+		}
 	}
 }
 
@@ -140,24 +138,6 @@ body.normal, body.reader, body.global, body.about {
 		a {
 			padding: 0 0.2rem 0 0.2rem;
 		}
-	}
-
-	.header > * {
-		z-index: 20;
-	}
-
-	.header > div.item.search {
-		display: flex;
-		justify-content: center;
-		position: relative;
-		top: 0.4rem;
-		left: 2rem;
-		z-index: 10;
-	}
-
-	a.signin {
-		color: black;
-		position: fixed;
 	}
 
 	.view-rss > .icon {
@@ -183,35 +163,11 @@ body.normal, body.reader, body.global, body.about {
 	}
 }
 
-:root:not(.logged_in) body.about, :root.file_query body {
+:root.file_query body {
 	.header {
-		div.item.title {
-			text-align: left;
-
-			a {
-				position: absolute;
-				top: 0.2rem;
-				left: 1rem;
-
-				.logo {
-					filter: brightness(1);
-				}
-			}
-		}
-
-		.item.configure {
+		div.item.search {
 			position: relative;
-			right: 0;
-			top: 0.2rem;
-		}
-	}
-
-	a.signin {
-		position: absolute;
-		color: black;
-
-		.icon {
-			filter: brightness(1);
+			left: 6rem;
 		}
 	}
 
@@ -856,6 +812,12 @@ main.post .drop-section li.item.feed a:hover .icon {
 	}
 }
 
+:root:not(.file_query) {
+	.item.search {
+		display: none;
+	}
+}
+
 .header {
 	height: auto;
 
@@ -888,10 +850,6 @@ main.post .drop-section li.item.feed a:hover .icon {
 				filter: grayscale(100%) brightness(100);
 			}
 		}
-	}
-
-	.item.search {
-		display: none;
 	}
 
 	.item.configure {
@@ -1254,8 +1212,26 @@ main.post .drop-section li.item.feed a:hover .icon {
 	}
 }
 
+:root:not(.logged_in) .tos,
+:root:not(.logged_in) .about,
+.register,
+.file_query,
+:root.controller_error:not(.logged_in) .index {
+	.header > .item.configure {
+		bottom: 0.2rem !important;
+		transform: scale(1.5) !important;
+		padding: 6px !important;
+		right: 1rem;
+	}
+}
+
 .formLogin,
-.register {
+.register,
+.reauth,
+.file_query,
+:root:not(.logged_in) .tos,
+:root:not(.logged_in) .about,
+:root.controller_error .index {
 	#global {
 		height: 0;
 	}
@@ -1267,13 +1243,12 @@ main.post .drop-section li.item.feed a:hover .icon {
 
 		> .item {
 			&.configure {
-				padding: 8px;
+				padding: 4px;
 				width: auto;
 				position: absolute;
-				right: 1rem;
-				transform: scale(1.5);
+				transform: scale(1.1);
 				white-space: nowrap;
-				bottom: 0.2rem;
+				bottom: 0.1rem;
 
 				.icon {
 					filter: brightness(3);

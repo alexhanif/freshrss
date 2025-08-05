@@ -89,23 +89,22 @@ html,
 body {
   color: var(--color-text-dark);
   font-family: Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
 }
 
-body:not(.normal):not(.reader) nav.configure a.dropdown-toggle,
+body:not(.normal):not(.reader):not(.reauth) nav.configure a.dropdown-toggle,
 li.tree-folder span.title {
   margin-right: 0.25rem;
 }
 
-body.normal a.signin, body.reader a.signin, body.global a.signin, body.about a.signin,
-:root.file_query body a.signin {
+body.normal a.signin, body.reader a.signin, body.global a.signin {
   position: absolute;
   top: 0.5rem;
   left: 1.8rem;
   text-wrap: nowrap;
   transform: scale(1.5);
 }
-
-body.normal a.signin > .icon, body.reader a.signin > .icon, body.global a.signin > .icon, body.about a.signin > .icon {
+body.normal a.signin .icon, body.reader a.signin .icon, body.global a.signin .icon {
   filter: brightness(3);
 }
 
@@ -114,21 +113,6 @@ body.normal a.signin > .icon, body.reader a.signin > .icon, body.global a.signin
 }
 :root.file_query ul.pagination a {
   padding: 0 0.2rem 0 0.2rem;
-}
-:root.file_query .header > * {
-  z-index: 20;
-}
-:root.file_query .header > div.item.search {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  top: 0.4rem;
-  right: 2rem;
-  z-index: 10;
-}
-:root.file_query a.signin {
-  color: black;
-  position: fixed;
 }
 :root.file_query .view-rss > .icon {
   filter: brightness(0);
@@ -146,30 +130,11 @@ body.normal a.signin > .icon, body.reader a.signin > .icon, body.global a.signin
   margin-top: 2.5rem;
 }
 
-:root:not(.logged_in) body.about .header div.item.title, :root.file_query body .header div.item.title {
-  text-align: right;
-}
-:root:not(.logged_in) body.about .header div.item.title a, :root.file_query body .header div.item.title a {
-  position: absolute;
-  top: 0.2rem;
-  right: 1rem;
-}
-:root:not(.logged_in) body.about .header div.item.title a .logo, :root.file_query body .header div.item.title a .logo {
-  filter: brightness(1);
-}
-:root:not(.logged_in) body.about .header .item.configure, :root.file_query body .header .item.configure {
+:root.file_query body .header div.item.search {
   position: relative;
-  left: 0;
-  top: 0.2rem;
+  right: 6rem;
 }
-:root:not(.logged_in) body.about a.signin, :root.file_query body a.signin {
-  position: absolute;
-  color: black;
-}
-:root:not(.logged_in) body.about a.signin .icon, :root.file_query body a.signin .icon {
-  filter: brightness(1);
-}
-:root:not(.logged_in) body.about main > h1:first-child, :root.file_query body main > h1:first-child {
+:root.file_query body main > h1:first-child {
   margin-top: 2rem;
 }
 
@@ -679,6 +644,10 @@ main.post .drop-section li.item.feed a:hover .icon {
   color: var(--color-text-light);
 }
 
+:root:not(.file_query) .item.search {
+  display: none;
+}
+
 .header {
   height: auto;
 }
@@ -703,9 +672,6 @@ main.post .drop-section li.item.feed a:hover .icon {
   position: relative;
   top: 5px;
   filter: grayscale(100%) brightness(100);
-}
-.header .item.search {
-  display: none;
 }
 .header .item.configure {
   position: fixed;
@@ -989,28 +955,58 @@ main.post .drop-section li.item.feed a:hover .icon {
   position: relative;
 }
 
+:root:not(.logged_in) .tos .header > .item.configure,
+:root:not(.logged_in) .about .header > .item.configure,
+.register .header > .item.configure,
+.file_query .header > .item.configure,
+:root.controller_error:not(.logged_in) .index .header > .item.configure {
+  bottom: 0.2rem !important;
+  transform: scale(1.5) !important;
+  padding: 6px !important;
+  left: 1rem;
+}
+
 .formLogin #global,
-.register #global {
+.register #global,
+.reauth #global,
+.file_query #global,
+:root:not(.logged_in) .tos #global,
+:root:not(.logged_in) .about #global,
+:root.controller_error .index #global {
   height: 0;
 }
 .formLogin .header,
-.register .header {
+.register .header,
+.reauth .header,
+.file_query .header,
+:root:not(.logged_in) .tos .header,
+:root:not(.logged_in) .about .header,
+:root.controller_error .index .header {
   background-color: var(--color-background-nav);
   height: 2.4rem;
   position: relative;
 }
 .formLogin .header > .item.configure,
-.register .header > .item.configure {
-  padding: 8px;
+.register .header > .item.configure,
+.reauth .header > .item.configure,
+.file_query .header > .item.configure,
+:root:not(.logged_in) .tos .header > .item.configure,
+:root:not(.logged_in) .about .header > .item.configure,
+:root.controller_error .index .header > .item.configure {
+  padding: 4px;
   width: auto;
   position: absolute;
-  left: 1rem;
-  transform: scale(1.5);
+  transform: scale(1.1);
   white-space: nowrap;
-  bottom: 0.2rem;
+  bottom: 0.1rem;
 }
 .formLogin .header > .item.configure .icon,
-.register .header > .item.configure .icon {
+.register .header > .item.configure .icon,
+.reauth .header > .item.configure .icon,
+.file_query .header > .item.configure .icon,
+:root:not(.logged_in) .tos .header > .item.configure .icon,
+:root:not(.logged_in) .about .header > .item.configure .icon,
+:root.controller_error .index .header > .item.configure .icon {
   filter: brightness(3);
 }
 
