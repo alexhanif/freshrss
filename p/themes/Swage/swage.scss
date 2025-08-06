@@ -107,10 +107,9 @@ html,
 body {
 	color: var(--color-text-dark);
 	font-family: Helvetica, Arial, sans-serif;
-	overflow-x: hidden;
 }
 
-body:not(.normal):not(.reader):not(.reauth) nav.configure a.dropdown-toggle,
+body:not(.normal):not(.reader) nav.configure a.dropdown-toggle,
 li.tree-folder span.title {
 	margin-left: 0.25rem;
 }
@@ -166,8 +165,7 @@ body.normal, body.reader, body.global {
 :root.file_query body {
 	.header {
 		div.item.search {
-			position: relative;
-			left: 6rem;
+			display: none;
 		}
 	}
 
@@ -1212,15 +1210,11 @@ main.post .drop-section li.item.feed a:hover .icon {
 	}
 }
 
-:root:not(.logged_in) .tos,
-:root:not(.logged_in) .about,
-.register,
-.file_query,
-:root.controller_error:not(.logged_in) .index {
-	.header > .item.configure {
+:root:not(.logged_in) {
+	.header > div.item.configure {
 		bottom: 0.2rem !important;
-		transform: scale(1.5) !important;
 		padding: 6px !important;
+		transform: scale(1.5);
 		right: 1rem;
 	}
 }
@@ -1243,12 +1237,9 @@ main.post .drop-section li.item.feed a:hover .icon {
 
 		> .item {
 			&.configure {
-				padding: 4px;
 				width: auto;
 				position: absolute;
-				transform: scale(1.1);
 				white-space: nowrap;
-				bottom: 0.1rem;
 
 				.icon {
 					filter: brightness(3);
@@ -1263,8 +1254,6 @@ main.post .drop-section li.item.feed a:hover .icon {
 }
 
 body.register {
-	overflow-x: hidden;
-
 	form div:last-child > a {
 		float: right;
 		position: relative;

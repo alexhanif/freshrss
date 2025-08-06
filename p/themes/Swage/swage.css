@@ -89,10 +89,9 @@ html,
 body {
   color: var(--color-text-dark);
   font-family: Helvetica, Arial, sans-serif;
-  overflow-x: hidden;
 }
 
-body:not(.normal):not(.reader):not(.reauth) nav.configure a.dropdown-toggle,
+body:not(.normal):not(.reader) nav.configure a.dropdown-toggle,
 li.tree-folder span.title {
   margin-left: 0.25rem;
 }
@@ -131,8 +130,7 @@ body.normal a.signin .icon, body.reader a.signin .icon, body.global a.signin .ic
 }
 
 :root.file_query body .header div.item.search {
-  position: relative;
-  left: 6rem;
+  display: none;
 }
 :root.file_query body main > h1:first-child {
   margin-top: 2rem;
@@ -955,14 +953,10 @@ main.post .drop-section li.item.feed a:hover .icon {
   position: relative;
 }
 
-:root:not(.logged_in) .tos .header > .item.configure,
-:root:not(.logged_in) .about .header > .item.configure,
-.register .header > .item.configure,
-.file_query .header > .item.configure,
-:root.controller_error:not(.logged_in) .index .header > .item.configure {
+:root:not(.logged_in) .header > div.item.configure {
   bottom: 0.2rem !important;
-  transform: scale(1.5) !important;
   padding: 6px !important;
+  transform: scale(1.5);
   right: 1rem;
 }
 
@@ -993,12 +987,9 @@ main.post .drop-section li.item.feed a:hover .icon {
 :root:not(.logged_in) .tos .header > .item.configure,
 :root:not(.logged_in) .about .header > .item.configure,
 :root.controller_error .index .header > .item.configure {
-  padding: 4px;
   width: auto;
   position: absolute;
-  transform: scale(1.1);
   white-space: nowrap;
-  bottom: 0.1rem;
 }
 .formLogin .header > .item.configure .icon,
 .register .header > .item.configure .icon,
@@ -1014,9 +1005,6 @@ main.post .drop-section li.item.feed a:hover .icon {
   margin-top: 3rem;
 }
 
-body.register {
-  overflow-x: hidden;
-}
 body.register form div:last-child > a {
   float: right;
   position: relative;
