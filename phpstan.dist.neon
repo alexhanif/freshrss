@@ -41,15 +41,16 @@ parameters:
 	checkMissingOverrideMethodAttribute: true
 	checkTooWideReturnTypesInProtectedAndPublicMethods: true
 	reportAnyTypeWideningInVarTag: true
+	reportPossiblyNonexistentConstantArrayOffset: true
 	treatPhpDocTypesAsCertain: false
 	strictRules:
 		disallowedEmpty: false
 		disallowedLooseComparison: false
 		disallowedShortTernary: false
-		strictArrayFilter: false	# TODO pass
+		strictArrayFilter: true
 	exceptions:
 		check:
-			missingCheckedExceptionInThrows: false	# TODO pass
+			missingCheckedExceptionInThrows: false	# TODO pass maybe
 			tooWideThrowType: true
 		implicitThrows: false
 		checkedExceptionClasses:

@@ -221,7 +221,7 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 				}
 			}
 
-			$headers = array_filter(array_map('trim', $headers));
+			$headers = array_filter($headers, fn(string $header): bool => trim($header) !== '');
 			if (!empty($headers)) {
 				$opts[CURLOPT_HTTPHEADER] = array_merge($headers, $opts[CURLOPT_HTTPHEADER] ?? []);
 				$opts[CURLOPT_HTTPHEADER] = array_unique($opts[CURLOPT_HTTPHEADER]);
