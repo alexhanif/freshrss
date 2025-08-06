@@ -1944,11 +1944,30 @@ function load_more_posts() {
 		return;
 	}
 	load_more = true;
-	document.getElementById('load_more').classList.add('loading');
+
+	const div_load_more = document.getElementById('load_more');
+	div_load_more.classList.add('loading');
+
+	const remove_loading_from_more_button = function (button) {
+		button.classList.remove('loading');
+		load_more = false;
+	};
 
 	const req = new XMLHttpRequest();
 	req.open('GET', url_load_more, true);
 	req.responseType = 'document';
+	// default: wait max 20 seconds
+	req.timeout = 20000;
+	if (url_load_more.includes('&search=')) {
+		// user queries could run a bit longer than usual
+		req.timeout = 45000;
+	}
+	req.ontimeout = function () {
+		remove_loading_from_more_button(div_load_more);
+	};
+	req.onerror = function () {
+		remove_loading_from_more_button(div_load_more);
+	};
 	req.onload = function (e) {
 		if (context.sort === 'rand') {
 			document.scrollingElement.scrollTop = 0;
@@ -1987,7 +2006,6 @@ function load_more_posts() {
 
 		init_load_more(box_load_more);
 
-		const div_load_more = document.getElementById('load_more');
 		if (bigMarkAsRead) {
 			bigMarkAsRead.removeAttribute('disabled');
 		}
