@@ -438,7 +438,7 @@ class FreshRSS_Feed extends Minz_Model {
 		@unlink($path . '.ico');
 		@unlink($path . '.txt');
 	}
-	public function favicon(): string {
+	public function favicon(bool $absolute = false): string {
 		$hash = $this->hashFavicon();
 		$url = '/f.php?h=' . $hash;
 		if ($this->customFavicon()
@@ -446,7 +446,7 @@ class FreshRSS_Feed extends Minz_Model {
 			&& !$this->attributeBoolean('customFaviconDisallowDel')) {
 			$url .= '&t=' . @filemtime(DATA_PATH . '/favicons/' . $hash . '.ico');
 		}
-		return Minz_Url::display($url);
+		return Minz_Url::display($url, absolute: $absolute);
 	}
 
 	public function _id(int $value): void {
