@@ -98,8 +98,8 @@ return array(
 		'december' => ' دسامبر',
 		'feb' => ' فوریه',
 		'february' => ' فوریه',
-		'format_date' => 'j %s Y',	// TODO
-		'format_date_hour' => 'j %s Y \\a\\t H\\:i',	// TODO
+		'format_date' => 'j %s Y',	// IGNORE
+		'format_date_hour' => 'j %s Y \\a\\t H\\:i',	// IGNORE
 		'fri' => ' جمعه',
 		'jan' => ' ژانویه',
 		'january' => ' ژانویه',

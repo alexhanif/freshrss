@@ -89,7 +89,7 @@ return array(
 		'kind' => array(
 			'_' => ' نوع منبع خوراک',
 			'html_json' => array(
-				'_' => 'HTML + XPath + JSON dot notation (JSON in HTML)',	// TODO
+				'_' => 'HTML + XPath + JSON dot notation (JSON in HTML)',	// IGNORE
 				'xpath' => array(
 					'_' => 'XPath برای JSON در HTML',
 					'help' => 'مثال: <code>normalize-space(//script[@type="application/json"])</code> (یک JSON)<br />یا: <code>//script[@type="application/ld+json"]</code> (یک شیء JSON برای هر مقاله)',
@@ -239,7 +239,7 @@ return array(
 			'_' => 'معیارهای وحدت مقاله',
 			'forced' => '<span title="مسدود کردن معیارهای تک‌شاخگی، حتی زمانی که فید دارای مقالات تکراری است">اجباری</span>',
 			'help' => 'مربوط به فیدهای نامعتبر.<br />⚠️ تغییر سیاست باعث ایجاد موارد تکراری می‌شود..',
-			'id' => 'شناسه استاندارد (پیش‌فرض)',
+			'id' => 'شناسه استاندارد (پیش‌ فرض)',
 			'link' => 'لینک',
 			'sha1:content' => 'Content',	// TODO
 			'sha1:content_published' => 'Content + Date',	// TODO
