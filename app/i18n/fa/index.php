@@ -16,7 +16,7 @@ return array(
 		'agpl3' => ' <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',
 		'bug_reports' => array(
 			'environment_information' => array(
-				'_' => 'اطلاعات سیستم',	
+				'_' => ' اطلاعات سیستم',	
 				'browser' => 'مرورگر',	
 				'database' => 'پایگاه داده',
 				'server_software' => 'نرم‌افزار سرور',	
