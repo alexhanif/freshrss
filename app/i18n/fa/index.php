@@ -91,7 +91,7 @@ return array(
 			'id_desc' => 'نخستین مورد دریافت‌شده به تازگی',
 			'link_asc' => 'لینک A→Z',	
 			'link_desc' => 'لینک Z→A',	
-			'rand' => 'Random order',	
+			'rand' => 'ترتیب تصادفی',	
 			'title_asc' => 'عنوانA→Z',	
 			'title_desc' => 'عنوان Z→A',
 		),
