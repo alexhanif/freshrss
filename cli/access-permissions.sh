@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Apply access permissions
 
 if [ ! -f './constants.php' ] || [ ! -d './cli/' ]; then
@@ -11,19 +11,22 @@ if [ "$(id -u)" -ne 0 ]; then
 	exit 3
 fi
 
-# If specified, only modify the data and extension dirs
+# Always fix permissions on the data and extensions directories
+# Optionally also fix permissions on the entire webapp
+data_path="${DATA_PATH:-./data}"
+to_update=("${data_path}")
 if [ "${1:-}" = "--only-userdirs" ]; then
-	to_update="./data ./extensions"
+	to_update+=("./extensions")
 else
-	to_update="."
+	to_update+=(".")
 fi
 
 # Based on group access
-chown -R :www-data $to_update
+chown -R :www-data "${to_update[@]}"
 
 # Read files, and directory traversal
-chmod -R g+rX $to_update
+chmod -R g+rX "${to_update[@]}"
 
-# Write access
-mkdir -p ./data/users/_/
-chmod -R g+w ./data/
+# Write access to data
+mkdir -p "${data_path}/users/_/"
+chmod -R g+w "${data_path}"
