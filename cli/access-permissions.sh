@@ -20,6 +20,8 @@ else
 	to_update="."
 fi
 
+mkdir -p "${data_path}/users/_/"
+
 # Based on group access
 chown -R :www-data "$data_path" "$to_update"
 
@@ -27,5 +29,4 @@ chown -R :www-data "$data_path" "$to_update"
 chmod -R g+rX "$data_path" "$to_update"
 
 # Write access to data
-mkdir -p "${data_path}/users/_/"
 chmod -R g+w "$data_path"

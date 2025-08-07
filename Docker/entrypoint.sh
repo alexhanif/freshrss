@@ -59,6 +59,7 @@ if [ -n "$FRESHRSS_INSTALL" ]; then
 		echo 'ℹ️ FreshRSS already installed; no change performed.'
 	elif [ $EXITCODE -eq 0 ]; then
 		echo '✅ FreshRSS successfully installed.'
+		REAPPLY_PERMISSIONS=:
 	else
 		echo '❌ FreshRSS error during installation!'
 		exit $EXITCODE
@@ -76,12 +77,15 @@ if [ -n "$FRESHRSS_USER" ]; then
 	elif [ $EXITCODE -eq 0 ]; then
 		echo '✅ FreshRSS user successfully created.'
 		./cli/list-users.php | xargs -n1 ./cli/actualize-user.php --user
+		REAPPLY_PERMISSIONS=:
 	else
 		echo '❌ FreshRSS error during the creation of a user!'
 		exit $EXITCODE
 	fi
 fi
 
-./cli/access-permissions.sh --only-userdirs
+if [ -n "$REAPPLY_PERMISSIONS" ]; then
+	./cli/access-permissions.sh --only-userdirs
+fi
 
 exec "$@"
