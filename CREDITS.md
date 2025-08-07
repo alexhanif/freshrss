@@ -108,6 +108,7 @@ People are sorted by name so please keep this order.
 * [Jackson Culbreth](https://github.com/culbrethj): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:culbrethj)
 * [jaden](https://github.com/jaden): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:jaden)
 * [Jake Mannens](https://github.com/jakem72360): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:jakem72360)
+* [James Frost](https://github.com/Fraetor): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:Fraetor), [Web](https://www.frost.cx/)
 * [Jamie Slome](https://github.com/JamieSlome): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:JamieSlome), [Web](https://418sec.com/)
 * [Jan Lukas Gernert](https://github.com/jangernert): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:jangernert)
 * [Jan van den Berg](https://github.com/jan-vandenberg): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:jan-vandenberg), [Web](https://j11g.com/)
