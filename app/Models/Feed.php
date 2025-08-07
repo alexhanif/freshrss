@@ -661,6 +661,12 @@ class FreshRSS_Feed extends Minz_Model {
 			'sha1:link_published'               => sha1($item->get_permalink() . $item->get_date('U')),
 			'sha1:link_published_title'         => sha1($item->get_permalink() . $item->get_date('U') . $item->get_title()),
 			'sha1:link_published_title_content' => sha1($item->get_permalink() . $item->get_date('U') . $item->get_title() . $item->get_content()),
+			'sha1:title'                        => sha1($item->get_title() ?? ''),
+			'sha1:title_published'              => sha1($item->get_title() . $item->get_date('U')),
+			'sha1:title_published_content'      => sha1($item->get_title() . $item->get_date('U') . $item->get_content()),
+			'sha1:content'                      => sha1($item->get_content() ?? ''),
+			'sha1:content_published'            => sha1($item->get_content() . $item->get_date('U')),
+			'sha1:published'                    => sha1((string)($item->get_date('U') ?? '')),
 			default => $entryId,
 		};
 

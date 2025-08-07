@@ -241,9 +241,15 @@ return array(
 			'help' => 'مربوط به فیدهای نامعتبر.<br />⚠️ تغییر سیاست باعث ایجاد موارد تکراری می‌شود..',
 			'id' => 'شناسه استاندارد (پیش‌فرض)',
 			'link' => 'لینک',
+			'sha1:content' => 'Content',	// TODO
+			'sha1:content_published' => 'Content + Date',	// TODO
 			'sha1:link_published' => 'لینک + تاریخ',
 			'sha1:link_published_title' => 'لینک + تاریخ + عنوان',
 			'sha1:link_published_title_content' => 'لینک + تاریخ + عنوان + محتوا',
+			'sha1:published' => 'Date',	// TODO
+			'sha1:title' => 'Title',	// TODO
+			'sha1:title_published' => 'Title + Date',	// TODO
+			'sha1:title_published_content' => 'Title + Date + Content',	// TODO
 		),
 		'url' => ' URL فید',
 		'useragent' => ' عامل کاربر را برای واکشی این فید تنظیم کنید',
