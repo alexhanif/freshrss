@@ -443,7 +443,9 @@ function data_leave_validation(parent, excludeForm = null) {
  * Ignores elements with the `data-no-leave-validation` attribute set.
  */
 function data_auto_leave_validation(parent) {
-	parent.querySelectorAll('[data-auto-leave-validation] input, textarea, select').forEach(el => {
+	parent.querySelectorAll(`[data-auto-leave-validation] input,
+													[data-auto-leave-validation] textarea,
+													[data-auto-leave-validation] select`).forEach(el => {
 		if (el.dataset.leaveValidation || el.dataset.noLeaveValidation) {
 			return;
 		}
