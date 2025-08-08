@@ -49,7 +49,6 @@ fi
 
 php -f ./cli/prepare.php >/dev/null
 
-reapply_permissions=0
 if [ -n "$FRESHRSS_INSTALL" ]; then
 	# shellcheck disable=SC2046
 	php -f ./cli/do-install.php -- \
@@ -60,7 +59,6 @@ if [ -n "$FRESHRSS_INSTALL" ]; then
 		echo 'ℹ️ FreshRSS already installed; no change performed.'
 	elif [ $EXITCODE -eq 0 ]; then
 		echo '✅ FreshRSS successfully installed.'
-		reapply_permissions=1
 	else
 		echo '❌ FreshRSS error during installation!'
 		exit $EXITCODE
@@ -78,15 +76,14 @@ if [ -n "$FRESHRSS_USER" ]; then
 	elif [ $EXITCODE -eq 0 ]; then
 		echo '✅ FreshRSS user successfully created.'
 		./cli/list-users.php | xargs -n1 ./cli/actualize-user.php --user
-		reapply_permissions=1
 	else
 		echo '❌ FreshRSS error during the creation of a user!'
 		exit $EXITCODE
 	fi
 fi
 
-if [ "$reapply_permissions" -ne 0 ]; then
-	./cli/access-permissions.sh --only-userdirs
-fi
+# Fix permissions of data added by prepare.php as well as a potential
+# installation/user setup
+./cli/access-permissions.sh --only-userdirs
 
 exec "$@"
