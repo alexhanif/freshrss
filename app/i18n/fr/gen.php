@@ -155,6 +155,7 @@ return array(
 		'labels_empty' => 'Pas d’étiquettes',	// DIRTY
 		'new_article' => 'Il y a de nouveaux articles disponibles, cliquez pour rafraîchir la page.',
 		'should_be_activated' => 'Le JavaScript doit être activé.',
+		'unsafe_csp_header' => 'The CSP header in use is unsafe and FreshRSS may be vulnerable to XSS attacks. <a href="https://freshrss.github.io/FreshRSS/en/admins/10_ServerConfig.html#security">See documentation</a>',	// TODO
 	),
 	'lang' => array(
 		'cs' => 'Čeština',	// IGNORE

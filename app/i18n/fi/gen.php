@@ -155,6 +155,7 @@ return array(
 		'labels_empty' => 'Ei tunnisteita',
 		'new_article' => 'Uusia artikkeleita on saatavilla. Päivitä sivu napsauttamalla.',
 		'should_be_activated' => 'JavaScriptin on oltava käytössä',
+		'unsafe_csp_header' => 'The CSP header in use is unsafe and FreshRSS may be vulnerable to XSS attacks. <a href="https://freshrss.github.io/FreshRSS/en/admins/10_ServerConfig.html#security">See documentation</a>',	// TODO
 	),
 	'lang' => array(
 		'cs' => 'Čeština',	// IGNORE

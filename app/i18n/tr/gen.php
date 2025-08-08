@@ -155,6 +155,7 @@ return array(
 		'labels_empty' => 'Etiket yok',
 		'new_article' => 'Yeni makaleler mevcut, sayfayı yenilemek için tıklayın.',
 		'should_be_activated' => 'JavaScript etkinleştirilmiş olmalı',
+		'unsafe_csp_header' => 'The CSP header in use is unsafe and FreshRSS may be vulnerable to XSS attacks. <a href="https://freshrss.github.io/FreshRSS/en/admins/10_ServerConfig.html#security">See documentation</a>',	// TODO
 	),
 	'lang' => array(
 		'cs' => 'Čeština',	// IGNORE

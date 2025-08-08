@@ -2181,6 +2181,26 @@ function init_normal() {
 	});
 }
 
+function init_csp_alert() {
+	if (!context.admin || context.suppress_csp_warning) {
+		return;
+	}
+
+	try {
+		// eslint-disable-next-line no-new-func
+		Function();
+	} catch (_) {
+		// Exit if 'script-src' is set and 'unsafe-eval' isn't set in CSP
+		return;
+	}
+
+	document.body.insertAdjacentHTML('afterbegin', `
+	<div class="alert alert-error">
+		<span>${context.i18n.unsafe_csp_header}</span>
+	</div>
+	`);
+}
+
 function init_main_beforeDOM() {
 	history.scrollRestoration = 'manual';
 	document.scrollingElement.scrollTop = 0;
@@ -2193,6 +2213,7 @@ function init_main_beforeDOM() {
 function init_main_afterDOM() {
 	removeFirstLoadSpinner();
 	init_notifications();
+	init_csp_alert();
 	init_confirm_action();
 	const stream = document.getElementById('stream');
 	if (stream) {

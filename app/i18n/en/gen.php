@@ -155,6 +155,7 @@ return array(
 		'labels_empty' => 'No labels',
 		'new_article' => 'There are new articles available, click to refresh the page.',
 		'should_be_activated' => 'JavaScript must be enabled',
+		'unsafe_csp_header' => 'The CSP header in use is unsafe and FreshRSS may be vulnerable to XSS attacks. <a href="https://freshrss.github.io/FreshRSS/en/admins/10_ServerConfig.html#security">See documentation</a>',
 	),
 	'lang' => array(
 		'cs' => 'Čeština',

@@ -155,6 +155,7 @@ return array(
 		'labels_empty' => 'Nincsenek címkék',
 		'new_article' => 'Új cikkek elérhetőek, kattints a lap frissítéséhez.',
 		'should_be_activated' => 'A JavaScript futtatásának engedélyezve kell lennie',
+		'unsafe_csp_header' => 'The CSP header in use is unsafe and FreshRSS may be vulnerable to XSS attacks. <a href="https://freshrss.github.io/FreshRSS/en/admins/10_ServerConfig.html#security">See documentation</a>',	// TODO
 	),
 	'lang' => array(
 		'cs' => 'Čeština',	// IGNORE
