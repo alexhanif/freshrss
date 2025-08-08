@@ -145,6 +145,7 @@ return array(
 		'category_empty' => '清空分類',
 		'confirm_action' => '你確定要執行此操作嗎？這將不可撤銷！',
 		'confirm_action_feed_cat' => '你確定要執行此操作嗎？你將丟失相關的收藏和自定義查詢。這將不可撤銷！',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// TODO
 		'feedback' => array(
 			'body_new_articles' => 'FreshRSS 中有 %%d 篇文章等待閱讀。',
 			'body_unread_articles' => '(未讀: %%d)',

@@ -145,6 +145,7 @@ return array(
 		'category_empty' => 'Catégorie vide',
 		'confirm_action' => 'Êtes-vous sûr(e) de vouloir continuer ? Cette action ne peut être annulée !',
 		'confirm_action_feed_cat' => 'Êtes-vous sûr(e) de vouloir continuer ? Vous perdrez les favoris et les filtres associés. Cette action ne peut être annulée !',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// TODO
 		'feedback' => array(
 			'body_new_articles' => 'Il y a %%d nouveaux articles à lire sur FreshRSS.',
 			'body_unread_articles' => '(non lus : %%d)',

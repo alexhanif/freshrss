@@ -145,6 +145,7 @@ return array(
 		'category_empty' => 'Boş kategori',
 		'confirm_action' => 'Bu eylemi gerçekleştirmek istediğinizden emin misiniz? Bu işlem geri alınamaz!',
 		'confirm_action_feed_cat' => 'Bu eylemi gerçekleştirmek istediğinizden emin misiniz? İlgili favoriler ve kullanıcı sorguları kaybolacak. Bu işlem geri alınamaz!',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// TODO
 		'feedback' => array(
 			'body_new_articles' => 'FreshRSS’de okunacak %%d yeni makale var.',
 			'body_unread_articles' => '(okunmamış: %%d)',

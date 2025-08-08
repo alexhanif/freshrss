@@ -145,6 +145,7 @@ return array(
 		'category_empty' => 'Empty category',
 		'confirm_action' => 'Are you sure you want to perform this action? It cannot be cancelled!',
 		'confirm_action_feed_cat' => 'Are you sure you want to perform this action? You will lose related favourites and user queries. It cannot be cancelled!',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',
 		'feedback' => array(
 			'body_new_articles' => 'There are %%d new articles to read on FreshRSS.',
 			'body_unread_articles' => '(unread: %%d)',

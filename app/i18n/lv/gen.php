@@ -145,6 +145,7 @@ return array(
 		'category_empty' => 'Tukša kategorija',
 		'confirm_action' => 'Vai esat pārliecināts, ka vēlaties veikt šo darbību? To nevar atcelt!',
 		'confirm_action_feed_cat' => 'Vai esat pārliecināts, ka vēlaties veikt šo darbību? Jūs zaudēsiet saistītos mīļākos rakstus un lietotāja pieprasījumus. To nevar atcelt!',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// TODO
 		'feedback' => array(
 			'body_new_articles' => 'FreshRSS ir %%d jauni raksti lasīšanai.',
 			'body_unread_articles' => '(neizlasīti: %%d)',

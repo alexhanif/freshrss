@@ -364,7 +364,7 @@ function init_slider(slider) {
 
 function close_slider_listener(ev) {
 	const slider = document.getElementById('slider');
-	if (data_leave_validation(slider) || confirm(context.i18n.confirmation_default)) {
+	if (data_leave_validation(slider) || confirm(context.i18n.confirm_exit_slider)) {
 		slider.querySelectorAll('form').forEach(function (f) { f.reset(); });
 		document.documentElement.classList.remove('slider-active');
 		return;

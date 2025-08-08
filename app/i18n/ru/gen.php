@@ -145,6 +145,7 @@ return array(
 		'category_empty' => 'Пустая категория',
 		'confirm_action' => 'Вы уверены, что хотите выполнить это действие? Это нельзя отменить!',
 		'confirm_action_feed_cat' => 'Вы уверены, что хотите выполнить это действие? Вы потеряете связанные избранные статьи и пользовательские запросы. Это нельзя отменить!',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// TODO
 		'feedback' => array(
 			'body_new_articles' => '%%d новых статей в FreshRSS.',
 			'body_unread_articles' => '(Непрочитанные: %%d)',

@@ -145,6 +145,7 @@ return array(
 		'category_empty' => 'Üres kategória',
 		'confirm_action' => 'Biztos vagy benne hogy végrehajtod ezt a műveletet? A művelet nem megszakítható!',
 		'confirm_action_feed_cat' => 'Biztos hogy végrehajtod ezt a műveletet? Minden kapcsolódó kedvenc és lekérdezés törölve lesz. Nem lehet megszakítani!',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// TODO
 		'feedback' => array(
 			'body_new_articles' => '%%d db új cikk olvasható a FreshRSS-ben.',
 			'body_unread_articles' => '(olvasatlan: %%d)',

@@ -145,6 +145,7 @@ return array(
 		'category_empty' => 'Categoria voida',
 		'confirm_action' => 'Volètz vertadièrament contunhar ? Aquesta accion se pòt pas anullar !',
 		'confirm_action_feed_cat' => 'Volètz vertadièrament contunhar ? Perdretz los favorits e filtres ligats. Aquesta accion se pòt pas anullar !',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// TODO
 		'feedback' => array(
 			'body_new_articles' => 'I a %%d nòus articles per legir sus FreshRSS.',
 			'body_unread_articles' => '(unread: %%d)',	// TODO

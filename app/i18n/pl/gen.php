@@ -145,6 +145,7 @@ return array(
 		'category_empty' => 'Pusta kategoria',
 		'confirm_action' => 'Czy jesteś pewien, że chcesz przeprowadzić daną operację? Nie można cofnąć jej rezultatów!',
 		'confirm_action_feed_cat' => 'Czy jesteś pewien, że chcesz przeprowadzić daną operację? Stracisz powiązane zapytania i ulubione wiadomości. Tych zmian nie można wycofać!',
+		'confirm_exit_slider' => 'Czy na pewno chcesz odrzucić niezapisane ustawienia?',
 		'feedback' => array(
 			'body_new_articles' => 'W FreshRSS znajduje się %%d wiadomości do przeczytania.',
 			'body_unread_articles' => '(Nieprzeczytane: %%d)',

@@ -145,6 +145,7 @@ return array(
 		'category_empty' => ' دسته خالی',
 		'confirm_action' => ' آیا مطمئن هستید که می خواهید این عمل را انجام دهید؟ نمی توان آن را لغو کرد!',
 		'confirm_action_feed_cat' => ' آیا مطمئن هستید که می خواهید این عمل را انجام دهید؟ موارد دلخواه و درخواست های کاربر مرتبط را از دست خواهید داد. نمی توان آن را لغو کرد!',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// TODO
 		'feedback' => array(
 			'body_new_articles' => ' %%d مقاله جدید برای خواندن در FreshRSS وجود دارد.',
 			'body_unread_articles' => ' (خوانده نشده: %%d)',

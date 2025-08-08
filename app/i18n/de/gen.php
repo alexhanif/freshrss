@@ -145,6 +145,7 @@ return array(
 		'category_empty' => 'Kategorie leeren',
 		'confirm_action' => 'Sind Sie sicher, dass Sie diese Aktion durchführen wollen? Diese Aktion kann nicht abgebrochen werden!',
 		'confirm_action_feed_cat' => 'Sind Sie sicher, dass Sie diese Aktion durchführen wollen? Sie werden zugehörige Favoriten und Benutzerabfragen verlieren. Dies kann nicht abgebrochen werden!',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// TODO
 		'feedback' => array(
 			'body_new_articles' => 'Es gibt %%d neue Artikel zum Lesen auf FreshRSS.',
 			'body_unread_articles' => '(Ungelesen: %%d)',

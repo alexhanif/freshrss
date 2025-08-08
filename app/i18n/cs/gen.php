@@ -145,6 +145,7 @@ return array(
 		'category_empty' => 'Prázdná kategorie',
 		'confirm_action' => 'Opravdu chcete provést tuto akci? Toto nelze zrušit!',
 		'confirm_action_feed_cat' => 'Opravdu chcete provést tuto akci? Přijdete o související oblíbené položky a uživatelské dotazy. Toto nelze zrušit!',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// TODO
 		'feedback' => array(
 			'body_new_articles' => 'Ve FreshRSS je %%d nových článků k přečtení.',
 			'body_unread_articles' => '(nepřečtené: %%d)',

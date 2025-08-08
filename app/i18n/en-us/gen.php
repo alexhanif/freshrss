@@ -145,6 +145,7 @@ return array(
 		'category_empty' => 'Empty category',	// IGNORE
 		'confirm_action' => 'Are you sure you want to perform this action? It cannot be canceled!',
 		'confirm_action_feed_cat' => 'Are you sure you want to perform this action? You will lose related favorites and user queries. It cannot be canceled!',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// IGNORE
 		'feedback' => array(
 			'body_new_articles' => 'There are %%d new articles to read on FreshRSS.',	// IGNORE
 			'body_unread_articles' => '(unread: %%d)',	// IGNORE

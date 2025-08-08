@@ -145,6 +145,7 @@ return array(
 		'category_empty' => 'Empty category',	// TODO
 		'confirm_action' => 'האם אתם בטוחים שברצונכם לבצע פעולה זו? אין אפשרות לבטל אותה!',
 		'confirm_action_feed_cat' => 'האם אתם בטוחים שברצוניכם לבצע פעולה זו? מועדפים ושאילתות עשויות לאבוד. אין אפשרות לבטל אותה!',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// TODO
 		'feedback' => array(
 			'body_new_articles' => 'ישנם	\\d מאמרים חדשים לקרוא ב FreshRSS.',
 			'body_unread_articles' => '(unread: %%d)',	// TODO

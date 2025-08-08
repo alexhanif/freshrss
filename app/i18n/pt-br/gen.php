@@ -145,6 +145,7 @@ return array(
 		'category_empty' => 'Categoria vazia',
 		'confirm_action' => 'Você tem certeza que deseja efetuar esta ação? Ela não poderá ser cancelada!',
 		'confirm_action_feed_cat' => 'Você tem certeza que deseja efetuar esta ação ? Você irá perder favoritos e queries de usuários. Não poderá ser cancelado!',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// TODO
 		'feedback' => array(
 			'body_new_articles' => 'Há %%d novos artigos para ler no FreshRSS.',
 			'body_unread_articles' => '(não lido: %%d)',
