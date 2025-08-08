@@ -117,8 +117,8 @@ return array(
 			'api_set' => 'API تنظیم شده',
 			'check_link' => 'بررسی وضعیت از طریق: <kbd><a href="../api/" target="_blank">%s</a></kbd>',
 			'disabled' => 'غیرفعال',
-			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">مستندات و فهرست برنامه‌های شناخته‌شده</a>', // IGNORE
-			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>', // IGNORE
+			'documentation_link' => 'See the <a href="https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target="_blank">مستندات و فهرست برنامه‌های شناخته‌شده</a>',	// IGNORE
+			'help' => 'See <a href="http://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#access-via-mobile-app" target=_blank>documentation</a>',	// IGNORE
 		),
 		'change_password' => 'تغییر رمز عبور',
 		'confirm_new_password' => 'تأیید رمز عبور جدید',
