@@ -145,7 +145,7 @@ return array(
 		'category_empty' => 'Lege categorie',
 		'confirm_action' => 'Weet u zeker dat u dit wilt doen? Het kan niet ongedaan worden gemaakt!',
 		'confirm_action_feed_cat' => 'Weet u zeker dat u dit wilt doen? U verliest alle gereleteerde favorieten en gebruikers informatie. Het kan niet ongedaan worden gemaakt!',
-		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// TODO
+		'confirm_exit_slider' => 'Weet u zeker dat u de niet opgeslagen instellingen wilt negeren?',
 		'feedback' => array(
 			'body_new_articles' => 'Er zijn %%d nieuwe artikelen om te lezen op FreshRSS.',
 			'body_unread_articles' => '(ongelezen: %%d)',
