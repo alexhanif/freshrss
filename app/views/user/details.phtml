@@ -69,14 +69,17 @@
 
 		<div class="form-group form-actions">
 			<noscript><b><?= _t('gen.js.should_be_activated'); ?></b></noscript>
+			<?php
+				$disabledIfAjax = Minz_Request::paramBoolean('ajax') ? ' disabled="disabled"' : '';
+			?>
 			<div class="group-controls">
 				<button type="submit" class="btn btn-important" name="action" value="update"><?= _t('gen.action.update') ?></button>
-				<button type="submit" class="btn btn-attention confirm" name="action" value="purge"><?= _t('gen.action.purge') ?></button>
-				<button type="submit" class="btn btn-attention confirm" name="action" value="delete"><?= _t('gen.action.remove') ?></button>
+				<button type="submit" class="btn btn-attention confirm" name="action" value="purge"<?= $disabledIfAjax ?>><?= _t('gen.action.purge') ?></button>
+				<button type="submit" class="btn btn-attention confirm" name="action" value="delete"<?= $disabledIfAjax ?>><?= _t('gen.action.remove') ?></button>
 				<?php if ($isAdmin && !$isDefault): ?>
-					<button type="submit" class="btn btn-attention confirm" name="action" value="demote"><?= _t('gen.action.demote') ?></button>
+					<button type="submit" class="btn btn-attention confirm" name="action" value="demote"<?= $disabledIfAjax ?>><?= _t('gen.action.demote') ?></button>
 				<?php elseif (!$isAdmin): ?>
-					<button type="submit" class="btn btn-attention confirm" name="action" value="promote"><?= _t('gen.action.promote') ?></button>
+					<button type="submit" class="btn btn-attention confirm" name="action" value="promote"<?= $disabledIfAjax ?>><?= _t('gen.action.promote') ?></button>
 				<?php endif; ?>
 				<?php if ($enabled && !$isDefault): ?>
 					<button type="submit" class="btn btn-attention" name="action" value="disable"><?= _t('gen.action.disable') ?></button>

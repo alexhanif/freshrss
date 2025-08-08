@@ -365,7 +365,7 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 			Minz_Error::error(403);
 		}
 
-		if (self::reauthRedirect()) {
+		if (FreshRSS_Auth::hasAccess('admin') && self::reauthRedirect()) {
 			return;
 		}
 
@@ -422,10 +422,15 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 				);
 			}
 
+			$is_admin = false;
+			if (FreshRSS_Auth::hasAccess('admin')) {
+				$is_admin = Minz_Request::paramBoolean('new_user_is_admin');
+			}
+
 			$ok = self::createUser($new_user_name, $email, $passwordPlain, [
 				'language' => Minz_Request::paramString('new_user_language') ?: FreshRSS_Context::userConf()->language,
 				'timezone' => Minz_Request::paramString('new_user_timezone'),
-				'is_admin' => Minz_Request::paramBoolean('new_user_is_admin'),
+				'is_admin' => $is_admin,
 				'enabled' => true,
 			]);
 			Minz_Request::_param('new_user_passwordPlain');	//Discard plain-text password ASAP

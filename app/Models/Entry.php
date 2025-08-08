@@ -860,7 +860,7 @@ HTML;
 		}
 
 		$conditions = $feed->attributeArray('path_entries_conditions') ?? [];
-		$conditions = array_filter(array_map(fn($v) => is_string($v) ? trim($v) : '', $conditions));
+		$conditions = array_filter($conditions, fn($v): bool => (is_string($v) ? trim($v) : '') !== '');
 		if (count($conditions) > 0) {
 			$found = false;
 			foreach ($conditions as $condition) {

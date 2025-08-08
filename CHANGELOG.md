@@ -12,9 +12,12 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Rework fetch favicons for fewer HTTP requests [#7767](https://github.com/FreshRSS/FreshRSS/pull/7767)
 	* Automatically restore user configuration from backup [#7682](https://github.com/FreshRSS/FreshRSS/pull/7682)
 	* API add support for states in `s` parameter of `streamId` [#7695](https://github.com/FreshRSS/FreshRSS/pull/7695)
+	* Redirect to the login page from bookmarklet instead of 403 [#7782](https://github.com/FreshRSS/FreshRSS/pull/7782)
 * Security
 	* Implement reauthentication (*sudo* mode) [#7753](https://github.com/FreshRSS/FreshRSS/pull/7753)
 	* Add `Content-Security-Policy: frame-ancestors` [#7677](https://github.com/FreshRSS/FreshRSS/pull/7677)
+	* Fix access rights when creating a new user [#7783](https://github.com/FreshRSS/FreshRSS/pull/7783)
+	* Improve security of form for user details [#7771](https://github.com/FreshRSS/FreshRSS/pull/7771), [#7786](https://github.com/FreshRSS/FreshRSS/pull/7786)
 	* Disallow setting non-existent theme [#7722](https://github.com/FreshRSS/FreshRSS/pull/7722)
 	* Regenerate cookie ID after logging out [#7762](https://github.com/FreshRSS/FreshRSS/pull/7762)
 	* Require current password when setting new password [#7763](https://github.com/FreshRSS/FreshRSS/pull/7763)
@@ -34,7 +37,9 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Fix propagation of HTTP error codes [#7670](https://github.com/FreshRSS/FreshRSS/pull/7670)
 	* Fix support for XML feeds with HTML entities [#7689](https://github.com/FreshRSS/FreshRSS/pull/7689), [simplepie#915](https://github.com/simplepie/simplepie/pull/915)
 	* Fix feeds encoded in UTF-16LE [#7691](https://github.com/FreshRSS/FreshRSS/pull/7691), [simplepie#916](https://github.com/simplepie/simplepie/pull/916)
-	* Sync upstream [#7706](https://github.com/FreshRSS/FreshRSS/pull/7706)
+	* Various upstream contributions [simplepie#917](https://github.com/simplepie/simplepie/pull/917), [simplepie#924](https://github.com/simplepie/simplepie/pull/924),
+		[simplepie#926](https://github.com/simplepie/simplepie/pull/926), [simplepie#932](https://github.com/simplepie/simplepie/pull/932), [simplepie#933](https://github.com/simplepie/simplepie/pull/933)
+	* Sync upstream [#7706](https://github.com/FreshRSS/FreshRSS/pull/7706), [#7775](https://github.com/FreshRSS/FreshRSS/pull/7775)
 * Deployment
 	* Docker default image updated to Debian 13 Trixie with PHP 8.4.10 and Apache 2.4.64 [#7772](https://github.com/FreshRSS/FreshRSS/pull/7772)
 	* Docker alternative image updated to Alpine 3.22 with PHP 8.3.23 and Apache 2.4.64 [#7740](https://github.com/FreshRSS/FreshRSS/pull/7740), [#7740](https://github.com/FreshRSS/FreshRSS/pull/7740)
@@ -54,9 +59,10 @@ See also [the FreshRSS releases](https://github.com/FreshRSS/FreshRSS/releases).
 	* Show translation status in README [#7715](https://github.com/FreshRSS/FreshRSS/pull/7715)
 	* Improve Indonesian [#7654](https://github.com/FreshRSS/FreshRSS/pull/7654), [#7721](https://github.com/FreshRSS/FreshRSS/pull/7721)
 * Misc.
-	* Improve PHP code [#7642](https://github.com/FreshRSS/FreshRSS/pull/7642), [#7665](https://github.com/FreshRSS/FreshRSS/pull/7665), [#7761](https://github.com/FreshRSS/FreshRSS/pull/7761)
+	* Improve PHP code [#7642](https://github.com/FreshRSS/FreshRSS/pull/7642), [#7665](https://github.com/FreshRSS/FreshRSS/pull/7665), [#7761](https://github.com/FreshRSS/FreshRSS/pull/7761),
+		[#7781](https://github.com/FreshRSS/FreshRSS/pull/7781),
 	* Update dev dependencies [#7708](https://github.com/FreshRSS/FreshRSS/pull/7708), [#7709](https://github.com/FreshRSS/FreshRSS/pull/7709), [#7710](https://github.com/FreshRSS/FreshRSS/pull/7710),
-		[#7711](https://github.com/FreshRSS/FreshRSS/pull/7711)
+		[#7711](https://github.com/FreshRSS/FreshRSS/pull/7711), [#7776](https://github.com/FreshRSS/FreshRSS/pull/7776), [#7777](https://github.com/FreshRSS/FreshRSS/pull/7777)
 
 
 ## 2025-06-02 FreshRSS 1.26.3
