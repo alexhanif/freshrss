@@ -18,6 +18,7 @@ People are sorted by name so please keep this order.
 * [Alexander Steinhöfer](https://github.com/lx-s): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:lx-s), [Web](https://lx-s.de/)
 * [Alexandre Alapetite](https://github.com/Alkarex): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:Alkarex), [Web](https://alexandre.alapetite.fr/)
 * [Alexis Degrugillier](https://github.com/aledeg): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:aledeg)
+* [Ali Moslemi](https://github.com/Deioces120): Persian (fa) translation
 * [Alwaysin](https://github.com/Alwaysin): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:Alwaysin)
 * [Amaury Carrade](https://github.com/AmauryCarrade): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:AmauryCarrade), [Web](https://amaury.carrade.eu/)
 * [AmirHossein Marjani](https://github.com/Marjani): [contributions](https://github.com/FreshRSS/FreshRSS/pulls?q=is:pr+author:Marjani)
