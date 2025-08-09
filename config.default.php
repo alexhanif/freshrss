@@ -83,7 +83,7 @@ return [
 	#	https://example.net/FreshRSS/p/i/?c=auth&a=login&u=alice&p=1234
 	'unsafe_autologin_enabled' => false,
 
-	# By default, FreshRSS will display a warning to logged in admin users if the CSP policy is insecure.
+	# By default, FreshRSS will display a warning to logged-in admin users if the CSP policy is insecure.
 	#	This setting can disable the warning.
 	#	For more information see: https://freshrss.github.io/FreshRSS/en/admins/10_ServerConfig.html#security
 	'suppress_csp_warning' => false,
