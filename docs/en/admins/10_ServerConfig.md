@@ -123,7 +123,7 @@ This will likely make your FreshRSS instance vulnerable to event handler XSS att
 
 Debug CSP header:
 * With DevTools network tab: press F12
-* https://csp-evaluator.withgoogle.com/
+* [CSP Evaluator](https://csp-evaluator.withgoogle.com/)
 
 If you're aware of the risks and want to ignore the warning shown to admin users, change the `suppress_csp_warning` setting to `true` in `./data/config.php`
 
