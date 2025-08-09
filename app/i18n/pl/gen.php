@@ -155,7 +155,7 @@ return array(
 		'labels_empty' => 'Brak tagów',
 		'new_article' => 'Dostępne są nowe wiadomości. Kliknij, aby odświeżyć stronę.',
 		'should_be_activated' => 'JavaScript musi być włączony',
-		'unsafe_csp_header' => 'Używany nagłówek CSP jest niebezpieczny i FreshRSS może być podatny na ataki XSS. <a href="https://freshrss.github.io/FreshRSS/en/admins/10_ServerConfig.html#security">Zobacz dokumentację</a>',
+		'unsafe_csp_header' => 'Używany nagłówek CSP jest niebezpieczny i FreshRSS może być podatny na ataki XSS. <a target="_blank" href="https://freshrss.github.io/FreshRSS/en/admins/10_ServerConfig.html#security">Zobacz dokumentację</a>',
 	),
 	'lang' => array(
 		'cs' => 'Čeština',	// IGNORE

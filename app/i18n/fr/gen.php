@@ -155,7 +155,7 @@ return array(
 		'labels_empty' => 'Pas d’étiquettes',
 		'new_article' => 'Il y a de nouveaux articles disponibles, cliquez pour rafraîchir la page.',
 		'should_be_activated' => 'Le JavaScript doit être activé.',
-		'unsafe_csp_header' => 'L’en-tête CSP utilisé n’est pas sécurisé et FreshRSS peut être vulnérable aux attaques XSS. <a href="https://freshrss.github.io/FreshRSS/en/admins/10_ServerConfig.html#security">Voir la documentation</a>',
+		'unsafe_csp_header' => 'L’en-tête CSP utilisé n’est pas sécurisé et FreshRSS peut être vulnérable aux attaques XSS. <a target="_blank" href="https://freshrss.github.io/FreshRSS/en/admins/10_ServerConfig.html#security">Voir la documentation</a>',
 	),
 	'lang' => array(
 		'cs' => 'Čeština',	// IGNORE
