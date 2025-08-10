@@ -41,8 +41,8 @@ function init_crypto_form() {
 	crypto_form.onsubmit = function (e) {
 		let challenge = crypto_form.querySelector('#challenge');
 		if (!challenge) {
-			crypto_form.querySelectorAll('[data-challenge-if-not-empty] input[type="password"]').forEach(el => {
-				if (el.value !== '' && !challenge) {
+			crypto_form.querySelectorAll('details[data-challenge-if-open]').forEach(el => {
+				if (el.open && !challenge) {
 					crypto_form.insertAdjacentHTML('beforeend', '<input type="hidden" id="challenge" name="challenge" />');
 					challenge = crypto_form.querySelector('#challenge');
 				}
@@ -483,6 +483,25 @@ function init_configuration_alert() {
 	};
 }
 
+function init_details_attributes() {
+	function toggleRequired(details) {
+		details.querySelectorAll('[data-required-if-open]').forEach(el => {
+			if (details.open) {
+				el.setAttribute('required', 'required');
+			} else {
+				el.removeAttribute('required');
+			}
+		});
+	}
+
+	document.querySelectorAll('details').forEach(details => {
+		details.addEventListener('toggle', () => {
+			toggleRequired(details);
+		});
+		toggleRequired(details);
+	});
+}
+
 function init_extra_afterDOM() {
 	if (!window.context) {
 		if (window.console) {
@@ -498,6 +517,7 @@ function init_extra_afterDOM() {
 		init_configuration_alert();
 		init_2stateButton();
 		init_update_feed();
+		init_details_attributes();
 
 		data_auto_leave_validation(document.body);
 
