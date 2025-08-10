@@ -30,8 +30,7 @@ class FreshRSS_stats_Controller extends FreshRSS_ActionController {
 		$this->_csp([
 			'default-src' => "'self'",
 			'frame-ancestors' => "'none'",
-			'img-src' => '* data:',
-			'style-src' => "'self' 'unsafe-inline'",
+			'img-src' => '* data: blob:',
 		]);
 
 		$catDAO = FreshRSS_Factory::createCategoryDao();
