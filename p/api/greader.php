@@ -28,7 +28,7 @@ Server-side API compatible with Google Reader API layer 2
 require(__DIR__ . '/../../constants.php');
 require(LIB_PATH . '/lib_rss.php');	//Includes class autoloader
 
-header("Content-Security-Policy: default-src 'none'; frame-ancestors 'none'");
+header("Content-Security-Policy: default-src 'none'; frame-ancestors 'none'; sandbox");
 header('X-Content-Type-Options: nosniff');
 
 if (PHP_INT_SIZE < 8) {	//32-bit

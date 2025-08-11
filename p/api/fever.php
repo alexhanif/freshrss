@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-header("Content-Security-Policy: default-src 'none'; frame-ancestors 'none'");
+header("Content-Security-Policy: default-src 'none'; frame-ancestors 'none'; sandbox");
 header('X-Content-Type-Options: nosniff');
 
 /**

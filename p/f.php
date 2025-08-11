@@ -5,7 +5,7 @@ require(LIB_PATH . '/lib_rss.php');	//Includes class autoloader
 require(LIB_PATH . '/favicons.php');
 require(LIB_PATH . '/http-conditional.php');
 
-header("Content-Security-Policy: default-src 'none'; frame-ancestors 'none'");
+header("Content-Security-Policy: default-src 'none'; frame-ancestors 'none'; sandbox");
 header('X-Content-Type-Options: nosniff');
 
 function show_default_favicon(int $cacheSeconds = 3600): void {
