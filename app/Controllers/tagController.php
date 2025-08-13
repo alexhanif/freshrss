@@ -156,11 +156,15 @@ class FreshRSS_tag_Controller extends FreshRSS_ActionController {
 		$name = Minz_Request::paramString('name');
 		$tagDAO = FreshRSS_Factory::createTagDao();
 		if (strlen($name) > 0 && null === $tagDAO->searchByName($name)) {
-			$tagDAO->addTag(['name' => $name]);
-			Minz_Request::good(_t('feedback.tag.created', $name), ['c' => 'tag', 'a' => 'index']);
+			$id_tag = $tagDAO->addTag(['name' => $name]);
+			if ($id_tag !== false) {
+				Minz_Request::good(_t('feedback.tag.created', $name), ['c' => 'tag', 'a' => 'index']);
+			} else {
+				Minz_Request::bad(_t('Label cannot have the same name as Category', $name), ['c' => 'tag', 'a' => 'index']);
+			}
+		} else {
+			Minz_Request::bad(_t('feedback.tag.name_exists', $name), ['c' => 'tag', 'a' => 'index']);
 		}
-
-		Minz_Request::bad(_t('feedback.tag.name_exists', $name), ['c' => 'tag', 'a' => 'index']);
 	}
 
 	/**
