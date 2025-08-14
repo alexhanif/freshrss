@@ -96,17 +96,6 @@ li.tree-folder span.title {
   margin-right: 0.25rem;
 }
 
-a.signin {
-  position: absolute;
-  top: 0.5rem;
-  left: 1.8rem;
-  text-wrap: nowrap;
-  transform: scale(1.5);
-}
-a.signin .icon {
-  filter: brightness(3);
-}
-
 :root.file_query .nav-pagination {
   margin-top: 6rem;
 }
@@ -1007,6 +996,14 @@ body.register form div:last-child > a {
 a.signin {
   color: var(--color-text-light);
   font-size: 70%;
+  position: absolute;
+  top: 0.5rem;
+  left: 1.8rem;
+  text-wrap: nowrap;
+  transform: scale(1.5);
+}
+a.signin .icon {
+  filter: brightness(3);
 }
 
 .log-item.log-error {

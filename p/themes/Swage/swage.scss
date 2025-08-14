@@ -114,18 +114,6 @@ li.tree-folder span.title {
 	margin-left: 0.25rem;
 }
 
-a.signin {
-	position: absolute;
-	top: 0.5rem;
-	right: 1.8rem;
-	text-wrap: nowrap;
-	transform: scale(1.5);
-
-	.icon {
-		filter: brightness(3);
-	}
-}
-
 :root.file_query {
 	.nav-pagination {
 		margin-top: 6rem;
@@ -1253,6 +1241,16 @@ body.register {
 a.signin {
 	color: var(--color-text-light);
 	font-size: 70%;
+
+	position: absolute;
+	top: 0.5rem;
+	right: 1.8rem;
+	text-wrap: nowrap;
+	transform: scale(1.5);
+
+	.icon {
+		filter: brightness(3);
+	}
 }
 
 .log-item {
@@ -1320,6 +1318,7 @@ main.global {
 		.item.configure {
 			right: 76px;
 		}
+
 		a.signin {
 			right: 0;
 		}
