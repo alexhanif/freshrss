@@ -96,14 +96,14 @@ li.tree-folder span.title {
   margin-right: 0.25rem;
 }
 
-body.normal a.signin, body.reader a.signin, body.global a.signin {
+a.signin {
   position: absolute;
   top: 0.5rem;
   left: 1.8rem;
   text-wrap: nowrap;
   transform: scale(1.5);
 }
-body.normal a.signin .icon, body.reader a.signin .icon, body.global a.signin .icon {
+a.signin .icon {
   filter: brightness(3);
 }
 
@@ -953,13 +953,6 @@ main.post .drop-section li.item.feed a:hover .icon {
   position: relative;
 }
 
-:root:not(.logged_in) .header > div.item.configure {
-  bottom: 0.2rem !important;
-  padding: 6px !important;
-  transform: scale(1.5);
-  left: 1rem;
-}
-
 .formLogin #global,
 .register #global,
 .reauth #global,
@@ -1061,6 +1054,9 @@ main.global {
   body:not(.formLogin, .register) .header .item .title {
     display: none;
   }
+  body.normal .item.configure, body.reader .item.configure, body.global .item.configure {
+    left: 76px;
+  }
   body.normal a.signin, body.reader a.signin, body.global a.signin {
     left: 0;
   }
@@ -1140,7 +1136,6 @@ main.global {
   .header .item.configure {
     padding: 0;
     position: fixed;
-    left: 76px;
   }
   .header .item.configure > .icon {
     margin-top: 5px;

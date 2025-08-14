@@ -114,17 +114,15 @@ li.tree-folder span.title {
 	margin-left: 0.25rem;
 }
 
-body.normal, body.reader, body.global {
-	a.signin {
-		position: absolute;
-		top: 0.5rem;
-		right: 1.8rem;
-		text-wrap: nowrap;
-		transform: scale(1.5);
+a.signin {
+	position: absolute;
+	top: 0.5rem;
+	right: 1.8rem;
+	text-wrap: nowrap;
+	transform: scale(1.5);
 
-		.icon {
-			filter: brightness(3);
-		}
+	.icon {
+		filter: brightness(3);
 	}
 }
 
@@ -1210,15 +1208,6 @@ main.post .drop-section li.item.feed a:hover .icon {
 	}
 }
 
-:root:not(.logged_in) {
-	.header > div.item.configure {
-		bottom: 0.2rem !important;
-		padding: 6px !important;
-		transform: scale(1.5);
-		right: 1rem;
-	}
-}
-
 .formLogin,
 .register,
 .reauth,
@@ -1328,6 +1317,9 @@ main.global {
 	}
 
 	body.normal, body.reader, body.global {
+		.item.configure {
+			right: 76px;
+		}
 		a.signin {
 			right: 0;
 		}
@@ -1437,7 +1429,6 @@ main.global {
 		.item.configure {
 			padding: 0;
 			position: fixed;
-			right: 76px;
 
 			> .icon {
 				margin-top: 5px;
