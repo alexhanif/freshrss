@@ -642,7 +642,6 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 	$c_effective_url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
 	$c_redirect_count = curl_getinfo($ch, CURLINFO_REDIRECT_COUNT);
 	$c_error = curl_error($ch);
-	curl_close($ch);
 
 	$parser = new \SimplePie\HTTP\Parser(is_string($response) ? $response : '');
 	if ($parser->parse()) {
