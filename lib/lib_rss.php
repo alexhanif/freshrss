@@ -557,7 +557,7 @@ function httpGet(string $url, string $cachePath, string $type = 'html', array $a
 		}
 	}
 
-	if (mt_rand(0, 30) === 1) {	// Remove old entries once in a while
+	if (rand(0, 30) === 1) {	// Remove old cache once in a while
 		cleanCache(CLEANCACHE_HOURS);
 	}
 
