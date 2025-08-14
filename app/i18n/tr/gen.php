@@ -145,6 +145,7 @@ return array(
 		'category_empty' => 'Boş kategori',
 		'confirm_action' => 'Bu eylemi gerçekleştirmek istediğinizden emin misiniz? Bu işlem geri alınamaz!',
 		'confirm_action_feed_cat' => 'Bu eylemi gerçekleştirmek istediğinizden emin misiniz? İlgili favoriler ve kullanıcı sorguları kaybolacak. Bu işlem geri alınamaz!',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// TODO
 		'feedback' => array(
 			'body_new_articles' => 'FreshRSS’de okunacak %%d yeni makale var.',
 			'body_unread_articles' => '(okunmamış: %%d)',
@@ -154,6 +155,7 @@ return array(
 		'labels_empty' => 'Etiket yok',
 		'new_article' => 'Yeni makaleler mevcut, sayfayı yenilemek için tıklayın.',
 		'should_be_activated' => 'JavaScript etkinleştirilmiş olmalı',
+		'unsafe_csp_header' => 'The CSP header in use is unsafe and FreshRSS may be vulnerable to XSS attacks. <a target="_blank" href="https://freshrss.github.io/FreshRSS/en/admins/10_ServerConfig.html#security">See documentation</a>',	// TODO
 	),
 	'lang' => array(
 		'cs' => 'Čeština',	// IGNORE

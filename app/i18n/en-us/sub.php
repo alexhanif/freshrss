@@ -241,9 +241,15 @@ return array(
 			'help' => 'Relevant for invalid feeds.<br />⚠️ Changing the policy will create duplicates.',	// IGNORE
 			'id' => 'Standard ID (default)',	// IGNORE
 			'link' => 'Link',	// IGNORE
+			'sha1:content' => 'Content',	// IGNORE
+			'sha1:content_published' => 'Content + Date',	// IGNORE
 			'sha1:link_published' => 'Link + Date',	// IGNORE
 			'sha1:link_published_title' => 'Link + Date + Title',	// IGNORE
 			'sha1:link_published_title_content' => 'Link + Date + Title + Content',	// IGNORE
+			'sha1:published' => 'Date',	// IGNORE
+			'sha1:title' => 'Title',	// IGNORE
+			'sha1:title_published' => 'Title + Date',	// IGNORE
+			'sha1:title_published_content' => 'Title + Date + Content',	// IGNORE
 		),
 		'url' => 'Feed URL',	// IGNORE
 		'useragent' => 'Set the user agent for fetching this feed',	// IGNORE

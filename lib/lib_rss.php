@@ -231,8 +231,8 @@ function format_bytes(int $bytes, int $precision = 2, string $system = 'IEC'): s
 		return format_number($bytes, $precision);
 	}
 	$bytes = max(intval($bytes), 0);
-	$pow = $bytes === 0 ? 0 : floor(log($bytes) / log($base));
-	$pow = min($pow, count($units) - 1);
+	$pow = $bytes === 0 ? 0 : (int)floor(log($bytes) / log($base));
+	$pow = min(max(0, $pow), count($units) - 1);
 	$bytes /= pow($base, $pow);
 	return format_number($bytes, $precision) . ' ' . $units[$pow];
 }

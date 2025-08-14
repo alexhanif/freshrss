@@ -37,6 +37,7 @@ function xmlHttpRequestJson(req) {
 // <Global context>
 /* eslint-disable no-var */
 var context;
+var prevTitle;
 /* eslint-enable no-var */
 
 (function parseJsonVars() {
@@ -155,9 +156,10 @@ function incUnreadsFeed(article, feed_id, nb) {
 		}
 	}
 
-	let isCurrentView = false;
 	// Update unread: title
-	document.title = document.title.replace(/^((?:\([\s0-9]+\) )?)/, function (m, p1) {
+	let isCurrentView = false;
+	const currentTitle = prevTitle || document.title;
+	const newTitle = currentTitle.replace(/^((?:\([\s0-9]+\) )?)/, function (m, p1) {
 		const feed = document.getElementById(feed_id);
 		if (article || (feed && feed.closest('.active'))) {
 			isCurrentView = true;
@@ -169,6 +171,11 @@ function incUnreadsFeed(article, feed_id, nb) {
 			return p1;
 		}
 	});
+	if (prevTitle) {
+		prevTitle = newTitle;
+	} else {
+		document.title = newTitle;
+	}
 	return isCurrentView;
 }
 
@@ -1235,24 +1242,79 @@ function init_stream(stream) {
 
 		el = ev.target.closest('.item.share > button[data-type="print"]');
 		if (el) {	// Print
-			const tmp_window = window.open();
-			for (let i = 0; i < document.styleSheets.length; i++) {
-				tmp_window.document.writeln('<link href="' + document.styleSheets[i].href + '" rel="stylesheet" type="text/css" />');
-			}
+			const html = document.documentElement;
+			const head = document.head.cloneNode(true);
+			head.querySelectorAll('script').forEach(js => js.remove());
+
 			const flux_content = el.closest('.flux_content');
 			let content_el = null;
 			if (flux_content) {
-				content_el = el.closest('.flux_content').querySelector('.content');
+				content_el = el.closest('.flux_content').querySelector('.content').cloneNode(true);
 			}
 			if (content_el === null) {
-				content_el = el.closest('.flux').querySelector('.flux_content .content');
+				content_el = el.closest('.flux').querySelector('.flux_content .content').cloneNode(true);
 			}
+
+			content_el.querySelectorAll('a').forEach(link => {
+				// Avoid leaking the instance URL in PDFs
+				if (link.href.startsWith(location.origin)) {
+					link.removeAttribute('href');
+				}
+			});
+
+			content_el.querySelectorAll('details').forEach(el => el.setAttribute('open', 'open'));
+
+			const articleTitle = content_el.querySelector('.title a').innerText;
+			prevTitle = document.title;
+
+			// Chrome uses the parent's title to get the PDF save filename
+			document.title = articleTitle;
+
+			// Firefox uses the iframe's title to get the PDF save filename
+			// Note: Firefox Mobile saves PDFs with a filename that looks like: `temp[19 random digits].PDF` regardless of title
+			head.querySelector('title').innerText = articleTitle;
+
 			loadLazyImages(content_el);
-			tmp_window.document.writeln(content_el.innerHTML);
-			tmp_window.document.close();
-			tmp_window.focus();
-			tmp_window.print();
-			tmp_window.close();
+
+			const print_frame = document.createElement('iframe');
+			print_frame.style.display = 'none';
+			print_frame.srcdoc = `
+			<!DOCTYPE html>
+			<html class="${html.getAttribute('class')}">
+			<head>
+				${head.innerHTML}
+			</head>
+			<body>
+				${content_el.outerHTML}
+			</body>
+			</html>
+			`;
+			document.body.prepend(print_frame);
+
+			function afterPrint() {
+				print_frame.remove();
+				document.title = prevTitle;
+				prevTitle = '';
+
+				window.removeEventListener('focus', afterPrint);
+			}
+
+			print_frame.onload = () => {
+				const tmp_window = print_frame.contentWindow;
+
+				// Needed for Chrome
+				tmp_window.matchMedia('print').onchange = (e) => {
+					// UA check is needed to not trigger on Chrome Mobile
+					if (!e.matches && !navigator.userAgent.includes('Mobi')) {
+						afterPrint();
+					}
+				};
+				tmp_window.print();
+			};
+
+			// Needed for Firefox and Chrome Mobile
+			window.addEventListener('focus', afterPrint);
+
 			return false;
 		}
 
@@ -2119,6 +2181,26 @@ function init_normal() {
 	});
 }
 
+function init_csp_alert() {
+	if (!context.admin || context.suppress_csp_warning) {
+		return;
+	}
+
+	try {
+		// eslint-disable-next-line no-new-func
+		Function();
+	} catch (_) {
+		// Exit if 'script-src' is set and 'unsafe-eval' isn't set in CSP
+		return;
+	}
+
+	document.body.insertAdjacentHTML('afterbegin', `
+	<div class="alert alert-error">
+		<span>${context.i18n.unsafe_csp_header}</span>
+	</div>
+	`);
+}
+
 function init_main_beforeDOM() {
 	history.scrollRestoration = 'manual';
 	document.scrollingElement.scrollTop = 0;
@@ -2131,6 +2213,7 @@ function init_main_beforeDOM() {
 function init_main_afterDOM() {
 	removeFirstLoadSpinner();
 	init_notifications();
+	init_csp_alert();
 	init_confirm_action();
 	const stream = document.getElementById('stream');
 	if (stream) {

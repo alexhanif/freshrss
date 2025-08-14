@@ -145,6 +145,7 @@ return array(
 		'category_empty' => 'Empty category',	// IGNORE
 		'confirm_action' => 'Are you sure you want to perform this action? It cannot be canceled!',
 		'confirm_action_feed_cat' => 'Are you sure you want to perform this action? You will lose related favorites and user queries. It cannot be canceled!',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// IGNORE
 		'feedback' => array(
 			'body_new_articles' => 'There are %%d new articles to read on FreshRSS.',	// IGNORE
 			'body_unread_articles' => '(unread: %%d)',	// IGNORE
@@ -154,6 +155,7 @@ return array(
 		'labels_empty' => 'No labels',	// IGNORE
 		'new_article' => 'There are new articles available, click to refresh the page.',	// IGNORE
 		'should_be_activated' => 'JavaScript must be enabled',	// IGNORE
+		'unsafe_csp_header' => 'The CSP header in use is unsafe and FreshRSS may be vulnerable to XSS attacks. <a target="_blank" href="https://freshrss.github.io/FreshRSS/en/admins/10_ServerConfig.html#security">See documentation</a>',	// IGNORE
 	),
 	'lang' => array(
 		'cs' => 'Čeština',	// IGNORE

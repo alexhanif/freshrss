@@ -27,6 +27,7 @@ declare(strict_types=1);
  * @property-read string $salt
  * @property-read bool $simplepie_syslog_enabled
  * @property bool $unsafe_autologin_enabled
+ * @property-read bool $suppress_csp_warning
  * @property array<string> $trusted_sources
  * @property array<string,array<string,mixed>> $extensions
  */

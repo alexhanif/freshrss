@@ -145,6 +145,7 @@ return array(
 		'category_empty' => '空白のカテゴリ',
 		'confirm_action' => '本当に実行してもいいですか?キャンセルはできません!',
 		'confirm_action_feed_cat' => '本当に実行してもいいですか? あなたは関連するお気に入りとユーザークエリを失います。キャンセルできません!',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// TODO
 		'feedback' => array(
 			'body_new_articles' => '%%d の新規記事がFreshRSSにはあります。',
 			'body_unread_articles' => '(未読: %%d)',
@@ -154,6 +155,7 @@ return array(
 		'labels_empty' => 'ラベルがありません',
 		'new_article' => '新しい記事があるのでクリックしてページをリフレッシュしてください。',
 		'should_be_activated' => 'JavaScriptは有効になっている必要があります。',
+		'unsafe_csp_header' => 'The CSP header in use is unsafe and FreshRSS may be vulnerable to XSS attacks. <a target="_blank" href="https://freshrss.github.io/FreshRSS/en/admins/10_ServerConfig.html#security">See documentation</a>',	// TODO
 	),
 	'lang' => array(
 		'cs' => 'Čeština',	// IGNORE

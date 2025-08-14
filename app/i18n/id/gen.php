@@ -145,6 +145,7 @@ return array(
 		'category_empty' => 'Kategori kosong',
 		'confirm_action' => 'Apakah Anda yakin ingin melakukan ini? Ini tidak dapat dibatalkan!',
 		'confirm_action_feed_cat' => 'Apakah Anda yakin ingin melakukan ini? Anda akan kehilangan favorit dan pencarian pengguna terkait. Ini tidak dapat dibatalkan.',
+		'confirm_exit_slider' => 'Are you sure you want to discard unsaved settings?',	// TODO
 		'feedback' => array(
 			'body_new_articles' => 'Ada %%d artikel baru untuk dibaca di FreshRSS.',
 			'body_unread_articles' => '(belum dibaca: %%d)',
@@ -154,6 +155,7 @@ return array(
 		'labels_empty' => 'Tidak ada label',
 		'new_article' => 'Tidak ada artikel baru yang tersedia, klik untuk menyegarkan halaman.',
 		'should_be_activated' => 'JavaScript harus diaktifkan',
+		'unsafe_csp_header' => 'The CSP header in use is unsafe and FreshRSS may be vulnerable to XSS attacks. <a target="_blank" href="https://freshrss.github.io/FreshRSS/en/admins/10_ServerConfig.html#security">See documentation</a>',	// TODO
 	),
 	'lang' => array(
 		'cs' => 'Čeština',	// IGNORE

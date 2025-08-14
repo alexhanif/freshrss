@@ -337,6 +337,7 @@ function open_slider_listener(ev) {
 				slider.classList.add('active');
 				slider.scrollTop = 0;
 				slider_content.innerHTML = this.response.body.innerHTML;
+				data_auto_leave_validation(slider);
 				init_update_feed();
 				slider_content.querySelectorAll('form').forEach(function (f) {
 					f.insertAdjacentHTML('afterbegin', '<input type="hidden" name="slider" value="1" />');
@@ -363,7 +364,7 @@ function init_slider(slider) {
 
 function close_slider_listener(ev) {
 	const slider = document.getElementById('slider');
-	if (data_leave_validation(slider) || confirm(context.i18n.confirmation_default)) {
+	if (data_leave_validation(slider) || confirm(context.i18n.confirm_exit_slider)) {
 		slider.querySelectorAll('form').forEach(function (f) { f.reset(); });
 		document.documentElement.classList.remove('slider-active');
 		return;
@@ -437,6 +438,26 @@ function data_leave_validation(parent, excludeForm = null) {
 	return true;
 }
 
+/**
+ * Automatically sets the `data-leave-validation` attribute for input, textarea, select elements for a given parent, if it's not set already.
+ * Ignores elements with the `data-no-leave-validation` attribute set.
+ */
+function data_auto_leave_validation(parent) {
+	parent.querySelectorAll(`[data-auto-leave-validation] input,
+													[data-auto-leave-validation] textarea,
+													[data-auto-leave-validation] select`).forEach(el => {
+		if (el.dataset.leaveValidation || el.dataset.noLeaveValidation) {
+			return;
+		}
+
+		if (el.type === 'checkbox' || el.type === 'radio') {
+			el.dataset.leaveValidation = +el.checked;
+		} else if (el.type !== 'hidden') {
+			el.dataset.leaveValidation = el.value;
+		}
+	});
+}
+
 function init_2stateButton() {
 	const btns = document.getElementsByClassName('btn-state1');
 	Array.prototype.forEach.call(btns, function (el) {
@@ -477,6 +498,8 @@ function init_extra_afterDOM() {
 		init_configuration_alert();
 		init_2stateButton();
 		init_update_feed();
+
+		data_auto_leave_validation(document.body);
 
 		const slider = document.getElementById('slider');
 		if (slider) {

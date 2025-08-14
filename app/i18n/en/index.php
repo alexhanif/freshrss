@@ -16,13 +16,13 @@ return array(
 		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',
 		'bug_reports' => array(
 			'environment_information' => array(
-				'_' => 'System information',	// TODO
-				'browser' => 'Browser',	// TODO
-				'database' => 'Database',	// TODO
-				'server_software' => 'Server software',	// TODO
+				'_' => 'System information',
+				'browser' => 'Browser',
+				'database' => 'Database',
+				'server_software' => 'Server software',
 				'version_curl' => 'cURL version',
-				'version_frss' => 'FreshRSS version',	// TODO
-				'version_php' => 'PHP version',	// TODO
+				'version_frss' => 'FreshRSS version',
+				'version_php' => 'PHP version',
 			),
 		),
 		'bugs_reports' => 'Bug reports',
