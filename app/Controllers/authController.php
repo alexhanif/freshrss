@@ -245,6 +245,7 @@ class FreshRSS_auth_Controller extends FreshRSS_ActionController {
 				)) {
 				Minz_Request::setBadNotification(_t('feedback.auth.login.invalid'));
 			} else {
+				Minz_Session::regenerateID();
 				Minz_Session::_param('lastReauth', time());
 				Minz_Request::forward($redirect, true);
 				return;

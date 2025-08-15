@@ -198,9 +198,6 @@ class Minz_Session {
 
 	/**
 	 * Regenerate a session id.
-	 *
-	 * Warning: this function doesn't remove the old session
-	 * Make sure to call FreshRSS_Auth::removeAccess() first or change password hash of user
 	 */
 	public static function regenerateID(): void {
 		$newId = session_create_id();
@@ -209,8 +206,17 @@ class Minz_Session {
 			return;
 		}
 		$lifetime = session_get_cookie_params()['lifetime'];
+
+		$oldSess = $_SESSION;
+		session_start();
+		$_SESSION = [];
+		session_write_close();
+
 		session_id($newId);
 		setcookie('FreshRSS', $newId, $lifetime, self::getCookieDir(), '', Minz_Request::isHttps(), true);
+		session_start();
+		$_SESSION = $oldSess;
+		session_write_close();
 	}
 
 	public static function deleteLongTermCookie(string $name): void {
