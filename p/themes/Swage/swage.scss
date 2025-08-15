@@ -130,24 +130,6 @@ li.tree-folder span.title {
 	}
 }
 
-:root.controller_feed body.add {
-	.header div.item.title {
-		.logo {
-			transform: scale(1.2);
-			filter: brightness(1);
-			top: 1rem;
-		}
-	}
-
-	nav.item.configure {
-		position: static;
-	}
-
-	main {
-		margin-top: 2.5rem;
-	}
-}
-
 :root.file_query body {
 	.header {
 		div.item.search {
@@ -1202,9 +1184,14 @@ main.post .drop-section li.item.feed a:hover .icon {
 .file_query,
 :root:not(.logged_in) .tos,
 :root:not(.logged_in) .about,
-:root.controller_error .index {
+:root.controller_error .index,
+:root.controller_feed .add {
 	#global {
 		height: 0;
+	}
+
+	.logo {
+		right: 30px;
 	}
 
 	.header {

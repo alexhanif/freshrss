@@ -106,18 +106,6 @@ li.tree-folder span.title {
   filter: brightness(0);
 }
 
-:root.controller_feed body.add .header div.item.title .logo {
-  transform: scale(1.2);
-  filter: brightness(1);
-  top: 1rem;
-}
-:root.controller_feed body.add nav.item.configure {
-  position: static;
-}
-:root.controller_feed body.add main {
-  margin-top: 2.5rem;
-}
-
 :root.file_query body .header div.item.search {
   display: none;
 }
@@ -948,8 +936,19 @@ main.post .drop-section li.item.feed a:hover .icon {
 .file_query #global,
 :root:not(.logged_in) .tos #global,
 :root:not(.logged_in) .about #global,
-:root.controller_error .index #global {
+:root.controller_error .index #global,
+:root.controller_feed .add #global {
   height: 0;
+}
+.formLogin .logo,
+.register .logo,
+.reauth .logo,
+.file_query .logo,
+:root:not(.logged_in) .tos .logo,
+:root:not(.logged_in) .about .logo,
+:root.controller_error .index .logo,
+:root.controller_feed .add .logo {
+  left: 30px;
 }
 .formLogin .header,
 .register .header,
@@ -957,7 +956,8 @@ main.post .drop-section li.item.feed a:hover .icon {
 .file_query .header,
 :root:not(.logged_in) .tos .header,
 :root:not(.logged_in) .about .header,
-:root.controller_error .index .header {
+:root.controller_error .index .header,
+:root.controller_feed .add .header {
   background-color: var(--color-background-nav);
   height: 2.4rem;
   position: relative;
@@ -968,7 +968,8 @@ main.post .drop-section li.item.feed a:hover .icon {
 .file_query .header > .item.configure,
 :root:not(.logged_in) .tos .header > .item.configure,
 :root:not(.logged_in) .about .header > .item.configure,
-:root.controller_error .index .header > .item.configure {
+:root.controller_error .index .header > .item.configure,
+:root.controller_feed .add .header > .item.configure {
   width: auto;
   position: absolute;
   white-space: nowrap;
@@ -979,7 +980,8 @@ main.post .drop-section li.item.feed a:hover .icon {
 .file_query .header > .item.configure .icon,
 :root:not(.logged_in) .tos .header > .item.configure .icon,
 :root:not(.logged_in) .about .header > .item.configure .icon,
-:root.controller_error .index .header > .item.configure .icon {
+:root.controller_error .index .header > .item.configure .icon,
+:root.controller_feed .add .header > .item.configure .icon {
   filter: brightness(3);
 }
 
