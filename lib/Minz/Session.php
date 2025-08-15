@@ -200,23 +200,16 @@ class Minz_Session {
 	 * Regenerate a session id.
 	 */
 	public static function regenerateID(): void {
-		$newId = session_create_id();
+		session_start();
+		session_regenerate_id(true);
+		session_write_close();
+		$newId = session_id();
 		if ($newId === false) {
 			Minz_Error::error(500);
 			return;
 		}
 		$lifetime = session_get_cookie_params()['lifetime'];
-
-		$oldSess = $_SESSION;
-		session_start();
-		$_SESSION = [];
-		session_destroy();
-
-		session_id($newId);
 		setcookie('FreshRSS', $newId, $lifetime, self::getCookieDir(), '', Minz_Request::isHttps(), true);
-		session_start();
-		$_SESSION = $oldSess;
-		session_write_close();
 	}
 
 	public static function deleteLongTermCookie(string $name): void {
