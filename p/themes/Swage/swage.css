@@ -161,10 +161,6 @@ select:disabled {
   background-color: var(--color-background-light);
 }
 
-input, select, textarea {
-  max-width: 85vw;
-}
-
 select {
   padding-top: 7px;
   padding-bottom: 8px;
@@ -1040,9 +1036,6 @@ main.global {
   #nav_menu_read_all .dropdown-menu,
   #nav_menu_actions .dropdown-menu {
     position: fixed;
-  }
-  #dropdown-search-wrapper .dropdown-menu span {
-    text-wrap: wrap;
   }
   body:not(.normal):not(.reader):not(.add) nav.configure a.dropdown-toggle {
     position: fixed;
