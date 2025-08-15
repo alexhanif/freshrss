@@ -200,8 +200,11 @@ class Minz_Session {
 	 * Regenerate a session id.
 	 * Useful to call session_set_cookie_params after session_start()
 	 */
-	public static function regenerateID(): void {
-		session_regenerate_id(true);
+	public static function regenerateID(bool $delete_old_session = true): void {
+		ini_set('session.use_cookies', '1');
+		Minz_Session::lock();
+		session_regenerate_id($delete_old_session);
+		Minz_Session::unlock();
 	}
 
 	public static function deleteLongTermCookie(string $name): void {
