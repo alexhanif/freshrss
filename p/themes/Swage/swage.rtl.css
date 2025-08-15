@@ -105,11 +105,7 @@ li.tree-folder span.title {
 :root.file_query .view-rss > .icon {
   filter: brightness(0);
 }
-
-:root.file_query body .header div.item.search {
-  display: none;
-}
-:root.file_query body main > h1:first-child {
+:root.file_query main > h1:first-child {
   margin-top: 2rem;
 }
 
@@ -619,7 +615,7 @@ main.post .drop-section li.item.feed a:hover .icon {
   color: var(--color-text-light);
 }
 
-:root:not(.file_query) .item.search {
+.item.search {
   display: none;
 }
 
@@ -930,58 +926,23 @@ main.post .drop-section li.item.feed a:hover .icon {
   position: relative;
 }
 
-.formLogin #global,
-.register #global,
-.reauth #global,
-.file_query #global,
-:root:not(.logged_in) .tos #global,
-:root:not(.logged_in) .about #global,
-:root.controller_error .index #global,
-:root.controller_feed .add #global {
+body:not(:has(nav#aside_feed)) #global {
   height: 0;
 }
-.formLogin .logo,
-.register .logo,
-.reauth .logo,
-.file_query .logo,
-:root:not(.logged_in) .tos .logo,
-:root:not(.logged_in) .about .logo,
-:root.controller_error .index .logo,
-:root.controller_feed .add .logo {
+body:not(:has(nav#aside_feed)) .logo {
   left: 30px;
 }
-.formLogin .header,
-.register .header,
-.reauth .header,
-.file_query .header,
-:root:not(.logged_in) .tos .header,
-:root:not(.logged_in) .about .header,
-:root.controller_error .index .header,
-:root.controller_feed .add .header {
+body:not(:has(nav#aside_feed)) .header {
   background-color: var(--color-background-nav);
   height: 2.4rem;
   position: relative;
 }
-.formLogin .header > .item.configure,
-.register .header > .item.configure,
-.reauth .header > .item.configure,
-.file_query .header > .item.configure,
-:root:not(.logged_in) .tos .header > .item.configure,
-:root:not(.logged_in) .about .header > .item.configure,
-:root.controller_error .index .header > .item.configure,
-:root.controller_feed .add .header > .item.configure {
+body:not(:has(nav#aside_feed)) .header > .item.configure {
   width: auto;
   position: absolute;
   white-space: nowrap;
 }
-.formLogin .header > .item.configure .icon,
-.register .header > .item.configure .icon,
-.reauth .header > .item.configure .icon,
-.file_query .header > .item.configure .icon,
-:root:not(.logged_in) .tos .header > .item.configure .icon,
-:root:not(.logged_in) .about .header > .item.configure .icon,
-:root.controller_error .index .header > .item.configure .icon,
-:root.controller_feed .add .header > .item.configure .icon {
+body:not(:has(nav#aside_feed)) .header > .item.configure .icon {
   filter: brightness(3);
 }
 

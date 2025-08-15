@@ -128,14 +128,6 @@ li.tree-folder span.title {
 	.view-rss > .icon {
 		filter: brightness(0);
 	}
-}
-
-:root.file_query body {
-	.header {
-		div.item.search {
-			display: none;
-		}
-	}
 
 	main > h1:first-child {
 		margin-top: 2rem;
@@ -778,10 +770,8 @@ main.post .drop-section li.item.feed a:hover .icon {
 	}
 }
 
-:root:not(.file_query) {
-	.item.search {
-		display: none;
-	}
+.item.search {
+	display: none;
 }
 
 .header {
@@ -1178,14 +1168,7 @@ main.post .drop-section li.item.feed a:hover .icon {
 	}
 }
 
-.formLogin,
-.register,
-.reauth,
-.file_query,
-:root:not(.logged_in) .tos,
-:root:not(.logged_in) .about,
-:root.controller_error .index,
-:root.controller_feed .add {
+body:not(:has(nav#aside_feed)) {
 	#global {
 		height: 0;
 	}
