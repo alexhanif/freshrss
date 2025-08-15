@@ -210,7 +210,7 @@ class Minz_Session {
 		$oldSess = $_SESSION;
 		session_start();
 		$_SESSION = [];
-		session_write_close();
+		session_destroy();
 
 		session_id($newId);
 		setcookie('FreshRSS', $newId, $lifetime, self::getCookieDir(), '', Minz_Request::isHttps(), true);
