@@ -20,6 +20,9 @@
 	if (FreshRSS_Auth::hasAccess()) {
 		$class[] = 'logged_in';
 	}
+	$class = array_map(
+		fn($c) => preg_replace('/\s/', '', $c), $class
+	);
 ?>
 <!DOCTYPE html>
 <html lang="<?= FreshRSS_Context::userConf()->language ?>"<?= $dir ?> xml:lang="<?= FreshRSS_Context::userConf()->language ?>" class="<?= implode(' ', $class) ?>">
